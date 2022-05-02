@@ -1,0 +1,27 @@
+union target =
+    | Fsharp
+    | Cython
+    
+inl get_current_target () = 
+    Fsharp
+
+inl new_str c n : string = 
+    match get_current_target () with
+    | Fsharp => $"System.String (!c, !n)"
+    | Cython => $"str???(!c, !n)"
+
+let inspect obj =
+    match get_current_target () with
+    | Fsharp => $"printfn $\"%A{!obj}\""
+    | Cython => $"print(!obj)"
+        
+let test b = assert b "test"
+    
+inl program () : () =
+    inspect "/########################################\\ start"
+    inl a = 1i32
+    inl b = 1i32
+    test (a = b)
+    inspect (new_str 'q' 17i32)
+    inspect ;[3i32]
+    inspect "\\########################################/ end"
