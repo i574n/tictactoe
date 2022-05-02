@@ -1,0 +1,41 @@
+#!fsharp
+
+#load "main.fsx"
+
+#!fsharp
+
+let width = Main.method0 ()
+width
+
+#!javascript
+
+#!share --from fsharp width
+console.log(width)
+
+#!javascript
+
+context = { libs: {} }
+
+#!javascript
+
+const loadLib = (name, path) => {
+    const lib = interactive.configureRequire({ paths: { [name]: path } });
+    lib([name], (root) => { context.libs[name] = root; });
+};
+
+loadLib("d3", "https://d3js.org/d3.v5.min");
+
+#!html
+
+<svg id="svg1" style="width: 200px; height: 200px; background-color: black"></svg>
+
+#!javascript
+
+const svg1d3 = context.libs.d3.select('#svg1');
+
+svg1d3.append('line')
+    .style('stroke', 'white')
+    .attr("x1", 10)
+    .attr("y1", 100)
+    .attr("x2", 10 + width)
+    .attr("y2", 100);

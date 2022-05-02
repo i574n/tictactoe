@@ -1,0 +1,4 @@
+let get_width () : i32 = 200 - 20
+
+inl main () : () =
+    $"printfn($\"main.spi Loaded. Width: {!get_width ()}\")"
