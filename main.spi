@@ -1,7 +1,42 @@
-open temp
+
+union target =
+    | Fsharp
+    | Cython
     
+inl get_current_target () = 
+    Fsharp
+
+inl new_str c n : string = 
+    match get_current_target () with
+    | Fsharp => $"System.String (!c, !n)"
+    | Cython => $"str???(!c, !n)"
+
+inl inspect obj =
+    match get_current_target () with
+    | Fsharp => $"printfn $\"%A{!obj}\""
+    | Cython => $"print(!obj)"
+        
+inl test b = assert b "test"
+
+let program () : () =
+    console.write_line ()
+    console.write "[white bold underline]Title 1[/]" console.Purple
+    inspect (new_str 'w' 17i32)
+    inspect ;[5i32]
+    (join console.write_line) "end"
+    console.write () console.Purple
+
+    inl a = 1i32
+    inl b = 1i32
+    test (a = b)
+
+
 let get_width () : i32 = 200 - 20
 
 inl main () : () =
     inspect ($"$\"main.spi Loaded. Width: {!get_width ()}\"" : string)
+
+    $"#r \"nuget: Spectre.Console\""
+    $"open Spectre.Console"
+
     program ()

@@ -1,0 +1,58 @@
+union color =
+    | Black
+    | Maroon
+    | Green
+    | Olive
+    | Navy
+    | Purple
+    | Teal
+    | Silver
+
+inl get_color_index = function
+    | Black => 0i32
+    | Maroon => 1i32
+    | Green => 2i32
+    | Olive => 3i32
+    | Navy => 4i32
+    | Purple => 5i32
+    | Teal => 6i32
+    | Silver => 7i32
+    
+nominal _Color = $"Color"
+nominal _Style = $"Style"
+nominal _Rule = $"Rule"
+
+inl new_color color : _Color =
+    color |> get_color_index |> $"Color.FromInt32"
+
+inl reset_colors () =
+    $"AnsiConsole.ResetColors ()"
+
+inl new_style color : _Style =
+    $"Style !color"
+
+inl new_rule text : _Rule =
+    $"Rule !text"
+    
+inl style_rule style rule : _Rule =
+    $"!rule.RuleStyle !style"
+
+inl align_rule_left rule : _Rule =
+    $"!rule.LeftAligned ()"
+
+inl write_rule rule : () =
+    $"AnsiConsole.Write !rule"
+
+inl write_line text =
+    $"AnsiConsole.WriteLine !text"
+
+inl write rule_text color =
+    inl color_style = color |> new_color |> new_style
+
+    inl rule = 
+        new_rule rule_text
+        |> align_rule_left
+        |> style_rule color_style
+
+    // reset_colors ()
+    rule |> write_rule
