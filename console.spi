@@ -23,7 +23,7 @@ nominal _Style = $"Style"
 nominal _Rule = $"Rule"
 
 inl new_color color : _Color =
-    color |> get_color_index |> $"Color.FromInt32"
+    get_color_index color |> $"Color.FromInt32"
 
 inl reset_colors () =
     $"AnsiConsole.ResetColors ()"
@@ -40,14 +40,14 @@ inl style_rule style rule : _Rule =
 inl align_rule_left rule : _Rule =
     $"!rule.LeftAligned ()"
 
-inl write_rule rule : () =
-    $"AnsiConsole.Write !rule"
+inl write arg =
+    $"AnsiConsole.Write !arg"
 
-inl write_line text =
-    $"AnsiConsole.WriteLine !text"
+inl write_line arg =
+    $"AnsiConsole.WriteLine !arg"
 
-inl write rule_text color =
-    inl color_style = color |> new_color |> new_style
+inl write_rule_text rule_text color =
+    inl color_style = new_color color |> new_style
 
     inl rule = 
         new_rule rule_text
@@ -55,4 +55,19 @@ inl write rule_text color =
         |> style_rule color_style
 
     // reset_colors ()
-    rule |> write_rule
+    write rule
+
+inl set_colors color =
+    inl color_obj = new_color color
+    $"AnsiConsole.Foreground <- !color_obj"
+    //$"AnsiConsole.Background <- AnsiConsole.Foreground.GetInvertedColor()"
+
+inl write_line_color text color =
+    set_colors color
+    write_line text
+    reset_colors ()
+
+inl write_color text color =
+    set_colors color
+    write text
+    reset_colors ()

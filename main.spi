@@ -11,20 +11,81 @@ inl new_str c n : string =
     | Fsharp => $"System.String (!c, !n)"
     | Cython => $"str???(!c, !n)"
 
-inl inspect obj =
+inl inspect ~obj =
     match get_current_target () with
     | Fsharp => $"printfn $\"%A{!obj}\""
     | Cython => $"print(!obj)"
         
 inl test b = assert b "test"
 
+
+
+
+union cell_status =
+    | Completed
+
+inl get_cell_status_label = function
+    | Completed => "Completed"
+
+nominal __date = 
+    heap {
+        day : i32
+        month : i32
+        year : i32
+    }
+
+
 let program () : () =
-    console.write_line ()
-    console.write "[white bold underline]Title 1[/]" console.Purple
+    console.write_rule_text "[white bold underline]Title 1[/]" console.Purple
     inspect (new_str 'w' 17i32)
-    inspect ;[5i32]
-    (join console.write_line) "end"
-    console.write () console.Purple
+    inspect ;[6i32]
+    console.write_line ()
+    console.write_line "end"
+    
+    inl get_position () =
+        {year=2022i32; month=12i32; day=26i32}
+    inl get_status_data () =
+        ;[{year=2022i32; month=12i32; day=24i32}, Completed]
+
+    inl get_status_data2 () =
+        ;[{year=2022i32; month=12i32; day=24i32}, Completed;{year=2022i32; month=12i32; day=24i32}, Completed]
+        
+    inl get_flags () =
+        {days_before=0i32; days_after=0i32}
+    
+    inl status_data = get_status_data ()
+    inspect {flags=get_flags();position=get_position();status_data;status_data2=get_status_data2 ()}
+    
+    console.write_line "jan      fe"
+    console.write_line "29 30 31 01"
+    console.write_line "su mo tu we"
+    console.write_line_color "░░ ▒▒ ▓▓ ██" console.Green
+
+    console.write_rule_text () console.Purple
+
+    console.write_line "de"
+    console.write_line "26"
+    console.write_line "xx"
+    console.write_line_color "██" console.Green
+    
+    inl render_header position flags =
+        ;["de"; "26"; "xx"]
+
+    inl render_task_cells position flags =
+        ;["██"]
+
+    //inl render {header;task_cells} : string =
+    //    $"String.Join(\" \", !header)"
+
+    inl position = get_position ()
+    inl flags = get_flags ()
+    inl header = render_header position flags
+    inl task_cells = render_task_cells position flags
+    //inl out = render {header;task_cells}
+    inl out = header, task_cells
+    inspect out 
+
+    console.write_rule_text () console.Purple
 
     inl a = 1i32
     inl b = 1i32
