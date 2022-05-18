@@ -1,5 +1,6 @@
 packages: |core-
 modules: 
-    console
     temp
+    pyteal
+    console
     main

@@ -1,0 +1,36 @@
+open temp
+
+inl new_addr addr : string = 
+    inl _Addr : string -> string = $"import \"Addr\" \"pyteal\""
+    _Addr addr 
+
+let new_bytes text : string = 
+    inl _Bytes : string -> string = $"import \"Bytes\" \"pyteal\""
+    _Bytes text
+
+let new_int n : i32 = 
+    inl _Int : i32 -> i32 = $"import \"Int\" \"pyteal\""
+    _Int n
+
+let new_return forall t. expr : _obj = 
+    inl _Return : t -> _obj = $"import \"Return\" \"pyteal\""
+    _Return expr
+
+let new_seq exprs : _obj = 
+    inl _Seq : array _obj -> _obj = $"import \"Seq\" \"pyteal\""
+    _Seq exprs
+
+let app_global_put bytes value : _obj =
+    $"(import \"App\" \"pyteal\")?globalPut(!bytes, !value)"
+
+let get_txn_fee () : i32 = 
+    $"(import \"Txn\" \"pyteal\")?fee()"
+
+let get_txn_receiver () : string = 
+    $"(import \"Txn\" \"pyteal\")?receiver()"
+
+let get_txn_type_enum () : i32 = 
+    $"(import \"Txn\" \"pyteal\")?type_enum()"
+    
+inl get_txn_type_payment () : obj =
+    $"(import \"TxnType\" \"pyteal\")?Payment"

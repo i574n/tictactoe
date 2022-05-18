@@ -8,15 +8,16 @@ union color =
     | Teal
     | Silver
 
-inl get_color_index = function
-    | Black => 0i32
-    | Maroon => 1i32
-    | Green => 2i32
-    | Olive => 3i32
-    | Navy => 4i32
-    | Purple => 5i32
-    | Teal => 6i32
-    | Silver => 7i32
+inl get_color_index color : i32 =
+    match color with
+    | Black => 0
+    | Maroon => 1
+    | Green => 2
+    | Olive => 3
+    | Navy => 4
+    | Purple => 5
+    | Teal => 6
+    | Silver => 7
     
 nominal _Color = $"Color"
 nominal _Style = $"Style"

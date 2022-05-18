@@ -1,70 +1,59 @@
-type [<Struct>] US0 =
-    | US0_0
-let rec method0 () : int32 =
-    180
-and closure0 () () : int32 =
-    method0()
-and method1 () : unit =
-    let v0 : (int32 -> Color) = Color.FromInt32
-    let v1 : Color = v0 5
-    let v2 : Style = Style v1
-    let v3 : Rule = Rule "[white bold underline]Title 1[/]"
-    let v4 : Rule = v3.LeftAligned ()
-    let v5 : Rule = v4.RuleStyle v2
-    AnsiConsole.Write v5
-    let v6 : string = System.String ('w', 17)
-    printfn $"%A{v6}"
-    let v7 : (int32 []) = [|6|]
-    printfn $"%A{v7}"
-    AnsiConsole.WriteLine ()
-    AnsiConsole.WriteLine "end"
-    let v8 : US0 = US0_0
-    let v9 : (struct (int32 * int32 * int32 * US0) []) = [|struct (24, 12, 2022, v8)|]
-    let v10 : US0 = US0_0
-    let v11 : US0 = US0_0
-    let v12 : (struct (int32 * int32 * int32 * US0) []) = [|struct (24, 12, 2022, v10); struct (24, 12, 2022, v11)|]
-    let v13 : int32 = 0
-    let v14 : int32 = 0
-    let v15 : int32 = 26
-    let v16 : int32 = 12
-    let v17 : int32 = 2022
-    printfn $"%A{struct (v13, v14, v15, v16, v17, v9, v12)}"
-    AnsiConsole.WriteLine "jan      fe"
-    AnsiConsole.WriteLine "29 30 31 01"
-    AnsiConsole.WriteLine "su mo tu we"
-    let v18 : (int32 -> Color) = Color.FromInt32
-    let v19 : Color = v18 2
-    AnsiConsole.Foreground <- v19
-    AnsiConsole.WriteLine "░░ ▒▒ ▓▓ ██"
-    AnsiConsole.ResetColors ()
-    let v20 : (int32 -> Color) = Color.FromInt32
-    let v21 : Color = v20 5
-    let v22 : Style = Style v21
-    let v23 : Rule = Rule ()
-    let v24 : Rule = v23.LeftAligned ()
-    let v25 : Rule = v24.RuleStyle v22
-    AnsiConsole.Write v25
-    AnsiConsole.WriteLine "de"
-    AnsiConsole.WriteLine "26"
-    AnsiConsole.WriteLine "xx"
-    let v26 : (int32 -> Color) = Color.FromInt32
-    let v27 : Color = v26 2
-    AnsiConsole.Foreground <- v27
-    AnsiConsole.WriteLine "██"
-    AnsiConsole.ResetColors ()
-    let v28 : (string []) = [|"de"; "26"; "xx"|]
-    let v29 : (string []) = [|"██"|]
-    printfn $"%A{struct (v28, v29)}"
-    let v30 : (int32 -> Color) = Color.FromInt32
-    let v31 : Color = v30 5
-    let v32 : Style = Style v31
-    let v33 : Rule = Rule ()
-    let v34 : Rule = v33.LeftAligned ()
-    let v35 : Rule = v34.RuleStyle v32
-    AnsiConsole.Write v35
-let v0 : (unit -> int32) = closure0()
-let v1 : string = $"main.spi Loaded. Width: {v0 ()}"
-printfn $"%A{v1}"
-#r "nuget: Spectre.Console"
-open Spectre.Console
-method1()
+#r "nuget: Fable.Python"
+open Fable.Core.PyInterop
+open Fable.Core
+let rec method0 (v0 : int32) : int32 =
+    let v1 : (int32 -> int32) = import "Int" "pyteal"
+    v1 v0
+and method1 (v0 : string) : string =
+    let v1 : (string -> string) = import "Bytes" "pyteal"
+    v1 v0
+and method2 (v0 : string, v1 : int32) : obj =
+    (import "App" "pyteal")?globalPut(v0, v1)
+and method3 (v0 : int32) : obj =
+    let v1 : (int32 -> obj) = import "Return" "pyteal"
+    v1 v0
+and method4 (v0 : (obj [])) : obj =
+    let v1 : ((obj []) -> obj) = import "Seq" "pyteal"
+    v1 v0
+and closure0 () () : obj =
+    let v0 : int32 = 0
+    let v1 : int32 = method0(v0)
+    let v2 : int32 = 0
+    let v3 : int32 = method0(v2)
+    let v4 : int32 = 0
+    let v5 : int32 = method0(v4)
+    let v6 : int32 = 1000000
+    let v7 : int32 = method0(v6)
+    let v8 : int32 = 3600
+    let v9 : int32 = method0(v8)
+    let v10 : string = "PlayerXState"
+    let v11 : string = method1(v10)
+    let v12 : string = "PlayerOState"
+    let v13 : string = method1(v12)
+    let v14 : string = "PlayerXAddress"
+    let v15 : string = method1(v14)
+    let v16 : string = "PlayerOAddress"
+    let v17 : string = method1(v16)
+    let v18 : string = "PlayerTurnAddress"
+    let v19 : string = method1(v18)
+    let v20 : string = "FundsEscrowAddress"
+    let v21 : string = method1(v20)
+    let v22 : string = "ActionTimeout"
+    let v23 : string = method1(v22)
+    let v24 : string = "GameState"
+    let v25 : string = method1(v24)
+    let v26 : string = "BetAmount"
+    let v27 : string = method1(v26)
+    let v28 : obj = method2(v11, v1)
+    let v29 : obj = method2(v13, v3)
+    let v30 : obj = method2(v25, v5)
+    let v31 : obj = method2(v27, v7)
+    let v32 : int32 = 1
+    let v33 : int32 = method0(v32)
+    let v34 : obj = method3(v33)
+    let v35 : (obj []) = [|v28; v29; v30; v31; v34|]
+    method4(v35)
+let v0 : string = "main.spi Loaded"
+printfn $"%A{v0}"
+let v1 : (unit -> obj) = closure0()
+()
