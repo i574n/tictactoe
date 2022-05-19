@@ -16,7 +16,7 @@ inl app_global_put bytes value : bool =
 
 inl get_gtxn i : _obj =
     inl i : i32 = i
-    $"(import \"TxnGroup\" \"pyteal\")?__getitem__(import \"Gtxn\" \"pyteal\", !i)"
+    $"(importAll \"pyteal\")?TxnGroup?__getitem__(import \"Gtxn\" \"pyteal\", !i)"
 
 inl get_gtxn_amount gtxn : i32 = 
     $"!gtxn?amount ()"
@@ -30,11 +30,18 @@ inl get_gtxn_sender gtxn : i32 =
 inl get_gtxn_type_enum gtxn : i32 = 
     $"!gtxn?type_enum ()"
 
+inl get_txn_application_args i : i32 = 
+    inl i : i32 = i
+    $"((importAll \"pyteal\")?Txn?application_args : int32[]).[!i]"
+
 inl get_txn_fee () : i32 = 
     $"(importAll \"pyteal\")?Txn?fee ()"
 
-inl get_txn_receiver () : string = 
+inl get_txn_receiver () : i32 = 
     $"(importAll \"pyteal\")?Txn?receiver ()"
+
+inl get_txn_sender () : i32 = 
+    $"(importAll \"pyteal\")?Txn?sender ()"
 
 inl get_txn_type_enum () : i32 = 
     $"(importAll \"pyteal\")?Txn?type_enum ()"
@@ -49,6 +56,9 @@ inl global_latest_timestamp () : i32 =
 inl new_addr addr : string = 
     $"(importAll \"pyteal\")?Addr !addr"
 
+inl new_and e1 e2 : bool = 
+    $"(importAll \"pyteal\")?And !e1 !e2"
+
 inl new_and3 e1 e2 e3 : bool = 
     $"(importAll \"pyteal\")?And !e1 !e2 !e3"
 
@@ -61,13 +71,22 @@ inl new_bitwise_and n1 n2 : i32 =
 inl new_bitwise_or n1 n2 : i32 =
     $"(importAll \"pyteal\")?BitwiseOr !n1 !n2"
 
+inl new_btoi n : i32 = 
+    $"(importAll \"pyteal\")?Btoi !n"
+
 inl new_bytes text : string = 
     $"(importAll \"pyteal\")?Bytes !text"
+
+inl new_cond e1 e2 : bool = 
+    $"(importAll \"pyteal\")?Cond !e1 !e2"
 
 inl new_cond3 e1 e2 e3 : bool = 
     $"(importAll \"pyteal\")?Cond !e1 !e2 !e3"
 
-inl new_if value t f : bool = 
+inl new_if value t : bool = 
+    $"(importAll \"pyteal\")?If !value !t"
+
+inl new_if_else value t f = 
     $"(importAll \"pyteal\")?If !value !t !f"
 
 inl new_int n : i32 = 
@@ -85,3 +104,6 @@ inl new_return e : bool =
 
 inl new_seq exprs : bool = 
     $"(importAll \"pyteal\")?Seq !exprs"
+
+inl new_shift_left n1 n2 : i32 =
+    $"(importAll \"pyteal\")?ShiftLeft !n1 !n2"

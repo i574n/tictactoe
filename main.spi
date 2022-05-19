@@ -98,7 +98,7 @@ inl has_player_won state =
     inl state : i32 = state
     inspect "has_player_won"
 
-    new_if 
+    new_if_else
         (new_or8 
             (new_bitwise_and state (get_win_state 0) = get_win_state 0)
             (new_bitwise_and state (get_win_state 1) = get_win_state 1)
@@ -107,7 +107,7 @@ inl has_player_won state =
             (new_bitwise_and state (get_win_state 4) = get_win_state 4)
             (new_bitwise_and state (get_win_state 5) = get_win_state 5)
             (new_bitwise_and state (get_win_state 6) = get_win_state 6)
-            (new_bitwise_and state (get_win_state 7) = get_win_state 7)) 
+            (new_bitwise_and state (get_win_state 7) = get_win_state 7))
         (new_int 1) 
         (new_int 0)
 
@@ -135,6 +135,59 @@ inl app_initialization_logic () =
             new_return (new_int 1)
         ]
 
+inl play_action_logic () =
+    inspect "play_action_logic"
+
+    inl bytes = get_bytes ()
+    inl default_values = get_default_values ()
+    inl position_index = new_btoi (get_txn_application_args 1)
+    inl state_x = app_global_get bytes.player_x_state
+    inl state_o = app_global_get bytes.player_o_state
+
+    inl game_action = new_shift_left (new_int 1) position_index
+
+    inl player_x_move =
+        new_seq
+            ;[
+                app_global_put bytes.player_x_state (new_bitwise_or state_x game_action)
+                new_if 
+                    (has_player_won (app_global_get bytes.player_x_state))
+                    (app_global_put bytes.game_status (new_int 1))
+                app_global_put bytes.player_turn_address (app_global_get bytes.player_o_address)
+            ]
+
+    inl player_o_move =
+        new_seq
+            ;[
+                app_global_put bytes.player_o_state (new_bitwise_or state_o game_action)
+                new_if 
+                    (has_player_won (app_global_get bytes.player_o_state))
+                    (app_global_put bytes.game_status (new_int 2))
+                app_global_put bytes.player_turn_address (app_global_get bytes.player_x_address)
+            ]
+
+    new_seq
+        ;[
+            new_assert (position_index >= new_int 0)
+            new_assert (position_index <= new_int 8)
+            new_assert (global_latest_timestamp () <= app_global_get bytes.action_timeout)
+            new_assert (app_global_get bytes.game_status = default_values.game_status)
+            new_assert (get_txn_sender () = app_global_get bytes.player_turn_address)
+            new_assert 
+                (new_and 
+                    (new_bitwise_and state_x game_action = new_int 0)
+                    (new_bitwise_and state_o game_action = new_int 0))
+            new_cond
+                ;[get_txn_sender () = app_global_get bytes.player_x_address; player_x_move]
+                ;[get_txn_sender () = app_global_get bytes.player_o_address; player_o_move]
+            new_if 
+                (is_tie ())
+                (app_global_put bytes.game_status (new_int 3))
+            new_return (new_int 1)
+        ]
+
+
+
 inl load () = // TODO: move to top manually
     $"#r \"nuget: Fable.Python\""
     $"open Fable.Core.PyInterop"
@@ -153,3 +206,4 @@ inl main () : () =
     ignore (dyn is_tie)
     ignore (dyn has_player_won)
     ignore (dyn money_refund_logic)
+    ignore (dyn play_action_logic)
