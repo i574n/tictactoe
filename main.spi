@@ -1,34 +1,75 @@
 open temp
 open pyteal
 
-inl get_bytes () =
-    {player_x_state = new_bytes "PlayerXState"
-     player_o_state = new_bytes "PlayerOState"
-     player_x_address = new_bytes "PlayerXAddress"
-     player_o_address = new_bytes "PlayerOAddress"
-     player_turn_address = new_bytes "PlayerTurnAddress"
-     funds_escrow_address = new_bytes "FundsEscrowAddress"
-     action_timeout = new_bytes "ActionTimeout"
-     game_status = new_bytes "GameState"
-     bet_amount = new_bytes "BetAmount"}
+let get_bytes () =
+    {
+        player_x_state = new_bytes "PlayerXState"
+        player_o_state = new_bytes "PlayerOState"
+        player_x_address = new_bytes "PlayerXAddress"
+        player_o_address = new_bytes "PlayerOAddress"
+        player_turn_address = new_bytes "PlayerTurnAddress"
+        funds_escrow_address = new_bytes "FundsEscrowAddress"
+        action_timeout = new_bytes "ActionTimeout"
+        game_status = new_bytes "GameState"
+        bet_amount = new_bytes "BetAmount"
+    }
 
-inl get_default_values () =
-    {player_x_state = new_int 0
-     player_o_state = new_int 0
-     game_status = new_int 0
-     bet_amount = new_int 1000000
-     game_duration_seconds = new_int 3600}
-     
+inl get_default_values () = 
+    {
+        player_x_state = new_int 0
+        player_o_state = new_int 0
+        game_status = new_int 0
+        bet_amount = new_int 1000000
+        game_duration_seconds = new_int 3600
+    }
+
+inl get_win_state i : i32 =
+    match i with
+    | 0i32 => 448
+    | 1 => 56
+    | 2 => 7
+    | 3 => 292
+    | 4 => 146
+    | 5 => 73
+    | 6 => 273
+    | 7 => 84
+    |> new_int
+
+inl has_player_won state =
+    inl state : i32 = state
+    inspect "has_player_won"
+    new_if 
+        (new_or8 
+            (new_bitwise_and state (get_win_state 0) = get_win_state 0)
+            (new_bitwise_and state (get_win_state 1) = get_win_state 1)
+            (new_bitwise_and state (get_win_state 2) = get_win_state 2)
+            (new_bitwise_and state (get_win_state 3) = get_win_state 3)
+            (new_bitwise_and state (get_win_state 4) = get_win_state 4)
+            (new_bitwise_and state (get_win_state 5) = get_win_state 5)
+            (new_bitwise_and state (get_win_state 6) = get_win_state 6)
+            (new_bitwise_and state (get_win_state 7) = get_win_state 7)) 
+        (new_int 1) 
+        (new_int 0)
+
+inl is_tie () =
+    inspect "is_tie"
+    inl bytes = get_bytes ()
+    inl state_x = app_global_get bytes.player_x_state
+    inl state_o = app_global_get bytes.player_o_state
+    new_int 511 = new_bitwise_or state_x state_o
+    
 inl app_initialization_logic () =
+    inspect "app_initialization_logic"
     inl default_values = get_default_values ()
     inl bytes = get_bytes ()
-    new_seq ;[
-        app_global_put bytes.player_x_state default_values.player_x_state
-        app_global_put bytes.player_o_state default_values.player_o_state
-        app_global_put bytes.game_status default_values.game_status
-        app_global_put bytes.bet_amount default_values.bet_amount
-        new_return (new_int 1)
-    ]
+    new_seq 
+        ;[
+            app_global_put bytes.player_x_state default_values.player_x_state
+            app_global_put bytes.player_o_state default_values.player_o_state
+            app_global_put bytes.game_status default_values.game_status
+            app_global_put bytes.bet_amount default_values.bet_amount
+            new_return (new_int 1)
+        ]
 
 inl load () = // TODO: move to top
     $"#r \"nuget: Fable.Python\""
@@ -44,3 +85,5 @@ inl main () : () =
     test (a = b)
 
     ignore (dyn app_initialization_logic)
+    ignore (dyn is_tie)
+    ignore (dyn has_player_won)

@@ -1,36 +1,52 @@
 open temp
 
-inl new_addr addr : string = 
-    inl _Addr : string -> string = $"import \"Addr\" \"pyteal\""
-    _Addr addr 
+nominal expr = _obj
 
-let new_bytes text : string = 
-    inl _Bytes : string -> string = $"import \"Bytes\" \"pyteal\""
-    _Bytes text
+inl app_global_get bytes : i32 =
+    $"(importAll \"pyteal\")?App?globalGet !bytes"
 
-let new_int n : i32 = 
-    inl _Int : i32 -> i32 = $"import \"Int\" \"pyteal\""
-    _Int n
+inl app_global_put bytes value : expr =
+    $"(importAll \"pyteal\")?App?globalPut (!bytes, !value)"
 
-let new_return forall t. expr : _obj = 
-    inl _Return : t -> _obj = $"import \"Return\" \"pyteal\""
-    _Return expr
+inl get_txn_fee () : i32 = 
+    $"(importAll \"pyteal\")?Txn?fee ()"
 
-let new_seq exprs : _obj = 
-    inl _Seq : array _obj -> _obj = $"import \"Seq\" \"pyteal\""
-    _Seq exprs
+inl get_txn_receiver () : string = 
+    $"(importAll \"pyteal\")?Txn?receiver ()"
 
-let app_global_put bytes value : _obj =
-    $"(import \"App\" \"pyteal\")?globalPut(!bytes, !value)"
+inl get_txn_type_enum () : i32 = 
+    $"(importAll \"pyteal\")?Txn?type_enum ()"
 
-let get_txn_fee () : i32 = 
-    $"(import \"Txn\" \"pyteal\")?fee()"
-
-let get_txn_receiver () : string = 
-    $"(import \"Txn\" \"pyteal\")?receiver()"
-
-let get_txn_type_enum () : i32 = 
-    $"(import \"Txn\" \"pyteal\")?type_enum()"
-    
 inl get_txn_type_payment () : obj =
-    $"(import \"TxnType\" \"pyteal\")?Payment"
+    $"(importAll \"pyteal\")TxnType?Payment"
+
+inl new_addr addr : string = 
+    $"(importAll \"pyteal\")?Addr !addr"
+
+inl new_bitwise_and n1 n2 : i32 =
+    $"(importAll \"pyteal\")?BitwiseAnd !n1 !n2"
+
+inl new_bitwise_or n1 n2 : i32 =
+    $"(importAll \"pyteal\")?BitwiseOr !n1 !n2"
+
+inl new_bytes text : string = 
+    $"(importAll \"pyteal\")?Bytes !text"
+
+inl new_if value t f : expr = 
+    $"(importAll \"pyteal\")?If !value !t !f"
+
+inl new_int n : i32 = 
+    inl n : i32 = n
+    $"(importAll \"pyteal\")?Int !n"
+
+inl new_or e1 e2 : expr = 
+    $"(importAll \"pyteal\")?Or !e1 !e2"
+
+inl new_or8 e1 e2 e3 e4 e5 e6 e7 e8 : expr = 
+    $"(importAll \"pyteal\")?Or !e1 !e2 !e3 !e4 !e5 !e6 !e7 !e8"
+
+inl new_return e : expr = 
+    $"(importAll \"pyteal\")?Return !e"
+
+inl new_seq exprs : expr = 
+    $"(importAll \"pyteal\")?Seq !exprs"

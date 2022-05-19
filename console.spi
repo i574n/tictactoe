@@ -61,7 +61,7 @@ inl write_rule_text rule_text color =
 inl set_colors color =
     inl color_obj = new_color color
     $"AnsiConsole.Foreground <- !color_obj"
-    //$"AnsiConsole.Background <- AnsiConsole.Foreground.GetInvertedColor()"
+    // $"AnsiConsole.Background <- AnsiConsole.Foreground.GetInvertedColor()"
 
 inl write_line_color text color =
     set_colors color
