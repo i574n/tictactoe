@@ -23,6 +23,65 @@ inl get_default_values () =
         game_duration_seconds = new_int 3600
     }
 
+inl money_refund_logic () =
+    inspect "money_refund_logic"
+
+    inl bytes = get_bytes ()
+    
+    inl has_x_won_by_playing = app_global_get bytes.game_status = new_int 1
+    inl has_x_won_by_timeout = 
+        new_and3
+            (app_global_get bytes.game_status = new_int 0)
+            (global_latest_timestamp () > app_global_get bytes.action_timeout)
+            (app_global_get bytes.player_turn_address = app_global_get bytes.player_o_address)
+    inl has_x_won = new_or has_x_won_by_playing has_x_won_by_timeout
+    inl x_withdraw = 
+        new_seq
+            ;[
+                new_assert (get_gtxn_receiver (get_gtxn 1) = app_global_get bytes.player_x_address)
+                new_assert (get_gtxn_amount (get_gtxn 1) = new_int 2 * app_global_get bytes.bet_amount)
+                app_global_put bytes.game_status (new_int 1)
+            ]
+
+    inl has_o_won_by_playing = app_global_get bytes.game_status = new_int 2
+    inl has_o_won_by_timeout = 
+        new_and3
+            (app_global_get bytes.game_status = new_int 0)
+            (global_latest_timestamp () > app_global_get bytes.action_timeout)
+            (app_global_get bytes.player_turn_address = app_global_get bytes.player_x_address)
+    inl has_o_won = new_or has_o_won_by_playing has_o_won_by_timeout
+    inl o_withdraw =
+        new_seq
+            ;[
+                new_assert (get_gtxn_receiver (get_gtxn 1) = app_global_get bytes.player_o_address)
+                new_assert (get_gtxn_amount (get_gtxn 1) = new_int 2 * app_global_get bytes.bet_amount)
+                app_global_put bytes.game_status (new_int 2)
+            ]
+            
+    inl game_is_tie = app_global_get bytes.game_status = new_int 3
+    inl tie_withdraw =
+        new_seq
+            ;[
+                new_assert (get_gtxn_receiver (get_gtxn 1) = app_global_get bytes.player_x_address)
+                new_assert (get_gtxn_amount (get_gtxn 1) = app_global_get bytes.bet_amount)
+                new_assert (get_gtxn_type_enum (get_gtxn 2) = get_txn_type Payment)
+                new_assert (get_gtxn_sender (get_gtxn 2) = app_global_get bytes.funds_escrow_address)
+                new_assert (get_gtxn_receiver (get_gtxn 2) = app_global_get bytes.player_o_address)
+                new_assert (get_gtxn_amount (get_gtxn 2) = app_global_get bytes.bet_amount)
+            ]
+
+    new_seq
+        ;[
+            new_assert (get_gtxn_type_enum (get_gtxn 1) = get_txn_type Payment)
+            new_assert (get_gtxn_sender (get_gtxn 1) = app_global_get bytes.funds_escrow_address)
+            new_cond3
+                ;[has_x_won; x_withdraw]
+                ;[has_o_won; o_withdraw]
+                ;[game_is_tie; tie_withdraw]
+            new_return (new_int 1)
+        ]
+
+
 inl get_win_state i : i32 =
     match i with
     | 0i32 => 448
@@ -38,6 +97,7 @@ inl get_win_state i : i32 =
 inl has_player_won state =
     inl state : i32 = state
     inspect "has_player_won"
+
     new_if 
         (new_or8 
             (new_bitwise_and state (get_win_state 0) = get_win_state 0)
@@ -53,15 +113,19 @@ inl has_player_won state =
 
 inl is_tie () =
     inspect "is_tie"
+
     inl bytes = get_bytes ()
+
     inl state_x = app_global_get bytes.player_x_state
     inl state_o = app_global_get bytes.player_o_state
     new_int 511 = new_bitwise_or state_x state_o
     
 inl app_initialization_logic () =
     inspect "app_initialization_logic"
+
     inl default_values = get_default_values ()
     inl bytes = get_bytes ()
+
     new_seq 
         ;[
             app_global_put bytes.player_x_state default_values.player_x_state
@@ -71,14 +135,15 @@ inl app_initialization_logic () =
             new_return (new_int 1)
         ]
 
-inl load () = // TODO: move to top
+inl load () = // TODO: move to top manually
     $"#r \"nuget: Fable.Python\""
     $"open Fable.Core.PyInterop"
     $"open Fable.Core"
 
 inl main () : () =
-    load ()
     inspect "main.spi Loaded"
+
+    load ()
 
     inl a = 1i32
     inl b = 1i32
@@ -87,3 +152,4 @@ inl main () : () =
     ignore (dyn app_initialization_logic)
     ignore (dyn is_tie)
     ignore (dyn has_player_won)
+    ignore (dyn money_refund_logic)

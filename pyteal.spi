@@ -2,11 +2,33 @@ open temp
 
 nominal expr = _obj
 
+union txn_type =
+    | Payment
+
+inl txn_type_name = function
+    | Payment => "Payment"
+
 inl app_global_get bytes : i32 =
     $"(importAll \"pyteal\")?App?globalGet !bytes"
 
-inl app_global_put bytes value : expr =
+inl app_global_put bytes value : bool =
     $"(importAll \"pyteal\")?App?globalPut (!bytes, !value)"
+
+inl get_gtxn i : _obj =
+    inl i : i32 = i
+    $"(import \"TxnGroup\" \"pyteal\")?__getitem__(import \"Gtxn\" \"pyteal\", !i)"
+
+inl get_gtxn_amount gtxn : i32 = 
+    $"!gtxn?amount ()"
+
+inl get_gtxn_receiver gtxn : i32 = 
+    $"!gtxn?receiver ()"
+
+inl get_gtxn_sender gtxn : i32 = 
+    $"!gtxn?sender ()"
+
+inl get_gtxn_type_enum gtxn : i32 = 
+    $"!gtxn?type_enum ()"
 
 inl get_txn_fee () : i32 = 
     $"(importAll \"pyteal\")?Txn?fee ()"
@@ -17,11 +39,21 @@ inl get_txn_receiver () : string =
 inl get_txn_type_enum () : i32 = 
     $"(importAll \"pyteal\")?Txn?type_enum ()"
 
-inl get_txn_type_payment () : obj =
-    $"(importAll \"pyteal\")TxnType?Payment"
+inl get_txn_type txn_type : i32 =
+    match txn_type with
+    | Payment => $"(importAll \"pyteal\")?TxnType?Payment"
+
+inl global_latest_timestamp () : i32 = 
+    $"(importAll \"pyteal\")?Global?latest_timestamp ()"
 
 inl new_addr addr : string = 
     $"(importAll \"pyteal\")?Addr !addr"
+
+inl new_and3 e1 e2 e3 : bool = 
+    $"(importAll \"pyteal\")?And !e1 !e2 !e3"
+
+inl new_assert b : bool = 
+    $"(importAll \"pyteal\")?Assert !b"
 
 inl new_bitwise_and n1 n2 : i32 =
     $"(importAll \"pyteal\")?BitwiseAnd !n1 !n2"
@@ -32,21 +64,24 @@ inl new_bitwise_or n1 n2 : i32 =
 inl new_bytes text : string = 
     $"(importAll \"pyteal\")?Bytes !text"
 
-inl new_if value t f : expr = 
+inl new_cond3 e1 e2 e3 : bool = 
+    $"(importAll \"pyteal\")?Cond !e1 !e2 !e3"
+
+inl new_if value t f : bool = 
     $"(importAll \"pyteal\")?If !value !t !f"
 
 inl new_int n : i32 = 
     inl n : i32 = n
     $"(importAll \"pyteal\")?Int !n"
 
-inl new_or e1 e2 : expr = 
+inl new_or e1 e2 : bool = 
     $"(importAll \"pyteal\")?Or !e1 !e2"
 
-inl new_or8 e1 e2 e3 e4 e5 e6 e7 e8 : expr = 
+inl new_or8 e1 e2 e3 e4 e5 e6 e7 e8 : bool = 
     $"(importAll \"pyteal\")?Or !e1 !e2 !e3 !e4 !e5 !e6 !e7 !e8"
 
-inl new_return e : expr = 
+inl new_return e : bool = 
     $"(importAll \"pyteal\")?Return !e"
 
-inl new_seq exprs : expr = 
+inl new_seq exprs : bool = 
     $"(importAll \"pyteal\")?Seq !exprs"
