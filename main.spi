@@ -23,6 +23,13 @@ inl get_default_values () =
         game_duration_seconds = new_int 3600
     }
 
+inl get_app_actions () =
+    {
+        setup_players = new_bytes "SetupPlayers"
+        action_move = new_bytes "ActionMove"
+        money_refund = new_bytes "MoneyRefund"
+    }
+
 inl money_refund_logic () =
     inspect "money_refund_logic"
 
@@ -83,8 +90,9 @@ inl money_refund_logic () =
 
 
 inl get_win_state i : i32 =
+    inl i : i32 = i
     match i with
-    | 0i32 => 448
+    | 0 => 448
     | 1 => 56
     | 2 => 7
     | 3 => 292
@@ -186,6 +194,57 @@ inl play_action_logic () =
             new_return (new_int 1)
         ]
 
+inl initialize_players_logic () =
+    inspect "initialize_players_logic"
+
+    inl bytes = get_bytes ()
+    inl default_values = get_default_values ()
+    inl player_x_address = app_global_get_ex (new_int 0) bytes.player_x_address
+    inl player_o_address = app_global_get_ex (new_int 0) bytes.player_o_address
+    inl setup_failed = new_seq ;[new_return (new_int 0)]
+    
+    inl setup_players = 
+        new_seq 
+            ;[
+                new_assert (get_gtxn_type_enum (get_gtxn 1) = get_txn_type Payment)
+                new_assert (get_gtxn_type_enum (get_gtxn 2) = get_txn_type Payment)
+                new_assert (get_gtxn_receiver (get_gtxn 1) = get_gtxn_receiver (get_gtxn 2))
+                new_assert (get_gtxn_amount (get_gtxn 1) = app_global_get bytes.bet_amount)
+                new_assert (get_gtxn_amount (get_gtxn 2) = app_global_get bytes.bet_amount)
+                app_global_put bytes.player_x_address (get_gtxn_sender (get_gtxn 1))
+                app_global_put bytes.player_o_address (get_gtxn_sender (get_gtxn 2))
+                app_global_put bytes.player_turn_address (get_gtxn_sender (get_gtxn 1))
+                app_global_put bytes.funds_escrow_address (get_gtxn_receiver (get_gtxn 1))
+                app_global_put bytes.action_timeout (global_latest_timestamp () + default_values.game_duration_seconds)
+                new_return (new_int 1)
+            ]
+
+    new_seq3
+        player_x_address
+        player_o_address
+        (new_if_else
+            (new_or 
+                (app_global_has_value player_x_address)
+                (app_global_has_value player_o_address))
+            setup_failed
+            setup_players)
+
+inl application_start () =
+    inspect "application_start"
+    
+    inl app_actions = get_app_actions ()
+
+    inl is_app_initialization = get_txn_application_id () = new_int 0
+    inl actions =
+        new_cond3
+            ;[get_txn_application_args 0 = app_actions.setup_players; initialize_players_logic ()]
+            ;[new_and 
+                (get_txn_application_args 0 = app_actions.action_move) 
+                (global_group_size () = new_int 1)
+              play_action_logic ()]
+            ;[get_txn_application_args 0 = app_actions.money_refund; money_refund_logic ()]
+
+    new_if_else is_app_initialization (app_initialization_logic ()) actions
 
 
 inl load () = // TODO: move to top manually
@@ -201,9 +260,11 @@ inl main () : () =
     inl a = 1i32
     inl b = 1i32
     test (a = b)
-
+    
     ignore (dyn app_initialization_logic)
     ignore (dyn is_tie)
     ignore (dyn has_player_won)
     ignore (dyn money_refund_logic)
     ignore (dyn play_action_logic)
+    ignore (dyn initialize_players_logic)
+    ignore (dyn application_start)
