@@ -802,6 +802,81 @@ and closure6 () () : bool =
     let v409 : (bool []) = [|v403; v404; v405; v406; v408|]
     let v410 : bool = (importAll "pyteal")?Seq v409
     (importAll "pyteal")?If v6 v410 v387
+and closure7 () (v0 : int32) : bool =
+    let v1 : string = "game_funds_escrow"
+    printfn $"%A{v1}"
+    let v2 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 0)
+    let v3 : int32 = v2?application_id ()
+    let v4 : int32 = (importAll "pyteal")?Int v0
+    let v5 : bool = v3 = v4
+    let v6 : bool = (importAll "pyteal")?Assert v5
+    let v7 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 1)
+    let v8 : int32 = v7?fee ()
+    let v9 : int32 = (importAll "pyteal")?Int 1000
+    let v10 : bool = v8 <= v9
+    let v11 : bool = (importAll "pyteal")?Assert v10
+    let v12 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 1)
+    let v13 : int32 = v12?asset_close_to ()
+    let v14 : int32 = (importAll "pyteal")?Global?zero_address ()
+    let v15 : bool = v13 = v14
+    let v16 : bool = (importAll "pyteal")?Assert v15
+    let v17 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 1)
+    let v18 : int32 = v17?rekey_to ()
+    let v19 : int32 = (importAll "pyteal")?Global?zero_address ()
+    let v20 : bool = v18 = v19
+    let v21 : bool = (importAll "pyteal")?Assert v20
+    let v22 : (bool []) = [|v6; v11; v16; v21|]
+    let v23 : bool = (importAll "pyteal")?Seq v22
+    let v24 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 0)
+    let v25 : int32 = v24?application_id ()
+    let v26 : int32 = (importAll "pyteal")?Int v0
+    let v27 : bool = v25 = v26
+    let v28 : bool = (importAll "pyteal")?Assert v27
+    let v29 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 1)
+    let v30 : int32 = v29?fee ()
+    let v31 : int32 = (importAll "pyteal")?Int 1000
+    let v32 : bool = v30 <= v31
+    let v33 : bool = (importAll "pyteal")?Assert v32
+    let v34 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 1)
+    let v35 : int32 = v34?asset_close_to ()
+    let v36 : int32 = (importAll "pyteal")?Global?zero_address ()
+    let v37 : bool = v35 = v36
+    let v38 : bool = (importAll "pyteal")?Assert v37
+    let v39 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 1)
+    let v40 : int32 = v39?rekey_to ()
+    let v41 : int32 = (importAll "pyteal")?Global?zero_address ()
+    let v42 : bool = v40 = v41
+    let v43 : bool = (importAll "pyteal")?Assert v42
+    let v44 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 2)
+    let v45 : int32 = v44?fee ()
+    let v46 : int32 = (importAll "pyteal")?Int 1000
+    let v47 : bool = v45 <= v46
+    let v48 : bool = (importAll "pyteal")?Assert v47
+    let v49 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 2)
+    let v50 : int32 = v49?asset_close_to ()
+    let v51 : int32 = (importAll "pyteal")?Global?zero_address ()
+    let v52 : bool = v50 = v51
+    let v53 : bool = (importAll "pyteal")?Assert v52
+    let v54 : obj = (importAll "pyteal")?TxnGroup?__getitem__(import "Gtxn" "pyteal", 2)
+    let v55 : int32 = v54?rekey_to ()
+    let v56 : int32 = (importAll "pyteal")?Global?zero_address ()
+    let v57 : bool = v55 = v56
+    let v58 : bool = (importAll "pyteal")?Assert v57
+    let v59 : (bool []) = [|v28; v33; v38; v43; v48; v53; v58|]
+    let v60 : bool = (importAll "pyteal")?Seq v59
+    let v61 : int32 = (importAll "pyteal")?Global?group_size ()
+    let v62 : int32 = (importAll "pyteal")?Int 2
+    let v63 : bool = v61 = v62
+    let v64 : (bool []) = [|v63; v23|]
+    let v65 : int32 = (importAll "pyteal")?Global?group_size ()
+    let v66 : int32 = (importAll "pyteal")?Int 3
+    let v67 : bool = v65 = v66
+    let v68 : (bool []) = [|v67; v60|]
+    let v69 : bool = (importAll "pyteal")?Cond v64 v68
+    let v70 : int32 = (importAll "pyteal")?Int 1
+    let v71 : bool = (importAll "pyteal")?Return v70
+    let v72 : (bool []) = [|v69; v71|]
+    (importAll "pyteal")?Seq v72
 let v0 : string = "main.spi Loaded"
 printfn $"%A{v0}"
 let v1 : (unit -> bool) = closure0()
@@ -811,4 +886,5 @@ let v4 : (unit -> bool) = closure3()
 let v5 : (unit -> bool) = closure4()
 let v6 : (unit -> bool) = closure5()
 let v7 : (unit -> bool) = closure6()
+let v8 : (int32 -> bool) = closure7()
 ()

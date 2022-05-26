@@ -1,0 +1,319 @@
+open console_fsx
+open pyteal
+
+let get_bytes () =
+    {
+        player_x_state = new_bytes "PlayerXState"
+        player_o_state = new_bytes "PlayerOState"
+        player_x_address = new_bytes "PlayerXAddress"
+        player_o_address = new_bytes "PlayerOAddress"
+        player_turn_address = new_bytes "PlayerTurnAddress"
+        funds_escrow_address = new_bytes "FundsEscrowAddress"
+        action_timeout = new_bytes "ActionTimeout"
+        game_status = new_bytes "GameState"
+        bet_amount = new_bytes "BetAmount"
+    }
+
+inl get_default_values () = 
+    {
+        player_x_state = new_int 0
+        player_o_state = new_int 0
+        game_status = new_int 0
+        bet_amount = new_int 1000000
+        game_duration_seconds = new_int 3600
+    }
+
+inl get_app_actions () =
+    {
+        setup_players = new_bytes "SetupPlayers"
+        action_move = new_bytes "ActionMove"
+        money_refund = new_bytes "MoneyRefund"
+    }
+
+inl money_refund_logic () =
+    inspect "money_refund_logic"
+
+    inl bytes = get_bytes ()
+    
+    inl has_x_won_by_playing = app_global_get bytes.game_status = new_int 1
+    inl has_x_won_by_timeout = 
+        new_and3
+            (app_global_get bytes.game_status = new_int 0)
+            (global_latest_timestamp () > app_global_get bytes.action_timeout)
+            (app_global_get bytes.player_turn_address = app_global_get bytes.player_o_address)
+    inl has_x_won = new_or has_x_won_by_playing has_x_won_by_timeout
+    inl x_withdraw = 
+        new_seq
+            ;[
+                new_assert (get_gtxn_receiver (get_gtxn 1) = app_global_get bytes.player_x_address)
+                new_assert (get_gtxn_amount (get_gtxn 1) = new_int 2 * app_global_get bytes.bet_amount)
+                app_global_put bytes.game_status (new_int 1)
+            ]
+
+    inl has_o_won_by_playing = app_global_get bytes.game_status = new_int 2
+    inl has_o_won_by_timeout = 
+        new_and3
+            (app_global_get bytes.game_status = new_int 0)
+            (global_latest_timestamp () > app_global_get bytes.action_timeout)
+            (app_global_get bytes.player_turn_address = app_global_get bytes.player_x_address)
+    inl has_o_won = new_or has_o_won_by_playing has_o_won_by_timeout
+    inl o_withdraw =
+        new_seq
+            ;[
+                new_assert (get_gtxn_receiver (get_gtxn 1) = app_global_get bytes.player_o_address)
+                new_assert (get_gtxn_amount (get_gtxn 1) = new_int 2 * app_global_get bytes.bet_amount)
+                app_global_put bytes.game_status (new_int 2)
+            ]
+            
+    inl game_is_tie = app_global_get bytes.game_status = new_int 3
+    inl tie_withdraw =
+        new_seq
+            ;[
+                new_assert (get_gtxn_receiver (get_gtxn 1) = app_global_get bytes.player_x_address)
+                new_assert (get_gtxn_amount (get_gtxn 1) = app_global_get bytes.bet_amount)
+                new_assert (get_gtxn_type_enum (get_gtxn 2) = get_txn_type Payment)
+                new_assert (get_gtxn_sender (get_gtxn 2) = app_global_get bytes.funds_escrow_address)
+                new_assert (get_gtxn_receiver (get_gtxn 2) = app_global_get bytes.player_o_address)
+                new_assert (get_gtxn_amount (get_gtxn 2) = app_global_get bytes.bet_amount)
+            ]
+
+    new_seq
+        ;[
+            new_assert (get_gtxn_type_enum (get_gtxn 1) = get_txn_type Payment)
+            new_assert (get_gtxn_sender (get_gtxn 1) = app_global_get bytes.funds_escrow_address)
+            new_cond3
+                ;[has_x_won; x_withdraw]
+                ;[has_o_won; o_withdraw]
+                ;[game_is_tie; tie_withdraw]
+            new_return (new_int 1)
+        ]
+
+inl get_win_state i : i32 =
+    inl i : i32 = i
+    match i with
+    | 0 => 448
+    | 1 => 56
+    | 2 => 7
+    | 3 => 292
+    | 4 => 146
+    | 5 => 73
+    | 6 => 273
+    | 7 => 84
+    |> new_int
+
+inl has_player_won state =
+    inl state : i32 = state
+    inspect "has_player_won"
+
+    new_if_else
+        (new_or8 
+            (new_bitwise_and state (get_win_state 0) = get_win_state 0)
+            (new_bitwise_and state (get_win_state 1) = get_win_state 1)
+            (new_bitwise_and state (get_win_state 2) = get_win_state 2)
+            (new_bitwise_and state (get_win_state 3) = get_win_state 3)
+            (new_bitwise_and state (get_win_state 4) = get_win_state 4)
+            (new_bitwise_and state (get_win_state 5) = get_win_state 5)
+            (new_bitwise_and state (get_win_state 6) = get_win_state 6)
+            (new_bitwise_and state (get_win_state 7) = get_win_state 7))
+        (new_int 1) 
+        (new_int 0)
+
+inl is_tie () =
+    inspect "is_tie"
+
+    inl bytes = get_bytes ()
+
+    inl state_x = app_global_get bytes.player_x_state
+    inl state_o = app_global_get bytes.player_o_state
+    new_int 511 = new_bitwise_or state_x state_o
+    
+inl app_initialization_logic () =
+    inspect "app_initialization_logic"
+
+    inl default_values = get_default_values ()
+    inl bytes = get_bytes ()
+
+    new_seq 
+        ;[
+            app_global_put bytes.player_x_state default_values.player_x_state
+            app_global_put bytes.player_o_state default_values.player_o_state
+            app_global_put bytes.game_status default_values.game_status
+            app_global_put bytes.bet_amount default_values.bet_amount
+            new_return (new_int 1)
+        ]
+
+inl play_action_logic () =
+    inspect "play_action_logic"
+
+    inl bytes = get_bytes ()
+    inl default_values = get_default_values ()
+    inl position_index = new_btoi (get_txn_application_args 1)
+    inl state_x = app_global_get bytes.player_x_state
+    inl state_o = app_global_get bytes.player_o_state
+
+    inl game_action = new_shift_left (new_int 1) position_index
+
+    inl player_x_move =
+        new_seq
+            ;[
+                app_global_put bytes.player_x_state (new_bitwise_or state_x game_action)
+                new_if 
+                    (has_player_won (app_global_get bytes.player_x_state))
+                    (app_global_put bytes.game_status (new_int 1))
+                app_global_put bytes.player_turn_address (app_global_get bytes.player_o_address)
+            ]
+
+    inl player_o_move =
+        new_seq
+            ;[
+                app_global_put bytes.player_o_state (new_bitwise_or state_o game_action)
+                new_if 
+                    (has_player_won (app_global_get bytes.player_o_state))
+                    (app_global_put bytes.game_status (new_int 2))
+                app_global_put bytes.player_turn_address (app_global_get bytes.player_x_address)
+            ]
+
+    new_seq
+        ;[
+            new_assert (position_index >= new_int 0)
+            new_assert (position_index <= new_int 8)
+            new_assert (global_latest_timestamp () <= app_global_get bytes.action_timeout)
+            new_assert (app_global_get bytes.game_status = default_values.game_status)
+            new_assert (get_txn_sender () = app_global_get bytes.player_turn_address)
+            new_assert 
+                (new_and 
+                    (new_bitwise_and state_x game_action = new_int 0)
+                    (new_bitwise_and state_o game_action = new_int 0))
+            new_cond
+                ;[get_txn_sender () = app_global_get bytes.player_x_address; player_x_move]
+                ;[get_txn_sender () = app_global_get bytes.player_o_address; player_o_move]
+            new_if 
+                (is_tie ())
+                (app_global_put bytes.game_status (new_int 3))
+            new_return (new_int 1)
+        ]
+
+inl initialize_players_logic () =
+    inspect "initialize_players_logic"
+
+    inl bytes = get_bytes ()
+    inl default_values = get_default_values ()
+    inl player_x_address = app_global_get_ex (new_int 0) bytes.player_x_address
+    inl player_o_address = app_global_get_ex (new_int 0) bytes.player_o_address
+    inl setup_failed = new_seq ;[new_return (new_int 0)]
+    
+    inl setup_players = 
+        new_seq 
+            ;[
+                new_assert (get_gtxn_type_enum (get_gtxn 1) = get_txn_type Payment)
+                new_assert (get_gtxn_type_enum (get_gtxn 2) = get_txn_type Payment)
+                new_assert (get_gtxn_receiver (get_gtxn 1) = get_gtxn_receiver (get_gtxn 2))
+                new_assert (get_gtxn_amount (get_gtxn 1) = app_global_get bytes.bet_amount)
+                new_assert (get_gtxn_amount (get_gtxn 2) = app_global_get bytes.bet_amount)
+                app_global_put bytes.player_x_address (get_gtxn_sender (get_gtxn 1))
+                app_global_put bytes.player_o_address (get_gtxn_sender (get_gtxn 2))
+                app_global_put bytes.player_turn_address (get_gtxn_sender (get_gtxn 1))
+                app_global_put bytes.funds_escrow_address (get_gtxn_receiver (get_gtxn 1))
+                app_global_put bytes.action_timeout (global_latest_timestamp () + default_values.game_duration_seconds)
+                new_return (new_int 1)
+            ]
+
+    new_seq3
+        player_x_address
+        player_o_address
+        (new_if_else
+            (new_or 
+                (app_global_has_value player_x_address)
+                (app_global_has_value player_o_address))
+            setup_failed
+            setup_players)
+
+inl application_start () =
+    inspect "application_start"
+    
+    inl app_actions = get_app_actions ()
+
+    inl is_app_initialization = get_txn_application_id () = new_int 0
+    inl actions =
+        new_cond3
+            ;[get_txn_application_args 0 = app_actions.setup_players; initialize_players_logic ()]
+            ;[new_and 
+                (get_txn_application_args 0 = app_actions.action_move) 
+                (global_group_size () = new_int 1)
+              play_action_logic ()]
+            ;[get_txn_application_args 0 = app_actions.money_refund; money_refund_logic ()]
+
+    new_if_else is_app_initialization (app_initialization_logic ()) actions
+
+inl game_funds_escrow app_id =
+    inspect "game_funds_escrow"
+
+    inl win_refund = new_seq ;[
+        new_assert (get_gtxn_application_id (get_gtxn 0) = new_int app_id)
+        new_assert (get_gtxn_fee (get_gtxn 1) <= new_int 1000)
+        new_assert (get_gtxn_asset_close_to (get_gtxn 1) = global_zero_address ())
+        new_assert (get_gtxn_rekey_to (get_gtxn 1) = global_zero_address ())
+    ]
+
+    inl tie_refund = new_seq ;[
+        new_assert (get_gtxn_application_id (get_gtxn 0) = new_int app_id)
+        new_assert (get_gtxn_fee (get_gtxn 1) <= new_int 1000)
+        new_assert (get_gtxn_asset_close_to (get_gtxn 1) = global_zero_address ())
+        new_assert (get_gtxn_rekey_to (get_gtxn 1) = global_zero_address ())
+        new_assert (get_gtxn_fee (get_gtxn 2) <= new_int 1000)
+        new_assert (get_gtxn_asset_close_to (get_gtxn 2) = global_zero_address ())
+        new_assert (get_gtxn_rekey_to (get_gtxn 2) = global_zero_address ())
+    ]
+
+    new_seq ;[
+        new_cond
+            ;[global_group_size () = new_int 2; win_refund]
+            ;[global_group_size () = new_int 3; tie_refund]
+        new_return (new_int 1)
+    ]
+
+
+// 1| | 
+// 4| | 
+// 7| | 
+// 
+//  |2| 
+//  |5| 
+//  |8| 
+// 
+//  | |3
+//  | |6
+//  | |9
+// 
+// 1|2|3
+//  | | 
+//  | | 
+// 
+//  | | 
+// 4|5|6
+//  | | 
+// 
+//  | | 
+//  | | 
+// 7|8|9
+// 
+// 1| | 
+//  |5| 
+//  | |9
+// 
+//  | |3
+//  |5| 
+// 7| | 
+// 
+// 
+//  | | 
+//  | | 
+//  | | 
+// 
+//  | | 
+//  | | 
+//  | | 
+// 
+//  | | 
+//  | | 
+//  | | 

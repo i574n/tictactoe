@@ -67,7 +67,7 @@ def closure2(unit_var0: None, v0_1: int) -> bool:
 def closure3(unit_var0: None, unit_var1: None) -> bool:
     to_console(interpolate("%A%P()", ["money_refund_logic"]))
     pattern_input : Tuple[str, str, str, str, str, str, str, str, str] = method0()
-    v8 : str = pattern_input[7]
+    v8_1 : str = pattern_input[7]
     v7_1 : str = pattern_input[6]
     v5_1 : str = pattern_input[4]
     v4_1 : str = pattern_input[3]
@@ -81,7 +81,7 @@ def closure3(unit_var0: None, unit_var1: None) -> bool:
     v22 : bool = pyteal.And(v15, v18, v21)
     v23 : bool = pyteal.Or(v12, v22)
     v24 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
-    v27 : bool = (v24.receiver()) == (pyteal.App.globalGet(v8))
+    v27 : bool = (v24.receiver()) == (pyteal.App.globalGet(v8_1))
     v28 : bool = pyteal.Assert(v27)
     v29 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
     v34 : bool = (v29.amount()) == ((pyteal.Int(2)) * (pyteal.App.globalGet(v2_1)))
@@ -92,7 +92,7 @@ def closure3(unit_var0: None, unit_var1: None) -> bool:
     v42 : bool = (pyteal.App.globalGet(v4_1)) == (pyteal.Int(2))
     v45 : bool = (pyteal.App.globalGet(v4_1)) == (pyteal.Int(0))
     v48 : bool = (pyteal.Global.latest_timestamp()) > (pyteal.App.globalGet(v1_1))
-    v51 : bool = (pyteal.App.globalGet(v7_1)) == (pyteal.App.globalGet(v8))
+    v51 : bool = (pyteal.App.globalGet(v7_1)) == (pyteal.App.globalGet(v8_1))
     v52 : bool = pyteal.And(v45, v48, v51)
     v53 : bool = pyteal.Or(v42, v52)
     v54 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
@@ -106,7 +106,7 @@ def closure3(unit_var0: None, unit_var1: None) -> bool:
     v69 : bool = pyteal.Seq(v68)
     v72 : bool = (pyteal.App.globalGet(v4_1)) == (pyteal.Int(3))
     v73 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
-    v76 : bool = (v73.receiver()) == (pyteal.App.globalGet(v8))
+    v76 : bool = (v73.receiver()) == (pyteal.App.globalGet(v8_1))
     v77 : bool = pyteal.Assert(v76)
     v78 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
     v81 : bool = (v78.amount()) == (pyteal.App.globalGet(v2_1))
@@ -143,7 +143,7 @@ def closure4(unit_var0: None, unit_var1: None) -> bool:
     to_console(interpolate("%A%P()", ["play_action_logic"]))
     pattern_input : Tuple[str, str, str, str, str, str, str, str, str] = method0()
     v9 : str = pattern_input[8]
-    v8 : str = pattern_input[7]
+    v8_1 : str = pattern_input[7]
     v7_1 : str = pattern_input[6]
     v6_1 : str = pattern_input[5]
     v5_1 : str = pattern_input[4]
@@ -216,7 +216,7 @@ def closure4(unit_var0: None, unit_var1: None) -> bool:
     v108 : int = (pyteal.Int(2)) or 0
     v109 : bool = pyteal.App.globalPut(v4_1, v108)
     v110 : bool = pyteal.If(v107, v109)
-    v111 : int = (pyteal.App.globalGet(v8)) or 0
+    v111 : int = (pyteal.App.globalGet(v8_1)) or 0
     v113 : List[bool] = [v69, v110, pyteal.App.globalPut(v7_1, v111)]
     v114 : bool = pyteal.Seq(v113)
     v116 : bool = v16 >= (pyteal.Int(0))
@@ -233,7 +233,7 @@ def closure4(unit_var0: None, unit_var1: None) -> bool:
     v137 : bool = (pyteal.BitwiseAnd(v18, v20)) == (pyteal.Int(0))
     v138 : bool = pyteal.And(v134, v137)
     v139 : bool = pyteal.Assert(v138)
-    v143 : List[bool] = [(pyteal.Txn.sender()) == (pyteal.App.globalGet(v8)), v67]
+    v143 : List[bool] = [(pyteal.Txn.sender()) == (pyteal.App.globalGet(v8_1)), v67]
     v147 : List[bool] = [(pyteal.Txn.sender()) == (pyteal.App.globalGet(v5_1)), v114]
     v148 : bool = pyteal.Cond(v143, v147)
     to_console(interpolate("%A%P()", ["is_tie"]))
@@ -252,7 +252,7 @@ def closure4(unit_var0: None, unit_var1: None) -> bool:
 def closure5(unit_var0: None, unit_var1: None) -> bool:
     to_console(interpolate("%A%P()", ["initialize_players_logic"]))
     pattern_input : Tuple[str, str, str, str, str, str, str, str, str] = method0()
-    v8 : str = pattern_input[7]
+    v8_1 : str = pattern_input[7]
     v5_1 : str = pattern_input[4]
     v2_1 : str = pattern_input[1]
     v10 : int = (pyteal.Int(0)) or 0
@@ -261,7 +261,7 @@ def closure5(unit_var0: None, unit_var1: None) -> bool:
     v13 : int = (pyteal.Int(1000000)) or 0
     v14 : int = (pyteal.Int(3600)) or 0
     v15 : int = (pyteal.Int(0)) or 0
-    v16 : int = (pyteal.App.globalGetEx(v15, v8)) or 0
+    v16 : int = (pyteal.App.globalGetEx(v15, v8_1)) or 0
     v17 : int = (pyteal.Int(0)) or 0
     v18 : int = (pyteal.App.globalGetEx(v17, v5_1)) or 0
     v19 : int = (pyteal.Int(0)) or 0
@@ -286,7 +286,7 @@ def closure5(unit_var0: None, unit_var1: None) -> bool:
     v48 : bool = pyteal.Assert(v47)
     v49 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
     v50 : int = (v49.sender()) or 0
-    v51 : bool = pyteal.App.globalPut(v8, v50)
+    v51 : bool = pyteal.App.globalPut(v8_1, v50)
     v52 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 2)
     v53 : int = (v52.sender()) or 0
     v54 : bool = pyteal.App.globalPut(v5_1, v53)
@@ -314,7 +314,7 @@ def closure6(unit_var0: None, unit_var1: None) -> bool:
     v2_1 : str = pyteal.Bytes("ActionMove")
     v3_1 : str = pyteal.Bytes("MoneyRefund")
     v6_1 : bool = (pyteal.Txn.application_id()) == (pyteal.Int(0))
-    v8 : bool = pyteal.Txn.application_args[0] == v1_1
+    v8_1 : bool = pyteal.Txn.application_args[0] == v1_1
     to_console(interpolate("%A%P()", ["initialize_players_logic"]))
     pattern_input : Tuple[str, str, str, str, str, str, str, str, str] = method0()
     v17 : str = pattern_input[7]
@@ -370,7 +370,7 @@ def closure6(unit_var0: None, unit_var1: None) -> bool:
     v78 : bool = v27.hasValue()
     v79 : bool = pyteal.Or(v77, v78)
     v80 : bool = pyteal.If(v79, v31, v76)
-    v82 : List[bool] = [v8, pyteal.Seq([v25, v27, v80])]
+    v82 : List[bool] = [v8_1, pyteal.Seq([v25, v27, v80])]
     v84 : bool = pyteal.Txn.application_args[0] == v2_1
     v87 : bool = (pyteal.Global.group_size()) == (pyteal.Int(1))
     v88 : bool = pyteal.And(v84, v87)
@@ -572,6 +572,51 @@ def closure6(unit_var0: None, unit_var1: None) -> bool:
     return pyteal.If(v6_1, v410, v387)
 
 
+def closure7(unit_var0: None, v0_1: int) -> bool:
+    to_console(interpolate("%A%P()", ["game_funds_escrow"]))
+    v2_1 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 0)
+    v5_1 : bool = (v2_1.application_id()) == (pyteal.Int(v0_1))
+    v6_1 : bool = pyteal.Assert(v5_1)
+    v7_1 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
+    v10 : bool = (v7_1.fee()) <= (pyteal.Int(1000))
+    v11 : bool = pyteal.Assert(v10)
+    v12 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
+    v15 : bool = (v12.asset_close_to()) == (pyteal.Global.zero_address())
+    v16 : bool = pyteal.Assert(v15)
+    v17 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
+    v20 : bool = (v17.rekey_to()) == (pyteal.Global.zero_address())
+    v22 : List[bool] = [v6_1, v11, v16, pyteal.Assert(v20)]
+    v23 : bool = pyteal.Seq(v22)
+    v24 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 0)
+    v27 : bool = (v24.application_id()) == (pyteal.Int(v0_1))
+    v28 : bool = pyteal.Assert(v27)
+    v29 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
+    v32 : bool = (v29.fee()) <= (pyteal.Int(1000))
+    v33 : bool = pyteal.Assert(v32)
+    v34 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
+    v37 : bool = (v34.asset_close_to()) == (pyteal.Global.zero_address())
+    v38 : bool = pyteal.Assert(v37)
+    v39 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
+    v42 : bool = (v39.rekey_to()) == (pyteal.Global.zero_address())
+    v43 : bool = pyteal.Assert(v42)
+    v44 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 2)
+    v47 : bool = (v44.fee()) <= (pyteal.Int(1000))
+    v48 : bool = pyteal.Assert(v47)
+    v49 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 2)
+    v52 : bool = (v49.asset_close_to()) == (pyteal.Global.zero_address())
+    v53 : bool = pyteal.Assert(v52)
+    v54 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 2)
+    v57 : bool = (v54.rekey_to()) == (pyteal.Global.zero_address())
+    v59 : List[bool] = [v28, v33, v38, v43, v48, v53, pyteal.Assert(v57)]
+    v60 : bool = pyteal.Seq(v59)
+    v64 : List[bool] = [(pyteal.Global.group_size()) == (pyteal.Int(2)), v23]
+    v68 : List[bool] = [(pyteal.Global.group_size()) == (pyteal.Int(3)), v60]
+    v69 : bool = pyteal.Cond(v64, v68)
+    v70 : int = (pyteal.Int(1)) or 0
+    v72 : List[bool] = [v69, pyteal.Return(v70)]
+    return pyteal.Seq(v72)
+
+
 v0 : str = "main.spi Loaded"
 
 to_console(interpolate("%A%P()", [v0]))
@@ -617,4 +662,10 @@ def arrow_6(__unit: Any=None) -> bool:
 
 
 v7 : Callable[[], bool] = arrow_6
+
+def arrow_7(v0_1: int) -> bool:
+    return closure7(None, v0_1)
+
+
+v8 : Callable[[int], bool] = arrow_7
 

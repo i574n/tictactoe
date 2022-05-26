@@ -1,4 +1,4 @@
-open temp
+open util
 
 nominal expr = _obj
 
@@ -28,8 +28,20 @@ inl get_gtxn i : _obj =
 inl get_gtxn_amount gtxn : i32 = 
     $"!gtxn?amount ()"
 
+inl get_gtxn_application_id gtxn : i32 = 
+    $"!gtxn?application_id ()"
+
+inl get_gtxn_asset_close_to gtxn : i32 = 
+    $"!gtxn?asset_close_to ()"
+
+inl get_gtxn_fee gtxn : i32 = 
+    $"!gtxn?fee ()"
+
 inl get_gtxn_receiver gtxn : i32 = 
     $"!gtxn?receiver ()"
+
+inl get_gtxn_rekey_to gtxn : i32 = 
+    $"!gtxn?rekey_to ()"
 
 inl get_gtxn_sender gtxn : i32 = 
     $"!gtxn?sender ()"
@@ -65,6 +77,9 @@ inl global_group_size () : i32 =
 
 inl global_latest_timestamp () : i32 = 
     $"(importAll \"pyteal\")?Global?latest_timestamp ()"
+
+inl global_zero_address () : i32 = 
+    $"(importAll \"pyteal\")?Global?zero_address ()"
 
 inl new_addr addr : string = 
     $"(importAll \"pyteal\")?Addr !addr"

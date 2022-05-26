@@ -1,0 +1,3 @@
+nominal _obj = $"obj"
+
+inl test b = assert b "test"

@@ -1,6 +1,7 @@
 packages: |core-
 modules: 
-    temp
+    util
+    console_fsx
     pyteal
-    console
+    tictactoe_pyteal
     main

@@ -23,6 +23,9 @@ nominal _Color = $"Color"
 nominal _Style = $"Style"
 nominal _Rule = $"Rule"
 
+inl inspect ~obj =
+    $"printfn $\"%A{!obj}\""
+
 inl new_color color : _Color =
     get_color_index color |> $"Color.FromInt32"
 
