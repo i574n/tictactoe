@@ -1,6 +1,6 @@
 # spiral-notebook
 
-main.spi -> main.fsx -> main.py -> pyteal-application.ipynb
+main.spi -> main.fsx -> main.py => tictactoe_pyteal_application.ipynb
 
 
 test runs:

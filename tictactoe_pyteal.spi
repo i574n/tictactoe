@@ -193,7 +193,7 @@ inl play_action_logic () =
             new_return (new_int 1)
         ]
 
-inl initialize_players_logic () =
+inl initialize_players_logic game_duration_seconds =
     inspect "initialize_players_logic"
 
     inl bytes = get_bytes ()
@@ -201,6 +201,11 @@ inl initialize_players_logic () =
     inl player_x_address = app_global_get_ex (new_int 0) bytes.player_x_address
     inl player_o_address = app_global_get_ex (new_int 0) bytes.player_o_address
     inl setup_failed = new_seq ;[new_return (new_int 0)]
+
+    inl game_duration_int =
+        match game_duration_seconds with
+        | Some duration => new_int duration
+        | None => default_values.game_duration_seconds
     
     inl setup_players = 
         new_seq 
@@ -214,7 +219,7 @@ inl initialize_players_logic () =
                 app_global_put bytes.player_o_address (get_gtxn_sender (get_gtxn 2))
                 app_global_put bytes.player_turn_address (get_gtxn_sender (get_gtxn 1))
                 app_global_put bytes.funds_escrow_address (get_gtxn_receiver (get_gtxn 1))
-                app_global_put bytes.action_timeout (global_latest_timestamp () + default_values.game_duration_seconds)
+                app_global_put bytes.action_timeout (global_latest_timestamp () + game_duration_int)
                 new_return (new_int 1)
             ]
 
@@ -228,7 +233,7 @@ inl initialize_players_logic () =
             setup_failed
             setup_players)
 
-inl application_start () =
+inl application_start game_duration_seconds =
     inspect "application_start"
     
     inl app_actions = get_app_actions ()
@@ -236,7 +241,7 @@ inl application_start () =
     inl is_app_initialization = get_txn_application_id () = new_int 0
     inl actions =
         new_cond3
-            ;[get_txn_application_args 0 = app_actions.setup_players; initialize_players_logic ()]
+            ;[get_txn_application_args 0 = app_actions.setup_players; initialize_players_logic game_duration_seconds]
             ;[new_and 
                 (get_txn_application_args 0 = app_actions.action_move) 
                 (global_group_size () = new_int 1)
