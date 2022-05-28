@@ -88,6 +88,45 @@ inl money_refund_logic () =
             new_return (new_int 1)
         ]
 
+inl game_funds_escrow app_id =
+    inspect "game_funds_escrow"
+
+    inl win_refund = new_seq ;[
+        new_assert (get_gtxn_application_id (get_gtxn 0) = new_int app_id)
+        new_assert (get_gtxn_fee (get_gtxn 1) <= new_int 1000)
+        new_assert (get_gtxn_asset_close_to (get_gtxn 1) = global_zero_address ())
+        new_assert (get_gtxn_rekey_to (get_gtxn 1) = global_zero_address ())
+    ]
+
+    inl tie_refund = new_seq ;[
+        new_assert (get_gtxn_application_id (get_gtxn 0) = new_int app_id)
+        new_assert (get_gtxn_fee (get_gtxn 1) <= new_int 1000)
+        new_assert (get_gtxn_asset_close_to (get_gtxn 1) = global_zero_address ())
+        new_assert (get_gtxn_rekey_to (get_gtxn 1) = global_zero_address ())
+        new_assert (get_gtxn_fee (get_gtxn 2) <= new_int 1000)
+        new_assert (get_gtxn_asset_close_to (get_gtxn 2) = global_zero_address ())
+        new_assert (get_gtxn_rekey_to (get_gtxn 2) = global_zero_address ())
+    ]
+
+    new_seq ;[
+        new_cond
+            ;[global_group_size () = new_int 2; win_refund]
+            ;[global_group_size () = new_int 3; tie_refund]
+        new_return (new_int 1)
+    ]
+
+inl _get_winning_moves () =
+    ;[
+        ;[1; 2; 3]
+        ;[4; 5; 6]
+        ;[7; 8; 9]
+        ;[1; 4; 7]
+        ;[2; 5; 8]
+        ;[3; 6; 9]
+        ;[1; 5; 9]
+        ;[3; 5; 7]
+    ]
+
 inl get_win_state i : i32 =
     inl i : i32 = i
     match i with
@@ -126,21 +165,6 @@ inl is_tie () =
     inl state_x = app_global_get bytes.player_x_state
     inl state_o = app_global_get bytes.player_o_state
     new_int 511 = new_bitwise_or state_x state_o
-    
-inl app_initialization_logic () =
-    inspect "app_initialization_logic"
-
-    inl default_values = get_default_values ()
-    inl bytes = get_bytes ()
-
-    new_seq 
-        ;[
-            app_global_put bytes.player_x_state default_values.player_x_state
-            app_global_put bytes.player_o_state default_values.player_o_state
-            app_global_put bytes.game_status default_values.game_status
-            app_global_put bytes.bet_amount default_values.bet_amount
-            new_return (new_int 1)
-        ]
 
 inl play_action_logic () =
     inspect "play_action_logic"
@@ -233,6 +257,21 @@ inl initialize_players_logic game_duration_seconds =
             setup_failed
             setup_players)
 
+inl app_initialization_logic () =
+    inspect "app_initialization_logic"
+
+    inl default_values = get_default_values ()
+    inl bytes = get_bytes ()
+
+    new_seq 
+        ;[
+            app_global_put bytes.player_x_state default_values.player_x_state
+            app_global_put bytes.player_o_state default_values.player_o_state
+            app_global_put bytes.game_status default_values.game_status
+            app_global_put bytes.bet_amount default_values.bet_amount
+            new_return (new_int 1)
+        ]
+
 inl application_start game_duration_seconds =
     inspect "application_start"
     
@@ -250,75 +289,3 @@ inl application_start game_duration_seconds =
 
     new_if_else is_app_initialization (app_initialization_logic ()) actions
 
-inl game_funds_escrow app_id =
-    inspect "game_funds_escrow"
-
-    inl win_refund = new_seq ;[
-        new_assert (get_gtxn_application_id (get_gtxn 0) = new_int app_id)
-        new_assert (get_gtxn_fee (get_gtxn 1) <= new_int 1000)
-        new_assert (get_gtxn_asset_close_to (get_gtxn 1) = global_zero_address ())
-        new_assert (get_gtxn_rekey_to (get_gtxn 1) = global_zero_address ())
-    ]
-
-    inl tie_refund = new_seq ;[
-        new_assert (get_gtxn_application_id (get_gtxn 0) = new_int app_id)
-        new_assert (get_gtxn_fee (get_gtxn 1) <= new_int 1000)
-        new_assert (get_gtxn_asset_close_to (get_gtxn 1) = global_zero_address ())
-        new_assert (get_gtxn_rekey_to (get_gtxn 1) = global_zero_address ())
-        new_assert (get_gtxn_fee (get_gtxn 2) <= new_int 1000)
-        new_assert (get_gtxn_asset_close_to (get_gtxn 2) = global_zero_address ())
-        new_assert (get_gtxn_rekey_to (get_gtxn 2) = global_zero_address ())
-    ]
-
-    new_seq ;[
-        new_cond
-            ;[global_group_size () = new_int 2; win_refund]
-            ;[global_group_size () = new_int 3; tie_refund]
-        new_return (new_int 1)
-    ]
-
-
-// 1| | 
-// 4| | 
-// 7| | 
-// 
-//  |2| 
-//  |5| 
-//  |8| 
-// 
-//  | |3
-//  | |6
-//  | |9
-// 
-// 1|2|3
-//  | | 
-//  | | 
-// 
-//  | | 
-// 4|5|6
-//  | | 
-// 
-//  | | 
-//  | | 
-// 7|8|9
-// 
-// 1| | 
-//  |5| 
-//  | |9
-// 
-//  | |3
-//  |5| 
-// 7| | 
-// 
-// 
-//  | | 
-//  | | 
-//  | | 
-// 
-//  | | 
-//  | | 
-//  | | 
-// 
-//  | | 
-//  | | 
-//  | | 

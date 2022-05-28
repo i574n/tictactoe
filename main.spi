@@ -18,13 +18,15 @@ inl main () : () =
     imports ()
     tests ()
     
-    (app_initialization_logic,
-    is_tie,
-    has_player_won,
-    money_refund_logic,
-    play_action_logic,
-    initialize_players_logic,
-    application_start,
-    game_funds_escrow)
+    (
+        application_start,
+        app_initialization_logic,
+        initialize_players_logic,
+        play_action_logic,
+        is_tie,
+        has_player_won,
+        game_funds_escrow,
+        money_refund_logic
+    )
     |> dyn
     |> ignore
