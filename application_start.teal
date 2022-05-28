@@ -1,0 +1,460 @@
+#pragma version 6
+txn ApplicationID
+int 0
+==
+bnz main_l34
+txna ApplicationArgs 0
+byte "SetupPlayers"
+==
+bnz main_l31
+txna ApplicationArgs 0
+byte "ActionMove"
+==
+global GroupSize
+int 1
+==
+&&
+bnz main_l13
+txna ApplicationArgs 0
+byte "MoneyRefund"
+==
+bnz main_l5
+err
+main_l5:
+gtxn 1 TypeEnum
+int pay
+==
+assert
+gtxn 1 Sender
+byte "FundsEscrowAddress"
+app_global_get
+==
+assert
+byte "GameState"
+app_global_get
+int 1
+==
+byte "GameState"
+app_global_get
+int 0
+==
+global LatestTimestamp
+byte "ActionTimeout"
+app_global_get
+>
+&&
+byte "PlayerTurnAddress"
+app_global_get
+byte "PlayerOAddress"
+app_global_get
+==
+&&
+||
+bnz main_l12
+byte "GameState"
+app_global_get
+int 2
+==
+byte "GameState"
+app_global_get
+int 0
+==
+global LatestTimestamp
+byte "ActionTimeout"
+app_global_get
+>
+&&
+byte "PlayerTurnAddress"
+app_global_get
+byte "PlayerXAddress"
+app_global_get
+==
+&&
+||
+bnz main_l11
+byte "GameState"
+app_global_get
+int 3
+==
+bnz main_l9
+err
+main_l9:
+gtxn 1 Receiver
+byte "PlayerXAddress"
+app_global_get
+==
+assert
+gtxn 1 Amount
+byte "BetAmount"
+app_global_get
+==
+assert
+gtxn 2 TypeEnum
+int pay
+==
+assert
+gtxn 2 Sender
+byte "FundsEscrowAddress"
+app_global_get
+==
+assert
+gtxn 2 Receiver
+byte "PlayerOAddress"
+app_global_get
+==
+assert
+gtxn 2 Amount
+byte "BetAmount"
+app_global_get
+==
+assert
+main_l10:
+int 1
+return
+main_l11:
+gtxn 1 Receiver
+byte "PlayerOAddress"
+app_global_get
+==
+assert
+gtxn 1 Amount
+int 2
+byte "BetAmount"
+app_global_get
+*
+==
+assert
+byte "GameState"
+int 2
+app_global_put
+b main_l10
+main_l12:
+gtxn 1 Receiver
+byte "PlayerXAddress"
+app_global_get
+==
+assert
+gtxn 1 Amount
+int 2
+byte "BetAmount"
+app_global_get
+*
+==
+assert
+byte "GameState"
+int 1
+app_global_put
+b main_l10
+main_l13:
+txna ApplicationArgs 1
+btoi
+int 0
+>=
+assert
+txna ApplicationArgs 1
+btoi
+int 8
+<=
+assert
+global LatestTimestamp
+byte "ActionTimeout"
+app_global_get
+<=
+assert
+byte "GameState"
+app_global_get
+int 0
+==
+assert
+txn Sender
+byte "PlayerTurnAddress"
+app_global_get
+==
+assert
+byte "PlayerXState"
+app_global_get
+int 1
+txna ApplicationArgs 1
+btoi
+shl
+&
+int 0
+==
+byte "PlayerOState"
+app_global_get
+int 1
+txna ApplicationArgs 1
+btoi
+shl
+&
+int 0
+==
+&&
+assert
+txn Sender
+byte "PlayerXAddress"
+app_global_get
+==
+bnz main_l25
+txn Sender
+byte "PlayerOAddress"
+app_global_get
+==
+bnz main_l16
+err
+main_l16:
+byte "PlayerOState"
+byte "PlayerOState"
+app_global_get
+int 1
+txna ApplicationArgs 1
+btoi
+shl
+|
+app_global_put
+byte "PlayerOState"
+app_global_get
+int 448
+&
+int 448
+==
+byte "PlayerOState"
+app_global_get
+int 56
+&
+int 56
+==
+||
+byte "PlayerOState"
+app_global_get
+int 7
+&
+int 7
+==
+||
+byte "PlayerOState"
+app_global_get
+int 292
+&
+int 292
+==
+||
+byte "PlayerOState"
+app_global_get
+int 146
+&
+int 146
+==
+||
+byte "PlayerOState"
+app_global_get
+int 73
+&
+int 73
+==
+||
+byte "PlayerOState"
+app_global_get
+int 273
+&
+int 273
+==
+||
+byte "PlayerOState"
+app_global_get
+int 84
+&
+int 84
+==
+||
+bnz main_l24
+int 0
+main_l18:
+bnz main_l23
+main_l19:
+byte "PlayerTurnAddress"
+byte "PlayerXAddress"
+app_global_get
+app_global_put
+main_l20:
+int 511
+byte "PlayerXState"
+app_global_get
+byte "PlayerOState"
+app_global_get
+|
+==
+bnz main_l22
+main_l21:
+int 1
+return
+main_l22:
+byte "GameState"
+int 3
+app_global_put
+b main_l21
+main_l23:
+byte "GameState"
+int 2
+app_global_put
+b main_l19
+main_l24:
+int 1
+b main_l18
+main_l25:
+byte "PlayerXState"
+byte "PlayerXState"
+app_global_get
+int 1
+txna ApplicationArgs 1
+btoi
+shl
+|
+app_global_put
+byte "PlayerXState"
+app_global_get
+int 448
+&
+int 448
+==
+byte "PlayerXState"
+app_global_get
+int 56
+&
+int 56
+==
+||
+byte "PlayerXState"
+app_global_get
+int 7
+&
+int 7
+==
+||
+byte "PlayerXState"
+app_global_get
+int 292
+&
+int 292
+==
+||
+byte "PlayerXState"
+app_global_get
+int 146
+&
+int 146
+==
+||
+byte "PlayerXState"
+app_global_get
+int 73
+&
+int 73
+==
+||
+byte "PlayerXState"
+app_global_get
+int 273
+&
+int 273
+==
+||
+byte "PlayerXState"
+app_global_get
+int 84
+&
+int 84
+==
+||
+bnz main_l30
+int 0
+main_l27:
+bnz main_l29
+main_l28:
+byte "PlayerTurnAddress"
+byte "PlayerOAddress"
+app_global_get
+app_global_put
+b main_l20
+main_l29:
+byte "GameState"
+int 1
+app_global_put
+b main_l28
+main_l30:
+int 1
+b main_l27
+main_l31:
+int 0
+byte "PlayerXAddress"
+app_global_get_ex
+store 1
+store 0
+int 0
+byte "PlayerOAddress"
+app_global_get_ex
+store 3
+store 2
+load 1
+load 3
+||
+bnz main_l33
+gtxn 1 TypeEnum
+int pay
+==
+assert
+gtxn 2 TypeEnum
+int pay
+==
+assert
+gtxn 1 Receiver
+gtxn 2 Receiver
+==
+assert
+gtxn 1 Amount
+byte "BetAmount"
+app_global_get
+==
+assert
+gtxn 2 Amount
+byte "BetAmount"
+app_global_get
+==
+assert
+byte "PlayerXAddress"
+gtxn 1 Sender
+app_global_put
+byte "PlayerOAddress"
+gtxn 2 Sender
+app_global_put
+byte "PlayerTurnAddress"
+gtxn 1 Sender
+app_global_put
+byte "FundsEscrowAddress"
+gtxn 1 Receiver
+app_global_put
+byte "ActionTimeout"
+global LatestTimestamp
+int 3600
++
+app_global_put
+int 1
+return
+main_l33:
+int 0
+return
+main_l34:
+byte "PlayerXState"
+int 0
+app_global_put
+byte "PlayerOState"
+int 0
+app_global_put
+byte "GameState"
+int 0
+app_global_put
+byte "BetAmount"
+int 1000000
+app_global_put
+int 1
+return

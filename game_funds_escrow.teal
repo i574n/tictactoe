@@ -1,0 +1,60 @@
+#pragma version 6
+global GroupSize
+int 2
+==
+bnz main_l4
+global GroupSize
+int 3
+==
+bnz main_l3
+err
+main_l3:
+gtxn 0 ApplicationID
+int 999
+==
+assert
+gtxn 1 Fee
+int 1000
+<=
+assert
+gtxn 1 AssetCloseTo
+global ZeroAddress
+==
+assert
+gtxn 1 RekeyTo
+global ZeroAddress
+==
+assert
+gtxn 2 Fee
+int 1000
+<=
+assert
+gtxn 2 AssetCloseTo
+global ZeroAddress
+==
+assert
+gtxn 2 RekeyTo
+global ZeroAddress
+==
+assert
+b main_l5
+main_l4:
+gtxn 0 ApplicationID
+int 999
+==
+assert
+gtxn 1 Fee
+int 1000
+<=
+assert
+gtxn 1 AssetCloseTo
+global ZeroAddress
+==
+assert
+gtxn 1 RekeyTo
+global ZeroAddress
+==
+assert
+main_l5:
+int 1
+return

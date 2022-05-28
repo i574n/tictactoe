@@ -26,7 +26,8 @@ inl main () : () =
         is_tie,
         has_player_won,
         game_funds_escrow,
-        money_refund_logic
+        money_refund_logic,
+        clear_program
     )
     |> dyn
     |> ignore

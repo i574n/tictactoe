@@ -29,6 +29,10 @@ inl get_app_actions () =
         action_move = new_bytes "ActionMove"
         money_refund = new_bytes "MoneyRefund"
     }
+    
+inl clear_program () =
+    inspect "clear_program"
+    new_return (new_int 1)
 
 inl money_refund_logic () =
     inspect "money_refund_logic"

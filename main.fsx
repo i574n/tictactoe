@@ -892,6 +892,11 @@ and closure7 () () : bool =
     let v120 : bool = (importAll "pyteal")?Return v119
     let v121 : (bool []) = [|v109; v114; v118; v120|]
     (importAll "pyteal")?Seq v121
+and closure8 () () : bool =
+    let v0 : string = "clear_program"
+    printfn $"%A{v0}"
+    let v1 : int32 = (importAll "pyteal")?Int 1
+    (importAll "pyteal")?Return v1
 let v0 : string = "main.spi Loaded"
 printfn $"%A{v0}"
 let v1 : (US0 -> bool) = closure0()
@@ -902,4 +907,5 @@ let v5 : (unit -> bool) = closure4()
 let v6 : (int32 -> bool) = closure5()
 let v7 : (int32 -> bool) = closure6()
 let v8 : (unit -> bool) = closure7()
+let v9 : (unit -> bool) = closure8()
 ()

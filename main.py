@@ -42,7 +42,7 @@ def closure0(unit_var0: None, v0_1: US0) -> bool:
     v3_1 : str = pyteal.Bytes("ActionMove")
     v4_1 : str = pyteal.Bytes("MoneyRefund")
     v7_1 : bool = (pyteal.Txn.application_id()) == (pyteal.Int(0))
-    v9 : bool = pyteal.Txn.application_args[0] == v2_1
+    v9_1 : bool = pyteal.Txn.application_args[0] == v2_1
     to_console(interpolate("%A%P()", ["initialize_players_logic"]))
     pattern_input : Tuple[str, str, str, str, str, str, str, str, str] = method0()
     v18 : str = pattern_input[7]
@@ -99,7 +99,7 @@ def closure0(unit_var0: None, v0_1: US0) -> bool:
     v82 : bool = v28.hasValue()
     v83 : bool = pyteal.Or(v81, v82)
     v84 : bool = pyteal.If(v83, v32, v80)
-    v86 : List[bool] = [v9, pyteal.Seq([v26, v28, v84])]
+    v86 : List[bool] = [v9_1, pyteal.Seq([v26, v28, v84])]
     v88 : bool = pyteal.Txn.application_args[0] == v3_1
     v91 : bool = (pyteal.Global.group_size()) == (pyteal.Int(1))
     v92 : bool = pyteal.And(v88, v91)
@@ -321,7 +321,7 @@ def closure1(unit_var0: None, unit_var1: None) -> bool:
 def closure2(unit_var0: None, v0_1: US0) -> bool:
     to_console(interpolate("%A%P()", ["initialize_players_logic"]))
     pattern_input : Tuple[str, str, str, str, str, str, str, str, str] = method0()
-    v9 : str = pattern_input[7]
+    v9_1 : str = pattern_input[7]
     v6_1 : str = pattern_input[4]
     v3_1 : str = pattern_input[1]
     v11 : int = (pyteal.Int(0)) or 0
@@ -330,7 +330,7 @@ def closure2(unit_var0: None, v0_1: US0) -> bool:
     v14 : int = (pyteal.Int(1000000)) or 0
     v15 : int = (pyteal.Int(3600)) or 0
     v16 : int = (pyteal.Int(0)) or 0
-    v17 : int = (pyteal.App.globalGetEx(v16, v9)) or 0
+    v17 : int = (pyteal.App.globalGetEx(v16, v9_1)) or 0
     v18 : int = (pyteal.Int(0)) or 0
     v19 : int = (pyteal.App.globalGetEx(v18, v6_1)) or 0
     v20 : int = (pyteal.Int(0)) or 0
@@ -356,7 +356,7 @@ def closure2(unit_var0: None, v0_1: US0) -> bool:
     v52 : bool = pyteal.Assert(v51)
     v53 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 1)
     v54 : int = (v53.sender()) or 0
-    v55 : bool = pyteal.App.globalPut(v9, v54)
+    v55 : bool = pyteal.App.globalPut(v9_1, v54)
     v56 : Any = pyteal.TxnGroup.__getitem__(Gtxn, 2)
     v57 : int = (v56.sender()) or 0
     v58 : bool = pyteal.App.globalPut(v6_1, v57)
@@ -381,7 +381,7 @@ def closure2(unit_var0: None, v0_1: US0) -> bool:
 def closure3(unit_var0: None, unit_var1: None) -> bool:
     to_console(interpolate("%A%P()", ["play_action_logic"]))
     pattern_input : Tuple[str, str, str, str, str, str, str, str, str] = method0()
-    v9 : str = pattern_input[8]
+    v9_1 : str = pattern_input[8]
     v8_1 : str = pattern_input[7]
     v7_1 : str = pattern_input[6]
     v6_1 : str = pattern_input[5]
@@ -394,13 +394,13 @@ def closure3(unit_var0: None, unit_var1: None) -> bool:
     v14 : int = (pyteal.Int(3600)) or 0
     v15 : str = pyteal.Txn.application_args[1]
     v16 : int = (pyteal.Btoi(v15)) or 0
-    v17 : int = (pyteal.App.globalGet(v9)) or 0
+    v17 : int = (pyteal.App.globalGet(v9_1)) or 0
     v18 : int = (pyteal.App.globalGet(v6_1)) or 0
     v19 : int = (pyteal.Int(1)) or 0
     v20 : int = (pyteal.ShiftLeft(v19, v16)) or 0
     v21 : int = (pyteal.BitwiseOr(v17, v20)) or 0
-    v22 : bool = pyteal.App.globalPut(v9, v21)
-    v23 : int = (pyteal.App.globalGet(v9)) or 0
+    v22 : bool = pyteal.App.globalPut(v9_1, v21)
+    v23 : int = (pyteal.App.globalGet(v9_1)) or 0
     to_console(interpolate("%A%P()", ["has_player_won"]))
     v25 : int = (pyteal.Int(448)) or 0
     v28 : bool = (pyteal.BitwiseAnd(v23, v25)) == (pyteal.Int(448))
@@ -501,7 +501,7 @@ def closure5(unit_var0: None, v0_1: int) -> bool:
     v2_1 : int = (pyteal.Int(448)) or 0
     v5_1 : bool = (pyteal.BitwiseAnd(v0_1, v2_1)) == (pyteal.Int(448))
     v6_1 : int = (pyteal.Int(56)) or 0
-    v9 : bool = (pyteal.BitwiseAnd(v0_1, v6_1)) == (pyteal.Int(56))
+    v9_1 : bool = (pyteal.BitwiseAnd(v0_1, v6_1)) == (pyteal.Int(56))
     v10 : int = (pyteal.Int(7)) or 0
     v13 : bool = (pyteal.BitwiseAnd(v0_1, v10)) == (pyteal.Int(7))
     v14 : int = (pyteal.Int(292)) or 0
@@ -514,7 +514,7 @@ def closure5(unit_var0: None, v0_1: int) -> bool:
     v29 : bool = (pyteal.BitwiseAnd(v0_1, v26)) == (pyteal.Int(273))
     v30 : int = (pyteal.Int(84)) or 0
     v33 : bool = (pyteal.BitwiseAnd(v0_1, v30)) == (pyteal.Int(84))
-    v34 : bool = pyteal.Or(v5_1, v9, v13, v17, v21, v25, v29, v33)
+    v34 : bool = pyteal.Or(v5_1, v9_1, v13, v17, v21, v25, v29, v33)
     v35 : int = (pyteal.Int(1)) or 0
     v36 : int = (pyteal.Int(0)) or 0
     return pyteal.If(v34, v35, v36)
@@ -640,6 +640,12 @@ def closure7(unit_var0: None, unit_var1: None) -> bool:
     return pyteal.Seq(v121)
 
 
+def closure8(unit_var0: None, unit_var1: None) -> bool:
+    to_console(interpolate("%A%P()", ["clear_program"]))
+    v1_1 : int = (pyteal.Int(1)) or 0
+    return pyteal.Return(v1_1)
+
+
 v0 : str = "main.spi Loaded"
 
 to_console(interpolate("%A%P()", [v0]))
@@ -691,4 +697,10 @@ def arrow_8(__unit: Any=None) -> bool:
 
 
 v8 : Callable[[], bool] = arrow_8
+
+def arrow_9(__unit: Any=None) -> bool:
+    return closure8(None, None)
+
+
+v9 : Callable[[], bool] = arrow_9
 
