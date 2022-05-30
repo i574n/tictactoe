@@ -1,6 +1,7 @@
 #r "nuget: Fable.Python"
 open Fable.Core.PyInterop
 open Fable.Core
+
 type [<Struct>] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
