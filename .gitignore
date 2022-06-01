@@ -2,3 +2,4 @@
 __pycache__/
 node_modules/
 tmp/
+_ipython_node.ts
