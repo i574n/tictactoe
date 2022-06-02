@@ -1,4 +1,4 @@
-# spiral-notebook
+# tictactoe_spiral
 
 ```
 main.spi 
@@ -6,7 +6,7 @@ main.spi
 -> main.py 
 -> tictactoe_pyteal.ipynb 
 -> application_start.teal
--> tictactoe_pyteal_testnet.ipynb / tictactoe_testnet_js.ipynb
+-> tictactoe_pyteal_testnet.ipynb / tictactoe_testnet.ipynb
 ```
 
 #### test runs:

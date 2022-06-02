@@ -2,6 +2,8 @@ open util
 open console_fsx
 open tictactoe_pyteal
 
+
+// cell
 inl imports () = // TODO: move to top manually
     $"#r \"nuget: Fable.Python\""
     $"open Fable.Core.PyInterop"
@@ -12,7 +14,7 @@ inl tests () =
     inl b = 1i32
     test (a = b)
 
-inl main () : () =
+inl main () =
     inspect "main.spi Loaded"
 
     imports ()

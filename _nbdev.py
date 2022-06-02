@@ -10,9 +10,24 @@ index = {"new_id": "00_util.ipynb",
          "run_shell": "00_util.ipynb",
          "run": "00_util.ipynb",
          "node": "00_util.ipynb",
-         "spiral": "00_util.ipynb"}
+         "spiral": "00_util.ipynb",
+         "spi": "00_util.ipynb",
+         "spir": "00_util.ipynb",
+         "AppVariables": "tictactoe_pyteal.ipynb",
+         "DefaultValues": "tictactoe_pyteal.ipynb",
+         "AppActions": "tictactoe_pyteal.ipynb",
+         "clear_program": "tictactoe_pyteal.ipynb",
+         "money_refund_logic": "tictactoe_pyteal.ipynb",
+         "game_funds_escrow": "tictactoe_pyteal.ipynb",
+         "has_player_won": "tictactoe_pyteal.ipynb",
+         "is_tie": "tictactoe_pyteal.ipynb",
+         "play_action_logic": "tictactoe_pyteal.ipynb",
+         "initialize_players_logic": "tictactoe_pyteal.ipynb",
+         "app_initialization_logic": "tictactoe_pyteal.ipynb",
+         "application_start": "tictactoe_pyteal.ipynb"}
 
-modules = ["util.py"]
+modules = ["util.py",
+           "tictactoe_pyteal.py"]
 
 doc_url = "https://fc1943s.github.io/tictactoe_spiral/"
 

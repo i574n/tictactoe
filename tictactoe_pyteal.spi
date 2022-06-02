@@ -1,6 +1,8 @@
 open console_fsx
 open pyteal
 
+
+// cell
 let get_bytes () =
     {
         player_x_state = new_bytes "PlayerXState"
@@ -29,11 +31,13 @@ inl get_app_actions () =
         action_move = new_bytes "ActionMove"
         money_refund = new_bytes "MoneyRefund"
     }
-    
+
+// cell
 inl clear_program () =
     inspect "clear_program"
     new_return (new_int 1)
 
+// cell
 inl money_refund_logic () =
     inspect "money_refund_logic"
 
@@ -92,6 +96,7 @@ inl money_refund_logic () =
             new_return (new_int 1)
         ]
 
+// cell
 inl game_funds_escrow app_id =
     inspect "game_funds_escrow"
 
@@ -119,6 +124,7 @@ inl game_funds_escrow app_id =
         new_return (new_int 1)
     ]
 
+// cell
 inl _get_winning_moves () =
     ;[
         ;[1; 2; 3]
@@ -161,6 +167,7 @@ inl has_player_won state =
         (new_int 1) 
         (new_int 0)
 
+// cell
 inl is_tie () =
     inspect "is_tie"
 
@@ -170,6 +177,7 @@ inl is_tie () =
     inl state_o = app_global_get bytes.player_o_state
     new_int 511 = new_bitwise_or state_x state_o
 
+// cell
 inl play_action_logic () =
     inspect "play_action_logic"
 
@@ -221,6 +229,7 @@ inl play_action_logic () =
             new_return (new_int 1)
         ]
 
+// cell
 inl initialize_players_logic game_duration_seconds =
     inspect "initialize_players_logic"
 
@@ -261,6 +270,7 @@ inl initialize_players_logic game_duration_seconds =
             setup_failed
             setup_players)
 
+// cell
 inl app_initialization_logic () =
     inspect "app_initialization_logic"
 
@@ -276,6 +286,7 @@ inl app_initialization_logic () =
             new_return (new_int 1)
         ]
 
+// cell
 inl application_start game_duration_seconds =
     inspect "application_start"
     
@@ -292,4 +303,3 @@ inl application_start game_duration_seconds =
             ;[get_txn_application_args 0 = app_actions.money_refund; money_refund_logic ()]
 
     new_if_else is_app_initialization (app_initialization_logic ()) actions
-
