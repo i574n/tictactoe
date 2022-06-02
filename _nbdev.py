@@ -9,7 +9,8 @@ index = {"new_id": "00_util.ipynb",
          "get_notebook_name": "00_util.ipynb",
          "run_shell": "00_util.ipynb",
          "run": "00_util.ipynb",
-         "node": "00_util.ipynb"}
+         "node": "00_util.ipynb",
+         "spiral": "00_util.ipynb"}
 
 modules = ["util.py"]
 
