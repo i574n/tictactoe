@@ -19,3 +19,14 @@ export var waitFileChange = async (path: string) => {
         await sleep(50)
     }
 }
+export var timeout = async <T>(prom: Promise<T>, ms: number) => {
+	let timer
+	try {
+        return await Promise.race([
+            prom,
+            new Promise((_r, rej) => timer = setTimeout(rej, ms, new Error('timeout')))
+        ])
+    } finally {
+        return clearTimeout(timer)
+    }
+}

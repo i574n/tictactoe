@@ -1,12 +1,13 @@
 # tictactoe_spiral
 
 ```
-main.spi 
--> main.fsx 
--> main.py 
--> tictactoe_pyteal.ipynb 
+04_tictactoe_pyteal.ipynb
+-> main.spi
+-> main.fsx
+-> main.py
+-> 04_tictactoe_pyteal.ipynb
 -> application_start.teal
--> tictactoe_pyteal_testnet.ipynb / tictactoe_testnet.ipynb
+-> 05_tictactoe_testnet.ipynb
 ```
 
 #### test runs:

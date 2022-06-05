@@ -1,0 +1,28 @@
+{
+  "name": "tictactoe_spiral_web",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "e2e": "playwright test",
+    "outdated-pre": "ncu --pre 1 -t greatest"
+  },
+  "dependencies": {
+    "solid-js": "^1.4",
+    "algosdk": "^1.17",
+    "buffer": "^6.0"
+  },
+  "devDependencies": {
+    "npm-check-updates": "^13.1",
+    "typescript": "^4.7",
+    "@playwright/test": "^1.22",
+    "axe-playwright": "^1.1",
+    "vite": "^3.0.0-alpha.9",
+    "vite-plugin-solid": "^2.2",
+    "esbuild": "^0.14",
+    "@esbuild-plugins/node-globals-polyfill": "^0.1",
+    "path-browserify": "^1.0"
+  }
+}

@@ -1,5 +1,12 @@
 .ipynb_checkpoints
 __pycache__/
+playwright-report/
 node_modules/
+dist/
 tmp/
+
 _ipython_node.ts
+_ipython_spi.fsx
+
+spiral_api.py
+algo_network.py

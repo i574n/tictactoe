@@ -1,9 +1,8 @@
-import * as network from "./network"
 import fs from "fs"
 
 
 // cell
-var accounts = [
+export var accounts = [
     {
         privateKey: 'OBVzhzxAK4ZPdaF1QbkXsd8hgRUPJeCfYFjFghgMGnLmcpaAD0mdQJ3Rwq/RwklKGQWAbaIP9zb5BUmcZM4DOg==',
         address: '4ZZJNAAPJGOUBHORYKX5DQSJJIMQLADNUIH7ONXZAVEZYZGOAM5CM7HV2M',
@@ -21,9 +20,10 @@ var accounts = [
     }
 ]
 
-var token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-var server = `http://${process.env.CODESPACE_NAME}-4001.githubpreview.dev`
-var port = 80
+export var token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+export var server = `http://${process.env.CODESPACE_NAME}-4001.githubpreview.dev`
+export var port = 80
 
-var applicationStartTeal = fs.readFileSync('application_start.teal').toString().replace('3600', '90')
-var clearProgramTeal = fs.readFileSync('clear_program.teal').toString()
+// cell
+export var getApplicationStartTeal = () => fs.readFileSync('application_start.teal').toString()
+export var getClearProgramTeal = () => fs.readFileSync('clear_program.teal').toString()

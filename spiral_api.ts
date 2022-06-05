@@ -22,17 +22,20 @@ var requestJSON = (file: any) => request(file).then(x => x ? JSON.parse(x) : und
 var spiBuildFileReq = async (uri: string, backend: string): Promise<void> => requestJSON({ BuildFile: { uri, backend } })
 
 // cell
-export var spiToFsx = async (spiPath: string) => {
+export var spiToFsx = async (spiPath: string, log = true) => {
     const fsxPath = spiPath.replace('.spi', '.fsx')
-    await spiBuildFileReq(spiPath, 'Fsharp')
+    await util.timeout(spiBuildFileReq(spiPath, 'Fsharp'), 2000)
     await util.waitFileChange(fsxPath)
     const lines = fs.readFileSync(fsxPath).toString().split('\n')
     const [imports, code] = lines.reduce(
-        ([imports, code], line) =>
+        ([imports, code]: string[][], line) =>
             /^(open|\#r) .*?$/.test(line)
                 ? [[...imports, line], code]
-                : [imports, [...code, line]]
-        , [[], []]
-    );
+                : [imports, [...code, line]],
+            [[], []]
+    )
     fs.writeFileSync(fsxPath, [...imports, '', ...code].join('\n'))
+    if(log) {
+        util.logStep('spiral.spiToFsx() end')
+    }
 }

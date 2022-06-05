@@ -4,7 +4,7 @@ open tictactoe_pyteal
 
 
 // cell
-inl imports () = // TODO: move to top manually
+inl imports () =
     $"#r \"nuget: Fable.Python\""
     $"open Fable.Core.PyInterop"
     $"open Fable.Core"
@@ -19,7 +19,7 @@ inl main () =
 
     imports ()
     tests ()
-    
+
     (
         application_start,
         app_initialization_logic,

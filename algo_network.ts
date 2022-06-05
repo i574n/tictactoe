@@ -3,21 +3,22 @@ import algosdk from "algosdk"
 
 
 // cell
-export var encode = (value) => {
+export var encode = (value: string) => {
     return new Uint8Array(buffer.Buffer.from(value, "base64"))
 }
 
-
-export var newClient = (token, server, port) => {
+// cell
+export var newClient = (token: string, server: string, port: number) => {
     return new algosdk.Algodv2(token, server, port)
 }
 
+// cell
 export var deployApplication = async (
-    client, 
-    address, 
-    privateKey, 
-    applicationStartTeal, 
-    clearProgramTeal, 
+    client: algosdk.Algodv2,
+    address: string,
+    privateKey: string,
+    applicationStartTeal: string,
+    clearProgramTeal: string,
     options = {
         numGlobalByteSlices: 0,
         numGlobalInts: 0,
@@ -57,7 +58,7 @@ export var deployApplication = async (
             appId
         }
     } catch (e) {
-        console.log('error (rethrowing):', e.toString())
+        console.log(`algo_network.deployApplication() rethrowing error: ${e}`)
         throw e
     }
 }

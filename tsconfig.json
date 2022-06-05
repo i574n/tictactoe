@@ -1,8 +1,19 @@
 {
     "compilerOptions": {
-        "esModuleInterop": true,
-        "module": "esnext",
+        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
         "moduleResolution": "node",
-        "target": "es2022"
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js",
+        "types": [
+            "node",
+            "vite/client",
+            "axe-playwright"
+        ],
+        "noEmit": true,
+        "isolatedModules": true
     }
 }
