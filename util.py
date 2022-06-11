@@ -33,24 +33,27 @@ import os
 import uuid
 import re
 
-def _get_notebook_path_and_save():
-    magic = new_id()
-    print(magic)
-    # saves it (ctrl+S)
-    display(Javascript('IPython.notebook.save_checkpoint();'))
-    nb_name = None
-    while nb_name is None:
-        try:
-            sleep(0.1)
-            nb_name = subprocess.check_output(
-                f'grep -l {magic} *.ipynb', shell=True).decode().strip()
-        except:
-            pass
-    return os.path.join(os.getcwd(), nb_name)
-
 def get_notebook_name():
-    ipynb_path = _get_notebook_path_and_save()
-    return re.search(r'\# default_exp (\w+) *', read_file(ipynb_path)).group(1)
+    if '__vsc_ipynb_file__' in globals():
+        ipynb_path = __vsc_ipynb_file__
+    else:
+        magic = new_id()
+        print(f'<magic:{magic}>')
+
+        display(Javascript('IPython.notebook.save_checkpoint();'))
+
+        nb_name = None
+        while nb_name is None:
+            try:
+                sleep(0.1)
+                nb_name = subprocess.check_output(f'grep -l {magic} *.ipynb', shell=True).decode().strip()
+            except:
+                pass
+
+        ipynb_path = os.path.join(os.getcwd(), nb_name)
+
+    ipynb_body = read_file(ipynb_path)
+    return re.search(r'\# default_exp (\w+) *', ipynb_body).group(1)
 
 _notebook_name = None
 
@@ -72,8 +75,13 @@ def run(*args, **kwargs):
     if err != '':
         print(f'util.run() error. args={args} kwargs={kwargs} err={err}')
         raise Exception(err)
-    return shell.stdout.decode()
+    return shell.stdout.decode().strip('\n')
 
-def run_node(code, timeout=20, *args, **kwargs):
+def run_node(code, timeout=60, *args, **kwargs):
     e = ' --input-type=module -e ' if '\n' in code or '.' not in code else ''
-    return run(f'''NODE_NO_WARNINGS=1 node --loader ts-node/esm --es-module-specifier-resolution=node {e} \'{code}\'''', *args, timeout=timeout, **kwargs)
+    return run(
+        f'''NODE_NO_WARNINGS=1 node --loader ts-node/esm --es-module-specifier-resolution=node {e} \'{code}\'''',
+        *args,
+        timeout=timeout,
+        **kwargs
+    )

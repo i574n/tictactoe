@@ -1,10 +1,9 @@
-import buffer from "buffer"
 import algosdk from "algosdk"
 
 
 // cell
 export var encode = (value: string) => {
-    return new Uint8Array(buffer.Buffer.from(value, "base64"))
+    return new Uint8Array(Buffer.from(value, "base64"))
 }
 
 // cell
@@ -17,8 +16,8 @@ export var deployApplication = async (
     client: algosdk.Algodv2,
     address: string,
     privateKey: string,
-    applicationStartTeal: string,
-    clearProgramTeal: string,
+    applicationStartTeal: string, 
+    clearProgramTeal: string, 
     options = {
         numGlobalByteSlices: 0,
         numGlobalInts: 0,

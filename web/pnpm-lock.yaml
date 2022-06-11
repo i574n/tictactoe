@@ -3,31 +3,39 @@ lockfileVersion: 5.4
 specifiers:
   '@esbuild-plugins/node-globals-polyfill': ^0.1
   '@playwright/test': ^1.22
+  '@storeon/solidjs': ^3.0
   algosdk: ^1.17
   axe-playwright: ^1.1
   buffer: ^6.0
   esbuild: ^0.14
   npm-check-updates: ^13.1
   path-browserify: ^1.0
+  playwright-core: ^1.22
+  solid-icons: ^0.4
   solid-js: ^1.4
+  storeon: ^3.1
   typescript: ^4.7
-  vite: ^3.0.0-alpha.9
+  vite: ^3.0.0-alpha.10
   vite-plugin-solid: ^2.2
 
 dependencies:
+  '@storeon/solidjs': 3.0.1_gpni37lesnsxoms7ksjqd5semm
   algosdk: 1.17.0
   buffer: 6.0.3
+  solid-icons: 0.4.13_solid-js@1.4.2
   solid-js: 1.4.2
+  storeon: 3.1.5
 
 devDependencies:
   '@esbuild-plugins/node-globals-polyfill': 0.1.1_esbuild@0.14.39
   '@playwright/test': 1.22.2
-  axe-playwright: 1.1.11
+  axe-playwright: 1.1.11_playwright-core@1.22.2
   esbuild: 0.14.39
   npm-check-updates: 13.1.1
   path-browserify: 1.0.1
+  playwright-core: 1.22.2
   typescript: 4.7.2
-  vite: 3.0.0-alpha.9
+  vite: 3.0.0-alpha.10
   vite-plugin-solid: 2.2.6
 
 packages:
@@ -493,6 +501,17 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /@storeon/solidjs/3.0.1_gpni37lesnsxoms7ksjqd5semm:
+    resolution: {integrity: sha512-XhRmm+krIsYQK/I6/qBWKHVqCc+Tm0RYNFWKVR9Sa1PEVrRLMCC/MB5SU6oIkwHGdbYdo60IxLudb0oGVhGxxw==}
+    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+    peerDependencies:
+      solid-js: ^1.0.0
+      storeon: ^3.0.0
+    dependencies:
+      solid-js: 1.4.2
+      storeon: 3.1.5
+    dev: false
+
   /@szmarczak/http-timer/1.1.2:
     resolution: {integrity: sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==}
     engines: {node: '>=6'}
@@ -635,12 +654,13 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /axe-playwright/1.1.11:
+  /axe-playwright/1.1.11_playwright-core@1.22.2:
     resolution: {integrity: sha512-YHmUouvF/dFNxoFFwbCjPFmEPwoJSzPgZsD0KZs3xjsR03Rf2mAh771ugre950MaBYuiyxYDlurH5BOEJBK34Q==}
     peerDependencies:
       playwright-core: '>1.0.0'
     dependencies:
       axe-core: 4.4.2
+      playwright-core: 1.22.2
     dev: true
 
   /babel-plugin-jsx-dom-expressions/0.32.11_@babel+core@7.17.8:
@@ -2607,6 +2627,14 @@ packages:
       smart-buffer: 4.2.0
     dev: true
 
+  /solid-icons/0.4.13_solid-js@1.4.2:
+    resolution: {integrity: sha512-1ZbXaR0XEeI0wluWm1k5ziI/OrWqGN6DxAnvJXqi5ZXSmDwlNtLzf1rgyHxprbGbyybvO1uj7vozaCmoAgZBlg==}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      solid-js: 1.4.2
+    dev: false
+
   /solid-js/1.4.2:
     resolution: {integrity: sha512-IU5yKuT8P/n5F5g8j1rTXqxUdPYmoZDk/074TG94AEYf/nyXAeG82BSge4/lLIbCfUcnGUJ6DRdebIjujOAYyg==}
 
@@ -2683,6 +2711,19 @@ packages:
     dependencies:
       minipass: 3.1.6
     dev: true
+
+  /storeon/3.1.5:
+    resolution: {integrity: sha512-VuW4GQr3LGQr+gqscqsOz2c9asK9N+B+8+sWs7Pj4OqU7bngYIqsPF3IYpkbmccKNWjs7wwxUAlR+gtL9cEMEg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      preact: '>=10.0.0'
+      react: '>=16.8.0'
+    peerDependenciesMeta:
+      preact:
+        optional: true
+      react:
+        optional: true
+    dev: false
 
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -2914,20 +2955,23 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite/3.0.0-alpha.9:
-    resolution: {integrity: sha512-6prUhMKrbf9nLxnniDmlWNg10AGvC+xqsBsXsBvGBmnOKlPQsbIF8ZWHl+FgfrJA5ajbHKzYsVvh4G0GBZD7Dw==}
+  /vite/3.0.0-alpha.10:
+    resolution: {integrity: sha512-ihF4TE3+xvgmGaSIYrfxBfJqqXESAehkIBv8L/xG9OzNaUiGrOF2CUqsmnVQOJ/pFBAAMmLNgG75Mqbdzo7W6A==}
     engines: {node: '>=14.6.0'}
     hasBin: true
     peerDependencies:
       less: '*'
       sass: '*'
       stylus: '*'
+      terser: ^5.4.0
     peerDependenciesMeta:
       less:
         optional: true
       sass:
         optional: true
       stylus:
+        optional: true
+      terser:
         optional: true
     dependencies:
       esbuild: 0.14.39

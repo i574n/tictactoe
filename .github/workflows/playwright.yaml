@@ -1,11 +1,13 @@
 name: E2E + A11y Tests
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
-  test:
+  build:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     defaults:
@@ -35,3 +37,28 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: ./web/dist
+
+  push:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: ./web/dist
+
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: dist
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/dist

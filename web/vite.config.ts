@@ -11,19 +11,18 @@ export default defineConfig({
   define: {
     "process.env": process.env
   },
-  plugins: [solidPlugin()],
+  plugins: [solidPlugin() as any],
   build: {
     target: 'esnext'
   },
   optimizeDeps: {
     esbuildOptions: {
-      inject: ['./buffer_shim.ts'],
       define: {
         global: 'globalThis'
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
-          buffer: true,
+          buffer: true
         })
       ]
     }

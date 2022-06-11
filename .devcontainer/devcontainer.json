@@ -1,0 +1,10 @@
+{
+    "runArgs": [
+        "--env-file",
+        "${localWorkspaceFolder}/.devcontainer/.env"
+    ],
+    "forwardPorts": [
+        3700,
+        4001
+    ]
+}

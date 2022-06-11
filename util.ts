@@ -2,6 +2,11 @@ import * as fs from "fs"
 
 
 // cell
+export type PickByType<T, Value> = {
+    [P in keyof T as T[P] extends Value | undefined ? P : never]: T[P]
+}
+
+// cell
 var start = process.hrtime()
 
 export var elapsed = (start: [number, number]) => process.hrtime(start)[1] / 1000000
@@ -11,7 +16,7 @@ export var logStep = (note: string) => {
 }
 export var sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 export var waitFileChange = async (path: string) => {
-    start = process.hrtime()
+    var start = process.hrtime()
     const stat_mtime = fs.statSync(path).mtimeMs
     while (elapsed(start) < 30000
         && (fs.statSync(path).mtimeMs === stat_mtime
@@ -19,6 +24,8 @@ export var waitFileChange = async (path: string) => {
         await sleep(50)
     }
 }
+
+// cell
 export var timeout = async <T>(prom: Promise<T>, ms: number) => {
 	let timer
 	try {

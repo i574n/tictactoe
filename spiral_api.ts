@@ -1,11 +1,12 @@
 import * as zmq from "zeromq"
 import * as fs from "fs"
+import * as path from "path"
 import * as util from "./util"
 
 
 // cell
 var requestRun = async (prev: Promise<string | null>, file: any): Promise<string | null> => {
-    const port: number = 13805
+    const port = 13805
     await prev // Waiting on the previous request is so they get ordered properly. Otherwise, messages might fill up and fire in arbitrary order.
     const sock = new zmq.Request()
     const uriServer = `tcp://localhost:${port}`
@@ -22,7 +23,8 @@ var requestJSON = (file: any) => request(file).then(x => x ? JSON.parse(x) : und
 var spiBuildFileReq = async (uri: string, backend: string): Promise<void> => requestJSON({ BuildFile: { uri, backend } })
 
 // cell
-export var spiToFsx = async (spiPath: string, log = true) => {
+export var spiToFsx = async (spiPath = '', log = true) => {
+    spiPath = spiPath || path.join(process.cwd(), 'main.spi')
     const fsxPath = spiPath.replace('.spi', '.fsx')
     await util.timeout(spiBuildFileReq(spiPath, 'Fsharp'), 2000)
     await util.waitFileChange(fsxPath)

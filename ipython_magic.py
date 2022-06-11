@@ -5,7 +5,7 @@ __all__ = ['node', 'spiral', 'spi', 'spir']
 # Cell
 
 from IPython.core.magic import register_cell_magic
-from util import *
+import util
 
 _node_cache = ''
 _notebook_name = None
@@ -17,7 +17,7 @@ def node(arg, cell, test=False):
 
     ipython_node_path = '_ipython_node.ts'
 
-    def split_imports(code): return list_partition(code.splitlines(), lambda line: line.startswith('import '))
+    def split_imports(code): return util.list_partition(code.splitlines(), lambda line: line.startswith('import '))
     cache_imports, cache_exports = split_imports(_node_cache)
     cell_imports, cell_exports = split_imports(cell)
     cell_exports = '\n'.join(cell_exports).strip('\n').split('\n')
@@ -46,9 +46,9 @@ def node(arg, cell, test=False):
     new_code_ts = join_imports(ts_imports, ts_exports)
     new_code_ipython = join_imports(ipython_imports, ipython_exports)
 
-    write_file(ipython_node_path, new_code_ipython)
+    util.write_file(ipython_node_path, new_code_ipython)
 
-    result = run_node(ipython_node_path).splitlines() if arg == 'run' else []
+    result = util.run_node(ipython_node_path).splitlines() if arg == 'run' else []
 
     _node_cache = new_code_ts
 
@@ -56,11 +56,11 @@ def node(arg, cell, test=False):
         return result, new_code_ts, new_code_ipython
     else:
         if _notebook_name is None:
-            _notebook_name = get_notebook_name()
+            _notebook_name = util.get_notebook_name()
 
         ts_node_path = f'{_notebook_name}.ts'
 
-        write_file(ts_node_path, new_code_ts)
+        util.write_file(ts_node_path, new_code_ts)
         return result if result != [] else ts_node_path
 
 
@@ -85,7 +85,7 @@ def spiral(arg, cell, test=False):
     def get_arg(i, d=''): return next(iter(args[i:i+1]), d)
     arg = args[0]
 
-    def split_imports(code): return list_partition(code.splitlines(), lambda line: line.startswith('open '))
+    def split_imports(code): return util.list_partition(code.splitlines(), lambda line: line.startswith('open '))
     cache_imports, cache_exports = split_imports(_spiral_cache[arg])
 
     cell_imports, cell_exports = split_imports(cell)
@@ -108,7 +108,7 @@ def spiral(arg, cell, test=False):
 
     if arg in ['spi', 'spir']:
         if _notebook_name is None:
-            _notebook_name = get_notebook_name()
+            _notebook_name = util.get_notebook_name()
         spi_path = f'{_notebook_name}.{arg}'
     else:
         spi_path = f'main.spi'
@@ -123,16 +123,21 @@ def spiral(arg, cell, test=False):
             shutil.copyfile('main.fsx', 'main.fsx.tmp')
             shutil.copyfile('main.py', 'main.py.tmp')
         try:
-            write_file(spi_path, new_code_spi)
+            util.write_file(spi_path, new_code_spi)
 
             if arg == 'run':
                 sleep(0.1)
-                code = 'import * as spiral_api from "./spiral_api"\nawait spiral_api.spiToFsx("/workspaces/spiral-notebook/main.spi")'
-                result = run_node(code, timeout=int(get_arg(1, 3))).splitlines()
+                code = '\n'.join([
+                    'import * as spiral_api from "./spiral_api"',
+                    f'await spiral_api.spiToFsx("{os.path.join(os.getcwd(), "main.spi")}")'
+                ])
+                result = util.run_node(code, timeout=int(get_arg(1, 3))).splitlines()
                 sleep(0.1)
+                fsx_output = util.read_file("main.fsx")
                 os.rename('main.fsx', '_ipython_spi.fsx')
+
                 print(f'build result: {result}')
-                print(f'fsx_output: {read_file("_ipython_spi.fsx")}')
+                print(f'fsx_output: {fsx_output}')
         except Exception as e:
             print(f'ipython_magic.spiral() error. new_code_spi={new_code_spi}')
             _spiral_cache = last_spiral_cache
