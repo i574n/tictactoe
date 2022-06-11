@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
+    "playwright-install": "playwright install --with-deps && playwright install msedge",
     "e2e": "playwright test",
     "outdated-pre": "ncu --pre 1 -t greatest"
   },

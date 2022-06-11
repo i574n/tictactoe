@@ -28,7 +28,7 @@ jobs:
         working-directory: ./
       - run: pnpm install
       - run: pnpm build
-      - run: pnpm playwright install --with-deps
+      - run: pnpm playwright-install
       - run: pnpm e2e
 
       - uses: actions/upload-artifact@v2
