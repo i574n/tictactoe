@@ -1,0 +1,11 @@
+{
+  "lib_py": {
+    "Overview": "/",
+    "spiral": "util.html",
+    "python": "spiral_api.html",
+    "node magic": "ipython_magic.html",
+    "node": "algo_network.html",
+    "imports": "tictactoe_pyteal.html",
+    "node testnet": "tictactoe_testnet.html"
+  }
+}
