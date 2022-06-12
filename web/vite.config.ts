@@ -3,6 +3,7 @@ import solidPlugin from 'vite-plugin-solid'
 import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
 
 export default defineConfig({
+  base: '/tictactoe_spiral/',
   resolve: {
     alias: {
       path: 'path-browserify'
