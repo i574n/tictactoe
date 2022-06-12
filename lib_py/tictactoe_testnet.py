@@ -4,7 +4,7 @@ __all__ = ['GameEngineService']
 
 # Cell
 
-from algo_network import *
+from .algo_network import *
 from algosdk import logic as algo_logic
 from algosdk.future import transaction as algo_txn
 

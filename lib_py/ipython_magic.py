@@ -5,7 +5,7 @@ __all__ = ['node', 'spiral', 'spi', 'spir']
 # Cell
 
 from IPython.core.magic import register_cell_magic
-import util
+import lib_py.util as util
 
 _node_cache = ''
 _notebook_name = None
@@ -55,20 +55,24 @@ def node(arg, cell, test=False):
     if test:
         return result, new_code_ts, new_code_ipython
     else:
-        if _notebook_name is None:
-            _notebook_name = util.get_notebook_name()
+        if new_code_ts != '\n':
+            if _notebook_name is None:
+                _notebook_name = util.get_notebook_name()
 
-        ts_node_path = f'{_notebook_name}.ts'
+            ts_node_path = f'{_notebook_name}.ts'
 
-        util.write_file(ts_node_path, new_code_ts)
-        return result if result != [] else ts_node_path
+            util.write_file(ts_node_path, new_code_ts)
+
+            return result if arg == 'run' else ts_node_path
+
+        return result
 
 
 # Cell
 
 import shutil
 import os
-from time import sleep
+import time
 from IPython.core.magic import register_cell_magic
 
 def _get_spiral_cache_empty(): return {'spi': '', 'spir': '', 'run': '', '': ''}
@@ -118,35 +122,43 @@ def spiral(arg, cell, test=False):
     if test:
         return new_code_spi
     else:
-        if arg == 'run':
-            shutil.copyfile('main.spi', 'main.spi.tmp')
-            shutil.copyfile('main.fsx', 'main.fsx.tmp')
-            shutil.copyfile('main.py', 'main.py.tmp')
-        try:
-            util.write_file(spi_path, new_code_spi)
-
+        if new_code_spi != util.read_file('main.spi'):
             if arg == 'run':
-                sleep(0.1)
-                code = '\n'.join([
-                    'import * as spiral_api from "./spiral_api"',
-                    f'await spiral_api.spiToFsx("{os.path.join(os.getcwd(), "main.spi")}")'
-                ])
-                result = util.run_node(code, timeout=int(get_arg(1, 3))).splitlines()
-                sleep(0.1)
-                fsx_output = util.read_file("main.fsx")
-                os.rename('main.fsx', '_ipython_spi.fsx')
+                shutil.copyfile('main.spi', 'main.spi.tmp')
+                shutil.copyfile('main.fsx', 'main.fsx.tmp')
+                shutil.copyfile('main.py', 'main.py.tmp')
 
-                print(f'build result: {result}')
-                print(f'fsx_output: {fsx_output}')
-        except Exception as e:
-            print(f'ipython_magic.spiral() error. new_code_spi={new_code_spi}')
-            _spiral_cache = last_spiral_cache
-            raise e
-        finally:
-            if arg == 'run':
-                os.rename('main.spi.tmp', 'main.spi')
-                os.rename('main.fsx.tmp', 'main.fsx')
-                os.rename('main.py.tmp', 'main.py')
+            try:
+                util.write_file(spi_path, new_code_spi)
+
+                if arg == 'run':
+                    old_code_fsx = util.read_file('main.fsx')
+                    new_code_fsx = old_code_fsx
+
+                    code = '\n'.join([
+                        'import * as spiral_api from "./spiral_api"',
+                        f'await spiral_api.spiToFsx("{os.path.join(os.getcwd(), "main.spi")}")'
+                    ])
+                    result = util.run_node(code, timeout=int(get_arg(1, 3))).splitlines()
+                    print(f'build output: {result}')
+
+                    start = time.time()
+                    while old_code_fsx == new_code_fsx and time.time() - start < 5:
+                        time.sleep(0.2)
+                        new_code_fsx = util.read_file("main.fsx")
+
+                    os.rename('main.fsx', '_ipython_spi.fsx')
+                    print(f'fsx: {new_code_fsx}')
+
+            except Exception as e:
+                print(f'ipython_magic.spiral() error. new_code_spi={new_code_spi}')
+                _spiral_cache = last_spiral_cache
+                raise e
+            finally:
+                if arg == 'run':
+                    os.rename('main.spi.tmp', 'main.spi')
+                    os.rename('main.fsx.tmp', 'main.fsx')
+                    os.rename('main.py.tmp', 'main.py')
 
         return spi_path
 

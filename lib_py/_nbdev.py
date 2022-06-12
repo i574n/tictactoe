@@ -39,7 +39,7 @@ modules = ["util.py",
            "tictactoe_pyteal.py",
            "tictactoe_testnet.py"]
 
-doc_url = "https://fc1943s.github.io/tictactoe_spiral/"
+doc_url = "https://fc1943s.github.io/tictactoe_spiral/docs/"
 
 git_url = "https://github.com/fc1943s/tictactoe_spiral/"
 

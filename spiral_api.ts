@@ -23,7 +23,7 @@ var requestJSON = (file: any) => request(file).then(x => x ? JSON.parse(x) : und
 var spiBuildFileReq = async (uri: string, backend: string): Promise<void> => requestJSON({ BuildFile: { uri, backend } })
 
 // cell
-export var spiToFsx = async (spiPath = '', log = true) => {
+export var spiToFsx = async (spiPath = '', log = false) => {
     spiPath = spiPath || path.join(process.cwd(), 'main.spi')
     const fsxPath = spiPath.replace('.spi', '.fsx')
     await util.timeout(spiBuildFileReq(spiPath, 'Fsharp'), 2000)
