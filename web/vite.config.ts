@@ -32,6 +32,9 @@ export default defineConfig({
     port: 3700
   },
   server: {
+    fs: {
+      allow: ['..'],
+    },
     host: true,
     https: true,
     port: 3700,

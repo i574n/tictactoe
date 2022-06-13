@@ -73,7 +73,7 @@ export function Connection() {
   )
 }
 
-export function AccountInput({ key, account }: { key: keyof Account, account: Account }) {
+export function AccountInput({ key, account }: { key: keyof Omit<Account, 'alias'>, account: Account }) {
   const [state, dispatch] = useStoreon<State, Events>()
 
   return (
@@ -84,7 +84,7 @@ export function AccountInput({ key, account }: { key: keyof Account, account: Ac
         accounts:
           state.accounts.map(
             (_account) =>
-              _account[key] === account[key]
+              _account.alias === account.alias
                 ? { ..._account, [key]: e.currentTarget.value }
                 : _account
           )
