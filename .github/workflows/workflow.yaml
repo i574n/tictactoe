@@ -38,12 +38,12 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip'
-      - run: >
-        pip install -r requirements.txt &&
-        nbdev_build_docs --mk_readme false &&
-        cd docs &&
-        bundle init &&
-        bundle add jekyll jekyll-remote-theme &&
+      - run: |
+        pip install -r requirements.txt && \
+        nbdev_build_docs --mk_readme false && \
+        cd docs && \
+        bundle init && \
+        bundle add jekyll jekyll-remote-theme && \
         bundle exec jekyll build
 
       - uses: actions/upload-artifact@v2
