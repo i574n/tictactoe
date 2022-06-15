@@ -12,18 +12,20 @@ export var newClient = (token: string, server: string, port: number) => {
 }
 
 // cell
+var defaultDeployOptions = {
+    numGlobalByteSlices: 0,
+    numGlobalInts: 0,
+    numLocalByteSlices: 0,
+    numLocalInts: 0
+}
+
 export var deployApplication = async (
     client: algosdk.Algodv2,
     address: string,
     privateKey: string,
     applicationStartTeal: string, 
     clearProgramTeal: string, 
-    options = {
-        numGlobalByteSlices: 0,
-        numGlobalInts: 0,
-        numLocalByteSlices: 0,
-        numLocalInts: 0
-    }) => {
+    options: Partial<typeof defaultDeployOptions> = defaultDeployOptions) => {
     try {
         const suggestedParams = await client.getTransactionParams().do()
         suggestedParams.flatFee = true
@@ -38,7 +40,7 @@ export var deployApplication = async (
             onComplete: algosdk.OnApplicationComplete.NoOpOC,
             approvalProgram: encode(applicationStartCompiled.result),
             clearProgram: encode(clearProgramCompiled.result),
-            ...options
+            ...{ ...defaultDeployOptions, ...options }
         })
 
         const txnSigned = txn.signTxn(encode(privateKey))

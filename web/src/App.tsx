@@ -38,15 +38,17 @@ export function StateInput({ key }: { key: keyof util.PickByType<State, number |
   )
 }
 
+const CODESPACE_NAME = process.env.CODESPACE_NAME
+
 export function Connection() {
   const [_, dispatch] = useStoreon<State, Events>()
 
   createEffect(on(
     () => [],
     () => {
-      if (process.env.CODESPACE_NAME) {
+      if (CODESPACE_NAME) {
         dispatch('set', {
-          server: `http://${process.env.CODESPACE_NAME}-4001.githubpreview.dev`,
+          server: `http://${CODESPACE_NAME}-4001.githubpreview.dev`,
           port: 80
         })
       }
@@ -142,9 +144,7 @@ const Game = () => {
           raw.clearProgramTeal,
           {
             numGlobalByteSlices: tictactoe_pyteal.numGlobalByteSlices,
-            numGlobalInts: tictactoe_pyteal.numGlobalInts,
-            numLocalByteSlices: 0,
-            numLocalInts: 0
+            numGlobalInts: tictactoe_pyteal.numGlobalInts
           }
         )
 
