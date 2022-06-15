@@ -370,7 +370,7 @@ export var encode = (value: string) =&gt; {
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;magic:d63530966f8b4b2ea61da8fccf96bca2&gt;
+<pre>&lt;magic:0c651e93a84c4f6aaa5998145e616059&gt;
 </pre>
 </div>
 </div>
@@ -380,9 +380,9 @@ export var encode = (value: string) =&gt; {
 
 
 
-<div id="89e2111d-8efd-4908-af59-5076367dc62f" class="output_subarea output_javascript ">
+<div id="63e51b89-3eb4-4314-9c4e-f2cfe6e9bda6" class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#89e2111d-8efd-4908-af59-5076367dc62f');
+var element = $('#63e51b89-3eb4-4314-9c4e-f2cfe6e9bda6');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -465,18 +465,20 @@ export var newClient = (token: string, server: string, port: number) =&gt; {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> export
 
+var defaultDeployOptions = {
+    numGlobalByteSlices: 0,
+    numGlobalInts: 0,
+    numLocalByteSlices: 0,
+    numLocalInts: 0
+}
+
 export var deployApplication = async (
     client: algosdk.Algodv2,
     address: string,
     privateKey: string,
     applicationStartTeal: string, 
     clearProgramTeal: string, 
-    options = {
-        numGlobalByteSlices: 0,
-        numGlobalInts: 0,
-        numLocalByteSlices: 0,
-        numLocalInts: 0
-    }) =&gt; {
+    options: Partial&lt;typeof defaultDeployOptions&gt; = defaultDeployOptions) =&gt; {
     try {
         const suggestedParams = await client.getTransactionParams().do()
         suggestedParams.flatFee = true
@@ -491,7 +493,7 @@ export var deployApplication = async (
             onComplete: algosdk.OnApplicationComplete.NoOpOC,
             approvalProgram: encode(applicationStartCompiled.result),
             clearProgram: encode(clearProgramCompiled.result),
-            ...options
+            ...{ ...defaultDeployOptions, ...options }
         })
 
         const txnSigned = txn.signTxn(encode(privateKey))
@@ -753,7 +755,7 @@ export var deployApplication = async (
                 <div class="col-lg-12 footer">
                   <p><img src="/tictactoe_spiral/docs/assets/images/company_logo.png" alt="Company logo"/></p>
                &copy;2022 fc1943s. All rights reserved. <br />
- Site last generated: Jun 13, 2022 <br />
+ Site last generated: Jun 15, 2022 <br />
                 </div>
             </div>
 </footer>
