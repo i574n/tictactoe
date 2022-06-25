@@ -6,8 +6,12 @@
   height: 100vh;
   flex-direction: column;
   background-color: #212121;
-  color: #eeffff;
   padding: 1px;
+}
+
+.App,
+.App a {
+  color: #eeffff;
 }
 
 .App,

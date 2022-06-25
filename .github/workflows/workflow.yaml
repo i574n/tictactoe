@@ -30,6 +30,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: always()
         with:
+          name: playwright-report
           path: ./web/playwright-report/
           retention-days: 30
 
@@ -57,11 +58,13 @@ jobs:
         with:
           name: dist
           path: ./web/dist
+          retention-days: 30
 
       - uses: actions/upload-artifact@v2
         with:
           name: docs
           path: ./docs/_site
+          retention-days: 30
 
   push:
     needs: build
@@ -80,12 +83,6 @@ jobs:
         with:
           name: docs
           path: ./dist/docs
-
-      - uses: geekyeggo/delete-artifact@v1
-        with:
-          name: |
-            dist
-            docs
 
       - uses: peaceiris/actions-gh-pages@v3
         with:

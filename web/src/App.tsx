@@ -230,6 +230,29 @@ const App = () => {
               <td>Testnet Bank Dispenser</td>
               <td><TestnetBankContainer /></td>
             </tr>
+            <tr>
+              <td>Links</td>
+              <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <a target="_blank" href="https://github.com/fc1943s/tictactoe_spiral">
+                          https://github.com/fc1943s/tictactoe_spiral
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral">
+                          https://fc1943s.github.io/tictactoe_spiral
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
