@@ -3,6 +3,7 @@ __pycache__/
 playwright-report/
 node_modules/
 dist/
+dist_extension/
 tmp/
 
 _ipython_node.ts

@@ -1,0 +1,12 @@
+{
+    "name": "tictactoe_spiral",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "description": "tictactoe_spiral",
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'; script-src-elem 'self' 'unsafe-inline';"
+    },
+    "action": {
+        "default_popup": "index.html"
+    }
+}

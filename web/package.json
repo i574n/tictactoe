@@ -2,16 +2,17 @@
   "name": "tictactoe_spiral_web",
   "version": "0.0.1",
   "scripts": {
-    "start": "vite",
-    "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "playwright-install": "playwright install --with-deps && playwright install msedge",
+    "extension": "rm -rf ./dist_extension && cp -r ./dist ./dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets",
+    "dev": "vite",
     "e2e": "playwright test",
-    "outdated-pre": "ncu --pre 1 -t greatest"
+    "outdated-pre": "ncu --pre 1 -t greatest",
+    "playwright-install": "playwright install --with-deps && playwright install msedge",
+    "serve": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
-    "algosdk": "^1.17",
+    "algosdk": "^1.18",
     "buffer": "^6.0",
     "solid-js": "^1.4",
     "solid-icons": "^0.4",
@@ -19,12 +20,12 @@
     "storeon": "^3.1"
   },
   "devDependencies": {
-    "npm-check-updates": "^13.1",
+    "npm-check-updates": "^14.1",
     "typescript": "^4.7",
     "@playwright/test": "^1.22",
     "playwright-core": "^1.22",
     "axe-playwright": "^1.1",
-    "vite": "^3.0.0-alpha.10",
+    "vite": "^3.0.0-beta.1",
     "vite-plugin-solid": "^2.2",
     "esbuild": "^0.14",
     "@esbuild-plugins/node-globals-polyfill": "^0.1",

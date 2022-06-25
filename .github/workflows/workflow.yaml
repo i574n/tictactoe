@@ -30,7 +30,6 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: playwright-report
           path: ./web/playwright-report/
           retention-days: 30
 
@@ -45,6 +44,14 @@ jobs:
           ruby-version: '3.0'
 
       - run: cd docs && bundle init && bundle add jekyll jekyll-remote-theme && bundle exec jekyll build
+
+      - run: cd ./web && pnpm extension
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist_extension
+          path: ./web/dist_extension
+          retention-days: 30
 
       - uses: actions/upload-artifact@v2
         with:

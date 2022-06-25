@@ -199,7 +199,7 @@ const TestnetBankContainer = () => {
     <div class={styles.TestnetBankContainer}>
       <button onClick={() => setRefreshing(true)}><BiRefresh size="24px" /></button>
       {!refreshing() &&
-        <iframe src="https://bank.testnet.algorand.network" title="algorand testnet bank" width="320" height="280" />}
+        <iframe src="https://bank.testnet.algorand.network" title="algorand testnet bank" width="320" height="700" />}
     </div>
   )
 }
