@@ -2,8 +2,8 @@
   "name": "tictactoe_spiral_web",
   "version": "0.0.1",
   "scripts": {
-    "build": "vite build",
-    "extension": "rm -rf ./dist_extension && cp -r ./dist ./dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets",
+    "build": "vite build --outDir dist",
+    "extension": "vite build --outDir dist_extension && cp background.js content_script.js ./dist_extension && mkdir ./dist_extension/tictactoe_spiral && cp ./dist_extension/assets/content_script.* ./dist_extension/assets/content_script.js && cp ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets",
     "dev": "vite",
     "e2e": "playwright test",
     "outdated-pre": "ncu --pre 1 -t greatest",

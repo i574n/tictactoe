@@ -24,7 +24,8 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html'),
+        content_script: resolve(__dirname, 'src/content_script.tsx')
       },
       output: {
         manualChunks: {
