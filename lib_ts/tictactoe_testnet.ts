@@ -3,7 +3,7 @@ import fs from "fs"
 
 // cell
 export var token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-export var server = 'http://localhost'
+export var url = 'http://localhost'
 export var port = 4001
 
 export var accounts = [
@@ -28,5 +28,5 @@ export var accounts = [
 ]
 
 // cell
-export var getApplicationStartTeal = () => fs.readFileSync('application_start.teal').toString()
-export var getClearProgramTeal = () => fs.readFileSync('clear_program.teal').toString()
+export var getApplicationStartTeal = () => fs.readFileSync('../lib_teal/application_start.teal').toString()
+export var getClearProgramTeal = () => fs.readFileSync('../lib_teal/clear_program.teal').toString()

@@ -13,7 +13,7 @@ const main = () => {
                 render(() => <App />, document.querySelector('.AE-footerContainer') as any)
             }
         }
-    }, 100)
+    }, 1000)
 }
 
 main()

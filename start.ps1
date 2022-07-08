@@ -1,1 +1,1 @@
-npx concurrently 'pwsh algorand_sandbox.ps1' 'cd web && pnpm dev'
+npx concurrently 'cd web && pnpm dev' 'cd peer && pnpm start-dev-local' #'pwsh algorand_sandbox.ps1'

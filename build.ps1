@@ -1,2 +1,2 @@
 dotnet tool restore
-dotnet fable-py
+dotnet fable-py main.fsx

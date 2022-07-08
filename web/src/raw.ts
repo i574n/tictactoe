@@ -1,5 +1,5 @@
 // @ts-nocheck
-import applicationStartTeal from "../../application_start.teal?raw"
-import clearProgramTeal from "../../clear_program.teal?raw"
+import applicationStartTeal from "../../lib_teal/application_start.teal?raw"
+import clearProgramTeal from "../../lib_teal/clear_program.teal?raw"
 
 export { applicationStartTeal, clearProgramTeal }

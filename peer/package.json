@@ -1,0 +1,24 @@
+{
+    "name": "tictactoe_spiral_peer",
+    "version": "0.0.1",
+    "description": "",
+    "main": "server.js",
+    "author": "fc1943s",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "start-ci": "cross-env-shell HTTPS=true \"pwsh ./start.ps1\"",
+        "start-dev": "cross-env-shell PEER_DOMAIN=localhost \"pnpm start-ci\"",
+        "start-dev-local": "cross-env-shell ROOT_PATH=./radata \"pnpm start-dev\"",
+        "outdated-pre": "ncu --pre 1 -t greatest"
+    },
+    "dependencies": {
+        "gun": "^0.2020.1237"
+    },
+    "devDependencies": {
+        "npm-check-updates": "~15.2",
+        "cross-env": "~7.0",
+        "request": "~2.88",
+        "mkcert": "~1.5"
+    }
+}

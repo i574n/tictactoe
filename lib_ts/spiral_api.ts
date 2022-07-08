@@ -24,7 +24,8 @@ var spiBuildFileReq = async (uri: string, backend: string): Promise<void> => req
 
 // cell
 export var spiToFsx = async (spiPath = '', log = false) => {
-    spiPath = spiPath || path.join(process.cwd(), 'main.spi')
+    const cwpath = (arg: string) => path.join(process.cwd(), '..', arg)
+    spiPath = spiPath || cwpath('main.spi')
     const fsxPath = spiPath.replace('.spi', '.fsx')
     await util.timeout(spiBuildFileReq(spiPath, 'Fsharp'), 2000)
     await util.waitFileChange(fsxPath)

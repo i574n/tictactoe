@@ -3,8 +3,15 @@
         "--env-file",
         "${localWorkspaceFolder}/.devcontainer/.env"
     ],
+    "features": {
+        "docker-in-docker": "latest"
+    },
+    "appPort": [
+        3700
+    ],
     "forwardPorts": [
-        3700,
+        // 3700,
         4001
+        // 8765
     ]
 }

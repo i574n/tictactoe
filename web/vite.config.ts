@@ -1,8 +1,8 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import { resolve } from 'path'
 import solidPlugin from 'vite-plugin-solid'
+import wasmLoader from 'esbuild-plugin-wasm'
 import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
-
 
 export default defineConfig({
   base: '/tictactoe_spiral/',
@@ -29,6 +29,7 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
+          'gun': ['rusty-gun'],
           'solid': ['solid-js', 'solid-icons', '@storeon/solidjs', 'storeon'],
           'algosdk': ['algosdk', 'buffer']
         }
@@ -37,13 +38,18 @@ export default defineConfig({
   },
   optimizeDeps: {
     esbuildOptions: {
+      format: 'esm',
+      target: ['esnext'],
       define: {
         global: 'globalThis'
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
           buffer: true
-        }) as any
+        }) as any,
+        wasmLoader({
+          mode: 'embedded'
+        })
       ]
     }
   },
