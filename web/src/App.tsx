@@ -7,7 +7,9 @@ import { StoreonProvider, useStoreon } from "@storeon/solidjs"
 import { StoreonStore, createStoreon } from "storeon"
 import { createEffect, createSignal, For, on, onCleanup } from "solid-js"
 import { BiRefresh } from "solid-icons/bi"
-import { Node as Gun } from "rusty-gun"
+import { Node as GunRS } from "rusty-gun"
+import GunJS from "gun/gun"
+import { IGunInstance as IGunJS } from "gun"
 // @ts-ignore
 import styles from "./App.module.css"
 
@@ -176,44 +178,70 @@ function Game() {
 function Status() {
     const [state, dispatch] = useStoreon<State, Events>()
 
-    const [gun, setGun] = createSignal(null as Gun | null)
+    const [gunRs, setGunRs] = createSignal(null as GunRS | null)
+    const [gunJs, setGunJs] = createSignal(null as IGunJS | null)
 
-    const [subscription, setSubscription] = createSignal(-1)
+    const [subscriptionRs, setSubscriptionRs] = createSignal(-1)
 
+    const getLocals = () => {
+        return { status: Object.entries(state.status), gunRs: gunRs(), gunJs: gunJs(), subscriptionRs: subscriptionRs() }
+    }
+
+    const log = (...args: any[]) => {
+        console.log('@@@', ...args, getLocals())
+    }
+
+    log('App.Status()')
     createEffect(on(
         () => [],
         () => {
-            console.log(`${state.dbUrl}:${state.dbPort}/gun`)
-            const _gun = new Gun(`${state.dbUrl}:${state.dbPort}/gun`)
-            setGun(_gun)
+            log('App.Status.createEffect() callback')
+
+            const _gunRs = new GunRS(`${state.dbUrl}:${state.dbPort}/gun`)
+            setGunRs(_gunRs)
+
+            const _gunJs = new GunJS(`${state.dbUrl}:${state.dbPort}/gun`)
+            setGunJs(_gunJs)
 
             setTimeout(() => {
-                _gun && setSubscription(
-                    _gun.get("app").get("status").on((v: any, k: any) => {
-                        dispatch('set', { status: JSON.parse(v) })
+                log('App.Status.createEffect() callback .setTimeout() callback')
+                setSubscriptionRs(
+                    _gunRs.get("app").get("status").on((v: any, k: any) => {
+                        log('App.Status.createEffect() callback _gunRs.on() callback', { k, v })
+                        dispatch('set', { status: typeof v === 'string' ? JSON.parse(v) : v })
                     })
                 )
+
+                _gunJs.get("app").get("status").on((v: any, k: any) => {
+                    log('App.Status.createEffect() callback _gunJs.on() callback', { k, v })
+                    dispatch('set', { status: typeof v === 'string' ? JSON.parse(v) : v })
+                })
             }, 1000)
         }
     ))
 
     onCleanup(() => {
-        const _gun = gun()
-        _gun && _gun.get("app").get("status").off(subscription())
+        log('App.Status.onCleanup() callback')
+        const _gunRs = gunRs()
+        _gunRs && _gunRs.get("app").get("status").off(subscriptionRs())
+
+        const _gunJs = gunJs()
+        _gunJs && _gunJs.get("app").get("status").off()
     })
 
     const request = async () => {
+        log('App.Status.request()')
         const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
-        const _gun = gun()
+        const _gunRs = gunRs()
         try {
             const status = await client.status().do()
             dispatch('set', { status })
 
-            _gun && _gun.get("app").get("status").put(status)
+            _gunRs && _gunRs.get("app").get("status").put(status)
         } catch (e) {
             dispatch('set', { status: e as {} })
 
-            _gun && _gun.get("app").get("status").put(e)
+            _gunRs && _gunRs.get("app").get("status").put(e)
         }
     }
 
@@ -226,6 +254,7 @@ function Status() {
 }
 
 function TestnetBankContainer() {
+    const [loaded, setLoaded] = createSignal(false)
     const [refreshing, setRefreshing] = createSignal(false)
 
     createEffect(on(
@@ -234,11 +263,18 @@ function TestnetBankContainer() {
     ))
 
     return (
-        <div class={styles.TestnetBankContainer}>
-            <button onClick={() => setRefreshing(true)}><BiRefresh size="24px" /></button>
-            {!refreshing() &&
-                <iframe src="https://bank.testnet.algorand.network" title="algorand testnet bank" width="320" height="700" />}
-        </div>
+        <>
+            {!loaded()
+                ? <div><button onClick={() => setLoaded(true)}>Load</button></div>
+                : (
+                    <div class={styles.TestnetBankContainer}>
+                        <button onClick={() => setRefreshing(true)}><BiRefresh size="24px" /></button>
+                        {!refreshing() &&
+                            <iframe src="https://bank.testnet.algorand.network" title="algorand testnet bank" width="320" height="700" />}
+                    </div>
+                )
+            }
+        </>
     )
 }
 
@@ -257,6 +293,13 @@ function Links() {
                     <td>
                         <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral">
                             https://fc1943s.github.io/tictactoe_spiral
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral/docs">
+                            https://fc1943s.github.io/tictactoe_spiral/docs
                         </a>
                     </td>
                 </tr>

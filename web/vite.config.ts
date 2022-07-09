@@ -29,8 +29,8 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
-          'gun': ['rusty-gun'],
           'solid': ['solid-js', 'solid-icons', '@storeon/solidjs', 'storeon'],
+          'gun': ['rusty-gun', 'gun'],
           'algosdk': ['algosdk', 'buffer']
         }
       }
