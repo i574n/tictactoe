@@ -22,8 +22,8 @@ const init = {
     dbUrl: CODESPACE_NAME ? `ws://${CODESPACE_NAME}-8765.githubpreview.dev` : 'ws://localhost',
     dbPort: CODESPACE_NAME ? 80 : 8765,
     accounts: tictactoe_testnet.accounts,
-    status: {},
-    deploy: {}
+    status: [] as any[],
+    deploy: [] as any[]
 }
 
 type State = typeof init
@@ -31,6 +31,18 @@ type Account = typeof init.accounts[number]
 
 type Events = {
     set: Partial<State>
+}
+
+const getLog = (getLocals: () => object) => {
+    return (...args: any[]) => {
+        console.log(
+            '@@@ %c%s %c%s',
+            'font-weight: bold; color: #888',
+            JSON.stringify(args),
+            'font-weight: bold; color: #444',
+            JSON.stringify(getLocals())
+        )
+    }
 }
 
 const store = createStoreon([(store: StoreonStore<State, Events>) => {
@@ -139,9 +151,18 @@ function Accounts() {
 function Game() {
     const [state, dispatch] = useStoreon<State, Events>()
 
+
+    const getLocals = () => {
+        return { status: Object.entries(state.status) }
+    }
+
+    const log = getLog(getLocals)
+
+    log('App.Game()')
     const deploy = async () => {
         const address = state.accounts[0]?.address
         const privateKey = state.accounts[0]?.privateKey
+        log('App.Game.deploy()')
         if (address && privateKey) {
             const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
             try {
@@ -157,13 +178,18 @@ function Game() {
                     }
                 )
 
-                dispatch('set', { deploy: output })
+                dispatch('set', { deploy: [...state.deploy, output] })
             } catch (e) {
-                dispatch('set', { deploy: e as {} })
+                dispatch('set', { deploy: [...state.deploy, e] })
             }
         } else {
             alert('Invalid admin account')
         }
+    }
+
+    const clear = async () => {
+        log('App.Game.clear()')
+        dispatch('set', { deploy: [] })
     }
 
     return (
@@ -171,6 +197,7 @@ function Game() {
             <div>Deploy:</div>
             <pre>{JSON.stringify(state.deploy, null, 2)}</pre>
             <button onClick={deploy}>Deploy</button>
+            <button onClick={clear}>Clear</button>
         </div>
     )
 }
@@ -184,12 +211,15 @@ function Status() {
     const [subscriptionRs, setSubscriptionRs] = createSignal(-1)
 
     const getLocals = () => {
-        return { status: Object.entries(state.status), gunRs: gunRs(), gunJs: gunJs(), subscriptionRs: subscriptionRs() }
+        return {
+            status: Object.entries(state.status),
+            gunRs: gunRs(),
+            gunJs: gunJs(),
+            subscriptionRs: subscriptionRs()
+        }
     }
 
-    const log = (...args: any[]) => {
-        console.log('@@@', ...args, getLocals())
-    }
+    const log = getLog(getLocals)
 
     log('App.Status()')
     createEffect(on(
@@ -203,18 +233,28 @@ function Status() {
             const _gunJs = new GunJS(`${state.dbUrl}:${state.dbPort}/gun`)
             setGunJs(_gunJs)
 
+            const parse = (raw: object) => {
+                let data = raw
+                while (typeof data === 'string') {
+                    data = JSON.parse(data)
+                }
+                return Array.isArray(data) ? data : [data]
+            }
+
             setTimeout(() => {
                 log('App.Status.createEffect() callback .setTimeout() callback')
                 setSubscriptionRs(
                     _gunRs.get("app").get("status").on((v: any, k: any) => {
-                        log('App.Status.createEffect() callback _gunRs.on() callback', { k, v })
-                        dispatch('set', { status: typeof v === 'string' ? JSON.parse(v) : v })
+                        const status = parse(v)
+                        log('App.Status.createEffect() callback _gunRs.on() callback', { k, v, status })
+                        dispatch('set', { status })
                     })
                 )
 
                 _gunJs.get("app").get("status").on((v: any, k: any) => {
-                    log('App.Status.createEffect() callback _gunJs.on() callback', { k, v })
-                    dispatch('set', { status: typeof v === 'string' ? JSON.parse(v) : v })
+                    const status = parse(v)
+                    log('App.Status.createEffect() callback _gunJs.on() callback', { k, v, status })
+                    dispatch('set', { status })
                 })
             }, 1000)
         }
@@ -233,22 +273,38 @@ function Status() {
         log('App.Status.request()')
         const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
         const _gunRs = gunRs()
+        const _gunJs = gunJs()
+
+        let status
         try {
-            const status = await client.status().do()
-            dispatch('set', { status })
-
-            _gunRs && _gunRs.get("app").get("status").put(status)
+            const result = await client.status().do()
+            status = [...state.status, result]
         } catch (e) {
-            dispatch('set', { status: e as {} })
-
-            _gunRs && _gunRs.get("app").get("status").put(e)
+            status = [...state.status, e]
         }
+
+        dispatch('set', { status })
+
+        _gunRs && _gunRs.get("app").get("status").put(status)
+        _gunJs && _gunJs.get("app").get("status").put(status)
+    }
+
+    const clear = async () => {
+        log('App.Status.clear()')
+
+        dispatch('set', { status: [] })
+
+        const _gunRs = gunRs()
+        const _gunJs = gunJs()
+        _gunRs && _gunRs.get("app").get("status").put([])
+        _gunJs && _gunJs.get("app").get("status").put([])
     }
 
     return (
         <div>
             <pre>{JSON.stringify(state.status, null, 2)}</pre>
             <button onClick={request}>Request</button>
+            <button onClick={clear}>Clear</button>
         </div>
     )
 }
