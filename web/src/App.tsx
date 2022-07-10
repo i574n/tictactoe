@@ -58,6 +58,36 @@ function StateInput({ key }: { key: keyof util.PickByType<State, number | string
     )
 }
 
+function Links() {
+    return (
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <a target="_blank" href="https://github.com/fc1943s/tictactoe_spiral">
+                            https://github.com/fc1943s/tictactoe_spiral
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral">
+                            https://fc1943s.github.io/tictactoe_spiral
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral/docs">
+                            https://fc1943s.github.io/tictactoe_spiral/docs
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    )
+}
+
 function ChainConnection() {
     return (
         <table>
@@ -73,23 +103,6 @@ function ChainConnection() {
                 <tr>
                     <td>Port</td>
                     <td><StateInput key="chainPort" /></td>
-                </tr>
-            </tbody>
-        </table>
-    )
-}
-
-function DbConnection() {
-    return (
-        <table>
-            <tbody>
-                <tr>
-                    <td>URL</td>
-                    <td><StateInput key="dbUrl" /></td>
-                </tr>
-                <tr>
-                    <td>Port</td>
-                    <td><StateInput key="dbPort" /></td>
                 </tr>
             </tbody>
         </table>
@@ -148,57 +161,45 @@ function Accounts() {
     )
 }
 
-function Game() {
-    const [state, dispatch] = useStoreon<State, Events>()
+function TestnetBankContainer() {
+    const [loaded, setLoaded] = createSignal(false)
+    const [refreshing, setRefreshing] = createSignal(false)
 
-
-    const getLocals = () => {
-        return { status: Object.entries(state.status) }
-    }
-
-    const log = getLog(getLocals)
-
-    log('App.Game()')
-    const deploy = async () => {
-        const address = state.accounts[0]?.address
-        const privateKey = state.accounts[0]?.privateKey
-        log('App.Game.deploy()')
-        if (address && privateKey) {
-            const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
-            try {
-                const output = await algo_network.deployApplication(
-                    client,
-                    address,
-                    privateKey,
-                    raw.applicationStartTeal,
-                    raw.clearProgramTeal,
-                    {
-                        numGlobalByteSlices: tictactoe_pyteal.numGlobalByteSlices,
-                        numGlobalInts: tictactoe_pyteal.numGlobalInts
-                    }
-                )
-
-                dispatch('set', { deploy: [...state.deploy, output] })
-            } catch (e) {
-                dispatch('set', { deploy: [...state.deploy, e] })
-            }
-        } else {
-            alert('Invalid admin account')
-        }
-    }
-
-    const clear = async () => {
-        log('App.Game.clear()')
-        dispatch('set', { deploy: [] })
-    }
+    createEffect(on(
+        () => [refreshing()],
+        () => refreshing() && setRefreshing(false)
+    ))
 
     return (
-        <div>
-            <div>Deploy:</div>
-            <pre>{JSON.stringify(state.deploy, null, 2)}</pre>
-            <button onClick={deploy}>Deploy</button>
-            <button onClick={clear}>Clear</button>
-        </div>
+        <>
+            {!loaded()
+                ? <div><button onClick={() => setLoaded(true)}>Load</button></div>
+                : (
+                    <div class={styles.TestnetBankContainer}>
+                        <button onClick={() => setRefreshing(true)}><BiRefresh size="24px" /></button>
+                        {!refreshing() &&
+                            <iframe src="https://bank.testnet.algorand.network" title="algorand testnet bank" width="320" height="700" />}
+                    </div>
+                )
+            }
+        </>
+    )
+}
+
+function DbConnection() {
+    return (
+        <table>
+            <tbody>
+                <tr>
+                    <td>URL</td>
+                    <td><StateInput key="dbUrl" /></td>
+                </tr>
+                <tr>
+                    <td>Port</td>
+                    <td><StateInput key="dbPort" /></td>
+                </tr>
+            </tbody>
+        </table>
     )
 }
 
@@ -302,65 +303,64 @@ function Status() {
 
     return (
         <div>
-            <pre>{JSON.stringify(state.status, null, 2)}</pre>
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
+            <pre>{JSON.stringify(state.status, null, 2)}</pre>
         </div>
     )
 }
 
-function TestnetBankContainer() {
-    const [loaded, setLoaded] = createSignal(false)
-    const [refreshing, setRefreshing] = createSignal(false)
 
-    createEffect(on(
-        () => [refreshing()],
-        () => refreshing() && setRefreshing(false)
-    ))
+function Deploy() {
+    const [state, dispatch] = useStoreon<State, Events>()
 
-    return (
-        <>
-            {!loaded()
-                ? <div><button onClick={() => setLoaded(true)}>Load</button></div>
-                : (
-                    <div class={styles.TestnetBankContainer}>
-                        <button onClick={() => setRefreshing(true)}><BiRefresh size="24px" /></button>
-                        {!refreshing() &&
-                            <iframe src="https://bank.testnet.algorand.network" title="algorand testnet bank" width="320" height="700" />}
-                    </div>
+
+    const getLocals = () => {
+        return { status: Object.entries(state.status) }
+    }
+
+    const log = getLog(getLocals)
+
+    log('App.Deploy()')
+    const request = async () => {
+        const address = state.accounts[0]?.address
+        const privateKey = state.accounts[0]?.privateKey
+        log('App.Deploy.request()')
+        if (address && privateKey) {
+            const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
+            try {
+                const output = await algo_network.deployApplication(
+                    client,
+                    address,
+                    privateKey,
+                    raw.applicationStartTeal,
+                    raw.clearProgramTeal,
+                    {
+                        numGlobalByteSlices: tictactoe_pyteal.numGlobalByteSlices,
+                        numGlobalInts: tictactoe_pyteal.numGlobalInts
+                    }
                 )
-            }
-        </>
-    )
-}
 
-function Links() {
+                dispatch('set', { deploy: [...state.deploy, output] })
+            } catch (e) {
+                dispatch('set', { deploy: [...state.deploy, e] })
+            }
+        } else {
+            alert('Invalid admin account')
+        }
+    }
+
+    const clear = async () => {
+        log('App.Deploy.clear()')
+        dispatch('set', { deploy: [] })
+    }
+
     return (
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <a target="_blank" href="https://github.com/fc1943s/tictactoe_spiral">
-                            https://github.com/fc1943s/tictactoe_spiral
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral">
-                            https://fc1943s.github.io/tictactoe_spiral
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral/docs">
-                            https://fc1943s.github.io/tictactoe_spiral/docs
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <button onClick={request}>Request</button>
+            <button onClick={clear}>Clear</button>
+            <pre>{JSON.stringify(state.deploy, null, 2)}</pre>
+        </div>
     )
 }
 
@@ -371,32 +371,35 @@ function App() {
                 <table>
                     <tbody>
                         <tr>
+                            <td>Links</td>
+                            <td><Links /></td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
                             <td>Chain Connection</td>
                             <td><ChainConnection /></td>
-                        </tr>
-                        <tr>
-                            <td>Database Connection</td>
-                            <td><DbConnection /></td>
                         </tr>
                         <tr>
                             <td>Accounts</td>
                             <td><Accounts /></td>
                         </tr>
                         <tr>
+                            <td>Testnet Bank Dispenser</td>
+                            <td><TestnetBankContainer /></td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
+                            <td>Database Connection</td>
+                            <td><DbConnection /></td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
                             <td>Status</td>
                             <td><Status /></td>
                         </tr>
                         <tr>
-                            <td>Game</td>
-                            <td><Game /></td>
-                        </tr>
-                        <tr>
-                            <td>Testnet Bank Dispenser</td>
-                            <td><TestnetBankContainer /></td>
-                        </tr>
-                        <tr>
-                            <td>Links</td>
-                            <td><Links /></td>
+                            <td>Deploy</td>
+                            <td><Deploy /></td>
                         </tr>
                     </tbody>
                 </table>
