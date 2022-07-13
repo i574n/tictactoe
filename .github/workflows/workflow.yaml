@@ -26,8 +26,8 @@ jobs:
       - run: cd ./peer && pnpm install
 
       - run: curl https://bun.sh/install | bash
-      - run: export BUN_INSTALL="~/.bun"
-      - run: export PATH="$BUN_INSTALL/bin:$PATH"
+      - run: echo "BUN_INSTALL=~/.bun" >> $GITHUB_ENV
+      - run: echo "PATH=$BUN_INSTALL/bin:$PATH" >> $GITHUB_ENV
 
       - run: cd ./web && bun run build
       - run: cd ./web && bun run playwright-install
