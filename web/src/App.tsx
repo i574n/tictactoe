@@ -1,17 +1,19 @@
 import * as algo_network from "../../lib_ts/algo_network"
-import * as raw from "./raw"
-import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
 import * as tictactoe_pyteal from "../../lib_ts/tictactoe_pyteal"
+import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
 import * as util from "../../lib_ts/util"
-import { StoreonProvider, useStoreon } from "@storeon/solidjs"
-import { StoreonStore, createStoreon } from "storeon"
+import * as raw from "./raw"
+import algosdk from "algosdk"
 import { createEffect, createSignal, For, on, onCleanup } from "solid-js"
+import { StoreonStore, createStoreon } from "storeon"
+import { StoreonProvider, useStoreon } from "@storeon/solidjs"
 import { BiRefresh } from "solid-icons/bi"
 import { Node as GunRS } from "rusty-gun"
 import GunJS from "gun/gun"
 import { IGunInstance as IGunJS } from "gun"
 // @ts-ignore
 import styles from "./App.module.css"
+
 
 const CODESPACE_NAME = process.env.CODESPACE_NAME
 
@@ -23,7 +25,10 @@ const init = {
     dbPort: CODESPACE_NAME ? 80 : 8765,
     accounts: tictactoe_testnet.accounts,
     status: [] as any[],
-    deploy: [] as any[]
+    deploy: [] as any[],
+    gunJs: null as IGunJS | null,
+    gunRs: null as GunRS | null,
+    counter: [] as number[]
 }
 
 type State = typeof init
@@ -33,11 +38,11 @@ type Events = {
     set: Partial<State>
 }
 
-const getLog = (getLocals: () => object) => {
+const getLog = (getLocals: () => object, argsColor = '#888') => {
     return (...args: any[]) => {
         console.log(
             '@@@ %c%s %c%s',
-            'font-weight: bold; color: #888',
+            `font-weight: bold; color: ${argsColor}`,
             JSON.stringify(args),
             'font-weight: bold; color: #444',
             JSON.stringify(getLocals())
@@ -203,103 +208,192 @@ function DbConnection() {
     )
 }
 
-function Status() {
+function GunListener() {
     const [state, dispatch] = useStoreon<State, Events>()
-
-    const [gunRs, setGunRs] = createSignal(null as GunRS | null)
-    const [gunJs, setGunJs] = createSignal(null as IGunJS | null)
-
-    const [subscriptionRs, setSubscriptionRs] = createSignal(-1)
 
     const getLocals = () => {
         return {
-            status: Object.entries(state.status),
-            gunRs: gunRs(),
-            gunJs: gunJs(),
-            subscriptionRs: subscriptionRs()
+            gunRs: !!state.gunRs,
+            gunJs: !!state.gunJs
         }
     }
 
-    const log = getLog(getLocals)
+    const log = getLog(getLocals, '#cf1100')
 
-    log('App.Status()')
+    log('GunListener()')
+
+    const gunJsEnabled = false
+
+    let unbind = store.on('@changed', (_, changed) => {
+        log('GunListener.store.@changed', { changed: Object.keys(changed) })
+        if (changed.dbUrl || changed.dbPort) {
+            const gunRs = new GunRS(`${state.dbUrl}:${state.dbPort}/gun`)
+            const gunJs = gunJsEnabled ? new GunJS(`${state.dbUrl}:${state.dbPort}/gun`) : undefined
+
+            dispatch('set', { gunRs, gunJs })
+        }
+    })
+    onCleanup(() => unbind())
+
     createEffect(on(
         () => [],
         () => {
-            log('App.Status.createEffect() callback')
+            log('GunListener.createEffect() callback')
+            const gunRs = state.gunRs || new GunRS(`${state.dbUrl}:${state.dbPort}/gun`)
+            const gunJs = gunJsEnabled ? state.gunJs || new GunJS(`${state.dbUrl}:${state.dbPort}/gun`) : undefined
 
-            const _gunRs = new GunRS(`${state.dbUrl}:${state.dbPort}/gun`)
-            setGunRs(_gunRs)
-
-            const _gunJs = new GunJS(`${state.dbUrl}:${state.dbPort}/gun`)
-            setGunJs(_gunJs)
-
-            const parse = (raw: object) => {
-                let data = raw
-                while (typeof data === 'string') {
-                    data = JSON.parse(data)
-                }
-                return Array.isArray(data) ? data : [data]
-            }
-
-            setTimeout(() => {
-                log('App.Status.createEffect() callback .setTimeout() callback')
-                setSubscriptionRs(
-                    _gunRs.get("app").get("status").on((v: any, k: any) => {
-                        const status = parse(v)
-                        log('App.Status.createEffect() callback _gunRs.on() callback', { k, v, status })
-                        dispatch('set', { status })
-                    })
-                )
-
-                _gunJs.get("app").get("status").on((v: any, k: any) => {
-                    const status = parse(v)
-                    log('App.Status.createEffect() callback _gunJs.on() callback', { k, v, status })
-                    dispatch('set', { status })
-                })
-            }, 1000)
+            dispatch('set', { gunRs, gunJs })
         }
     ))
 
-    onCleanup(() => {
-        log('App.Status.onCleanup() callback')
-        const _gunRs = gunRs()
-        _gunRs && _gunRs.get("app").get("status").off(subscriptionRs())
+    return <></>
+}
 
-        const _gunJs = gunJs()
-        _gunJs && _gunJs.get("app").get("status").off()
-    })
+function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
+    const [state, dispatch] = useStoreon<State, Events>()
 
-    const request = async () => {
-        log('App.Status.request()')
-        const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
-        const _gunRs = gunRs()
-        const _gunJs = gunJs()
+    const [subscriptionRs, setSubscriptionRs] = createSignal(-1)
+    const [subscriptionJs, setSubscriptionJs] = createSignal(false)
 
-        let status
-        try {
-            const result = await client.status().do()
-            status = [...state.status, result]
-        } catch (e) {
-            status = [...state.status, e]
+    const getLocals = () => {
+        return {
+            key,
+            [`state.${key}.length`]: state[key].length,
+            gunRs: !!state.gunRs,
+            gunJs: !!state.gunJs,
+            subscriptionRs: subscriptionRs(),
+            subscriptionJs: subscriptionJs()
+        }
+    }
+
+    const defaultColors = Object.keys(init).reduce(
+        (acc, x) => ({ ...acc, [x]: '#00cf2d' }),
+        {} as { [key in keyof State]: string }
+    )
+    const colors = { ...defaultColors, status: '#cf6800', deploy: '#cccf00' }
+    const log = getLog(getLocals, colors[key])
+
+    log('useFetch()')
+
+    let interval = null as NodeJS.Timer | null
+    const subscribe = (gunRs: GunRS | null, gunJs: IGunJS | null) => {
+        log('useFetch.subscribe()')
+
+        const parse = (raw: object) => {
+            let data = raw
+            while (typeof data === 'string') {
+                data = JSON.parse(data)
+            }
+            return Array.isArray(data) ? data : [data]
         }
 
-        dispatch('set', { status })
+        if (gunRs) {
+            setSubscriptionRs(
+                gunRs.get("app").get(key).on((v: any, k: any) => {
+                    interval && clearInterval(interval)
 
-        _gunRs && _gunRs.get("app").get("status").put(status)
-        _gunJs && _gunJs.get("app").get("status").put(status)
+                    const value = parse(v)
+                    log('useFetch.subscribe _gunRs.on() callback', { k, length: value.length })
+                    dispatch('set', { [key]: value })
+                })
+            )
+        }
+
+        if (gunJs) {
+            gunJs.get("app").get(key).on((v: any, k: any) => {
+                const value = parse(v)
+                log('useFetch.subscribe _gunJs.on() callback', { k, length: value.length })
+                dispatch('set', { [key]: value })
+            })
+            setSubscriptionJs(true)
+        }
+    }
+
+    const unsubscribe = () => {
+        const _subscriptionRs = subscriptionRs()
+        if (state.gunRs && _subscriptionRs !== -1) {
+            log('useFetch.unsubscribe()')
+            state.gunRs.get("app").get(key).off(_subscriptionRs)
+        }
+
+        const _subscriptionJs = subscriptionJs()
+        if (state.gunJs && _subscriptionJs) {
+            log('useFetch.unsubscribe()')
+            state.gunJs.get("app").get(key).off()
+        }
+    }
+
+    let unbind = store.on('@changed', (_, changed) => {
+        if (changed.gunRs || changed.gunJs) {
+            log('useFetch.store.@changed', { changed: Object.keys(changed) })
+            unsubscribe()
+            subscribe(state.gunRs, state.gunJs)
+        }
+    })
+    onCleanup(() => unbind())
+
+    createEffect(on(
+        () => [],
+        () => {
+            log('useFetch.createEffect() callback. setTimeout...')
+
+            interval = setInterval(() => {
+                log('useFetch.createEffect() callback setTimeout subscribe...')
+                unsubscribe()
+                subscribe(state.gunRs, state.gunJs)
+            }, 2000)
+        }
+    ))
+
+    onCleanup(unsubscribe)
+
+    const request = async () => {
+        log('useFetch.request()')
+        const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
+        let value
+        try {
+            const result = await requestFn(client)
+            value = [...state[key], result]
+        } catch (e) {
+            value = [...state[key], e]
+        }
+
+        dispatch('set', { [key]: value })
+
+        state.gunRs && state.gunRs.get("app").get(key).put(value)
+        state.gunJs && state.gunJs.get("app").get(key).put(value)
     }
 
     const clear = async () => {
-        log('App.Status.clear()')
+        log('useFetch.clear()')
 
-        dispatch('set', { status: [] })
+        dispatch('set', { [key]: [] })
 
-        const _gunRs = gunRs()
-        const _gunJs = gunJs()
-        _gunRs && _gunRs.get("app").get("status").put([])
-        _gunJs && _gunJs.get("app").get("status").put([])
+        state.gunRs && state.gunRs.get("app").get(key).put([])
+        state.gunJs && state.gunJs.get("app").get(key).put([])
     }
+
+    return { request, clear }
+}
+
+function Counter() {
+    const [state, _] = useStoreon<State, Events>()
+
+    const { request, clear } = useFetch('counter', async (_client) => state.counter.length)
+
+    return (
+        <div>
+            <button onClick={request}>Request</button>
+            <button onClick={clear}>Clear</button>
+            <pre>{JSON.stringify(state.counter, null, 2)}</pre>
+        </div>
+    )
+}
+
+function Status() {
+    const [state, _] = useStoreon<State, Events>()
+
+    const { request, clear } = useFetch('status', (client) => client.status().do())
 
     return (
         <div>
@@ -310,24 +404,13 @@ function Status() {
     )
 }
 
-
 function Deploy() {
-    const [state, dispatch] = useStoreon<State, Events>()
+    const [state, _] = useStoreon<State, Events>()
 
-
-    const getLocals = () => {
-        return { status: Object.entries(state.status) }
-    }
-
-    const log = getLog(getLocals)
-
-    log('App.Deploy()')
-    const request = async () => {
+    const { request, clear } = useFetch('deploy', async (client) => {
         const address = state.accounts[0]?.address
         const privateKey = state.accounts[0]?.privateKey
-        log('App.Deploy.request()')
         if (address && privateKey) {
-            const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
             try {
                 const output = await algo_network.deployApplication(
                     client,
@@ -341,19 +424,14 @@ function Deploy() {
                     }
                 )
 
-                dispatch('set', { deploy: [...state.deploy, output] })
+                return output
             } catch (e) {
-                dispatch('set', { deploy: [...state.deploy, e] })
+                return e
             }
         } else {
-            alert('Invalid admin account')
+            return 'Invalid admin account'
         }
-    }
-
-    const clear = async () => {
-        log('App.Deploy.clear()')
-        dispatch('set', { deploy: [] })
-    }
+    })
 
     return (
         <div>
@@ -367,6 +445,7 @@ function Deploy() {
 function App() {
     return (
         <StoreonProvider store={store}>
+            <GunListener />
             <div class={styles.App}>
                 <table>
                     <tbody>
@@ -391,6 +470,11 @@ function App() {
                         <tr>
                             <td>Database Connection</td>
                             <td><DbConnection /></td>
+                        </tr>
+                        <tr><td></td></tr>
+                        <tr>
+                            <td>Counter</td>
+                            <td><Counter /></td>
                         </tr>
                         <tr><td></td></tr>
                         <tr>

@@ -23,9 +23,15 @@ jobs:
 
       - run: pnpm install
       - run: cd ./web && pnpm install
-      - run: cd ./web && pnpm build
-      - run: cd ./web && pnpm playwright-install
-      - run: cd ./web && pnpm e2e
+      - run: cd ./peer && pnpm install
+
+      - run: curl https://bun.sh/install | bash
+      - run: export BUN_INSTALL="~/.bun"
+      - run: export PATH="$BUN_INSTALL/bin:$PATH"
+
+      - run: cd ./web && bun run build
+      - run: cd ./web && bun run playwright-install
+      - run: cd ./web && bun run e2e
 
       - uses: actions/upload-artifact@v2
         if: always()
@@ -46,7 +52,7 @@ jobs:
 
       - run: cd docs && bundle init && bundle add jekyll jekyll-remote-theme && bundle exec jekyll build
 
-      - run: cd ./web && pnpm extension
+      - run: cd ./web && bun run extension
 
       - uses: actions/upload-artifact@v2
         with:
