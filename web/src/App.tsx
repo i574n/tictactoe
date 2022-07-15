@@ -15,6 +15,7 @@ import { IGunInstance as IGunJS } from "gun"
 import styles from "./App.module.css"
 
 
+const soul = "app"
 const CODESPACE_NAME = process.env.CODESPACE_NAME
 
 const init = {
@@ -26,8 +27,8 @@ const init = {
     accounts: tictactoe_testnet.accounts,
     status: [] as any[],
     deploy: [] as any[],
-    gunJs: null as IGunJS | null,
-    gunRs: null as GunRS | null,
+    gunRs: {} as { [_: string]: GunRS },
+    gunJs: {} as { [_: string]: IGunJS },
     counter: [] as number[]
 }
 
@@ -213,8 +214,8 @@ function GunListener() {
 
     const getLocals = () => {
         return {
-            gunRs: !!state.gunRs,
-            gunJs: !!state.gunJs
+            gunRs: Object.keys(state.gunRs).length,
+            gunJs: Object.keys(state.gunJs).length
         }
     }
 
@@ -224,13 +225,21 @@ function GunListener() {
 
     const gunJsEnabled = false
 
+    const refresh = () => {
+        const url = `${state.dbUrl}:${state.dbPort}/gun`
+        const gunRs = ((state.gunRs as any)[url] as GunRS | null) || new GunRS(url)
+        const gunJs = ((state.gunJs as any)[url] as IGunJS | null) || new GunJS(url)
+
+        dispatch('set', {
+            gunRs: { ...state.gunRs, [url]: gunRs },
+            gunJs: gunJsEnabled ? { ...state.gunJs, [url]: gunJs } : state.gunJs
+        })
+    }
+
     let unbind = store.on('@changed', (_, changed) => {
         log('GunListener.store.@changed', { changed: Object.keys(changed) })
         if (changed.dbUrl || changed.dbPort) {
-            const gunRs = new GunRS(`${state.dbUrl}:${state.dbPort}/gun`)
-            const gunJs = gunJsEnabled ? new GunJS(`${state.dbUrl}:${state.dbPort}/gun`) : undefined
-
-            dispatch('set', { gunRs, gunJs })
+            refresh()
         }
     })
     onCleanup(() => unbind())
@@ -239,10 +248,7 @@ function GunListener() {
         () => [],
         () => {
             log('GunListener.createEffect() callback')
-            const gunRs = state.gunRs || new GunRS(`${state.dbUrl}:${state.dbPort}/gun`)
-            const gunJs = gunJsEnabled ? state.gunJs || new GunJS(`${state.dbUrl}:${state.dbPort}/gun`) : undefined
-
-            dispatch('set', { gunRs, gunJs })
+            refresh()
         }
     ))
 
@@ -252,17 +258,18 @@ function GunListener() {
 function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
     const [state, dispatch] = useStoreon<State, Events>()
 
-    const [subscriptionRs, setSubscriptionRs] = createSignal(-1)
-    const [subscriptionJs, setSubscriptionJs] = createSignal(false)
+    const [subscriptionRs, setSubscriptionRs] = createSignal({} as { [_: string]: number })
+    const [subscriptionJs, setSubscriptionJs] = createSignal({} as { [_: string]: boolean })
+
 
     const getLocals = () => {
         return {
             key,
             [`state.${key}.length`]: state[key].length,
-            gunRs: !!state.gunRs,
-            gunJs: !!state.gunJs,
-            subscriptionRs: subscriptionRs(),
-            subscriptionJs: subscriptionJs()
+            gunRs: Object.keys(state.gunRs).length,
+            gunJs: Object.keys(state.gunJs).length,
+            subscriptionRs: Object.values(subscriptionRs()),
+            subscriptionJs: Object.keys(subscriptionJs()).length
         }
     }
 
@@ -276,7 +283,8 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
     log('useFetch()')
 
     let interval = null as NodeJS.Timer | null
-    const subscribe = (gunRs: GunRS | null, gunJs: IGunJS | null) => {
+
+    const subscribe = (gunRs: { [_: string]: GunRS }, gunJs: { [_: string]: IGunJS }) => {
         log('useFetch.subscribe()')
 
         const parse = (raw: object) => {
@@ -287,70 +295,78 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
             return Array.isArray(data) ? data : [data]
         }
 
-        if (gunRs) {
-            setSubscriptionRs(
-                gunRs.get("app").get(key).on((v: any, k: any) => {
-                    interval && clearInterval(interval)
+        const subscriptionsRs = Object.entries(gunRs).map(([url, _gunRs]) => {
+            const subscription = _gunRs.get(soul).get(key).on((v: any, k: any) => {
+                interval && clearInterval(interval)
 
-                    const value = parse(v)
-                    log('useFetch.subscribe _gunRs.on() callback', { k, length: value.length })
-                    dispatch('set', { [key]: value })
-                })
-            )
-        }
+                const value = parse(v)
+                log('useFetch.subscribe _gunRs.on() callback', { k, subscription, length: value.length })
+                dispatch('set', { [key]: value })
+            })
+            log('useFetch.subscribe() gunRs', { subscription })
+            return { url, subscription }
+        })
+        setSubscriptionRs({
+            ...subscriptionRs(),
+            ...subscriptionsRs.reduce((acc, { url, subscription }) => ({ ...acc, [url]: subscription }), {})
+        })
 
-        if (gunJs) {
-            gunJs.get("app").get(key).on((v: any, k: any) => {
+        const subscriptionsJs = Object.entries(gunJs).map(([url, _gunJs]) => {
+            _gunJs.get(soul).get(key).on((v: any, k: any) => {
+                interval && clearInterval(interval)
+
                 const value = parse(v)
                 log('useFetch.subscribe _gunJs.on() callback', { k, length: value.length })
                 dispatch('set', { [key]: value })
             })
-            setSubscriptionJs(true)
-        }
+            log('useFetch.subscribe() gunJs')
+            return url
+        })
+        setSubscriptionJs({
+            ...subscriptionJs(),
+            ...subscriptionsJs.reduce((acc, url) => ({ ...acc, [url]: true }), {})
+        })
     }
 
-    const unsubscribe = () => {
+    const unsubscribe = (state: State) => {
         const _subscriptionRs = subscriptionRs()
-        if (state.gunRs && _subscriptionRs !== -1) {
-            log('useFetch.unsubscribe()')
-            state.gunRs.get("app").get(key).off(_subscriptionRs)
-        }
+        Object.entries(_subscriptionRs).forEach(([url, subscription]) => {
+            log('useFetch.unsubscribe() subscriptionRs', { subscription })
+            const _gunRs = (state.gunRs as any)[url] as GunRS | null
+            _gunRs && _gunRs.get(soul).get(key).off(subscription)
+        })
+        setSubscriptionRs({})
 
         const _subscriptionJs = subscriptionJs()
-        if (state.gunJs && _subscriptionJs) {
-            log('useFetch.unsubscribe()')
-            state.gunJs.get("app").get(key).off()
-        }
+        Object.entries(_subscriptionJs).forEach(([url, _]) => {
+            log('useFetch.unsubscribe() subscriptionJs')
+            const _gunJs = (state.gunJs as any)[url] as IGunJS | null
+            _gunJs && _gunJs.get(soul).get(key).off()
+        })
+        setSubscriptionJs({})
     }
 
-    let unbind = store.on('@changed', (_, changed) => {
+    let unbind = store.on('@changed', (oldState, changed) => {
         if (changed.gunRs || changed.gunJs) {
             log('useFetch.store.@changed', { changed: Object.keys(changed) })
-            unsubscribe()
-            subscribe(state.gunRs, state.gunJs)
-        }
-    })
-    onCleanup(() => unbind())
 
-    createEffect(on(
-        () => [],
-        () => {
-            log('useFetch.createEffect() callback. setTimeout...')
-
+            interval && clearInterval(interval)
             interval = setInterval(() => {
                 log('useFetch.createEffect() callback setTimeout subscribe...')
-                unsubscribe()
-                subscribe(state.gunRs, state.gunJs)
+                unsubscribe(oldState)
+                subscribe(changed.gunRs, changed.gunJs)
             }, 2000)
         }
-    ))
-
-    onCleanup(unsubscribe)
+    })
+    onCleanup(() => {
+        unbind()
+        unsubscribe(state)
+    })
 
     const request = async () => {
         log('useFetch.request()')
         const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
-        let value
+        let value: {}
         try {
             const result = await requestFn(client)
             value = [...state[key], result]
@@ -360,8 +376,15 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
         dispatch('set', { [key]: value })
 
-        state.gunRs && state.gunRs.get("app").get(key).put(value)
-        state.gunJs && state.gunJs.get("app").get(key).put(value)
+        Object.entries(state.gunRs).forEach(([url, _gunRs]) => {
+            log('useFetch.request() gunRs')
+            _gunRs.get(soul).get(key).put(value)
+        })
+
+        Object.entries(state.gunJs).forEach(([url, _gunJs]) => {
+            log('useFetch.request() gunJs')
+            _gunJs.get(soul).get(key).put(value)
+        })
     }
 
     const clear = async () => {
@@ -369,8 +392,15 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
         dispatch('set', { [key]: [] })
 
-        state.gunRs && state.gunRs.get("app").get(key).put([])
-        state.gunJs && state.gunJs.get("app").get(key).put([])
+        Object.entries(state.gunRs).forEach(([url, _gunRs]) => {
+            log('useFetch.clear() gunRs')
+            _gunRs.get(soul).get(key).put([])
+        })
+
+        Object.entries(state.gunJs).forEach(([url, _gunJs]) => {
+            log('useFetch.clear() gunJs')
+            _gunJs.get(soul).get(key).put([])
+        })
     }
 
     return { request, clear }
