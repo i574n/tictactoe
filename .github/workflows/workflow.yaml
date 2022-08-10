@@ -26,7 +26,7 @@ jobs:
       - run: cd ./peer && pnpm install
 
       - run: curl https://bun.sh/install | bash
-      - run: echo "BUN_INSTALL=~/.bun" >> $GITHUB_ENV
+      - run: echo "BUN_INSTALL=$HOME/.bun" >> $GITHUB_ENV
       - run: echo "PATH=$BUN_INSTALL/bin:$PATH" >> $GITHUB_ENV
 
       - run: cd ./web && bun run build

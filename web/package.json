@@ -7,7 +7,7 @@
     "dev": "vite",
     "peer": "cross-env-shell PORT=18765 ROOT_PATH=./radata_18765 'cd ../peer && rm -rf ./radata_18765 && pnpm start-dev'",
     "e2e-deps": "concurrently 'bun run peer' 'bun run dev --port 13700' 'bun run dev --port 13701'",
-    "e2e": "playwright test",
+    "e2e": "echo $PATH && playwright test",
     "outdated-pre": "ncu --pre 1 -t greatest",
     "playwright-install": "playwright install --with-deps && playwright install msedge",
     "serve": "vite preview",
