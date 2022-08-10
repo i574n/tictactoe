@@ -1,7 +1,9 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import { resolve } from 'path'
 import solidPlugin from 'vite-plugin-solid'
+import wasm from "vite-plugin-wasm"
 import wasmLoader from 'esbuild-plugin-wasm'
+import mkcert from 'vite-plugin-mkcert'
 import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
 
 export default defineConfig({
@@ -17,7 +19,9 @@ export default defineConfig({
   },
   plugins: [
     solidPlugin() as any,
-    splitVendorChunkPlugin()
+    splitVendorChunkPlugin(),
+    wasm(),
+    mkcert()
   ],
   build: {
     target: 'esnext',

@@ -20,6 +20,7 @@
   font-size: 1.3rem;
 }
 
+.App,
 .App table,
 .App tbody {
   display: flex;
@@ -48,17 +49,18 @@
   flex-direction: column;
 }
 
-.App .TestnetBankContainer {
+.App .IframeContainer {
   position: relative;
   display: flex;
+  flex: 1;
 }
 
-.App .TestnetBankContainer iframe {
+.App .IframeContainer iframe {
   background-color: #aaa;
   flex: 1;
 }
 
-.App .TestnetBankContainer button {
+.App .IframeContainer button {
   position: absolute;
   top: 6px;
   right: 6px;

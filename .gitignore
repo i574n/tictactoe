@@ -1,6 +1,9 @@
+.vscode
 .ipynb_checkpoints
 __pycache__/
 playwright-report/
+playwright-videos/
+test-results/
 node_modules/
 dist/
 dist_extension/

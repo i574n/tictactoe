@@ -13,10 +13,10 @@
         "outdated-pre": "ncu --pre 1 -t greatest"
     },
     "dependencies": {
-        "gun": "^0.2020.1237"
+        "gun": "^0.2020.1238"
     },
     "devDependencies": {
-        "npm-check-updates": "~15.2",
+        "npm-check-updates": "~16.0",
         "cross-env": "~7.0",
         "request": "~2.88",
         "mkcert": "~1.5"

@@ -7,7 +7,7 @@ import algosdk from "algosdk"
 import { createEffect, createSignal, For, on, onCleanup } from "solid-js"
 import { StoreonStore, createStoreon } from "storeon"
 import { StoreonProvider, useStoreon } from "@storeon/solidjs"
-import { BiRefresh } from "solid-icons/bi"
+import { BiRegularRefresh } from "solid-icons/bi"
 import { Node as GunRS } from "rusty-gun"
 import GunJS from "gun/gun"
 import { IGunInstance as IGunJS } from "gun"
@@ -17,13 +17,14 @@ import styles from "./App.module.css"
 
 const soul = "app"
 const CODESPACE_NAME = process.env.CODESPACE_NAME
+const IS_TEST = Object.keys(window).filter((key) => key.startsWith("__playwright_snapshot_streamer")).length > 0
 
 const init = {
     token: tictactoe_testnet.token,
     chainUrl: CODESPACE_NAME ? `http://${CODESPACE_NAME}-4001.githubpreview.dev` : tictactoe_testnet.url,
     chainPort: CODESPACE_NAME ? 80 : tictactoe_testnet.port,
-    dbUrl: CODESPACE_NAME ? `ws://${CODESPACE_NAME}-8765.githubpreview.dev` : 'ws://localhost',
-    dbPort: CODESPACE_NAME ? 80 : 8765,
+    dbUrl: CODESPACE_NAME && !IS_TEST ? `ws://${CODESPACE_NAME}-18765.githubpreview.dev` : 'wss://localhost',
+    dbPort: CODESPACE_NAME && !IS_TEST ? 80 : (IS_TEST ? 18765 : 8765),
     accounts: tictactoe_testnet.accounts,
     status: [] as any[],
     deploy: [] as any[],
@@ -39,10 +40,12 @@ type Events = {
     set: Partial<State>
 }
 
+const runId = Math.random().toString(36).substring(2, 5)
+
 const getLog = (getLocals: () => object, argsColor = '#888') => {
     return (...args: any[]) => {
         console.log(
-            '@@@ %c%s %c%s',
+            `@${runId} %c%s %c%s`,
             `font-weight: bold; color: ${argsColor}`,
             JSON.stringify(args),
             'font-weight: bold; color: #444',
@@ -56,13 +59,6 @@ const store = createStoreon([(store: StoreonStore<State, Events>) => {
     store.on('set', (_, state) => state)
 }])
 
-function StateInput({ key }: { key: keyof util.PickByType<State, number | string> }) {
-    const [state, dispatch] = useStoreon<State, Events>()
-
-    return (
-        <input type="text" value={state[key]} onInput={e => dispatch('set', { [key]: e.currentTarget.value })} />
-    )
-}
 
 function Links() {
     return (
@@ -91,6 +87,14 @@ function Links() {
                 </tr>
             </tbody>
         </table>
+    )
+}
+
+function StateInput({ key }: { key: keyof util.PickByType<State, number | string> }) {
+    const [state, dispatch] = useStoreon<State, Events>()
+
+    return (
+        <input type="text" value={state[key]} onInput={e => dispatch('set', { [key]: e.currentTarget.value })} />
     )
 }
 
@@ -167,31 +171,6 @@ function Accounts() {
     )
 }
 
-function TestnetBankContainer() {
-    const [loaded, setLoaded] = createSignal(false)
-    const [refreshing, setRefreshing] = createSignal(false)
-
-    createEffect(on(
-        () => [refreshing()],
-        () => refreshing() && setRefreshing(false)
-    ))
-
-    return (
-        <>
-            {!loaded()
-                ? <div><button onClick={() => setLoaded(true)}>Load</button></div>
-                : (
-                    <div class={styles.TestnetBankContainer}>
-                        <button onClick={() => setRefreshing(true)}><BiRefresh size="24px" /></button>
-                        {!refreshing() &&
-                            <iframe src="https://bank.testnet.algorand.network" title="algorand testnet bank" width="320" height="700" />}
-                    </div>
-                )
-            }
-        </>
-    )
-}
-
 function DbConnection() {
     return (
         <table>
@@ -214,6 +193,7 @@ function GunListener() {
 
     const getLocals = () => {
         return {
+            counter: state.counter,
             gunRs: Object.keys(state.gunRs).length,
             gunJs: Object.keys(state.gunJs).length
         }
@@ -236,7 +216,7 @@ function GunListener() {
         })
     }
 
-    let unbind = store.on('@changed', (_, changed) => {
+    let unbind = store.on('@changed', (_state, changed) => {
         log('GunListener.store.@changed', { changed: Object.keys(changed) })
         if (changed.dbUrl || changed.dbPort) {
             refresh()
@@ -261,11 +241,12 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
     const [subscriptionRs, setSubscriptionRs] = createSignal({} as { [_: string]: number })
     const [subscriptionJs, setSubscriptionJs] = createSignal({} as { [_: string]: boolean })
 
-
     const getLocals = () => {
         return {
             key,
             [`state.${key}.length`]: state[key].length,
+            // env: Object.keys(process.env),
+            counter: state.counter,
             gunRs: Object.keys(state.gunRs).length,
             gunJs: Object.keys(state.gunJs).length,
             subscriptionRs: Object.values(subscriptionRs()),
@@ -376,12 +357,12 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
         dispatch('set', { [key]: value })
 
-        Object.entries(state.gunRs).forEach(([url, _gunRs]) => {
+        Object.entries(state.gunRs).forEach(([_url, _gunRs]) => {
             log('useFetch.request() gunRs')
             _gunRs.get(soul).get(key).put(value)
         })
 
-        Object.entries(state.gunJs).forEach(([url, _gunJs]) => {
+        Object.entries(state.gunJs).forEach(([_url, _gunJs]) => {
             log('useFetch.request() gunJs')
             _gunJs.get(soul).get(key).put(value)
         })
@@ -392,12 +373,12 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
         dispatch('set', { [key]: [] })
 
-        Object.entries(state.gunRs).forEach(([url, _gunRs]) => {
+        Object.entries(state.gunRs).forEach(([_url, _gunRs]) => {
             log('useFetch.clear() gunRs')
             _gunRs.get(soul).get(key).put([])
         })
 
-        Object.entries(state.gunJs).forEach(([url, _gunJs]) => {
+        Object.entries(state.gunJs).forEach(([_url, _gunJs]) => {
             log('useFetch.clear() gunJs')
             _gunJs.get(soul).get(key).put([])
         })
@@ -412,7 +393,7 @@ function Counter() {
     const { request, clear } = useFetch('counter', async (_client) => state.counter.length)
 
     return (
-        <div>
+        <div id="counter">
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
             <pre>{JSON.stringify(state.counter, null, 2)}</pre>
@@ -426,7 +407,7 @@ function Status() {
     const { request, clear } = useFetch('status', (client) => client.status().do())
 
     return (
-        <div>
+        <div id="status">
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
             <pre>{JSON.stringify(state.status, null, 2)}</pre>
@@ -464,7 +445,7 @@ function Deploy() {
     })
 
     return (
-        <div>
+        <div id="deploy">
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
             <pre>{JSON.stringify(state.deploy, null, 2)}</pre>
@@ -472,54 +453,114 @@ function Deploy() {
     )
 }
 
+
+function IframeContainer({ url, title, height } = { url: 'URL', title: 'TITLE', height: '100vh' }) {
+    const [loaded, setLoaded] = createSignal(false)
+    const [refreshing, setRefreshing] = createSignal(false)
+
+    createEffect(on(
+        () => [refreshing()],
+        () => refreshing() && setRefreshing(false)
+    ))
+
+    return (
+        <>
+            {!loaded()
+                ? <div><button onClick={() => setLoaded(true)}>Load</button></div>
+                : (
+                    <div class={styles.IframeContainer}>
+                        <button onClick={() => setRefreshing(true)}><BiRegularRefresh size="24px" /></button>
+                        {!refreshing() &&
+                            <iframe src={url} title={title} style={`height: ${height}`} />}
+                    </div>
+                )
+            }
+        </>
+    )
+}
+
 function App() {
     return (
         <StoreonProvider store={store}>
             <GunListener />
-            <div class={styles.App}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Links</td>
-                            <td><Links /></td>
-                        </tr>
-                        <tr><td></td></tr>
-                        <tr>
-                            <td>Chain Connection</td>
-                            <td><ChainConnection /></td>
-                        </tr>
-                        <tr>
-                            <td>Accounts</td>
-                            <td><Accounts /></td>
-                        </tr>
-                        <tr>
-                            <td>Testnet Bank Dispenser</td>
-                            <td><TestnetBankContainer /></td>
-                        </tr>
-                        <tr><td></td></tr>
-                        <tr>
-                            <td>Database Connection</td>
-                            <td><DbConnection /></td>
-                        </tr>
-                        <tr><td></td></tr>
-                        <tr>
-                            <td>Counter</td>
-                            <td><Counter /></td>
-                        </tr>
-                        <tr><td></td></tr>
-                        <tr>
-                            <td>Status</td>
-                            <td><Status /></td>
-                        </tr>
-                        <tr>
-                            <td>Deploy</td>
-                            <td><Deploy /></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class={styles.App}>
+                <tbody>
+                    <tr>
+                        <td>Links</td>
+                        <td><Links /></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td>Chain Connection</td>
+                        <td><ChainConnection /></td>
+                    </tr>
+                    <tr>
+                        <td>Accounts</td>
+                        <td><Accounts /></td>
+                    </tr>
+                    <tr>
+                        <td>Testnet Bank Dispenser</td>
+                        <td>
+                            <IframeContainer
+                                url="https://bank.testnet.algorand.network"
+                                title="algorand testnet bank"
+                                height="350px" />
+                        </td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td>Database Connection</td>
+                        <td><DbConnection /></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td>Counter</td>
+                        <td><Counter /></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td>Status</td>
+                        <td><Status /></td>
+                    </tr>
+                    <tr>
+                        <td>Deploy</td>
+                        <td><Deploy /></td>
+                    </tr>
+                </tbody>
+            </table>
         </StoreonProvider>
     )
 }
 
-export default App
+const port = /[:-]([\d]{2,5})\D/.exec(location.href)?.[1] || '80'
+
+function AppWrapper() {
+    console.log({ location })
+
+    return (
+        <table class={styles.App}>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <IframeContainer
+                            url={location.origin.replace(port, '13701')}
+                            title="Iframe 1"
+                            height="60vh" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <IframeContainer
+                            url={location.origin.replace(port, '13701')}
+                            title="Iframe 2"
+                            height="60vh" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    )
+}
+
+export default port === '13700' ? AppWrapper : App

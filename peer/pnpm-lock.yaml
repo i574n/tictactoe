@@ -2,18 +2,18 @@ lockfileVersion: 5.4
 
 specifiers:
   cross-env: ~7.0
-  gun: ^0.2020.1237
+  gun: ^0.2020.1238
   mkcert: ~1.5
-  npm-check-updates: ~15.2
+  npm-check-updates: ~16.0
   request: ~2.88
 
 dependencies:
-  gun: 0.2020.1237
+  gun: 0.2020.1238
 
 devDependencies:
   cross-env: 7.0.3
   mkcert: 1.5.0
-  npm-check-updates: 15.2.0
+  npm-check-updates: 16.0.1
   request: 2.88.2
 
 packages:
@@ -210,11 +210,6 @@ packages:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
     dev: true
 
-  /addressparser/0.3.2:
-    resolution: {integrity: sha512-fDlslCJpojuY1cnb7tY7COAriA7cdSzDiWyrWNdFn7Cjd+jrEgZavqkOgD/wg+eH765YPnQjqlS88OL/Q0Qtkg==}
-    dev: false
-    optional: true
-
   /agent-base/6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
@@ -266,13 +261,6 @@ packages:
   /ansi-regex/6.0.1:
     resolution: {integrity: sha512-n5M855fKb2SsfMIiFFoVrABHJC8QtHwVx+mHWP3QcEqBHYienj5dHSgjbxtC0WEZXYt4wcD6zrQElDPhFuZgfA==}
     engines: {node: '>=12'}
-    dev: true
-
-  /ansi-styles/4.3.0:
-    resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
-    engines: {node: '>=8'}
-    dependencies:
-      color-convert: 2.0.1
     dev: true
 
   /ansi-styles/6.1.0:
@@ -441,14 +429,6 @@ packages:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
     dev: true
 
-  /chalk/4.1.2:
-    resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
-    engines: {node: '>=10'}
-    dependencies:
-      ansi-styles: 4.3.0
-      supports-color: 7.2.0
-    dev: true
-
   /chalk/5.0.1:
     resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
@@ -461,10 +441,6 @@ packages:
 
   /ci-info/3.3.2:
     resolution: {integrity: sha512-xmDt/QIAdeZ9+nfdPsaBCpMvHNLFiLdjj59qjqn+6iPe6YmHGQ35sBnQ8uslRBXFmXkiZQOJRjvQeoGppoTjjg==}
-    dev: true
-
-  /cint/8.2.1:
-    resolution: {integrity: sha512-gyWqJHXgDFPNx7PEyFJotutav+al92TTC3dWlMFyTETlOyKBQMZb7Cetqmj3GlrnSILHwSJRwf4mIGzc7C5lXw==}
     dev: true
 
   /clean-stack/2.2.0:
@@ -488,17 +464,6 @@ packages:
     resolution: {integrity: sha512-yjLXh88P599UOyPTFX0POsd7WxnbsVsGohcwzHOLspIhhpalPw1BcqED8NblyZLKcGrL8dTgMlcaZxV2jAD41Q==}
     dependencies:
       mimic-response: 1.0.1
-    dev: true
-
-  /color-convert/2.0.1:
-    resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
-    engines: {node: '>=7.0.0'}
-    dependencies:
-      color-name: 1.1.4
-    dev: true
-
-  /color-name/1.1.4:
-    resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
     dev: true
 
   /color-support/1.1.3:
@@ -664,29 +629,6 @@ packages:
       jsbn: 0.1.1
       safer-buffer: 2.1.2
     dev: true
-
-  /emailjs-base64/1.1.4:
-    resolution: {integrity: sha512-4h0xp1jgVTnIQBHxSJWXWanNnmuc5o+k4aHEpcLXSToN8asjB5qbXAexs7+PEsUKcEyBteNYsSvXUndYT2CGGA==}
-    dev: false
-    optional: true
-
-  /emailjs-mime-codec/2.0.9:
-    resolution: {integrity: sha512-7qJo4pFGcKlWh/kCeNjmcgj34YoJWY0ekZXEHYtluWg4MVBnXqGM4CRMtZQkfYwitOhUgaKN5EQktJddi/YIDQ==}
-    dependencies:
-      emailjs-base64: 1.1.4
-      ramda: 0.26.1
-      text-encoding: 0.7.0
-    dev: false
-    optional: true
-
-  /emailjs/2.2.0:
-    resolution: {integrity: sha512-J9HNx13GA5DnJma10YxsSqYCErTyB0KoVflTddPTyKlEVHM0MckZXn/zDqovdacwWkHCxqC9AKVY8GMPaGvaGQ==}
-    requiresBuild: true
-    dependencies:
-      addressparser: 0.3.2
-      emailjs-mime-codec: 2.0.9
-    dev: false
-    optional: true
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -922,14 +864,13 @@ packages:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
     dev: true
 
-  /gun/0.2020.1237:
-    resolution: {integrity: sha512-5WiAMqbLzKfYy/45AVGNrI0OiU7hG5z2hdMeRBMDYXGHzkOUDvbrOnO6qaEqmvCwlwzHJaIilKS51KvMyxhDTQ==}
+  /gun/0.2020.1238:
+    resolution: {integrity: sha512-8rKaAN74o3RTc2/a3CZca3Rx6rWnYpB1nS7mCtWH+LC7wvt2tzPR1yfRCq61haoR/Vtbl45qdq8iyoz9lAY8mg==}
     engines: {node: '>=0.8.4'}
     dependencies:
       ws: 7.5.8
     optionalDependencies:
       '@peculiar/webcrypto': 1.4.0
-      emailjs: 2.2.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -947,11 +888,6 @@ packages:
     dependencies:
       ajv: 6.12.6
       har-schema: 2.0.0
-    dev: true
-
-  /has-flag/4.0.0:
-    resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
-    engines: {node: '>=8'}
     dev: true
 
   /has-unicode/2.0.1:
@@ -1511,13 +1447,12 @@ packages:
       npm-normalize-package-bin: 1.0.1
     dev: true
 
-  /npm-check-updates/15.2.0:
-    resolution: {integrity: sha512-QcNQE3FyOsolWD1Nc+DRryffuBf68fXqVDvN5gBMk3BSaRQ+urZCTfm9By0VuPPA2vrDBRPVgYZB+8L9UN4Avw==}
+  /npm-check-updates/16.0.1:
+    resolution: {integrity: sha512-wEGC9bWsxVVccwIplXLj3f902qORq5tuK1ai/Plwk/Wtt/rzbN8u3+lpZh811Cn71ZAFIAPver4l+i31nbxfJA==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:
-      chalk: 4.1.2
-      cint: 8.2.1
+      chalk: 5.0.1
       cli-table: 0.3.11
       commander: 9.3.0
       fast-memoize: 2.5.2
@@ -1817,11 +1752,6 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
-
-  /ramda/0.26.1:
-    resolution: {integrity: sha512-hLWjpy7EnsDBb0p+Z3B7rPi3GDeRG5ZtiI33kJhTt+ORCd38AbAIjB/9zRIUoeTbE/AVX5ZkU7m6bznsvrf8eQ==}
-    dev: false
-    optional: true
 
   /rc-config-loader/4.1.0:
     resolution: {integrity: sha512-aW+kX4qy0CiM9L4fG4Us3oEOpIrOrXzWykAn+xldD07Y9PXWjTH744oHbv0Kc9ZwWaylw3jMjxaf14RgStrNrA==}
@@ -2140,13 +2070,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /supports-color/7.2.0:
-    resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
-    engines: {node: '>=8'}
-    dependencies:
-      has-flag: 4.0.0
-    dev: true
-
   /tar/6.1.11:
     resolution: {integrity: sha512-an/KZQzQUkZCkuoAA64hM92X0Urb6VpRhAFllDzz44U2mcD5scmT3zBc4VgVpkugF580+DQn8eAFSyoQt0tznA==}
     engines: {node: '>= 10'}
@@ -2158,12 +2081,6 @@ packages:
       mkdirp: 1.0.4
       yallist: 4.0.0
     dev: true
-
-  /text-encoding/0.7.0:
-    resolution: {integrity: sha512-oJQ3f1hrOnbRLOcwKz0Liq2IcrvDeZRHXhd9RgLrsT+DjWY/nty1Hi7v3dtkaEYbPYe0mUoOfzRrMwfXXwgPUA==}
-    deprecated: no longer maintained
-    dev: false
-    optional: true
 
   /to-regex-range/5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
