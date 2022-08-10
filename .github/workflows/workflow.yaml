@@ -31,6 +31,7 @@ jobs:
 
       - run: cd ./web && bun run build
       - run: cd ./web && bun run playwright-install
+      - run: cd ./web && bun run e2e-deps
       - run: cd ./web && bun run e2e
 
       - uses: actions/upload-artifact@v2
