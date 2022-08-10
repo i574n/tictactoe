@@ -2,17 +2,17 @@ import type { PlaywrightTestConfig } from '@playwright/test'
 import { devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
+    forbidOnly: !!process.env.CI,
+    fullyParallel: true,
+    outputDir: './test-results',
+    reporter: [['html', { open: 'never' }]], // reporter: [['html', { open: 'on-failure' }]],
+    retries: process.env.CI ? 2 : 0,
     testDir: './tests',
-    timeout: 15 * 1000,
+    timeout: 30 * 1000,
+    workers: process.env.CI ? 1 : undefined,
     expect: {
         timeout: 30000
     },
-    fullyParallel: true,
-    forbidOnly: !!process.env.CI,
-    retries: process.env.CI ? 2 : 0,
-    workers: process.env.CI ? 1 : undefined,
-    reporter: [['html', { open: 'never' }]],
-    // reporter: [['html', { open: 'on-failure' }]],
     use: {
         video: 'on',
         trace: 'on',
@@ -29,7 +29,6 @@ const config: PlaywrightTestConfig = {
         // { name: 'Microsoft Edge', use: { channel: 'msedge' } },
         // { name: 'Google Chrome', use: { channel: 'chrome' } }
     ],
-    outputDir: './test-results',
     webServer: {
         command: 'bun run e2e-deps',
         port: 18765,
