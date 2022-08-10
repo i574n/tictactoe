@@ -6,7 +6,7 @@
     "extension": "vite build --outDir dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets/content_script.*.js ./dist_extension/assets/content_script.js && mv ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets && cp background.js content_script.js ./dist_extension",
     "dev": "vite",
     "peer": "cross-env-shell PORT=18765 ROOT_PATH=./radata_18765 'cd ../peer && rm -rf ./radata_18765 && pnpm start-dev'",
-    "e2e-deps": "cross-env-shell IS_TEST=1 bun run build && cross-env-shell IS_TEST=1 concurrently \"bun run peer\" \"bun run serve --port 13700\" \"bun run serve --port 13701\"",
+    "e2e-deps": "cross-env-shell IS_TEST=1 bun run build && cross-env-shell IS_TEST=1 concurrently \"bun run peer\" \"bun run serve --port 13700\" \"sleep 3 && bun run serve --port 13701\"",
     "e2e": "playwright test",
     "outdated-pre": "ncu --pre 1 -t greatest",
     "playwright-install": "playwright install --with-deps && playwright install msedge",
