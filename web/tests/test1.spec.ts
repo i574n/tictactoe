@@ -31,7 +31,7 @@ test("test1", async ({ browser }) => {
     await page.click(`button:has-text('Load')`)
     await page.click(`button:has-text('Load')`)
 
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(3000)
 
     const range = (n: number) => Array.from(Array(n).keys())
     const locate = (el: Locator, sel: string, n = 0) => el.nth(n).locator(sel)
