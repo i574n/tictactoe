@@ -2,7 +2,6 @@ import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import { resolve } from 'path'
 import solidPlugin from 'vite-plugin-solid'
 import wasm from "vite-plugin-wasm"
-import wasmLoader from 'esbuild-plugin-wasm'
 import mkcert from 'vite-plugin-mkcert'
 import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
 
@@ -33,9 +32,16 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
-          'solid': ['solid-js', 'solid-icons', '@storeon/solidjs', 'storeon'],
-          'gun': ['rusty-gun', 'gun'],
-          'algosdk': ['algosdk', 'buffer']
+          'buffer': ['buffer'],
+          'algosdk': ['algosdk'],
+
+          'solid-js': ['solid-js'],
+          'solid-icons': ['solid-icons'],
+          'storeon': ['storeon'],
+          'storeon-solidjs': ['@storeon/solidjs'],
+
+          'rusty-gun': ['rusty-gun'],
+          'gun': ['gun']
         }
       }
     }
@@ -50,10 +56,7 @@ export default defineConfig({
       plugins: [
         NodeGlobalsPolyfillPlugin({
           buffer: true
-        }) as any,
-        wasmLoader({
-          mode: 'embedded'
-        })
+        }) as any
       ]
     }
   },

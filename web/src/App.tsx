@@ -1,8 +1,9 @@
-import * as algo_network from "../../lib_ts/algo_network"
-import * as tictactoe_pyteal from "../../lib_ts/tictactoe_pyteal"
-import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
-import * as util from "../../lib_ts/util"
+import './buffer-shim'
 import * as raw from "./raw"
+import * as util from "../../lib_ts/util"
+import * as tictactoe_pyteal from "../../lib_ts/tictactoe_pyteal"
+import * as algo_network from "../../lib_ts/algo_network"
+import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
 import algosdk from "algosdk"
 import { createEffect, createSignal, For, on, onCleanup } from "solid-js"
 import { StoreonStore, createStoreon } from "storeon"
@@ -17,7 +18,7 @@ import styles from "./App.module.css"
 
 const soul = "app"
 const CODESPACE_NAME = process.env.CODESPACE_NAME
-const IS_TEST = Object.keys(window).filter((key) => key.startsWith("__playwright_snapshot_streamer")).length > 0
+const IS_TEST = !!process.env.IS_TEST
 
 const init = {
     token: tictactoe_testnet.token,
@@ -44,13 +45,19 @@ const runId = Math.random().toString(36).substring(2, 5)
 
 const getLog = (getLocals: () => object, argsColor = '#888') => {
     return (...args: any[]) => {
-        console.log(
-            `@${runId} %c%s %c%s`,
-            `font-weight: bold; color: ${argsColor}`,
-            JSON.stringify(args),
-            'font-weight: bold; color: #444',
-            JSON.stringify(getLocals())
-        )
+        IS_TEST
+            ? console.log(
+                `@${runId}`,
+                JSON.stringify(args),
+                JSON.stringify(getLocals())
+            )
+            : console.log(
+                `@${runId} %c%s %c%s`,
+                `font-weight: bold; color: ${argsColor}`,
+                JSON.stringify(args),
+                'font-weight: bold; color: #444',
+                JSON.stringify(getLocals())
+            )
     }
 }
 
@@ -245,7 +252,6 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
         return {
             key,
             [`state.${key}.length`]: state[key].length,
-            // env: Object.keys(process.env),
             counter: state.counter,
             gunRs: Object.keys(state.gunRs).length,
             gunJs: Object.keys(state.gunJs).length,
@@ -544,7 +550,7 @@ function AppWrapper() {
                     <td>1</td>
                     <td>
                         <IframeContainer
-                            url={location.origin.replace(port, '13701')}
+                            url={location.origin.replace(port, '13701') + '/tictactoe_spiral'}
                             title="Iframe 1"
                             height="60vh" />
                     </td>
@@ -553,7 +559,7 @@ function AppWrapper() {
                     <td>2</td>
                     <td>
                         <IframeContainer
-                            url={location.origin.replace(port, '13701')}
+                            url={location.origin.replace(port, '13701') + '/tictactoe_spiral'}
                             title="Iframe 2"
                             height="60vh" />
                     </td>

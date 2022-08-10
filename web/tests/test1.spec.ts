@@ -14,13 +14,24 @@ test("test1", async ({ browser }) => {
     })
     const page = await context.newPage()
 
-    await page.goto("https://localhost:13700")
+    const logs = []
+    page.on('console', async msg => {
+        const msgs = []
+        for (const arg of msg.args()) {
+            const newMsgs = await arg.jsonValue()
+            msgs.push(newMsgs)
+            logs.push(newMsgs)
+        }
+        console.log('>', ...msgs)
+    })
+
+    await page.goto("https://localhost:13700/tictactoe_spiral")
     await injectAxe(page)
 
     await page.click(`button:has-text('Load')`)
     await page.click(`button:has-text('Load')`)
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
 
     const range = (n: number) => Array.from(Array(n).keys())
     const locate = (el: Locator, sel: string, n = 0) => el.nth(n).locator(sel)
@@ -36,20 +47,9 @@ test("test1", async ({ browser }) => {
 
     await page.waitForTimeout(1000)
 
-    const logs = []
-    page.on('console', async msg => {
-        const msgs = []
-        for (const arg of msg.args()) {
-            const newMsgs = await arg.jsonValue()
-            msgs.push(newMsgs)
-            logs.push(newMsgs)
-        }
-        console.log(...msgs)
-    })
-
     await rootArray[0].locator('#counter button').nth(0).click()
 
-    await page.waitForTimeout(1000)
+    await page.waitForTimeout(2000)
 
     const counters = await Promise.all(
         rootArray

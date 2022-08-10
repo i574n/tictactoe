@@ -10,7 +10,6 @@ specifiers:
   concurrently: ^7.3
   cross-env: ~7.0
   esbuild: ^0.14
-  esbuild-plugin-wasm: ^1.0.0
   gun: ^0.2020.1238
   npm-check-updates: ^16.0
   path-browserify: ^1.0
@@ -42,7 +41,6 @@ devDependencies:
   concurrently: 7.3.0
   cross-env: 7.0.3
   esbuild: 0.14.39
-  esbuild-plugin-wasm: 1.0.0
   npm-check-updates: 16.0.1
   path-browserify: 1.0.1
   playwright-core: 1.25.0-alpha-jul-31-2022
@@ -1621,11 +1619,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /esbuild-plugin-wasm/1.0.0:
-    resolution: {integrity: sha512-iXIf3hwfqorExG66/eNr3U8JakIZuge70nMNQtinvxbzdljQ/RjvwaBiGPqF/DvuIumUApbe3zj2kqHLVyc7uQ==}
-    engines: {node: '>=0.10.0'}
-    dev: true
 
   /esbuild-sunos-64/0.14.39:
     resolution: {integrity: sha512-qHq0t5gePEDm2nqZLb+35p/qkaXVS7oIe32R0ECh2HOdiXXkj/1uQI9IRogGqKkK+QjDG+DhwiUw7QoHur/Rwg==}
