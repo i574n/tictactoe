@@ -1,8 +1,10 @@
-import { expect, Locator, test } from "@playwright/test"
-import { checkA11y, injectAxe } from "axe-playwright"
+import { Browser, BrowserContext, test } from "@playwright/test"
+import { injectAxe } from "axe-playwright"
 
-test("test1", async ({ browser }) => {
-    const context = await browser.newContext({
+const range = (n: number) => Array.from(Array(n).keys())
+
+function newContext(browser: Browser) {
+    return browser.newContext({
         ignoreHTTPSErrors: true,
         viewport: {
             width: 1500,
@@ -12,6 +14,9 @@ test("test1", async ({ browser }) => {
             dir: "./playwright-videos"
         }
     })
+}
+
+async function newPage(context: BrowserContext) {
     const page = await context.newPage()
 
     const logs = []
@@ -25,43 +30,53 @@ test("test1", async ({ browser }) => {
         console.log('>', ...msgs)
     })
 
-    await page.goto("https://localhost:13700/tictactoe_spiral")
-    await injectAxe(page)
+    page.on('request', request => console.log('>>', request.method(), request.url()));
+    page.on('response', response => console.log('<<', response.status(), response.url()));
 
-    await page.click(`button:has-text('Load')`)
-    await page.click(`button:has-text('Load')`)
+    return page
+}
 
-    await page.waitForTimeout(3000)
+function newTest(title: string, testFn: (_: { browser: Browser }) => any) {
+    return test(title, async ({ browser }) => {
+        const context = await newContext(browser)
 
-    const range = (n: number) => Array.from(Array(n).keys())
-    const locate = (el: Locator, sel: string, n = 0) => el.nth(n).locator(sel)
-    const getRoot = (n: number) => locate(page.frameLocator('iframe') as Locator, '#root', n)
+        const pages = await testFn({ browser })
 
-    const iframeCount = 2
+        for (const [index, page] of pages.entries()) {
+            console.log(`# Page ${index}`)
+            console.log('After Test URL:', page.url())
+            console.log('Video Path:', await page?.video()?.path())
+        }
 
-    const rootArray = range(iframeCount).map(getRoot)
+        await context.close()
+        await browser.close()
+    })
+}
 
-    await Promise.all(rootArray.map(root => root.locator('#counter button').nth(1).click()))
-    await Promise.all(rootArray.map(root => root.locator('#status button').nth(1).click()))
-    await Promise.all(rootArray.map(root => root.locator('#deploy button').nth(1).click()))
+newTest("test1", async ({ browser }) => {
+    const context = await newContext(browser)
 
-    await page.waitForTimeout(1000)
+    const pageCount = 3
+    const pages = await Promise.all(range(pageCount).map(_ => newPage(context)))
 
-    await rootArray[0].locator('#counter button').nth(0).click()
+    await Promise.all(pages.map(async page => {
+        await page.goto("https://localhost:3700/tictactoe_spiral", { waitUntil: 'networkidle' })
+        await injectAxe(page)
+    }))
 
-    await page.waitForTimeout(2000)
+    await Promise.all(pages.map(async page => {
+        await page.locator('#counter button').nth(1).click()
+        await page.locator('#status button').nth(1).click()
+        await page.locator('#deploy button').nth(1).click()
+    }))
 
-    const counters = await Promise.all(
-        rootArray
-            .map(root => root
-                .locator('#counter pre')
-                .evaluate(counter => counter.innerHTML)))
+    await pages[0].locator('#counter button').nth(0).click()
 
-    expect(counters).toStrictEqual(["[\n  0\n]", "[\n  0\n]"])
+    await Promise.all(
+        pages
+            .map(page => page
+                .locator('#counter pre', { hasText: '0' })
+                .waitFor()))
 
-    console.log('after X url', page.url())
-    console.log('video path:', await page?.video()?.path())
-
-    await context.close()
-    await browser.close()
+    return pages
 })

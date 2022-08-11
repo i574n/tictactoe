@@ -105,22 +105,28 @@ function StateInput({ key }: { key: keyof util.PickByType<State, number | string
     )
 }
 
+function Row({ title, children }: { title: string, children: any }) {
+    return (
+        <tr>
+            <td>{title}</td>
+            <td>{children}</td>
+        </tr>
+    )
+}
+
 function ChainConnection() {
     return (
         <table>
             <tbody>
-                <tr>
-                    <td>Token</td>
-                    <td><StateInput key="token" /></td>
-                </tr>
-                <tr>
-                    <td>URL</td>
-                    <td><StateInput key="chainUrl" /></td>
-                </tr>
-                <tr>
-                    <td>Port</td>
-                    <td><StateInput key="chainPort" /></td>
-                </tr>
+                <Row title="Token">
+                    <StateInput key="token" />
+                </Row>
+                <Row title="URL">
+                    <StateInput key="chainUrl" />
+                </Row>
+                <Row title="Port">
+                    <StateInput key="chainPort" />
+                </Row>
             </tbody>
         </table>
     )
@@ -154,23 +160,18 @@ function Accounts() {
             <tbody>
                 <For each={state.accounts}>
                     {(account) => (
-                        <tr>
-                            <td>{account.alias}</td>
-                            <td>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Address</td>
-                                            <td><AccountInput account={account} key="address" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Private Key</td>
-                                            <td><AccountInput account={account} key="privateKey" /></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
+                        <Row title={account.alias}>
+                            <table>
+                                <tbody>
+                                    <Row title="Address">
+                                        <AccountInput account={account} key="address" />
+                                    </Row>
+                                    <Row title="Private Key">
+                                        <AccountInput account={account} key="privateKey" />
+                                    </Row>
+                                </tbody>
+                            </table>
+                        </Row>
                     )}
                 </For>
             </tbody>
@@ -182,14 +183,12 @@ function DbConnection() {
     return (
         <table>
             <tbody>
-                <tr>
-                    <td>URL</td>
-                    <td><StateInput key="dbUrl" /></td>
-                </tr>
-                <tr>
-                    <td>Port</td>
-                    <td><StateInput key="dbPort" /></td>
-                </tr>
+                <Row title="URL">
+                    <StateInput key="dbUrl" />
+                </Row>
+                <Row title="Port">
+                    <StateInput key="dbPort" />
+                </Row>
             </tbody>
         </table>
     )
@@ -459,7 +458,6 @@ function Deploy() {
     )
 }
 
-
 function IframeContainer({ url, title, height } = { url: 'URL', title: 'TITLE', height: '100vh' }) {
     const [loaded, setLoaded] = createSignal(false)
     const [refreshing, setRefreshing] = createSignal(false)
@@ -491,82 +489,41 @@ function App() {
             <GunListener />
             <table class={styles.App}>
                 <tbody>
-                    <tr>
-                        <td>Links</td>
-                        <td><Links /></td>
-                    </tr>
+                    <Row title="Links">
+                        <Links />
+                    </Row>
                     <tr><td></td></tr>
-                    <tr>
-                        <td>Chain Connection</td>
-                        <td><ChainConnection /></td>
-                    </tr>
-                    <tr>
-                        <td>Accounts</td>
-                        <td><Accounts /></td>
-                    </tr>
-                    <tr>
-                        <td>Testnet Bank Dispenser</td>
-                        <td>
-                            <IframeContainer
-                                url="https://bank.testnet.algorand.network"
-                                title="algorand testnet bank"
-                                height="350px" />
-                        </td>
-                    </tr>
+                    <Row title="Chain Connection">
+                        <ChainConnection />
+                    </Row>
+                    <Row title="Accounts">
+                        <Accounts />
+                    </Row>
+                    <Row title="Testnet Bank Dispenser">
+                        <IframeContainer
+                            url="https://bank.testnet.algorand.network"
+                            title="algorand testnet bank"
+                            height="350px" />
+                    </Row>
                     <tr><td></td></tr>
-                    <tr>
-                        <td>Database Connection</td>
-                        <td><DbConnection /></td>
-                    </tr>
+                    <Row title="Database Connection">
+                        <DbConnection />
+                    </Row>
                     <tr><td></td></tr>
-                    <tr>
-                        <td>Counter</td>
-                        <td><Counter /></td>
-                    </tr>
+                    <Row title="Counter">
+                        <Counter />
+                    </Row>
                     <tr><td></td></tr>
-                    <tr>
-                        <td>Status</td>
-                        <td><Status /></td>
-                    </tr>
-                    <tr>
-                        <td>Deploy</td>
-                        <td><Deploy /></td>
-                    </tr>
+                    <Row title="Status">
+                        <Status />
+                    </Row>
+                    <Row title="Deploy">
+                        <Deploy />
+                    </Row>
                 </tbody>
             </table>
         </StoreonProvider>
     )
 }
 
-const port = /[:-]([\d]{2,5})\D/.exec(location.href)?.[1] || '80'
-
-function AppWrapper() {
-    console.log({ location })
-
-    return (
-        <table class={styles.App}>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <IframeContainer
-                            url={location.origin.replace(port, '13701') + '/tictactoe_spiral'}
-                            title="Iframe 1"
-                            height="60vh" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>
-                        <IframeContainer
-                            url={location.origin.replace(port, '13701') + '/tictactoe_spiral'}
-                            title="Iframe 2"
-                            height="60vh" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    )
-}
-
-export default port === '13700' ? AppWrapper : App
+export default App
