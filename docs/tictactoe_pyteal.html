@@ -330,7 +330,7 @@ $('#toc').on('click', 'a', function() {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install pyteal | grep -v &#39;already satisfied&#39;
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install pyteal | grep -v 'already satisfied'
 </pre></div>
 
     </div>
@@ -375,7 +375,7 @@ $('#toc').on('click', 'a', function() {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'..'</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">lib_py.util</span> <span class="k">as</span> <span class="nn">util</span>
 <span class="kn">import</span> <span class="nn">lib_py.ipython_magic</span> <span class="k">as</span> <span class="nn">ipython_magic</span>
 
@@ -436,9 +436,9 @@ open pyteal
 
 
 
-<div id="b0eda51e-d3c7-4ca7-9abd-f2411ff488dd" class="output_subarea output_javascript ">
+<div id="341b55c0-48b8-48a0-b372-826293feb2af" class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#b0eda51e-d3c7-4ca7-9abd-f2411ff488dd');
+var element = $('#341b55c0-48b8-48a0-b372-826293feb2af');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -519,8 +519,9 @@ export var numGlobalInts = 4
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AppVariables" class="doc_header"><code>class</code> <code>AppVariables</code><a href="lib_py/tictactoe_pyteal.py#L14" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AppVariables</code>()</p>
+<h2 id="AppVariables" class="doc_header"><code>class</code> <code>AppVariables</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L14" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AppVariables</code>()</p>
 </blockquote>
 <p>All the variables available in the global state of the application.</p>
 
@@ -544,8 +545,9 @@ export var numGlobalInts = 4
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DefaultValues" class="doc_header"><code>class</code> <code>DefaultValues</code><a href="lib_py/tictactoe_pyteal.py#L31" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DefaultValues</code>()</p>
+<h2 id="DefaultValues" class="doc_header"><code>class</code> <code>DefaultValues</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L31" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DefaultValues</code>()</p>
 </blockquote>
 <p>The default values for the global variables initialized on the transaction that creates the application.</p>
 
@@ -569,8 +571,9 @@ export var numGlobalInts = 4
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AppActions" class="doc_header"><code>class</code> <code>AppActions</code><a href="lib_py/tictactoe_pyteal.py#L42" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AppActions</code>()</p>
+<h2 id="AppActions" class="doc_header"><code>class</code> <code>AppActions</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L42" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AppActions</code>()</p>
 </blockquote>
 <p>Available actions in the tic-tac-toe application.</p>
 
@@ -602,15 +605,15 @@ export var numGlobalInts = 4
 
 let get_bytes () =
     {
-        player_x_state = new_bytes &quot;PlayerXState&quot;
-        player_o_state = new_bytes &quot;PlayerOState&quot;
-        player_x_address = new_bytes &quot;PlayerXAddress&quot;
-        player_o_address = new_bytes &quot;PlayerOAddress&quot;
-        player_turn_address = new_bytes &quot;PlayerTurnAddress&quot;
-        funds_escrow_address = new_bytes &quot;FundsEscrowAddress&quot;
-        action_timeout = new_bytes &quot;ActionTimeout&quot;
-        game_status = new_bytes &quot;GameState&quot;
-        bet_amount = new_bytes &quot;BetAmount&quot;
+        player_x_state = new_bytes "PlayerXState"
+        player_o_state = new_bytes "PlayerOState"
+        player_x_address = new_bytes "PlayerXAddress"
+        player_o_address = new_bytes "PlayerOAddress"
+        player_turn_address = new_bytes "PlayerTurnAddress"
+        funds_escrow_address = new_bytes "FundsEscrowAddress"
+        action_timeout = new_bytes "ActionTimeout"
+        game_status = new_bytes "GameState"
+        bet_amount = new_bytes "BetAmount"
     }
 
 inl get_default_values () = 
@@ -624,9 +627,9 @@ inl get_default_values () =
 
 inl get_app_actions () =
     {
-        setup_players = new_bytes &quot;SetupPlayers&quot;
-        action_move = new_bytes &quot;ActionMove&quot;
-        money_refund = new_bytes &quot;MoneyRefund&quot;
+        setup_players = new_bytes "SetupPlayers"
+        action_move = new_bytes "ActionMove"
+        money_refund = new_bytes "MoneyRefund"
     }
 </pre></div>
 
@@ -662,8 +665,8 @@ inl get_app_actions () =
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">a:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">b:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">a:</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">b:</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
 </pre></div>
 
@@ -690,8 +693,9 @@ inl get_app_actions () =
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clear_program" class="doc_header"><code>clear_program</code><a href="lib_py/tictactoe_pyteal.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clear_program</code>()</p>
+<h4 id="clear_program" class="doc_header"><code>clear_program</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clear_program</code>()</p>
 </blockquote>
 
 </div>
@@ -721,7 +725,7 @@ inl get_app_actions () =
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl clear_program () =
-    inspect &quot;clear_program&quot;
+    inspect "clear_program"
     new_return (new_int 1)
 </pre></div>
 
@@ -818,7 +822,7 @@ inl clear_program () =
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="p">(</span><span class="n">clear_program_python_teal</span><span class="p">,</span> <span class="n">clear_program_spiral_teal</span><span class="p">)</span>
-<span class="n">util</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;../lib_teal/clear_program.teal&#39;</span><span class="p">,</span> <span class="n">clear_program_spiral_teal</span><span class="p">)</span>
+<span class="n">util</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="s1">'../lib_teal/clear_program.teal'</span><span class="p">,</span> <span class="n">clear_program_spiral_teal</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">clear_program_spiral_teal</span><span class="p">)</span>
 </pre></div>
 
@@ -861,8 +865,9 @@ return
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="money_refund_logic" class="doc_header"><code>money_refund_logic</code><a href="lib_py/tictactoe_pyteal.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>money_refund_logic</code>()</p>
+<h4 id="money_refund_logic" class="doc_header"><code>money_refund_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>money_refund_logic</code>()</p>
 </blockquote>
 <p>This function handles the logic for refunding the money in case of a winner, tie or timeout termination. If the
 player whose turn it is hasn't made a move for the predefined period of time, the other player is declared as a
@@ -907,7 +912,7 @@ If there is a tie the Atomic Transfer should have the following 3 transactions:<
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl money_refund_logic () =
-    inspect &quot;money_refund_logic&quot;
+    inspect "money_refund_logic"
 
     inl bytes = get_bytes ()
     
@@ -1083,8 +1088,9 @@ inl money_refund_logic () =
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="game_funds_escrow" class="doc_header"><code>game_funds_escrow</code><a href="lib_py/tictactoe_pyteal.py#L127" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>game_funds_escrow</code>(<strong><code>app_id</code></strong>:<code>int</code>)</p>
+<h4 id="game_funds_escrow" class="doc_header"><code>game_funds_escrow</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L127" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>game_funds_escrow</code>(<strong><code>app_id</code></strong>:<code>int</code>)</p>
 </blockquote>
 
 </div>
@@ -1114,7 +1120,7 @@ inl money_refund_logic () =
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl game_funds_escrow app_id =
-    inspect &quot;game_funds_escrow&quot;
+    inspect "game_funds_escrow"
 
     inl win_refund = new_seq ;[
         new_assert (get_gtxn_application_id (get_gtxn 0) = new_int app_id)
@@ -1234,7 +1240,7 @@ inl game_funds_escrow app_id =
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="p">(</span><span class="n">game_funds_escrow_python_teal</span><span class="p">,</span> <span class="n">game_funds_escrow_spiral_teal</span><span class="p">)</span>
-<span class="n">util</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;../lib_teal/game_funds_escrow.teal&#39;</span><span class="p">,</span> <span class="n">game_funds_escrow_spiral_teal</span><span class="p">)</span>
+<span class="n">util</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="s1">'../lib_teal/game_funds_escrow.teal'</span><span class="p">,</span> <span class="n">game_funds_escrow_spiral_teal</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">game_funds_escrow_spiral_teal</span><span class="p">)</span>
 </pre></div>
 
@@ -1334,8 +1340,9 @@ return
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="has_player_won" class="doc_header"><code>has_player_won</code><a href="lib_py/tictactoe_pyteal.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>has_player_won</code>(<strong><code>state</code></strong>)</p>
+<h4 id="has_player_won" class="doc_header"><code>has_player_won</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>has_player_won</code>(<strong><code>state</code></strong>)</p>
 </blockquote>
 <p>Checks whether the passed state as an argument is a winning state. There are 8 possible winning states in which
 a specific pattern of bits needs to be activated.
@@ -1395,7 +1402,7 @@ inl get_win_state i : i32 =
 
 inl has_player_won state =
     inl state : i32 = state
-    inspect &quot;has_player_won&quot;
+    inspect "has_player_won"
 
     new_if_else
         (new_or8 
@@ -1529,8 +1536,9 @@ inl has_player_won state =
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="is_tie" class="doc_header"><code>is_tie</code><a href="lib_py/tictactoe_pyteal.py#L179" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>is_tie</code>()</p>
+<h4 id="is_tie" class="doc_header"><code>is_tie</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L179" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>is_tie</code>()</p>
 </blockquote>
 <p>Checks whether the game has ended with a tie. Tie state is represented with the number 511 which is the number where
 the first 9 bits are active.
@@ -1563,7 +1571,7 @@ the first 9 bits are active.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl is_tie () =
-    inspect &quot;is_tie&quot;
+    inspect "is_tie"
 
     inl bytes = get_bytes ()
 
@@ -1690,8 +1698,9 @@ inl is_tie () =
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="play_action_logic" class="doc_header"><code>play_action_logic</code><a href="lib_py/tictactoe_pyteal.py#L193" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>play_action_logic</code>()</p>
+<h4 id="play_action_logic" class="doc_header"><code>play_action_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L193" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>play_action_logic</code>()</p>
 </blockquote>
 <p>Executes an action for the current player in the game and accordingly updates the state of the game. The action
 is passed as an argument to the application call.
@@ -1724,7 +1733,7 @@ is passed as an argument to the application call.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl play_action_logic () =
-    inspect &quot;play_action_logic&quot;
+    inspect "play_action_logic"
 
     inl bytes = get_bytes ()
     inl default_values = get_default_values ()
@@ -1899,8 +1908,9 @@ is_tie
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="initialize_players_logic" class="doc_header"><code>initialize_players_logic</code><a href="lib_py/tictactoe_pyteal.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>initialize_players_logic</code>()</p>
+<h4 id="initialize_players_logic" class="doc_header"><code>initialize_players_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>initialize_players_logic</code>()</p>
 </blockquote>
 <p>This function initializes all the other global variables. The end of the execution of this function defines the game
 start. We expect that this logic is performed within an Atomic Transfer of 3 transactions:</p>
@@ -1940,7 +1950,7 @@ PlayerO address.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl initialize_players_logic game_duration_seconds =
-    inspect &quot;initialize_players_logic&quot;
+    inspect "initialize_players_logic"
 
     inl bytes = get_bytes ()
     inl default_values = get_default_values ()
@@ -2098,8 +2108,9 @@ inl initialize_players_logic game_duration_seconds =
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="app_initialization_logic" class="doc_header"><code>app_initialization_logic</code><a href="lib_py/tictactoe_pyteal.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>app_initialization_logic</code>()</p>
+<h4 id="app_initialization_logic" class="doc_header"><code>app_initialization_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>app_initialization_logic</code>()</p>
 </blockquote>
 <p>Initialization of the default global variables.</p>
 
@@ -2130,7 +2141,7 @@ inl initialize_players_logic game_duration_seconds =
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl app_initialization_logic () =
-    inspect &quot;app_initialization_logic&quot;
+    inspect "app_initialization_logic"
 
     inl default_values = get_default_values ()
     inl bytes = get_bytes ()
@@ -2263,8 +2274,9 @@ inl app_initialization_logic () =
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="application_start" class="doc_header"><code>application_start</code><a href="lib_py/tictactoe_pyteal.py#L297" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>application_start</code>()</p>
+<h4 id="application_start" class="doc_header"><code>application_start</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L297" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>application_start</code>()</p>
 </blockquote>
 <p>This function represents the start of the application. Here we decide which action will be executed in the current
 application call. If we are creating the application for the very first time we are going to initialize some
@@ -2297,7 +2309,7 @@ of the global values with their appropriate default values.</p>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
 inl application_start game_duration_seconds =
-    inspect &quot;application_start&quot;
+    inspect "application_start"
     
     inl app_actions = get_app_actions ()
 
@@ -2421,7 +2433,7 @@ app_initialization_logic
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span><span class="p">(</span><span class="n">application_start_python_teal</span><span class="p">,</span> <span class="n">application_start_spiral_teal</span><span class="p">)</span>
-<span class="n">util</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;../lib_teal/application_start.teal&#39;</span><span class="p">,</span> <span class="n">application_start_spiral_teal</span><span class="p">)</span>
+<span class="n">util</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="s1">'../lib_teal/application_start.teal'</span><span class="p">,</span> <span class="n">application_start_spiral_teal</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">application_start_spiral_teal</span><span class="p">)</span>
 </pre></div>
 
@@ -2925,9 +2937,9 @@ open console_fsx
 open tictactoe_pyteal
 
 inl imports () =
-    $&quot;#r \&quot;nuget: Fable.Python\&quot;&quot;
-    $&quot;open Fable.Core.PyInterop&quot;
-    $&quot;open Fable.Core&quot;
+    $"#r \"nuget: Fable.Python\""
+    $"open Fable.Core.PyInterop"
+    $"open Fable.Core"
 
 inl tests () =
     inl a = 1i32
@@ -2935,7 +2947,7 @@ inl tests () =
     test (a = b)
 
 inl main () =
-    inspect &quot;main.spi Loaded&quot;
+    inspect "main.spi Loaded"
 
     imports ()
     tests ()
@@ -2987,7 +2999,7 @@ inl main () =
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> run
 
-import * as spiral_api from &quot;./spiral_api&quot;
+import * as spiral_api from "./spiral_api"
 
 await spiral_api.spiToFsx()
 </pre></div>
@@ -3024,7 +3036,7 @@ await spiral_api.spiToFsx()
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spiral</span> run
 
-inspect &quot;test2&quot;
+inspect "test2"
 </pre></div>
 
     </div>
@@ -3080,7 +3092,7 @@ printfn $&#34;%A{v0}&#34;
                 <div class="col-lg-12 footer">
                   <p><img src="/tictactoe_spiral/docs/assets/images/company_logo.png" alt="Company logo"/></p>
                &copy;2022 fc1943s. All rights reserved. <br />
- Site last generated: Jul 15, 2022 <br />
+ Site last generated: Aug 11, 2022 <br />
                 </div>
             </div>
 </footer>

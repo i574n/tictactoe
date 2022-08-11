@@ -330,7 +330,7 @@ $('#toc').on('click', 'a', function() {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install nbdev | grep -v &#39;already satisfied&#39;
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install nbdev | grep -v 'already satisfied'
 </pre></div>
 
     </div>
@@ -368,7 +368,7 @@ $('#toc').on('click', 'a', function() {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'..'</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">lib_py.ipython_magic</span> <span class="k">as</span> <span class="nn">ipython_magic</span>
 </pre></div>
 
@@ -388,9 +388,9 @@ $('#toc').on('click', 'a', function() {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">spi</span>
 
-nominal _obj = $&quot;obj&quot;
+nominal _obj = $"obj"
 
-inl test b = assert b &quot;test&quot;
+inl test b = assert b "test"
 </pre></div>
 
     </div>
@@ -413,9 +413,9 @@ inl test b = assert b &quot;test&quot;
 
 
 
-<div id="d8632ee8-ec70-4a1d-a6fe-35166d5845f6" class="output_subarea output_javascript ">
+<div id="71ab904f-cc17-4a2e-8eae-768287b6be36" class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#d8632ee8-ec70-4a1d-a6fe-35166d5845f6');
+var element = $('#71ab904f-cc17-4a2e-8eae-768287b6be36');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -490,7 +490,7 @@ export type PickByType&lt;T, Value&gt; = {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> export
 
-import * as fs from &quot;fs&quot;
+import * as fs from "fs"
 
 var start = process.hrtime()
 
@@ -548,7 +548,7 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 	try {
         return await Promise.race([
             prom,
-            new Promise((_r, rej) =&gt; timer = setTimeout(rej, ms, new Error(&#39;timeout&#39;)))
+            new Promise((_r, rej) =&gt; timer = setTimeout(rej, ms, new Error('timeout')))
         ])
     } finally {
         return clearTimeout(timer)
@@ -595,8 +595,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="new_id" class="doc_header"><code>new_id</code><a href="lib_py/util.py#L9" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>new_id</code>()</p>
+<h4 id="new_id" class="doc_header"><code>new_id</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L9" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>new_id</code>()</p>
 </blockquote>
 
 </div>
@@ -619,8 +620,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="list_partition" class="doc_header"><code>list_partition</code><a href="lib_py/util.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_partition</code>(<strong><code>lines</code></strong>, <strong><code>predicate</code></strong>)</p>
+<h4 id="list_partition" class="doc_header"><code>list_partition</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_partition</code>(<strong><code>lines</code></strong>, <strong><code>predicate</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -643,8 +645,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="write_file" class="doc_header"><code>write_file</code><a href="lib_py/util.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>write_file</code>(<strong><code>filename</code></strong>, <strong><code>text</code></strong>)</p>
+<h4 id="write_file" class="doc_header"><code>write_file</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>write_file</code>(<strong><code>filename</code></strong>, <strong><code>text</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -667,8 +670,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="read_file" class="doc_header"><code>read_file</code><a href="lib_py/util.py#L22" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_file</code>(<strong><code>filename</code></strong>)</p>
+<h4 id="read_file" class="doc_header"><code>read_file</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L22" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_file</code>(<strong><code>filename</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -698,8 +702,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_notebook_name" class="doc_header"><code>get_notebook_name</code><a href="lib_py/util.py#L36" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_notebook_name</code>()</p>
+<h4 id="get_notebook_name" class="doc_header"><code>get_notebook_name</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L36" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_notebook_name</code>()</p>
 </blockquote>
 
 </div>
@@ -763,8 +768,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="run_shell" class="doc_header"><code>run_shell</code><a href="lib_py/util.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>run_shell</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="run_shell" class="doc_header"><code>run_shell</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>run_shell</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -787,8 +793,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="run" class="doc_header"><code>run</code><a href="lib_py/util.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>run</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="run" class="doc_header"><code>run</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>run</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -811,8 +818,9 @@ export var timeout = async &lt;T&gt;(prom: Promise&lt;T&gt;, ms: number) =&gt; {
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="run_node" class="doc_header"><code>run_node</code><a href="lib_py/util.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>run_node</code>(<strong><code>code</code></strong>, <strong><code>timeout</code></strong>=<em><code>60</code></em>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="run_node" class="doc_header"><code>run_node</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/util.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>run_node</code>(<strong><code>code</code></strong>, <strong><code>timeout</code></strong>=<em><code>60</code></em>, <strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -893,7 +901,7 @@ Converted 06_index.ipynb.
                 <div class="col-lg-12 footer">
                   <p><img src="/tictactoe_spiral/docs/assets/images/company_logo.png" alt="Company logo"/></p>
                &copy;2022 fc1943s. All rights reserved. <br />
- Site last generated: Jul 15, 2022 <br />
+ Site last generated: Aug 11, 2022 <br />
                 </div>
             </div>
 </footer>

@@ -331,7 +331,7 @@ $('#toc').on('click', 'a', function() {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'..'</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">lib_py.ipython_magic</span> <span class="k">as</span> <span class="nn">ipython_magic</span>
 </pre></div>
 
@@ -357,7 +357,7 @@ $('#toc').on('click', 'a', function() {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> export
 
-import * as zmq from &quot;zeromq&quot;
+import * as zmq from "zeromq"
 
 var requestRun = async (prev: Promise&lt;string | null&gt;, file: any): Promise&lt;string | null&gt; =&gt; {
     const port = 13805
@@ -397,9 +397,9 @@ var spiBuildFileReq = async (uri: string, backend: string): Promise&lt;void&gt; 
 
 
 
-<div id="267ffb3e-32df-4b8d-b7f4-75fbfdc4e0ec" class="output_subarea output_javascript ">
+<div id="8bcf4e6d-95a0-4b1e-97bc-9968f4180f71" class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#267ffb3e-32df-4b8d-b7f4-75fbfdc4e0ec');
+var element = $('#8bcf4e6d-95a0-4b1e-97bc-9968f4180f71');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -431,17 +431,17 @@ IPython.notebook.save_checkpoint();
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> export
 
-import * as fs from &quot;fs&quot;
-import * as path from &quot;path&quot;
-import * as util from &quot;./util&quot;
+import * as fs from "fs"
+import * as path from "path"
+import * as util from "./util"
 
-export var spiToFsx = async (spiPath = &#39;&#39;, log = false) =&gt; {
-    const cwpath = (arg: string) =&gt; path.join(process.cwd(), &#39;..&#39;, arg)
-    spiPath = spiPath || cwpath(&#39;main.spi&#39;)
-    const fsxPath = spiPath.replace(&#39;.spi&#39;, &#39;.fsx&#39;)
-    await util.timeout(spiBuildFileReq(spiPath, &#39;Fsharp&#39;), 2000)
+export var spiToFsx = async (spiPath = '', log = false) =&gt; {
+    const cwpath = (arg: string) =&gt; path.join(process.cwd(), '..', arg)
+    spiPath = spiPath || cwpath('main.spi')
+    const fsxPath = spiPath.replace('.spi', '.fsx')
+    await util.timeout(spiBuildFileReq(spiPath, 'Fsharp'), 2000)
     await util.waitFileChange(fsxPath)
-    const lines = fs.readFileSync(fsxPath).toString().split(&#39;\n&#39;)
+    const lines = fs.readFileSync(fsxPath).toString().split('\n')
     const [imports, code] = lines.reduce(
         ([imports, code]: string[][], line) =&gt;
             /^(open|\#r) .*?$/.test(line)
@@ -449,9 +449,9 @@ export var spiToFsx = async (spiPath = &#39;&#39;, log = false) =&gt; {
                 : [imports, [...code, line]],
             [[], []]
     )
-    fs.writeFileSync(fsxPath, [...imports, &#39;&#39;, ...code].join(&#39;\n&#39;))
+    fs.writeFileSync(fsxPath, [...imports, '', ...code].join('\n'))
     if(log) {
-        util.logStep(&#39;spiral.spiToFsx() end&#39;)
+        util.logStep('spiral.spiToFsx() end')
     }
 }
 </pre></div>
@@ -532,7 +532,7 @@ await spiToFsx()
                 <div class="col-lg-12 footer">
                   <p><img src="/tictactoe_spiral/docs/assets/images/company_logo.png" alt="Company logo"/></p>
                &copy;2022 fc1943s. All rights reserved. <br />
- Site last generated: Jul 15, 2022 <br />
+ Site last generated: Aug 11, 2022 <br />
                 </div>
             </div>
 </footer>

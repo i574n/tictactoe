@@ -331,7 +331,7 @@ $('#toc').on('click', 'a', function() {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">'..'</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">lib_py.ipython_magic</span> <span class="k">as</span> <span class="nn">ipython_magic</span>
 </pre></div>
 
@@ -357,28 +357,28 @@ $('#toc').on('click', 'a', function() {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> export
 
-export var token = &#39;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&#39;
-export var url = &#39;http://localhost&#39;
+export var token = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+export var url = 'http://localhost'
 export var port = 4001
 
 export var accounts = [
     {
-        alias: &#39;admin&#39;,
-        privateKey: &#39;OBVzhzxAK4ZPdaF1QbkXsd8hgRUPJeCfYFjFghgMGnLmcpaAD0mdQJ3Rwq/RwklKGQWAbaIP9zb5BUmcZM4DOg==&#39;,
-        address: &#39;4ZZJNAAPJGOUBHORYKX5DQSJJIMQLADNUIH7ONXZAVEZYZGOAM5CM7HV2M&#39;,
-        mnemonic: &#39;poem slush dry adult final thunder price pause concert topic mesh wild dry gate judge celery winter list promote clump country loan move about faith&#39;
+        alias: 'admin',
+        privateKey: 'OBVzhzxAK4ZPdaF1QbkXsd8hgRUPJeCfYFjFghgMGnLmcpaAD0mdQJ3Rwq/RwklKGQWAbaIP9zb5BUmcZM4DOg==',
+        address: '4ZZJNAAPJGOUBHORYKX5DQSJJIMQLADNUIH7ONXZAVEZYZGOAM5CM7HV2M',
+        mnemonic: 'poem slush dry adult final thunder price pause concert topic mesh wild dry gate judge celery winter list promote clump country loan move about faith'
     },
     {
-        alias: &#39;x&#39;,
-        privateKey: &#39;lHFQVWKpvRYU00yAQqHOHJegn5nvP0owYkroBFKr94qGmASQPz4KrmlSbpmNeevb+v+eqDR1owwGEmFARGRDOQ==&#39;,
-        address: &#39;Q2MAJEB7HYFK42KSN2MY26PL3P5P7HVIGR22GDAGCJQUARDEIM4WLHSIFQ&#39;,
-        mnemonic: &#39;crater dove click normal kitten aisle obvious error exotic lunar guard impact donkey gun lamp divide announce match cement excess piano turn fish above make&#39;
+        alias: 'x',
+        privateKey: 'lHFQVWKpvRYU00yAQqHOHJegn5nvP0owYkroBFKr94qGmASQPz4KrmlSbpmNeevb+v+eqDR1owwGEmFARGRDOQ==',
+        address: 'Q2MAJEB7HYFK42KSN2MY26PL3P5P7HVIGR22GDAGCJQUARDEIM4WLHSIFQ',
+        mnemonic: 'crater dove click normal kitten aisle obvious error exotic lunar guard impact donkey gun lamp divide announce match cement excess piano turn fish above make'
     },
     {
-        alias: &#39;o&#39;,
-        privateKey: &#39;0DNKDAK5QfWuMCTMNJ+Re5mSlc7rbI0q1UOUYDmvPGpVTJc2PAknfOwS1rk+MAkE5ynA1XbqLeAGlYGA1H9T4w==&#39;,
-        address: &#39;KVGJONR4BETXZ3AS224T4MAJATTSTQGVO3VC3YAGSWAYBVD7KPR23RKNBI&#39;,
-        mnemonic: &#39;key churn alert mother lock run lyrics category office lamp silver nut cement pistol fury hollow faculty feed capable announce index cloth faint about bid&#39;
+        alias: 'o',
+        privateKey: '0DNKDAK5QfWuMCTMNJ+Re5mSlc7rbI0q1UOUYDmvPGpVTJc2PAknfOwS1rk+MAkE5ynA1XbqLeAGlYGA1H9T4w==',
+        address: 'KVGJONR4BETXZ3AS224T4MAJATTSTQGVO3VC3YAGSWAYBVD7KPR23RKNBI',
+        mnemonic: 'key churn alert mother lock run lyrics category office lamp silver nut cement pistol fury hollow faculty feed capable announce index cloth faint about bid'
     }
 ]
 </pre></div>
@@ -403,9 +403,9 @@ export var accounts = [
 
 
 
-<div id="6649b40a-bb04-4b99-ba6b-4ee4ba1587bf" class="output_subarea output_javascript ">
+<div id="183facad-18bb-4b1f-9845-96afb3b2f3e8" class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#6649b40a-bb04-4b99-ba6b-4ee4ba1587bf');
+var element = $('#183facad-18bb-4b1f-9845-96afb3b2f3e8');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -443,10 +443,10 @@ IPython.notebook.save_checkpoint();
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> export
 
-import fs from &quot;fs&quot;
+import fs from "fs"
 
-export var getApplicationStartTeal = () =&gt; fs.readFileSync(&#39;../lib_teal/application_start.teal&#39;).toString()
-export var getClearProgramTeal = () =&gt; fs.readFileSync(&#39;../lib_teal/clear_program.teal&#39;).toString()
+export var getApplicationStartTeal = () =&gt; fs.readFileSync('../lib_teal/application_start.teal').toString()
+export var getClearProgramTeal = () =&gt; fs.readFileSync('../lib_teal/clear_program.teal').toString()
 </pre></div>
 
     </div>
@@ -487,7 +487,7 @@ export var getClearProgramTeal = () =&gt; fs.readFileSync(&#39;../lib_teal/clear
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> run
 
-import * as algo_network from &quot;./algo_network&quot;
+import * as algo_network from "./algo_network"
 
 var client = algo_network.newClient(token, url, port)
 
@@ -551,8 +551,8 @@ console.log({ status })
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">node</span> run
 
-import * as algo_network from &quot;./algo_network&quot;
-import * as tictactoe_pyteal from &quot;./tictactoe_pyteal&quot;
+import * as algo_network from "./algo_network"
+import * as tictactoe_pyteal from "./tictactoe_pyteal"
 
 var client = algo_network.newClient(token, url, port)
 var output = await algo_network.deployApplication(
@@ -689,16 +689,16 @@ console.log(output)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">timeout_seconds</span> <span class="o">=</span> <span class="mi">90</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../lib_teal/application_start.teal&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">application_start</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;3600&#39;</span><span class="p">,</span> <span class="s1">&#39;90&#39;</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../lib_teal/game_funds_escrow.teal&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">game_funds_escrow</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../lib_teal/clear_program.teal&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">clear_program</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'../lib_teal/application_start.teal'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">application_start</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'3600'</span><span class="p">,</span> <span class="s1">'90'</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'../lib_teal/game_funds_escrow.teal'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">game_funds_escrow</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'../lib_teal/clear_program.teal'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">clear_program</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">number_of_int</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;5:AppVariables.number_of_int&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'5:AppVariables.number_of_int'</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">5</span>
 
 <span class="k">def</span> <span class="nf">number_of_str</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;5:AppVariables.number_of_str&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'5:AppVariables.number_of_str'</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">4</span>
 </pre></div>
 
@@ -725,8 +725,9 @@ console.log(output)
 <div class="output_area">
 
 
+
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="GameEngineService" class="doc_header"><code>class</code> <code>GameEngineService</code><a href="lib_py/tictactoe_testnet.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>GameEngineService</code>(<strong><code>app_creator_pk</code></strong>, <strong><code>app_creator_address</code></strong>, <strong><code>player_x_pk</code></strong>, <strong><code>player_x_address</code></strong>, <strong><code>player_o_pk</code></strong>, <strong><code>player_o_address</code></strong>)</p>
+<h2 id="GameEngineService" class="doc_header"><code>class</code> <code>GameEngineService</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_testnet.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>GameEngineService</code>(<strong><code>app_creator_pk</code></strong>, <strong><code>app_creator_address</code></strong>, <strong><code>player_x_pk</code></strong>, <strong><code>player_x_address</code></strong>, <strong><code>player_o_pk</code></strong>, <strong><code>player_o_address</code></strong>)</p>
 </blockquote>
 <p>Engine that defines the interaction and initialization of the Tic-Tac-Toe DApp.</p>
 
@@ -768,11 +769,11 @@ console.log(output)
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">algosdk.v2client</span> <span class="kn">import</span> <span class="n">algod</span>
 
-<span class="n">token</span> <span class="o">=</span> <span class="s1">&#39;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&#39;</span>
-<span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:4001&quot;</span>
+<span class="n">token</span> <span class="o">=</span> <span class="s1">'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'</span>
+<span class="n">address</span> <span class="o">=</span> <span class="s2">"http://localhost:4001"</span>
 
 <span class="k">def</span> <span class="nf">get_client</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">algod</span><span class="o">.</span><span class="n">AlgodClient</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;X-Api-key&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">algod</span><span class="o">.</span><span class="n">AlgodClient</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">'X-Api-key'</span><span class="p">:</span> <span class="n">token</span><span class="p">})</span>
 </pre></div>
 
     </div>
@@ -790,15 +791,15 @@ console.log(output)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">accounts</span> <span class="o">=</span> <span class="p">[</span>
- <span class="p">{</span><span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="s1">&#39;OBVzhzxAK4ZPdaF1QbkXsd8hgRUPJeCfYFjFghgMGnLmcpaAD0mdQJ3Rwq/RwklKGQWAbaIP9zb5BUmcZM4DOg==&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;4ZZJNAAPJGOUBHORYKX5DQSJJIMQLADNUIH7ONXZAVEZYZGOAM5CM7HV2M&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;mnemonic&#39;</span><span class="p">:</span> <span class="s1">&#39;poem slush dry adult final thunder price pause concert topic mesh wild dry gate judge celery winter list promote clump country loan move about faith&#39;</span><span class="p">},</span>
- <span class="p">{</span><span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="s1">&#39;lHFQVWKpvRYU00yAQqHOHJegn5nvP0owYkroBFKr94qGmASQPz4KrmlSbpmNeevb+v+eqDR1owwGEmFARGRDOQ==&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;Q2MAJEB7HYFK42KSN2MY26PL3P5P7HVIGR22GDAGCJQUARDEIM4WLHSIFQ&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;mnemonic&#39;</span><span class="p">:</span> <span class="s1">&#39;crater dove click normal kitten aisle obvious error exotic lunar guard impact donkey gun lamp divide announce match cement excess piano turn fish above make&#39;</span><span class="p">},</span>
- <span class="p">{</span><span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="s1">&#39;0DNKDAK5QfWuMCTMNJ+Re5mSlc7rbI0q1UOUYDmvPGpVTJc2PAknfOwS1rk+MAkE5ynA1XbqLeAGlYGA1H9T4w==&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;KVGJONR4BETXZ3AS224T4MAJATTSTQGVO3VC3YAGSWAYBVD7KPR23RKNBI&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;mnemonic&#39;</span><span class="p">:</span> <span class="s1">&#39;key churn alert mother lock run lyrics category office lamp silver nut cement pistol fury hollow faculty feed capable announce index cloth faint about bid&#39;</span><span class="p">}</span>
+ <span class="p">{</span><span class="s1">'private_key'</span><span class="p">:</span> <span class="s1">'OBVzhzxAK4ZPdaF1QbkXsd8hgRUPJeCfYFjFghgMGnLmcpaAD0mdQJ3Rwq/RwklKGQWAbaIP9zb5BUmcZM4DOg=='</span><span class="p">,</span>
+  <span class="s1">'address'</span><span class="p">:</span> <span class="s1">'4ZZJNAAPJGOUBHORYKX5DQSJJIMQLADNUIH7ONXZAVEZYZGOAM5CM7HV2M'</span><span class="p">,</span>
+  <span class="s1">'mnemonic'</span><span class="p">:</span> <span class="s1">'poem slush dry adult final thunder price pause concert topic mesh wild dry gate judge celery winter list promote clump country loan move about faith'</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">'private_key'</span><span class="p">:</span> <span class="s1">'lHFQVWKpvRYU00yAQqHOHJegn5nvP0owYkroBFKr94qGmASQPz4KrmlSbpmNeevb+v+eqDR1owwGEmFARGRDOQ=='</span><span class="p">,</span>
+  <span class="s1">'address'</span><span class="p">:</span> <span class="s1">'Q2MAJEB7HYFK42KSN2MY26PL3P5P7HVIGR22GDAGCJQUARDEIM4WLHSIFQ'</span><span class="p">,</span>
+  <span class="s1">'mnemonic'</span><span class="p">:</span> <span class="s1">'crater dove click normal kitten aisle obvious error exotic lunar guard impact donkey gun lamp divide announce match cement excess piano turn fish above make'</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">'private_key'</span><span class="p">:</span> <span class="s1">'0DNKDAK5QfWuMCTMNJ+Re5mSlc7rbI0q1UOUYDmvPGpVTJc2PAknfOwS1rk+MAkE5ynA1XbqLeAGlYGA1H9T4w=='</span><span class="p">,</span>
+  <span class="s1">'address'</span><span class="p">:</span> <span class="s1">'KVGJONR4BETXZ3AS224T4MAJATTSTQGVO3VC3YAGSWAYBVD7KPR23RKNBI'</span><span class="p">,</span>
+  <span class="s1">'mnemonic'</span><span class="p">:</span> <span class="s1">'key churn alert mother lock run lyrics category office lamp silver nut cement pistol fury hollow faculty feed capable announce index cloth faint about bid'</span><span class="p">}</span>
 <span class="p">]</span>
 
 <span class="n">accounts</span>
@@ -857,9 +858,9 @@ console.log(output)
 <span class="n">player_o_pk</span><span class="p">,</span> <span class="n">player_o_address</span> <span class="o">=</span> <span class="n">algosdk</span><span class="o">.</span><span class="n">account</span><span class="o">.</span><span class="n">generate_account</span><span class="p">()</span>
 
 <span class="n">accounts2</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="n">acc_pk</span><span class="p">,</span> <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="n">acc_address</span><span class="p">,</span> <span class="s1">&#39;mnemonic&#39;</span><span class="p">:</span> <span class="n">algosdk</span><span class="o">.</span><span class="n">mnemonic</span><span class="o">.</span><span class="n">from_private_key</span><span class="p">(</span><span class="n">acc_pk</span><span class="p">)},</span>
-    <span class="p">{</span><span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="n">player_x_pk</span><span class="p">,</span> <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="n">player_x_address</span><span class="p">,</span> <span class="s1">&#39;mnemonic&#39;</span><span class="p">:</span> <span class="n">algosdk</span><span class="o">.</span><span class="n">mnemonic</span><span class="o">.</span><span class="n">from_private_key</span><span class="p">(</span><span class="n">player_x_pk</span><span class="p">)},</span>
-    <span class="p">{</span><span class="s1">&#39;private_key&#39;</span><span class="p">:</span> <span class="n">player_o_pk</span><span class="p">,</span> <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="n">player_o_address</span><span class="p">,</span> <span class="s1">&#39;mnemonic&#39;</span><span class="p">:</span> <span class="n">algosdk</span><span class="o">.</span><span class="n">mnemonic</span><span class="o">.</span><span class="n">from_private_key</span><span class="p">(</span><span class="n">player_o_pk</span><span class="p">)}</span>
+    <span class="p">{</span><span class="s1">'private_key'</span><span class="p">:</span> <span class="n">acc_pk</span><span class="p">,</span> <span class="s1">'address'</span><span class="p">:</span> <span class="n">acc_address</span><span class="p">,</span> <span class="s1">'mnemonic'</span><span class="p">:</span> <span class="n">algosdk</span><span class="o">.</span><span class="n">mnemonic</span><span class="o">.</span><span class="n">from_private_key</span><span class="p">(</span><span class="n">acc_pk</span><span class="p">)},</span>
+    <span class="p">{</span><span class="s1">'private_key'</span><span class="p">:</span> <span class="n">player_x_pk</span><span class="p">,</span> <span class="s1">'address'</span><span class="p">:</span> <span class="n">player_x_address</span><span class="p">,</span> <span class="s1">'mnemonic'</span><span class="p">:</span> <span class="n">algosdk</span><span class="o">.</span><span class="n">mnemonic</span><span class="o">.</span><span class="n">from_private_key</span><span class="p">(</span><span class="n">player_x_pk</span><span class="p">)},</span>
+    <span class="p">{</span><span class="s1">'private_key'</span><span class="p">:</span> <span class="n">player_o_pk</span><span class="p">,</span> <span class="s1">'address'</span><span class="p">:</span> <span class="n">player_o_address</span><span class="p">,</span> <span class="s1">'mnemonic'</span><span class="p">:</span> <span class="n">algosdk</span><span class="o">.</span><span class="n">mnemonic</span><span class="o">.</span><span class="n">from_private_key</span><span class="p">(</span><span class="n">player_o_pk</span><span class="p">)}</span>
 <span class="p">]</span>
 </pre></div>
 
@@ -884,49 +885,49 @@ console.log(output)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">game_actions</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="s1">'O'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
     <span class="p">],</span>
-    <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="s1">'X'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
     <span class="p">],</span>
-    <span class="s1">&#39;tie&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="s1">'tie'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
     <span class="p">],</span>
-    <span class="s1">&#39;timeout&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="s1">'timeout'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="p">],</span>
-    <span class="s1">&#39;error_position_repeat&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="s1">'error_position_repeat'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="p">],</span>
-    <span class="s1">&#39;error_position_invalid&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="s1">'error_position_invalid'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"O"</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
     <span class="p">],</span>
-    <span class="s1">&#39;error_player_invalid&#39;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="s1">'error_player_invalid'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"X"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
@@ -960,21 +961,21 @@ console.log(output)
 
     <span class="n">game_engine_fixed</span> <span class="o">=</span> \
         <span class="n">GameEngineService</span><span class="p">(</span>
-            <span class="n">app_creator_pk</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;private_key&#39;</span><span class="p">],</span>
-            <span class="n">app_creator_address</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;address&#39;</span><span class="p">],</span>
-            <span class="n">player_x_pk</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;private_key&#39;</span><span class="p">],</span>
-            <span class="n">player_x_address</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;address&#39;</span><span class="p">],</span>
-            <span class="n">player_o_pk</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;private_key&#39;</span><span class="p">],</span>
-            <span class="n">player_o_address</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;address&#39;</span><span class="p">]</span>
+            <span class="n">app_creator_pk</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'private_key'</span><span class="p">],</span>
+            <span class="n">app_creator_address</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'address'</span><span class="p">],</span>
+            <span class="n">player_x_pk</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'private_key'</span><span class="p">],</span>
+            <span class="n">player_x_address</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'address'</span><span class="p">],</span>
+            <span class="n">player_o_pk</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">'private_key'</span><span class="p">],</span>
+            <span class="n">player_o_address</span><span class="o">=</span><span class="n">accounts</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">'address'</span><span class="p">]</span>
         <span class="p">)</span>
 
     <span class="n">log</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">log</span><span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">deploy_application</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-    <span class="n">log</span><span class="p">[</span><span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">start_game</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">deploy_application</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">[</span><span class="s1">'start_game_txn_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">start_game</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
     <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
     
     <span class="k">for</span> <span class="n">player_id</span><span class="p">,</span> <span class="n">action_position</span> <span class="ow">in</span> <span class="n">game_actions</span><span class="p">[</span><span class="n">moves</span><span class="p">]:</span>
-        <span class="n">log_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;play_action_txn_log_</span><span class="si">{</span><span class="n">player_id</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">action_position</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">log_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'play_action_txn_log_</span><span class="si">{</span><span class="n">player_id</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">action_position</span><span class="si">}</span><span class="s1">'</span>
         
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">error</span><span class="p">:</span>
@@ -984,49 +985,49 @@ console.log(output)
                     <span class="n">action_position</span><span class="o">=</span><span class="n">action_position</span>
                 <span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">log</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">log_id</span><span class="si">}</span><span class="s1">_error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="n">log</span><span class="p">[</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">log_id</span><span class="si">}</span><span class="s1">_error'</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
             <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="n">reraise</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total (s): </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total (s): </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="n">e</span>
         
         <span class="k">if</span> <span class="n">early_stop</span><span class="p">:</span>
             <span class="k">break</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">error</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">moves</span> <span class="o">==</span> <span class="s1">&#39;timeout&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">moves</span> <span class="o">==</span> <span class="s1">'timeout'</span><span class="p">:</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">timeout_seconds</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">funds</span><span class="p">):</span>
-            <span class="n">log</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;fund_escrow_txn_log_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">fund_escrow</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+            <span class="n">log</span><span class="p">[</span><span class="sa">f</span><span class="s1">'fund_escrow_txn_log_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">fund_escrow</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
         
         <span class="k">def</span> <span class="nf">revert_player</span><span class="p">(</span><span class="n">player</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">should_revert_refund</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">player</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="s1">&#39;O&#39;</span> <span class="k">if</span> <span class="n">player</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span> <span class="k">else</span> <span class="s1">&#39;X&#39;</span>
+                <span class="k">return</span> <span class="s1">'O'</span> <span class="k">if</span> <span class="n">player</span> <span class="o">==</span> <span class="s1">'X'</span> <span class="k">else</span> <span class="s1">'X'</span>
 
-        <span class="k">if</span> <span class="n">moves</span> <span class="o">==</span> <span class="s1">&#39;tie&#39;</span><span class="p">:</span>
-            <span class="n">log</span><span class="p">[</span><span class="s1">&#39;tie_money_refund_txn_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">tie_money_refund</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">moves</span> <span class="o">==</span> <span class="s1">'tie'</span><span class="p">:</span>
+            <span class="n">log</span><span class="p">[</span><span class="s1">'tie_money_refund_txn_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">tie_money_refund</span><span class="p">(</span><span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">moves</span> <span class="o">==</span> <span class="s1">&#39;timeout&#39;</span><span class="p">:</span>
-                    <span class="n">log</span><span class="p">[</span><span class="s1">&#39;win_money_refund_txn_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">win_money_refund</span><span class="p">(</span>
+                <span class="k">if</span> <span class="n">moves</span> <span class="o">==</span> <span class="s1">'timeout'</span><span class="p">:</span>
+                    <span class="n">log</span><span class="p">[</span><span class="s1">'win_money_refund_txn_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">win_money_refund</span><span class="p">(</span>
                         <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> 
-                        <span class="n">player_id</span><span class="o">=</span><span class="n">revert_player</span><span class="p">(</span><span class="n">game_actions</span><span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">player_id</span><span class="o">=</span><span class="n">revert_player</span><span class="p">(</span><span class="n">game_actions</span><span class="p">[</span><span class="s1">'timeout'</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
                     <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">log</span><span class="p">[</span><span class="s1">&#39;win_money_refund_txn_log&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">win_money_refund</span><span class="p">(</span>
+                    <span class="n">log</span><span class="p">[</span><span class="s1">'win_money_refund_txn_log'</span><span class="p">]</span> <span class="o">=</span> <span class="n">game_engine_fixed</span><span class="o">.</span><span class="n">win_money_refund</span><span class="p">(</span>
                         <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">,</span> 
                         <span class="n">player_id</span><span class="o">=</span><span class="n">revert_player</span><span class="p">(</span><span class="n">moves</span><span class="p">)</span>
                     <span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">log</span><span class="p">[</span><span class="s1">&#39;win_money_refund_txn_log_error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
+                <span class="n">log</span><span class="p">[</span><span class="s1">'win_money_refund_txn_log_error'</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
                 <span class="k">if</span> <span class="n">reraise</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total (s): </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total (s): </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                     <span class="k">raise</span> <span class="n">e</span>
 
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total (s): </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total (s): </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">log</span>
 
@@ -1034,8 +1035,8 @@ console.log(output)
     <span class="k">try</span><span class="p">:</span>
         <span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="n">expected</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;log:&#39;</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;expected:&#39;</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'log:'</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'expected:'</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
         <span class="k">raise</span> <span class="n">e</span>
     <span class="k">return</span> <span class="n">log</span>
 </pre></div>
@@ -1061,17 +1062,17 @@ console.log(output)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_4&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_8&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_6&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_5&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;win_money_refund_txn_log&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'O'</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_2'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_4'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_8'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_6'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_5'</span><span class="p">,</span> 
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span> 
+     <span class="s1">'win_money_refund_txn_log'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1205,18 +1206,18 @@ Total (s): 65.96426892280579
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_1&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_5&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_4&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_8&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_6&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;win_money_refund_txn_log&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'X'</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_1'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_2'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_5'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_4'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_8'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_6'</span><span class="p">,</span> 
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span> 
+     <span class="s1">'win_money_refund_txn_log'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1358,20 +1359,20 @@ Total (s): 74.47948169708252
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;tie&#39;</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_1&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_4&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_3&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_5&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_7&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_6&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_8&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;tie_money_refund_txn_log&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'tie'</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_1'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_2'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_4'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_3'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_5'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_7'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_6'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_8'</span><span class="p">,</span> 
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span> 
+     <span class="s1">'tie_money_refund_txn_log'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1531,13 +1532,13 @@ Total (s): 91.09785580635071
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;win_money_refund_txn_log&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'timeout'</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_2'</span><span class="p">,</span> 
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span> 
+     <span class="s1">'win_money_refund_txn_log'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1639,20 +1640,20 @@ Total (s): 120.3987512588501
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">funds</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_1&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_5&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_4&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_8&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_6&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;fund_escrow_txn_log_1&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;fund_escrow_txn_log_2&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;win_money_refund_txn_log&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'X'</span><span class="p">,</span> <span class="n">funds</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span>
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span>
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_1'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_2'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_5'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_4'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_8'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_6'</span><span class="p">,</span> 
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span>
+     <span class="s1">'fund_escrow_txn_log_1'</span><span class="p">,</span>
+     <span class="s1">'fund_escrow_txn_log_2'</span><span class="p">,</span>
+     <span class="s1">'win_money_refund_txn_log'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1810,16 +1811,16 @@ Total (s): 91.69624781608582
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">funds</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_4&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_8&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_6&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_5&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;win_money_refund_txn_log_error&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'O'</span><span class="p">,</span> <span class="n">funds</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_2'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_4'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_8'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_6'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_5'</span><span class="p">,</span> 
+     <span class="s1">'win_money_refund_txn_log_error'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -1944,12 +1945,12 @@ Total (s): 57.98889446258545
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">early_stop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;win_money_refund_txn_log_error&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'O'</span><span class="p">,</span> <span class="n">early_stop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span>
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span>
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span>
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span>
+     <span class="s1">'win_money_refund_txn_log_error'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -2042,17 +2043,17 @@ Total (s): 24.222312688827515
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">should_revert_refund</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_4&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_8&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_6&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_5&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;win_money_refund_txn_log_error&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'O'</span><span class="p">,</span> <span class="n">should_revert_refund</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span>
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_2'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_4'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_8'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_6'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_5'</span><span class="p">,</span> 
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span> 
+     <span class="s1">'win_money_refund_txn_log_error'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -2185,13 +2186,13 @@ Total (s): 66.41253232955933
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="n">should_revert_refund</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_2&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;fund_escrow_txn_log_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;win_money_refund_txn_log_error&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'timeout'</span><span class="p">,</span> <span class="n">should_revert_refund</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_2'</span><span class="p">,</span> 
+     <span class="s1">'fund_escrow_txn_log_0'</span><span class="p">,</span> 
+     <span class="s1">'win_money_refund_txn_log_error'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -2292,11 +2293,11 @@ Total (s): 121.34738779067993
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;error_position_repeat&#39;</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_0_error&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'error_position_repeat'</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_0_error'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -2380,11 +2381,11 @@ Total (s): 16.34138774871826
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;error_position_invalid&#39;</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;play_action_txn_log_O_9_error&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'error_position_invalid'</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span> 
+     <span class="s1">'play_action_txn_log_O_9_error'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -2468,11 +2469,11 @@ Total (s): 16.237560749053955
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">expect_run</span><span class="p">(</span>
-    <span class="n">run</span><span class="p">(</span><span class="s1">&#39;error_player_invalid&#39;</span><span class="p">),</span> 
-    <span class="p">[</span><span class="s1">&#39;app_deployment_txn_log&#39;</span><span class="p">,</span> 
-     <span class="s1">&#39;start_game_txn_log&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;play_action_txn_log_X_0&#39;</span><span class="p">,</span>
-     <span class="s1">&#39;play_action_txn_log_X_1_error&#39;</span><span class="p">]</span>
+    <span class="n">run</span><span class="p">(</span><span class="s1">'error_player_invalid'</span><span class="p">),</span> 
+    <span class="p">[</span><span class="s1">'app_deployment_txn_log'</span><span class="p">,</span> 
+     <span class="s1">'start_game_txn_log'</span><span class="p">,</span>
+     <span class="s1">'play_action_txn_log_X_0'</span><span class="p">,</span>
+     <span class="s1">'play_action_txn_log_X_1_error'</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -2555,7 +2556,7 @@ Total (s): 16.189904928207397
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;error_position_repeat&#39;</span><span class="p">,</span> <span class="n">reraise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="s1">'error_position_repeat'</span><span class="p">,</span> <span class="n">reraise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2752,7 +2753,7 @@ assert
                 <div class="col-lg-12 footer">
                   <p><img src="/tictactoe_spiral/docs/assets/images/company_logo.png" alt="Company logo"/></p>
                &copy;2022 fc1943s. All rights reserved. <br />
- Site last generated: Jul 15, 2022 <br />
+ Site last generated: Aug 11, 2022 <br />
                 </div>
             </div>
 </footer>
