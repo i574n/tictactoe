@@ -29,9 +29,9 @@ jobs:
       - run: echo "BUN_INSTALL=$HOME/.bun" >> $GITHUB_ENV
       - run: echo "PATH=$BUN_INSTALL/bin:$PATH" >> $GITHUB_ENV
 
-      - run: cd ./web && bun run build
       - run: cd ./web && bun run playwright-install
       - run: cd ./web && bun run e2e
+      - run: cd ./web && bun run build
 
       - uses: actions/upload-artifact@v2
         if: always()

@@ -16,9 +16,46 @@ import { IGunInstance as IGunJS } from "gun"
 import styles from "./App.module.css"
 
 
+type NoneEmptyArray = readonly any[] & { 0: any }
+type CompareUnionWithArray<P, Q extends NoneEmptyArray> = Exclude<P, Q[number]> extends never
+    ? (Exclude<Q[number], P> extends never ? Q : ReadonlyArray<P>)
+    : readonly [...Q, Exclude<P, Q[number]>]
+export function assertTypeEquals<P, Q extends NoneEmptyArray>(_test: CompareUnionWithArray<P, Q>): void { }
+
+
 const soul = "app"
 const CODESPACE_NAME = process.env.CODESPACE_NAME
 const IS_TEST = !!process.env.IS_TEST
+
+const GUN_TYPE = ['rs', 'js'] as const
+
+type Gun =
+    | { type: 'rs', gun: GunRS }
+    | { type: 'js', gun: IGunJS }
+type GunType = Gun["type"]
+assertTypeEquals<GunType, typeof GUN_TYPE>(GUN_TYPE)
+
+type GunSubscription =
+    | { type: 'rs', subscription: number }
+    | { type: 'js', subscription: boolean }
+type GunSubscriptionType = GunSubscription["type"]
+assertTypeEquals<GunSubscriptionType, typeof GUN_TYPE>(GUN_TYPE)
+
+
+type GunModel = { [K in GunType]: { rs?: GunRS, js?: IGunJS }[K] }
+
+type GunSubscriptionModel = { [K in GunType]: { rs?: number, js?: boolean }[K] }
+
+type Url = { url: string }
+
+const newGun = (type: GunType, { url }: Url): Gun | null => {
+    if (type === 'rs') {
+        return { type, gun: new GunRS(url) }
+    } else if (type === 'js') {
+        return { type, gun: true ? null as unknown as IGunJS<any> : new GunJS(url) }
+    }
+    return null
+}
 
 const init = {
     token: tictactoe_testnet.token,
@@ -29,8 +66,7 @@ const init = {
     accounts: tictactoe_testnet.accounts,
     status: [] as any[],
     deploy: [] as any[],
-    gunRs: {} as { [_: string]: GunRS },
-    gunJs: {} as { [_: string]: IGunJS },
+    gun: {} as { [_: string]: Gun[] },
     counter: [] as number[]
 }
 
@@ -43,23 +79,34 @@ type Events = {
 
 const runId = Math.random().toString(36).substring(2, 5)
 
-const getLog = (getLocals: () => object, argsColor = '#888') => {
-    return (...args: any[]) => {
-        IS_TEST
-            ? console.log(
-                `@${runId}`,
-                JSON.stringify(args),
-                JSON.stringify(getLocals())
-            )
-            : console.log(
-                `@${runId} %c%s %c%s`,
-                `font-weight: bold; color: ${argsColor}`,
-                JSON.stringify(args),
-                'font-weight: bold; color: #444',
-                JSON.stringify(getLocals())
-            )
+const getStateLocals = (state: State) => {
+    return {
+        counter: state.counter,
+        gun: Object.entries(state.gun)
+            .map(([_url, gunList]) =>
+                gunList
+                    .map(({ type, gun }) => gun ? type : null)
+                    .filter(type => type))
     }
 }
+
+const getLog =
+    (getLocals: () => object, argsColor = '#888') =>
+        (...args: any[]) => {
+            IS_TEST
+                ? console.log(
+                    `@${runId}`,
+                    JSON.stringify(args),
+                    JSON.stringify(getLocals())
+                )
+                : console.log(
+                    `@${runId} %c%s %c%s`,
+                    `font-weight: bold; color: ${argsColor}`,
+                    JSON.stringify(args),
+                    'font-weight: bold; color: #444',
+                    JSON.stringify(getLocals())
+                )
+        }
 
 const store = createStoreon([(store: StoreonStore<State, Events>) => {
     store.on('@init', () => init)
@@ -197,32 +244,41 @@ function DbConnection() {
 function GunListener() {
     const [state, dispatch] = useStoreon<State, Events>()
 
-    const getLocals = () => {
-        return {
-            counter: state.counter,
-            gunRs: Object.keys(state.gunRs).length,
-            gunJs: Object.keys(state.gunJs).length
-        }
-    }
+    const getLocals = () => ({
+        ...getStateLocals(state)
+    })
 
     const log = getLog(getLocals, '#cf1100')
 
     log('GunListener()')
 
-    const gunJsEnabled = false
-
     const refresh = () => {
-        const url = `${state.dbUrl}:${state.dbPort}/gun`
-        const gunRs = ((state.gunRs as any)[url] as GunRS | null) || new GunRS(url)
-        const gunJs = ((state.gunJs as any)[url] as IGunJS | null) || new GunJS(url)
+        const currentUrl = `${state.dbUrl}:${state.dbPort}/gun`
 
-        dispatch('set', {
-            gunRs: { ...state.gunRs, [url]: gunRs },
-            gunJs: gunJsEnabled ? { ...state.gunJs, [url]: gunJs } : state.gunJs
-        })
+        const gun = Object.entries({
+            ...state.gun,
+            [currentUrl]: state.gun[currentUrl] || []
+        }).reduce((accGun, [url, gunList]) => ({
+            ...accGun,
+            [url]:
+                Object.entries(
+                    [
+                        ...GUN_TYPE.map(type => ({ type, gun: null })),
+                        ...gunList
+                    ].reduce((accGunModel, { type, gun }) => ({
+                        ...accGunModel,
+                        [type]: gun || accGunModel[type] || newGun(type, { url })?.gun
+                    }), {} as GunModel)
+                ).reduce((accGunList, [type, gun]) => [
+                    ...accGunList,
+                    { type, gun } as Gun
+                ], [] as Gun[])
+        }), {} as typeof state.gun)
+
+        dispatch('set', { gun })
     }
 
-    let unbind = store.on('@changed', (_state, changed) => {
+    const unbind = store.on('@changed', (_state, changed) => {
         log('GunListener.store.@changed', { changed: Object.keys(changed) })
         if (changed.dbUrl || changed.dbPort) {
             refresh()
@@ -244,20 +300,19 @@ function GunListener() {
 function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
     const [state, dispatch] = useStoreon<State, Events>()
 
-    const [subscriptionRs, setSubscriptionRs] = createSignal({} as { [_: string]: number })
-    const [subscriptionJs, setSubscriptionJs] = createSignal({} as { [_: string]: boolean })
+    const [subscriptions, setSubscriptions] = createSignal({} as { [_: string]: GunSubscription[] })
 
-    const getLocals = () => {
-        return {
-            key,
-            [`state.${key}.length`]: state[key].length,
-            counter: state.counter,
-            gunRs: Object.keys(state.gunRs).length,
-            gunJs: Object.keys(state.gunJs).length,
-            subscriptionRs: Object.values(subscriptionRs()),
-            subscriptionJs: Object.keys(subscriptionJs()).length
-        }
-    }
+    const getLocals = () => ({
+        ...getStateLocals(state),
+        key,
+        [`state.${key}.length`]: state[key].length,
+        subscriptions: Object.entries(subscriptions())
+            .map(([_url, subscription]) =>
+                Object.entries(subscription)
+                    .map(([type, value]) =>
+                        !!value ? type : null)
+                    .filter(type => type))
+    })
 
     const defaultColors = Object.keys(init).reduce(
         (acc, x) => ({ ...acc, [x]: '#00cf2d' }),
@@ -270,7 +325,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
     let interval = null as NodeJS.Timer | null
 
-    const subscribe = (gunRs: { [_: string]: GunRS }, gunJs: { [_: string]: IGunJS }) => {
+    const subscribe = (gun: { [_: string]: Gun[] }) => {
         log('useFetch.subscribe()')
 
         const parse = (raw: object) => {
@@ -281,66 +336,90 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
             return Array.isArray(data) ? data : [data]
         }
 
-        const subscriptionsRs = Object.entries(gunRs).map(([url, _gunRs]) => {
-            const subscription = _gunRs.get(soul).get(key).on((v: any, k: any) => {
-                interval && clearInterval(interval)
+        const currentSubscriptions = subscriptions()
 
-                const value = parse(v)
-                log('useFetch.subscribe _gunRs.on() callback', { k, subscription, length: value.length })
-                dispatch('set', { [key]: value })
-            })
-            log('useFetch.subscribe() gunRs', { subscription })
-            return { url, subscription }
-        })
-        setSubscriptionRs({
-            ...subscriptionRs(),
-            ...subscriptionsRs.reduce((acc, { url, subscription }) => ({ ...acc, [url]: subscription }), {})
-        })
+        const newSubscriptions = Object.entries(gun).reduce((accGun, [url, gunList]) => ({
+            ...accGun,
+            [url]: gunList.reduce((accGunModel, { type, gun }) => {
+                if (gun) {
+                    const currentSubscriptionModel = currentSubscriptions[url] || ([] as GunSubscription[])
+                    if (type === 'rs') {
+                        const currentSubscription = currentSubscriptionModel
+                            .find(({ type: subscriptionType }) => subscriptionType === type)?.subscription as number
+                        const node = gun.get(soul).get(key)
+                        if (currentSubscription) {
+                            log('useFetch.subscribe rs unsubscribe')
+                            node.off(currentSubscription)
+                        }
+                        const subscription = node.on((v: any, k: any) => {
+                            interval && clearInterval(interval)
 
-        const subscriptionsJs = Object.entries(gunJs).map(([url, _gunJs]) => {
-            _gunJs.get(soul).get(key).on((v: any, k: any) => {
-                interval && clearInterval(interval)
+                            const value = parse(v)
+                            log('useFetch.subscribe node.on() rs callback', { k, subscription, length: value.length })
+                            dispatch('set', { [key]: value })
+                        })
+                        log('useFetch.subscribe() gunRs', { subscription })
+                        return { ...accGunModel, [type]: subscription }
+                    } else if (type === 'js') {
+                        const currentSubscription = currentSubscriptionModel
+                            .find(({ type: subscriptionType }) => subscriptionType === type)?.subscription as boolean
+                        const node = (gun as IGunJS<any>).get(soul).get(key)
+                        if (currentSubscription) {
+                            log('useFetch.subscribe js unsubscribe')
+                            node.off()
+                        }
+                        node.on((v: any, k: any) => {
+                            interval && clearInterval(interval)
 
-                const value = parse(v)
-                log('useFetch.subscribe _gunJs.on() callback', { k, length: value.length })
-                dispatch('set', { [key]: value })
-            })
-            log('useFetch.subscribe() gunJs')
-            return url
-        })
-        setSubscriptionJs({
-            ...subscriptionJs(),
-            ...subscriptionsJs.reduce((acc, url) => ({ ...acc, [url]: true }), {})
-        })
+                            const value = parse(v)
+                            log('useFetch.subscribe node.on() js callback', { k, length: value.length })
+                            dispatch('set', { [key]: value })
+                        })
+                        log('useFetch.subscribe() gunJs')
+                        return { ...accGunModel, [type]: true }
+                    }
+                }
+
+                return accGunModel
+            }, accGun[url])
+        }), currentSubscriptions)
+        setSubscriptions(newSubscriptions)
     }
 
     const unsubscribe = (state: State) => {
-        const _subscriptionRs = subscriptionRs()
-        Object.entries(_subscriptionRs).forEach(([url, subscription]) => {
-            log('useFetch.unsubscribe() subscriptionRs', { subscription })
-            const _gunRs = (state.gunRs as any)[url] as GunRS | null
-            _gunRs && _gunRs.get(soul).get(key).off(subscription)
-        })
-        setSubscriptionRs({})
+        log('useFetch.unsubscribe()')
 
-        const _subscriptionJs = subscriptionJs()
-        Object.entries(_subscriptionJs).forEach(([url, _]) => {
-            log('useFetch.unsubscribe() subscriptionJs')
-            const _gunJs = (state.gunJs as any)[url] as IGunJS | null
-            _gunJs && _gunJs.get(soul).get(key).off()
+        const currentSubscriptions = subscriptions()
+
+        Object.entries(currentSubscriptions).forEach(([url, subscriptionList]) => {
+            subscriptionList.forEach(({ type: subscriptionType, subscription }) => {
+                const gun = state.gun[url].find(({ type }) => type === subscriptionType)
+                if (gun) {
+                    if (subscriptionType === 'rs') {
+                        const node = (gun.gun as GunRS).get(soul).get(key)
+                        log('useFetch.unsubscribe rs', { subscription })
+                        node.off(subscription)
+                    } else if (subscriptionType === 'js' && subscription) {
+                        const node = (gun.gun as IGunJS).get(soul).get(key)
+                        log('useFetch.unsubscribe js', { subscription })
+                        node.off()
+                    }
+                }
+            })
         })
-        setSubscriptionJs({})
+
+        setSubscriptions({})
     }
 
-    let unbind = store.on('@changed', (oldState, changed) => {
-        if (changed.gunRs || changed.gunJs) {
+    const unbind = store.on('@changed', (oldState, changed) => {
+        if (changed.gun) {
             log('useFetch.store.@changed', { changed: Object.keys(changed) })
 
             interval && clearInterval(interval)
             interval = setInterval(() => {
                 log('useFetch.createEffect() callback setTimeout subscribe...')
                 unsubscribe(oldState)
-                subscribe(changed.gunRs, changed.gunJs)
+                subscribe(changed.gun)
             }, 2000)
         }
     })
@@ -362,14 +441,19 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
         dispatch('set', { [key]: value })
 
-        Object.entries(state.gunRs).forEach(([_url, _gunRs]) => {
-            log('useFetch.request() gunRs')
-            _gunRs.get(soul).get(key).put(value)
-        })
-
-        Object.entries(state.gunJs).forEach(([_url, _gunJs]) => {
-            log('useFetch.request() gunJs')
-            _gunJs.get(soul).get(key).put(value)
+        Object.entries(state.gun).forEach(([_url, gunList]) => {
+            gunList.forEach(({ type, gun }) => {
+                log('useFetch.request()')
+                if (gun) {
+                    if (type === 'rs') {
+                        const node = gun.get(soul).get(key) as GunRS
+                        node.put(value)
+                    } else if (type === 'js') {
+                        const node = (gun as IGunJS).get(soul).get(key)
+                        node.put(value)
+                    }
+                }
+            })
         })
     }
 
@@ -378,14 +462,19 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
         dispatch('set', { [key]: [] })
 
-        Object.entries(state.gunRs).forEach(([_url, _gunRs]) => {
-            log('useFetch.clear() gunRs')
-            _gunRs.get(soul).get(key).put([])
-        })
-
-        Object.entries(state.gunJs).forEach(([_url, _gunJs]) => {
-            log('useFetch.clear() gunJs')
-            _gunJs.get(soul).get(key).put([])
+        Object.entries(state.gun).forEach(([_url, gunList]) => {
+            gunList.forEach(({ type, gun }) => {
+                log('useFetch.clear()')
+                if (gun) {
+                    if (type === 'rs') {
+                        const node = gun.get(soul).get(key) as GunRS
+                        node.put([])
+                    } else if (type === 'js') {
+                        const node = (gun as IGunJS).get(soul).get(key)
+                        node.put([])
+                    }
+                }
+            })
         })
     }
 
