@@ -340,7 +340,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
         const newSubscriptions = Object.entries(gun).reduce((accGun, [url, gunList]) => ({
             ...accGun,
-            [url]: gunList.reduce((accGunModel, { type, gun }) => {
+            [url]: gunList.reduce((accGunList, { type, gun }) => {
                 if (gun) {
                     const currentSubscriptionModel = currentSubscriptions[url] || ([] as GunSubscription[])
                     if (type === 'rs') {
@@ -359,7 +359,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
                             dispatch('set', { [key]: value })
                         })
                         log('useFetch.subscribe() gunRs', { subscription })
-                        return { ...accGunModel, [type]: subscription }
+                        return [...accGunList, { type, subscription }]
                     } else if (type === 'js') {
                         const currentSubscription = currentSubscriptionModel
                             .find(({ type: subscriptionType }) => subscriptionType === type)?.subscription as boolean
@@ -376,12 +376,12 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
                             dispatch('set', { [key]: value })
                         })
                         log('useFetch.subscribe() gunJs')
-                        return { ...accGunModel, [type]: true }
+                        return [...accGunList, { type, subscription: true }]
                     }
                 }
 
-                return accGunModel
-            }, accGun[url])
+                return accGunList
+            }, accGun[url] || [])
         }), currentSubscriptions)
         setSubscriptions(newSubscriptions)
     }
