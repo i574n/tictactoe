@@ -6,7 +6,7 @@ import * as algo_network from "../../lib_ts/algo_network"
 import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
 import algosdk from "algosdk"
 import { createEffect, createSignal, For, on, onCleanup } from "solid-js"
-import { StoreonStore, createStoreon } from "storeon"
+import { StoreonStore, createStoreon, StoreonDispatch } from "storeon"
 import { StoreonProvider, useStoreon } from "@storeon/solidjs"
 import { BiRegularRefresh } from "solid-icons/bi"
 import { Node as GunRS } from "rusty-gun"
@@ -61,6 +61,7 @@ const init = {
     token: tictactoe_testnet.token,
     chainUrl: CODESPACE_NAME ? `http://${CODESPACE_NAME}-4001.githubpreview.dev` : tictactoe_testnet.url,
     chainPort: CODESPACE_NAME ? 80 : tictactoe_testnet.port,
+    db: false,
     dbUrl: CODESPACE_NAME && !IS_TEST ? `ws://${CODESPACE_NAME}-18765.githubpreview.dev` : 'wss://localhost',
     dbPort: CODESPACE_NAME && !IS_TEST ? 80 : (IS_TEST ? 18765 : 8765),
     accounts: tictactoe_testnet.accounts,
@@ -82,6 +83,7 @@ const runId = Math.random().toString(36).substring(2, 5)
 const getStateLocals = (state: State) => {
     return {
         counter: state.counter,
+        db: state.db,
         gun: Object.entries(state.gun)
             .map(([_url, gunList]) =>
                 gunList
@@ -261,18 +263,20 @@ function GunListener() {
         }).reduce((accGun, [url, gunList]) => ({
             ...accGun,
             [url]:
-                Object.entries(
-                    [
-                        ...GUN_TYPE.map(type => ({ type, gun: null })),
-                        ...gunList
-                    ].reduce((accGunModel, { type, gun }) => ({
-                        ...accGunModel,
-                        [type]: gun || accGunModel[type] || newGun(type, { url })?.gun
-                    }), {} as GunModel)
-                ).reduce((accGunList, [type, gun]) => [
-                    ...accGunList,
-                    { type, gun } as Gun
-                ], [] as Gun[])
+                !state.db
+                    ? []
+                    : Object.entries(
+                        [
+                            ...GUN_TYPE.map(type => ({ type, gun: null })),
+                            ...gunList
+                        ].reduce((accGunModel, { type, gun }) => ({
+                            ...accGunModel,
+                            [type]: gun || accGunModel[type] || newGun(type, { url })?.gun
+                        }), {} as GunModel)
+                    ).reduce((accGunList, [type, gun]) => [
+                        ...accGunList,
+                        { type, gun } as Gun
+                    ], [] as Gun[])
         }), {} as typeof state.gun)
 
         dispatch('set', { gun })
@@ -280,7 +284,7 @@ function GunListener() {
 
     const unbind = store.on('@changed', (_state, changed) => {
         log('GunListener.store.@changed', { changed: Object.keys(changed) })
-        if (changed.dbUrl || changed.dbPort) {
+        if (changed.db || changed.dbUrl || changed.dbPort) {
             refresh()
         }
     })
@@ -309,8 +313,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
         subscriptions: Object.entries(subscriptions())
             .map(([_url, subscription]) =>
                 Object.entries(subscription)
-                    .map(([type, value]) =>
-                        !!value ? type : null)
+                    .map(([type, value]) => !!value ? type : null)
                     .filter(type => type))
     })
 
@@ -412,14 +415,14 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
     }
 
     const unbind = store.on('@changed', (oldState, changed) => {
-        if (changed.gun) {
+        if (changed.db || changed.gun) {
             log('useFetch.store.@changed', { changed: Object.keys(changed) })
 
             interval && clearInterval(interval)
             interval = setInterval(() => {
                 log('useFetch.createEffect() callback setTimeout subscribe...')
                 unsubscribe(oldState)
-                subscribe(changed.gun)
+                oldState.db && changed.db && subscribe(changed.gun || oldState.gun)
             }, 2000)
         }
     })
@@ -547,7 +550,14 @@ function Deploy() {
     )
 }
 
-function IframeContainer({ url, title, height } = { url: 'URL', title: 'TITLE', height: '100vh' }) {
+
+function Loader({ id, onLoad, children }: {
+    id?: string,
+    onLoad?: (state: State, dispatch: StoreonDispatch<Events>) => void,
+    children: any
+}) {
+    const [state, dispatch] = useStoreon<State, Events>()
+
     const [loaded, setLoaded] = createSignal(false)
     const [refreshing, setRefreshing] = createSignal(false)
 
@@ -556,23 +566,31 @@ function IframeContainer({ url, title, height } = { url: 'URL', title: 'TITLE', 
         () => refreshing() && setRefreshing(false)
     ))
 
+    const loadClick = () => {
+        onLoad?.(state, dispatch)
+        setLoaded(true)
+    }
+
     return (
-        <>
+        <div id={id}>
             {!loaded()
-                ? <div><button onClick={() => setLoaded(true)}>Load</button></div>
+                ? <div><button onClick={loadClick}>Load</button></div>
                 : (
                     <div class={styles.IframeContainer}>
                         <button onClick={() => setRefreshing(true)}><BiRegularRefresh size="24px" /></button>
-                        {!refreshing() &&
-                            <iframe src={url} title={title} style={`height: ${height}`} />}
+                        {!refreshing() && children}
                     </div>
                 )
             }
-        </>
+        </div>
     )
 }
 
 function App() {
+    const onDbLoad = (_state: State, dispatch: StoreonDispatch<Events>) => {
+        dispatch('set', { db: true })
+    }
+
     return (
         <StoreonProvider store={store}>
             <GunListener />
@@ -589,14 +607,18 @@ function App() {
                         <Accounts />
                     </Row>
                     <Row title="Testnet Bank Dispenser">
-                        <IframeContainer
-                            url="https://bank.testnet.algorand.network"
-                            title="algorand testnet bank"
-                            height="350px" />
+                        <Loader>
+                            <iframe
+                                src="https://bank.testnet.algorand.network"
+                                title="algorand testnet bank"
+                                style={`height: 350px`} />
+                        </Loader>
                     </Row>
                     <tr><td></td></tr>
-                    <Row title="Database Connection">
-                        <DbConnection />
+                    <Row title="Database">
+                        <Loader id="db" onLoad={onDbLoad}>
+                            <DbConnection />
+                        </Loader>
                     </Row>
                     <tr><td></td></tr>
                     <Row title="Counter">

@@ -65,6 +65,10 @@ newTest("test1", async ({ browser }) => {
     }))
 
     await Promise.all(pages.map(async page => {
+        await page.locator('#db button').nth(0).click()
+    }))
+
+    await Promise.all(pages.map(async page => {
         await page.locator('#counter button').nth(1).click()
         await page.locator('#status button').nth(1).click()
         await page.locator('#deploy button').nth(1).click()
