@@ -48,14 +48,19 @@ type GunSubscriptionModel = { [K in GunType]: { rs?: number, js?: boolean }[K] }
 
 type Url = { url: string }
 
+
 const newGun = (type: GunType, { url }: Url): Gun | null => {
     if (type === 'rs') {
+        // return { type, gun: true ? null as unknown as GunRS : new GunRS(url) }
         return { type, gun: new GunRS(url) }
     } else if (type === 'js') {
-        return { type, gun: true ? null as unknown as IGunJS<any> : new GunJS(url) }
+        return { type, gun: new GunJS(url) }
+        // return { type, gun: true ? null as unknown as IGunJS<any> : new GunJS(url) }
     }
     return null
 }
+
+const newTimestamp = () => new Date().getTime()
 
 const init = {
     token: tictactoe_testnet.token,
@@ -65,10 +70,10 @@ const init = {
     dbUrl: CODESPACE_NAME && !IS_TEST ? `ws://${CODESPACE_NAME}-18765.githubpreview.dev` : 'wss://localhost',
     dbPort: CODESPACE_NAME && !IS_TEST ? 80 : (IS_TEST ? 18765 : 8765),
     accounts: tictactoe_testnet.accounts,
-    status: [] as any[],
-    deploy: [] as any[],
+    status: {} as { [_: number]: any },
+    deploy: {} as { [_: number]: any },
     gun: {} as { [_: string]: Gun[] },
-    counter: [] as number[]
+    counter: {} as { [_: number]: number }
 }
 
 type State = typeof init
@@ -82,7 +87,7 @@ const runId = Math.random().toString(36).substring(2, 5)
 
 const getStateLocals = (state: State) => {
     return {
-        counter: state.counter,
+        counter: Object.entries(state.counter),
         db: state.db,
         gun: Object.entries(state.gun)
             .map(([_url, gunList]) =>
@@ -97,12 +102,12 @@ const getLog =
         (...args: any[]) => {
             IS_TEST
                 ? console.log(
-                    `@${runId}`,
+                    `[log] ${runId}`,
                     JSON.stringify(args),
                     JSON.stringify(getLocals())
                 )
                 : console.log(
-                    `@${runId} %c%s %c%s`,
+                    `[log] ${runId} %c%s %c%s`,
                     `font-weight: bold; color: ${argsColor}`,
                     JSON.stringify(args),
                     'font-weight: bold; color: #444',
@@ -282,8 +287,8 @@ function GunListener() {
         dispatch('set', { gun })
     }
 
-    const unbind = store.on('@changed', (_state, changed) => {
-        log('GunListener.store.@changed', { changed: Object.keys(changed) })
+    const unbind = store.on('@changed', (oldState, changed) => {
+        log('GunListener.store.@changed', { oldStateKeys: Object.keys(oldState), changedKeys: Object.keys(changed) })
         if (changed.db || changed.dbUrl || changed.dbPort) {
             refresh()
         }
@@ -301,7 +306,7 @@ function GunListener() {
     return <></>
 }
 
-function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
+function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
     const [state, dispatch] = useStoreon<State, Events>()
 
     const [subscriptions, setSubscriptions] = createSignal({} as { [_: string]: GunSubscription[] })
@@ -309,7 +314,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
     const getLocals = () => ({
         ...getStateLocals(state),
         key,
-        [`state.${key}.length`]: state[key].length,
+        [`state.${key}.length`]: Object.keys(state[key]).length,
         subscriptions: Object.entries(subscriptions())
             .map(([_url, subscription]) =>
                 Object.entries(subscription)
@@ -326,6 +331,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
     log('useFetch()')
 
+    let ev: { off: () => void } | null = null
     let interval = null as NodeJS.Timer | null
 
     const subscribe = (gun: { [_: string]: Gun[] }) => {
@@ -336,7 +342,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
             while (typeof data === 'string') {
                 data = JSON.parse(data)
             }
-            return Array.isArray(data) ? data : [data]
+            return data
         }
 
         const currentSubscriptions = subscriptions()
@@ -346,21 +352,33 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
             [url]: gunList.reduce((accGunList, { type, gun }) => {
                 if (gun) {
                     const currentSubscriptionModel = currentSubscriptions[url] || ([] as GunSubscription[])
+
+                    var listenerHandler = (v: object, k: any, _msg: any, _ev: any) => {
+                        ev = _ev
+
+                        interval && clearInterval(interval)
+
+                        const value: { [_: string]: any } = parse(v)
+                        log('useFetch.subscribe node.on() callback', { k, vType: typeof v, valueKeys: Object.keys(value) })
+                        dispatch('set', {
+                            [key]: Object.keys(value)
+                                .reduce((acc, k) =>
+                                (!value[k]
+                                    ? acc
+                                    : { ...acc, [k]: value[k] }), value)
+                        })
+                    }
+
                     if (type === 'rs') {
                         const currentSubscription = currentSubscriptionModel
                             .find(({ type: subscriptionType }) => subscriptionType === type)?.subscription as number
                         const node = gun.get(soul).get(key)
                         if (currentSubscription) {
                             log('useFetch.subscribe rs unsubscribe')
+                            ev?.off()
                             node.off(currentSubscription)
                         }
-                        const subscription = node.on((v: any, k: any) => {
-                            interval && clearInterval(interval)
-
-                            const value = parse(v)
-                            log('useFetch.subscribe node.on() rs callback', { k, subscription, length: value.length })
-                            dispatch('set', { [key]: value })
-                        })
+                        const subscription = node.on(listenerHandler)
                         log('useFetch.subscribe() gunRs', { subscription })
                         return [...accGunList, { type, subscription }]
                     } else if (type === 'js') {
@@ -369,15 +387,10 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
                         const node = (gun as IGunJS<any>).get(soul).get(key)
                         if (currentSubscription) {
                             log('useFetch.subscribe js unsubscribe')
+                            ev?.off()
                             node.off()
                         }
-                        node.on((v: any, k: any) => {
-                            interval && clearInterval(interval)
-
-                            const value = parse(v)
-                            log('useFetch.subscribe node.on() js callback', { k, length: value.length })
-                            dispatch('set', { [key]: value })
-                        })
+                        node.on(listenerHandler)
                         log('useFetch.subscribe() gunJs')
                         return [...accGunList, { type, subscription: true }]
                     }
@@ -416,7 +429,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 
     const unbind = store.on('@changed', (oldState, changed) => {
         if (changed.db || changed.gun) {
-            log('useFetch.store.@changed', { changed: Object.keys(changed) })
+            log('useFetch.store.@changed', { changedKeys: Object.keys(changed), oldStateKeys: Object.keys(changed) })
 
             interval && clearInterval(interval)
             interval = setInterval(() => {
@@ -434,26 +447,35 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
     const request = async () => {
         log('useFetch.request()')
         const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
-        let value: {}
+        let result: {}
         try {
-            const result = await requestFn(client)
-            value = [...state[key], result]
+            result = await requestFn(client)
         } catch (e) {
-            value = [...state[key], e]
+            result = e as {}
         }
 
-        dispatch('set', { [key]: value })
+        const timestamp = newTimestamp()
+        const data = {
+            [key]: {
+                ...(state[key] as { [_: number]: any }),
+                [`${timestamp}`]: result
+            }
+        }
+
+        dispatch('set', data)
 
         Object.entries(state.gun).forEach(([_url, gunList]) => {
             gunList.forEach(({ type, gun }) => {
-                log('useFetch.request()')
+                log('useFetch.request()', { result, data })
                 if (gun) {
                     if (type === 'rs') {
-                        const node = gun.get(soul).get(key) as GunRS
-                        node.put(value)
+                        const node = (gun as GunRS).get(soul).get(key)
+                        // node.get(`${timestamp}`).put(result)
+                        node.put(data)
                     } else if (type === 'js') {
                         const node = (gun as IGunJS).get(soul).get(key)
-                        node.put(value)
+                        node.get(`${timestamp}`).put(result)
+                        // node.put(data)
                     }
                 }
             })
@@ -463,18 +485,24 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
     const clear = async () => {
         log('useFetch.clear()')
 
-        dispatch('set', { [key]: [] })
+        const data = Object.keys(state[key])
+            .reduce((acc, k) => ({
+                ...acc,
+                [k]: null
+            }), {})
+
+        dispatch('set', { [key]: data })
 
         Object.entries(state.gun).forEach(([_url, gunList]) => {
             gunList.forEach(({ type, gun }) => {
-                log('useFetch.clear()')
+                log('useFetch.clear()', { data })
                 if (gun) {
                     if (type === 'rs') {
                         const node = gun.get(soul).get(key) as GunRS
-                        node.put([])
+                        node.put(data)
                     } else if (type === 'js') {
                         const node = (gun as IGunJS).get(soul).get(key)
-                        node.put([])
+                        node.put(data)
                     }
                 }
             })
@@ -487,7 +515,7 @@ function useFetch(key: keyof util.PickByType<State, any[]>, requestFn: ((_: algo
 function Counter() {
     const [state, _] = useStoreon<State, Events>()
 
-    const { request, clear } = useFetch('counter', async (_client) => state.counter.length)
+    const { request, clear } = useFetch('counter', async (_client) => Object.keys(state.counter).length)
 
     return (
         <div id="counter">
