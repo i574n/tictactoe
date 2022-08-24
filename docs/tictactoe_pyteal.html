@@ -436,9 +436,9 @@ open pyteal
 
 
 
-<div id="0a32d1ac-b883-4503-b827-7bde05bc2fc5" class="output_subarea output_javascript ">
+<div id="9141f2db-39e9-40ab-8e03-fe2f18137081" class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#0a32d1ac-b883-4503-b827-7bde05bc2fc5');
+var element = $('#9141f2db-39e9-40ab-8e03-fe2f18137081');
 IPython.notebook.save_checkpoint();
 </script>
 </div>
@@ -521,7 +521,9 @@ export var numGlobalInts = 4
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AppVariables" class="doc_header"><code>class</code> <code>AppVariables</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L14" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AppVariables</code>()</p>
+<h2 id="AppVariables" class="doc_header"><code>class</code> <code>AppVariables</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L14" class="source_link" style="float:right">[source]</a></h2>
+<blockquote>
+<p><code>AppVariables</code>()</p>
 </blockquote>
 <p>All the variables available in the global state of the application.</p>
 
@@ -547,7 +549,9 @@ export var numGlobalInts = 4
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DefaultValues" class="doc_header"><code>class</code> <code>DefaultValues</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L31" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DefaultValues</code>()</p>
+<h2 id="DefaultValues" class="doc_header"><code>class</code> <code>DefaultValues</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L31" class="source_link" style="float:right">[source]</a></h2>
+<blockquote>
+<p><code>DefaultValues</code>()</p>
 </blockquote>
 <p>The default values for the global variables initialized on the transaction that creates the application.</p>
 
@@ -573,7 +577,9 @@ export var numGlobalInts = 4
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AppActions" class="doc_header"><code>class</code> <code>AppActions</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L42" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AppActions</code>()</p>
+<h2 id="AppActions" class="doc_header"><code>class</code> <code>AppActions</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L42" class="source_link" style="float:right">[source]</a></h2>
+<blockquote>
+<p><code>AppActions</code>()</p>
 </blockquote>
 <p>Available actions in the tic-tac-toe application.</p>
 
@@ -695,7 +701,9 @@ inl get_app_actions () =
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clear_program" class="doc_header"><code>clear_program</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clear_program</code>()</p>
+<h4 id="clear_program" class="doc_header"><code>clear_program</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L53" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>clear_program</code>()</p>
 </blockquote>
 
 </div>
@@ -867,7 +875,9 @@ return
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="money_refund_logic" class="doc_header"><code>money_refund_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>money_refund_logic</code>()</p>
+<h4 id="money_refund_logic" class="doc_header"><code>money_refund_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L60" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>money_refund_logic</code>()</p>
 </blockquote>
 <p>This function handles the logic for refunding the money in case of a winner, tie or timeout termination. If the
 player whose turn it is hasn't made a move for the predefined period of time, the other player is declared as a
@@ -877,13 +887,15 @@ Atomic Transfer of 3 transactions in case of a tie.
 If there is a winner the Atomic Transfer should have the following 2 transactions:</p>
 <ol>
 <li>Application Call with the appropriate application action argument.</li>
-<li>Payment from the Escrow to the Winner Address with a amount equal to the 2 * BetAmount.
-If there is a tie the Atomic Transfer should have the following 3 transactions:</li>
+<li>Payment from the Escrow to the Winner Address with a amount equal to the 2 * BetAmount.</li>
+</ol>
+<p>If there is a tie the Atomic Transfer should have the following 3 transactions:</p>
+<ol>
 <li>Application Call with the appropriate application action argument.</li>
 <li>Payment from the Escrow to the PlayerX's Address with a amount equal to the BetAmount.</li>
-<li>Payment from the Escrow to the PlayerO's Address with a amount equal to the BetAmount.
-:return:</li>
+<li>Payment from the Escrow to the PlayerO's Address with a amount equal to the BetAmount.</li>
 </ol>
+<p>:return:</p>
 
 </div>
 
@@ -1090,7 +1102,9 @@ inl money_refund_logic () =
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="game_funds_escrow" class="doc_header"><code>game_funds_escrow</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L127" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>game_funds_escrow</code>(<strong><code>app_id</code></strong>:<code>int</code>)</p>
+<h4 id="game_funds_escrow" class="doc_header"><code>game_funds_escrow</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L127" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>game_funds_escrow</code>(<strong><code>app_id</code></strong>:<code>int</code>)</p>
 </blockquote>
 
 </div>
@@ -1342,7 +1356,9 @@ return
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="has_player_won" class="doc_header"><code>has_player_won</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>has_player_won</code>(<strong><code>state</code></strong>)</p>
+<h4 id="has_player_won" class="doc_header"><code>has_player_won</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L158" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>has_player_won</code>(<strong><code>state</code></strong>)</p>
 </blockquote>
 <p>Checks whether the passed state as an argument is a winning state. There are 8 possible winning states in which
 a specific pattern of bits needs to be activated.
@@ -1538,7 +1554,9 @@ inl has_player_won state =
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="is_tie" class="doc_header"><code>is_tie</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L179" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>is_tie</code>()</p>
+<h4 id="is_tie" class="doc_header"><code>is_tie</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L179" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>is_tie</code>()</p>
 </blockquote>
 <p>Checks whether the game has ended with a tie. Tie state is represented with the number 511 which is the number where
 the first 9 bits are active.
@@ -1700,7 +1718,9 @@ inl is_tie () =
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="play_action_logic" class="doc_header"><code>play_action_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L193" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>play_action_logic</code>()</p>
+<h4 id="play_action_logic" class="doc_header"><code>play_action_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L193" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>play_action_logic</code>()</p>
 </blockquote>
 <p>Executes an action for the current player in the game and accordingly updates the state of the game. The action
 is passed as an argument to the application call.
@@ -1910,18 +1930,20 @@ is_tie
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="initialize_players_logic" class="doc_header"><code>initialize_players_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>initialize_players_logic</code>()</p>
+<h4 id="initialize_players_logic" class="doc_header"><code>initialize_players_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L238" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>initialize_players_logic</code>()</p>
 </blockquote>
 <p>This function initializes all the other global variables. The end of the execution of this function defines the game
 start. We expect that this logic is performed within an Atomic Transfer of 3 transactions:</p>
 <ol>
 <li>Application Call with the appropriate application action argument.</li>
-<li>Payment transaction from Player X that funds the Escrow account. The address of this sender is represents the
-PlayerX address.</li>
-<li>Payment transaction from Player O that funds the Escrow account. The address of this sender is represents the
-PlayerO address.
-:return:</li>
+<li>Payment transaction from Player X that funds the Escrow account. The address of this sender is represents the</li>
 </ol>
+<p>PlayerX address.
+3. Payment transaction from Player O that funds the Escrow account. The address of this sender is represents the
+PlayerO address.
+:return:</p>
 
 </div>
 
@@ -2110,7 +2132,9 @@ inl initialize_players_logic game_duration_seconds =
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="app_initialization_logic" class="doc_header"><code>app_initialization_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>app_initialization_logic</code>()</p>
+<h4 id="app_initialization_logic" class="doc_header"><code>app_initialization_logic</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L281" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>app_initialization_logic</code>()</p>
 </blockquote>
 <p>Initialization of the default global variables.</p>
 
@@ -2276,7 +2300,9 @@ inl app_initialization_logic () =
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="application_start" class="doc_header"><code>application_start</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L297" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>application_start</code>()</p>
+<h4 id="application_start" class="doc_header"><code>application_start</code><a href="https://github.com/fc1943s/tictactoe_spiral/lib_py/tictactoe_pyteal.py#L297" class="source_link" style="float:right">[source]</a></h4>
+<blockquote>
+<p><code>application_start</code>()</p>
 </blockquote>
 <p>This function represents the start of the application. Here we decide which action will be executed in the current
 application call. If we are creating the application for the very first time we are going to initialize some
@@ -3092,7 +3118,7 @@ printfn $&#34;%A{v0}&#34;
                 <div class="col-lg-12 footer">
                   <p><img src="/tictactoe_spiral/docs/assets/images/company_logo.png" alt="Company logo"/></p>
                &copy;2022 fc1943s. All rights reserved. <br />
- Site last generated: Aug 17, 2022 <br />
+ Site last generated: Aug 24, 2022 <br />
                 </div>
             </div>
 </footer>
