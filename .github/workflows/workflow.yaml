@@ -25,6 +25,8 @@ jobs:
         with:
           rust-version: nightly
 
+      - run: cargo install rod
+
       - run: pnpm install
       - run: cd ./web && pnpm install
       - run: cd ./peer && pnpm install
