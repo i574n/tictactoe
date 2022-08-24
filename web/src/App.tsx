@@ -27,53 +27,71 @@ const soul = "app"
 const CODESPACE_NAME = process.env.CODESPACE_NAME
 const IS_TEST = !!process.env.IS_TEST
 
-const GUN_TYPE = ['rs', 'js'] as const
+const DB_TYPE = ['gun_rs', 'gun_js'] as const
 
-type Gun =
-    | { type: 'rs', gun: GunRS }
-    | { type: 'js', gun: IGunJS }
-type GunType = Gun["type"]
-assertTypeEquals<GunType, typeof GUN_TYPE>(GUN_TYPE)
+type Db =
+    | { type: 'gun_rs', url: string, db: GunRS }
+    | { type: 'gun_js', url: string, db: IGunJS }
+type DbType = Db["type"]
+assertTypeEquals<DbType, typeof DB_TYPE>(DB_TYPE)
 
-type GunSubscription =
-    | { type: 'rs', subscription: number }
-    | { type: 'js', subscription: boolean }
-type GunSubscriptionType = GunSubscription["type"]
-assertTypeEquals<GunSubscriptionType, typeof GUN_TYPE>(GUN_TYPE)
+type DbSubscription =
+    | { type: 'gun_rs', subscription: number }
+    | { type: 'gun_js', subscription: boolean }
+type DbSubscriptionType = DbSubscription["type"]
+assertTypeEquals<DbSubscriptionType, typeof DB_TYPE>(DB_TYPE)
 
 
-type GunModel = { [K in GunType]: { rs?: GunRS, js?: IGunJS }[K] }
+type DbModel = { [K in DbType]: { gun_rs?: GunRS, gun_js?: IGunJS }[K] }
 
-type GunSubscriptionModel = { [K in GunType]: { rs?: number, js?: boolean }[K] }
+type DbSubscriptionModel = { [K in DbType]: { gun_rs?: number, gun_js?: boolean }[K] }
 
 type Url = { url: string }
 
 
-const newGun = (type: GunType, { url }: Url): Gun | null => {
-    if (type === 'rs') {
-        // return { type, gun: true ? null as unknown as GunRS : new GunRS(url) }
-        return { type, gun: new GunRS(url) }
-    } else if (type === 'js') {
-        return { type, gun: new GunJS(url) }
-        // return { type, gun: true ? null as unknown as IGunJS<any> : new GunJS(url) }
+const newDb = (type: DbType, { url }: Url): Db | null => {
+    if (type === 'gun_rs') {
+        return { type, url, db: new GunRS(url) }
+    } else if (type === 'gun_js') {
+        return { type, url, db: new GunJS(url) }
     }
     return null
 }
 
-const newTimestamp = () => new Date().getTime()
+const startTimestamp = new Date().getTime()
+const newTimestamp = () => new Date().getTime() - startTimestamp
 
 const init = {
     token: tictactoe_testnet.token,
     chainUrl: CODESPACE_NAME ? `http://${CODESPACE_NAME}-4001.githubpreview.dev` : tictactoe_testnet.url,
     chainPort: CODESPACE_NAME ? 80 : tictactoe_testnet.port,
-    db: false,
-    dbUrl: CODESPACE_NAME && !IS_TEST ? `ws://${CODESPACE_NAME}-18765.githubpreview.dev` : 'wss://localhost',
-    dbPort: CODESPACE_NAME && !IS_TEST ? 80 : (IS_TEST ? 18765 : 8765),
+    db: {} as { [_: string]: Db },
+    dbEnabled: {
+        gun_rs: {
+            gun_rs: false,
+            gun_js: false
+        } as { [_ in DbType]: boolean },
+        gun_js: {
+            gun_rs: false,
+            gun_js: false
+        } as { [_ in DbType]: boolean }
+    } as { [_ in DbType]: { [_ in DbType]: boolean } },
+    dbConnection: {
+        gun_rs: {
+            url: CODESPACE_NAME && !IS_TEST ? `ws://${CODESPACE_NAME}-4944.githubpreview.dev` : 'ws://localhost',
+            port: CODESPACE_NAME && !IS_TEST ? 80 : (IS_TEST ? 14944 : 4944),
+            ws: "ws"
+        },
+        gun_js: {
+            url: CODESPACE_NAME && !IS_TEST ? `ws://${CODESPACE_NAME}-8765.githubpreview.dev` : 'wss://localhost',
+            port: CODESPACE_NAME && !IS_TEST ? 80 : (IS_TEST ? 18765 : 8765),
+            ws: "gun"
+        }
+    } as { [_ in DbType]: { url: string, port: number, ws: string } },
     accounts: tictactoe_testnet.accounts,
-    status: {} as { [_: number]: any },
-    deploy: {} as { [_: number]: any },
-    gun: {} as { [_: string]: Gun[] },
-    counter: {} as { [_: number]: number }
+    status: {} as { [_: string]: any },
+    deploy: {} as { [_: string]: any },
+    counter: {} as { [_: string]: number }
 }
 
 type State = typeof init
@@ -87,13 +105,18 @@ const runId = Math.random().toString(36).substring(2, 5)
 
 const getStateLocals = (state: State) => {
     return {
-        counter: Object.entries(state.counter),
-        db: state.db,
-        gun: Object.entries(state.gun)
-            .map(([_url, gunList]) =>
-                gunList
-                    .map(({ type, gun }) => gun ? type : null)
-                    .filter(type => type))
+        db: Object.entries(state.dbEnabled).reduce((accKeys, [dbType, enabledMap]) =>
+            Object.entries(enabledMap).reduce((accKeys, [urlType, enabled]) =>
+                !enabled
+                    ? accKeys
+                    : [
+                        ...accKeys,
+                        `${dbType}-${urlType}`
+                    ],
+                accKeys
+            ),
+            [] as string[]
+        )
     }
 }
 
@@ -151,11 +174,14 @@ function Links() {
     )
 }
 
-function StateInput({ key }: { key: keyof util.PickByType<State, number | string> }) {
+function StateInput({ get, set }: { get: (state: State) => any, set: (state: State, value: any) => State }) {
     const [state, dispatch] = useStoreon<State, Events>()
 
     return (
-        <input type="text" value={state[key]} onInput={e => dispatch('set', { [key]: e.currentTarget.value })} />
+        <input
+            type="text"
+            value={get(state)}
+            onInput={(e: { currentTarget: { value: any } }) => dispatch('set', set(state, e.currentTarget.value))} />
     )
 }
 
@@ -173,13 +199,19 @@ function ChainConnection() {
         <table>
             <tbody>
                 <Row title="Token">
-                    <StateInput key="token" />
+                    <StateInput
+                        get={(state) => state.token}
+                        set={(state, value) => ({ ...state, token: value })} />
                 </Row>
                 <Row title="URL">
-                    <StateInput key="chainUrl" />
+                    <StateInput
+                        get={(state) => state.chainUrl}
+                        set={(state, value) => ({ ...state, chainUrl: value })} />
                 </Row>
                 <Row title="Port">
-                    <StateInput key="chainPort" />
+                    <StateInput
+                        get={(state) => state.chainPort}
+                        set={(state, value) => ({ ...state, chainPort: value })} />
                 </Row>
             </tbody>
         </table>
@@ -206,7 +238,7 @@ function AccountInput({ key, account }: { key: keyof Omit<Account, 'alias'>, acc
     )
 }
 
-function Accounts() {
+function ChainAccounts() {
     const [state] = useStoreon<State, Events>()
 
     return (
@@ -233,22 +265,45 @@ function Accounts() {
     )
 }
 
-function DbConnection() {
+function DbConnectionInput({ type, key }: { type: DbType, key: keyof typeof init.dbConnection[DbType] }) {
+    return (
+        <StateInput
+            get={(state) => state.dbConnection[type][key]}
+            set={(state, value) => ({
+                ...state,
+                dbConnection: {
+                    ...state.dbConnection,
+                    [type]: {
+                        ...state.dbConnection[type],
+                        [key]: value
+                    }
+                }
+            })} />
+    )
+}
+
+function DbConnection({ type }: { type: DbType }) {
     return (
         <table>
             <tbody>
                 <Row title="URL">
-                    <StateInput key="dbUrl" />
+                    <DbConnectionInput type={type} key="url" />
                 </Row>
                 <Row title="Port">
-                    <StateInput key="dbPort" />
+                    <DbConnectionInput type={type} key="port" />
                 </Row>
             </tbody>
         </table>
     )
 }
 
-function GunListener() {
+const newUrl = (state: State, type: DbType) => {
+    const connection = state.dbConnection[type]
+    const url = `${connection.url}:${connection.port}/${connection.ws}`
+    return url
+}
+
+function DbListener() {
     const [state, dispatch] = useStoreon<State, Events>()
 
     const getLocals = () => ({
@@ -257,51 +312,57 @@ function GunListener() {
 
     const log = getLog(getLocals, '#cf1100')
 
-    log('GunListener()')
+    log('DbListener() 0')
 
     const refresh = () => {
-        const currentUrl = `${state.dbUrl}:${state.dbPort}/gun`
+        log('DbListener.refresh() 1')
 
-        const gun = Object.entries({
-            ...state.gun,
-            [currentUrl]: state.gun[currentUrl] || []
-        }).reduce((accGun, [url, gunList]) => ({
-            ...accGun,
-            [url]:
-                !state.db
-                    ? []
-                    : Object.entries(
-                        [
-                            ...GUN_TYPE.map(type => ({ type, gun: null })),
-                            ...gunList
-                        ].reduce((accGunModel, { type, gun }) => ({
-                            ...accGunModel,
-                            [type]: gun || accGunModel[type] || newGun(type, { url })?.gun
-                        }), {} as GunModel)
-                    ).reduce((accGunList, [type, gun]) => [
-                        ...accGunList,
-                        { type, gun } as Gun
-                    ], [] as Gun[])
-        }), {} as typeof state.gun)
+        const db = Object.entries(state.dbEnabled).reduce((accKeys, [dbType, enabledMap]) =>
+            Object.entries(enabledMap).reduce((accKeys, [urlType, enabled]) =>
+                !enabled
+                    ? accKeys
+                    : [
+                        ...accKeys,
+                        { type: dbType as DbType, url: newUrl(state, urlType as DbType) }
+                    ],
+                accKeys
+            ),
+            [] as { type: DbType; url: string }[]
+        ).reduce((accDb, { type, url }) => {
+            const id = JSON.stringify({ type, url })
+            return {
+                ...accDb,
+                [id]: accDb[id] || newDb(type, { url })
+            }
+        }, state.db)
 
-        dispatch('set', { gun })
+        log('DbListener.refresh() 1', { db })
+
+        dispatch('set', { db })
     }
 
-    const unbind = store.on('@changed', (oldState, changed) => {
-        log('GunListener.store.@changed', { oldStateKeys: Object.keys(oldState), changedKeys: Object.keys(changed) })
-        if (changed.db || changed.dbUrl || changed.dbPort) {
+    const unbind = store.on('@changed', (oldState, changed, oldStore) => {
+        log('DbListener.store.@changed 1', {
+            changed: Object.keys(changed).map((key) => ({
+                key,
+                old: oldState[key as keyof State],
+                new: changed[key as keyof State],
+                store: oldStore.get()[key as keyof State],
+            }))
+        })
+        if (changed.dbEnabled || changed.dbConnection) {
             refresh()
         }
     })
     onCleanup(() => unbind())
 
-    createEffect(on(
-        () => [],
-        () => {
-            log('GunListener.createEffect() callback')
-            refresh()
-        }
-    ))
+    // createEffect(on(
+    //     () => [],
+    //     () => {
+    //         log('DbListener.createEffect() 1')
+    //         refresh()
+    //     }
+    // ))
 
     return <></>
 }
@@ -309,17 +370,20 @@ function GunListener() {
 function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
     const [state, dispatch] = useStoreon<State, Events>()
 
-    const [subscriptions, setSubscriptions] = createSignal({} as { [_: string]: GunSubscription[] })
+    const [subscriptions, setSubscriptions] = createSignal({} as { [_: string]: DbSubscription })
+
+    const [events, setEvents] = createSignal({} as { [_: string]: { off: () => void } | null })
+    const [intervals, setIntervals] = createSignal({} as { [_: string]: NodeJS.Timer | null })
+    const [values, setValues] = createSignal({} as { [_: string]: any })
 
     const getLocals = () => ({
         ...getStateLocals(state),
         key,
-        [`state.${key}.length`]: Object.keys(state[key]).length,
-        subscriptions: Object.entries(subscriptions())
-            .map(([_url, subscription]) =>
-                Object.entries(subscription)
-                    .map(([type, value]) => !!value ? type : null)
-                    .filter(type => type))
+        [`${key}.keys`]: Object.keys(state[key]),
+        [`events`]: Object.values(events()),
+        [`intervals`]: Object.values(intervals()),
+        [`values`]: Object.values(values()),
+        [`subscriptions`]: Object.values(subscriptions())
     })
 
     const defaultColors = Object.keys(init).reduce(
@@ -329,114 +393,236 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
     const colors = { ...defaultColors, status: '#cf6800', deploy: '#cccf00' }
     const log = getLog(getLocals, colors[key])
 
-    log('useFetch()')
+    log('useFetch() 0')
 
-    let ev: { off: () => void } | null = null
-    let interval = null as NodeJS.Timer | null
+    const parse = (raw: object) => {
+        log('useFetch.parse() 1', { raw })
+        let data = raw
+        while (typeof data === 'string') {
+            data = JSON.parse(data)
+        }
+        return data
+    }
 
-    const subscribe = (gun: { [_: string]: Gun[] }) => {
-        log('useFetch.subscribe()')
+    const newListenerHandler = (id: string) => (v: object, k: any, _msg: any, _ev: any) => {
+        const { _, '#': hash, ...value }: { [_: string]: any } = parse(v)
+        // const valueKeys = Object.keys(value)
 
-        const parse = (raw: object) => {
-            let data = raw
-            while (typeof data === 'string') {
-                data = JSON.parse(data)
-            }
-            return data
+        // if (valueKeys.length > 0 || !hash || Object.keys(state[key]).length === 0) {
+        // const oldEvents = events()
+        // oldEvents[id]?.off()
+        // setEvents({
+        //     ...oldEvents,
+        //     [id]: _ev
+        // })
+
+
+
+
+
+        // Object.values(events()).forEach(events => events?.off())
+        // setEvents({})
+
+
+
+        // const oldIntervals = intervals()
+        // const interval = oldIntervals[id]
+        // if (interval) {
+        //     clearInterval(interval)
+        //     setIntervals({
+        //         ...oldIntervals,
+        //         [id]: null
+        //     })
+        // }
+
+        Object.values(intervals()).forEach(interval => interval && clearInterval(interval))
+        setIntervals({})
+
+        const newValue =
+            Object.keys(value)
+                .reduce((acc, k) => ({
+                    ...acc,
+                    [k]: value[k] === null
+                        ? undefined
+                        : value[k]
+                }), state[key] as { [_: string]: any })
+
+        log('useFetch.newListenerHandler 1', {
+            _,
+            id,
+            hash,
+            k,
+            vJson: JSON.stringify(v),
+            vType: typeof v,
+            valueEntries: Object.entries(value),
+            newValueEntries: Object.entries(newValue),
+            stateKeyEntries: Object.entries(state[key])
+        })
+
+        if (JSON.stringify(newValue) !== JSON.stringify(state[key])) {
+            dispatch('set', { [key]: newValue })
+            setValues({ ...values(), [id]: newValue })
+        } else {
+            log('useFetch.newListenerHandler 1. skip')
         }
 
-        const currentSubscriptions = subscriptions()
+        // } else {
+        //     log('useFetch.newListenerHandler 1. skip')
+        // }
+    }
 
-        const newSubscriptions = Object.entries(gun).reduce((accGun, [url, gunList]) => ({
-            ...accGun,
-            [url]: gunList.reduce((accGunList, { type, gun }) => {
-                if (gun) {
-                    const currentSubscriptionModel = currentSubscriptions[url] || ([] as GunSubscription[])
+    const subscribe = (db: { [_: string]: Db }) => {
+        log('useFetch.subscribe() 1')
 
-                    var listenerHandler = (v: object, k: any, _msg: any, _ev: any) => {
-                        ev = _ev
+        const newSubscriptions = Object.entries(state.dbEnabled).reduce((accSubscriptions, [dbType, enabledMap]) =>
+            Object.entries(enabledMap).reduce((accSubscriptions, [urlType, enabled]) =>
+                !enabled
+                    ? accSubscriptions
+                    : {
+                        ...accSubscriptions,
+                        ...Object.entries(db).reduce((accSubscriptions, [id, { type, db }]) => {
+                            // const url = newUrl(state, urlType as DbType)
+                            // const id = JSON.stringify({ type: dbType as DbType, url })
+                            if (db) {
+                                if (accSubscriptions[id]) {
+                                    // const oldEvents = events()
+                                    // oldEvents[id]?.off()
+                                    // setEvents({
+                                    //     ...oldEvents,
+                                    //     [id]: null
+                                    // })
 
-                        interval && clearInterval(interval)
 
-                        const value: { [_: string]: any } = parse(v)
-                        log('useFetch.subscribe node.on() callback', { k, vType: typeof v, valueKeys: Object.keys(value) })
-                        dispatch('set', {
-                            [key]: Object.keys(value)
-                                .reduce((acc, k) =>
-                                (!value[k]
-                                    ? acc
-                                    : { ...acc, [k]: value[k] }), value)
-                        })
-                    }
 
-                    if (type === 'rs') {
-                        const currentSubscription = currentSubscriptionModel
-                            .find(({ type: subscriptionType }) => subscriptionType === type)?.subscription as number
-                        const node = gun.get(soul).get(key)
-                        if (currentSubscription) {
-                            log('useFetch.subscribe rs unsubscribe')
-                            ev?.off()
-                            node.off(currentSubscription)
-                        }
-                        const subscription = node.on(listenerHandler)
-                        log('useFetch.subscribe() gunRs', { subscription })
-                        return [...accGunList, { type, subscription }]
-                    } else if (type === 'js') {
-                        const currentSubscription = currentSubscriptionModel
-                            .find(({ type: subscriptionType }) => subscriptionType === type)?.subscription as boolean
-                        const node = (gun as IGunJS<any>).get(soul).get(key)
-                        if (currentSubscription) {
-                            log('useFetch.subscribe js unsubscribe')
-                            ev?.off()
-                            node.off()
-                        }
-                        node.on(listenerHandler)
-                        log('useFetch.subscribe() gunJs')
-                        return [...accGunList, { type, subscription: true }]
-                    }
-                }
 
-                return accGunList
-            }, accGun[url] || [])
-        }), currentSubscriptions)
+                                    // accSubscriptions[id].forEach(({ off }) => off())
+
+
+
+                                    // oldEvents[type]?.off()
+                                    // setEvents({ ...oldEvents, [type]: undefined as any })
+                                    //             currentSubscriptions.forEach((subscription) => {
+                                    //                 node.off(subscription as number)
+                                    //             })
+                                    // node.off(accSubscriptions[id] as number)
+                                }
+
+
+                                if (type === 'gun_rs') {
+                                    const node = (db as GunRS).get(soul).get(key)
+
+                                    accSubscriptions[id] && node.off(accSubscriptions[id].subscription as number)
+
+                                    const subscription: number = node.on(newListenerHandler(id))
+                                    log('useFetch.subscribe() 2', { type, subscription })
+                                    return {
+                                        ...accSubscriptions,
+                                        [id]: { type, subscription }
+                                    }
+                                } else if (type === 'gun_js') {
+                                    const node = (db as IGunJS).get(soul).get(key)
+
+                                    accSubscriptions[id] && node.off()
+
+                                    node.on(newListenerHandler(id))
+                                    const subscription = true
+                                    log('useFetch.subscribe() 2', { type, subscription })
+                                    return {
+                                        ...accSubscriptions,
+                                        [id]: { type, subscription }
+                                    }
+                                }
+                            }
+                            return accSubscriptions
+                        }, {} as { [_: string]: DbSubscription })
+                    },
+                accSubscriptions
+            ),
+            subscriptions()
+        )
+
         setSubscriptions(newSubscriptions)
     }
 
     const unsubscribe = (state: State) => {
-        log('useFetch.unsubscribe()')
+        log('useFetch.unsubscribe() 1')
 
-        const currentSubscriptions = subscriptions()
+        Object.entries(subscriptions()).forEach(([id, { type: subscriptionType, subscription }]) => {
+            log('useFetch.unsubscribe 2', { id, subscriptionType, subscription })
 
-        Object.entries(currentSubscriptions).forEach(([url, subscriptionList]) => {
-            subscriptionList.forEach(({ type: subscriptionType, subscription }) => {
-                const gun = state.gun[url].find(({ type }) => type === subscriptionType)
-                if (gun) {
-                    if (subscriptionType === 'rs') {
-                        const node = (gun.gun as GunRS).get(soul).get(key)
-                        log('useFetch.unsubscribe rs', { subscription })
-                        node.off(subscription)
-                    } else if (subscriptionType === 'js' && subscription) {
-                        const node = (gun.gun as IGunJS).get(soul).get(key)
-                        log('useFetch.unsubscribe js', { subscription })
-                        node.off()
+            Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
+                Object.entries(enabledMap).forEach(([urlType, enabled]) => {
+                    if (enabled) {
+                        const id = JSON.stringify({ type: dbType as DbType, url: newUrl(state, urlType as DbType) })
+                        const db = state.db[id]
+                        if (db) {
+                            log('useFetch.unsubscribe() 3', { dbType, urlType, id })
+
+                            if (dbType === 'gun_rs') {
+                                const node = (db.db as GunRS).get(soul).get(key)
+                                node.off(subscription as number)
+                            } else if (dbType === 'gun_js' && subscription) {
+                                const node = (db.db as IGunJS).get(soul).get(key)
+                                node.off()
+                            }
+                        }
                     }
-                }
-            })
+                })
+            )
         })
-
         setSubscriptions({})
+
+        Object.values(events()).forEach((event) => event?.off())
+        setEvents({} as { [_ in DbType]: any })
     }
 
-    const unbind = store.on('@changed', (oldState, changed) => {
-        if (changed.db || changed.gun) {
-            log('useFetch.store.@changed', { changedKeys: Object.keys(changed), oldStateKeys: Object.keys(changed) })
+    const unbind = store.on('@changed', (oldState, changed, oldStore) => {
+        if (changed.dbEnabled || changed.db) {
+            log('useFetch.store.@changed 1', {
+                changed: Object.keys(changed).map((key) => ({
+                    key,
+                    old: oldState[key as keyof State],
+                    new: changed[key as keyof State],
+                    store: oldStore.get()[key as keyof State]
+                }))
+            })
 
-            interval && clearInterval(interval)
-            interval = setInterval(() => {
-                log('useFetch.createEffect() callback setTimeout subscribe...')
-                unsubscribe(oldState)
-                oldState.db && changed.db && subscribe(changed.gun || oldState.gun)
-            }, 2000)
+            unsubscribe(oldState)
+            Object.values(intervals()).forEach((interval) => interval && clearInterval(interval))
+            setIntervals(
+                Object.entries(state.dbEnabled).reduce((accIntervals, [dbType, enabledMap]) =>
+                    Object.entries(enabledMap).reduce((accIntervals, [urlType, enabled]) =>
+                        !enabled
+                            ? accIntervals
+                            : {
+                                ...accIntervals,
+                                ...Object.entries(changed.db || oldState.db).reduce((accIntervals, [id, { type, db }]) => {
+                                    const url = newUrl(state, urlType as DbType)
+                                    const newId = JSON.stringify({ type: dbType as DbType, url })
+                                    if (id === newId) {
+                                        if (db) {
+                                            return {
+                                                ...accIntervals,
+                                                [id]: setInterval(() => {
+                                                    log('useFetch.store.@changed callback setInterval unsubscribe -> subscribe... 2',
+                                                        { changedKeys: Object.keys(changed), type })
+                                                    unsubscribe(oldState)
+                                                    oldState.dbEnabled && changed.dbEnabled && subscribe(changed.db || oldState.db)
+                                                }, 2000)
+                                            }
+                                        }
+                                    } else {
+                                        log('useFetch.store.@changed callback setInterval skip. 2',
+                                            { id, changedKeys: Object.keys(changed), type })
+                                    }
+                                    return accIntervals
+                                }, {} as { [_: string]: NodeJS.Timer | null })
+                            },
+                        accIntervals
+                    ),
+                    {} as { [_: string]: NodeJS.Timer | null }
+                )
+            )
         }
     })
     onCleanup(() => {
@@ -445,7 +631,6 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
     })
 
     const request = async () => {
-        log('useFetch.request()')
         const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
         let result: {}
         try {
@@ -456,34 +641,39 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
 
         const timestamp = newTimestamp()
         const data = {
-            [key]: {
-                ...(state[key] as { [_: number]: any }),
-                [`${timestamp}`]: result
-            }
+            ...(state[key] as { [_: string]: any }),
+            [`${timestamp}`]: result
         }
 
-        dispatch('set', data)
+        log('useFetch.request() 1', { result, data })
 
-        Object.entries(state.gun).forEach(([_url, gunList]) => {
-            gunList.forEach(({ type, gun }) => {
-                log('useFetch.request()', { result, data })
-                if (gun) {
-                    if (type === 'rs') {
-                        const node = (gun as GunRS).get(soul).get(key)
-                        // node.get(`${timestamp}`).put(result)
-                        node.put(data)
-                    } else if (type === 'js') {
-                        const node = (gun as IGunJS).get(soul).get(key)
-                        node.get(`${timestamp}`).put(result)
-                        // node.put(data)
+        dispatch('set', { [key]: data })
+
+        Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
+            Object.entries(enabledMap).forEach(([urlType, enabled]) => {
+                if (enabled) {
+                    const id = JSON.stringify({ type: dbType as DbType, url: newUrl(state, urlType as DbType) })
+                    const db = state.db[id]
+                    if (db) {
+                        log('useFetch.request() 2', { dbType, urlType, data })
+
+                        if (dbType === 'gun_rs') {
+                            const node = (db.db as GunRS).get(soul).get(key)
+                            // node.get(`${timestamp}`).put(result)
+                            node.put(data)
+                        } else if (dbType === 'gun_js') {
+                            const node = (db.db as IGunJS).get(soul).get(key)
+                            // node.get(`${timestamp}`).put(result)
+                            node.put(data)
+                        }
                     }
                 }
             })
-        })
+        )
     }
 
     const clear = async () => {
-        log('useFetch.clear()')
+        log('useFetch.clear() 1')
 
         const data = Object.keys(state[key])
             .reduce((acc, k) => ({
@@ -493,20 +683,25 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
 
         dispatch('set', { [key]: data })
 
-        Object.entries(state.gun).forEach(([_url, gunList]) => {
-            gunList.forEach(({ type, gun }) => {
-                log('useFetch.clear()', { data })
-                if (gun) {
-                    if (type === 'rs') {
-                        const node = gun.get(soul).get(key) as GunRS
-                        node.put(data)
-                    } else if (type === 'js') {
-                        const node = (gun as IGunJS).get(soul).get(key)
-                        node.put(data)
+        Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
+            Object.entries(enabledMap).forEach(([urlType, enabled]) => {
+                if (enabled) {
+                    const id = JSON.stringify({ type: dbType as DbType, url: newUrl(state, urlType as DbType) })
+                    const db = state.db[id]
+                    if (db) {
+                        log('useFetch.clear() 2', { dbType, urlType, data })
+
+                        if (dbType === 'gun_rs') {
+                            const node = (db.db as GunRS).get(soul).get(key)
+                            node.put(data)
+                        } else if (dbType === 'gun_js') {
+                            const node = (db.db as IGunJS).get(soul).get(key)
+                            node.put(data)
+                        }
                     }
                 }
             })
-        })
+        )
     }
 
     return { request, clear }
@@ -615,13 +810,9 @@ function Loader({ id, onLoad, children }: {
 }
 
 function App() {
-    const onDbLoad = (_state: State, dispatch: StoreonDispatch<Events>) => {
-        dispatch('set', { db: true })
-    }
-
     return (
         <StoreonProvider store={store}>
-            <GunListener />
+            <DbListener />
             <table class={styles.App}>
                 <tbody>
                     <Row title="Links">
@@ -631,8 +822,8 @@ function App() {
                     <Row title="Chain Connection">
                         <ChainConnection />
                     </Row>
-                    <Row title="Accounts">
-                        <Accounts />
+                    <Row title="Chain Accounts">
+                        <ChainAccounts />
                     </Row>
                     <Row title="Testnet Bank Dispenser">
                         <Loader>
@@ -643,9 +834,72 @@ function App() {
                         </Loader>
                     </Row>
                     <tr><td></td></tr>
-                    <Row title="Database">
-                        <Loader id="db" onLoad={onDbLoad}>
-                            <DbConnection />
+                    <Row title="Database (Rust->Rust)">
+                        <Loader
+                            id="db-gun-rs-rs"
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_rs: {
+                                            ...state.dbEnabled.gun_rs,
+                                            gun_rs: true
+                                        }
+                                    }
+                                })
+                            }}>
+                            <DbConnection type="gun_rs" />
+                        </Loader>
+                    </Row>
+                    <Row title="Database (Rust->JavaScript)">
+                        <Loader
+                            id="db-gun-rs-js"
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_rs: {
+                                            ...state.dbEnabled.gun_rs,
+                                            gun_js: true
+                                        }
+                                    }
+                                })
+                            }}>
+                            <DbConnection type="gun_js" />
+                        </Loader>
+                    </Row>
+                    <Row title="Database (JavaScript->Rust)">
+                        <Loader
+                            id="db-gun-js-rs"
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_js: {
+                                            ...state.dbEnabled.gun_js,
+                                            gun_rs: true
+                                        }
+                                    }
+                                })
+                            }}>
+                            <DbConnection type="gun_rs" />
+                        </Loader>
+                    </Row>
+                    <Row title="Database (JavaScript->JavaScript)">
+                        <Loader
+                            id="db-gun-js-js"
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_js: {
+                                            ...state.dbEnabled.gun_js,
+                                            gun_js: true
+                                        }
+                                    }
+                                })
+                            }}>
+                            <DbConnection type="gun_js" />
                         </Loader>
                     </Row>
                     <tr><td></td></tr>
@@ -653,12 +907,12 @@ function App() {
                         <Counter />
                     </Row>
                     <tr><td></td></tr>
-                    <Row title="Status">
+                    {/* <Row title="Status">
                         <Status />
                     </Row>
                     <Row title="Deploy">
                         <Deploy />
-                    </Row>
+                    </Row> */}
                 </tbody>
             </table>
         </StoreonProvider>

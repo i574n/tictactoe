@@ -8,6 +8,7 @@ node_modules/
 dist/
 dist_extension/
 tmp/
+sled_db/
 
 _ipython_node.ts
 _ipython_spi.fsx

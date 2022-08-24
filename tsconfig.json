@@ -10,8 +10,8 @@
         "jsxImportSource": "solid-js",
         "types": [
             "node",
-            "vite/client",
-            "axe-playwright"
+            // "vite/client",
+            // "axe-playwright"
         ],
         "noEmit": true,
         "isolatedModules": true

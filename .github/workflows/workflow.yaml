@@ -21,6 +21,10 @@ jobs:
         with:
           version: 6.0
 
+      - uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: nightly
+
       - run: pnpm install
       - run: cd ./web && pnpm install
       - run: cd ./peer && pnpm install
