@@ -27,7 +27,9 @@ async function newPage(index: number, context: BrowserContext) {
             msgs.push(newMsgs)
             logs.push(newMsgs)
         }
-        console.log(`${index}>`, ...msgs)
+        if(msgs.length > 0) {
+            console.log(`${index}>`, ...msgs)
+        }
     })
 
     page.on('close', async (page) => console.log(`***${index} close ***`, page.url()))

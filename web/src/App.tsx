@@ -24,8 +24,9 @@ export function assertTypeEquals<P, Q extends NoneEmptyArray>(_test: CompareUnio
 
 
 const soul = "app"
-const CODESPACE_NAME = process.env.CODESPACE_NAME
-const IS_TEST = !!process.env.IS_TEST
+const env = process.env
+const CODESPACE_NAME = env.CODESPACE_NAME
+const IS_TEST = !!env.IS_TEST
 
 const DB_TYPE = ['gun_rs', 'gun_js'] as const
 
@@ -37,14 +38,14 @@ assertTypeEquals<DbType, typeof DB_TYPE>(DB_TYPE)
 
 type DbSubscription =
     | { type: 'gun_rs', subscription: number }
-    | { type: 'gun_js', subscription: boolean }
+    | { type: 'gun_js', subscription: number }
 type DbSubscriptionType = DbSubscription["type"]
 assertTypeEquals<DbSubscriptionType, typeof DB_TYPE>(DB_TYPE)
 
 
 type DbModel = { [K in DbType]: { gun_rs?: GunRS, gun_js?: IGunJS }[K] }
 
-type DbSubscriptionModel = { [K in DbType]: { gun_rs?: number, gun_js?: boolean }[K] }
+type DbSubscriptionModel = { [K in DbType]: { gun_rs?: number, gun_js?: number }[K] }
 
 type Url = { url: string }
 
@@ -111,7 +112,7 @@ const getStateLocals = (state: State) => {
                     ? accKeys
                     : [
                         ...accKeys,
-                        `${dbType}-${urlType}`
+                        `${dbType}-${urlType}`.replace(/gun_/g, '')
                     ],
                 accKeys
             ),
@@ -303,6 +304,10 @@ const newUrl = (state: State, type: DbType) => {
     return url
 }
 
+const newId = (type: DbType, url: string) => {
+    return JSON.stringify([type, url.replace(/localhost/g, '')])
+}
+
 function DbListener() {
     const [state, dispatch] = useStoreon<State, Events>()
 
@@ -329,7 +334,7 @@ function DbListener() {
             ),
             [] as { type: DbType; url: string }[]
         ).reduce((accDb, { type, url }) => {
-            const id = JSON.stringify({ type, url })
+            const id = newId(type, url)
             return {
                 ...accDb,
                 [id]: accDb[id] || newDb(type, { url })
@@ -380,10 +385,10 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         ...getStateLocals(state),
         key,
         [`${key}.keys`]: Object.keys(state[key]),
-        [`events`]: Object.values(events()),
-        [`intervals`]: Object.values(intervals()),
-        [`values`]: Object.values(values()),
-        [`subscriptions`]: Object.values(subscriptions())
+        [`events`]: Object.entries(events()),
+        [`intervals`]: Object.entries(intervals()),
+        [`values`]: Object.entries(values()),
+        [`subscriptions`]: Object.entries(subscriptions())
     })
 
     const defaultColors = Object.keys(init).reduce(
@@ -525,7 +530,7 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
                                     accSubscriptions[id] && node.off()
 
                                     node.on(newListenerHandler(id))
-                                    const subscription = true
+                                    const subscription = newTimestamp()
                                     log('useFetch.subscribe() 2', { type, subscription })
                                     return {
                                         ...accSubscriptions,
@@ -553,15 +558,15 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
             Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
                 Object.entries(enabledMap).forEach(([urlType, enabled]) => {
                     if (enabled) {
-                        const id = JSON.stringify({ type: dbType as DbType, url: newUrl(state, urlType as DbType) })
+                        const id = newId(dbType as DbType, newUrl(state, urlType as DbType))
                         const db = state.db[id]
                         if (db) {
-                            log('useFetch.unsubscribe() 3', { dbType, urlType, id })
+                            log('useFetch.unsubscribe() 3', { dbType, urlType })
 
                             if (dbType === 'gun_rs') {
                                 const node = (db.db as GunRS).get(soul).get(key)
                                 node.off(subscription as number)
-                            } else if (dbType === 'gun_js' && subscription) {
+                            } else if (dbType === 'gun_js') {
                                 const node = (db.db as IGunJS).get(soul).get(key)
                                 node.off()
                             }
@@ -598,8 +603,7 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
                                 ...accIntervals,
                                 ...Object.entries(changed.db || oldState.db).reduce((accIntervals, [id, { type, db }]) => {
                                     const url = newUrl(state, urlType as DbType)
-                                    const newId = JSON.stringify({ type: dbType as DbType, url })
-                                    if (id === newId) {
+                                    if (id === newId(dbType as DbType, url)) {
                                         if (db) {
                                             return {
                                                 ...accIntervals,
@@ -652,7 +656,7 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
             Object.entries(enabledMap).forEach(([urlType, enabled]) => {
                 if (enabled) {
-                    const id = JSON.stringify({ type: dbType as DbType, url: newUrl(state, urlType as DbType) })
+                    const id = newId(dbType as DbType, newUrl(state, urlType as DbType))
                     const db = state.db[id]
                     if (db) {
                         log('useFetch.request() 2', { dbType, urlType, data })
@@ -686,7 +690,7 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
             Object.entries(enabledMap).forEach(([urlType, enabled]) => {
                 if (enabled) {
-                    const id = JSON.stringify({ type: dbType as DbType, url: newUrl(state, urlType as DbType) })
+                    const id = newId(dbType as DbType, newUrl(state, urlType as DbType))
                     const db = state.db[id]
                     if (db) {
                         log('useFetch.clear() 2', { dbType, urlType, data })
@@ -906,13 +910,18 @@ function App() {
                     <Row title="Counter">
                         <Counter />
                     </Row>
+                    {!!env.GITHUB_RUN_ID
+                        ? <>
+                            <Row title="Status">
+                                <Status />
+                            </Row>
+                            <Row title="Deploy">
+                                <Deploy />
+                            </Row>
+                        </>
+                        : <></>}
                     <tr><td></td></tr>
-                    {/* <Row title="Status">
-                        <Status />
-                    </Row>
-                    <Row title="Deploy">
-                        <Deploy />
-                    </Row> */}
+
                 </tbody>
             </table>
         </StoreonProvider>
