@@ -467,6 +467,28 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         if (JSON.stringify(newValue) !== JSON.stringify(state[key])) {
             dispatch('set', { [key]: newValue })
             setValues({ ...values(), [id]: newValue })
+
+            Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
+                Object.entries(enabledMap).forEach(([urlType, enabled]) => {
+                    if (enabled) {
+                        const id2 = newId(dbType as DbType, newUrl(state, urlType as DbType))
+                        if (id !== id2) {
+                            const db = state.db[id2]
+                            if (db) {
+                                log('useFetch.newListenerHandler() 2. put', { dbType, urlType })
+
+                                if (dbType === 'gun_rs') {
+                                    const node = (db.db as GunRS).get(soul).get(key)
+                                    node.put(newValue)
+                                } else if (dbType === 'gun_js') {
+                                    const node = (db.db as IGunJS).get(soul).get(key)
+                                    node.put(newValue)
+                                }
+                            }
+                        }
+                    }
+                })
+            )
         } else {
             log('useFetch.newListenerHandler 1. skip')
         }
@@ -486,9 +508,10 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
                     : {
                         ...accSubscriptions,
                         ...Object.entries(db).reduce((accSubscriptions, [id, { type, db }]) => {
-                            // const url = newUrl(state, urlType as DbType)
-                            // const id = JSON.stringify({ type: dbType as DbType, url })
-                            if (db) {
+                            const url = newUrl(state, urlType as DbType)
+                            const id2 = newId(dbType as DbType, url)
+
+                            if (db && id === id2) {
                                 if (accSubscriptions[id]) {
                                     // const oldEvents = events()
                                     // oldEvents[id]?.off()

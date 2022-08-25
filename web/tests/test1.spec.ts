@@ -92,11 +92,11 @@ function newTest(title: string, testFn: (_: { browser: Browser }) => any) {
 }
 
 let actionIndex = 0
-const action = async (pages: Page[], title: string, selector: string, fn: (_: Page[]) => Promise<void>) => {
-    console.log(`\n!### ${actionIndex}: ${title}. wait 4000`)
+const action = async (pages: Page[], title: string, selector: string, fn: (_: Page[]) => Promise<any>) => {
+    console.log(`\n!### ${actionIndex}: ${title}. wait before action`)
 
     await Promise.all(pages.map(async (page, _index) => {
-        await page.waitForTimeout(4000)
+        await page.waitForTimeout(3500)
     }))
 
     if (selector) {
@@ -112,10 +112,14 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
 
     console.log(`\n!### ${actionIndex}: ${title}. action`)
 
-    await fn(pages)
+    const result = await fn(pages)
+
+    await Promise.all(pages.map(async (page, _index) => {
+        await page.waitForTimeout(500)
+    }))
 
     if (selector) {
-        console.log(`\n!### ${actionIndex}: ${title}. print after action`)
+        console.log(`\n!### ${actionIndex}: ${title}. print after action. result: ${result}`)
 
         const textContent2 = await Promise.all(
             pages
@@ -126,22 +130,22 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
     }
 
     actionIndex++
+
+    return result
 }
 
-const waitFor = async (
+const waitFor = (
     pages: Page[],
     title: string,
     selector: string,
     opts: { has?: Locator; hasText?: string | RegExp } | undefined
-) => {
-    await action(pages, title, selector, async (pages) => {
-        await Promise.all(
+) => action(pages, title, selector, (pages) =>
+        Promise.all(
             pages
                 .map(page => page
                     .locator(selector, opts)
-                    .waitFor()))
-    })
-}
+                    .waitFor())))
+
 
 newTest("test1", async ({ browser }) => {
     const context = await newContext(browser)
@@ -181,27 +185,21 @@ newTest("test1", async ({ browser }) => {
         }))
     })
 
-    await action(pages, 'request click 1', '#counter pre', async (pages) => {
-        await pages[0].locator('#counter button').nth(0).click()
-    })
+    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '{}' })
 
-    await waitFor(pages, 'wait 0', '#counter pre', { hasText: '": 0' })
+    for (const [index, page] of pages.entries()) {
+        await action(pages, `request click ${index}`, '#counter pre', async (_pages) => {
+            await page.locator('#counter button').nth(0).click()
+        })
 
-    await action(pages, 'request click 2', '#counter pre', async (pages) => {
-        await pages[0].locator('#counter button').nth(0).click()
-    })
-
-    await waitFor(pages, 'wait 1', '#counter pre', { hasText: '": 1' })
+        await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `": ${index}` })
+    }
 
     await action(pages, 'clear click 2', '#counter pre', async (pages) => {
-        await Promise.all(pages.map(async (page, _index) => {
-            await page.locator('#counter button').nth(1).click()
-            // await page.locator('#status button').nth(1).click()
-            // await page.locator('#deploy button').nth(1).click()
-        }))
+        await pages[0].locator('#counter button').nth(1).click()
     })
 
-    await waitFor(pages, 'wait empty', '#counter pre', { hasText: '{}' })
+    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: '{}' })
 
     return pages
 })
