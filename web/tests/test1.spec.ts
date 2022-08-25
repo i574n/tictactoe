@@ -27,7 +27,7 @@ async function newPage(index: number, context: BrowserContext) {
             msgs.push(newMsgs)
             logs.push(newMsgs)
         }
-        if(msgs.length > 0) {
+        if (msgs.length > 0) {
             console.log(`${index}>`, ...msgs)
         }
     })
@@ -140,11 +140,11 @@ const waitFor = (
     selector: string,
     opts: { has?: Locator; hasText?: string | RegExp } | undefined
 ) => action(pages, title, selector, (pages) =>
-        Promise.all(
-            pages
-                .map(page => page
-                    .locator(selector, opts)
-                    .waitFor())))
+    Promise.all(
+        pages
+            .map(page => page
+                .locator(selector, opts)
+                .waitFor())))
 
 
 newTest("test1", async ({ browser }) => {
@@ -188,11 +188,13 @@ newTest("test1", async ({ browser }) => {
     await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '{}' })
 
     for (const [index, page] of pages.entries()) {
-        await action(pages, `request click ${index}`, '#counter pre', async (_pages) => {
-            await page.locator('#counter button').nth(0).click()
-        })
+        if (index < 3) {
+            await action(pages, `request click ${index}`, '#counter pre', async (_pages) => {
+                await page.locator('#counter button').nth(0).click()
+            })
 
-        await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `": ${index}` })
+            await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `": ${index}` })
+        }
     }
 
     await action(pages, 'clear click 2', '#counter pre', async (pages) => {
