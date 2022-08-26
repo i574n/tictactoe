@@ -5,11 +5,11 @@ const config: PlaywrightTestConfig = {
     forbidOnly: !!process.env.CI,
     fullyParallel: false,
     outputDir: './test-results',
-    repeatEach: 1,
+    repeatEach: process.env.CI ? 3 : 1,
     reporter: [['html', { open: 'never' }]], // reporter: [['html', { open: 'on-failure' }]],
     retries: process.env.CI ? 2 : 0,
     testDir: './tests',
-    timeout: 90 * 1000,
+    timeout: 40 * 1000,
     workers: 1,
     expect: {
         timeout: 30000

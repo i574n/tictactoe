@@ -101,7 +101,7 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
     console.log(`\n!### ${actionIndex}: ${title}. wait before action`)
 
     await Promise.all(pages.map(async (page, _index) => {
-        await page.waitForTimeout(500)
+        await page.waitForTimeout(1000)
     }))
 
     if (selector) {
@@ -195,7 +195,7 @@ newTest("test1", async ({ browser }) => {
     consoleEnabled = true
 
     for (const [index, page] of pages.entries()) {
-        if (index < 5) {
+        if (index < 3) {
             await action(pages, `request click ${index}`, '#counter pre', async (_pages) => {
                 await page.locator('#counter button').nth(0).click()
             })

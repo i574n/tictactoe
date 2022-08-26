@@ -346,7 +346,7 @@ function DbListener() {
         dispatch('set', { db })
     }
 
-    let unbind = store.on('@changed', (oldState, changed, oldStore) => {
+    const unbind = store.on('@changed', (oldState, changed, oldStore) => {
         log('DbListener.store.@changed 1', {
             changed: Object.keys(changed).map((key) => ({
                 key,
@@ -597,7 +597,7 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         setEvents({} as { [_ in DbType]: any })
     }
 
-    let unbind = store.on('@changed', (oldState, changed, oldStore) => {
+    const unbind = store.on('@changed', (oldState, changed, oldStore) => {
         if (changed.dbEnabled || changed.db) {
             log('useFetch.store.@changed 1', {
                 changed: Object.keys(changed).map((key) => ({
