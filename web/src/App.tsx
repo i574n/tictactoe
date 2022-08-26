@@ -11,10 +11,9 @@ import { StoreonProvider, useStoreon } from "@storeon/solidjs"
 import { BiRegularRefresh } from "solid-icons/bi"
 import { Node as GunRS } from "rusty-gun"
 import GunJS from "gun/gun"
-import { IGunInstance as IGunJS } from "gun"
+import { IGunInstance as IGunJS, IGunChain } from "gun"
 // @ts-ignore
 import styles from "./App.module.css"
-
 
 type NoneEmptyArray = readonly any[] & { 0: any }
 type CompareUnionWithArray<P, Q extends NoneEmptyArray> = Exclude<P, Q[number]> extends never
@@ -42,10 +41,12 @@ type DbSubscription =
 type DbSubscriptionType = DbSubscription["type"]
 assertTypeEquals<DbSubscriptionType, typeof DB_TYPE>(DB_TYPE)
 
+type DbNode = IGunChain<any> | GunRS
 
-type DbModel = { [K in DbType]: { gun_rs?: GunRS, gun_js?: IGunJS }[K] }
 
-type DbSubscriptionModel = { [K in DbType]: { gun_rs?: number, gun_js?: number }[K] }
+// type DbModel = { [K in DbType]: { gun_rs?: GunRS, gun_js?: IGunJS }[K] }
+
+// type DbSubscriptionModel = { [K in DbType]: { gun_rs?: number, gun_js?: number }[K] }
 
 type Url = { url: string }
 
@@ -121,17 +122,19 @@ const getStateLocals = (state: State) => {
     }
 }
 
+const pad = (n: string, count: number): string => n.length < count ? pad(`0${n}`, count) : `${n}`
+
 const getLog =
-    (getLocals: () => object, argsColor = '#888') =>
+    (getLocals = () => ({}), argsColor = '#888') =>
         (...args: any[]) => {
             IS_TEST
                 ? console.log(
-                    `[log] ${runId}`,
+                    `[${pad(newTimestamp().toString(), 6)}] ${runId}`,
                     JSON.stringify(args),
                     JSON.stringify(getLocals())
                 )
                 : console.log(
-                    `[log] ${runId} %c%s %c%s`,
+                    `[${pad(newTimestamp().toString(), 6)}] ${runId} %c%s %c%s`,
                     `font-weight: bold; color: ${argsColor}`,
                     JSON.stringify(args),
                     'font-weight: bold; color: #444',
@@ -220,22 +223,19 @@ function ChainConnection() {
 }
 
 function AccountInput({ key, account }: { key: keyof Omit<Account, 'alias'>, account: Account }) {
-    const [state, dispatch] = useStoreon<State, Events>()
-
     return (
-        <input
-            type="text"
-            value={account[key]}
-            onInput={e => dispatch('set', {
+        <StateInput
+            get={(_state) => account[key]}
+            set={(state, value) => ({
+                ...state,
                 accounts:
                     state.accounts.map(
                         (_account) =>
                             _account.alias === account.alias
-                                ? { ..._account, [key]: e.currentTarget.value }
+                                ? { ..._account, [key]: value }
                                 : _account
                     )
-            })}
-        />
+            })} />
     )
 }
 
@@ -304,49 +304,49 @@ const newUrl = (state: State, type: DbType) => {
     return url
 }
 
-const newId = (type: DbType, url: string) => {
-    return JSON.stringify([type, url.replace(/localhost/g, '')])
+type Id = { dbType: DbType, url: string, id: string }
+
+const newId = (dbType: DbType, url: string): Id => {
+    return {
+        dbType,
+        url,
+        id: [dbType, url.replace(/\:\/\/localhost/g, '')].toString()
+    }
 }
+
+const getEnabledDbIdList = (state: State): Id[] =>
+    Object.entries(state.dbEnabled).reduce((accKeys, [dbType, enabledMap]) =>
+        Object.entries(enabledMap).reduce((accKeys, [urlType, enabled]) =>
+            !enabled
+                ? accKeys
+                : [
+                    ...accKeys,
+                    newId(dbType as DbType, newUrl(state, urlType as DbType))
+                ],
+            accKeys
+        ),
+        [] as Id[])
 
 function DbListener() {
     const [state, dispatch] = useStoreon<State, Events>()
 
-    const getLocals = () => ({
-        ...getStateLocals(state)
-    })
-
+    const getLocals = () => ({ ...getStateLocals(state) })
     const log = getLog(getLocals, '#cf1100')
 
     log('DbListener() 0')
 
     const refresh = () => {
-        log('DbListener.refresh() 1')
-
-        const db = Object.entries(state.dbEnabled).reduce((accKeys, [dbType, enabledMap]) =>
-            Object.entries(enabledMap).reduce((accKeys, [urlType, enabled]) =>
-                !enabled
-                    ? accKeys
-                    : [
-                        ...accKeys,
-                        { type: dbType as DbType, url: newUrl(state, urlType as DbType) }
-                    ],
-                accKeys
-            ),
-            [] as { type: DbType; url: string }[]
-        ).reduce((accDb, { type, url }) => {
-            const id = newId(type, url)
-            return {
-                ...accDb,
-                [id]: accDb[id] || newDb(type, { url })
-            }
-        }, state.db)
+        const db = getEnabledDbIdList(state).reduce((accDb, { dbType, url, id }) => ({
+            ...accDb,
+            [id]: accDb[id] || newDb(dbType, { url })
+        }), state.db)
 
         log('DbListener.refresh() 1', { db })
 
         dispatch('set', { db })
     }
 
-    const unbind = store.on('@changed', (oldState, changed, oldStore) => {
+    let unbind = store.on('@changed', (oldState, changed, oldStore) => {
         log('DbListener.store.@changed 1', {
             changed: Object.keys(changed).map((key) => ({
                 key,
@@ -359,100 +359,48 @@ function DbListener() {
             refresh()
         }
     })
-    onCleanup(() => unbind())
-
-    // createEffect(on(
-    //     () => [],
-    //     () => {
-    //         log('DbListener.createEffect() 1')
-    //         refresh()
-    //     }
-    // ))
+    onCleanup(() => {
+        unbind()
+    })
 
     return <></>
 }
 
-function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
-    const [state, dispatch] = useStoreon<State, Events>()
-
-    const [subscriptions, setSubscriptions] = createSignal({} as { [_: string]: DbSubscription })
-
-    const [events, setEvents] = createSignal({} as { [_: string]: { off: () => void } | null })
-    const [intervals, setIntervals] = createSignal({} as { [_: string]: NodeJS.Timer | null })
-    const [values, setValues] = createSignal({} as { [_: string]: any })
-
-    const getLocals = () => ({
-        ...getStateLocals(state),
-        key,
-        [`${key}.keys`]: Object.keys(state[key]),
-        [`events`]: Object.entries(events()),
-        [`intervals`]: Object.entries(intervals()),
-        [`values`]: Object.entries(values()),
-        [`subscriptions`]: Object.entries(subscriptions())
-    })
-
-    const defaultColors = Object.keys(init).reduce(
-        (acc, x) => ({ ...acc, [x]: '#00cf2d' }),
-        {} as { [key in keyof State]: string }
-    )
-    const colors = { ...defaultColors, status: '#cf6800', deploy: '#cccf00' }
-    const log = getLog(getLocals, colors[key])
-
-    log('useFetch() 0')
-
-    const parse = (raw: object) => {
-        log('useFetch.parse() 1', { raw })
-        let data = raw
-        while (typeof data === 'string') {
-            data = JSON.parse(data)
-        }
-        return data
+const parse = (raw: object) => {
+    const getLocals = () => ({ raw })
+    const log = getLog(getLocals)
+    log('parse() 0')
+    let data = raw
+    while (typeof data === 'string') {
+        data = JSON.parse(data)
     }
+    return data
+}
 
-    const newListenerHandler = (id: string) => (v: object, k: any, _msg: any, _ev: any) => {
+const newListenerHandler = (
+    state: State,
+    id: string,
+    key: keyof State,
+    onValue: (id: string, hash: string, newValue: object) => void
+) =>
+    (v: object, k: any, _msg: any, _ev: any) => {
+        const getLocals = () => ({ ...getStateLocals(state), id, k })
+        const log = getLog(getLocals)
+
         const { _, '#': hash, ...value }: { [_: string]: any } = parse(v)
-        // const valueKeys = Object.keys(value)
-
-        // if (valueKeys.length > 0 || !hash || Object.keys(state[key]).length === 0) {
-        // const oldEvents = events()
-        // oldEvents[id]?.off()
-        // setEvents({
-        //     ...oldEvents,
-        //     [id]: _ev
-        // })
-
-
-
-
-
-        // Object.values(events()).forEach(events => events?.off())
-        // setEvents({})
-
-
-
-        // const oldIntervals = intervals()
-        // const interval = oldIntervals[id]
-        // if (interval) {
-        //     clearInterval(interval)
-        //     setIntervals({
-        //         ...oldIntervals,
-        //         [id]: null
-        //     })
-        // }
-
-        Object.values(intervals()).forEach(interval => interval && clearInterval(interval))
-        setIntervals({})
 
         const newValue =
-            Object.keys(value)
+            [...Object.keys(state[key]), ...Object.keys(value)]
                 .reduce((acc, k) => ({
                     ...acc,
                     [k]: value[k] === null
                         ? undefined
-                        : value[k]
-                }), state[key] as { [_: string]: any })
+                        : (value[k] !== undefined
+                            ? value[k]
+                            : (state[key] as { [_: string]: any })[k])
+                }), {} as { [_: string]: any })
 
-        log('useFetch.newListenerHandler 1', {
+        log('newListenerHandler 1', {
             _,
             id,
             hash,
@@ -464,110 +412,170 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
             stateKeyEntries: Object.entries(state[key])
         })
 
+        onValue(id, Object.keys(value).length === 0 ? hash : undefined, newValue)
+    }
+
+const getDbNode = (state: State, id: string, key: keyof State, timestamp: number | undefined): DbNode | undefined => {
+    const getLocals = () => ({
+        ...getStateLocals(state),
+        id, key, timestamp
+    })
+    const log = getLog(getLocals)
+
+    const db = state.db[id]
+
+    log('getDbNode() 0')
+    if (db) {
+        let node: DbNode = db.db.get(soul).get(key)
+        if (timestamp) {
+            node = node.get(`${timestamp}`)
+        }
+        return node
+    }
+    return undefined
+}
+
+const dbPut = (state: State, id: string, key: keyof State, timestamp: number | undefined, newValue: { [_: string]: any }) => {
+    const getLocals = () => ({
+        ...getStateLocals(state),
+        newValue
+    })
+    const log = getLog(getLocals)
+
+    const node = getDbNode(state, id, key, timestamp)
+
+    log('dbPut() 0', { node })
+    if (node) {
+        node.put(timestamp ? newValue[`${timestamp}`] : newValue)
+    }
+}
+
+const dbOff = (state: State, id: string, key: keyof State, timestamp: number | undefined, subscription: number | undefined) => {
+    const getLocals = () => ({
+        ...getStateLocals(state)
+    })
+    const log = getLog(getLocals)
+
+    const node = getDbNode(state, id, key, timestamp)
+
+    log('dbOff() 0', { node })
+    if (node) {
+        node.off(subscription as any)
+    }
+}
+
+const dbOn = (
+    state: State,
+    { dbType, id }: Id,
+    key: keyof State,
+    timestamp: number | undefined,
+    subscriptions: { [_: string]: DbSubscription },
+    onValue: (id: string, hash: string, newValue: object) => void
+): number | undefined => {
+    const getLocals = () => ({
+        ...getStateLocals(state)
+    })
+    const log = getLog(getLocals)
+
+    const node = getDbNode(state, id, key, timestamp)
+
+    log('dbOn() 0', { node })
+    if (node) {
+        const oldSubscription = subscriptions[id]
+        if (dbType === 'gun_rs') {
+            oldSubscription && node.off(oldSubscription.subscription)
+            return node.on(newListenerHandler(state, id, key, onValue)) as number
+        } else if (dbType === 'gun_js') {
+            oldSubscription && node.off(undefined as any)
+            node.on(newListenerHandler(state, id, key, onValue))
+            return newTimestamp()
+        }
+    }
+}
+
+function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, requestFn: ((_: algosdk.Algodv2) => Promise<any>)) {
+    const [state, dispatch] = useStoreon<State, Events>()
+
+    const [subscriptions, setSubscriptions] = createSignal({} as { [_: string]: DbSubscription })
+
+    const [events, setEvents] = createSignal({} as { [_: string]: { off: () => void } | undefined })
+    const [intervals, setIntervals] = createSignal({} as { [_: string]: NodeJS.Timer | undefined })
+    const [values, setValues] = createSignal({} as { [_: string]: any })
+
+    const getLocals = () => ({
+        ...getStateLocals(state),
+        key,
+        [`${key}.keys`]: Object.keys(state[key]),
+        [`events`]: Object.entries(events()),
+        [`intervals`]: Object.entries(intervals()),
+        [`values`]: Object.entries(values()),
+        [`subscriptions`]: Object.entries(subscriptions()).map(([id, { subscription }]) => [id, subscription])
+    })
+
+    const defaultColors = Object.keys(init).reduce(
+        (acc, x) => ({ ...acc, [x]: '#00cf2d' }),
+        {} as { [key in keyof State]: string }
+    )
+    const colors = { ...defaultColors, status: '#cf6800', deploy: '#cccf00' }
+    const log = getLog(getLocals, colors[key])
+
+    log('useFetch() 0')
+
+    const onValue = (id: string, hash: string, newValue: object) => {
+        log('useFetch.onValue() 1', { id, hash, newValue })
+
+        if (hash && Object.keys(state[key]).length > 0) {
+            log('useFetch.onValue() 1. resub')
+
+            // const oldSubscriptions = subscriptions()
+            // setSubscriptions({
+            //     ...oldSubscriptions,
+            //     [id]: oldSubscriptions[id]
+            // })
+        }
+
+        const oldIntervals = intervals()
+        oldIntervals[id] && clearInterval(oldIntervals[id])
+        setIntervals({
+            ...oldIntervals,
+            [id]: undefined
+        })
+        // Object.values(intervals()).forEach(interval => interval && clearInterval(interval))
+        // setIntervals({})
+
         if (JSON.stringify(newValue) !== JSON.stringify(state[key])) {
             dispatch('set', { [key]: newValue })
             setValues({ ...values(), [id]: newValue })
 
-            Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
-                Object.entries(enabledMap).forEach(([urlType, enabled]) => {
-                    if (enabled) {
-                        const id2 = newId(dbType as DbType, newUrl(state, urlType as DbType))
-                        if (id !== id2) {
-                            const db = state.db[id2]
-                            if (db) {
-                                log('useFetch.newListenerHandler() 2. put', { dbType, urlType })
-
-                                if (dbType === 'gun_rs') {
-                                    const node = (db.db as GunRS).get(soul).get(key)
-                                    node.put(newValue)
-                                } else if (dbType === 'gun_js') {
-                                    const node = (db.db as IGunJS).get(soul).get(key)
-                                    node.put(newValue)
-                                }
-                            }
-                        }
-                    }
-                })
-            )
+            getEnabledDbIdList(state).forEach((dbId) => {
+                if (id !== dbId.id) {
+                    dbPut(state, dbId.id, key, undefined, newValue)
+                }
+            })
         } else {
-            log('useFetch.newListenerHandler 1. skip')
+            log('useFetch.onValue() 1. skip')
         }
-
-        // } else {
-        //     log('useFetch.newListenerHandler 1. skip')
-        // }
     }
 
     const subscribe = (db: { [_: string]: Db }) => {
-        log('useFetch.subscribe() 1')
-
-        const newSubscriptions = Object.entries(state.dbEnabled).reduce((accSubscriptions, [dbType, enabledMap]) =>
-            Object.entries(enabledMap).reduce((accSubscriptions, [urlType, enabled]) =>
-                !enabled
+        const newSubscriptions = getEnabledDbIdList(state).reduce((accSubscriptions, dbId) => ({
+            ...accSubscriptions,
+            ...Object.entries(db).reduce((accSubscriptions, [id, { type, db }]) =>
+                !db || id !== dbId.id
                     ? accSubscriptions
                     : {
                         ...accSubscriptions,
-                        ...Object.entries(db).reduce((accSubscriptions, [id, { type, db }]) => {
-                            const url = newUrl(state, urlType as DbType)
-                            const id2 = newId(dbType as DbType, url)
-
-                            if (db && id === id2) {
-                                if (accSubscriptions[id]) {
-                                    // const oldEvents = events()
-                                    // oldEvents[id]?.off()
-                                    // setEvents({
-                                    //     ...oldEvents,
-                                    //     [id]: null
-                                    // })
-
-
-
-
-                                    // accSubscriptions[id].forEach(({ off }) => off())
-
-
-
-                                    // oldEvents[type]?.off()
-                                    // setEvents({ ...oldEvents, [type]: undefined as any })
-                                    //             currentSubscriptions.forEach((subscription) => {
-                                    //                 node.off(subscription as number)
-                                    //             })
-                                    // node.off(accSubscriptions[id] as number)
-                                }
-
-
-                                if (type === 'gun_rs') {
-                                    const node = (db as GunRS).get(soul).get(key)
-
-                                    accSubscriptions[id] && node.off(accSubscriptions[id].subscription as number)
-
-                                    const subscription: number = node.on(newListenerHandler(id))
-                                    log('useFetch.subscribe() 2', { type, subscription })
-                                    return {
-                                        ...accSubscriptions,
-                                        [id]: { type, subscription }
-                                    }
-                                } else if (type === 'gun_js') {
-                                    const node = (db as IGunJS).get(soul).get(key)
-
-                                    accSubscriptions[id] && node.off()
-
-                                    node.on(newListenerHandler(id))
-                                    const subscription = newTimestamp()
-                                    log('useFetch.subscribe() 2', { type, subscription })
-                                    return {
-                                        ...accSubscriptions,
-                                        [id]: { type, subscription }
-                                    }
-                                }
-                            }
-                            return accSubscriptions
-                        }, {} as { [_: string]: DbSubscription })
+                        [id]: {
+                            type,
+                            subscription: dbOn(state, dbId, key, undefined, accSubscriptions, onValue)
+                        } as DbSubscription
                     },
-                accSubscriptions
-            ),
-            subscriptions()
-        )
+                accSubscriptions)
+        }), subscriptions())
+
+        log('useFetch.subscribe() 1', {
+            newSubscriptions: Object.entries(newSubscriptions).map(([id, { subscription }]) => [id, subscription])
+        })
 
         setSubscriptions(newSubscriptions)
     }
@@ -578,25 +586,10 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         Object.entries(subscriptions()).forEach(([id, { type: subscriptionType, subscription }]) => {
             log('useFetch.unsubscribe 2', { id, subscriptionType, subscription })
 
-            Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
-                Object.entries(enabledMap).forEach(([urlType, enabled]) => {
-                    if (enabled) {
-                        const id = newId(dbType as DbType, newUrl(state, urlType as DbType))
-                        const db = state.db[id]
-                        if (db) {
-                            log('useFetch.unsubscribe() 3', { dbType, urlType })
 
-                            if (dbType === 'gun_rs') {
-                                const node = (db.db as GunRS).get(soul).get(key)
-                                node.off(subscription as number)
-                            } else if (dbType === 'gun_js') {
-                                const node = (db.db as IGunJS).get(soul).get(key)
-                                node.off()
-                            }
-                        }
-                    }
-                })
-            )
+            getEnabledDbIdList(state).forEach(({ id }) => {
+                dbOff(state, id, key, undefined, subscription)
+            })
         })
         setSubscriptions({})
 
@@ -604,7 +597,7 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         setEvents({} as { [_ in DbType]: any })
     }
 
-    const unbind = store.on('@changed', (oldState, changed, oldStore) => {
+    let unbind = store.on('@changed', (oldState, changed, oldStore) => {
         if (changed.dbEnabled || changed.db) {
             log('useFetch.store.@changed 1', {
                 changed: Object.keys(changed).map((key) => ({
@@ -618,37 +611,26 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
             unsubscribe(oldState)
             Object.values(intervals()).forEach((interval) => interval && clearInterval(interval))
             setIntervals(
-                Object.entries(state.dbEnabled).reduce((accIntervals, [dbType, enabledMap]) =>
-                    Object.entries(enabledMap).reduce((accIntervals, [urlType, enabled]) =>
-                        !enabled
-                            ? accIntervals
-                            : {
+                getEnabledDbIdList(state).reduce((accIntervals, dbId) => ({
+                    ...accIntervals,
+                    ...Object.keys(changed.db || oldState.db).reduce((accIntervals, id) => {
+                        if (id === dbId.id) {
+                            return {
                                 ...accIntervals,
-                                ...Object.entries(changed.db || oldState.db).reduce((accIntervals, [id, { type, db }]) => {
-                                    const url = newUrl(state, urlType as DbType)
-                                    if (id === newId(dbType as DbType, url)) {
-                                        if (db) {
-                                            return {
-                                                ...accIntervals,
-                                                [id]: setInterval(() => {
-                                                    log('useFetch.store.@changed callback setInterval unsubscribe -> subscribe... 2',
-                                                        { changedKeys: Object.keys(changed), type })
-                                                    unsubscribe(oldState)
-                                                    oldState.dbEnabled && changed.dbEnabled && subscribe(changed.db || oldState.db)
-                                                }, 2000)
-                                            }
-                                        }
-                                    } else {
-                                        log('useFetch.store.@changed callback setInterval skip. 2',
-                                            { id, changedKeys: Object.keys(changed), type })
-                                    }
-                                    return accIntervals
-                                }, {} as { [_: string]: NodeJS.Timer | null })
-                            },
-                        accIntervals
-                    ),
-                    {} as { [_: string]: NodeJS.Timer | null }
-                )
+                                [id]: setInterval(() => {
+                                    log('useFetch.store.@changed callback setInterval unsubscribe -> subscribe... 2',
+                                        { id, changedKeys: Object.keys(changed) })
+                                    unsubscribe(oldState)
+                                    oldState.dbEnabled && changed.dbEnabled && subscribe(changed.db || oldState.db)
+                                }, 2000)
+                            }
+                        } else {
+                            log('useFetch.store.@changed callback setInterval skip. 2',
+                                { id, changedKeys: Object.keys(changed) })
+                        }
+                        return accIntervals
+                    }, {} as { [_: string]: NodeJS.Timer | undefined })
+                }), {} as { [_: string]: NodeJS.Timer | undefined })
             )
         }
     })
@@ -667,68 +649,33 @@ function useFetch(key: keyof util.PickByType<State, { [_: number]: any }>, reque
         }
 
         const timestamp = newTimestamp()
-        const data = {
+        const newValue = {
             ...(state[key] as { [_: string]: any }),
             [`${timestamp}`]: result
         }
 
-        log('useFetch.request() 1', { result, data })
+        log('useFetch.request() 1', { result, newValue })
 
-        dispatch('set', { [key]: data })
+        dispatch('set', { [key]: newValue })
 
-        Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
-            Object.entries(enabledMap).forEach(([urlType, enabled]) => {
-                if (enabled) {
-                    const id = newId(dbType as DbType, newUrl(state, urlType as DbType))
-                    const db = state.db[id]
-                    if (db) {
-                        log('useFetch.request() 2', { dbType, urlType, data })
-
-                        if (dbType === 'gun_rs') {
-                            const node = (db.db as GunRS).get(soul).get(key)
-                            // node.get(`${timestamp}`).put(result)
-                            node.put(data)
-                        } else if (dbType === 'gun_js') {
-                            const node = (db.db as IGunJS).get(soul).get(key)
-                            // node.get(`${timestamp}`).put(result)
-                            node.put(data)
-                        }
-                    }
-                }
-            })
-        )
+        getEnabledDbIdList(state).forEach(({ id }) => {
+            dbPut(state, id, key, undefined, newValue)
+        })
     }
 
-    const clear = async () => {
+    const clear = () => {
         log('useFetch.clear() 1')
 
-        const data = Object.keys(state[key])
-            .reduce((acc, k) => ({
-                ...acc,
-                [k]: null
-            }), {})
+        const newValue = Object.keys(state[key]).reduce((acc, k) => ({
+            ...acc,
+            [k]: null
+        }), {})
 
-        dispatch('set', { [key]: data })
+        dispatch('set', { [key]: newValue })
 
-        Object.entries(state.dbEnabled).forEach(([dbType, enabledMap]) =>
-            Object.entries(enabledMap).forEach(([urlType, enabled]) => {
-                if (enabled) {
-                    const id = newId(dbType as DbType, newUrl(state, urlType as DbType))
-                    const db = state.db[id]
-                    if (db) {
-                        log('useFetch.clear() 2', { dbType, urlType, data })
-
-                        if (dbType === 'gun_rs') {
-                            const node = (db.db as GunRS).get(soul).get(key)
-                            node.put(data)
-                        } else if (dbType === 'gun_js') {
-                            const node = (db.db as IGunJS).get(soul).get(key)
-                            node.put(data)
-                        }
-                    }
-                }
-            })
-        )
+        getEnabledDbIdList(state).forEach(({ id }) => {
+            dbPut(state, id, key, undefined, newValue)
+        })
     }
 
     return { request, clear }

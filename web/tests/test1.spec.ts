@@ -1,4 +1,4 @@
-import { Browser, BrowserContext, Locator, Page, test } from "@playwright/test"
+import { Browser, BrowserContext, Locator, Page, Frame, Request, Response, Worker, Download, WebSocket, test } from "@playwright/test"
 import { injectAxe } from "axe-playwright"
 
 const range = (n: number) => Array.from(Array(n).keys())
@@ -16,6 +16,11 @@ function newContext(browser: Browser) {
     })
 }
 
+const getUrl = (obj: Page | Frame | Request | Response | Worker | Download | WebSocket) =>
+    obj.url().replace(/\:\/\/localhost/g, '')
+
+let consoleEnabled = false
+
 async function newPage(index: number, context: BrowserContext) {
     const page = await context.newPage()
 
@@ -27,45 +32,45 @@ async function newPage(index: number, context: BrowserContext) {
             msgs.push(newMsgs)
             logs.push(newMsgs)
         }
-        if (msgs.length > 0) {
+        if (msgs.length > 0 && consoleEnabled) {
             console.log(`${index}>`, ...msgs)
         }
     })
 
-    page.on('close', async (page) => console.log(`***${index} close ***`, page.url()))
-    page.on('crash', async (page) => console.warn(`***${index} crash ***\n`, { url: page.url() }))
+    page.on('close', async (page) => console.log(`***${index} close ***`, getUrl(page)))
+    page.on('crash', async (page) => console.warn(`***${index} crash ***\n`, { url: getUrl(page) }))
     page.on('dialog', async (dialog) => console.log(`***${index} dialog ***\n`, { message: dialog.message() }))
-    page.on('domcontentloaded', async (page) => console.log(`***${index} domcontentloaded ***`, page.url()))
-    page.on('download', async (download) => console.log(`***${index} download ***\n`, { url: download.url() }))
+    page.on('domcontentloaded', async (page) => console.log(`***${index} domcontentloaded ***`, getUrl(page)))
+    page.on('download', async (download) => console.log(`***${index} download ***\n`, { url: getUrl(download) }))
     page.on('filechooser', async (fileChooser) => console.log(`***${index} filechooser ***\n`, { isMultiple: fileChooser.isMultiple() }))
-    page.on('frameattached', async (frame) => console.log(`***${index} frameattached ***\n`, { url: frame.url() }))
-    page.on('framedetached', async (frame) => console.log(`***${index} framedetached ***\n`, { url: frame.url() }))
-    page.on('framenavigated', async (frame) => console.log(`***${index} framenavigated ***\n`, { url: frame.url() }))
-    page.on('load', async (page) => console.log(`***${index} load ***`, page.url()))
+    page.on('frameattached', async (frame) => console.log(`***${index} frameattached ***\n`, { url: getUrl(frame) }))
+    page.on('framedetached', async (frame) => console.log(`***${index} framedetached ***\n`, { url: getUrl(frame) }))
+    page.on('framenavigated', async (frame) => console.log(`***${index} framenavigated ***\n`, { url: getUrl(frame) }))
+    page.on('load', async (page) => console.log(`***${index} load ***`, getUrl(page)))
     page.on('pageerror', async (error) => console.warn(`***${index} pageerror ***\n`, { error }))
-    page.on('popup', async (page) => console.log(`***${index} popup ***\n`, { url: page.url() }))
-    page.on('request', request => console.log(`***${index} request ***`, request.method(), request.url()))
-    page.on('requestfailed', async (request) => console.warn(`***${index} requestfailed ***\n`, { method: request.method(), url: request.url() }))
-    page.on('requestfinished', async (request) => console.log(`***${index} requestfinished ***`, request.method(), request.url()))
-    page.on('response', response => console.log(`***${index} response **`, response.status(), response.url()))
-    page.on('worker', async (worker) => console.log(`***${index} worker ***\n`, { url: worker.url() }))
+    page.on('popup', async (page) => console.log(`***${index} popup ***\n`, { url: getUrl(page) }))
+    page.on('request', (request) => console.log(`***${index} request ***`, request.method(), getUrl(request)))
+    page.on('requestfailed', async (request) => console.warn(`***${index} requestfailed ***\n`, { method: request.method(), url: getUrl(request) }))
+    page.on('requestfinished', async (request) => console.log(`***${index} requestfinished ***`, request.method(), getUrl(request)))
+    page.on('response', (response) => console.log(`***${index} response **`, response.status(), getUrl(response)))
+    page.on('worker', async (worker) => console.log(`***${index} worker ***\n`, { url: getUrl(worker) }))
 
     page.on('websocket', async (ws) => {
-        console.log(`***${index} websocket ***`, { url: ws.url() })
+        console.log(`***${index} websocket ***`, { url: getUrl(ws) })
 
         ws.on('framereceived', (data: { payload: string | Buffer }) => {
-            console.log(`***${index} framereceived ***`, ws.url(), data.payload)
+            console.log(`***${index} framereceived ***`, getUrl(ws), data.payload)
         })
 
         ws.on('framesent', (data: { payload: string | Buffer }) => {
-            console.log(`***${index} framesent ***`, ws.url(), data.payload)
+            console.log(`***${index} framesent ***`, getUrl(ws), data.payload)
         })
 
-        ws.on('close', (ws) => { console.log(`***${index} close ***`, { url: ws.url() }) })
+        ws.on('close', (ws) => { console.log(`***${index} close ***`, { url: getUrl(ws) }) })
 
         ws.on('socketerror', (error) => {
             console.warn(`***${index} socketerror ***`, {
-                url: ws.url(),
+                url: getUrl(ws),
                 error: error
             })
         })
@@ -82,7 +87,7 @@ function newTest(title: string, testFn: (_: { browser: Browser }) => any) {
 
         for (const [index, page] of pages.entries()) {
             console.log(`# Page ${index}`)
-            console.log('After Test URL:', page.url())
+            console.log('After Test URL:', getUrl(page))
             console.log('Video Path:', await page?.video()?.path())
         }
 
@@ -96,7 +101,7 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
     console.log(`\n!### ${actionIndex}: ${title}. wait before action`)
 
     await Promise.all(pages.map(async (page, _index) => {
-        await page.waitForTimeout(3500)
+        await page.waitForTimeout(500)
     }))
 
     if (selector) {
@@ -168,10 +173,10 @@ newTest("test1", async ({ browser }) => {
                     await page.locator('#db-gun-rs-js button').nth(0).click()
                 }
                 if (index == 0 || index == 3) {
-                    await page.locator('#db-gun-js-rs button').nth(0).click()
+                    await page.locator('#db-gun-js-js button').nth(0).click()
                 }
                 if (index == 0 || index == 4) {
-                    await page.locator('#db-gun-js-js button').nth(0).click()
+                    await page.locator('#db-gun-js-rs button').nth(0).click()
                 }
             }
         }))
@@ -187,8 +192,10 @@ newTest("test1", async ({ browser }) => {
 
     await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '{}' })
 
+    consoleEnabled = true
+
     for (const [index, page] of pages.entries()) {
-        if (index < 3) {
+        if (index < 5) {
             await action(pages, `request click ${index}`, '#counter pre', async (_pages) => {
                 await page.locator('#counter button').nth(0).click()
             })
