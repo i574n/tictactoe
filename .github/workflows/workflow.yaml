@@ -42,11 +42,22 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: playwright
-          path: |
-            ./web/playwright-report/
-            ./web/playwright-videos/
-            ./web/test-results/
+          name: playwright-report
+          path: ./web/playwright-report/
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: playwright-videos
+          path: ./web/playwright-videos/
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-results
+          path: ./web/test-results/
           retention-days: 30
 
       - uses: actions/setup-python@v4
