@@ -1,7 +1,8 @@
 packages: |core-
-modules: 
-    util
-    console_fsx
-    pyteal
-    tictactoe_pyteal
+modules:
+    lib_spi/
+        util
+        console_fsx
+        pyteal
+        tictactoe_pyteal
     main

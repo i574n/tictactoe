@@ -6,6 +6,12 @@ export type PickByType<T, Value> = {
     [P in keyof T as T[P] extends Value | undefined ? P : never]: T[P]
 }
 
+type NoneEmptyArray = readonly any[] & { 0: any }
+type CompareUnionWithArray<P, Q extends NoneEmptyArray> = Exclude<P, Q[number]> extends never
+    ? (Exclude<Q[number], P> extends never ? Q : ReadonlyArray<P>)
+    : readonly [...Q, Exclude<P, Q[number]>]
+export function assertTypeEquals<P, Q extends NoneEmptyArray>(_test: CompareUnionWithArray<P, Q>): void { }
+
 // cell
 var start = process.hrtime()
 
@@ -18,11 +24,16 @@ export var sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms
 export var waitFileChange = async (path: string) => {
     var start = process.hrtime()
     const stat_mtime = fs.statSync(path).mtimeMs
+    const oldLines = fs.readFileSync(path).toString()
+    let newLines = oldLines
     while (elapsed(start) < 30000
         && (fs.statSync(path).mtimeMs === stat_mtime
-            || fs.readFileSync(path).length === 0)) {
+            || newLines === oldLines
+            || newLines.length === 0)) {
         await sleep(50)
+        newLines = fs.readFileSync(path).toString()
     }
+    return newLines
 }
 
 // cell

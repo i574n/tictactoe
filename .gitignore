@@ -1,5 +1,6 @@
 .vscode
 .ipynb_checkpoints
+.packagemanagement
 __pycache__/
 playwright-report/
 playwright-videos/

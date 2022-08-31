@@ -21,15 +21,29 @@ var request = async (file: any) => { prev_request = requestRun(prev_request, fil
 var requestJSON = (file: any) => request(file).then(x => x ? JSON.parse(x) : undefined)
 
 var spiBuildFileReq = async (uri: string, backend: string): Promise<void> => requestJSON({ BuildFile: { uri, backend } })
+var spiprojOpenReq = async (uri: string, spiprojText: string): Promise<void> => requestJSON({ ProjectFileOpen: { uri, spiprojText } })
 
 // cell
-export var spiToFsx = async (spiPath = '', log = false) => {
-    const cwpath = (arg: string) => path.join(process.cwd(), '..', arg)
-    spiPath = spiPath || cwpath('main.spi')
-    const fsxPath = spiPath.replace('.spi', '.fsx')
-    await util.timeout(spiBuildFileReq(spiPath, 'Fsharp'), 2000)
-    await util.waitFileChange(fsxPath)
-    const lines = fs.readFileSync(fsxPath).toString().split('\n')
+export var spiToFsx = async (mainSpiPath = '', newFsxPath = '', log = false) => {
+    const isTemp = !mainSpiPath
+    const srcPath = path.join(process.cwd(), '..')
+    const destPath = isTemp ? fs.mkdtempSync(path.join('/tmp', 'spiToFsx-')) : srcPath
+    
+    const spiprojPath = path.join(destPath, 'package.spiproj')
+    if (!mainSpiPath) {
+        mainSpiPath = path.join(destPath, 'main.spi')
+        fs.cpSync(path.join(srcPath, 'main.spi'), mainSpiPath)
+        fs.cpSync(path.join(srcPath, 'package.spiproj'), spiprojPath)
+        fs.cpSync(path.join(srcPath, 'lib_spi'), path.join(destPath, 'lib_spi'), { recursive: true })   
+    }
+
+    const fsxPath = mainSpiPath.replace('.spi', '.fsx')
+    fs.writeFileSync(fsxPath, '')
+    
+    await util.timeout(spiprojOpenReq(spiprojPath, fs.readFileSync(spiprojPath).toString()), 2000)
+    await util.timeout(spiBuildFileReq(mainSpiPath, 'Fsharp'), 2000)
+
+    const lines = (await util.waitFileChange(fsxPath)).split('\n')
     const [imports, code] = lines.reduce(
         ([imports, code]: string[][], line) =>
             /^(open|\#r) .*?$/.test(line)
@@ -37,8 +51,10 @@ export var spiToFsx = async (spiPath = '', log = false) => {
                 : [imports, [...code, line]],
             [[], []]
     )
-    fs.writeFileSync(fsxPath, [...imports, '', ...code].join('\n'))
+    const newFsx = [...imports, '', ...code].join('\n')
+    fs.writeFileSync(newFsxPath || fsxPath, newFsx)
     if(log) {
-        util.logStep('spiral.spiToFsx() end')
+        util.logStep('spiral_api.spiToFsx() end')
     }
+    return newFsx
 }

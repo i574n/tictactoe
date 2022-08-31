@@ -19,7 +19,26 @@ function newContext(browser: Browser) {
 const getUrl = (obj: Page | Frame | Request | Response | Worker | Download | WebSocket) =>
     obj.url().replace(/\:\/\/localhost/g, '')
 
-let consoleEnabled = false
+let tmp = {
+    consoleEnabled: false,
+    pages: {} as {
+        [_: string]: {
+            wsFrameReceived: number,
+            wsFrameSent: number,
+            wsCount: number,
+            wsCloseCount: number,
+            wsErrorCount: number
+        }
+    }
+}
+
+const filteredLog = (...logs: any[]) => {
+    if (logs.flat().some((text) => true || text.includes('0>')) || logs.length > 0 && tmp.consoleEnabled) {
+        console.log(...logs)
+    }
+}
+
+const tmpLog = () => JSON.stringify(Object.entries(tmp.pages))
 
 async function newPage(index: number, context: BrowserContext) {
     const page = await context.newPage()
@@ -30,11 +49,9 @@ async function newPage(index: number, context: BrowserContext) {
         for (const arg of msg.args()) {
             const newMsgs = await arg.jsonValue()
             msgs.push(newMsgs)
-            logs.push(newMsgs)
+            // logs.push(newMsgs)
         }
-        if (msgs.length > 0 && consoleEnabled) {
-            console.log(`${index}>`, ...msgs)
-        }
+        filteredLog(`***${index}>`, ...msgs)
     })
 
     page.on('close', async (page) => console.log(`***${index} close ***`, getUrl(page)))
@@ -55,23 +72,41 @@ async function newPage(index: number, context: BrowserContext) {
     page.on('response', (response) => console.log(`***${index} response **`, response.status(), getUrl(response)))
     page.on('worker', async (worker) => console.log(`***${index} worker ***\n`, { url: getUrl(worker) }))
 
+    const incCount = (key: keyof typeof tmp.pages[string]) => {
+        tmp.pages = {
+            ...tmp.pages,
+            [`${index}`]: {
+                ...tmp.pages[`${index}`],
+                [key]: ((tmp.pages[`${index}`] || {})[key] || 0) + 1,
+            }
+        }
+    }
+
     page.on('websocket', async (ws) => {
-        console.log(`***${index} websocket ***`, { url: getUrl(ws) })
+        incCount('wsCount')
+        console.log(`***${index} websocket ***`, { url: getUrl(ws), tmpLog: tmpLog() })
 
         ws.on('framereceived', (data: { payload: string | Buffer }) => {
+            incCount('wsFrameReceived')
             console.log(`***${index} framereceived ***`, getUrl(ws), data.payload)
         })
 
         ws.on('framesent', (data: { payload: string | Buffer }) => {
+            incCount('wsFrameSent')
             console.log(`***${index} framesent ***`, getUrl(ws), data.payload)
         })
 
-        ws.on('close', (ws) => { console.log(`***${index} close ***`, { url: getUrl(ws) }) })
+        ws.on('close', (ws) => {
+            incCount('wsCloseCount')
+            console.log(`***${index} close ***`, { url: getUrl(ws), tmpLog: tmpLog() })
+        })
 
         ws.on('socketerror', (error) => {
+            incCount('wsErrorCount')
             console.warn(`***${index} socketerror ***`, {
                 url: getUrl(ws),
-                error: error
+                error: error,
+                tmpLog: tmpLog()
             })
         })
     })
@@ -80,15 +115,22 @@ async function newPage(index: number, context: BrowserContext) {
 }
 
 function newTest(title: string, testFn: (_: { browser: Browser }) => any) {
-    return test(title, async ({ browser }) => {
+    return test(title, async ({ browser, browserName }, { retry }) => {
         const context = await newContext(browser)
 
+        // tmp.consoleEnabled = true
+        if (retry > 0) {
+            // tmp.consoleEnabled = true
+        }
         const pages = await testFn({ browser })
 
         for (const [index, page] of pages.entries()) {
-            console.log(`# Page ${index}`)
-            console.log('After Test URL:', getUrl(page))
-            console.log('Video Path:', await page?.video()?.path())
+            console.log('test end', {
+                browserName,
+                index,
+                pageUrl: getUrl(page),
+                videoPath: await page?.video()?.path()
+            })
         }
 
         await context.close()
@@ -98,40 +140,30 @@ function newTest(title: string, testFn: (_: { browser: Browser }) => any) {
 
 let actionIndex = 0
 const action = async (pages: Page[], title: string, selector: string, fn: (_: Page[]) => Promise<any>) => {
-    console.log(`\n!### ${actionIndex}: ${title}. wait before action`)
+    console.log(
+        `\n!### action() ${actionIndex}: ${title}`,
+    )
+    let result
+    for (let i = 0; i < 2; i++) {
+        if (selector) {
+            const textContent = await Promise.all(
+                pages
+                    .map(page => page
+                        .locator(selector)
+                        .evaluateAll((nodes) => nodes.map((node) => node.textContent))))
+            console.log(
+                `\n!### action() ${actionIndex}: ${title}. ${i === 0 ? 'before' : 'after'} fn`,
+                ...textContent.flat().map((text) => JSON.parse(text || ''))
+            )
+        }
 
-    await Promise.all(pages.map(async (page, _index) => {
-        await page.waitForTimeout(1000)
-    }))
+        // await Promise.all(pages.map(async (page, _index) => {
+        //     await page.waitForTimeout(500)
+        // }))
 
-    if (selector) {
-        console.log(`\n!### ${actionIndex}: ${title}. print before action`)
-
-        const textContent1 = await Promise.all(
-            pages
-                .map(page => page
-                    .locator(selector)
-                    .evaluateAll((nodes) => nodes.map((node) => node.textContent))))
-        console.log({ textContent1 })
-    }
-
-    console.log(`\n!### ${actionIndex}: ${title}. action`)
-
-    const result = await fn(pages)
-
-    await Promise.all(pages.map(async (page, _index) => {
-        await page.waitForTimeout(500)
-    }))
-
-    if (selector) {
-        console.log(`\n!### ${actionIndex}: ${title}. print after action. result: ${result}`)
-
-        const textContent2 = await Promise.all(
-            pages
-                .map(page => page
-                    .locator(selector)
-                    .evaluateAll((nodes) => nodes.map((node) => node.textContent))))
-        console.log({ textContent2 })
+        if (i === 0) {
+            result = await fn(pages)
+        }
     }
 
     actionIndex++
@@ -143,14 +175,37 @@ const waitFor = (
     pages: Page[],
     title: string,
     selector: string,
-    opts: { has?: Locator; hasText?: string | RegExp } | undefined
-) => action(pages, title, selector, (pages) =>
-    Promise.all(
-        pages
-            .map(page => page
-                .locator(selector, opts)
-                .waitFor())))
+    opts?: { has?: Locator; hasText?: string | RegExp }
+) => action(
+    pages,
+    title,
+    selector,
+    (pages) =>
+        Promise.all(
+            pages.map((page) =>
+                page.locator(selector, opts)
+                    .waitFor())
+        )
+)
 
+test.beforeEach(async ({ }, testInfo) => {
+    console.log('beforeEach', { retry: testInfo.retry })
+})
+
+test.afterEach(async ({ }, testInfo) => {
+    console.log('afterEach', { retry: testInfo.retry })
+})
+
+test.beforeAll(async ({ }, testInfo) => {
+    console.log('beforeAll', { retry: testInfo.retry })
+})
+
+test.afterAll(async ({ }, testInfo) => {
+    console.log('afterAll', { retry: testInfo.retry })
+    if (testInfo.retry) {
+        console.log('beforeEach', { testInfo })
+    }
+})
 
 newTest("test1", async ({ browser }) => {
     const context = await newContext(browser)
@@ -182,21 +237,23 @@ newTest("test1", async ({ browser }) => {
         }))
     })
 
-    await action(pages, 'clear click 1', '#counter pre', async (pages) => {
+    await action(pages, 'wait db', '#counter pre', async (pages) => {
         await Promise.all(pages.map(async (page, _index) => {
-            await page.locator('#counter button').nth(1).click()
-            // await page.locator('#status button').nth(1).click()
-            // await page.locator('#deploy button').nth(1).click()
+            await page.waitForTimeout(3500)
         }))
     })
 
-    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '{}' })
+    await action(pages, 'clear click 1', '#counter pre', async (pages) => {
+        await Promise.all(pages.map(async (page, _index) => {
+            await page.locator('#counter button').nth(1).click()
+        }))
+    })
 
-    consoleEnabled = true
+    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '"counter": {}' })
 
     for (const [index, page] of pages.entries()) {
         if (index < 3) {
-            await action(pages, `request click ${index}`, '#counter pre', async (_pages) => {
+            await action(pages, `request click p${index}`, '#counter pre', async (_pages) => {
                 await page.locator('#counter button').nth(0).click()
             })
 
@@ -208,7 +265,7 @@ newTest("test1", async ({ browser }) => {
         await pages[0].locator('#counter button').nth(1).click()
     })
 
-    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: '{}' })
+    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: '"counter": {}' })
 
     return pages
 })

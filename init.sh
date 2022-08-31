@@ -8,3 +8,7 @@ sudo apt-get update
 sudo apt-get install powershell
 cd web && bun run playwright-install
 cargo install rod
+
+dotnet tool restore
+
+pip install -r requirements.txt

@@ -100,7 +100,7 @@ def spiral(arg, cell, test=False):
     cell_exports = '\n'.join(cell_exports).strip('\n').split('\n')
 
     if arg == 'run':
-        cell_imports = ['open util', 'open console_fsx'] + cell_imports
+        cell_imports = ['open lib_spi.util', 'open lib_spi.console_fsx'] + cell_imports
         cell_exports = ['inl main () : () = '] + list(map(lambda l: f'    {l}', cell_exports))
 
     spi_imports = cache_imports + cell_imports
@@ -114,59 +114,68 @@ def spiral(arg, cell, test=False):
         ])
     new_code_spi = join_imports(spi_imports, spi_exports)
 
+    def cwpath(*arg): return os.path.abspath(os.path.join(os.getcwd(), '..', *arg))
+
+    if _notebook_name is None:
+        _notebook_name = util.get_notebook_name()
+
     if arg in ['spi', 'spir']:
-        if _notebook_name is None:
-            _notebook_name = util.get_notebook_name()
-        spi_path = f'{_notebook_name}.{arg}'
+        spi_path = cwpath('lib_spi', f'{_notebook_name}.{arg}')
     else:
-        spi_path = f'main.spi'
+        spi_path = cwpath('main.spi')
 
     _spiral_cache[arg] = new_code_spi
 
     if test:
         return new_code_spi
     else:
-        def cwpath(arg): return os.path.abspath(os.path.join(os.getcwd(), '..', arg))
-
-        if new_code_spi != util.read_file(cwpath('main.spi')):
-            if arg == 'run':
+        old_code_spi = util.read_file(spi_path)
+        if new_code_spi != old_code_spi:
+            if arg in ['run', '']:
                 shutil.copyfile(cwpath('main.spi'), cwpath('main.spi.tmp'))
                 shutil.copyfile(cwpath('main.fsx'), cwpath('main.fsx.tmp'))
-                shutil.copyfile(cwpath('main.py'), cwpath('main.py.tmp'))
 
             try:
-                util.write_file(cwpath(spi_path), new_code_spi)
+                util.write_file(spi_path, new_code_spi)
 
-                if arg == 'run':
-                    old_code_fsx = util.read_file(cwpath('main.fsx'))
-                    new_code_fsx = old_code_fsx
+                if arg in ['run', '']:
+                    fsx_path = cwpath("lib_fsx", "_ipython_spi.fsx" if arg == 'run' else f'{_notebook_name}_spi.fsx')
+                    util.write_file(fsx_path, '')
 
-                    code = '\n'.join([
-                        f'import * as spiral_api from "../lib_ts/spiral_api"',
-                        f'await spiral_api.spiToFsx("{cwpath("main.spi")}")'
-                    ])
-                    result = util.run_node(code, timeout=int(get_arg(1, 3))).splitlines()
-                    print(f'build output: {result}')
+                    run_node_output = util.run_node(
+                        '\n'.join([
+                            f'import * as spiral_api from "../lib_ts/spiral_api"',
+                            f'await spiral_api.spiToFsx("", "{fsx_path}")'
+                        ]),
+                        timeout=int(get_arg(1, 10))
+                    ).splitlines()
 
+                    new_code_fsx = ''
                     start = time.time()
-                    while old_code_fsx == new_code_fsx and time.time() - start < 5:
+                    while new_code_fsx == '' and time.time() - start < 10:
                         time.sleep(0.2)
-                        new_code_fsx = util.read_file(cwpath('main.fsx'))
+                        new_code_fsx = util.read_file(fsx_path).strip(" \n")
 
-                    os.rename(cwpath('main.fsx'), cwpath('_ipython_spi.fsx'))
-                    print(f'fsx: {new_code_fsx}')
+                    if arg == 'run':
+                        util.write_file(fsx_path, '')
+
+                    print({
+                        'run_node_output': run_node_output,
+                        'fsx_path': fsx_path,
+                        'len(new_code_fsx)': len(new_code_fsx),
+                        'new_code_fsx[:100]': new_code_fsx[:100],
+                    })
 
             except Exception as e:
                 print(f'ipython_magic.spiral() error. new_code_spi={new_code_spi}')
                 _spiral_cache = last_spiral_cache
                 raise e
             finally:
-                if arg == 'run':
+                if arg in ['run', '']:
                     os.rename(cwpath('main.spi.tmp'), cwpath('main.spi'))
                     os.rename(cwpath('main.fsx.tmp'), cwpath('main.fsx'))
-                    os.rename(cwpath('main.py.tmp'), cwpath('main.py'))
 
-        return cwpath(spi_path)
+        return spi_path
 
 @register_cell_magic
 def spi(arg, cell, test=False):

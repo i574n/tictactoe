@@ -3,8 +3,8 @@
 ```
 nbs/03_tictactoe_pyteal.ipynb
 -> main.spi
--> main.fsx
--> main.py
+-> lib_fsx/tictactoe_pyteal_spi.fsx
+-> lib_py/tictactoe_pyteal_spi.py
 -> nbs/03_tictactoe_pyteal.ipynb
 -> lib_teal/application_start.teal
 -> nbs/05_tictactoe_testnet.ipynb, web/src/App.tsx
