@@ -51,7 +51,7 @@ export var spiToFsx = async (mainSpiPath = '', newFsxPath = '', log = false) => 
                 : [imports, [...code, line]],
             [[], []]
     )
-    const newFsx = [...imports, '', ...code].join('\n')
+    const newFsx = [...imports, '', ...code].join('\n').trim() + "\n"
     fs.writeFileSync(newFsxPath || fsxPath, newFsx)
     if(log) {
         util.logStep('spiral_api.spiToFsx() end')
