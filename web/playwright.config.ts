@@ -9,7 +9,7 @@ const config: PlaywrightTestConfig = {
     reporter: [['html', { open: 'never' }]], // reporter: [['html', { open: 'on-failure' }]],
     retries: process.env.CI ? 2 : 0,
     testDir: './tests',
-    timeout: 40 * 1000,
+    timeout: 45 * 1000,
     workers: 1,
     expect: {
         timeout: 30000

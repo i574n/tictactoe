@@ -9,6 +9,7 @@ import algosdk from "algosdk"
 import { createSignal, For, onCleanup } from "solid-js"
 import { StoreonStore, createStoreon } from "storeon"
 import { StoreonProvider, useStoreon } from "@storeon/solidjs"
+import { Diff } from "./diff/Diff"
 import { Loader } from "./Loader"
 // @ts-ignore
 import styles from "./App.module.css"
@@ -108,22 +109,23 @@ function Links() {
     )
 }
 
-function StateInput({ get, set }: { get: (state: State) => any, set: (state: State, value: any) => State }) {
+function StateInput(props: { get: (state: State) => any, set: (state: State, value: any) => State }) {
     const [state, dispatch] = useStoreon<State, Events>()
 
     return (
         <input
             type="text"
-            value={get(state)}
-            onInput={(e: { currentTarget: { value: any } }) => dispatch('set', set(state, e.currentTarget.value))} />
+            value={props.get(state)}
+            onInput={(e: { currentTarget: { value: any } }) =>
+                dispatch('set', props.set(state, e.currentTarget.value))} />
     )
 }
 
-function Row({ title, children }: { title: string, children: any }) {
+function Row(props: { title: string, children: any }) {
     return (
         <tr>
-            <td>{title}</td>
-            <td>{children}</td>
+            <td>{props.title}</td>
+            <td>{props.children}</td>
         </tr>
     )
 }
@@ -152,17 +154,17 @@ function ChainConnection() {
     )
 }
 
-function AccountInput({ key, account }: { key: keyof Omit<Account, 'alias'>, account: Account }) {
+function AccountInput(props: { key: keyof Omit<Account, 'alias'>, account: Account }) {
     return (
         <StateInput
-            get={(_state) => account[key]}
+            get={(_state) => props.account[props.key]}
             set={(state, value) => ({
                 ...state,
                 accounts:
                     state.accounts.map(
                         (_account) =>
-                            _account.alias === account.alias
-                                ? { ..._account, [key]: value }
+                            _account.alias === props.account.alias
+                                ? { ..._account, [props.key]: value }
                                 : _account
                     )
             })} />
@@ -196,32 +198,32 @@ function ChainAccounts() {
     )
 }
 
-function DbConnectionInput({ type, key }: { type: db.DbType, key: keyof typeof init.dbConnection[db.DbType] }) {
+function DbConnectionInput(props: { type: db.DbType, key: keyof typeof init.dbConnection[db.DbType] }) {
     return (
         <StateInput
-            get={(state) => state.dbConnection[type][key]}
+            get={(state) => state.dbConnection[props.type][props.key]}
             set={(state, value) => ({
                 ...state,
                 dbConnection: {
                     ...state.dbConnection,
-                    [type]: {
-                        ...state.dbConnection[type],
-                        [key]: value
+                    [props.type]: {
+                        ...state.dbConnection[props.type],
+                        [props.key]: value
                     }
                 }
             })} />
     )
 }
 
-function DbConnection({ type }: { type: db.DbType }) {
+function DbConnection(props: { type: db.DbType }) {
     return (
         <table>
             <tbody>
                 <Row title="URL">
-                    <DbConnectionInput type={type} key="url" />
+                    <DbConnectionInput type={props.type} key="url" />
                 </Row>
                 <Row title="Port">
-                    <DbConnectionInput type={type} key="port" />
+                    <DbConnectionInput type={props.type} key="port" />
                 </Row>
             </tbody>
         </table>
@@ -293,6 +295,8 @@ export function useFetch(
             [[], []]),
         [`subscriptions`]: Object.entries(subscriptions()).map(([id, { subscription }]) => [id, subscription])
     })
+
+    // const randomHexColorString = () => "#" + Math.floor(Math.random() * 16777215).toString(16)
 
     const generateSixDigitNumericHashFromString = (text: string) =>
         [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 10), 100000).toString().substring(-6)
@@ -694,6 +698,10 @@ function App() {
                             </Row>
                         </>
                         : <></>}
+                    <tr><td></td></tr>
+                    <Row title="Diff">
+                        <Diff />
+                    </Row>
                 </tbody>
             </table>
         </StoreonProvider>

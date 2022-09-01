@@ -59,13 +59,44 @@
   flex: 1;
 }
 
+.App .IframeContainer .buttons {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
 .App .IframeContainer iframe {
   background-color: #aaa;
   flex: 1;
 }
 
-.App .IframeContainer button {
+.App .Modal {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #1A1A1A;
+}
+
+#diff {
+  max-height: 100vh;
+  display: flex;
+  flex: 1;
+}
+
+#diff > div {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-family: monospace;
+  overflow-y: auto;
+  word-break: break-all;
+  font-size: 8px;
+  border: 1px solid #777;
+}
+
+#diff > div > div {
+  margin-top: 3px;
 }
