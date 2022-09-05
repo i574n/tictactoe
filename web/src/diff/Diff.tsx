@@ -5,45 +5,82 @@ import { Loader } from '../Loader'
 import styles from "../App.module.css"
 
 
-const files = [log1221_1, log1221_2, log1221_3, log1221_4]
+const rawFiles = [log1221_1, log1221_2, log1221_3, log1221_4]
+
+type LineId = string
+type FileIndex = number
+type LineIndex = number
+
+
 
 export function Diff() {
-
     const process = (file: string) => {
         return file.split('\n').map(line => {
             return line
         })
     }
 
-    const processed: {
-        cache: { [_: string]: { fileIndex: number, lineIndex: number }[] },
-        lines: string[][]
-    } = files.reduce((acc, file, fileIndex) => {
+    const processedFiles: {
+        cache: { [_: LineId]: { [_: FileIndex]: LineIndex[] } },
+        lines: { [_: FileIndex]: string[] }
+    } = rawFiles.reduce((acc, file, fileIndex) => {
         const lines = process(file)
         return {
             ...acc,
             cache: lines.reduce((acc, line, lineIndex) => ({
                 ...acc,
-                [line]: [
-                    ...(acc[line] || []),
-                    {
-                        fileIndex,
+                [line]: {
+                    ...acc[line],
+                    [fileIndex]: [
+                        ...(acc[line] || {})[fileIndex] || [],
                         lineIndex
-                    }]
+                    ]
+                }
             }), acc.cache),
-            lines: [
+            lines: {
                 ...acc.lines,
-                lines
-            ]
+                [fileIndex]: lines
+            }
         }
     }, {
         cache: {},
-        lines: []
+        lines: {}
     })
 
+    const lineSet = new Set(
+        Object.entries(processedFiles.cache)
+            .filter(([_, files]) =>
+                Object.keys(files).length === rawFiles.length
+                && Object.values(files).every(file => file.length === 1)
+            ).map(([line, _]) => line)
+    )
+
+
+    type GroupIndex = number
+
+    const fileGroups: { [_: GroupIndex]: { [_: FileIndex]: string[] } } =
+        Object.keys(processedFiles.lines).reduce((acc, fileIndex) => {
+            const [_, result] = processedFiles.lines[fileIndex as any as FileIndex]
+                .reduce(([currentGroup, acc], line, _lineIndex) => [
+                    currentGroup + (lineSet.has(line) ? 1 : 0),
+                    {
+                        ...acc,
+                        [currentGroup]: {
+                            ...acc[currentGroup],
+                            [fileIndex]: [
+                                ...(acc[currentGroup] || {})[fileIndex as any as FileIndex] || [],
+                                line
+                            ]
+                        }
+                    }
+                ], [0, acc] as [number, { [_: GroupIndex]: { [_: FileIndex]: string[] } }])
+            return result
+        }, {} as { [_: GroupIndex]: { [_: FileIndex]: string[] } })
+
+
     const classes: { [_: string]: string | undefined } =
-        Object.entries(processed.cache).reduce((acc, [line, indexes]) =>
-            indexes.reduce((acc, { fileIndex, lineIndex }) => ({
+        Object.entries(processedFiles.cache).reduce((acc, [line, files]) =>
+            Object.entries(files).reduce((acc, [fileIndex, lineIndex]) => ({
                 ...acc,
                 [line]: `${acc[line] || ''}F${fileIndex}L${lineIndex} `
             }), acc as { [_: string]: string | undefined }),
@@ -70,18 +107,27 @@ export function Diff() {
     return (
         <Loader defaults={{ loaded: true, modal: true }}>
             <div id={styles.diff}>
-                <For each={processed.lines}>
-                    {(lines) => (
+                <For each={Object.values(fileGroups)}>
+                    {(file) => (
                         <div>
-                            <For each={lines}>
-                                {(line) => (
-                                    <div
-                                        class={classes[line]}
-                                        style={{
-                                            color: getColor(line)
-                                        }}
-                                    >
-                                        {line}
+                            <For each={Object.values(file)}>
+                                {(groups) => (
+                                    <div class={styles.file}>
+                                        <For each={groups}>
+                                            {(groupLine) => (
+                                                <div
+                                                    classList={{
+                                                        [styles.line]: true,
+                                                        [classes[groupLine] || '']: true
+                                                    }}
+                                                    style={{
+                                                        color: getColor(groupLine)
+                                                    }}
+                                                >
+                                                    {groupLine}
+                                                </div>
+                                            )}
+                                        </For>
                                     </div>
                                 )}
                             </For>

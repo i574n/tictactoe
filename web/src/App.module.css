@@ -84,19 +84,27 @@
   max-height: 100vh;
   display: flex;
   flex: 1;
+  overflow-y: auto;
+  flex-direction: column;
 }
 
 #diff > div {
   display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+#diff .file {
+  display: flex;
   flex: 1;
   flex-direction: column;
   font-family: monospace;
-  overflow-y: auto;
   word-break: break-all;
   font-size: 8px;
-  border: 1px solid #777;
+  border: 1px solid #222;
 }
 
-#diff > div > div {
-  margin-top: 3px;
+#diff .line {
+  margin-top: 1px;
+  margin-bottom: 1px;
 }

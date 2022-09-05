@@ -1,7 +1,7 @@
+import * as util from "../../lib_ts/util"
 import { Browser, BrowserContext, Locator, Page, Frame, Request, Response, Worker, Download, WebSocket, test } from "@playwright/test"
 import { injectAxe } from "axe-playwright"
 
-const range = (n: number) => Array.from(Array(n).keys())
 
 function newContext(browser: Browser) {
     return browser.newContext({
@@ -211,7 +211,7 @@ newTest("test1", async ({ browser }) => {
     const context = await newContext(browser)
 
     const pageCount = 5
-    const pages = await Promise.all(range(pageCount).map((i) => newPage(i, context)))
+    const pages = await Promise.all(util.range(pageCount).map((i) => newPage(i, context)))
 
     await Promise.all(pages.map(async page => {
         await page.goto("https://localhost:3700/tictactoe_spiral", { waitUntil: 'networkidle' })

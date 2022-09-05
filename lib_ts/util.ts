@@ -31,6 +31,8 @@ var runId = Math.random().toString(36).substring(2, 5)
 var startTimestamp = new Date().getTime()
 export var newTimestamp = () => new Date().getTime() - startTimestamp
 
+export var range = (n: number) => Array.from(Array(n).keys())
+
 var pad = (n: string, count: number): string => n.length < count ? pad(`0${n}`, count) : `${n}`
 
 export var env = process.env
