@@ -61,19 +61,22 @@ export function Diff() {
     const fileGroups: { [_: GroupIndex]: { [_: FileIndex]: string[] } } =
         Object.keys(processedFiles.lines).reduce((acc, fileIndex) => {
             const [_, result] = processedFiles.lines[fileIndex as any as FileIndex]
-                .reduce(([currentGroup, acc], line, _lineIndex) => [
-                    currentGroup + (lineSet.has(line) ? 1 : 0),
-                    {
-                        ...acc,
-                        [currentGroup]: {
-                            ...acc[currentGroup],
-                            [fileIndex]: [
-                                ...(acc[currentGroup] || {})[fileIndex as any as FileIndex] || [],
-                                line
-                            ]
+                .reduce(([currentGroup, acc], line, _lineIndex) => {
+                    const group = currentGroup + (lineSet.has(line) ? 1 : 0)
+                    return [
+                        group,
+                        {
+                            ...acc,
+                            [group]: {
+                                ...acc[group],
+                                [fileIndex]: [
+                                    ...(acc[group] || {})[fileIndex as any as FileIndex] || [],
+                                    line
+                                ]
+                            }
                         }
-                    }
-                ], [0, acc] as [number, { [_: GroupIndex]: { [_: FileIndex]: string[] } }])
+                    ]
+                }, [0, acc] as [number, { [_: GroupIndex]: { [_: FileIndex]: string[] } }])
             return result
         }, {} as { [_: GroupIndex]: { [_: FileIndex]: string[] } })
 
