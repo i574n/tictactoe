@@ -1,8 +1,7 @@
 import { log1221_1, log1221_2, log1221_3, log1221_4 } from './raw'
 import { For } from 'solid-js'
 import { Loader } from '../Loader'
-// @ts-ignore
-import styles from "../App.module.css"
+import { Box } from '@hope-ui/solid'
 
 
 const rawFiles = [log1221_1, log1221_2, log1221_3, log1221_4]
@@ -10,7 +9,6 @@ const rawFiles = [log1221_1, log1221_2, log1221_3, log1221_4]
 type LineId = string
 type FileIndex = number
 type LineIndex = number
-
 
 
 export function Diff() {
@@ -55,6 +53,23 @@ export function Diff() {
             ).map(([line, _]) => line)
     )
 
+    const colors = Object.entries({
+        '***0> ': '#CEA056',
+        '***1> ': '#9372B7',
+        '***2> ': '#C1674D',
+        '***3> ': '#3672CE',
+        '***4> ': '#8BA361',
+        '***0 ': '#90703c',
+        '***1 ': '#664f80',
+        '***2 ': '#874835',
+        '***3 ': '#254f90',
+        '***4 ': '#617243',
+    })
+
+    const lineColors = [...new Set(Object.values(processedFiles.lines).flat())].reduce((acc, line) => ({
+        ...acc,
+        [line]: colors.find(([key, _]) => line.includes(key))?.[1] || '#fff'
+    }), {} as { [_: string]: string })
 
     type GroupIndex = number
 
@@ -80,64 +95,64 @@ export function Diff() {
             return result
         }, {} as { [_: GroupIndex]: { [_: FileIndex]: string[] } })
 
-
     const classes: { [_: string]: string | undefined } =
         Object.entries(processedFiles.cache).reduce((acc, [line, files]) =>
-            Object.entries(files).reduce((acc, [fileIndex, lineIndex]) => ({
-                ...acc,
-                [line]: `${acc[line] || ''}F${fileIndex}L${lineIndex} `
-            }), acc as { [_: string]: string | undefined }),
-            {}
-        )
-
-    const getColor = (line: string) => {
-        const colors = {
-            '***0> ': '#CEA056',
-            '***1> ': '#9372B7',
-            '***2> ': '#C1674D',
-            '***3> ': '#3672CE',
-            '***4> ': '#8BA361',
-            '***0 ': '#90703c',
-            '***1 ': '#664f80',
-            '***2 ': '#874835',
-            '***3 ': '#254f90',
-            '***4 ': '#617243',
-        }
-        return Object.entries(colors)
-            .find(([key]) => line.includes(key))?.[1] || '#fff'
-    }
+            Object.entries(files).reduce((acc, [fileIndex, lineIndexes]) => {
+                return lineIndexes.reduce((acc, lineIndex) => ({
+                    ...acc,
+                    [line]: `${acc[line] || ''}F${fileIndex}L${lineIndex} `
+                }), acc as { [_: string]: string | undefined })
+            }, acc)
+            , {})
 
     return (
         <Loader defaults={{ loaded: true, modal: true }}>
-            <div id={styles.diff}>
+            <Box
+                display="flex"
+                flex={1}
+                flexDirection="column"
+                maxHeight="100vh"
+                overflowY="auto"
+            >
                 <For each={Object.values(fileGroups)}>
                     {(file) => (
-                        <div>
+                        <Box
+                            display="flex"
+                            flex={1}
+                            flexDirection="row"
+                        >
                             <For each={Object.values(file)}>
                                 {(groups) => (
-                                    <div class={styles.file}>
+                                    <Box
+                                        css={{ wordBreak: "break-all" }}
+                                        border="1px solid #222"
+                                        display="flex"
+                                        flex={1}
+                                        flexDirection="column"
+                                        fontFamily="monospace"
+                                        fontSize={8}
+                                    >
                                         <For each={groups}>
                                             {(groupLine) => (
-                                                <div
+                                                <Box
                                                     classList={{
-                                                        [styles.line]: true,
                                                         [classes[groupLine] || '']: true
                                                     }}
-                                                    style={{
-                                                        color: getColor(groupLine)
-                                                    }}
+                                                    color={lineColors[groupLine]}
+                                                    marginTop="1px"
+                                                    marginBottom="1px"
                                                 >
                                                     {groupLine}
-                                                </div>
+                                                </Box>
                                             )}
                                         </For>
-                                    </div>
+                                    </Box>
                                 )}
                             </For>
-                        </div>
+                        </Box>
                     )}
                 </For>
-            </div>
+            </Box>
         </Loader>
     )
 }

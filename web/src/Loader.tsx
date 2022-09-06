@@ -2,8 +2,10 @@ import { createEffect, createSignal, on } from "solid-js"
 import { StoreonDispatch } from "storeon"
 import { useStoreon } from "@storeon/solidjs"
 import { BiRegularRefresh, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow } from "solid-icons/bi"
+import { Box, StyleProps } from '@hope-ui/solid'
 // @ts-ignore
 import styles from "./App.module.css"
+
 
 export function Loader<State extends object, Events>(props: {
     id?: string,
@@ -34,9 +36,27 @@ export function Loader<State extends object, Events>(props: {
             {!loaded()
                 ? <div><button onClick={loadClick}>Load</button></div>
                 : (
-                    <div classList={{ [styles.Modal]: modal() }}>
-                        <div class={styles.IframeContainer}>
-                            <div class={styles.buttons}>
+                    <Box
+                        {...(modal() && {
+                            position: 'absolute',
+                            zIndex: 1,
+                            top: 0,
+                            right: 0,
+                            bottom: 0,
+                            left: 0,
+                            backgroundColor: '$bg',
+                        } as StyleProps)}
+                    >
+                        <Box
+                            position="relative"
+                            display="flex"
+                            flex={1}
+                        >
+                            <Box
+                                position="absolute"
+                                top="3px"
+                                right="3px"
+                            >
                                 <button onClick={() => setRefreshing(true)}>
                                     <BiRegularRefresh size={buttonSize} />
                                 </button>
@@ -48,10 +68,10 @@ export function Loader<State extends object, Events>(props: {
                                 <button onClick={() => setLoaded(false)}>
                                     <BiRegularUndo size={buttonSize} />
                                 </button>
-                            </div>
+                            </Box>
                             {!refreshing() && props.children}
-                        </div>
-                    </div>
+                        </Box>
+                    </Box>
                 )
             }
         </div>

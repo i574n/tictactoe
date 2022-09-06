@@ -5,7 +5,7 @@
   max-width: 100vw;
   height: 100vh;
   flex-direction: column;
-  background-color: #212121;
+  background-color: var(--hope-colors-bg);
   padding: 1px;
 }
 
@@ -51,60 +51,4 @@
   flex: 5;
   display: flex;
   flex-direction: column;
-}
-
-.App .IframeContainer {
-  position: relative;
-  display: flex;
-  flex: 1;
-}
-
-.App .IframeContainer .buttons {
-  position: absolute;
-  top: 3px;
-  right: 3px;
-}
-
-.App .IframeContainer iframe {
-  background-color: #aaa;
-  flex: 1;
-}
-
-.App .Modal {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #1A1A1A;
-}
-
-#diff {
-  max-height: 100vh;
-  display: flex;
-  flex: 1;
-  overflow-y: auto;
-  flex-direction: column;
-}
-
-#diff > div {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-
-#diff .file {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  font-family: monospace;
-  word-break: break-all;
-  font-size: 8px;
-  border: 1px solid #222;
-}
-
-#diff .line {
-  margin-top: 1px;
-  margin-bottom: 1px;
 }

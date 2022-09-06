@@ -9,6 +9,7 @@ import algosdk from "algosdk"
 import { createSignal, For, onCleanup } from "solid-js"
 import { StoreonStore, createStoreon } from "storeon"
 import { StoreonProvider, useStoreon } from "@storeon/solidjs"
+import { HopeProvider, HopeThemeConfig } from '@hope-ui/solid'
 import { Diff } from "./diff/Diff"
 import { Loader } from "./Loader"
 // @ts-ignore
@@ -592,118 +593,133 @@ function Deploy() {
 }
 
 function App() {
+    const config: HopeThemeConfig = {
+        initialColorMode: 'dark',
+        darkTheme:{
+            colors: {
+                bg: "#1A1A1A"
+            }
+        }
+    }
     return (
         <StoreonProvider store={store}>
-            <DbListener />
-            <table class={styles.App}>
-                <tbody>
-                    <Row title="Links">
-                        <Links />
-                    </Row>
-                    <tr><td></td></tr>
-                    <Row title="Chain Connection">
-                        <ChainConnection />
-                    </Row>
-                    <Row title="Chain Accounts">
-                        <ChainAccounts />
-                    </Row>
-                    <Row title="Testnet Bank Dispenser">
-                        <Loader>
-                            <iframe
-                                src="https://bank.testnet.algorand.network"
-                                title="algorand testnet bank"
-                                style={`height: 350px`} />
-                        </Loader>
-                    </Row>
-                    <tr><td></td></tr>
-                    <Row title="Database (Rust->Rust)">
-                        <Loader<State, Events>
-                            id="db-gun-rs-rs"
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_rs: {
-                                            ...state.dbEnabled.gun_rs,
-                                            gun_rs: true
+            <HopeProvider config={config}>
+                <DbListener />
+                <table class={styles.App}>
+                    <tbody>
+                        <Row title="Links">
+                            <Links />
+                        </Row>
+                        <tr><td></td></tr>
+                        <Row title="Chain Connection">
+                            <ChainConnection />
+                        </Row>
+                        <Row title="Chain Accounts">
+                            <ChainAccounts />
+                        </Row>
+                        <Row title="Testnet Bank Dispenser">
+                            <Loader>
+                                <iframe
+                                    src="https://bank.testnet.algorand.network"
+                                    title="algorand testnet bank"
+                                    style={{
+                                        height: '350px',
+                                        'background-color': '#aaa',
+                                        flex: 1
+                                    }}
+                                    />
+                            </Loader>
+                        </Row>
+                        <tr><td></td></tr>
+                        <Row title="Database (Rust->Rust)">
+                            <Loader<State, Events>
+                                id="db-gun-rs-rs"
+                                onLoad={(state, dispatch) => {
+                                    dispatch('set', {
+                                        dbEnabled: {
+                                            ...state.dbEnabled,
+                                            gun_rs: {
+                                                ...state.dbEnabled.gun_rs,
+                                                gun_rs: true
+                                            }
                                         }
-                                    }
-                                })
-                            }}>
-                            <DbConnection type="gun_rs" />
-                        </Loader>
-                    </Row>
-                    <Row title="Database (Rust->JavaScript)">
-                        <Loader<State, Events>
-                            id="db-gun-rs-js"
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_rs: {
-                                            ...state.dbEnabled.gun_rs,
-                                            gun_js: true
+                                    })
+                                }}>
+                                <DbConnection type="gun_rs" />
+                            </Loader>
+                        </Row>
+                        <Row title="Database (Rust->JavaScript)">
+                            <Loader<State, Events>
+                                id="db-gun-rs-js"
+                                onLoad={(state, dispatch) => {
+                                    dispatch('set', {
+                                        dbEnabled: {
+                                            ...state.dbEnabled,
+                                            gun_rs: {
+                                                ...state.dbEnabled.gun_rs,
+                                                gun_js: true
+                                            }
                                         }
-                                    }
-                                })
-                            }}>
-                            <DbConnection type="gun_js" />
-                        </Loader>
-                    </Row>
-                    <Row title="Database (JavaScript->Rust)">
-                        <Loader<State, Events>
-                            id="db-gun-js-rs"
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_js: {
-                                            ...state.dbEnabled.gun_js,
-                                            gun_rs: true
+                                    })
+                                }}>
+                                <DbConnection type="gun_js" />
+                            </Loader>
+                        </Row>
+                        <Row title="Database (JavaScript->Rust)">
+                            <Loader<State, Events>
+                                id="db-gun-js-rs"
+                                onLoad={(state, dispatch) => {
+                                    dispatch('set', {
+                                        dbEnabled: {
+                                            ...state.dbEnabled,
+                                            gun_js: {
+                                                ...state.dbEnabled.gun_js,
+                                                gun_rs: true
+                                            }
                                         }
-                                    }
-                                })
-                            }}>
-                            <DbConnection type="gun_rs" />
-                        </Loader>
-                    </Row>
-                    <Row title="Database (JavaScript->JavaScript)">
-                        <Loader<State, Events>
-                            id="db-gun-js-js"
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_js: {
-                                            ...state.dbEnabled.gun_js,
-                                            gun_js: true
+                                    })
+                                }}>
+                                <DbConnection type="gun_rs" />
+                            </Loader>
+                        </Row>
+                        <Row title="Database (JavaScript->JavaScript)">
+                            <Loader<State, Events>
+                                id="db-gun-js-js"
+                                onLoad={(state, dispatch) => {
+                                    dispatch('set', {
+                                        dbEnabled: {
+                                            ...state.dbEnabled,
+                                            gun_js: {
+                                                ...state.dbEnabled.gun_js,
+                                                gun_js: true
+                                            }
                                         }
-                                    }
-                                })
-                            }}>
-                            <DbConnection type="gun_js" />
-                        </Loader>
-                    </Row>
-                    <tr><td></td></tr>
-                    <Row title="Counter">
-                        <Counter />
-                    </Row>
-                    {!!util.env.GITHUB_RUN_ID
-                        ? <>
-                            <Row title="Status">
-                                <Status />
-                            </Row>
-                            <Row title="Deploy">
-                                <Deploy />
-                            </Row>
-                        </>
-                        : <></>}
-                    <tr><td></td></tr>
-                    <Row title="Diff">
-                        <Diff />
-                    </Row>
-                </tbody>
-            </table>
+                                    })
+                                }}>
+                                <DbConnection type="gun_js" />
+                            </Loader>
+                        </Row>
+                        <tr><td></td></tr>
+                        <Row title="Counter">
+                            <Counter />
+                        </Row>
+                        {!!util.env.GITHUB_RUN_ID
+                            ? <>
+                                <Row title="Status">
+                                    <Status />
+                                </Row>
+                                <Row title="Deploy">
+                                    <Deploy />
+                                </Row>
+                            </>
+                            : <></>}
+                        <tr><td></td></tr>
+                        <Row title="Diff">
+                            <Diff />
+                        </Row>
+                    </tbody>
+                </table>
+            </HopeProvider>
         </StoreonProvider>
     )
 }

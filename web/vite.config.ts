@@ -40,6 +40,10 @@ export default defineConfig({
           'storeon': ['storeon'],
           'storeon-solidjs': ['@storeon/solidjs'],
 
+          'hope-ui': ['@hope-ui/solid'],
+          'stitches': ['@stitches/core'],
+          'solid-transition-group': ['solid-transition-group'],
+
           'rusty-gun': ['rusty-gun'],
           'gun': ['gun']
         }
