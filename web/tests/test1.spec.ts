@@ -43,15 +43,9 @@ const tmpLog = () => JSON.stringify(Object.entries(tmp.pages))
 async function newPage(index: number, context: BrowserContext) {
     const page = await context.newPage()
 
-    const logs = []
     page.on('console', async (msg) => {
-        const msgs = []
-        for (const arg of msg.args()) {
-            const newMsgs = await arg.jsonValue()
-            msgs.push(newMsgs)
-            // logs.push(newMsgs)
-        }
-        filteredLog(`***${index}>`, ...msgs)
+        const newMsgs = (await Promise.all(msg.args().map((arg) => arg.jsonValue()))).join(' ').trim()
+        newMsgs && filteredLog(`***${index}> ${newMsgs}`)
     })
 
     page.on('close', async (page) => console.log(`***${index} close ***`, getUrl(page)))
@@ -158,7 +152,7 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
         }
 
         // await Promise.all(pages.map(async (page, _index) => {
-        //     await page.waitForTimeout(500)
+        //     await page.waitForTimeout(1000)
         // }))
 
         if (i === 0) {

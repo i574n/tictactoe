@@ -100,9 +100,9 @@ const newListenerHandler = <State>(
     state: State,
     id: string,
     key: keyof State,
-    onValue: (id: string, hash: string, newValue: object) => void
+    onValue: (id: string, hash: string, newValue: object) => Promise<void>
 ) =>
-    (v: object, k: any, _msg: any, _ev: any) => {
+    async (v: object, k: any, _msg: any, _ev: any) => {
         const getLocals = () => ({
             id,
             key,
@@ -112,26 +112,26 @@ const newListenerHandler = <State>(
 
         const { '#': hash, _: { '#': hash2, '>': ptrs, ..._ }, ...value }: { [_: string]: any } = { _: {}, ...parse(v) }
 
-        // const newValue =
-        //     Object.fromEntries(
-        //         Object.entries(
-        //             Object.keys(value).reduce((acc, k) => ({
-        //                 ...acc,
-        //                 [k]: value[k]
-        //             }), (state[key] || {}) as { [_: string]: any })
-        //         ).filter(([_, v]) => v !== null && typeof v !== 'undefined')
-        //     )
-
         const newValue =
-            [...Object.keys(state[key] || {}), ...Object.keys(value)]
-                .reduce((acc, k) => ({
-                    ...acc,
-                    [k]: value[k] === null
-                        ? undefined
-                        : (value[k] !== undefined
-                            ? value[k]
-                            : (state[key] as { [_: string]: any })[k])
-                }), {} as { [_: string]: any })
+            Object.fromEntries(
+                Object.entries(
+                    Object.keys(value).reduce((acc, k) => ({
+                        ...acc,
+                        [k]: value[k]
+                    }), (state[key] || {}) as { [_: string]: any })
+                ).filter(([_, v]) => v !== null && typeof v !== 'undefined')
+            )
+
+        // const newValue =
+        //     [...Object.keys(state[key] || {}), ...Object.keys(value)]
+        //         .reduce((acc, k) => ({
+        //             ...acc,
+        //             [k]: value[k] === null
+        //                 ? undefined
+        //                 : (value[k] !== undefined
+        //                     ? value[k]
+        //                     : (state[key] as { [_: string]: any })[k])
+        //         }), {} as { [_: string]: any })
 
         log('newListenerHandler 1', {
             vType: typeof v,
@@ -147,44 +147,40 @@ const newListenerHandler = <State>(
             stateKey: Object.entries(state[key] || {})
         })
 
-        onValue(id, hash, newValue)
+        await onValue(id, hash, newValue)
     }
 
-const getDbNode = <T extends State>(state: T, id: string, key: keyof T, timestamp: number | undefined): DbNode | undefined => {
+const getDbNode = <T extends State>(state: T, id: string, key: keyof T): DbNode | undefined => {
     const getLocals = () => ({
         id,
         key,
-        timestamp
     })
     const log = util.getLog(getLocals)
 
     const db = state.db[id]
 
     log('getDbNode() 0', { db: !!db })
-    if (db) {
-        let node: DbNode = db.db.get(soul).get(key as string)
-        if (timestamp) {
-            node = node.get(`${timestamp}`)
-        }
-        return node
-    }
-    return undefined
+    return db && db.db.get(soul).get(key as string)
 }
 
-export const dbPut = <T extends State>(state: T, id: string, key: keyof T, timestamp: number | undefined, newValue: { [_: string]: any }) => {
+export const dbPut = <T extends State>(
+    state: T,
+    id: string,
+    key: keyof T,
+    newValue: any
+) => {
     const getLocals = () => ({
         id,
         key,
-        timestamp,
         newValue
     })
     const log = util.getLog(getLocals)
 
-    const node = getDbNode(state, id, key, timestamp)
+    const node = getDbNode(state, id, key)
 
     log('dbPut() 0', { node })
     if (node) {
-        node.put(timestamp ? newValue[`${timestamp}`] : newValue)
+        node.put(newValue)
     }
 }
 
@@ -192,18 +188,16 @@ export const dbOn = <T extends State>(
     state: T,
     { dbType, id }: Id,
     key: keyof T,
-    timestamp: number | undefined,
-    onValue: (id: string, hash: string, newValue: object) => void
+    onValue: (id: string, hash: string, newValue: object) => Promise<void>
 ): number | undefined => {
     const getLocals = () => ({
         key,
         dbType,
-        id,
-        timestamp
+        id
     })
     const log = util.getLog(getLocals)
 
-    const node = getDbNode(state, id, key, timestamp)
+    const node = getDbNode(state, id, key)
 
     log('dbOn() 0', { node })
     if (node) {
@@ -216,16 +210,15 @@ export const dbOn = <T extends State>(
     }
 }
 
-export const dbOff = <T extends State>(state: T, id: string, key: keyof T, timestamp: number | undefined, subscription: number | undefined) => {
+export const dbOff = <T extends State>(state: T, id: string, key: keyof T, subscription: number | undefined) => {
     const getLocals = () => ({
         id,
         key,
-        timestamp,
         subscription
     })
     const log = util.getLog(getLocals)
 
-    const node = getDbNode(state, id, key, timestamp)
+    const node = getDbNode(state, id, key)
 
     log('dbOff() 0', { node })
     if (node) {

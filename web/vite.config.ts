@@ -32,8 +32,8 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
-          'buffer': ['buffer'],
-          'algosdk': ['algosdk'],
+          'rusty-gun': ['rusty-gun'],
+          'gun': ['gun'],
 
           'solid-js': ['solid-js'],
           'solid-icons': ['solid-icons'],
@@ -44,8 +44,8 @@ export default defineConfig({
           'stitches': ['@stitches/core'],
           'solid-transition-group': ['solid-transition-group'],
 
-          'rusty-gun': ['rusty-gun'],
-          'gun': ['gun']
+          'buffer': ['buffer'],
+          'algosdk': ['algosdk']
         }
       }
     }

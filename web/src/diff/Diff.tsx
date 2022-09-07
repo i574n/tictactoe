@@ -1,10 +1,11 @@
-import { log1221_1, log1221_2, log1221_3, log1221_4 } from './raw'
+import { log1221_1, log1221_2, log1221_3, log1221_4, log1221_5 } from './raw'
 import { For } from 'solid-js'
 import { Loader } from '../Loader'
 import { Box } from '@hope-ui/solid'
 
 
-const rawFiles = [log1221_1, log1221_2, log1221_3, log1221_4]
+// const rawFiles = [log1221_1, log1221_2, log1221_3, log1221_4, log1221_5]
+const rawFiles = [log1221_1, log1221_2, log1221_3]
 
 type LineId = string
 type FileIndex = number

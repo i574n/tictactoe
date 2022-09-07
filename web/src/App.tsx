@@ -307,7 +307,7 @@ export function useFetch(
     log('useFetch() 0')
 
     const newOnValue = (resub: (_: string) => void) =>
-        (id: string, hash: string, newValue: object) => {
+        async (id: string, hash: string, newValue: object) => {
             log('useFetch.onValue() 1/2', { id, hash, newValue })
 
             if (hash && Object.keys(state[key] || {}).length > 0) {
@@ -333,23 +333,65 @@ export function useFetch(
                 dispatch('set', { [key]: newValue })
 
                 const oldValues = values()
-                const newValueJson = JSON.stringify(newValue)
 
-                log('useFetch.onValue() 2/2. before put loop', { newValue })
+                setValues({ ...oldValues, [id]: newValue })
 
-                if (newValueJson !== JSON.stringify(oldValues[id])) {
-                    setValues({ ...oldValues, [id]: newValue })
+                // Object.entries(newValue).forEach(([timestamp, value]) => {
+                //     db.getDbIdList(state)[0].forEach((dbId) => {
+                //         if (id !== dbId.id) {
+                //             const oldValue = (oldValues[dbId.id] || {})[timestamp]
+                //             if (oldValue !== value) {
+                //                 log('useFetch.onValue() 3/2. before put item', { id, dbId: dbId.id, timestamp, oldValue, value })
+                //                 setTimeout(() => {
+                //                     db.dbPut(state, dbId.id, key, { [timestamp]: value })
+                //                 }, 0)
+                //             }
+                //         }
+                //     })
+                // })
 
-                    db.getDbIdList(state)[0].forEach((dbId) => {
-                        if (id !== dbId.id && newValueJson !== JSON.stringify(oldValues[dbId.id])) {
-                            log('useFetch.onValue() 3/2. before put item', { id: dbId.id })
+                await Promise.all(
+                    Object.entries(newValue).map(([timestamp, value]) =>
+                        db.getDbIdList(state)[0].map(async (dbId) => {
+                            if (id !== dbId.id) {
+                                const oldValue = (oldValues[dbId.id] || {})[timestamp]
+                                if (oldValue !== value) {
+                                    log('useFetch.onValue() 3/2. before put item', { id, dbId: dbId.id, timestamp, oldValue, value })
+                                    db.dbPut(state, dbId.id, key, { [timestamp]: value })
+                                }
+                            }
+                        })
+                    )
+                )
 
-                            db.dbPut(state, dbId.id, key, undefined, newValue)
-                        }
-                    })
-                } else {
-                    log('useFetch.onValue() 2/2. skip')
-                }
+                // const changed = Object.entries(newValue).reduce((acc, [timestamp, value]) => {
+                //     return db.getDbIdList(state)[0].filter((dbId) => id !== dbId.id).reduce((acc, { id: dbId }) => {
+                //         const oldValue = (oldValues[dbId] || {})[timestamp]
+                //         return oldValue === value
+                //             ? acc
+                //             : {
+                //                 ...acc,
+                //                 [dbId]: {
+                //                     ...acc[dbId],
+                //                     [timestamp]: value
+                //                 }
+                //             }
+                //     }, acc)
+                // }, {} as { [_: string]: { [_: string]: any } })
+
+                // const changedValues = Object.values(changed).reduce((acc, value) => ({ ...acc, ...value }), {})
+
+                // log('useFetch.onValue() 2/2. put loop', { id, newValue, oldValues, changed, changedValues })
+
+                // if (Object.keys(changedValues).length > 0) {
+                //     setValues({ ...oldValues, ...changedValues })
+                // }
+
+                // await Promise.all(
+                //     Object.entries(changed).map(([dbId, value]) =>
+                //         db.dbPut(state, dbId, key, value)
+                //     )
+                // )
             }
         }
 
@@ -358,7 +400,7 @@ export function useFetch(
 
         Object.entries(subscriptions()).forEach(([id, { type, subscription }]) => {
             log('useFetch.unsubscribe 2 item', { id, type, subscription })
-            db.dbOff(state, id, key, undefined, subscription)
+            db.dbOff(state, id, key, subscription)
         })
         setSubscriptions({})
 
@@ -402,7 +444,7 @@ export function useFetch(
         log('useFetch.subscribe() 1', { oldSubscription })
 
         if (!oldSubscription && state.dbEnabled) {
-            const newSubscription = db.dbOn(state, id, key, undefined, newOnValue(resub))
+            const newSubscription = db.dbOn(state, id, key, newOnValue(resub))
             log('useFetch.subscribe() 2', { newSubscription })
             if (newSubscription) {
                 setSubscriptions({
@@ -454,21 +496,21 @@ export function useFetch(
             result = e as {}
         }
 
-        const timestamp = util.newTimestamp()
+        const timestamp = `${util.newTimestamp()}`
         const newValue = {
             ...(state[key] as { [_: string]: any }),
-            [`${timestamp}`]: result
+            [timestamp]: result
         }
 
         log('useFetch.request() 1', { result, newValue })
 
         // dispatch('set', { [key]: newValue })
 
-        db.getDbIdList(state)[0].forEach(({ id }) => {
-            log('useFetch.request() 1 before dbPut', { id })
-
-            db.dbPut(state, id, key, undefined, newValue)
-        })
+        await Promise.all(
+            db.getDbIdList(state)[0].map(({ id }) =>
+                db.dbPut(state, id, key, { [timestamp]: result })
+            )
+        )
 
         Object.values(timers()).forEach((timer) => timer && clearTimeout(timer))
         setTimers(
@@ -482,7 +524,7 @@ export function useFetch(
                     log('useFetch.request() 1 resub timeout', { id: id.id, oldSubscription })
 
                     if (oldSubscription) {
-                        db.dbOff(state, id.id, key, undefined, oldSubscription.subscription)
+                        db.dbOff(state, id.id, key, oldSubscription.subscription)
                     }
                     const newSubscriptions = { ...subscriptions() }
                     delete newSubscriptions[id.id]
@@ -494,21 +536,21 @@ export function useFetch(
         )
     }
 
-    const clear = () => {
+    const clear = async () => {
         log('useFetch.clear() 1')
 
         const newValue = Object.keys(state[key] || {}).reduce((acc, k) => ({
             ...acc,
             [k]: null
-        }), {})
+        }), {} as { [_: string]: any })
 
         // dispatch('set', { [key]: newValue })
 
-        db.getDbIdList(state)[0].forEach(({ id }) => {
-            log('useFetch.clear() 1 before dbPut', { id })
-
-            db.dbPut(state, id, key, undefined, newValue)
-        })
+        await Promise.all(
+            db.getDbIdList(state)[0].map(({ id }) =>
+                db.dbPut(state, id, key, newValue)
+            )
+        )
 
         Object.values(timers()).forEach((timer) => timer && clearTimeout(timer))
         setTimers(
@@ -595,7 +637,7 @@ function Deploy() {
 function App() {
     const config: HopeThemeConfig = {
         initialColorMode: 'dark',
-        darkTheme:{
+        darkTheme: {
             colors: {
                 bg: "#1A1A1A"
             }
@@ -627,7 +669,7 @@ function App() {
                                         'background-color': '#aaa',
                                         flex: 1
                                     }}
-                                    />
+                                />
                             </Loader>
                         </Row>
                         <tr><td></td></tr>
@@ -713,10 +755,14 @@ function App() {
                                 </Row>
                             </>
                             : <></>}
-                        <tr><td></td></tr>
-                        <Row title="Diff">
-                            <Diff />
-                        </Row>
+                        {!util.IS_TEST && !util.env.GITHUB_RUN_ID
+                            ? <>
+                                <tr><td></td></tr>
+                                <Row title="Diff">
+                                    <Diff />
+                                </Row>
+                            </>
+                            : <></>}
                     </tbody>
                 </table>
             </HopeProvider>
