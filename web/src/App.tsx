@@ -552,9 +552,7 @@ function Counter() {
         <div id="counter">
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
-            <pre>{JSON.stringify({
-                lastValue: Object.values(state.counter || {}).slice(-1)[0],
-            }, null, 2)}</pre>
+            <pre>{JSON.stringify(Object.values(state.counter || {}).slice(-1)[0], null, 2)}</pre>
         </div>
     )
 }
@@ -568,7 +566,7 @@ function Status() {
         <div id="status">
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
-            <pre>{JSON.stringify(state.status, null, 2)}</pre>
+            <pre>{JSON.stringify(Object.values(state.status || {}).slice(-1)[0], null, 2)}</pre>
         </div>
     )
 }
@@ -606,7 +604,7 @@ function Deploy() {
         <div id="deploy">
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
-            <pre>{JSON.stringify(state.deploy, null, 2)}</pre>
+            <pre>{JSON.stringify(Object.values(state.deploy || {}).slice(-1)[0], null, 2)}</pre>
         </div>
     )
 }

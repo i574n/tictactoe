@@ -147,12 +147,12 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
                         .evaluateAll((nodes) => nodes.map((node) => node.textContent))))
             console.log(
                 `\n!### action() ${actionIndex}: ${title}. ${i === 0 ? 'before' : 'after'} fn`,
-                ...textContent.flat().map((text) => JSON.parse(text || ''))
+                ...textContent.flat().map((text) => JSON.parse(text || '""'))
             )
         }
 
         // await Promise.all(pages.map(async (page, _index) => {
-        //     await page.waitForTimeout(1000)
+        //     await page.waitForTimeout(100)
         // }))
 
         if (i === 0) {
@@ -233,7 +233,7 @@ newTest("test1", async ({ browser }) => {
 
     await action(pages, 'wait db', '#counter pre', async (pages) => {
         await Promise.all(pages.map(async (page, _index) => {
-            await page.waitForTimeout(5000)
+            await page.waitForTimeout(2000)
         }))
     })
 
@@ -243,7 +243,7 @@ newTest("test1", async ({ browser }) => {
         }))
     })
 
-    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '"lastValue": null' })
+    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: 'null' })
 
     for (const [index, page] of pages.entries()) {
         if (index < 4) {
@@ -251,7 +251,7 @@ newTest("test1", async ({ browser }) => {
                 await page.locator('#counter button').nth(0).click()
             })
 
-            await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `"lastValue": ${index}` })
+            await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `${index}` })
         }
     }
 
@@ -259,7 +259,7 @@ newTest("test1", async ({ browser }) => {
         await pages[0].locator('#counter button').nth(1).click()
     })
 
-    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: '"lastValue": null' })
+    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: 'null' })
 
     return pages
 })
