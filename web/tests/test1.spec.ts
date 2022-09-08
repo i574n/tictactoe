@@ -233,7 +233,7 @@ newTest("test1", async ({ browser }) => {
 
     await action(pages, 'wait db', '#counter pre', async (pages) => {
         await Promise.all(pages.map(async (page, _index) => {
-            await page.waitForTimeout(3500)
+            await page.waitForTimeout(5000)
         }))
     })
 
@@ -246,7 +246,7 @@ newTest("test1", async ({ browser }) => {
     await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '"lastValue": null' })
 
     for (const [index, page] of pages.entries()) {
-        if (index < 5) {
+        if (index < 4) {
             await action(pages, `request click p${index}`, '#counter pre', async (_pages) => {
                 await page.locator('#counter button').nth(0).click()
             })
