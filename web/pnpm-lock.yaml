@@ -3,19 +3,19 @@ lockfileVersion: 5.4
 specifiers:
   '@esbuild-plugins/node-globals-polyfill': ^0.1
   '@hope-ui/solid': ^0.6.7
-  '@playwright/test': ^1.26.0-alpha-sep-6-2022
+  '@playwright/test': ^1.26.0-alpha-sep-7-2022
   '@stitches/core': ^1.2.8
   '@storeon/solidjs': ^3.0
-  algosdk: ^1.19
+  algosdk: ^1.20
   axe-playwright: ^1.1
   buffer: ^6.0
-  concurrently: ^7.3
+  concurrently: ^7.4
   cross-env: ~7.0
   esbuild: ^0.15
   gun: ^0.2020.1238
   npm-check-updates: ^16.1
   path-browserify: ^1.0
-  playwright-core: ^1.26.0-alpha-sep-6-2022
+  playwright-core: ^1.26.0-alpha-sep-7-2022
   rusty-gun: ^0.1.2
   solid-icons: ^1.0
   solid-js: 1.5.4
@@ -31,7 +31,7 @@ dependencies:
   '@hope-ui/solid': 0.6.7_wvstcbww3syooiyaxy5jeo2dua
   '@stitches/core': 1.2.8
   '@storeon/solidjs': 3.0.1_aidr5hafbxzjwa4djzrw6l2n7q
-  algosdk: 1.19.0
+  algosdk: 1.20.0
   buffer: 6.0.3
   gun: 0.2020.1238
   rusty-gun: 0.1.2
@@ -42,14 +42,14 @@ dependencies:
 
 devDependencies:
   '@esbuild-plugins/node-globals-polyfill': 0.1.1_esbuild@0.15.1
-  '@playwright/test': 1.26.0-alpha-sep-6-2022
-  axe-playwright: 1.1.11_np5r476mok5tijkdtxlrteewkq
-  concurrently: 7.3.0
+  '@playwright/test': 1.26.0-alpha-sep-7-2022
+  axe-playwright: 1.1.11_qi522s2bwsdqxy5gkt4xyppd5m
+  concurrently: 7.4.0
   cross-env: 7.0.3
   esbuild: 0.15.1
   npm-check-updates: 16.1.0
   path-browserify: 1.0.1
-  playwright-core: 1.26.0-alpha-sep-6-2022
+  playwright-core: 1.26.0-alpha-sep-7-2022
   typescript: 4.7.2
   vite: 3.1.0
   vite-plugin-mkcert: 1.9.0
@@ -693,13 +693,13 @@ packages:
     dev: false
     optional: true
 
-  /@playwright/test/1.26.0-alpha-sep-6-2022:
-    resolution: {integrity: sha512-2I4WoNGVLwe0okNZmb9ZKs2V0NJJCUM+I5ogq/XqOy1G29uKt3/t+vdIWxHFcAvGwT847VedENlTTwVL6DX6XQ==}
+  /@playwright/test/1.26.0-alpha-sep-7-2022:
+    resolution: {integrity: sha512-tTHg/fv5PDqyoHSJq04yc4B4d17FFXRlYeeOGJtI/Omu1ZIzdgUPH20b0PxxCIv7ZTx+U61dRLKIFeZ1/s6B3Q==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@types/node': 17.0.39
-      playwright-core: 1.26.0-alpha-sep-6-2022
+      playwright-core: 1.26.0-alpha-sep-7-2022
     dev: true
 
   /@pnpm/network.ca-file/1.0.1:
@@ -819,8 +819,8 @@ packages:
     engines: {node: '>= 10'}
     dev: false
 
-  /algosdk/1.19.0:
-    resolution: {integrity: sha512-odDyNSsr3RK8oDgmMLqt0PFuukeXpETAVa0TkSCPE3IeUIEslwNu5zA6cXs5ParJOcsWjQENRw+XJ9FMEDHW4w==}
+  /algosdk/1.20.0:
+    resolution: {integrity: sha512-KKfSIIdQTgdj3rKaYGLu3n16KC5obx0n+6XvlwAhyGxqG1K5bCJ9F1zbblhCE9aKEv+buNR23Lw6hXGQ54PA1A==}
     dependencies:
       algo-msgpack-with-bigint: 2.1.1
       buffer: 6.0.3
@@ -913,13 +913,13 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /axe-playwright/1.1.11_np5r476mok5tijkdtxlrteewkq:
+  /axe-playwright/1.1.11_qi522s2bwsdqxy5gkt4xyppd5m:
     resolution: {integrity: sha512-YHmUouvF/dFNxoFFwbCjPFmEPwoJSzPgZsD0KZs3xjsR03Rf2mAh771ugre950MaBYuiyxYDlurH5BOEJBK34Q==}
     peerDependencies:
       playwright-core: '>1.0.0'
     dependencies:
       axe-core: 4.4.2
-      playwright-core: 1.26.0-alpha-sep-6-2022
+      playwright-core: 1.26.0-alpha-sep-7-2022
     dev: true
 
   /axios/0.21.4_debug@4.3.4:
@@ -1211,8 +1211,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /concurrently/7.3.0:
-    resolution: {integrity: sha512-IiDwm+8DOcFEInca494A8V402tNTQlJaYq78RF2rijOrKEk/AOHTxhN4U1cp7GYKYX5Q6Ymh1dLTBlzIMN0ikA==}
+  /concurrently/7.4.0:
+    resolution: {integrity: sha512-M6AfrueDt/GEna/Vg9BqQ+93yuvzkSKmoTixnwEJkH0LlcGrRC2eCmjeG1tLLHIYfpYJABokqSGyMcXjm96AFA==}
     engines: {node: ^12.20.0 || ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2900,8 +2900,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /playwright-core/1.26.0-alpha-sep-6-2022:
-    resolution: {integrity: sha512-2/FuhU+vYYN8X3dht2WffrpAeBaNQ8S8wGV8XdZtfU45UMDPKHLSxNR5mlIQLmtZO5wSLORZ8LBjnhDtSipY9A==}
+  /playwright-core/1.26.0-alpha-sep-7-2022:
+    resolution: {integrity: sha512-cqnlP+2uHl2dwwb6O4iPY/uNLiYwTn+LBCCqRpodUCPW77xMHE5Gw9S8VenuAoSSQ12F0liJA02XzjYZSV8HZw==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true

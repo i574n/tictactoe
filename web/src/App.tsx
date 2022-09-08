@@ -254,10 +254,10 @@ function DbListener() {
         log('DbListener store.on(@changed) 1', {
             changed: Object.keys(changed).map((key) => ({
                 key,
-                state: state[key as keyof State],
-                newState: newState[key as keyof State],
-                changed: changed[key as keyof State],
-                store: store.get()[key as keyof State],
+                state: Object.values(state[key as keyof State] || {}).filter((x) => x !== null).length,
+                newState: Object.values(newState[key as keyof State] || {}).filter((x) => x !== null).length,
+                changed: Object.values(changed[key as keyof State] || {}).filter((x) => x !== null).length,
+                store: Object.values(store.get()[key as keyof State] || {}).filter((x) => x !== null).length,
             }))
         })
         if (changed.dbEnabled || changed.dbConnection) {
@@ -285,13 +285,13 @@ export function useFetch(
 
     const getLocals = () => ({
         key,
-        [`${String(key)}.keys`]: Object.keys(state[key] || {}),
+        [`${String(key)}.values`]: Object.values(state[key] || {}).filter((x) => x !== null).length,
         [`events`]: Object.entries(events()),
         [`timers`]: Object.entries(timers()),
         [`values`]: Object.entries(values()).reduce(
             ([keys, emptyKeys]: (string | any[])[][], [id, value]) =>
                 !!value
-                    ? [[...keys, [id, value]], emptyKeys]
+                    ? [[...keys, [id, Object.values(value).filter((x) => x !== null).length]], emptyKeys]
                     : [keys, [...emptyKeys, id]],
             [[], []]),
         [`subscriptions`]: Object.entries(subscriptions()).map(([id, { subscription }]) => [id, subscription])
@@ -307,11 +307,17 @@ export function useFetch(
     log('useFetch() 0')
 
     const newOnValue = (resub: (_: string) => void) =>
-        async (id: string, hash: string, newValue: object) => {
-            log('useFetch.onValue() 1/2', { id, hash, newValue })
+        async (id: string, hash: string, newValue: object, rawValue: object | undefined) => {
+            const logObj = {
+                id,
+                hash,
+                newValue: Object.values(newValue || {}).filter((x) => x !== null).length,
+                rawValue: Object.values(rawValue || {}).filter((x) => x !== null).length
+            }
+            log('useFetch.onValue() 1/2', { ...logObj })
 
             if (hash && Object.keys(state[key] || {}).length > 0) {
-                log('useFetch.onValue() 2/2. resub')
+                log('useFetch.onValue() 2/2. resub', { ...logObj })
 
                 resub(id)
 
@@ -333,65 +339,29 @@ export function useFetch(
                 dispatch('set', { [key]: newValue })
 
                 const oldValues = values()
+                const newValues = { ...oldValues, [id]: newValue }
+                setValues(newValues)
 
-                setValues({ ...oldValues, [id]: newValue })
+                log('useFetch.onValue() 2/2. set', {
+                    ...logObj,
+                    oldValues: Object.entries(oldValues).map(([id, values]) =>
+                        [id, Object.values(values).filter((x) => x !== null).length]
+                    ),
+                    newValues: Object.entries(newValues).map(([id, values]) =>
+                        [id, Object.values(values).filter((x) => x !== null).length]
+                )
+                })
 
-                // Object.entries(newValue).forEach(([timestamp, value]) => {
-                //     db.getDbIdList(state)[0].forEach((dbId) => {
-                //         if (id !== dbId.id) {
-                //             const oldValue = (oldValues[dbId.id] || {})[timestamp]
-                //             if (oldValue !== value) {
-                //                 log('useFetch.onValue() 3/2. before put item', { id, dbId: dbId.id, timestamp, oldValue, value })
-                //                 setTimeout(() => {
-                //                     db.dbPut(state, dbId.id, key, { [timestamp]: value })
-                //                 }, 0)
-                //             }
-                //         }
-                //     })
-                // })
-
-                await Promise.all(
-                    Object.entries(newValue).map(([timestamp, value]) =>
+                if (rawValue && Object.keys(newValue).length > 0 && JSON.stringify(oldValues[id]) !== JSON.stringify(newValue)) {
+                    await Promise.all(
                         db.getDbIdList(state)[0].map(async (dbId) => {
                             if (id !== dbId.id) {
-                                const oldValue = (oldValues[dbId.id] || {})[timestamp]
-                                if (oldValue !== value) {
-                                    log('useFetch.onValue() 3/2. before put item', { id, dbId: dbId.id, timestamp, oldValue, value })
-                                    db.dbPut(state, dbId.id, key, { [timestamp]: value })
-                                }
+                                log('useFetch.onValue() 3/2. before put item ###', { ...logObj, dbId: dbId.id })
+                                db.dbPut(state, dbId.id, key, rawValue)
                             }
                         })
                     )
-                )
-
-                // const changed = Object.entries(newValue).reduce((acc, [timestamp, value]) => {
-                //     return db.getDbIdList(state)[0].filter((dbId) => id !== dbId.id).reduce((acc, { id: dbId }) => {
-                //         const oldValue = (oldValues[dbId] || {})[timestamp]
-                //         return oldValue === value
-                //             ? acc
-                //             : {
-                //                 ...acc,
-                //                 [dbId]: {
-                //                     ...acc[dbId],
-                //                     [timestamp]: value
-                //                 }
-                //             }
-                //     }, acc)
-                // }, {} as { [_: string]: { [_: string]: any } })
-
-                // const changedValues = Object.values(changed).reduce((acc, value) => ({ ...acc, ...value }), {})
-
-                // log('useFetch.onValue() 2/2. put loop', { id, newValue, oldValues, changed, changedValues })
-
-                // if (Object.keys(changedValues).length > 0) {
-                //     setValues({ ...oldValues, ...changedValues })
-                // }
-
-                // await Promise.all(
-                //     Object.entries(changed).map(([dbId, value]) =>
-                //         db.dbPut(state, dbId, key, value)
-                //     )
-                // )
+                }
             }
         }
 
@@ -496,13 +466,13 @@ export function useFetch(
             result = e as {}
         }
 
-        const timestamp = `${util.newTimestamp()}`
+        const timestamp = `${new Date().getTime()}`
         const newValue = {
             ...(state[key] as { [_: string]: any }),
             [timestamp]: result
         }
 
-        log('useFetch.request() 1', { result, newValue })
+        log('useFetch.request() 1', { result, newValue: Object.values(newValue).filter((x) => x !== null).length })
 
         // dispatch('set', { [key]: newValue })
 
@@ -546,9 +516,11 @@ export function useFetch(
 
         // dispatch('set', { [key]: newValue })
 
+        const timestamp = `${new Date().getTime()}`
+
         await Promise.all(
             db.getDbIdList(state)[0].map(({ id }) =>
-                db.dbPut(state, id, key, newValue)
+                db.dbPut(state, id, key, { [timestamp]: null })
             )
         )
 
@@ -565,19 +537,24 @@ export function useFetch(
         )
     }
 
-    return { request, clear, values }
+    return { request, clear }
 }
 
 function Counter() {
     const [state, _] = useStoreon<State, Events>()
 
-    const { request, clear, values } = useFetch('counter', async (_client) => Object.keys(state.counter || {}).length)
+    const { request, clear } = useFetch(
+        'counter',
+        async (_client) => Object.values(state.counter || {}).reduce((acc, v) => v === null ? 0 : acc + 1, 0)
+    )
 
     return (
         <div id="counter">
             <button onClick={request}>Request</button>
             <button onClick={clear}>Clear</button>
-            <pre>{JSON.stringify({ counter: state.counter, values: values() }, null, 2)}</pre>
+            <pre>{JSON.stringify({
+                lastValue: Object.values(state.counter || {}).slice(-1)[0],
+            }, null, 2)}</pre>
         </div>
     )
 }

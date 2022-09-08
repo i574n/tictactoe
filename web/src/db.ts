@@ -86,7 +86,7 @@ export const getDbIdList = (state: State): Id[][] =>
 const soul = "app"
 
 const parse = (raw: object) => {
-    const getLocals = () => ({ nRaw: `${raw}`.length, raw })
+    const getLocals = () => ({ nRaw: `${raw}`.length })
     const log = util.getLog(getLocals)
     log('parse() 0')
     let data = raw
@@ -100,7 +100,7 @@ const newListenerHandler = <State>(
     state: State,
     id: string,
     key: keyof State,
-    onValue: (id: string, hash: string, newValue: object) => Promise<void>
+    onValue: (id: string, hash: string, newValue: object, rawValue: object | undefined) => Promise<void>
 ) =>
     async (v: object, k: any, _msg: any, _ev: any) => {
         const getLocals = () => ({
@@ -112,26 +112,16 @@ const newListenerHandler = <State>(
 
         const { '#': hash, _: { '#': hash2, '>': ptrs, ..._ }, ...value }: { [_: string]: any } = { _: {}, ...parse(v) }
 
-        const newValue =
-            Object.fromEntries(
-                Object.entries(
-                    Object.keys(value).reduce((acc, k) => ({
-                        ...acc,
-                        [k]: value[k]
-                    }), (state[key] || {}) as { [_: string]: any })
-                ).filter(([_, v]) => v !== null && typeof v !== 'undefined')
-            )
+        const oldValue = (state[key] || {}) as { [_: string]: any }
 
-        // const newValue =
-        //     [...Object.keys(state[key] || {}), ...Object.keys(value)]
-        //         .reduce((acc, k) => ({
-        //             ...acc,
-        //             [k]: value[k] === null
-        //                 ? undefined
-        //                 : (value[k] !== undefined
-        //                     ? value[k]
-        //                     : (state[key] as { [_: string]: any })[k])
-        //         }), {} as { [_: string]: any })
+        const newEntriesRaw = Object.entries(
+            Object.keys(value).reduce((acc, k) => ({
+                ...acc,
+                [k]: value[k]
+            }), oldValue)
+        )
+
+        const newValue = Object.fromEntries(newEntriesRaw)
 
         log('newListenerHandler 1', {
             vType: typeof v,
@@ -141,13 +131,13 @@ const newListenerHandler = <State>(
             nPtrsKeys: Object.keys(ptrs || {}).length,
             // nValue: Object.keys(value).length,
             // nNewValue: Object.keys(newValue).length,
-            value: Object.entries(value),
-            newValue: Object.entries(newValue),
+            value: Object.values(value).filter((x) => x !== null).length,
+            oldValue: Object.values(oldValue).filter((x) => x !== null).length,
+            newValue: Object.values(newValue).filter((x) => x !== null).length
             // nStateKey: Object.keys(state[key] || {}).length
-            stateKey: Object.entries(state[key] || {})
         })
 
-        await onValue(id, hash, newValue)
+        await onValue(id, hash, newValue, Object.keys(value || {}).length > 0 ? value : undefined)
     }
 
 const getDbNode = <T extends State>(state: T, id: string, key: keyof T): DbNode | undefined => {
@@ -188,7 +178,7 @@ export const dbOn = <T extends State>(
     state: T,
     { dbType, id }: Id,
     key: keyof T,
-    onValue: (id: string, hash: string, newValue: object) => Promise<void>
+    onValue: (id: string, hash: string, newValue: object, rawValue: object | undefined) => Promise<void>
 ): number | undefined => {
     const getLocals = () => ({
         key,

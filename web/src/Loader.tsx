@@ -37,15 +37,13 @@ export function Loader<State extends object, Events>(props: {
                 ? <div><button onClick={loadClick}>Load</button></div>
                 : (
                     <Box
-                        {...(modal() && {
-                            position: 'absolute',
-                            zIndex: 1,
-                            top: 0,
-                            right: 0,
-                            bottom: 0,
-                            left: 0,
-                            backgroundColor: '$bg',
-                        } as StyleProps)}
+                        position={modal() ? 'absolute' : undefined}
+                        zIndex={modal() ? 1 : undefined}
+                        top={modal() ? 0 : undefined}
+                        right={modal() ? 0 : undefined}
+                        bottom={modal() ? 0 : undefined}
+                        left={modal() ? 0 : undefined}
+                        backgroundColor={modal() ? '$bg' : undefined}
                     >
                         <Box
                             position="relative"

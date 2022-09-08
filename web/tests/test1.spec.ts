@@ -243,15 +243,15 @@ newTest("test1", async ({ browser }) => {
         }))
     })
 
-    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '"counter": {}' })
+    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: '"lastValue": null' })
 
     for (const [index, page] of pages.entries()) {
-        if (index < 3) {
+        if (index < 5) {
             await action(pages, `request click p${index}`, '#counter pre', async (_pages) => {
                 await page.locator('#counter button').nth(0).click()
             })
 
-            await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `": ${index}` })
+            await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `"lastValue": ${index}` })
         }
     }
 
@@ -259,7 +259,7 @@ newTest("test1", async ({ browser }) => {
         await pages[0].locator('#counter button').nth(1).click()
     })
 
-    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: '"counter": {}' })
+    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: '"lastValue": null' })
 
     return pages
 })
