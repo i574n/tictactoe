@@ -300,7 +300,7 @@ export function useFetch(
     // const randomHexColorString = () => "#" + Math.floor(Math.random() * 16777215).toString(16)
 
     const generateSixDigitNumericHashFromString = (text: string) =>
-        [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 10), 100000).toString().substring(-6)
+        [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 15), 100000).toString().substring(-6)
 
     const log = util.getLog(getLocals, `#${generateSixDigitNumericHashFromString(key as string)}`)
 
@@ -404,7 +404,7 @@ export function useFetch(
                 //         ...state.dbEnabled
                 //     }
                 // })
-            }, 10000)
+            }, db.DB_RESUB_TIMEOUT)
         })
     }
 
@@ -447,7 +447,7 @@ export function useFetch(
                 db.getDbIdList(newState)[0].reduce((accIntervals, id) =>
                 ({
                     ...accIntervals,
-                    [id.id]: setTimeout(() => subscribe(id), 2500)
+                    [id.id]: setTimeout(() => subscribe(id), db.DB_INIT_TIMEOUT)
                 }), {} as { [_: string]: NodeJS.Timer | undefined })
             )
         }
@@ -466,75 +466,78 @@ export function useFetch(
             result = e as {}
         }
 
+        log('useFetch.request() 1', { result })
+
+        const enabledDbIdList = db.getDbIdList(state)[0]
         const timestamp = `${new Date().getTime()}`
-        const newValue = {
-            ...(state[key] as { [_: string]: any }),
-            [timestamp]: result
-        }
 
-        log('useFetch.request() 1', { result, newValue: Object.values(newValue).filter((x) => x !== null).length })
-
-        // dispatch('set', { [key]: newValue })
-
-        await Promise.all(
-            db.getDbIdList(state)[0].map((id) =>
-                db.dbPut(state, id, key, { [timestamp]: result })
+        if (enabledDbIdList.length === 0) {
+            dispatch('set', {
+                ...(state[key] as { [_: string]: any }),
+                [timestamp]: result
+            })
+        } else {
+            await Promise.all(
+                enabledDbIdList.map((id) =>
+                    db.dbPut(state, id, key, { [timestamp]: result })
+                )
             )
-        )
 
-        Object.values(timers()).forEach((timer) => timer && clearTimeout(timer))
-        setTimers(
-            db.getDbIdList(state)[0].reduce((accIntervals, id) =>
-            ({
-                ...accIntervals,
-                [id.id]: setTimeout(() => {
-                    const oldSubscriptions = subscriptions()
-                    const oldSubscription = oldSubscriptions[id.id]
+            Object.values(timers()).forEach((timer) => timer && clearTimeout(timer))
+            setTimers(
+                enabledDbIdList.reduce((accIntervals, id) =>
+                ({
+                    ...accIntervals,
+                    [id.id]: setTimeout(() => {
+                        const oldSubscriptions = subscriptions()
+                        const oldSubscription = oldSubscriptions[id.id]
 
-                    log('useFetch.request() 1 resub timeout', { id: id.id, oldSubscription })
+                        log('useFetch.request() 1 resub timeout', { id: id.id, oldSubscription })
 
-                    if (oldSubscription) {
-                        db.dbOff(state, id.id, key, oldSubscription.subscription)
-                    }
-                    const newSubscriptions = { ...subscriptions() }
-                    delete newSubscriptions[id.id]
-                    setSubscriptions(newSubscriptions)
+                        if (oldSubscription) {
+                            db.dbOff(state, id.id, key, oldSubscription.subscription)
+                        }
+                        const newSubscriptions = { ...subscriptions() }
+                        delete newSubscriptions[id.id]
+                        setSubscriptions(newSubscriptions)
 
-                    subscribe(id)
-                }, 10000)
-            }), {} as { [_: string]: NodeJS.Timer | undefined })
-        )
+                        subscribe(id)
+                    }, db.DB_RESUB_TIMEOUT)
+                }), {} as { [_: string]: NodeJS.Timer | undefined })
+            )
+        }
     }
 
     const clear = async () => {
         log('useFetch.clear() 1')
 
-        const newValue = Object.keys(state[key] || {}).reduce((acc, k) => ({
-            ...acc,
-            [k]: null
-        }), {} as { [_: string]: any })
-
-        // dispatch('set', { [key]: newValue })
-
+        const enabledDbIdList = db.getDbIdList(state)[0]
         const timestamp = `${new Date().getTime()}`
 
-        await Promise.all(
-            db.getDbIdList(state)[0].map((id) =>
-                db.dbPut(state, id, key, { [timestamp]: null })
+        if (enabledDbIdList.length === 0) {
+            dispatch('set', {
+                ...(state[key] as { [_: string]: any }),
+                [timestamp]: null
+            })
+        } else {
+            await Promise.all(
+                enabledDbIdList.map((id) =>
+                    db.dbPut(state, id, key, { [timestamp]: null })
+                )
             )
-        )
 
-        Object.values(timers()).forEach((timer) => timer && clearTimeout(timer))
-        setTimers(
-            db.getDbIdList(state)[0].reduce((accIntervals, id) =>
-            ({
-                ...accIntervals,
-                [id.id]: setTimeout(() => {
-                    log('useFetch.clear() 1 resub timeout', { id: id.id })
-                    subscribe(id)
-                }, 10000)
-            }), {} as { [_: string]: NodeJS.Timer | undefined })
-        )
+            Object.values(timers()).forEach((timer) => timer && clearTimeout(timer))
+            setTimers(
+                enabledDbIdList.reduce((accIntervals, id) =>
+                ({
+                    ...accIntervals,
+                    [id.id]: setTimeout(() => {
+                        log('useFetch.clear() 1 resub timeout', { id: id.id })
+                        subscribe(id)
+                    }, db.DB_RESUB_TIMEOUT)
+                }), {} as { [_: string]: NodeJS.Timer | undefined })
+            )
+        }
     }
 
     return { request, clear }

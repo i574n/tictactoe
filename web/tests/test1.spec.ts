@@ -233,7 +233,7 @@ newTest("test1", async ({ browser }) => {
 
     await action(pages, 'wait db', '#counter pre', async (pages) => {
         await Promise.all(pages.map(async (page, _index) => {
-            await page.waitForTimeout(2000)
+            await page.waitForTimeout(3000)
         }))
     })
 

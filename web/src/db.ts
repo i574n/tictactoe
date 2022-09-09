@@ -152,6 +152,9 @@ const getDbNode = <T extends State>(db: Db, key: keyof T): DbNode | undefined =>
     return db.db.get(soul).get(key as string)
 }
 
+export const DB_INIT_TIMEOUT = 2500
+export const DB_RESUB_TIMEOUT = 10000
+
 export const dbPut = <T extends State>(
     state: T,
     id: Id,
@@ -166,18 +169,25 @@ export const dbPut = <T extends State>(
     const log = util.getLog(getLocals)
 
     let db = state.db[id.id]
-    if (id.dbType === 'gun_js' && id.urlType === 'gun_rs') {
-        const tmp = newDb('gun_rs', { url: id.url })
-        if (tmp) {
-            db = tmp
-        }
-    }
 
     const node = getDbNode(db, key)
 
     log('dbPut() 0', { db, node })
     if (node) {
         node.put(newValue)
+    }
+
+    if (id.dbType === 'gun_js' && id.urlType === 'gun_rs') {
+        const db = newDb('gun_rs', { url: id.url })
+        if (db) {
+            setTimeout(() => {
+                const node = getDbNode(db, key)
+                log('dbPut() 1 (##)', { db, node })
+                if (node) {
+                    node.put(newValue)
+                }
+            }, DB_INIT_TIMEOUT)
+        }
     }
 }
 
