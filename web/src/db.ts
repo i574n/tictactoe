@@ -140,22 +140,21 @@ const newListenerHandler = <State>(
         await onValue(id, hash, newValue, Object.keys(value || {}).length > 0 ? value : undefined)
     }
 
-const getDbNode = <T extends State>(state: T, id: string, key: keyof T): DbNode | undefined => {
+const getDbNode = <T extends State>(db: Db, key: keyof T): DbNode | undefined => {
     const getLocals = () => ({
-        id,
+        soul,
+        db,
         key,
     })
     const log = util.getLog(getLocals)
 
-    const db = state.db[id]
-
-    log('getDbNode() 0', { db: !!db })
-    return db && db.db.get(soul).get(key as string)
+    log('getDbNode() 0')
+    return db.db.get(soul).get(key as string)
 }
 
 export const dbPut = <T extends State>(
     state: T,
-    id: string,
+    id: Id,
     key: keyof T,
     newValue: any
 ) => {
@@ -166,9 +165,17 @@ export const dbPut = <T extends State>(
     })
     const log = util.getLog(getLocals)
 
-    const node = getDbNode(state, id, key)
+    let db = state.db[id.id]
+    if (id.dbType === 'gun_js' && id.urlType === 'gun_rs') {
+        const tmp = newDb('gun_rs', { url: id.url })
+        if (tmp) {
+            db = tmp
+        }
+    }
 
-    log('dbPut() 0', { node })
+    const node = getDbNode(db, key)
+
+    log('dbPut() 0', { db, node })
     if (node) {
         node.put(newValue)
     }
@@ -176,10 +183,11 @@ export const dbPut = <T extends State>(
 
 export const dbOn = <T extends State>(
     state: T,
-    { dbType, id }: Id,
+    id: Id,
     key: keyof T,
     onValue: (id: string, hash: string, newValue: object, rawValue: object | undefined) => Promise<void>
 ): number | undefined => {
+    const { dbType } = id
     const getLocals = () => ({
         key,
         dbType,
@@ -187,14 +195,15 @@ export const dbOn = <T extends State>(
     })
     const log = util.getLog(getLocals)
 
-    const node = getDbNode(state, id, key)
+    let db = state.db[id.id]
+    const node = getDbNode(db, key)
 
     log('dbOn() 0', { node })
     if (node) {
         if (dbType === 'gun_rs') {
-            return node.on(newListenerHandler(state, id, key, onValue)) as number
+            return node.on(newListenerHandler(state, id.id, key, onValue)) as number
         } else if (dbType === 'gun_js') {
-            node.on(newListenerHandler(state, id, key, onValue))
+            node.on(newListenerHandler(state, id.id, key, onValue))
             return util.newTimestamp()
         }
     }
@@ -208,7 +217,8 @@ export const dbOff = <T extends State>(state: T, id: string, key: keyof T, subsc
     })
     const log = util.getLog(getLocals)
 
-    const node = getDbNode(state, id, key)
+    let db = state.db[id]
+    const node = getDbNode(db, key)
 
     log('dbOff() 0', { node })
     if (node) {

@@ -246,13 +246,11 @@ newTest("test1", async ({ browser }) => {
     await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: 'null' })
 
     for (const [index, page] of pages.entries()) {
-        if (index < 4) {
-            await action(pages, `request click p${index}`, '#counter pre', async (_pages) => {
-                await page.locator('#counter button').nth(0).click()
-            })
+        await action(pages, `request click p${index}`, '#counter pre', async (_pages) => {
+            await page.locator('#counter button').nth(0).click()
+        })
 
-            await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `${index}` })
-        }
+        await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `${index}` })
     }
 
     await action(pages, 'clear click 2', '#counter pre', async (pages) => {

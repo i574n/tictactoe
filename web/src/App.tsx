@@ -349,7 +349,7 @@ export function useFetch(
                     ),
                     newValues: Object.entries(newValues).map(([id, values]) =>
                         [id, Object.values(values).filter((x) => x !== null).length]
-                )
+                    )
                 })
 
                 if (rawValue && Object.keys(newValue).length > 0 && JSON.stringify(oldValues[id]) !== JSON.stringify(newValue)) {
@@ -357,7 +357,7 @@ export function useFetch(
                         db.getDbIdList(state)[0].map(async (dbId) => {
                             if (id !== dbId.id) {
                                 log('useFetch.onValue() 3/2. before put item ###', { ...logObj, dbId: dbId.id })
-                                db.dbPut(state, dbId.id, key, rawValue)
+                                db.dbPut(state, dbId, key, rawValue)
                             }
                         })
                     )
@@ -477,7 +477,7 @@ export function useFetch(
         // dispatch('set', { [key]: newValue })
 
         await Promise.all(
-            db.getDbIdList(state)[0].map(({ id }) =>
+            db.getDbIdList(state)[0].map((id) =>
                 db.dbPut(state, id, key, { [timestamp]: result })
             )
         )
@@ -519,7 +519,7 @@ export function useFetch(
         const timestamp = `${new Date().getTime()}`
 
         await Promise.all(
-            db.getDbIdList(state)[0].map(({ id }) =>
+            db.getDbIdList(state)[0].map((id) =>
                 db.dbPut(state, id, key, { [timestamp]: null })
             )
         )
