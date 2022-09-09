@@ -300,7 +300,7 @@ export function useFetch(
     // const randomHexColorString = () => "#" + Math.floor(Math.random() * 16777215).toString(16)
 
     const generateSixDigitNumericHashFromString = (text: string) =>
-        [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 15), 100000).toString().substring(-6)
+        [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 9), 100000).toString().substring(-6)
 
     const log = util.getLog(getLocals, `#${generateSixDigitNumericHashFromString(key as string)}`)
 
@@ -466,16 +466,17 @@ export function useFetch(
             result = e as {}
         }
 
-        log('useFetch.request() 1', { result })
-
         const enabledDbIdList = db.getDbIdList(state)[0]
         const timestamp = `${new Date().getTime()}`
 
+        log('useFetch.request() 1', { result, timestamp, enabledDbIdList })
+
         if (enabledDbIdList.length === 0) {
-            dispatch('set', {
+            const newValue = {
                 ...(state[key] as { [_: string]: any }),
                 [timestamp]: result
-            })
+            }
+            dispatch('set', { [key]: newValue })
         } else {
             await Promise.all(
                 enabledDbIdList.map((id) =>
@@ -509,16 +510,17 @@ export function useFetch(
     }
 
     const clear = async () => {
-        log('useFetch.clear() 1')
-
         const enabledDbIdList = db.getDbIdList(state)[0]
         const timestamp = `${new Date().getTime()}`
 
+        log('useFetch.clear() 1', { timestamp, enabledDbIdList })
+
         if (enabledDbIdList.length === 0) {
-            dispatch('set', {
+            const newValue = {
                 ...(state[key] as { [_: string]: any }),
                 [timestamp]: null
-            })
+            }
+            dispatch('set', { [key]: newValue })
         } else {
             await Promise.all(
                 enabledDbIdList.map((id) =>
