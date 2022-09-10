@@ -1,6 +1,12 @@
 import * as util from "../../lib_ts/util"
 import { Node as GunRS } from "rusty-gun"
 import GunJS from "gun/gun"
+
+import "gun/lib/radix"
+import "gun/lib/radisk"
+import "gun/lib/store"
+import "gun/lib/rindexed"
+
 import { IGunInstance as IGunJS, IGunChain } from "gun"
 
 
@@ -48,7 +54,7 @@ export const newDb = (type: DbType, { url }: Url): Db | null => {
     if (type === 'gun_rs') {
         return { type, url, db: new GunRS(url) }
     } else if (type === 'gun_js') {
-        return { type, url, db: new GunJS(url) }
+        return { type, url, db: new GunJS({ url, localStorage: false, radisk: true }) }
     }
     return null
 }

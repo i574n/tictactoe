@@ -300,7 +300,7 @@ export function useFetch(
     // const randomHexColorString = () => "#" + Math.floor(Math.random() * 16777215).toString(16)
 
     const generateSixDigitNumericHashFromString = (text: string) =>
-        [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 9), 100000).toString().substring(-6)
+        [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 11), 100000).toString().substring(-6)
 
     const log = util.getLog(getLocals, `#${generateSixDigitNumericHashFromString(key as string)}`)
 
