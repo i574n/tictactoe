@@ -2,9 +2,7 @@ import { createEffect, createSignal, on } from "solid-js"
 import { StoreonDispatch } from "storeon"
 import { useStoreon } from "@storeon/solidjs"
 import { BiRegularRefresh, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow } from "solid-icons/bi"
-import { Box, StyleProps } from '@hope-ui/solid'
-// @ts-ignore
-import styles from "./App.module.css"
+import { Box, Stack } from '@hope-ui/solid'
 
 
 export function Loader<State extends object, Events>(props: {
@@ -29,49 +27,75 @@ export function Loader<State extends object, Events>(props: {
         setLoaded(true)
     }
 
+    if (props.defaults?.loaded) {
+        props.onLoad?.(state, dispatch)
+    }
+
     const buttonSize = "20px"
 
     return (
-        <div id={props.id}>
+        <Box
+            id={props.id}
+            display="flex"
+            flex={1}
+        >
             {!loaded()
-                ? <div><button onClick={loadClick}>Load</button></div>
-                : (
+                ? <div>
+                    <button onClick={loadClick}>Load</button>
+                </div>
+                : <Box
+                    display="flex"
+                    flex={1}
+                    position={modal() ? 'absolute' : undefined}
+                    zIndex={modal() ? 1 : undefined}
+                    top={modal() ? 0 : undefined}
+                    right={modal() ? 0 : undefined}
+                    bottom={modal() ? 0 : undefined}
+                    left={modal() ? 0 : undefined}
+                    backgroundColor={modal() ? '$bg' : undefined}
+                >
                     <Box
-                        position={modal() ? 'absolute' : undefined}
-                        zIndex={modal() ? 1 : undefined}
-                        top={modal() ? 0 : undefined}
-                        right={modal() ? 0 : undefined}
-                        bottom={modal() ? 0 : undefined}
-                        left={modal() ? 0 : undefined}
-                        backgroundColor={modal() ? '$bg' : undefined}
+                        position="relative"
+                        display="flex"
+                        flex={1}
                     >
-                        <Box
-                            position="relative"
-                            display="flex"
-                            flex={1}
+                        <Stack
+                            direction="row"
+                            spacing="4px"
+                            position="absolute"
+                            top="3px"
+                            right="3px"
                         >
-                            <Box
-                                position="absolute"
-                                top="3px"
-                                right="3px"
+                            <button
+                                onClick={() => setRefreshing(true)}
                             >
-                                <button onClick={() => setRefreshing(true)}>
-                                    <BiRegularRefresh size={buttonSize} />
-                                </button>
-                                <button onClick={() => setModal(!modal())}>
-                                    {modal()
-                                        ? <BiRegularDownArrow size={buttonSize} />
-                                        : <BiRegularUpArrow size={buttonSize} />}
-                                </button>
-                                <button onClick={() => setLoaded(false)}>
-                                    <BiRegularUndo size={buttonSize} />
-                                </button>
-                            </Box>
-                            {!refreshing() && props.children}
-                        </Box>
+                                <BiRegularRefresh
+                                    size={buttonSize}
+                                />
+                            </button>
+                            <button
+                                onClick={() => setModal(!modal())}
+                            >
+                                {modal()
+                                    ? <BiRegularDownArrow
+                                        size={buttonSize}
+                                    />
+                                    : <BiRegularUpArrow
+                                        size={buttonSize}
+                                    />}
+                            </button>
+                            <button
+                                onClick={() => setLoaded(false)}
+                            >
+                                <BiRegularUndo
+                                    size={buttonSize}
+                                />
+                            </button>
+                        </Stack>
+                        {!refreshing() && props.children}
                     </Box>
-                )
+                </Box>
             }
-        </div>
+        </Box>
     )
 }

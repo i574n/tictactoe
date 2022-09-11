@@ -7,9 +7,9 @@ import * as algo_network from "../../lib_ts/algo_network"
 import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
 import algosdk from "algosdk"
 import { createSignal, For, onCleanup } from "solid-js"
-import { StoreonStore, createStoreon } from "storeon"
+import { StoreonStore, createStoreon, StoreonDispatch } from "storeon"
 import { StoreonProvider, useStoreon } from "@storeon/solidjs"
-import { HopeProvider, HopeThemeConfig } from '@hope-ui/solid'
+import { HopeProvider, HopeThemeConfig, Table, Tbody, Checkbox, Tr, Td, Stack } from '@hope-ui/solid'
 import { Diff } from "./diff/Diff"
 import { Loader } from "./Loader"
 // @ts-ignore
@@ -82,31 +82,31 @@ const store = createStoreon([(store: StoreonStore<State, Events>) => {
 
 function Links() {
     return (
-        <table>
-            <tbody>
-                <tr>
-                    <td>
+        <Table striped="odd">
+            <Tbody>
+                <Tr>
+                    <Td>
                         <a target="_blank" href="https://github.com/fc1943s/tictactoe_spiral">
                             https://github.com/fc1943s/tictactoe_spiral
                         </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </Td>
+                </Tr>
+                <Tr>
+                    <Td>
                         <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral">
                             https://fc1943s.github.io/tictactoe_spiral
                         </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                    </Td>
+                </Tr>
+                <Tr>
+                    <Td>
                         <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral/docs">
                             https://fc1943s.github.io/tictactoe_spiral/docs
                         </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </Td>
+                </Tr>
+            </Tbody>
+        </Table>
     )
 }
 
@@ -122,19 +122,54 @@ function StateInput(props: { get: (state: State) => any, set: (state: State, val
     )
 }
 
-function Row(props: { title: string, children: any }) {
+function Row<State extends object, Events>(props: {
+    title: string,
+    children: any,
+    loader?: boolean,
+    id?: string,
+    onLoad?: (state: State, dispatch: StoreonDispatch<Events>) => void
+}) {
+    const [checkedItems, setCheckedItems] = createSignal([props.loader !== false, false])
+
     return (
-        <tr>
-            <td>{props.title}</td>
-            <td>{props.children}</td>
-        </tr>
+        <Tr id={props.id}>
+            <Td
+                display="flex"
+                flexDirection="column"
+            >
+                {typeof props.loader !== 'boolean'
+                    ? props.title
+                    : (
+                        <Checkbox
+                            size="sm"
+                            checked={checkedItems()[0]}
+                            onChange={(e: any) => setCheckedItems([e.target.checked, checkedItems()[1]])}
+                        >
+                            {props.title}
+                        </Checkbox>
+                    )}
+
+            </Td>
+            <Td>
+                {typeof props.loader !== 'boolean'
+                    ? props.children
+                    : (checkedItems()[0] &&
+                        <Loader<State, Events>
+                            onLoad={props.onLoad}
+                            defaults={{ loaded: true }}
+                        >
+                            {props.children}
+                        </Loader>
+                    )}
+            </Td>
+        </Tr>
     )
 }
 
 function ChainConnection() {
     return (
-        <table>
-            <tbody>
+        <Table striped="odd">
+            <Tbody>
                 <Row title="Token">
                     <StateInput
                         get={(state) => state.token}
@@ -150,8 +185,8 @@ function ChainConnection() {
                         get={(state) => state.chainPort}
                         set={(state, value) => ({ ...state, chainPort: value })} />
                 </Row>
-            </tbody>
-        </table>
+            </Tbody>
+        </Table>
     )
 }
 
@@ -176,26 +211,26 @@ function ChainAccounts() {
     const [state] = useStoreon<State, Events>()
 
     return (
-        <table>
-            <tbody>
+        <Table striped="odd">
+            <Tbody>
                 <For each={state.accounts}>
                     {(account) => (
                         <Row title={account.alias}>
-                            <table>
-                                <tbody>
+                            <Table striped="odd">
+                                <Tbody>
                                     <Row title="Address">
                                         <AccountInput account={account} key="address" />
                                     </Row>
                                     <Row title="Private Key">
                                         <AccountInput account={account} key="privateKey" />
                                     </Row>
-                                </tbody>
-                            </table>
+                                </Tbody>
+                            </Table>
                         </Row>
                     )}
                 </For>
-            </tbody>
-        </table>
+            </Tbody>
+        </Table>
     )
 }
 
@@ -218,16 +253,16 @@ function DbConnectionInput(props: { type: db.DbType, key: keyof typeof init.dbCo
 
 function DbConnection(props: { type: db.DbType }) {
     return (
-        <table>
-            <tbody>
+        <Table striped="odd">
+            <Tbody>
                 <Row title="URL">
                     <DbConnectionInput type={props.type} key="url" />
                 </Row>
                 <Row title="Port">
                     <DbConnectionInput type={props.type} key="port" />
                 </Row>
-            </tbody>
-        </table>
+            </Tbody>
+        </Table>
     )
 }
 
@@ -366,7 +401,7 @@ export function useFetch(
                                     lastSource: db.lastObjectEntry(newValues[id]),
                                     lastTargetOld: db.lastObjectEntry(oldValues[dbId.id]),
                                     lastTarget: db.lastObjectEntry(newValues[dbId.id])
-                                 })
+                                })
                                 db.dbPut(state, dbId, key, rawValue)
                             })
                     )
@@ -564,8 +599,10 @@ function Counter() {
 
     return (
         <div id="counter">
-            <button onClick={request}>Request</button>
-            <button onClick={clear}>Clear</button>
+            <Stack direction="row" spacing="4px">
+                <button onClick={request}>Request</button>
+                <button onClick={clear}>Clear</button>
+            </Stack>
             <pre>{JSON.stringify(db.lastObjectEntry(state.counter), null, 2)}</pre>
         </div>
     )
@@ -578,8 +615,10 @@ function Status() {
 
     return (
         <div id="status">
-            <button onClick={request}>Request</button>
-            <button onClick={clear}>Clear</button>
+            <Stack direction="row" spacing="4px">
+                <button onClick={request}>Request</button>
+                <button onClick={clear}>Clear</button>
+            </Stack>
             <pre>{JSON.stringify(db.lastObjectEntry(state.status), null, 2)}</pre>
         </div>
     )
@@ -616,8 +655,10 @@ function Deploy() {
 
     return (
         <div id="deploy">
-            <button onClick={request}>Request</button>
-            <button onClick={clear}>Clear</button>
+            <Stack direction="row" spacing="4px">
+                <button onClick={request}>Request</button>
+                <button onClick={clear}>Clear</button>
+            </Stack>
             <pre>{JSON.stringify(db.lastObjectEntry(state.deploy), null, 2)}</pre>
         </div>
     )
@@ -633,127 +674,161 @@ function App() {
         }
     }
     return (
-        <StoreonProvider store={store}>
-            <HopeProvider config={config}>
+        <StoreonProvider
+            store={store}
+        >
+            <HopeProvider
+                config={config}
+            >
                 <DbListener />
-                <table class={styles.App}>
-                    <tbody>
-                        <Row title="Links">
+                <Table
+                    striped="odd"
+                    class={styles.App}
+                >
+                    <Tbody>
+                        <Row
+                            title="Links"
+                        >
                             <Links />
                         </Row>
-                        <tr><td></td></tr>
-                        <Row title="Chain Connection">
+                        <Tr><Td></Td></Tr>
+                        <Row
+                            loader={false}
+                            title="Chain Connection"
+                        >
                             <ChainConnection />
                         </Row>
-                        <Row title="Chain Accounts">
+                        <Row
+                            loader={false}
+                            title="Chain Accounts"
+                        >
                             <ChainAccounts />
                         </Row>
-                        <Row title="Testnet Bank Dispenser">
-                            <Loader>
-                                <iframe
-                                    src="https://bank.testnet.algorand.network"
-                                    title="algorand testnet bank"
-                                    style={{
-                                        height: '350px',
-                                        'background-color': '#aaa',
-                                        flex: 1
-                                    }}
-                                />
-                            </Loader>
+                        <Row
+                            loader={false}
+                            title="Testnet Bank Dispenser"
+                        >
+                            <iframe
+                                src="https://bank.testnet.algorand.network"
+                                title="algorand testnet bank"
+                                style={{
+                                    height: '350px',
+                                    'background-color': '#aaa',
+                                    flex: 1
+                                }}
+                            />
                         </Row>
-                        <tr><td></td></tr>
-                        <Row title="Database (Rust->Rust)">
-                            <Loader<State, Events>
-                                id="db-gun-rs-rs"
-                                onLoad={(state, dispatch) => {
-                                    dispatch('set', {
-                                        dbEnabled: {
-                                            ...state.dbEnabled,
-                                            gun_rs: {
-                                                ...state.dbEnabled.gun_rs,
-                                                gun_rs: true
-                                            }
+                        <Tr><Td></Td></Tr>
+                        <Row<State, Events>
+                            id="db-gun-rs-rs"
+                            loader={false}
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_rs: {
+                                            ...state.dbEnabled.gun_rs,
+                                            gun_rs: true
                                         }
-                                    })
-                                }}>
-                                <DbConnection type="gun_rs" />
-                            </Loader>
+                                    }
+                                })
+                            }}
+                            title="Database (Rust->Rust)"
+                        >
+                            <DbConnection
+                                type="gun_rs"
+                            />
                         </Row>
-                        <Row title="Database (Rust->JavaScript)">
-                            <Loader<State, Events>
-                                id="db-gun-rs-js"
-                                onLoad={(state, dispatch) => {
-                                    dispatch('set', {
-                                        dbEnabled: {
-                                            ...state.dbEnabled,
-                                            gun_rs: {
-                                                ...state.dbEnabled.gun_rs,
-                                                gun_js: true
-                                            }
+                        <Row<State, Events>
+                            id="db-gun-rs-js"
+                            loader={false}
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_rs: {
+                                            ...state.dbEnabled.gun_rs,
+                                            gun_js: true
                                         }
-                                    })
-                                }}>
-                                <DbConnection type="gun_js" />
-                            </Loader>
+                                    }
+                                })
+                            }}
+                            title="Database (Rust->JavaScript)"
+                        >
+                            <DbConnection
+                                type="gun_js"
+                            />
                         </Row>
-                        <Row title="Database (JavaScript->Rust)">
-                            <Loader<State, Events>
-                                id="db-gun-js-rs"
-                                onLoad={(state, dispatch) => {
-                                    dispatch('set', {
-                                        dbEnabled: {
-                                            ...state.dbEnabled,
-                                            gun_js: {
-                                                ...state.dbEnabled.gun_js,
-                                                gun_rs: true
-                                            }
+                        <Row<State, Events>
+                            id="db-gun-js-js"
+                            loader={false}
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_js: {
+                                            ...state.dbEnabled.gun_js,
+                                            gun_js: true
                                         }
-                                    })
-                                }}>
-                                <DbConnection type="gun_rs" />
-                            </Loader>
+                                    }
+                                })
+                            }}
+                            title="Database (JavaScript->JavaScript)"
+                        >
+                            <DbConnection
+                                type="gun_js"
+                            />
                         </Row>
-                        <Row title="Database (JavaScript->JavaScript)">
-                            <Loader<State, Events>
-                                id="db-gun-js-js"
-                                onLoad={(state, dispatch) => {
-                                    dispatch('set', {
-                                        dbEnabled: {
-                                            ...state.dbEnabled,
-                                            gun_js: {
-                                                ...state.dbEnabled.gun_js,
-                                                gun_js: true
-                                            }
+                        <Row<State, Events>
+                            id="db-gun-js-rs"
+                            loader={false}
+                            onLoad={(state, dispatch) => {
+                                dispatch('set', {
+                                    dbEnabled: {
+                                        ...state.dbEnabled,
+                                        gun_js: {
+                                            ...state.dbEnabled.gun_js,
+                                            gun_rs: true
                                         }
-                                    })
-                                }}>
-                                <DbConnection type="gun_js" />
-                            </Loader>
+                                    }
+                                })
+                            }}
+                            title="Database (JavaScript->Rust)"
+                        >
+                            <DbConnection
+                                type="gun_rs"
+                            />
                         </Row>
-                        <tr><td></td></tr>
-                        <Row title="Counter">
+                        <Tr><Td></Td></Tr>
+                        <Row
+                            title="Counter"
+                        >
                             <Counter />
                         </Row>
                         {!!util.env.GITHUB_RUN_ID
                             ? <>
-                                <Row title="Status">
+                                <Row
+                                    title="Status"
+                                >
                                     <Status />
                                 </Row>
-                                <Row title="Deploy">
+                                <Row
+                                    title="Deploy"
+                                >
                                     <Deploy />
                                 </Row>
                             </>
                             : <></>}
-                        {!util.IS_TEST && !util.env.GITHUB_RUN_ID
+                        {/* {!util.IS_TEST && !util.env.GITHUB_RUN_ID
                             ? <>
-                                <tr><td></td></tr>
+                                <Tr><Td></Td></Tr>
                                 <Row title="Diff">
                                     <Diff />
                                 </Row>
                             </>
-                            : <></>}
-                    </tbody>
-                </table>
+                            : <></>} */}
+                    </Tbody>
+                </Table>
             </HopeProvider>
         </StoreonProvider>
     )
