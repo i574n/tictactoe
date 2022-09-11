@@ -1,13 +1,12 @@
 import * as util from "../../lib_ts/util"
 import { Node as GunRS } from "rusty-gun"
+import { IGunInstance as IGunJS, IGunChain } from "gun"
 import GunJS from "gun/gun"
 
 import "gun/lib/radix"
 import "gun/lib/radisk"
 import "gun/lib/store"
 import "gun/lib/rindexed"
-
-import { IGunInstance as IGunJS, IGunChain } from "gun"
 
 
 const DB_TYPE = ['gun_rs', 'gun_js'] as const
@@ -54,7 +53,7 @@ export const newDb = (type: DbType, { url }: Url): Db | null => {
     if (type === 'gun_rs') {
         return { type, url, db: new GunRS(url) }
     } else if (type === 'gun_js') {
-        return { type, url, db: new GunJS({ url, localStorage: false, radisk: true }) }
+        return { type, url, db: util.IS_TEST ? new GunJS(url) : new GunJS({ url, localStorage: false, radisk: true }) }
     }
     return null
 }
@@ -102,6 +101,9 @@ const parse = (raw: object) => {
     return data
 }
 
+export const lastObjectEntry = (obj: any) => Object.values(obj || {}).slice(-1)[0]
+export const objectValueCount = (obj: any) => Object.values(obj || {}).filter((x) => x !== null).length
+
 const newListenerHandler = <State>(
     state: State,
     id: string,
@@ -137,9 +139,9 @@ const newListenerHandler = <State>(
             nPtrsKeys: Object.keys(ptrs || {}).length,
             // nValue: Object.keys(value).length,
             // nNewValue: Object.keys(newValue).length,
-            value: Object.values(value).filter((x) => x !== null).length,
-            oldValue: Object.values(oldValue).filter((x) => x !== null).length,
-            newValue: Object.values(newValue).filter((x) => x !== null).length
+            value: objectValueCount(value),
+            oldValue: objectValueCount(oldValue),
+            newValue: objectValueCount(newValue)
             // nStateKey: Object.keys(state[key] || {}).length
         })
 
