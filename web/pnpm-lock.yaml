@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@esbuild-plugins/node-globals-polyfill': ^0.1
   '@hope-ui/solid': ^0.6.7
-  '@playwright/test': ^1.26.0-alpha-sep-9-2022
+  '@playwright/test': ^1.26.0-beta-1662762342000
   '@stitches/core': ^1.2.8
   '@storeon/solidjs': ^3.0
   algosdk: ^1.20
@@ -15,7 +15,7 @@ specifiers:
   gun: ^0.2020.1238
   npm-check-updates: ^16.1
   path-browserify: ^1.0
-  playwright-core: ^1.26.0-alpha-sep-9-2022
+  playwright-core: ^1.26.0-beta-1662762342000
   rusty-gun: ^0.1.2
   solid-icons: ^1.0
   solid-js: 1.5.4
@@ -42,14 +42,14 @@ dependencies:
 
 devDependencies:
   '@esbuild-plugins/node-globals-polyfill': 0.1.1_esbuild@0.15.1
-  '@playwright/test': 1.26.0-alpha-sep-9-2022
-  axe-playwright: 1.1.11_3ujhcawrncrxmkhdn6gvfoprxq
+  '@playwright/test': 1.26.0-beta-1662762342000
+  axe-playwright: 1.1.11_bpnuaw32ddhhozly7tae2ouy5u
   concurrently: 7.4.0
   cross-env: 7.0.3
   esbuild: 0.15.1
   npm-check-updates: 16.1.0
   path-browserify: 1.0.1
-  playwright-core: 1.26.0-alpha-sep-9-2022
+  playwright-core: 1.26.0-beta-1662762342000
   typescript: 4.7.2
   vite: 3.1.0
   vite-plugin-mkcert: 1.9.0
@@ -693,13 +693,13 @@ packages:
     dev: false
     optional: true
 
-  /@playwright/test/1.26.0-alpha-sep-9-2022:
-    resolution: {integrity: sha512-kQ7hu98lllQGIjRkKTX1ny9Eiup67wx4i4kDOw1+re/sjbUw1/IoTHKmuXpG4qdspb/5cLTgKpEmJfeJe4/MMw==}
+  /@playwright/test/1.26.0-beta-1662762342000:
+    resolution: {integrity: sha512-wNhAD1Ze/J5q49wCH1N8IFhBNeQJQAOHO9jW0junSSKyYxTP4W0WXsxEBtQqEl7KbLIQsgwmHhFtioShlF22MA==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       '@types/node': 17.0.39
-      playwright-core: 1.26.0-alpha-sep-9-2022
+      playwright-core: 1.26.0-beta-1662762342000
     dev: true
 
   /@pnpm/network.ca-file/1.0.1:
@@ -913,13 +913,13 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /axe-playwright/1.1.11_3ujhcawrncrxmkhdn6gvfoprxq:
+  /axe-playwright/1.1.11_bpnuaw32ddhhozly7tae2ouy5u:
     resolution: {integrity: sha512-YHmUouvF/dFNxoFFwbCjPFmEPwoJSzPgZsD0KZs3xjsR03Rf2mAh771ugre950MaBYuiyxYDlurH5BOEJBK34Q==}
     peerDependencies:
       playwright-core: '>1.0.0'
     dependencies:
       axe-core: 4.4.2
-      playwright-core: 1.26.0-alpha-sep-9-2022
+      playwright-core: 1.26.0-beta-1662762342000
     dev: true
 
   /axios/0.21.4_debug@4.3.4:
@@ -2900,8 +2900,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /playwright-core/1.26.0-alpha-sep-9-2022:
-    resolution: {integrity: sha512-waci+lHkrgWwpL3RyHSvtHBdRQSI6LYpm77Vca1G/XobQcIYHBYToTh5RZDg2lki6dTaHQEt79u1lOBDpsiZuw==}
+  /playwright-core/1.26.0-beta-1662762342000:
+    resolution: {integrity: sha512-c3vPlMU8oIa3GrMXUA3etlJvLABf5dZ/yCJt9OQDSYFa/gLrCgNZjx7bhqN818p98QHsGjve5KJ9wHHgG/w/+w==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
