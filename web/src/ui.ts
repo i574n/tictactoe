@@ -54,10 +54,17 @@ export const globalCss = {
 }
 
 export const config: HopeThemeConfig = {
-    initialColorMode: 'dark',
+    initialColorMode: 'system',
     darkTheme: {
         colors: {
-            bg: "#1A1A1A"
+            bg: "$neutral3",
+            text1: "$neutral11"
+        }
+    },
+    lightTheme: {
+        colors: {
+            bg: "$neutral3",
+            text1: "$neutral11"
         }
     }
 }

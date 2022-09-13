@@ -1,6 +1,5 @@
 import Row from "./Row"
 import * as util from "../../../lib_ts/util"
-import { Table, Tbody, Tr, Td } from '@hope-ui/solid'
 import { Diff } from "../diff/Diff"
 import Chain from "./Chain"
 import Counter from "./Counter"
@@ -9,24 +8,29 @@ import Links from "./Links"
 import Settings from "./Settings"
 import ChainStatus from "./ChainStatus"
 import ChainDeploy from "./ChainDeploy"
+import BaseTable from "./BaseTable"
+import { Box } from "@hope-ui/solid"
 
 
 function Content() {
     return (
-        <Table
-            striped="odd"
-            display="flex"
+        <Box
             overflow="auto"
+            display="flex"
             flex={1}
+            flexDirection="column"
             maxWidth="100vw"
             height="100vh"
-            padding="1px"
-            flexDirection="column"
             backgroundColor="$bg"
             fontSize="$sm"
-            color="#eeffff"
+            color="$text1"
+            padding="1px"
         >
-            <Tbody>
+            <BaseTable
+                display="flex"
+                flex={1}
+                flexDirection="column"
+            >
                 <Row
                     title="Links"
                 >
@@ -55,25 +59,28 @@ function Content() {
                 </Row>
                 <Row />
                 <Row
-                    title="Counter"
+                    title="Profile"
                 >
-                    <Counter />
-                </Row>
-                {!!util.env.GITHUB_RUN_ID
-                    ? <>
-                        <Row
-                            title="Status"
-                        >
-                            <ChainStatus />
-                        </Row>
-                        <Row
-                            title="Deploy"
-                        >
-                            <ChainDeploy />
-                        </Row>
-                    </>
-                    : <></>}
-                {/* {!util.IS_TEST && !util.env.GITHUB_RUN_ID
+                    <Row
+                        title="Counter"
+                    >
+                        <Counter />
+                    </Row>
+                    {!!util.env.GITHUB_RUN_ID
+                        ? <>
+                            <Row
+                                title="Status"
+                            >
+                                <ChainStatus />
+                            </Row>
+                            <Row
+                                title="Deploy"
+                            >
+                                <ChainDeploy />
+                            </Row>
+                        </>
+                        : <></>}
+                    {/* {!util.IS_TEST && !util.env.GITHUB_RUN_ID
                     ? <>
                         <Row />
                         <Row title="Diff">
@@ -81,8 +88,9 @@ function Content() {
                         </Row>
                     </>
                     : <></>} */}
-            </Tbody>
-        </Table>
+                </Row>
+            </BaseTable>
+        </Box>
     )
 }
 

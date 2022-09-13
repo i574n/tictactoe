@@ -1,8 +1,9 @@
 import * as db from "../db"
 import * as store from "../store"
 import useStore from "../hooks/useStore"
-import { Button, Stack } from '@hope-ui/solid'
+import { Stack } from '@hope-ui/solid'
 import useFetch from "../hooks/useFetch"
+import BaseButton from "./BaseButton"
 
 
 function ChainStatus<State extends store.State>() {
@@ -26,8 +27,16 @@ function ChainStatus<State extends store.State>() {
     return (
         <div id="status">
             <Stack direction="row" spacing="4px">
-                <Button size="xs" compact onClick={request}>Request</Button>
-                <Button size="xs" compact onClick={clear}>Clear</Button>
+                <BaseButton
+                    onClick={request}
+                >
+                    Request
+                </BaseButton>
+                <BaseButton
+                    onClick={clear}
+                >
+                    Clear
+                </BaseButton>
             </Stack>
             <pre>{JSON.stringify(db.lastObjectEntry(state.profile.tmp.chainStatus), null, 2)}</pre>
         </div>

@@ -7,6 +7,7 @@ import * as raw from "../raw"
 import { Stack, Button } from "@hope-ui/solid"
 import useFetch from "../hooks/useFetch"
 import useStore from "../hooks/useStore"
+import BaseButton from "./BaseButton"
 
 
 function ChainDeploy<State extends store.State>() {
@@ -54,8 +55,16 @@ function ChainDeploy<State extends store.State>() {
     return (
         <div id="deploy">
             <Stack direction="row" spacing="4px">
-                <Button size="xs" compact onClick={request}>Request</Button>
-                <Button size="xs" compact onClick={clear}>Clear</Button>
+                <BaseButton
+                    onClick={request}
+                >
+                    Request
+                </BaseButton>
+                <BaseButton
+                    onClick={clear}
+                >
+                    Clear
+                </BaseButton>
             </Stack>
             <pre>{JSON.stringify(db.lastObjectEntry(state.profile.tmp.chainDeploy), null, 2)}</pre>
         </div>

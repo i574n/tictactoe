@@ -3,6 +3,7 @@ import * as ui from "../ui"
 import useStore from "../hooks/useStore"
 import { BiRegularRefresh, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow } from "solid-icons/bi"
 import { Box, Stack, IconButton, Button } from '@hope-ui/solid'
+import BaseButton from "./BaseButton"
 
 
 function Loader<State extends ui.UiState>(props: {
@@ -43,7 +44,11 @@ function Loader<State extends ui.UiState>(props: {
         >
             {!loaded()
                 ? <div>
-                    <Button onClick={loadClick}>Load</Button>
+                    <BaseButton
+                        onClick={loadClick}
+                    >
+                        Load
+                    </BaseButton>
                 </div>
                 : <Box
                     display="flex"
@@ -64,15 +69,16 @@ function Loader<State extends ui.UiState>(props: {
                         <Stack
                             display={state.ui.modal && state.ui.modal !== loaderId ? 'none' : undefined}
                             direction="row"
-                            spacing="4px"
+                            spacing="3px"
                             position="absolute"
-                            top="3px"
-                            right="3px"
+                            top="2px"
+                            right="2px"
                             zIndex={1}
                         >
                             <IconButton
                                 aria-label="Refresh"
                                 size="xs"
+                                colorScheme="neutral"
                                 onClick={() => setRefreshing(true)}
                                 icon={<BiRegularRefresh
                                     size={buttonSize}
@@ -81,6 +87,7 @@ function Loader<State extends ui.UiState>(props: {
                             <IconButton
                                 aria-label={modal() ? 'Restore' : 'Maximize'}
                                 size="xs"
+                                colorScheme="neutral"
                                 onClick={() => {
                                     const newModal = !modal()
                                     setModal(newModal)
@@ -102,6 +109,7 @@ function Loader<State extends ui.UiState>(props: {
                             <IconButton
                                 aria-label="Unload"
                                 size="xs"
+                                colorScheme="neutral"
                                 onClick={() => setLoaded(false)}
                                 icon={<BiRegularUndo
                                     size={buttonSize}

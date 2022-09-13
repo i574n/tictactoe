@@ -1,18 +1,35 @@
 import Row from "./Row"
-import { Table, Tbody } from '@hope-ui/solid'
+import { Radio, RadioGroup, Stack, useColorMode } from '@hope-ui/solid'
+import BaseTable from "./BaseTable"
 
 
 function Settings() {
+    const { colorMode, toggleColorMode } = useColorMode()
+
     return (
-        <Table striped="odd">
-            <Tbody>
-                <Row
-                    title="Display"
+        <BaseTable>
+            <Row
+                title="Display"
+                tdProps={{
+                    padding: '3px 6px'
+                }}
+            >
+                <RadioGroup
+                    defaultValue={colorMode()}
+                    onChange={() => {
+                        toggleColorMode()
+                    }}
                 >
-                    ??
-                </Row>
-            </Tbody>
-        </Table>
+                    <Stack
+                        direction="row"
+                        spacing="$4"
+                    >
+                        <Radio value="dark" size="sm" colorScheme="neutral">Dark</Radio>
+                        <Radio value="light" size="sm" colorScheme="neutral">Light</Radio>
+                    </Stack>
+                </RadioGroup>
+            </Row>
+        </BaseTable>
     )
 }
 

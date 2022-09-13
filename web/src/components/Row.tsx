@@ -1,7 +1,7 @@
 import * as ui from "../ui"
 import Loader from "./Loader"
 import { createSignal } from "solid-js"
-import { Checkbox, Tr, Td, Box } from '@hope-ui/solid'
+import { Checkbox, Tr, Td, Box, TdProps } from '@hope-ui/solid'
 
 
 function Row<State extends ui.UiState>(
@@ -10,6 +10,7 @@ function Row<State extends ui.UiState>(
         children?: any,
         loader?: boolean,
         id?: string,
+        tdProps?: TdProps,
         onLoad?: (state: State, dispatch: (_: Partial<State>) => void) => void
     }
 ) {
@@ -17,8 +18,7 @@ function Row<State extends ui.UiState>(
     return (
         <Tr
             id={props.id}
-            display="flex"
-            // verticalAlign="top"
+            display="inline-flex"
             flexDirection={{
                 "@initial": "column",
                 "@sm": "row"
@@ -27,10 +27,10 @@ function Row<State extends ui.UiState>(
             {props.title && (
                 <Td
                     display="flex"
+                    color="$neutral9"
                     flexDirection="column"
-                    padding="2px 5px"
+                    padding="3px 20px 0px 8px"
                     outline="1px solid #777"
-                    flex={1}
                     fontSize="$sm"
                 >
                     {typeof props.loader !== 'boolean'
@@ -38,11 +38,14 @@ function Row<State extends ui.UiState>(
                         : (
                             <Checkbox
                                 size="sm"
+                                padding="0"
+                                marginBottom="4px"
+                                colorScheme="neutral"
                                 checked={checkedItems()[0]}
                                 onChange={(e: any) => setCheckedItems([e.target.checked, checkedItems()[1]])}
                             >
                                 <Box
-                                    marginTop="2px"
+                                    paddingTop="2px"
                                 >
                                     {props.title}
                                 </Box>
@@ -53,14 +56,14 @@ function Row<State extends ui.UiState>(
             <Td
                 display="flex"
                 flexDirection="column"
-                padding="2px"
                 outline="1px solid #777"
-                flex={5}
+                padding="2px"
+                flex={6}
                 fontSize="$sm"
-
                 lineHeight={!props.children ? "6px" : undefined}
                 maxHeight="85vh"
                 overflow={props.children && "auto"}
+                {...props.tdProps}
             >
                 {typeof props.loader !== 'boolean'
                     ? props.children || <>&nbsp;</>
