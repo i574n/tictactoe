@@ -51,7 +51,7 @@ export function Loader<
                 : <Box
                     display="flex"
                     flex={1}
-                    zIndex={modal() ? 1 :}
+                    zIndex={modal() ? 1 : undefined}
                     position={modal() ? 'absolute' : undefined}
                     top={modal() ? 0 : undefined}
                     right={modal() ? 0 : undefined}
