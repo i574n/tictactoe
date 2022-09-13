@@ -43,7 +43,23 @@ export type DbState = {
     }
 }
 
-export type Id = { dbType: DbType, urlType: DbType, url: string, id: string }
+export const getStateLocals = <TState extends DbState>(state: TState) => {
+    return {
+        db: Object.entries(state.dbStatus).reduce((accKeys, [dbType, enabledMap]) =>
+            Object.entries(enabledMap).reduce((accKeys, [urlType, enabled]) =>
+                !enabled
+                    ? accKeys
+                    : [
+                        ...accKeys,
+                        `${dbType}-${urlType}`.replace(/gun_/g, '')
+                    ],
+                accKeys
+            ),
+            [] as string[]
+        )
+    }
+}
+
 
 type Url = { url: string }
 
@@ -61,6 +77,9 @@ const newUrl = (state: DbState, type: DbType) => {
     const url = `${connection.url}:${connection.port}/${connection.ws}`
     return url
 }
+
+
+export type Id = { dbType: DbType, urlType: DbType, url: string, id: string }
 
 const newId = (state: DbState, dbType: DbType, urlType: DbType): Id => {
     const url = newUrl(state, urlType)
@@ -101,6 +120,7 @@ const parse = (raw: object) => {
 
 export const lastObjectEntry = (obj: any) => Object.values(obj || {}).slice(-1)[0]
 export const objectValueCount = (obj: any) => Object.values(obj || {}).filter((x) => x !== null).length
+
 
 export type ContentAddress = { contentAddress: string }
 export type Proxy = { [_: string]: any }

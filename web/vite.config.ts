@@ -28,7 +28,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        content_script: resolve(__dirname, 'src/content_script.tsx')
+        extension_content_script: resolve(__dirname, 'src/extension_content_script.tsx')
       },
       output: {
         manualChunks: {

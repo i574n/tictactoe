@@ -1,20 +1,17 @@
 import { createEffect, createSignal, on } from "solid-js"
-import { StoreonDispatch } from "storeon"
-import { useStoreon } from "@storeon/solidjs"
+import * as ui from "../ui"
+import useStore from "../hooks/useStore"
 import { BiRegularRefresh, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow } from "solid-icons/bi"
 import { Box, Stack, IconButton, Button } from '@hope-ui/solid'
 
 
-export function Loader<
-    State extends { ui: { modal?: string } },
-    Events extends { set: Partial<State> }
->(props: {
+function Loader<State extends ui.UiState>(props: {
     id?: string,
-    onLoad?: (state: State, dispatch: StoreonDispatch<Events>) => void,
+    onLoad?: (state: State, dispatch: (_: Partial<State>) => void) => void,
     defaults?: { loaded?: boolean, refreshing?: boolean, modal?: boolean }
     children: any
 }) {
-    const [state, dispatch] = useStoreon<State, Events>()
+    const { state, dispatch } = useStore<State>()
 
     const loaderId = Math.random().toString(36)
 
@@ -87,14 +84,12 @@ export function Loader<
                                 onClick={() => {
                                     const newModal = !modal()
                                     setModal(newModal)
-                                    const newState = {
+                                    dispatch({
                                         ui: {
                                             ...state.ui,
                                             modal: newModal ? loaderId : undefined
                                         }
-                                    } as Partial<State>
-                                    const newDispatch = dispatch as any as ((event: keyof Events, value: Partial<State>) => void)
-                                    newDispatch('set', newState)
+                                    } as Partial<State>)
                                 }}
                                 icon={modal()
                                     ? <BiRegularDownArrow
@@ -121,3 +116,5 @@ export function Loader<
         </Box>
     )
 }
+
+export default Loader

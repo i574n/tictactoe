@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "vite build --outDir dist",
-    "extension": "vite build --outDir dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets/content_script.*.js ./dist_extension/assets/content_script.js && mv ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets && cp background.js content_script.js ./dist_extension",
+    "extension": "vite build --outDir dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets/extension_content_script.*.js ./dist_extension/assets/extension_content_script.js && mv ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets && cp extension_background.js extension_content_script.js ./dist_extension",
     "dev": "vite",
     "e2e-peer-js": "cross-env-shell PORT=18765 HTTPS=true ROOT_PATH=./radata_18765 'cd ../peer && rm -rf ./radata_18765 && pnpm start-dev'",
     "e2e-peer-rs": "rm -rf ./sled_db && rod start --port 14944",
