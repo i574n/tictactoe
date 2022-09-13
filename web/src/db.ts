@@ -25,23 +25,21 @@ util.assertTypeEquals<DbSubscriptionType, typeof DB_TYPE>(DB_TYPE)
 
 type DbNode = IGunChain<any> | GunRS
 
-type State = {
-    token: string
-    chainUrl: string
-    chainPort: number
-
-    db: { [_: string]: Db }
+export type DbState = {
     dbConnection: {
         [_ in DbType]: {
-            url: string
-            port: number
+            url: string,
+            port: number,
             ws: string
         }
     }
-    dbEnabled: {
+    dbStatus: {
         [_ in DbType]: {
             [_ in DbType]: boolean
         }
+    }
+    dbRef: {
+        [_: string]: Db
     }
 }
 
@@ -58,13 +56,13 @@ export const newDb = (type: DbType, { url }: Url): Db | null => {
     return null
 }
 
-const newUrl = (state: State, type: DbType) => {
+const newUrl = (state: DbState, type: DbType) => {
     const connection = state.dbConnection[type]
     const url = `${connection.url}:${connection.port}/${connection.ws}`
     return url
 }
 
-const newId = (state: State, dbType: DbType, urlType: DbType): Id => {
+const newId = (state: DbState, dbType: DbType, urlType: DbType): Id => {
     const url = newUrl(state, urlType)
     return {
         dbType,
@@ -74,8 +72,8 @@ const newId = (state: State, dbType: DbType, urlType: DbType): Id => {
     }
 }
 
-export const getDbIdList = (state: State): Id[][] =>
-    Object.entries(state.dbEnabled).reduce(
+export const getDbIdList = (state: DbState): Id[][] =>
+    Object.entries(state.dbStatus).reduce(
         (accKeys, [dbType, enabledMap]) =>
             Object.entries(enabledMap).reduce(
                 ([accEnabled, accDisabled]: Id[][], [urlType, enabled]) => {
@@ -88,7 +86,7 @@ export const getDbIdList = (state: State): Id[][] =>
     )
 
 
-const soul = "app"
+const soul = "tictactoe_spiral"
 
 const parse = (raw: object) => {
     const getLocals = () => ({ nRaw: `${raw}`.length })
@@ -104,32 +102,33 @@ const parse = (raw: object) => {
 export const lastObjectEntry = (obj: any) => Object.values(obj || {}).slice(-1)[0]
 export const objectValueCount = (obj: any) => Object.values(obj || {}).filter((x) => x !== null).length
 
-const newListenerHandler = <State>(
-    state: State,
+export type ContentAddress = { contentAddress: string }
+export type Proxy = { [_: string]: any }
+
+const newListenerHandler = <TProxy extends Proxy>(
+    proxy: TProxy,
     id: string,
-    key: keyof State,
-    onValue: (id: string, hash: string, newValue: object, rawValue: object | undefined) => Promise<void>
+    contentAddress: ContentAddress,
+    onValue: (id: string, hash: string, newValue: TProxy, rawValue: object | undefined) => Promise<void>
 ) =>
     async (v: object, k: any, _msg: any, _ev: any) => {
         const getLocals = () => ({
             id,
-            key,
+            contentAddress,
             k
         })
         const log = util.getLog(getLocals)
 
         const { '#': hash, _: { '#': hash2, '>': ptrs, ..._ }, ...value }: { [_: string]: any } = { _: {}, ...parse(v) }
 
-        const oldValue = (state[key] || {}) as { [_: string]: any }
-
         const newEntriesRaw = Object.entries(
             Object.keys(value).reduce((acc, k) => ({
                 ...acc,
                 [k]: value[k]
-            }), oldValue)
+            }), proxy)
         )
 
-        const newValue = Object.fromEntries(newEntriesRaw)
+        const newValue = Object.fromEntries(newEntriesRaw) as TProxy
 
         log('newListenerHandler 1', {
             vType: typeof v,
@@ -140,7 +139,7 @@ const newListenerHandler = <State>(
             // nValue: Object.keys(value).length,
             // nNewValue: Object.keys(newValue).length,
             value: objectValueCount(value),
-            oldValue: objectValueCount(oldValue),
+            proxy: objectValueCount(proxy),
             newValue: objectValueCount(newValue)
             // nStateKey: Object.keys(state[key] || {}).length
         })
@@ -148,37 +147,37 @@ const newListenerHandler = <State>(
         await onValue(id, hash, newValue, Object.keys(value || {}).length > 0 ? value : undefined)
     }
 
-const getDbNode = <T extends State>(db: Db, key: keyof T): DbNode | undefined => {
+const getDbNode = (db: Db, { contentAddress }: ContentAddress): DbNode | undefined => {
     const getLocals = () => ({
         soul,
         db,
-        key,
+        contentAddress,
     })
     const log = util.getLog(getLocals)
 
     log('getDbNode() 0')
-    return db.db.get(soul).get(key as string)
+    return contentAddress.split('/').reduce((acc, k) => acc.get(k as any), db.db.get(soul))
 }
 
 export const DB_INIT_TIMEOUT = 2500
 export const DB_RESUB_TIMEOUT = 10000
 
-export const dbPut = <T extends State>(
-    state: T,
+export const dbPut = <TState extends DbState, TProxy extends Proxy>(
+    state: TState,
     id: Id,
-    key: keyof T,
-    newValue: any
+    contentAddress: ContentAddress,
+    newValue: TProxy
 ) => {
     const getLocals = () => ({
         id,
-        key,
+        contentAddress,
         newValue
     })
     const log = util.getLog(getLocals)
 
-    let db = state.db[id.id]
+    let db = state.dbRef[id.id]
 
-    const node = getDbNode(db, key)
+    const node = getDbNode(db, contentAddress)
 
     log('dbPut() 0', { db, node })
     if (node) {
@@ -189,7 +188,7 @@ export const dbPut = <T extends State>(
         const db = newDb('gun_rs', { url: id.url })
         if (db) {
             setTimeout(() => {
-                const node = getDbNode(db, key)
+                const node = getDbNode(db, contentAddress)
                 log('dbPut() 1 (##)', { db, node })
                 if (node) {
                     node.put(newValue)
@@ -199,44 +198,50 @@ export const dbPut = <T extends State>(
     }
 }
 
-export const dbOn = <T extends State>(
-    state: T,
+export const dbOn = <TState extends DbState, TProxy extends Proxy>(
+    state: TState,
+    proxy: TProxy,
     id: Id,
-    key: keyof T,
-    onValue: (id: string, hash: string, newValue: object, rawValue: object | undefined) => Promise<void>
+    contentAddress: ContentAddress,
+    onValue: (id: string, hash: string, newValue: TProxy, rawValue: object | undefined) => Promise<void>
 ): number | undefined => {
     const { dbType } = id
     const getLocals = () => ({
-        key,
+        contentAddress,
         dbType,
         id
     })
     const log = util.getLog(getLocals)
 
-    let db = state.db[id.id]
-    const node = getDbNode(db, key)
+    let db = state.dbRef[id.id]
+    const node = getDbNode(db, contentAddress)
 
     log('dbOn() 0', { node })
     if (node) {
         if (dbType === 'gun_rs') {
-            return node.on(newListenerHandler(state, id.id, key, onValue)) as number
+            return node.on(newListenerHandler(proxy, id.id, contentAddress, onValue)) as number
         } else if (dbType === 'gun_js') {
-            node.on(newListenerHandler(state, id.id, key, onValue))
+            node.on(newListenerHandler(proxy, id.id, contentAddress, onValue))
             return util.newTimestamp()
         }
     }
 }
 
-export const dbOff = <T extends State>(state: T, id: string, key: keyof T, subscription: number | undefined) => {
+export const dbOff = <TState extends DbState>(
+    state: TState,
+    id: string,
+    contentAddress: ContentAddress,
+    subscription: number | undefined
+) => {
     const getLocals = () => ({
         id,
-        key,
+        contentAddress,
         subscription
     })
     const log = util.getLog(getLocals)
 
-    let db = state.db[id]
-    const node = getDbNode(db, key)
+    let db = state.dbRef[id]
+    const node = getDbNode(db, contentAddress)
 
     log('dbOff() 0', { node })
     if (node) {

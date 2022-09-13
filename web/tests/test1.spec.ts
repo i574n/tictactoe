@@ -214,19 +214,19 @@ newTest("test1", async ({ browser }) => {
 
     await action(pages, 'load db', '#counter pre', async (pages) => {
         await Promise.all(pages.map(async (page, index) => {
-            {
-                if (index == 0 || index == 1) {
-                    await page.locator('#db-gun-rs-rs .hope-checkbox').nth(0).click()
-                }
-                if (index == 0 || index == 2) {
-                    await page.locator('#db-gun-rs-js .hope-checkbox').nth(0).click()
-                }
-                if (index == 0 || index == 3) {
-                    await page.locator('#db-gun-js-js .hope-checkbox').nth(0).click()
-                }
-                if (index == 0 || index == 4) {
-                    await page.locator('#db-gun-js-rs .hope-checkbox').nth(0).click()
-                }
+            await page.locator('#db .hope-checkbox').nth(0).click()
+
+            if (index == 0 || index == 1) {
+                await page.locator('#db-gun-rs-rs .hope-checkbox').nth(0).click()
+            }
+            if (index == 0 || index == 2) {
+                await page.locator('#db-gun-rs-js .hope-checkbox').nth(0).click()
+            }
+            if (index == 0 || index == 3) {
+                await page.locator('#db-gun-js-js .hope-checkbox').nth(0).click()
+            }
+            if (index == 0 || index == 4) {
+                await page.locator('#db-gun-js-rs .hope-checkbox').nth(0).click()
             }
         }))
     })

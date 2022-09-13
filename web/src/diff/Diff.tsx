@@ -114,6 +114,7 @@ export function Diff() {
                 flexDirection="column"
                 maxHeight="100vh"
                 overflowY="auto"
+                lineHeight="$base"
             >
                 <For each={Object.values(fileGroups)}>
                     {(file) => (

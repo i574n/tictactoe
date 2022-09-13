@@ -9,28 +9,43 @@ import algosdk from "algosdk"
 import { createSignal, For, onCleanup } from "solid-js"
 import { StoreonStore, createStoreon, StoreonDispatch } from "storeon"
 import { StoreonProvider, useStoreon } from "@storeon/solidjs"
-import { HopeProvider, HopeThemeConfig, Table, Tbody, Checkbox, Tr, Td, Stack } from '@hope-ui/solid'
+import { globalCss, HopeProvider, HopeThemeConfig, Table, Tbody, Checkbox, Tr, Td, Stack, Button,
+    Input } from '@hope-ui/solid'
 import { Diff } from "./diff/Diff"
 import { Loader } from "./Loader"
 // @ts-ignore
 import styles from "./App.module.css"
 
+type ChainState = {
+    chainToken: string
+    chainUrl: string
+    chainPort: number
+    chainAccounts: {
+        alias: string
+        privateKey: string
+        address: string
+        mnemonic: string
+    }[]
+}
 
-const init = {
-    token: tictactoe_testnet.token,
+type State = db.DbState & ChainState & {
+    ui: {
+        modal?: string
+    }
+    profile: {
+        tmp: {
+            counter?: { [_: string]: number } | undefined
+            chainStatus?: { [_: string]: any } | undefined
+            chainDeploy?: { [_: string]: any } | undefined
+        }
+    }
+}
+
+const init: State = {
+    chainToken: tictactoe_testnet.token,
     chainUrl: util.CODESPACE_NAME ? `http://${util.CODESPACE_NAME}-4001.githubpreview.dev` : tictactoe_testnet.url,
     chainPort: util.CODESPACE_NAME ? 80 : tictactoe_testnet.port,
-    db: {} as { [_: string]: db.Db },
-    dbEnabled: {
-        gun_rs: {
-            gun_rs: false,
-            gun_js: false
-        } as { [_ in db.DbType]: boolean },
-        gun_js: {
-            gun_rs: false,
-            gun_js: false
-        } as { [_ in db.DbType]: boolean }
-    } as { [_ in db.DbType]: { [_ in db.DbType]: boolean } },
+    chainAccounts: tictactoe_testnet.accounts,
     dbConnection: {
         gun_rs: {
             url: util.CODESPACE_NAME && !util.IS_TEST ? `ws://${util.CODESPACE_NAME}-4944.githubpreview.dev` : 'ws://localhost',
@@ -42,15 +57,25 @@ const init = {
             port: util.CODESPACE_NAME && !util.IS_TEST ? 80 : (util.IS_TEST ? 18765 : 8765),
             ws: "gun"
         }
-    } as { [_ in db.DbType]: { url: string, port: number, ws: string } },
-    accounts: tictactoe_testnet.accounts,
-    status: undefined as { [_: string]: any } | undefined,
-    deploy: undefined as { [_: string]: any } | undefined,
-    counter: undefined as { [_: string]: number } | undefined
+    },
+    dbStatus: {
+        gun_rs: {
+            gun_rs: false,
+            gun_js: false
+        } as { [_ in db.DbType]: boolean },
+        gun_js: {
+            gun_rs: false,
+            gun_js: false
+        } as { [_ in db.DbType]: boolean }
+    },
+    dbRef: {},
+    ui: {},
+    profile: {
+        tmp: {}
+    }
 }
 
-type State = typeof init
-type Account = typeof init.accounts[number]
+type Account = typeof init.chainAccounts[number]
 
 type Events = {
     set: Partial<State>
@@ -59,7 +84,7 @@ type Events = {
 
 const getStateLocals = (state: State) => {
     return {
-        db: Object.entries(state.dbEnabled).reduce((accKeys, [dbType, enabledMap]) =>
+        db: Object.entries(state.dbStatus).reduce((accKeys, [dbType, enabledMap]) =>
             Object.entries(enabledMap).reduce((accKeys, [urlType, enabled]) =>
                 !enabled
                     ? accKeys
@@ -80,76 +105,47 @@ const store = createStoreon([(store: StoreonStore<State, Events>) => {
 }])
 
 
-function Links() {
-    return (
-        <Table striped="odd">
-            <Tbody>
-                <Tr>
-                    <Td>
-                        <a target="_blank" href="https://github.com/fc1943s/tictactoe_spiral">
-                            https://github.com/fc1943s/tictactoe_spiral
-                        </a>
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral">
-                            https://fc1943s.github.io/tictactoe_spiral
-                        </a>
-                    </Td>
-                </Tr>
-                <Tr>
-                    <Td>
-                        <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral/docs">
-                            https://fc1943s.github.io/tictactoe_spiral/docs
-                        </a>
-                    </Td>
-                </Tr>
-            </Tbody>
-        </Table>
-    )
-}
-
 function StateInput(props: { get: (state: State) => any, set: (state: State, value: any) => State }) {
     const [state, dispatch] = useStoreon<State, Events>()
 
     return (
-        <input
+        <Input
             type="text"
+            size="xs"
             value={props.get(state)}
             onInput={(e: { currentTarget: { value: any } }) =>
                 dispatch('set', props.set(state, e.currentTarget.value))} />
     )
 }
 
-function Row<State extends object, Events>(props: {
-    title: string,
+function Row(props: {
+    title?: string,
     children: any,
     loader?: boolean,
     id?: string,
     onLoad?: (state: State, dispatch: StoreonDispatch<Events>) => void
 }) {
     const [checkedItems, setCheckedItems] = createSignal([props.loader !== false, false])
-
     return (
         <Tr id={props.id}>
-            <Td
-                display="flex"
-                flexDirection="column"
-            >
-                {typeof props.loader !== 'boolean'
-                    ? props.title
-                    : (
-                        <Checkbox
-                            size="sm"
-                            checked={checkedItems()[0]}
-                            onChange={(e: any) => setCheckedItems([e.target.checked, checkedItems()[1]])}
-                        >
-                            {props.title}
-                        </Checkbox>
-                    )}
-
-            </Td>
+            {props.title && (
+                <Td
+                    display="flex"
+                    flexDirection="column"
+                >
+                    {typeof props.loader !== 'boolean'
+                        ? props.title
+                        : (
+                            <Checkbox
+                                size="sm"
+                                checked={checkedItems()[0]}
+                                onChange={(e: any) => setCheckedItems([e.target.checked, checkedItems()[1]])}
+                            >
+                                {props.title}
+                            </Checkbox>
+                        )}
+                </Td>
+            )}
             <Td>
                 {typeof props.loader !== 'boolean'
                     ? props.children
@@ -166,13 +162,51 @@ function Row<State extends object, Events>(props: {
     )
 }
 
+function Links() {
+    return (
+        <Table striped="odd">
+            <Tbody>
+                <Row>
+                    <a target="_blank" href="https://github.com/fc1943s/tictactoe_spiral">
+                        https://github.com/fc1943s/tictactoe_spiral
+                    </a>
+                </Row>
+                <Row>
+                    <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral">
+                        https://fc1943s.github.io/tictactoe_spiral
+                    </a>
+                </Row>
+                <Row>
+                    <a target="_blank" href="https://fc1943s.github.io/tictactoe_spiral/docs">
+                        https://fc1943s.github.io/tictactoe_spiral/docs
+                    </a>
+                </Row>
+            </Tbody>
+        </Table>
+    )
+}
+
+function Settings() {
+    return (
+        <Table striped="odd">
+            <Tbody>
+                <Row
+                    title="Display"
+                >
+                    ??
+                </Row>
+            </Tbody>
+        </Table>
+    )
+}
+
 function ChainConnection() {
     return (
         <Table striped="odd">
             <Tbody>
                 <Row title="Token">
                     <StateInput
-                        get={(state) => state.token}
+                        get={(state) => state.chainToken}
                         set={(state, value) => ({ ...state, token: value })} />
                 </Row>
                 <Row title="URL">
@@ -197,7 +231,7 @@ function AccountInput(props: { key: keyof Omit<Account, 'alias'>, account: Accou
             set={(state, value) => ({
                 ...state,
                 accounts:
-                    state.accounts.map(
+                    state.chainAccounts.map(
                         (_account) =>
                             _account.alias === props.account.alias
                                 ? { ..._account, [props.key]: value }
@@ -213,7 +247,7 @@ function ChainAccounts() {
     return (
         <Table striped="odd">
             <Tbody>
-                <For each={state.accounts}>
+                <For each={state.chainAccounts}>
                     {(account) => (
                         <Row title={account.alias}>
                             <Table striped="odd">
@@ -241,12 +275,11 @@ function DbConnectionInput(props: { type: db.DbType, key: keyof typeof init.dbCo
             set={(state, value) => ({
                 ...state,
                 dbConnection: {
-                    ...state.dbConnection,
                     [props.type]: {
                         ...state.dbConnection[props.type],
                         [props.key]: value
                     }
-                }
+                } as { [key in db.DbType]: typeof state.dbConnection[typeof props.type] }
             })} />
     )
 }
@@ -275,14 +308,14 @@ function DbListener() {
     log('DbListener() 0')
 
     const refresh = () => {
-        const newDb = db.getDbIdList(state)[0].reduce((accDb, { dbType, url, id }) => ({
+        const newDbRef = db.getDbIdList(state)[0].reduce((accDb, { dbType, url, id }) => ({
             ...accDb,
             [id]: accDb[id] || db.newDb(dbType, { url })
-        }), state.db)
+        }), state.dbRef)
 
-        log('DbListener refresh() 1', { newDb })
+        log('DbListener refresh() 1', { newDbRef })
 
-        dispatch('set', { db: newDb })
+        dispatch('set', { dbRef: newDbRef })
     }
 
     const unbind = store.on('@changed', (newState, changed, store) => {
@@ -295,7 +328,7 @@ function DbListener() {
                 store: db.objectValueCount(store.get()[key as keyof State]),
             }))
         })
-        if (changed.dbEnabled || changed.dbConnection) {
+        if (changed.dbStatus || changed.dbConnection) {
             refresh()
         }
     })
@@ -306,8 +339,10 @@ function DbListener() {
     return <></>
 }
 
-export function useFetch(
-    key: keyof util.PickByType<State, { [_: number]: any } | undefined>,
+export function useFetch<T extends db.Proxy>(
+    contentAddress: db.ContentAddress,
+    proxy: T,
+    apply: (state: State, newValue: T) => Partial<State>,
     requestFn: ((_: algosdk.Algodv2) => Promise<any>)
 ) {
     const [state, dispatch] = useStoreon<State, Events>()
@@ -316,11 +351,11 @@ export function useFetch(
 
     const [events, setEvents] = createSignal({} as { [_: string]: { off: () => void } | undefined })
     const [timers, setTimers] = createSignal({} as { [_: string]: NodeJS.Timer | undefined })
-    const [values, setValues] = createSignal({} as { [_: string]: any })
+    const [values, setValues] = createSignal({} as { [_: string]: T })
 
     const getLocals = () => ({
-        key,
-        [`${String(key)}.values`]: db.objectValueCount(state[key]),
+        contentAddress,
+        [`proxy`]: db.objectValueCount(proxy),
         [`events`]: Object.entries(events()),
         [`timers`]: Object.entries(timers()),
         [`values`]: Object.entries(values()).reduce(
@@ -337,12 +372,12 @@ export function useFetch(
     const generateSixDigitNumericHashFromString = (text: string) =>
         [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 11), 100000).toString().substring(-6)
 
-    const log = util.getLog(getLocals, `#${generateSixDigitNumericHashFromString(key as string)}`)
+    const log = util.getLog(getLocals, `#${generateSixDigitNumericHashFromString(contentAddress.contentAddress)}`)
 
     log('useFetch() 0')
 
     const newOnValue = (resub: (_: string) => void) =>
-        async (id: string, hash: string, newValue: object, rawValue: object | undefined) => {
+        async (id: string, hash: string, newValue: T, rawValue: object | undefined) => {
             const logObj = {
                 id,
                 hash,
@@ -351,7 +386,7 @@ export function useFetch(
             }
             log('useFetch.onValue() 1/2', { ...logObj })
 
-            if (hash && Object.keys(state[key] || {}).length > 0) {
+            if (hash && Object.keys(proxy || {}).length > 0) {
                 log('useFetch.onValue() 2/2. resub (hash)', { ...logObj })
 
                 resub(id)
@@ -370,8 +405,8 @@ export function useFetch(
                 // Object.values(timers()).forEach(timer => timer && clearInterval(timer))
                 // setTimers({})
 
-                // const newDispatch = dispatch as any as ((event: keyof E, value: any) => void)
-                dispatch('set', { [key]: newValue })
+                // const newDispatch = dispatch as any as ((event: keyof Events, value: State) => void)
+                dispatch('set', apply(state, newValue))
 
                 const oldValues = values()
                 const newValues = { ...oldValues, [id]: newValue }
@@ -388,7 +423,7 @@ export function useFetch(
                 })
 
                 if (rawValue
-                    && Object.keys(newValue).length > 0
+                    && Object.keys(newValue || {}).length > 0
                     && JSON.stringify(oldValues[id]) !== JSON.stringify(newValue)) {
                     await Promise.all(
                         db.getDbIdList(state)[0]
@@ -402,7 +437,7 @@ export function useFetch(
                                     lastTargetOld: db.lastObjectEntry(oldValues[dbId.id]),
                                     lastTarget: db.lastObjectEntry(newValues[dbId.id])
                                 })
-                                db.dbPut(state, dbId, key, rawValue)
+                                db.dbPut(state, dbId, contentAddress, rawValue)
                             })
                     )
                 }
@@ -414,7 +449,7 @@ export function useFetch(
 
         Object.entries(subscriptions()).forEach(([id, { type, subscription }]) => {
             log('useFetch.unsubscribe 2 item', { id, type, subscription })
-            db.dbOff(state, id, key, subscription)
+            db.dbOff(state, id, contentAddress, subscription)
         })
         setSubscriptions({})
 
@@ -457,8 +492,9 @@ export function useFetch(
         const oldSubscription = oldSubscriptions[id.id]
         log('useFetch.subscribe() 1', { oldSubscription })
 
-        if (!oldSubscription && state.dbEnabled) {
-            const newSubscription = db.dbOn(state, id, key, newOnValue(resub))
+        if (!oldSubscription && state.dbStatus) {
+            const onValue = newOnValue(resub)
+            const newSubscription = db.dbOn(state, proxy, id, contentAddress, onValue)
             log('useFetch.subscribe() 2', { newSubscription })
             if (newSubscription) {
                 setSubscriptions({
@@ -472,7 +508,7 @@ export function useFetch(
     }
 
     const unbind = store.on('@changed', (newState, changed, oldStore) => {
-        if (changed.dbEnabled || changed.db) {
+        if (changed.dbStatus || changed.dbRef) {
             log('useFetch.store.@changed 1', {
                 changed: Object.keys(changed).map((key) => ({
                     key,
@@ -502,7 +538,7 @@ export function useFetch(
     })
 
     const request = async () => {
-        const client = algo_network.newClient(state.token, state.chainUrl, state.chainPort)
+        const client = algo_network.newClient(state.chainToken, state.chainUrl, state.chainPort)
         let result: {}
         try {
             result = await requestFn(client)
@@ -517,14 +553,14 @@ export function useFetch(
 
         if (enabledDbIdList.length === 0) {
             const newValue = {
-                ...(state[key] as { [_: string]: any }),
+                ...proxy,
                 [timestamp]: result
             }
-            dispatch('set', { [key]: newValue })
+            dispatch('set', apply(state, newValue))
         } else {
             await Promise.all(
                 enabledDbIdList.map((id) =>
-                    db.dbPut(state, id, key, { [timestamp]: result })
+                    db.dbPut(state, id, contentAddress, { [timestamp]: result })
                 )
             )
 
@@ -540,7 +576,7 @@ export function useFetch(
                         log('useFetch.request() 1 resub timeout', { id: id.id, oldSubscription })
 
                         if (oldSubscription) {
-                            db.dbOff(state, id.id, key, oldSubscription.subscription)
+                            db.dbOff(state, id.id, contentAddress, oldSubscription.subscription)
                         }
                         const newSubscriptions = { ...subscriptions() }
                         delete newSubscriptions[id.id]
@@ -561,14 +597,14 @@ export function useFetch(
 
         if (enabledDbIdList.length === 0) {
             const newValue = {
-                ...(state[key] as { [_: string]: any }),
+                ...proxy,
                 [timestamp]: null
             }
-            dispatch('set', { [key]: newValue })
+            dispatch('set', apply(state, newValue))
         } else {
             await Promise.all(
                 enabledDbIdList.map((id) =>
-                    db.dbPut(state, id, key, { [timestamp]: null })
+                    db.dbPut(state, id, contentAddress, { [timestamp]: null })
                 )
             )
 
@@ -593,17 +629,27 @@ function Counter() {
     const [state, _] = useStoreon<State, Events>()
 
     const { request, clear } = useFetch(
-        'counter',
-        async (_client) => Object.values(state.counter || {}).reduce((acc, v) => v === null ? 0 : acc + 1, 0)
+        { contentAddress: `profile/tmp/counter` },
+        state.profile.tmp.counter || {},
+        (state, newValue) => ({
+            profile: {
+                ...state.profile,
+                tmp: {
+                    ...state.profile.tmp,
+                    counter: newValue
+                }
+            }
+        }),
+        async (_client) => Object.values(state.profile.tmp.counter || {}).reduce((acc, v) => v === null ? 0 : acc + 1, 0)
     )
 
     return (
         <div id="counter">
             <Stack direction="row" spacing="4px">
-                <button onClick={request}>Request</button>
-                <button onClick={clear}>Clear</button>
+                <Button size="xs" compact onClick={request}>Request</Button>
+                <Button size="xs" compact onClick={clear}>Clear</Button>
             </Stack>
-            <pre>{JSON.stringify(db.lastObjectEntry(state.counter), null, 2)}</pre>
+            <pre>{JSON.stringify(db.lastObjectEntry(state.profile.tmp.counter), null, 2)}</pre>
         </div>
     )
 }
@@ -611,15 +657,28 @@ function Counter() {
 function Status() {
     const [state, _] = useStoreon<State, Events>()
 
-    const { request, clear } = useFetch('status', (client) => client.status().do())
+    const { request, clear } = useFetch(
+        { contentAddress: `profile/tmp/chainStatus` },
+        state.profile.tmp.chainStatus || {},
+        (state, newValue) => ({
+            profile: {
+                ...state.profile,
+                tmp: {
+                    ...state.profile.tmp,
+                    chainStatus: newValue
+                }
+            }
+        }),
+        (client) => client.status().do()
+    )
 
     return (
         <div id="status">
             <Stack direction="row" spacing="4px">
-                <button onClick={request}>Request</button>
-                <button onClick={clear}>Clear</button>
+                <Button size="xs" compact onClick={request}>Request</Button>
+                <Button size="xs" compact onClick={clear}>Clear</Button>
             </Stack>
-            <pre>{JSON.stringify(db.lastObjectEntry(state.status), null, 2)}</pre>
+            <pre>{JSON.stringify(db.lastObjectEntry(state.profile.tmp.chainStatus), null, 2)}</pre>
         </div>
     )
 }
@@ -627,44 +686,67 @@ function Status() {
 function Deploy() {
     const [state, _] = useStoreon<State, Events>()
 
-    const { request, clear } = useFetch('deploy', async (client) => {
-        const address = state.accounts[0]?.address
-        const privateKey = state.accounts[0]?.privateKey
-        if (address && privateKey) {
-            try {
-                const output = await algo_network.deployApplication(
-                    client,
-                    address,
-                    privateKey,
-                    raw.applicationStartTeal,
-                    raw.clearProgramTeal,
-                    {
-                        numGlobalByteSlices: tictactoe_pyteal.numGlobalByteSlices,
-                        numGlobalInts: tictactoe_pyteal.numGlobalInts
-                    }
-                )
-
-                return output
-            } catch (e) {
-                return e
+    const { request, clear } = useFetch(
+        { contentAddress: `profile/tmp/chainDeploy` },
+        state.profile.tmp.chainDeploy || {},
+        (state, newValue) => ({
+            profile: {
+                ...state.profile,
+                tmp: {
+                    ...state.profile.tmp,
+                    chainDeploy: newValue
+                }
             }
-        } else {
-            return 'Invalid admin account'
+        }),
+        async (client) => {
+            const address = state.chainAccounts[0]?.address
+            const privateKey = state.chainAccounts[0]?.privateKey
+            if (address && privateKey) {
+                try {
+                    const output = await algo_network.deployApplication(
+                        client,
+                        address,
+                        privateKey,
+                        raw.applicationStartTeal,
+                        raw.clearProgramTeal,
+                        {
+                            numGlobalByteSlices: tictactoe_pyteal.numGlobalByteSlices,
+                            numGlobalInts: tictactoe_pyteal.numGlobalInts
+                        }
+                    )
+
+                    return output
+                } catch (e) {
+                    return e
+                }
+            } else {
+                return 'Invalid admin account'
+            }
         }
-    })
+    )
 
     return (
         <div id="deploy">
             <Stack direction="row" spacing="4px">
-                <button onClick={request}>Request</button>
-                <button onClick={clear}>Clear</button>
+                <Button size="xs" compact onClick={request}>Request</Button>
+                <Button size="xs" compact onClick={clear}>Clear</Button>
             </Stack>
-            <pre>{JSON.stringify(db.lastObjectEntry(state.deploy), null, 2)}</pre>
+            <pre>{JSON.stringify(db.lastObjectEntry(state.profile.tmp.chainDeploy), null, 2)}</pre>
         </div>
     )
 }
 
 function App() {
+    globalCss({
+        '*': {
+          margin: 0,
+          padding: 0
+        },
+        body: {
+            margin: '1px 2px 1px 1px'
+        }
+      })
+
     const config: HopeThemeConfig = {
         initialColorMode: 'dark',
         darkTheme: {
@@ -684,6 +766,16 @@ function App() {
                 <Table
                     striped="odd"
                     class={styles.App}
+                    display="flex"
+                    overflow="auto"
+                    flex={1}
+                    maxWidth="100vw"
+                    height="100vh"
+                    margin="1px 2px 1px 1px"
+                    padding="1px"
+                    flexDirection="column"
+                    backgroundColor="$bg"
+                    color="#eeffff"
                 >
                     <Tbody>
                         <Row
@@ -693,111 +785,138 @@ function App() {
                         </Row>
                         <Tr><Td></Td></Tr>
                         <Row
-                            loader={false}
-                            title="Chain Connection"
+                            title="Settings"
                         >
-                            <ChainConnection />
-                        </Row>
-                        <Row
-                            loader={false}
-                            title="Chain Accounts"
-                        >
-                            <ChainAccounts />
-                        </Row>
-                        <Row
-                            loader={false}
-                            title="Testnet Bank Dispenser"
-                        >
-                            <iframe
-                                src="https://bank.testnet.algorand.network"
-                                title="algorand testnet bank"
-                                style={{
-                                    height: '350px',
-                                    'background-color': '#aaa',
-                                    flex: 1
-                                }}
-                            />
+                            <Settings />
                         </Row>
                         <Tr><Td></Td></Tr>
-                        <Row<State, Events>
-                            id="db-gun-rs-rs"
+                        <Row
                             loader={false}
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_rs: {
-                                            ...state.dbEnabled.gun_rs,
-                                            gun_rs: true
-                                        }
-                                    }
-                                })
-                            }}
-                            title="Database (Rust->Rust)"
+                            title="Chain"
                         >
-                            <DbConnection
-                                type="gun_rs"
-                            />
+                            <Table
+                                striped="odd"
+                            >
+                                <Tbody>
+                                    <Row
+                                        title="Connection"
+                                    >
+                                        <ChainConnection />
+                                    </Row>
+                                    <Row
+                                        title="Accounts"
+                                    >
+                                        <ChainAccounts />
+                                    </Row>
+                                    <Row
+                                        loader={false}
+                                        title="Testnet Bank Dispenser"
+                                    >
+                                        <iframe
+                                            src="https://bank.testnet.algorand.network"
+                                            title="algorand testnet bank"
+                                            style={{
+                                                height: '350px',
+                                                'background-color': '#aaa',
+                                                flex: 1
+                                            }}
+                                        />
+                                    </Row>
+                                </Tbody>
+                            </Table>
                         </Row>
-                        <Row<State, Events>
-                            id="db-gun-rs-js"
+                        <Tr><Td></Td></Tr>
+                        <Row
+                            id="db"
                             loader={false}
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_rs: {
-                                            ...state.dbEnabled.gun_rs,
-                                            gun_js: true
-                                        }
-                                    }
-                                })
-                            }}
-                            title="Database (Rust->JavaScript)"
+                            title="Database"
                         >
-                            <DbConnection
-                                type="gun_js"
-                            />
-                        </Row>
-                        <Row<State, Events>
-                            id="db-gun-js-js"
-                            loader={false}
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_js: {
-                                            ...state.dbEnabled.gun_js,
-                                            gun_js: true
-                                        }
-                                    }
-                                })
-                            }}
-                            title="Database (JavaScript->JavaScript)"
-                        >
-                            <DbConnection
-                                type="gun_js"
-                            />
-                        </Row>
-                        <Row<State, Events>
-                            id="db-gun-js-rs"
-                            loader={false}
-                            onLoad={(state, dispatch) => {
-                                dispatch('set', {
-                                    dbEnabled: {
-                                        ...state.dbEnabled,
-                                        gun_js: {
-                                            ...state.dbEnabled.gun_js,
-                                            gun_rs: true
-                                        }
-                                    }
-                                })
-                            }}
-                            title="Database (JavaScript->Rust)"
-                        >
-                            <DbConnection
-                                type="gun_rs"
-                            />
+                            <Table
+                                striped="odd"
+                            >
+                                <Tbody>
+                                    <Row
+                                        id="db-gun-rs-rs"
+                                        loader={false}
+                                        onLoad={(state, dispatch) => {
+                                            dispatch('set', {
+                                                dbStatus: {
+                                                    ...state.dbStatus,
+                                                    gun_rs: {
+                                                        ...state.dbStatus.gun_rs,
+                                                        gun_rs: true
+                                                    }
+                                                }
+                                            })
+                                        }}
+                                        title="Rust -> Rust"
+                                    >
+                                        <DbConnection
+                                            type="gun_rs"
+                                        />
+                                    </Row>
+                                    <Row
+                                        id="db-gun-rs-js"
+                                        loader={false}
+                                        onLoad={(state, dispatch) => {
+                                            dispatch('set', {
+                                                dbStatus: {
+                                                    ...state.dbStatus,
+                                                    gun_rs: {
+                                                        ...state.dbStatus.gun_rs,
+                                                        gun_js: true
+                                                    }
+                                                }
+                                            })
+                                        }}
+                                        title="Rust -> JavaScript"
+                                    >
+                                        <DbConnection
+                                            type="gun_js"
+                                        />
+                                    </Row>
+                                    <Row
+                                        id="db-gun-js-js"
+                                        loader={false}
+                                        onLoad={(state, dispatch) => {
+                                            dispatch('set', {
+                                                dbStatus: {
+                                                    ...state.dbStatus,
+                                                    gun_js: {
+                                                        ...state.dbStatus.gun_js,
+                                                        gun_js: true
+                                                    }
+                                                }
+                                            })
+                                        }}
+                                        title="JavaScript -> JavaScript"
+                                    >
+                                        <DbConnection
+                                            type="gun_js"
+                                        />
+                                    </Row>
+                                    <Row
+                                        id="db-gun-js-rs"
+                                        loader={false}
+                                        onLoad={(state, dispatch) => {
+                                            dispatch('set', {
+                                                dbStatus: {
+                                                    ...state.dbStatus,
+                                                    gun_js: {
+                                                        ...state.dbStatus.gun_js,
+                                                        gun_rs: true
+                                                    }
+                                                }
+                                            })
+                                        }}
+                                        title="JavaScript -> Rust"
+                                    >
+                                        <DbConnection
+                                            type="gun_rs"
+                                        />
+                                    </Row>
+                                </Tbody>
+                            </Table>
                         </Row>
                         <Tr><Td></Td></Tr>
                         <Row

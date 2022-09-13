@@ -1,34 +1,8 @@
-.App {
-  display: flex;
-  overflow: auto;
-  flex: 1;
-  max-width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  background-color: var(--hope-colors-bg);
-  padding: 1px;
-}
 
-.App,
-.App a {
-  color: #eeffff;
-}
-
-.App,
-.App input,
-.App button {
-  font-size: 1.3rem;
-}
-
-.App,
 .App table,
 .App tbody {
   display: flex;
   flex-direction: column;
-}
-
-.App table {
-  flex: 1;
 }
 
 @media only screen and (min-width: 600px) {
