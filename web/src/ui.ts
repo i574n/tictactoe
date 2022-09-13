@@ -9,7 +9,7 @@ export type UiState = {
 
 export const globalCss = {
     body: {
-        margin: '0px 3px 0px 0px',
+        margin: '0px 2px 0px 0px',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
@@ -22,7 +22,9 @@ export const globalCss = {
     },
     html: {
         minWidth: '345px',
-        minHeight: '700px'
+        minHeight: '700px',
+        fontSize: '14px',
+        overflow: 'hidden'
     },
     '*::-webkit-scrollbar': {
         width: '11px'

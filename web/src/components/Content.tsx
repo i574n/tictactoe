@@ -61,26 +61,23 @@ function Content() {
                 <Row
                     title="Profile"
                 >
-                    <Row
-                        title="Counter"
-                    >
+                    <BaseTable>
                         <Counter />
-                    </Row>
-                    {!!util.env.GITHUB_RUN_ID
-                        ? <>
-                            <Row
-                                title="Status"
-                            >
-                                <ChainStatus />
-                            </Row>
-                            <Row
-                                title="Deploy"
-                            >
-                                <ChainDeploy />
-                            </Row>
-                        </>
-                        : <></>}
-                    {/* {!util.IS_TEST && !util.env.GITHUB_RUN_ID
+                        {!!util.env.GITHUB_RUN_ID
+                            ? <>
+                                <Row
+                                    title="Chain Status"
+                                >
+                                    <ChainStatus />
+                                </Row>
+                                <Row
+                                    title="Chain Deploy"
+                                >
+                                    <ChainDeploy />
+                                </Row>
+                            </>
+                            : <></>}
+                        {/* {!util.IS_TEST && !util.env.GITHUB_RUN_ID
                     ? <>
                         <Row />
                         <Row title="Diff">
@@ -88,6 +85,7 @@ function Content() {
                         </Row>
                     </>
                     : <></>} */}
+                    </BaseTable>
                 </Row>
             </BaseTable>
         </Box>

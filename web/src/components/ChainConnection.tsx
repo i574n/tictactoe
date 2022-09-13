@@ -7,17 +7,32 @@ import BaseTable from "./BaseTable"
 function ChainConnection<State extends chain.ChainState>() {
     return (
         <BaseTable>
-            <Row title="Token">
+            <Row
+                title="Token"
+                tdProps={{
+                    padding: '3px'
+                }}
+            >
                 <StateInput<State['chainToken'], State>
                     get={(state) => state.chainToken}
                     set={(state, value) => ({ ...state, token: value })} />
             </Row>
-            <Row title="URL">
+            <Row
+                title="URL"
+                tdProps={{
+                    padding: '3px'
+                }}
+            >
                 <StateInput<State['chainUrl'], State>
                     get={(state) => state.chainUrl}
                     set={(state, value) => ({ ...state, chainUrl: value })} />
             </Row>
-            <Row title="Port">
+            <Row
+                title="Port"
+                tdProps={{
+                    padding: '3px'
+                }}
+            >
                 <StateInput<State['chainPort'], State>
                     get={(state) => state.chainPort}
                     set={(state, value) => ({ ...state, chainPort: value })} />

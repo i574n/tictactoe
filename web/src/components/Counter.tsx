@@ -1,11 +1,12 @@
 import * as store from "../store"
 import useStore from "../hooks/useStore"
-import { Stack } from '@hope-ui/solid'
+import { Stack, Box } from '@hope-ui/solid'
 import useFetch from "../hooks/useFetch"
 import { For } from "solid-js"
 import Row from "./Row"
 import BaseButton from "./BaseButton"
 import BaseTable from "./BaseTable"
+import { BiRegularPlus, BiRegularMinus } from "solid-icons/bi"
 
 
 function Counter<State extends store.State>() {
@@ -27,35 +28,45 @@ function Counter<State extends store.State>() {
     )
 
     return (
-        <div id="counter">
-            <Stack
-                direction="row"
-                spacing="4px"
-                padding="3px"
-            >
-                <BaseButton
-                    onClick={request}
+        <Row
+            id="counter"
+            title={
+                <Stack
+                    direction="column"
+                    spacing="7px"
+                    paddingBottom="4px"
                 >
-                    Request
-                </BaseButton>
-                <BaseButton
-                    onClick={clear}
-                >
-                    Clear
-                </BaseButton>
-            </Stack>
+                    <Box>Counter</Box>
+                    <BaseButton
+                        leftIcon={<BiRegularPlus />}
+                        onClick={request}
+                    >
+                        Request
+                    </BaseButton>
+                    <BaseButton
+                        leftIcon={<BiRegularMinus />}
+                        onClick={clear}
+                    >
+                        Clear
+                    </BaseButton>
+                </Stack>
+            }
+        >
             <BaseTable>
-                <For each={Object.entries(state.profile.tmp.counter || {})}>
+                <For each={Object.entries(state.profile.tmp.counter || {}).reverse()}>
                     {([k, v]) => (
                         <Row
                             title={k}
+                            tdProps={{
+                                padding: '3px'
+                            }}
                         >
                             <pre>{JSON.stringify(v, null, 2)}</pre>
                         </Row>
                     )}
                 </For>
             </BaseTable>
-        </div>
+        </Row>
     )
 }
 

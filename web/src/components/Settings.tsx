@@ -9,9 +9,9 @@ function Settings() {
     return (
         <BaseTable>
             <Row
-                title="Display"
+                title="Theme"
                 tdProps={{
-                    padding: '3px 6px'
+                    padding: '5px 6px'
                 }}
             >
                 <RadioGroup

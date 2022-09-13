@@ -1,12 +1,12 @@
 import * as ui from "../ui"
 import Loader from "./Loader"
-import { createSignal } from "solid-js"
+import { createSignal, JSX } from "solid-js"
 import { Checkbox, Tr, Td, Box, TdProps } from '@hope-ui/solid'
 
 
 function Row<State extends ui.UiState>(
     props: {
-        title?: string,
+        title?: string | JSX.Element,
         children?: any,
         loader?: boolean,
         id?: string,
@@ -18,7 +18,9 @@ function Row<State extends ui.UiState>(
     return (
         <Tr
             id={props.id}
-            display="inline-flex"
+            display="flex"
+            flex={props.children && 1}
+            border="1px solid $neutral5"
             flexDirection={{
                 "@initial": "column",
                 "@sm": "row"
@@ -26,56 +28,68 @@ function Row<State extends ui.UiState>(
         >
             {props.title && (
                 <Td
-                    display="flex"
+                    border="0 !important"
                     color="$neutral9"
+                    display="flex"
                     flexDirection="column"
-                    padding="3px 20px 0px 8px"
-                    outline="1px solid #777"
                     fontSize="$sm"
+                    outline="1px solid $neutral5"
+                    padding="3px 20px 0 8px"
                 >
                     {typeof props.loader !== 'boolean'
                         ? props.title
-                        : (
-                            <Checkbox
-                                size="sm"
-                                padding="0"
-                                marginBottom="4px"
-                                colorScheme="neutral"
-                                checked={checkedItems()[0]}
-                                onChange={(e: any) => setCheckedItems([e.target.checked, checkedItems()[1]])}
+                        : <Checkbox
+                            size="sm"
+                            marginBottom="2px"
+                            checked={checkedItems()[0]}
+                            colorScheme="neutral"
+                            onChange={(e: any) => setCheckedItems([e.target.checked, checkedItems()[1]])}
+                        >
+                            <Box
+                                paddingTop="2px"
                             >
-                                <Box
-                                    paddingTop="2px"
-                                >
-                                    {props.title}
-                                </Box>
-                            </Checkbox>
-                        )}
+                                {props.title}
+                            </Box>
+                        </Checkbox>
+                    }
                 </Td>
             )}
-            <Td
-                display="flex"
-                flexDirection="column"
-                outline="1px solid #777"
-                padding="2px"
-                flex={6}
-                fontSize="$sm"
-                lineHeight={!props.children ? "6px" : undefined}
-                maxHeight="85vh"
-                overflow={props.children && "auto"}
-                {...props.tdProps}
-            >
-                {typeof props.loader !== 'boolean'
-                    ? props.children || <>&nbsp;</>
-                    : (checkedItems()[0] &&
-                        <Loader<State>
-                            onLoad={props.onLoad}
-                            defaults={{ loaded: true }}
-                        >
-                            {props.children}
-                        </Loader>
-                    )}
-            </Td>
+            {props.children ? (
+                <Td
+                    border="0 !important"
+                    outline="0"
+                    margin="0"
+                    padding="0"
+                    display="flex"
+                    flex={6}
+                    flexDirection="column"
+                    fontSize="$sm"
+                    maxHeight="85vh"
+                    overflowY="auto"
+                    {...props.tdProps}
+                >
+                    {typeof props.loader !== 'boolean'
+                        ? props.children
+                        : (
+                            checkedItems()[0]
+                                ? <Loader<State>
+                                    onLoad={props.onLoad}
+                                    defaults={{ loaded: true }}
+                                >
+                                    {props.children}
+                                </Loader>
+                                : <>&nbsp;</>
+                        )
+                    }
+                </Td>
+            ) : (
+                <Td
+                    padding="0"
+                    lineHeight="9px"
+                >
+                    &nbsp;
+                </Td>
+            )}
         </Tr>
     )
 }

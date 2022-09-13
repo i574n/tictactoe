@@ -13,13 +13,31 @@ function ChainAccounts<State extends chain.ChainState>() {
         <BaseTable>
             <For each={state.chainAccounts}>
                 {(account) => (
-                    <Row title={account.alias}>
+                    <Row
+                        title={account.alias}
+                    >
                         <BaseTable>
-                            <Row title="Address">
-                                <ChainAccountInput account={account} key="address" />
+                            <Row
+                                title="Address"
+                                tdProps={{
+                                    padding: '3px'
+                                }}
+                            >
+                                <ChainAccountInput
+                                    account={account}
+                                    key="address"
+                                />
                             </Row>
-                            <Row title="Private Key">
-                                <ChainAccountInput account={account} key="privateKey" />
+                            <Row
+                                title="Private Key"
+                                tdProps={{
+                                    padding: '3px'
+                                }}
+                            >
+                                <ChainAccountInput
+                                    account={account}
+                                    key="privateKey"
+                                />
                             </Row>
                         </BaseTable>
                     </Row>

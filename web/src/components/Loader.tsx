@@ -2,7 +2,7 @@ import { createEffect, createSignal, on } from "solid-js"
 import * as ui from "../ui"
 import useStore from "../hooks/useStore"
 import { BiRegularRefresh, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow } from "solid-icons/bi"
-import { Box, Stack, IconButton, Button } from '@hope-ui/solid'
+import { Box, Stack, IconButton } from '@hope-ui/solid'
 import BaseButton from "./BaseButton"
 
 
@@ -34,7 +34,7 @@ function Loader<State extends ui.UiState>(props: {
         props.onLoad?.(state, dispatch)
     }
 
-    const buttonSize = "20px"
+    const buttonSize = "14px"
 
     return (
         <Box
@@ -71,13 +71,14 @@ function Loader<State extends ui.UiState>(props: {
                             direction="row"
                             spacing="3px"
                             position="absolute"
-                            top="2px"
-                            right="2px"
+                            top="5px"
+                            right="5px"
                             zIndex={1}
                         >
                             <IconButton
                                 aria-label="Refresh"
                                 size="xs"
+                                height="20px"
                                 colorScheme="neutral"
                                 onClick={() => setRefreshing(true)}
                                 icon={<BiRegularRefresh
@@ -87,6 +88,7 @@ function Loader<State extends ui.UiState>(props: {
                             <IconButton
                                 aria-label={modal() ? 'Restore' : 'Maximize'}
                                 size="xs"
+                                height="20px"
                                 colorScheme="neutral"
                                 onClick={() => {
                                     const newModal = !modal()
@@ -109,6 +111,7 @@ function Loader<State extends ui.UiState>(props: {
                             <IconButton
                                 aria-label="Unload"
                                 size="xs"
+                                height="20px"
                                 colorScheme="neutral"
                                 onClick={() => setLoaded(false)}
                                 icon={<BiRegularUndo

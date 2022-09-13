@@ -4,6 +4,7 @@ function BaseButton(props: ButtonProps) {
     return (
         <Button
             size="xs"
+            justifyContent="left"
             compact
             colorScheme="neutral"
             {...props}

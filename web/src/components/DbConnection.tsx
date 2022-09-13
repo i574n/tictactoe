@@ -7,11 +7,27 @@ import BaseTable from "./BaseTable"
 function DbConnection(props: { type: db.DbType }) {
     return (
         <BaseTable>
-            <Row title="URL">
-                <DbConnectionInput type={props.type} key="url" />
+            <Row
+                title="URL"
+                tdProps={{
+                    padding: '3px'
+                }}
+            >
+                <DbConnectionInput
+                    type={props.type}
+                    key="url"
+                />
             </Row>
-            <Row title="Port">
-                <DbConnectionInput type={props.type} key="port" />
+            <Row
+                title="Port"
+                tdProps={{
+                    padding: '3px'
+                }}
+            >
+                <DbConnectionInput
+                    type={props.type}
+                    key="port"
+                />
             </Row>
         </BaseTable>
     )
