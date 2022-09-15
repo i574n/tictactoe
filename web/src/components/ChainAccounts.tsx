@@ -19,9 +19,7 @@ function ChainAccounts<State extends chain.ChainState>() {
                         <BaseTable>
                             <Row
                                 title="Address"
-                                tdProps={{
-                                    padding: '3px'
-                                }}
+                                padding="3px"
                             >
                                 <ChainAccountInput
                                     account={account}
@@ -30,9 +28,7 @@ function ChainAccounts<State extends chain.ChainState>() {
                             </Row>
                             <Row
                                 title="Private Key"
-                                tdProps={{
-                                    padding: '3px'
-                                }}
+                                padding="3px"
                             >
                                 <ChainAccountInput
                                     account={account}

@@ -1,13 +1,15 @@
-import * as db from "../db"
 import * as store from "../store"
-import * as profile from "../profile"
 import * as algo_network from "../../../lib_ts/algo_network"
 import * as tictactoe_pyteal from "../../../lib_ts/tictactoe_pyteal"
 import * as raw from "../raw"
-import { Stack, Button } from "@hope-ui/solid"
+import { Stack, Box } from "@hope-ui/solid"
 import useFetch from "../hooks/useFetch"
 import useStore from "../hooks/useStore"
 import BaseButton from "./BaseButton"
+import { BiRegularPlus, BiRegularMinus } from "solid-icons/bi"
+import { For } from "solid-js"
+import BaseTable from "./BaseTable"
+import Row from "./Row"
 
 
 function ChainDeploy<State extends store.State>() {
@@ -53,21 +55,45 @@ function ChainDeploy<State extends store.State>() {
     )
 
     return (
-        <div id="deploy">
-            <Stack direction="row" spacing="4px">
-                <BaseButton
-                    onClick={request}
-                >
-                    Request
-                </BaseButton>
-                <BaseButton
-                    onClick={clear}
-                >
-                    Clear
-                </BaseButton>
-            </Stack>
-            <pre>{JSON.stringify(db.lastObjectEntry(state.profile.tmp.chainDeploy), null, 2)}</pre>
-        </div>
+        <Row
+            props={{
+                id: "deploy",
+                title:
+                    <Stack
+                        alignItems="start"
+                        direction="column"
+                        spacing="6px"
+                        padding="3px"
+                    >
+                        <Box>Chain Deploy</Box>
+                        <BaseButton
+                            leftIcon={<BiRegularPlus />}
+                            onClick={request}
+                        >
+                            Request
+                        </BaseButton>
+                        <BaseButton
+                            leftIcon={<BiRegularMinus />}
+                            onClick={clear}
+                        >
+                            Clear
+                        </BaseButton>
+                    </Stack>
+            }}
+        >
+            <BaseTable>
+                <For each={Object.entries(state.profile.tmp.chainDeploy || {}).reverse()}>
+                    {([k, v]) => (
+                        <Row
+                            title={k}
+                            padding="3px"
+                        >
+                            <pre>{JSON.stringify(v, null, 2)}</pre>
+                        </Row>
+                    )}
+                </For>
+            </BaseTable>
+        </Row>
     )
 }
 

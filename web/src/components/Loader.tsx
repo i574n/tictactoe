@@ -71,8 +71,8 @@ function Loader<State extends ui.UiState>(props: {
                             direction="row"
                             spacing="3px"
                             position="absolute"
-                            top="5px"
-                            right="5px"
+                            top="6px"
+                            right="6px"
                             zIndex={1}
                         >
                             <IconButton

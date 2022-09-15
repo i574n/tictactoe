@@ -9,9 +9,7 @@ function DbConnection(props: { type: db.DbType }) {
         <BaseTable>
             <Row
                 title="URL"
-                tdProps={{
-                    padding: '3px'
-                }}
+                padding="3px"
             >
                 <DbConnectionInput
                     type={props.type}
@@ -20,9 +18,7 @@ function DbConnection(props: { type: db.DbType }) {
             </Row>
             <Row
                 title="Port"
-                tdProps={{
-                    padding: '3px'
-                }}
+                padding="3px"
             >
                 <DbConnectionInput
                     type={props.type}

@@ -7,6 +7,8 @@ playwright-videos/
 test-results/
 node_modules/
 dist/
+bin/
+obj/
 dist_extension/
 tmp/
 sled_db/

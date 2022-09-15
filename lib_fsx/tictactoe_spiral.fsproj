@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>preview</LangVersion>
+        <PackageId>tictactoe_spiral</PackageId>
+        <Version>0.0.1-alpha.1</Version>
+    </PropertyGroup>
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)components_spi.fsx" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Fable.Core" Version="4.0.0-theta-001" />
+    </ItemGroup>
+</Project>

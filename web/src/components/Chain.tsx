@@ -18,8 +18,10 @@ function Chain() {
                 <ChainAccounts />
             </Row>
             <Row
-                loader={false}
                 title="Testnet Bank Dispenser"
+                props={{
+                    loader: false
+                }}
             >
                 <hope.iframe
                     src="https://bank.testnet.algorand.network"

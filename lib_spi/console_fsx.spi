@@ -8,9 +8,8 @@ union color =
     | Teal
     | Silver
 
-inl get_color_index color : i32 =
-    match color with
-    | Black => 0
+inl get_color_index = function
+    | Black => 0i32
     | Maroon => 1
     | Green => 2
     | Olive => 3
@@ -18,13 +17,13 @@ inl get_color_index color : i32 =
     | Purple => 5
     | Teal => 6
     | Silver => 7
-    
+
 nominal _Color = $"Color"
 nominal _Style = $"Style"
 nominal _Rule = $"Rule"
 
 inl inspect ~obj =
-    $"printfn $\"%A{!obj}\""
+    $"printfn $\"%A{!obj}\"" : ()
 
 inl new_color color : _Color =
     get_color_index color |> $"Color.FromInt32"
@@ -37,7 +36,7 @@ inl new_style color : _Style =
 
 inl new_rule text : _Rule =
     $"Rule !text"
-    
+
 inl style_rule style rule : _Rule =
     $"!rule.RuleStyle !style"
 
@@ -53,7 +52,7 @@ inl write_line arg =
 inl write_rule_text rule_text color =
     inl color_style = new_color color |> new_style
 
-    inl rule = 
+    inl rule =
         new_rule rule_text
         |> align_rule_left
         |> style_rule color_style

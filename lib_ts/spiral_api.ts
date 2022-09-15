@@ -2,6 +2,7 @@ import * as zmq from "zeromq"
 import * as fs from "fs"
 import * as path from "path"
 import * as util from "./util"
+import * as util_node from "./util_node"
 
 
 // cell
@@ -43,7 +44,7 @@ export var spiToFsx = async (mainSpiPath = '', newFsxPath = '', log = false) => 
     await util.timeout(spiprojOpenReq(spiprojPath, fs.readFileSync(spiprojPath).toString()), 2000)
     await util.timeout(spiBuildFileReq(mainSpiPath, 'Fsharp'), 2000)
 
-    const lines = (await util.waitFileChange(fsxPath)).split('\n')
+    const lines = (await util_node.waitFileChange(fsxPath)).split('\n')
     const [imports, code] = lines.reduce(
         ([imports, code]: string[][], line) =>
             /^(open|\#r) .*?$/.test(line)
@@ -54,7 +55,7 @@ export var spiToFsx = async (mainSpiPath = '', newFsxPath = '', log = false) => 
     const newFsx = [...imports, '', ...code].join('\n').trim() + "\n"
     fs.writeFileSync(newFsxPath || fsxPath, newFsx)
     if(log) {
-        util.logStep('spiral_api.spiToFsx() end')
+        util_node.logStep('spiral_api.spiToFsx() end')
     }
     return newFsx
 }

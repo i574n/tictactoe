@@ -1,18 +1,28 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@hope-ui/solid': ^0.6.7
+  '@stitches/core': ^1.2.8
   '@types/node': ^18.7
   algosdk: ^1.20
   buffer: ^6.0
   npm-check-updates: ^16.1
   path-browserify: ^1.0
+  solid-icons: ^1.0
+  solid-js: 1.5.4
+  solid-transition-group: ^0.0.10
   ts-node: ^10.9
   typescript: ^4.7
   zeromq: ^6.0.0-beta.6
 
 dependencies:
+  '@hope-ui/solid': 0.6.7_wvstcbww3syooiyaxy5jeo2dua
+  '@stitches/core': 1.2.8
   algosdk: 1.20.0
   buffer: 6.0.3
+  solid-icons: 1.0.1_solid-js@1.5.4
+  solid-js: 1.5.4
+  solid-transition-group: 0.0.10_solid-js@1.5.4
   zeromq: 6.0.0-beta.6
 
 devDependencies:
@@ -31,9 +41,36 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
+  /@floating-ui/core/0.6.2:
+    resolution: {integrity: sha512-jktYRmZwmau63adUG3GKOAVCofBXkk55S/zQ94XOorAHhwqFIOFAy1rSp2N0Wp6/tGbe9V3u/ExlGZypyY17rg==}
+    dev: false
+
+  /@floating-ui/dom/0.4.4:
+    resolution: {integrity: sha512-0Ulu3B/dqQplUUSqnTx0foSrlYuMN+GTtlJWvNJwt6Fr7/PqmlR/Y08o6/+bxDWr6p3roBJRaQ51MDZsNmEhhw==}
+    dependencies:
+      '@floating-ui/core': 0.6.2
+    dev: false
+
   /@gar/promisify/1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
+
+  /@hope-ui/solid/0.6.7_wvstcbww3syooiyaxy5jeo2dua:
+    resolution: {integrity: sha512-7zGGy4QbGUC7QhwRnNH8HO0MZFg4jFISlC2cnAMBfFBy272uqQN3PYdTjiIbnpR/4JilUfxCWpFQY+4qslqcIw==}
+    peerDependencies:
+      '@stitches/core': ^1.2.8
+      solid-js: ^1.4.0
+      solid-transition-group: ^0.0.10
+    dependencies:
+      '@floating-ui/dom': 0.4.4
+      '@stitches/core': 1.2.8
+      csstype: 3.0.11
+      focus-trap: 6.7.3
+      lodash.merge: 4.6.2
+      scroll-lock: 2.1.5
+      solid-js: 1.5.4
+      solid-transition-group: 0.0.10_solid-js@1.5.4
+    dev: false
 
   /@jridgewell/resolve-uri/3.0.7:
     resolution: {integrity: sha512-8cXDaBBHOr2pQ7j77Y6Vp5VDT2sIqWyWQ56TjEq4ih/a4iST3dItRe8Q9fp0rrIl9DoKhWQtUQz/YpOxLkXbNA==}
@@ -158,6 +195,10 @@ packages:
     resolution: {integrity: sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==}
     engines: {node: '>=10'}
     dev: true
+
+  /@stitches/core/1.2.8:
+    resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==}
+    dev: false
 
   /@szmarczak/http-timer/5.0.1:
     resolution: {integrity: sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==}
@@ -568,6 +609,14 @@ packages:
       type-fest: 1.4.0
     dev: true
 
+  /csstype/3.0.11:
+    resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==}
+    dev: false
+
+  /csstype/3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+    dev: false
+
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
     engines: {node: '>=6.0'}
@@ -708,6 +757,12 @@ packages:
       locate-path: 6.0.0
       path-exists: 4.0.0
     dev: true
+
+  /focus-trap/6.7.3:
+    resolution: {integrity: sha512-8xCEKndV4KrseGhFKKKmczVA14yx1/hnmFICPOjcFjToxCJYj/NHH43tPc3YE/PLnLRNZoFug0EcWkGQde/miQ==}
+    dependencies:
+      tabbable: 5.3.3
+    dev: false
 
   /form-data-encoder/1.7.1:
     resolution: {integrity: sha512-EFRDrsMm/kyqbTQocNvRXMLjc7Es2Vk+IQFx/YW7hkUH1eBl4J1fqiP34l74Yt0pFLCNpc06fkbVk00008mzjg==}
@@ -1159,6 +1214,10 @@ packages:
     dependencies:
       p-locate: 5.0.0
     dev: true
+
+  /lodash.merge/4.6.2:
+    resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+    dev: false
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -1799,6 +1858,10 @@ packages:
     dev: true
     optional: true
 
+  /scroll-lock/2.1.5:
+    resolution: {integrity: sha512-GN8Lp0AzXbkrPFUUNkMUruiiv019UvarNKE/SnXi+AxZRjMnDc2R22VB9RcUtL4P/uub04cKibmpHKIKTyWwYQ==}
+    dev: false
+
   /semver-diff/4.0.0:
     resolution: {integrity: sha512-0Ju4+6A8iOnpL/Thra7dZsSlOHYAHIeMxfhWQRI1/VLcT3WDBZKKtQt/QkBOsiIN9ZpuvHE6cGZ0x4glCMmfiA==}
     engines: {node: '>=12'}
@@ -1865,6 +1928,29 @@ packages:
       ip: 1.1.8
       smart-buffer: 4.2.0
     dev: true
+
+  /solid-icons/1.0.1_solid-js@1.5.4:
+    resolution: {integrity: sha512-9rxPeJ1UDGzWGlksjuXuyK2CdL1vg89inDyOl43koL3zoMgXLzY6LVLuMeuhslHbjq7Fp2h6fSSImj9ygfvleA==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      solid-js: 1.5.4
+    dev: false
+
+  /solid-js/1.5.4:
+    resolution: {integrity: sha512-+65anSHhH27htkhP5LuC912fviMIckgc7/yN+WWrKhS9Kp3dvtDNl5/m4GWX1lpCvcubjShqJjGt16HET5z5Ig==}
+    dependencies:
+      csstype: 3.1.1
+    dev: false
+
+  /solid-transition-group/0.0.10_solid-js@1.5.4:
+    resolution: {integrity: sha512-b3O9z6BUP60CG1WnTdqFuvHms0reDNYwQF+eAEEaSaoDEmiOu9+Lu7zQgWGySJjaAdSAClhmFCmx/eAjQgfIoA==}
+    peerDependencies:
+      solid-js: ^1.0.0
+    dependencies:
+      solid-js: 1.5.4
+    dev: false
 
   /source-map-support/0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
@@ -1972,6 +2058,10 @@ packages:
       semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /tabbable/5.3.3:
+    resolution: {integrity: sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==}
     dev: false
 
   /tar/6.1.11:

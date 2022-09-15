@@ -1,4 +1,4 @@
-import { TableProps, Table, Tbody } from "@hope-ui/solid";
+import { TableProps, Table, Tbody } from "@hope-ui/solid"
 
 function BaseTable(props: TableProps) {
     return (

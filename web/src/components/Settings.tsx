@@ -10,9 +10,7 @@ function Settings() {
         <BaseTable>
             <Row
                 title="Theme"
-                tdProps={{
-                    padding: '5px 6px'
-                }}
+                padding="5px 6px"
             >
                 <RadioGroup
                     defaultValue={colorMode()}

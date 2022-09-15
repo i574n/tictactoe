@@ -1,9 +1,12 @@
-import * as db from "../db"
 import * as store from "../store"
 import useStore from "../hooks/useStore"
-import { Stack } from '@hope-ui/solid'
+import { Box, Stack } from '@hope-ui/solid'
 import useFetch from "../hooks/useFetch"
 import BaseButton from "./BaseButton"
+import { BiRegularPlus, BiRegularMinus } from "solid-icons/bi"
+import { For } from "solid-js"
+import BaseTable from "./BaseTable"
+import Row from "./Row"
 
 
 function ChainStatus<State extends store.State>() {
@@ -25,21 +28,45 @@ function ChainStatus<State extends store.State>() {
     )
 
     return (
-        <div id="status">
-            <Stack direction="row" spacing="4px">
-                <BaseButton
-                    onClick={request}
-                >
-                    Request
-                </BaseButton>
-                <BaseButton
-                    onClick={clear}
-                >
-                    Clear
-                </BaseButton>
-            </Stack>
-            <pre>{JSON.stringify(db.lastObjectEntry(state.profile.tmp.chainStatus), null, 2)}</pre>
-        </div>
+        <Row
+            props={{
+                id: "status",
+                title:
+                    <Stack
+                        alignItems="start"
+                        direction="column"
+                        spacing="6px"
+                        padding="3px"
+                    >
+                        <Box>Chain Status</Box>
+                        <BaseButton
+                            leftIcon={<BiRegularPlus />}
+                            onClick={request}
+                        >
+                            Request
+                        </BaseButton>
+                        <BaseButton
+                            leftIcon={<BiRegularMinus />}
+                            onClick={clear}
+                        >
+                            Clear
+                        </BaseButton>
+                    </Stack>
+            }}
+        >
+            <BaseTable>
+                <For each={Object.entries(state.profile.tmp.chainStatus || {}).reverse()}>
+                    {([k, v]) => (
+                        <Row
+                            title={k}
+                            padding="3px"
+                        >
+                            <pre>{JSON.stringify(v, null, 2)}</pre>
+                        </Row>
+                    )}
+                </For>
+            </BaseTable>
+        </Row>
     )
 }
 

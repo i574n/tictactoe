@@ -29,37 +29,37 @@ function Counter<State extends store.State>() {
 
     return (
         <Row
-            id="counter"
-            title={
-                <Stack
-                    direction="column"
-                    spacing="7px"
-                    paddingBottom="4px"
-                >
-                    <Box>Counter</Box>
-                    <BaseButton
-                        leftIcon={<BiRegularPlus />}
-                        onClick={request}
+            props={{
+                id: "counter",
+                title:
+                    <Stack
+                        alignItems="start"
+                        direction="column"
+                        spacing="6px"
+                        padding="3px"
                     >
-                        Request
-                    </BaseButton>
-                    <BaseButton
-                        leftIcon={<BiRegularMinus />}
-                        onClick={clear}
-                    >
-                        Clear
-                    </BaseButton>
-                </Stack>
-            }
+                        <Box>Counter</Box>
+                        <BaseButton
+                            leftIcon={<BiRegularPlus />}
+                            onClick={request}
+                        >
+                            Request
+                        </BaseButton>
+                        <BaseButton
+                            leftIcon={<BiRegularMinus />}
+                            onClick={clear}
+                        >
+                            Clear
+                        </BaseButton>
+                    </Stack>
+            }}
         >
             <BaseTable>
                 <For each={Object.entries(state.profile.tmp.counter || {}).reverse()}>
                     {([k, v]) => (
                         <Row
                             title={k}
-                            tdProps={{
-                                padding: '3px'
-                            }}
+                            padding="3px"
                         >
                             <pre>{JSON.stringify(v, null, 2)}</pre>
                         </Row>

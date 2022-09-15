@@ -5,28 +5,28 @@ import { Checkbox, Tr, Td, Box, TdProps } from '@hope-ui/solid'
 
 
 function Row<State extends ui.UiState>(
-    props: {
-        title?: string | JSX.Element,
-        children?: any,
-        loader?: boolean,
-        id?: string,
-        tdProps?: TdProps,
-        onLoad?: (state: State, dispatch: (_: Partial<State>) => void) => void
+    { props: props_, ...props }: TdProps & {
+        props?: {
+            title?: JSX.Element,
+            loader?: boolean,
+            id?: string,
+            onLoad?: (state: State, dispatch: (_: Partial<State>) => void) => void
+        }
     }
 ) {
-    const [checkedItems, setCheckedItems] = createSignal([props.loader !== false, false])
+    const [checkedItems, setCheckedItems] = createSignal([props_?.loader !== false, false])
     return (
         <Tr
-            id={props.id}
+            id={props_?.id}
             display="flex"
-            flex={props.children && 1}
+            flex={1}
             border="1px solid $neutral5"
             flexDirection={{
                 "@initial": "column",
                 "@sm": "row"
             }}
         >
-            {props.title && (
+            {props_?.title || props.title && (
                 <Td
                     border="0 !important"
                     color="$neutral9"
@@ -36,8 +36,8 @@ function Row<State extends ui.UiState>(
                     outline="1px solid $neutral5"
                     padding="3px 20px 0 8px"
                 >
-                    {typeof props.loader !== 'boolean'
-                        ? props.title
+                    {typeof props_?.loader !== 'boolean'
+                        ? props_?.title || props.title
                         : <Checkbox
                             size="sm"
                             marginBottom="2px"
@@ -48,7 +48,7 @@ function Row<State extends ui.UiState>(
                             <Box
                                 paddingTop="2px"
                             >
-                                {props.title}
+                                {props_?.title || props.title}
                             </Box>
                         </Checkbox>
                     }
@@ -66,19 +66,19 @@ function Row<State extends ui.UiState>(
                     fontSize="$sm"
                     maxHeight="85vh"
                     overflowY="auto"
-                    {...props.tdProps}
+                    {...props}
                 >
-                    {typeof props.loader !== 'boolean'
+                    {typeof props_?.loader !== 'boolean'
                         ? props.children
                         : (
                             checkedItems()[0]
                                 ? <Loader<State>
-                                    onLoad={props.onLoad}
+                                    onLoad={props_?.onLoad}
                                     defaults={{ loaded: true }}
                                 >
                                     {props.children}
                                 </Loader>
-                                : <>&nbsp;</>
+                                : <></>
                         )
                     }
                 </Td>

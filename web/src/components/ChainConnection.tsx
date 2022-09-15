@@ -9,9 +9,7 @@ function ChainConnection<State extends chain.ChainState>() {
         <BaseTable>
             <Row
                 title="Token"
-                tdProps={{
-                    padding: '3px'
-                }}
+                padding="3px"
             >
                 <StateInput<State['chainToken'], State>
                     get={(state) => state.chainToken}
@@ -19,9 +17,7 @@ function ChainConnection<State extends chain.ChainState>() {
             </Row>
             <Row
                 title="URL"
-                tdProps={{
-                    padding: '3px'
-                }}
+                padding="3px"
             >
                 <StateInput<State['chainUrl'], State>
                     get={(state) => state.chainUrl}
@@ -29,9 +25,7 @@ function ChainConnection<State extends chain.ChainState>() {
             </Row>
             <Row
                 title="Port"
-                tdProps={{
-                    padding: '3px'
-                }}
+                padding="3px"
             >
                 <StateInput<State['chainPort'], State>
                     get={(state) => state.chainPort}

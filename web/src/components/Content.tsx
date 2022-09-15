@@ -44,16 +44,20 @@ function Content() {
                 </Row>
                 <Row />
                 <Row
-                    loader={false}
                     title="Chain"
+                    props={{
+                        loader: false
+                    }}
                 >
                     <Chain />
                 </Row>
                 <Row />
                 <Row
-                    id="db"
-                    loader={false}
                     title="Database"
+                    props={{
+                        id: "db",
+                        loader: false
+                    }}
                 >
                     <Database />
                 </Row>
@@ -65,16 +69,8 @@ function Content() {
                         <Counter />
                         {!!util.env.GITHUB_RUN_ID
                             ? <>
-                                <Row
-                                    title="Chain Status"
-                                >
-                                    <ChainStatus />
-                                </Row>
-                                <Row
-                                    title="Chain Deploy"
-                                >
-                                    <ChainDeploy />
-                                </Row>
+                                <ChainStatus />
+                                <ChainDeploy />
                             </>
                             : <></>}
                         {/* {!util.IS_TEST && !util.env.GITHUB_RUN_ID
