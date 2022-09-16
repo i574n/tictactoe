@@ -1,27 +1,8 @@
-import BaseTable from "./BaseTable"
-import Row from "./Row"
-import ExternalLink from "./ExternalLink"
+import * as components_spi from "../../../lib_ts/components_spi"
+
 
 function Links() {
-    return (
-        <BaseTable>
-            <Row
-                padding="1px 6px"
-            >
-                <ExternalLink href="https://github.com/fc1943s/tictactoe_spiral" />
-            </Row>
-            <Row
-                padding="1px 6px"
-            >
-                <ExternalLink href="https://fc1943s.github.io/tictactoe_spiral" />
-            </Row>
-            <Row
-                padding="1px 6px"
-            >
-                <ExternalLink href="https://fc1943s.github.io/tictactoe_spiral/docs" />
-            </Row>
-        </BaseTable>
-    )
+    return <components_spi.v10 />
 }
 
 export default Links

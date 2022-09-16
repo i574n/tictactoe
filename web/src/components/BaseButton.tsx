@@ -1,15 +1,9 @@
-import { Button, ButtonProps } from "@hope-ui/solid"
+import * as components_spi from "../../../lib_ts/components_spi"
+import { ButtonProps } from "@hope-ui/solid"
+
 
 function BaseButton(props: ButtonProps) {
-    return (
-        <Button
-            size="xs"
-            justifyContent="left"
-            compact
-            colorScheme="neutral"
-            {...props}
-        />
-    )
+    return <components_spi.v1 {...{ l6: new components_spi.US7(1, [props.children]) } as components_spi.Heap0} />
 }
 
 export default BaseButton

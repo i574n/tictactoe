@@ -43,13 +43,13 @@ function Loader<State extends ui.UiState>(props: {
             flex={1}
         >
             {!loaded()
-                ? <div>
+                ? <Box>
                     <BaseButton
                         onClick={loadClick}
                     >
                         Load
                     </BaseButton>
-                </div>
+                </Box>
                 : <Box
                     display="flex"
                     flex={1}

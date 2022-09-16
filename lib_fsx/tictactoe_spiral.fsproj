@@ -10,6 +10,6 @@
         <Compile Include="$(MSBuildThisFileDirectory)components_spi.fsx" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Fable.Core" Version="4.0.0-theta-001" />
+        <PackageReference Include="Feliz.JSX.Solid" Version="1.0.0-beta-001" />
     </ItemGroup>
 </Project>
