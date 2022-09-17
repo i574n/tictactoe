@@ -3,7 +3,7 @@ import { ButtonProps } from "@hope-ui/solid"
 
 
 function BaseButton(props: ButtonProps) {
-    return <components_spi.v1 {...{ l6: new components_spi.US7(1, [props.children]) } as components_spi.Heap0} />
+    return <components_spi.v1 {...components_spi.v7(Object.entries(props))} />
 }
 
 export default BaseButton

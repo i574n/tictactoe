@@ -3,7 +3,7 @@ import * as components_spi from "../../../lib_ts/components_spi"
 
 
 function BaseTable(props: TableProps) {
-    return <components_spi.v4 {...{ l6: new components_spi.US7(1, [props.children]) } as components_spi.Heap0} />
+    return <components_spi.v4 {...components_spi.v7(Object.entries(props))} />
 }
 
 export default BaseTable
