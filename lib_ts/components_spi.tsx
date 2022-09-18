@@ -2,12 +2,12 @@ import { int32 } from "./fable_modules/fable-library.4.0.0-theta-003/Int32.js";
 import { Record, Union } from "./fable_modules/fable-library.4.0.0-theta-003/Types.js";
 import { tuple_type, record_type, obj_type, int32_type, lambda_type, unit_type, bool_type, class_type, union_type, string_type, TypeInfo } from "./fable_modules/fable-library.4.0.0-theta-003/Reflection.js";
 import { fill } from "./fable_modules/fable-library.4.0.0-theta-003/Array.js";
-import { curry, uncurry, equals, createObj } from "./fable_modules/fable-library.4.0.0-theta-003/Util.js";
+import { equals, createObj } from "./fable_modules/fable-library.4.0.0-theta-003/Util.js";
 import { createEffect, on, createSignal, createComponent } from "solid-js";
 import { IconButton, Stack, Checkbox, Box, Td, Tr, Anchor, Icon, Tbody, Table, Button } from "@hope-ui/solid";
 import { BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow, BiRegularRefresh, BiRegularLinkExternal } from "solid-icons/bi";
-import { interpolate, toConsole } from "./fable_modules/fable-library.4.0.0-theta-003/String.js";
 import { useStoreon } from "@storeon/solidjs";
+import { interpolate, toConsole } from "./fable_modules/fable-library.4.0.0-theta-003/String.js";
 import { nonSeeded } from "./fable_modules/fable-library.4.0.0-theta-003/Random.js";
 
 export class US0 extends Union {
@@ -404,16 +404,16 @@ export function Mut2$reflection(): TypeInfo {
     return record_type("Components_spi.Mut2", [], Mut2, () => [["l0", int32_type], ["l1", US0$reflection()], ["l2", US1$reflection()], ["l3", US0$reflection()], ["l4", US0$reflection()], ["l5", US0$reflection()], ["l6", US2$reflection()], ["l7", US3$reflection()], ["l8", US0$reflection()], ["l9", US0$reflection()], ["l10", US2$reflection()], ["l11", US0$reflection()], ["l12", US0$reflection()], ["l13", US2$reflection()], ["l14", US4$reflection()], ["l15", US0$reflection()], ["l16", US0$reflection()], ["l17", US0$reflection()], ["l18", US0$reflection()], ["l19", US5$reflection()], ["l20", US0$reflection()], ["l21", US0$reflection()], ["l22", US0$reflection()], ["l23", US6$reflection()], ["l24", US0$reflection()], ["l25", US0$reflection()], ["l26", US0$reflection()], ["l27", US0$reflection()], ["l28", US7$reflection()], ["l29", US8$reflection()], ["l30", US0$reflection()], ["l31", US0$reflection()], ["l32", US0$reflection()], ["l33", US0$reflection()], ["l34", US0$reflection()], ["l35", US0$reflection()], ["l36", US0$reflection()], ["l37", US0$reflection()], ["l38", US2$reflection()], ["l39", US0$reflection()], ["l40", US0$reflection()], ["l41", US5$reflection()], ["l42", US0$reflection()], ["l43", US0$reflection()], ["l44", US4$reflection()]]);
 }
 
-export class Heap1 extends Record {
-    l0: US4;
-    constructor(l0: US4) {
+export class Mut3 extends Record {
+    l0: int32;
+    constructor(l0: int32) {
         super();
-        this.l0 = l0;
+        this.l0 = (l0 | 0);
     }
 }
 
-export function Heap1$reflection(): TypeInfo {
-    return record_type("Components_spi.Heap1", [], Heap1, () => [["l0", US4$reflection()]]);
+export function Mut3$reflection(): TypeInfo {
+    return record_type("Components_spi.Mut3", [], Mut3, () => [["l0", int32_type]]);
 }
 
 export class US10 extends Union {
@@ -430,7 +430,7 @@ export class US10 extends Union {
 }
 
 export function US10$reflection(): TypeInfo {
-    return union_type("Components_spi.US10", [], US10, () => [[], [["f1_0", lambda_type(US4$reflection(), lambda_type(lambda_type(string_type, lambda_type(Heap1$reflection(), unit_type)), unit_type))]]]);
+    return union_type("Components_spi.US10", [], US10, () => [[], [["f1_0", lambda_type(Mut3$reflection(), lambda_type(lambda_type(Mut3$reflection(), unit_type), unit_type))]]]);
 }
 
 export function method0(): [US0, US1, US0, US0, US0, US2, US3, US0, US0, US2, US0, US0, US2, US4, US0, US0, US0, US0, US5, US0, US0, US0, US6, US0, US0, US0, US0, US7, US8, US0, US0, US0, US0, US0, US0, US0, US0, US2, US0, US0, US5, US0, US0, US4] {
@@ -693,9 +693,9 @@ export function method2(v0_1: Heap0): Array<[string, any]> {
 
 export function closure0(unitVar: void, v0_1: Heap0): any {
     const patternInput = method0();
-    const v56 = createObj(method2(method1(v0_1, patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], v0_1.l6, patternInput[7], new US0(1, "neutral"), new US2(1, true), patternInput[10], patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], new US0(1, "left"), patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], new US0(1, "xs"), patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43])));
-    const v59 = createComponent;
-    return v59(Button, v56);
+    const v55 = createObj(method2(method1(v0_1, patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], new US0(1, "neutral"), new US2(1, true), patternInput[10], patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], new US0(1, "left"), patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], new US0(1, "xs"), patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43])));
+    const v58 = createComponent;
+    return v58(Button, v55);
 }
 
 export function closure2(unitVar: void, v0_1: Heap0): any {
@@ -1140,124 +1140,135 @@ export function closure20(v0_1: (arg0: void) => any, unitVar: void): any {
     return [v0_1()];
 }
 
-export function closure21(v0_1: (arg0: void) => boolean, unitVar: void): Array<boolean> {
+export function closure21(v0_1: any, v1_1: Mut3): void {
+    v0_1("set", v1_1);
+}
+
+export function method18(): [Mut3, (arg0: Mut3) => void] {
+    const v2_1 = useStoreon;
+    const v3_1 = v2_1();
+    const v4_1 = v3_1[0];
+    const v5_1 = v3_1[1];
+    const v6_1 = (v: Mut3): void => {
+        closure21(v5_1, v);
+    };
+    return [v4_1, v6_1];
+}
+
+export function closure22(v0_1: (arg0: void) => boolean, unitVar: void): Array<boolean> {
     return [v0_1()];
 }
 
-export function closure22(v0_1: (arg0: boolean) => void, v1_1: (arg0: void) => boolean, unitVar: void): void {
+export function closure23(v0_1: (arg0: boolean) => void, v1_1: (arg0: void) => boolean, unitVar: void): void {
     if (v1_1()) {
         v0_1(false);
     }
 }
 
-export function closure23(unitVar: void, v0_1: Heap0): any {
+export function closure24(unitVar: void, v0_1: Heap0): any {
     const v2_1 = createObj(method2(v0_1));
     const v5_1 = createComponent;
     return v5_1(Box, v2_1);
 }
 
-export function closure26(unitVar: void, unitVar_1: void): any {
+export function closure27(unitVar: void, unitVar_1: void): any {
     return [<>
         Load
     </>];
 }
 
-export function closure27(v0_1: (arg0: boolean) => void, v1_1: (arg0: string, arg1: Heap1) => void, v2_1: US4, unitVar: void): void {
+export function closure28(v0_1: (arg0: boolean) => void, v1_1: (arg0: Mut3) => void, v2_1: Mut3, unitVar: void): void {
     v0_1(true);
 }
 
-export function closure25(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: boolean) => void, v45: (arg0: string, arg1: Heap1) => void, v46: US4, unitVar: void): any {
+export function closure26(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: boolean) => void, v45: (arg0: Mut3) => void, v46: Mut3, unitVar: void): any {
     const v47 = (v: Heap0): any => closure0(void 0, v);
-    const v48 = (): any => closure26(void 0, void 0);
+    const v48 = (): any => closure27(void 0, void 0);
     const v50 = (): void => {
-        closure27(v44, v45, v46, void 0);
+        closure28(v44, v45, v46, void 0);
     };
     return [method14(v47, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, v48), v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v50), v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43))];
 }
 
-export function closure30(unitVar: void, v0_1: Heap0): any {
+export function closure31(unitVar: void, v0_1: Heap0): any {
     const v2_1 = createObj(method2(v0_1));
     const v5_1 = createComponent;
     return v5_1(Stack, v2_1);
 }
 
-export function method18(v0_1: any, v1_1: Heap0): any {
+export function method19(v0_1: any, v1_1: Heap0): any {
     const v5_1 = createComponent;
     return v5_1(v0_1, v1_1);
 }
 
-export function closure32(v0_1: (arg0: boolean) => void, unitVar: void): void {
+export function closure33(v0_1: (arg0: boolean) => void, unitVar: void): void {
     v0_1(true);
 }
 
-export function closure33(v0_1: (arg0: string, arg1: Heap1) => void, v1_1: US4, v2_1: int32, v3_1: (arg0: boolean) => void, v4_1: (arg0: void) => boolean, unitVar: void): void {
+export function closure34(v0_1: (arg0: Mut3) => void, v1_1: Mut3, v2_1: int32, v3_1: (arg0: boolean) => void, v4_1: (arg0: void) => boolean, unitVar: void): void {
     const v6_1 = v4_1() === false;
     v3_1(v6_1);
-    const v10_1 = new Heap1(v6_1 ? (new US4(1, v2_1)) : (new US4(0)));
-    toConsole(interpolate("%A%P()", [["new_state", v10_1]]));
-    v0_1("set", v10_1);
+    const v7_1 = (v6_1 ? v2_1 : 0) | 0;
+    v1_1.l0 = (v7_1 | 0);
+    toConsole(interpolate("%A%P()", ["new_state"]));
+    v0_1(v1_1);
 }
 
-export function closure34(v0_1: (arg0: boolean) => void, unitVar: void): void {
+export function closure35(v0_1: (arg0: boolean) => void, unitVar: void): void {
     v0_1(false);
 }
 
-export function closure31(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: string, arg1: Heap1) => void, v45: US4, v46: int32, v47: (arg0: boolean) => void, v48: (arg0: boolean) => void, v49: (arg0: boolean) => void, v50: (arg0: void) => boolean, unitVar: void): any {
+export function closure32(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: Mut3) => void, v45: Mut3, v46: int32, v47: (arg0: boolean) => void, v48: (arg0: boolean) => void, v49: (arg0: boolean) => void, v50: (arg0: void) => boolean, unitVar: void): any {
     let v84: any, v86: any;
     const v53 = BiRegularRefresh;
     const v54 = "14px";
     const v60 = "neutral";
     const v62 = "20px";
     const v65 = (): void => {
-        closure32(v48, void 0);
+        closure33(v48, void 0);
     };
     const v67 = "xs";
-    const v71 = createObj(method2(new Heap0(new US0(1, "Refresh"), v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US0(1, v60), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, new US0(1, v62), v17_1, new US5(1, method18(v53, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, new US0(1, v54), v36, v37, v38, v39, v40, v41, v42, v43))), v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v65), v29, v30, v31, v32, v33, v34, new US0(1, v67), v36, v37, v38, v39, v40, v41, v42, v43)));
+    const v71 = createObj(method2(new Heap0(new US0(1, "Refresh"), v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US0(1, v60), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, new US0(1, v62), v17_1, new US5(1, method19(v53, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, new US0(1, v54), v36, v37, v38, v39, v40, v41, v42, v43))), v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v65), v29, v30, v31, v32, v33, v34, new US0(1, v67), v36, v37, v38, v39, v40, v41, v42, v43)));
     const v74 = createComponent;
     const v77 = v74(IconButton, v71);
     const v95 = (): void => {
-        closure33(v44, v45, v46, v49, v50, void 0);
+        closure34(v44, v45, v46, v49, v50, void 0);
     };
-    const v100 = createObj(method2(new Heap0(new US0(1, v50() ? "Restore" : "Maximize"), v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US0(1, v60), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, new US0(1, v62), v17_1, new US5(1, method18(v50() ? ((v84 = BiRegularDownArrow, v84)) : ((v86 = BiRegularUpArrow, v86)), new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, new US0(1, v54), v36, v37, v38, v39, v40, v41, v42, v43))), v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v95), v29, v30, v31, v32, v33, v34, new US0(1, v67), v36, v37, v38, v39, v40, v41, v42, v43)));
+    const v100 = createObj(method2(new Heap0(new US0(1, v50() ? "Restore" : "Maximize"), v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US0(1, v60), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, new US0(1, v62), v17_1, new US5(1, method19(v50() ? ((v84 = BiRegularDownArrow, v84)) : ((v86 = BiRegularUpArrow, v86)), new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, new US0(1, v54), v36, v37, v38, v39, v40, v41, v42, v43))), v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v95), v29, v30, v31, v32, v33, v34, new US0(1, v67), v36, v37, v38, v39, v40, v41, v42, v43)));
     const v101 = createComponent;
     const v102 = v101(IconButton, v100);
     const v104 = BiRegularUndo;
     const v113 = (): void => {
-        closure34(v47, void 0);
+        closure35(v47, void 0);
     };
-    const v118 = createObj(method2(new Heap0(new US0(1, "Unload"), v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US0(1, v60), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, new US0(1, v62), v17_1, new US5(1, method18(v104, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, new US0(1, v54), v36, v37, v38, v39, v40, v41, v42, v43))), v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v113), v29, v30, v31, v32, v33, v34, new US0(1, v67), v36, v37, v38, v39, v40, v41, v42, v43)));
+    const v118 = createObj(method2(new Heap0(new US0(1, "Unload"), v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US0(1, v60), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, new US0(1, v62), v17_1, new US5(1, method19(v104, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, new US0(1, v54), v36, v37, v38, v39, v40, v41, v42, v43))), v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v113), v29, v30, v31, v32, v33, v34, new US0(1, v67), v36, v37, v38, v39, v40, v41, v42, v43)));
     const v119 = createComponent;
     return [v77, v102, v119(IconButton, v118)];
 }
 
-export function closure29(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: string, arg1: Heap1) => void, v45: US4, v46: int32, v47: (arg0: boolean) => void, v48: (arg0: boolean) => void, v49: (arg0: void) => boolean, v50: (arg0: boolean) => void, v51: (arg0: void) => boolean, v52: (arg0: void) => any, unitVar: void): any {
-    const v53 = (v: Heap0): any => closure30(void 0, v);
-    const v62 = (): any => closure31(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, void 0);
-    const v68 = "6px";
-    return [method14(v53, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, v62), v7_1, v8_1, v9_1, new US0(1, "row"), ((v45.tag === 1) && (v45.fields[0] === v46)) ? (new US0(1, "none")) : (new US0(0)), v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, new US0(1, "absolute"), new US0(1, v68), v35, new US0(1, "3px"), v37, v38, v39, v40, new US0(1, v68), v42, new US4(1, 1))), (v49() === false) ? v52() : <></>];
+export function closure30(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: Mut3) => void, v45: Mut3, v46: int32, v47: (arg0: boolean) => void, v48: (arg0: boolean) => void, v49: (arg0: void) => boolean, v50: (arg0: boolean) => void, v51: (arg0: void) => boolean, v52: (arg0: void) => any, unitVar: void): any {
+    const v53 = (v: Heap0): any => closure31(void 0, v);
+    const v60 = (): any => closure32(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, void 0);
+    const v66 = "6px";
+    return [method14(v53, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, v60), v7_1, v8_1, v9_1, new US0(1, "row"), (v45.l0 === v46) ? (new US0(1, "none")) : (new US0(0)), v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, new US0(1, "absolute"), new US0(1, v66), v35, new US0(1, "3px"), v37, v38, v39, v40, new US0(1, v66), v42, new US4(1, 1))), (v49() === false) ? v52() : <></>];
 }
 
-export function closure28(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: string, arg1: Heap1) => void, v46: US4, v47: int32, v48: (arg0: boolean) => void, v49: (arg0: boolean) => void, v50: (arg0: void) => boolean, v51: (arg0: boolean) => void, v52: (arg0: void) => boolean, unitVar: void): any {
-    let v56: (arg0: Heap0) => any, v62: (arg0: void) => any;
+export function closure29(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: Mut3) => void, v46: Mut3, v47: int32, v48: (arg0: boolean) => void, v49: (arg0: boolean) => void, v50: (arg0: void) => boolean, v51: (arg0: boolean) => void, v52: (arg0: void) => boolean, unitVar: void): any {
+    let v56: (arg0: Heap0) => any, v63: (arg0: void) => any;
     const v53 = v0_1.l6;
-    return [(v53.tag === 1) ? ((v56 = ((v: Heap0): any => closure23(void 0, v)), (v62 = ((): any => closure29(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53.fields[0], void 0)), method14(v56, new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v62), v8_1, v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, new US4(1, 1), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, (v46.tag === 1) ? (new US0(1, "relative")) : (new US0(0)), v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))) : <></>];
+    return [(v53.tag === 1) ? ((v56 = ((v: Heap0): any => closure24(void 0, v)), (v63 = ((): any => closure30(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53.fields[0], void 0)), method14(v56, new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v63), v8_1, v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, new US4(1, 1), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, (v46.l0 <= 0) ? (new US0(1, "relative")) : (new US0(0)), v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))) : <></>];
 }
 
-export function closure24(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: string, arg1: Heap1) => void, v46: US4, v47: int32, v48: (arg0: boolean) => void, v49: (arg0: void) => boolean, v50: (arg0: boolean) => void, v51: (arg0: void) => boolean, v52: (arg0: boolean) => void, v53: (arg0: void) => boolean, unitVar: void): any {
+export function closure25(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: Mut3) => void, v46: Mut3, v47: int32, v48: (arg0: boolean) => void, v49: (arg0: void) => boolean, v50: (arg0: boolean) => void, v51: (arg0: void) => boolean, v52: (arg0: boolean) => void, v53: (arg0: void) => boolean, unitVar: void): any {
     let v56: (arg0: Heap0) => any, v57: (arg0: void) => any, v61: (arg0: Heap0) => any, v65: US4, v70: US0, v75: US0, v80: US0, v85: US0, v90: US0, v96: (arg0: void) => any;
-    return [(v49() === false) ? ((v56 = ((v: Heap0): any => closure23(void 0, v)), (v57 = ((): any => closure25(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v45, v46, void 0)), method14(v56, new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v57), v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))) : ((v61 = ((v_1: Heap0): any => closure23(void 0, v_1)), (v65 = (v53() ? (new US4(1, 1)) : (new US4(0))), (v70 = (v53() ? (new US0(1, "absolute")) : (new US0(0))), (v75 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v80 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v85 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v90 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v96 = ((): any => closure28(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53, void 0)), method14(v61, new Heap0(v1_1, v2_1, v53() ? (new US0(1, "$bg")) : (new US0(0)), v4_1, v85, v6_1, new US3(1, v96), v8_1, v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, new US4(1, 1), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v90, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v80, v36, v37, v38, v39, v40, v41, v75, v43, v65)))))))))))];
+    return [(v49() === false) ? ((v56 = ((v: Heap0): any => closure24(void 0, v)), (v57 = ((): any => closure26(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v45, v46, void 0)), method14(v56, new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v57), v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))) : ((v61 = ((v_1: Heap0): any => closure24(void 0, v_1)), (v65 = (v53() ? (new US4(1, 1)) : (new US4(0))), (v70 = (v53() ? (new US0(1, "absolute")) : (new US0(0))), (v75 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v80 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v85 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v90 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v96 = ((): any => closure29(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53, void 0)), method14(v61, new Heap0(v1_1, v2_1, v53() ? (new US0(1, "$bg")) : (new US0(0)), v4_1, v85, v6_1, new US3(1, v96), v8_1, v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, new US4(1, 1), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v90, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v80, v36, v37, v38, v39, v40, v41, v75, v43, v65)))))))))))];
 }
 
 export function closure19(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: void) => boolean, v46: (arg0: void) => any, unitVar: void): any {
-    let v51: (arg0: void) => any, v53: Heap0, patternInput: [US0, US1, US0, US0, US0, US2, US3, US0, US0, US2, US0, US0, US2, US4, US0, US0, US0, US0, US5, US0, US0, US0, US6, US0, US0, US0, US0, US7, US8, US0, US0, US0, US0, US0, US0, US0, US0, US2, US0, US0, US5, US0, US0, US4], v97: US4, v96: US0, v95: US0, v94: US5, v93: US0, v92: US0, v91: US2, v90: US0, v89: US0, v88: US0, v87: US0, v86: US0, v85: US0, v84: US0, v83: US0, v82: US8, v81: US7, v80: US0, v79: US0, v78: US0, v77: US0, v76: US6, v75: US0, v74: US0, v72: US5, v71: US0, v70: US0, v69: US0, v68: US0, v66: US2, v64: US0, v63: US2, v62: US0, v61: US0, v59: US2, v58: US0, v57: US0, v56: US0, v55: US1, v54: US0, v100: any, v101: Array<any>, v102: US4, v103: (arg0: string, arg1: Heap1) => void, value_2: any, v104: int32, patternInput_1: [(arg0: void) => boolean, (arg0: boolean) => void], patternInput_2: [(arg0: void) => boolean, (arg0: boolean) => void], v110: (arg0: boolean) => void, v109: (arg0: void) => boolean, patternInput_3: [(arg0: void) => boolean, (arg0: boolean) => void], v116: any, v117: (arg0: void) => Array<boolean>, v118: (arg0: void) => void, v119: any, v121: any, v122: (arg0: Heap0) => any, v124: (arg0: void) => any;
-    return [(v0_1.l37.tag === 1) ? (v45() ? ((v51 = ((): any => closure20(v46, void 0)), (v53 = (new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v51), v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44)), (patternInput = method0(), (v97 = patternInput[43], (v96 = patternInput[42], (v95 = patternInput[41], (v94 = patternInput[40], (v93 = patternInput[39], (v92 = patternInput[38], (v91 = patternInput[37], (v90 = patternInput[36], (v89 = patternInput[35], (v88 = patternInput[34], (v87 = patternInput[33], (v86 = patternInput[32], (v85 = patternInput[31], (v84 = patternInput[30], (v83 = patternInput[29], (v82 = patternInput[28], (v81 = patternInput[27], (v80 = patternInput[26], (v79 = patternInput[25], (v78 = patternInput[24], (v77 = patternInput[23], (v76 = patternInput[22], (v75 = patternInput[21], (v74 = patternInput[20], (v72 = patternInput[18], (v71 = patternInput[17], (v70 = patternInput[16], (v69 = patternInput[15], (v68 = patternInput[14], (v66 = patternInput[12], (v64 = patternInput[10], (v63 = patternInput[9], (v62 = patternInput[8], (v61 = patternInput[7], (v59 = patternInput[5], (v58 = patternInput[4], (v57 = patternInput[3], (v56 = patternInput[2], (v55 = patternInput[1], (v54 = patternInput[0], (v100 = useStoreon, (v101 = (v100()), (v102 = v101[0], (v103 = ((value_2 = v101[1], (arg: string): (arg0: Heap1) => void => {
-        const clo_1 = value_2(arg);
-        return (arg_1: Heap1): void => {
-            clo_1(arg_1);
-        };
-    })), (v104 = (nonSeeded().Next0() | 0), (patternInput_1 = method17(true), (patternInput_2 = method17(false), (v110 = patternInput_2[1], (v109 = patternInput_2[0], (patternInput_3 = method17(false), (v116 = on, (v117 = ((): Array<boolean> => closure21(v109, void 0)), (v118 = ((): void => {
-        closure22(v110, v109, void 0);
-    }), (v119 = (v116(v117, v118)), (v121 = createEffect, (void (v121(v119)), (v122 = ((v: Heap0): any => closure23(void 0, v)), (v124 = ((): any => closure24(v53, v54, v55, v56, v57, v58, v59, patternInput[6], v61, v62, v63, v64, patternInput[11], v66, patternInput[13], v68, v69, v70, v71, v72, patternInput[19], v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, uncurry(2, v103), v102, v104, patternInput_1[1], patternInput_1[0], v110, v109, patternInput_3[1], patternInput_3[0], void 0)), method14(v122, new Heap0(v54, v55, v56, v57, v58, v59, new US3(1, v124), v61, v62, v63, v64, new US0(1, "flex"), v66, new US4(1, 1), v68, v69, v70, v71, v72, v53.l19, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) : <></>) : v46()];
+    let v51: (arg0: void) => any, v53: Heap0, patternInput: [US0, US1, US0, US0, US0, US2, US3, US0, US0, US2, US0, US0, US2, US4, US0, US0, US0, US0, US5, US0, US0, US0, US6, US0, US0, US0, US0, US7, US8, US0, US0, US0, US0, US0, US0, US0, US0, US2, US0, US0, US5, US0, US0, US4], v97: US4, v96: US0, v95: US0, v94: US5, v93: US0, v92: US0, v91: US2, v90: US0, v89: US0, v88: US0, v87: US0, v86: US0, v85: US0, v84: US0, v83: US0, v82: US8, v81: US7, v80: US0, v79: US0, v78: US0, v77: US0, v76: US6, v75: US0, v74: US0, v72: US5, v71: US0, v70: US0, v69: US0, v68: US0, v66: US2, v64: US0, v63: US2, v62: US0, v61: US0, v59: US2, v58: US0, v57: US0, v56: US0, v55: US1, v54: US0, patternInput_1: [Mut3, (arg0: Mut3) => void], v100: int32, patternInput_2: [(arg0: void) => boolean, (arg0: boolean) => void], patternInput_3: [(arg0: void) => boolean, (arg0: boolean) => void], v106: (arg0: boolean) => void, v105: (arg0: void) => boolean, patternInput_4: [(arg0: void) => boolean, (arg0: boolean) => void], v112: any, v113: (arg0: void) => Array<boolean>, v114: (arg0: void) => void, v115: any, v117: any, v118: (arg0: Heap0) => any, v120: (arg0: void) => any;
+    return [(v0_1.l37.tag === 1) ? (v45() ? ((v51 = ((): any => closure20(v46, void 0)), (v53 = (new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v51), v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44)), (patternInput = method0(), (v97 = patternInput[43], (v96 = patternInput[42], (v95 = patternInput[41], (v94 = patternInput[40], (v93 = patternInput[39], (v92 = patternInput[38], (v91 = patternInput[37], (v90 = patternInput[36], (v89 = patternInput[35], (v88 = patternInput[34], (v87 = patternInput[33], (v86 = patternInput[32], (v85 = patternInput[31], (v84 = patternInput[30], (v83 = patternInput[29], (v82 = patternInput[28], (v81 = patternInput[27], (v80 = patternInput[26], (v79 = patternInput[25], (v78 = patternInput[24], (v77 = patternInput[23], (v76 = patternInput[22], (v75 = patternInput[21], (v74 = patternInput[20], (v72 = patternInput[18], (v71 = patternInput[17], (v70 = patternInput[16], (v69 = patternInput[15], (v68 = patternInput[14], (v66 = patternInput[12], (v64 = patternInput[10], (v63 = patternInput[9], (v62 = patternInput[8], (v61 = patternInput[7], (v59 = patternInput[5], (v58 = patternInput[4], (v57 = patternInput[3], (v56 = patternInput[2], (v55 = patternInput[1], (v54 = patternInput[0], (patternInput_1 = method18(), (v100 = (nonSeeded().Next0() | 0), (patternInput_2 = method17(true), (patternInput_3 = method17(false), (v106 = patternInput_3[1], (v105 = patternInput_3[0], (patternInput_4 = method17(false), (v112 = on, (v113 = ((): Array<boolean> => closure22(v105, void 0)), (v114 = ((): void => {
+        closure23(v106, v105, void 0);
+    }), (v115 = (v112(v113, v114)), (v117 = createEffect, (void (v117(v115)), (v118 = ((v: Heap0): any => closure24(void 0, v)), (v120 = ((): any => closure25(v53, v54, v55, v56, v57, v58, v59, patternInput[6], v61, v62, v63, v64, patternInput[11], v66, patternInput[13], v68, v69, v70, v71, v72, patternInput[19], v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, patternInput_1[1], patternInput_1[0], v100, patternInput_2[1], patternInput_2[0], v106, v105, patternInput_4[1], patternInput_4[0], void 0)), method14(v118, new Heap0(v54, v55, v56, v57, v58, v59, new US3(1, v120), v61, v62, v63, v64, new US0(1, "flex"), v66, new US4(1, 1), v68, v69, v70, v71, v72, v53.l19, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) : <></>) : v46()];
 }
 
 export function closure12(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: boolean) => void, v46: (arg0: void) => boolean, unitVar: void): any {
@@ -1267,12 +1278,12 @@ export function closure12(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US
     return [(v47.tag === 1) ? ((v50 = ((v: Heap0): any => closure13(void 0, v)), (v53 = ((): any => closure14(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47.fields[0], void 0)), method14(v50, new Heap0(v1_1, v2_1, v3_1, new US0(1, "0 !important"), v5_1, v6_1, new US3(1, v53), new US0(1, "$neutral9"), v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, v14_1, new US0(1, "column"), new US0(1, "$sm"), v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, new US0(1, "1px solid $neutral5"), v31, new US0(1, "3px 20px 0 8px"), v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))) : <></>, (v70.tag === 1) ? ((v81 = ((v_2: Heap0): any => closure13(void 0, v_2)), (v82 = v0_1.l31, (v88 = ((): any => closure19(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v46, v70.fields[0], void 0)), (v97 = "0", method14(v81, new Heap0(v1_1, v2_1, v3_1, new US0(1, "0 !important"), v5_1, v6_1, new US3(1, v88), v8_1, v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, new US4(1, 6), new US0(1, "column"), new US0(1, "$sm"), v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, new US0(1, v97), v26, new US0(1, "85vh"), v28, v29, new US0(1, v97), new US0(1, "auto"), new US0(1, (v82.tag === 1) ? v82.fields[0] : "0"), v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))))) : ((v71 = ((v_1: Heap0): any => closure13(void 0, v_1)), (v72 = ((): any => closure18(void 0, void 0)), method14(v71, new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v72), v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, new US0(1, "9px"), v25, v26, v27, v28, v29, v30, v31, new US0(1, "0"), v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44)))))];
 }
 
-export function closure35(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, unitVar: void): any {
+export function closure36(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, unitVar: void): any {
     const v44 = (v: Heap0): any => closure6(void 0, v);
     return [method14(v44, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, new US0(1, "https://fc1943s.github.io/tictactoe_spiral"), v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43))];
 }
 
-export function closure36(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, unitVar: void): any {
+export function closure37(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, unitVar: void): any {
     const v44 = (v: Heap0): any => closure6(void 0, v);
     return [method14(v44, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, new US0(1, "https://fc1943s.github.io/tictactoe_spiral/docs"), v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43))];
 }
@@ -1330,7 +1341,7 @@ export function closure9(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, 
         "@initial": "column",
         "@sm": "row",
     }), v64, v65, v66, v67, v48.l19, v69, v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92));
-    const v114 = (): any => closure35(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, void 0);
+    const v114 = (): any => closure36(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, void 0);
     const v117 = new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, v114), v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, new US0(1, v46), v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43);
     const patternInput_2 = method0();
     const v161 = patternInput_2[43];
@@ -1378,7 +1389,7 @@ export function closure9(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, 
         "@initial": "column",
         "@sm": "row",
     }), v133, v134, v135, v136, v117.l19, v138, v139, v140, v141, v142, v143, v144, v145, v146, v147, v148, v149, v150, v151, v152, v153, v154, v155, v156, v157, v158, v159, v160, v161));
-    const v180 = (): any => closure36(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, void 0);
+    const v180 = (): any => closure37(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, void 0);
     const v183 = new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, v180), v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, new US0(1, v46), v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43);
     const patternInput_4 = method0();
     const v227 = patternInput_4[43];
@@ -1478,28 +1489,28 @@ export function closure8(unitVar: void, unitVar_1: void): any {
     return method14(v44, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, v45), v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43));
 }
 
-export function closure40(v0_1: (arg0: boolean) => void, v1_1: US10, v2_1: (arg0: string, arg1: Heap1) => void, v3_1: US4, unitVar: void): void {
+export function closure41(v0_1: (arg0: boolean) => void, v1_1: US10, v2_1: (arg0: Mut3) => void, v3_1: Mut3, unitVar: void): void {
     if (v1_1.tag === 1) {
-        v1_1.fields[0](v3_1, curry(2, v2_1));
+        v1_1.fields[0](v3_1, v2_1);
     }
     v0_1(true);
 }
 
-export function closure39(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: boolean) => void, v45: US10, v46: (arg0: string, arg1: Heap1) => void, v47: US4, unitVar: void): any {
+export function closure40(v0_1: US0, v1_1: US1, v2_1: US0, v3_1: US0, v4_1: US0, v5_1: US2, v6_1: US3, v7_1: US0, v8_1: US0, v9_1: US2, v10_1: US0, v11_1: US0, v12_1: US2, v13_1: US4, v14_1: US0, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US5, v19_1: US0, v20_1: US0, v21_1: US0, v22_1: US6, v23: US0, v24: US0, v25: US0, v26: US0, v27: US7, v28: US8, v29: US0, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US2, v38: US0, v39: US0, v40: US5, v41: US0, v42: US0, v43: US4, v44: (arg0: boolean) => void, v45: US10, v46: (arg0: Mut3) => void, v47: Mut3, unitVar: void): any {
     const v48 = (v: Heap0): any => closure0(void 0, v);
-    const v49 = (): any => closure26(void 0, void 0);
+    const v49 = (): any => closure27(void 0, void 0);
     const v51 = (): void => {
-        closure40(v44, v45, v46, v47, void 0);
+        closure41(v44, v45, v46, v47, void 0);
     };
     return [method14(v48, new Heap0(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, v49), v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, new US8(1, v51), v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43))];
 }
 
-export function closure38(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: string, arg1: Heap1) => void, v46: US4, v47: int32, v48: (arg0: boolean) => void, v49: (arg0: void) => boolean, v50: (arg0: boolean) => void, v51: (arg0: void) => boolean, v52: (arg0: boolean) => void, v53: (arg0: void) => boolean, v54: US10, unitVar: void): any {
+export function closure39(v0_1: Heap0, v1_1: US0, v2_1: US1, v3_1: US0, v4_1: US0, v5_1: US0, v6_1: US2, v7_1: US3, v8_1: US0, v9_1: US0, v10_1: US2, v11_1: US0, v12_1: US0, v13_1: US2, v14_1: US4, v15_1: US0, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US5, v20_1: US0, v21_1: US0, v22_1: US0, v23: US6, v24: US0, v25: US0, v26: US0, v27: US0, v28: US7, v29: US8, v30: US0, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US2, v39: US0, v40: US0, v41: US5, v42: US0, v43: US0, v44: US4, v45: (arg0: Mut3) => void, v46: Mut3, v47: int32, v48: (arg0: boolean) => void, v49: (arg0: void) => boolean, v50: (arg0: boolean) => void, v51: (arg0: void) => boolean, v52: (arg0: boolean) => void, v53: (arg0: void) => boolean, v54: US10, unitVar: void): any {
     let v57: (arg0: Heap0) => any, v58: (arg0: void) => any, v62: (arg0: Heap0) => any, v66: US4, v71: US0, v76: US0, v81: US0, v86: US0, v91: US0, v97: (arg0: void) => any;
-    return [(v49() === false) ? ((v57 = ((v: Heap0): any => closure23(void 0, v)), (v58 = ((): any => closure39(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v54, v45, v46, void 0)), method14(v57, new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v58), v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))) : ((v62 = ((v_1: Heap0): any => closure23(void 0, v_1)), (v66 = (v53() ? (new US4(1, 1)) : (new US4(0))), (v71 = (v53() ? (new US0(1, "absolute")) : (new US0(0))), (v76 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v81 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v86 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v91 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v97 = ((): any => closure28(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53, void 0)), method14(v62, new Heap0(v1_1, v2_1, v53() ? (new US0(1, "$bg")) : (new US0(0)), v4_1, v86, v6_1, new US3(1, v97), v8_1, v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, new US4(1, 1), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v91, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v71, v81, v36, v37, v38, v39, v40, v41, v76, v43, v66)))))))))))];
+    return [(v49() === false) ? ((v57 = ((v: Heap0): any => closure24(void 0, v)), (v58 = ((): any => closure40(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v54, v45, v46, void 0)), method14(v57, new Heap0(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v58), v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44))))) : ((v62 = ((v_1: Heap0): any => closure24(void 0, v_1)), (v66 = (v53() ? (new US4(1, 1)) : (new US4(0))), (v71 = (v53() ? (new US0(1, "absolute")) : (new US0(0))), (v76 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v81 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v86 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v91 = (v53() ? (new US0(1, "0")) : (new US0(0))), (v97 = ((): any => closure29(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53, void 0)), method14(v62, new Heap0(v1_1, v2_1, v53() ? (new US0(1, "$bg")) : (new US0(0)), v4_1, v86, v6_1, new US3(1, v97), v8_1, v9_1, v10_1, v11_1, new US0(1, "flex"), v13_1, new US4(1, 1), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v91, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v71, v81, v36, v37, v38, v39, v40, v41, v76, v43, v66)))))))))))];
 }
 
-export function closure37(unitVar: void, _arg: [boolean, boolean, US10, Heap0]): any {
+export function closure38(unitVar: void, _arg: [boolean, boolean, US10, Heap0]): any {
     const v3_1 = _arg[3];
     const v2_1 = _arg[2];
     const v0_1 = _arg[0];
@@ -1544,61 +1555,48 @@ export function closure37(unitVar: void, _arg: [boolean, boolean, US10, Heap0]):
     const v13_1 = patternInput[9];
     const v12_1 = patternInput[8];
     const v11_1 = patternInput[7];
-    const v50 = useStoreon;
-    const v51 = v50();
-    const v52 = v51[0];
-    let v53;
-    const value_2 = v51[1];
-    v53 = ((arg: string): (arg0: Heap1) => void => {
-        const clo_1 = value_2(arg);
-        return (arg_1: Heap1): void => {
-            clo_1(arg_1);
-        };
-    });
-    const v54 = nonSeeded().Next0() | 0;
-    const patternInput_1 = method17(v0_1);
-    const patternInput_2 = method17(false);
-    const v59 = patternInput_2[1];
-    const v58 = patternInput_2[0];
-    const patternInput_3 = method17(_arg[1]);
-    const v64 = on;
-    const v65 = (): Array<boolean> => closure21(v58, void 0);
-    const v66 = (): void => {
-        closure22(v59, v58, void 0);
+    const patternInput_1 = method18();
+    const v49 = patternInput_1[1];
+    const v48 = patternInput_1[0];
+    const v50 = nonSeeded().Next0() | 0;
+    const patternInput_2 = method17(v0_1);
+    const patternInput_3 = method17(false);
+    const v55 = patternInput_3[1];
+    const v54 = patternInput_3[0];
+    const patternInput_4 = method17(_arg[1]);
+    const v60 = on;
+    const v61 = (): Array<boolean> => closure22(v54, void 0);
+    const v62 = (): void => {
+        closure23(v55, v54, void 0);
     };
-    const v67 = v64(v65, v66);
-    const v69 = createEffect;
-    v69(v67);
+    const v63 = v60(v61, v62);
+    const v65 = createEffect;
+    v65(v63);
     if (v0_1) {
         if (v2_1.tag === 1) {
-            v2_1.fields[0](v52, v53);
+            v2_1.fields[0](v48, v49);
         }
     }
-    const v72 = (v: Heap0): any => closure23(void 0, v);
-    const v74 = (): any => closure38(v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, patternInput[6], v11_1, v12_1, v13_1, v14_1, patternInput[11], v16_1, patternInput[13], v18_1, v19_1, v20_1, v21_1, v22_1, patternInput[19], v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, uncurry(2, v53), v52, v54, patternInput_1[1], patternInput_1[0], v59, v58, patternInput_3[1], patternInput_3[0], v2_1, void 0);
-    return method14(v72, new Heap0(v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, new US3(1, v74), v11_1, v12_1, v13_1, v14_1, new US0(1, "flex"), v16_1, new US4(1, 1), v18_1, v19_1, v20_1, v21_1, v22_1, v3_1.l19, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47));
+    const v68 = (v: Heap0): any => closure24(void 0, v);
+    const v70 = (): any => closure39(v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, patternInput[6], v11_1, v12_1, v13_1, v14_1, patternInput[11], v16_1, patternInput[13], v18_1, v19_1, v20_1, v21_1, v22_1, patternInput[19], v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v49, v48, v50, patternInput_2[1], patternInput_2[0], v55, v54, patternInput_4[1], patternInput_4[0], v2_1, void 0);
+    return method14(v68, new Heap0(v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, new US3(1, v70), v11_1, v12_1, v13_1, v14_1, new US0(1, "flex"), v16_1, new US4(1, 1), v18_1, v19_1, v20_1, v21_1, v22_1, v3_1.l19, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47));
 }
 
-export function closure43(v0_1: US10, v1_1: Heap0, v2_1: US0, v3_1: US1, v4_1: US0, v5_1: US0, v6_1: US0, v7_1: US2, v8_1: US3, v9_1: US0, v10_1: US0, v11_1: US2, v12_1: US0, v13_1: US0, v14_1: US2, v15_1: US4, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US0, v20_1: US5, v21_1: US0, v22_1: US0, v23: US0, v24: US6, v25: US0, v26: US0, v27: US0, v28: US0, v29: US7, v30: US8, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US0, v39: US2, v40: US0, v41: US0, v42: US5, v43: US0, v44: US0, v45: US4, v46: (arg0: void) => boolean, v47: (arg0: void) => any, unitVar: void): any {
-    let v52: (arg0: void) => any, v54: Heap0, patternInput: [US0, US1, US0, US0, US0, US2, US3, US0, US0, US2, US0, US0, US2, US4, US0, US0, US0, US0, US5, US0, US0, US0, US6, US0, US0, US0, US0, US7, US8, US0, US0, US0, US0, US0, US0, US0, US0, US2, US0, US0, US5, US0, US0, US4], v98: US4, v97: US0, v96: US0, v95: US5, v94: US0, v93: US0, v92: US2, v91: US0, v90: US0, v89: US0, v88: US0, v87: US0, v86: US0, v85: US0, v84: US0, v83: US8, v82: US7, v81: US0, v80: US0, v79: US0, v78: US0, v77: US6, v76: US0, v75: US0, v73: US5, v72: US0, v71: US0, v70: US0, v69: US0, v67: US2, v65: US0, v64: US2, v63: US0, v62: US0, v60: US2, v59: US0, v58: US0, v57: US0, v56: US1, v55: US0, v101: any, v102: Array<any>, v103: US4, v104: (arg0: string, arg1: Heap1) => void, value_2: any, v105: int32, patternInput_1: [(arg0: void) => boolean, (arg0: boolean) => void], patternInput_2: [(arg0: void) => boolean, (arg0: boolean) => void], v111: (arg0: boolean) => void, v110: (arg0: void) => boolean, patternInput_3: [(arg0: void) => boolean, (arg0: boolean) => void], v117: any, v118: (arg0: void) => Array<boolean>, v119: (arg0: void) => void, v120: any, v122: any, v125: (arg0: Heap0) => any, v127: (arg0: void) => any;
-    return [(v1_1.l37.tag === 1) ? (v46() ? ((v52 = ((): any => closure20(v47, void 0)), (v54 = (new Heap0(v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US3(1, v52), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45)), (patternInput = method0(), (v98 = patternInput[43], (v97 = patternInput[42], (v96 = patternInput[41], (v95 = patternInput[40], (v94 = patternInput[39], (v93 = patternInput[38], (v92 = patternInput[37], (v91 = patternInput[36], (v90 = patternInput[35], (v89 = patternInput[34], (v88 = patternInput[33], (v87 = patternInput[32], (v86 = patternInput[31], (v85 = patternInput[30], (v84 = patternInput[29], (v83 = patternInput[28], (v82 = patternInput[27], (v81 = patternInput[26], (v80 = patternInput[25], (v79 = patternInput[24], (v78 = patternInput[23], (v77 = patternInput[22], (v76 = patternInput[21], (v75 = patternInput[20], (v73 = patternInput[18], (v72 = patternInput[17], (v71 = patternInput[16], (v70 = patternInput[15], (v69 = patternInput[14], (v67 = patternInput[12], (v65 = patternInput[10], (v64 = patternInput[9], (v63 = patternInput[8], (v62 = patternInput[7], (v60 = patternInput[5], (v59 = patternInput[4], (v58 = patternInput[3], (v57 = patternInput[2], (v56 = patternInput[1], (v55 = patternInput[0], (v101 = useStoreon, (v102 = (v101()), (v103 = v102[0], (v104 = ((value_2 = v102[1], (arg: string): (arg0: Heap1) => void => {
-        const clo_1 = value_2(arg);
-        return (arg_1: Heap1): void => {
-            clo_1(arg_1);
-        };
-    })), (v105 = (nonSeeded().Next0() | 0), (patternInput_1 = method17(true), (patternInput_2 = method17(false), (v111 = patternInput_2[1], (v110 = patternInput_2[0], (patternInput_3 = method17(false), (v117 = on, (v118 = ((): Array<boolean> => closure21(v110, void 0)), (v119 = ((): void => {
-        closure22(v111, v110, void 0);
-    }), (v120 = (v117(v118, v119)), (v122 = createEffect, (void (v122(v120)), ((v0_1.tag === 1) ? ((v0_1.fields[0](v103, v104), void 0)) : (void 0), (v125 = ((v: Heap0): any => closure23(void 0, v)), (v127 = ((): any => closure38(v54, v55, v56, v57, v58, v59, v60, patternInput[6], v62, v63, v64, v65, patternInput[11], v67, patternInput[13], v69, v70, v71, v72, v73, patternInput[19], v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, uncurry(2, v104), v103, v105, patternInput_1[1], patternInput_1[0], v111, v110, patternInput_3[1], patternInput_3[0], v0_1, void 0)), method14(v125, new Heap0(v55, v56, v57, v58, v59, v60, new US3(1, v127), v62, v63, v64, v65, new US0(1, "flex"), v67, new US4(1, 1), v69, v70, v71, v72, v73, v54.l19, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) : <></>) : v47()];
+export function closure44(v0_1: US10, v1_1: Heap0, v2_1: US0, v3_1: US1, v4_1: US0, v5_1: US0, v6_1: US0, v7_1: US2, v8_1: US3, v9_1: US0, v10_1: US0, v11_1: US2, v12_1: US0, v13_1: US0, v14_1: US2, v15_1: US4, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US0, v20_1: US5, v21_1: US0, v22_1: US0, v23: US0, v24: US6, v25: US0, v26: US0, v27: US0, v28: US0, v29: US7, v30: US8, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US0, v39: US2, v40: US0, v41: US0, v42: US5, v43: US0, v44: US0, v45: US4, v46: (arg0: void) => boolean, v47: (arg0: void) => any, unitVar: void): any {
+    let v52: (arg0: void) => any, v54: Heap0, patternInput: [US0, US1, US0, US0, US0, US2, US3, US0, US0, US2, US0, US0, US2, US4, US0, US0, US0, US0, US5, US0, US0, US0, US6, US0, US0, US0, US0, US7, US8, US0, US0, US0, US0, US0, US0, US0, US0, US2, US0, US0, US5, US0, US0, US4], v98: US4, v97: US0, v96: US0, v95: US5, v94: US0, v93: US0, v92: US2, v91: US0, v90: US0, v89: US0, v88: US0, v87: US0, v86: US0, v85: US0, v84: US0, v83: US8, v82: US7, v81: US0, v80: US0, v79: US0, v78: US0, v77: US6, v76: US0, v75: US0, v73: US5, v72: US0, v71: US0, v70: US0, v69: US0, v67: US2, v65: US0, v64: US2, v63: US0, v62: US0, v60: US2, v59: US0, v58: US0, v57: US0, v56: US1, v55: US0, patternInput_1: [Mut3, (arg0: Mut3) => void], v99: Mut3, v100: (arg0: Mut3) => void, v101: int32, patternInput_2: [(arg0: void) => boolean, (arg0: boolean) => void], patternInput_3: [(arg0: void) => boolean, (arg0: boolean) => void], v107: (arg0: boolean) => void, v106: (arg0: void) => boolean, patternInput_4: [(arg0: void) => boolean, (arg0: boolean) => void], v113: any, v114: (arg0: void) => Array<boolean>, v115: (arg0: void) => void, v116: any, v118: any, v121: (arg0: Heap0) => any, v123: (arg0: void) => any;
+    return [(v1_1.l37.tag === 1) ? (v46() ? ((v52 = ((): any => closure20(v47, void 0)), (v54 = (new Heap0(v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US3(1, v52), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45)), (patternInput = method0(), (v98 = patternInput[43], (v97 = patternInput[42], (v96 = patternInput[41], (v95 = patternInput[40], (v94 = patternInput[39], (v93 = patternInput[38], (v92 = patternInput[37], (v91 = patternInput[36], (v90 = patternInput[35], (v89 = patternInput[34], (v88 = patternInput[33], (v87 = patternInput[32], (v86 = patternInput[31], (v85 = patternInput[30], (v84 = patternInput[29], (v83 = patternInput[28], (v82 = patternInput[27], (v81 = patternInput[26], (v80 = patternInput[25], (v79 = patternInput[24], (v78 = patternInput[23], (v77 = patternInput[22], (v76 = patternInput[21], (v75 = patternInput[20], (v73 = patternInput[18], (v72 = patternInput[17], (v71 = patternInput[16], (v70 = patternInput[15], (v69 = patternInput[14], (v67 = patternInput[12], (v65 = patternInput[10], (v64 = patternInput[9], (v63 = patternInput[8], (v62 = patternInput[7], (v60 = patternInput[5], (v59 = patternInput[4], (v58 = patternInput[3], (v57 = patternInput[2], (v56 = patternInput[1], (v55 = patternInput[0], (patternInput_1 = method18(), (v99 = patternInput_1[0], (v100 = patternInput_1[1], (v101 = (nonSeeded().Next0() | 0), (patternInput_2 = method17(true), (patternInput_3 = method17(false), (v107 = patternInput_3[1], (v106 = patternInput_3[0], (patternInput_4 = method17(false), (v113 = on, (v114 = ((): Array<boolean> => closure22(v106, void 0)), (v115 = ((): void => {
+        closure23(v107, v106, void 0);
+    }), (v116 = (v113(v114, v115)), (v118 = createEffect, (void (v118(v116)), ((v0_1.tag === 1) ? ((v0_1.fields[0](v99, v100), void 0)) : (void 0), (v121 = ((v: Heap0): any => closure24(void 0, v)), (v123 = ((): any => closure39(v54, v55, v56, v57, v58, v59, v60, patternInput[6], v62, v63, v64, v65, patternInput[11], v67, patternInput[13], v69, v70, v71, v72, v73, patternInput[19], v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v100, v99, v101, patternInput_2[1], patternInput_2[0], v107, v106, patternInput_4[1], patternInput_4[0], v0_1, void 0)), method14(v121, new Heap0(v55, v56, v57, v58, v59, v60, new US3(1, v123), v62, v63, v64, v65, new US0(1, "flex"), v67, new US4(1, 1), v69, v70, v71, v72, v73, v54.l19, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) : <></>) : v47()];
 }
 
-export function closure42(v0_1: US10, v1_1: Heap0, v2_1: US0, v3_1: US1, v4_1: US0, v5_1: US0, v6_1: US0, v7_1: US2, v8_1: US3, v9_1: US0, v10_1: US0, v11_1: US2, v12_1: US0, v13_1: US0, v14_1: US2, v15_1: US4, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US0, v20_1: US5, v21_1: US0, v22_1: US0, v23: US0, v24: US6, v25: US0, v26: US0, v27: US0, v28: US0, v29: US7, v30: US8, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US0, v39: US2, v40: US0, v41: US0, v42: US5, v43: US0, v44: US0, v45: US4, v46: (arg0: boolean) => void, v47: (arg0: void) => boolean, unitVar: void): any {
+export function closure43(v0_1: US10, v1_1: Heap0, v2_1: US0, v3_1: US1, v4_1: US0, v5_1: US0, v6_1: US0, v7_1: US2, v8_1: US3, v9_1: US0, v10_1: US0, v11_1: US2, v12_1: US0, v13_1: US0, v14_1: US2, v15_1: US4, v16_1: US0, v17_1: US0, v18_1: US0, v19_1: US0, v20_1: US5, v21_1: US0, v22_1: US0, v23: US0, v24: US6, v25: US0, v26: US0, v27: US0, v28: US0, v29: US7, v30: US8, v31: US0, v32: US0, v33: US0, v34: US0, v35: US0, v36: US0, v37: US0, v38: US0, v39: US2, v40: US0, v41: US0, v42: US5, v43: US0, v44: US0, v45: US4, v46: (arg0: boolean) => void, v47: (arg0: void) => boolean, unitVar: void): any {
     let v51: (arg0: Heap0) => any, v54: (arg0: void) => any, v82: (arg0: Heap0) => any, v83: US0, v89: (arg0: void) => any, v98: string, v72: (arg0: Heap0) => any, v73: (arg0: void) => any;
     const v48 = v1_1.l40;
     const v71 = v1_1.l6;
-    return [(v48.tag === 1) ? ((v51 = ((v: Heap0): any => closure13(void 0, v)), (v54 = ((): any => closure14(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48.fields[0], void 0)), method14(v51, new Heap0(v2_1, v3_1, v4_1, new US0(1, "0 !important"), v6_1, v7_1, new US3(1, v54), new US0(1, "$neutral9"), v10_1, v11_1, v12_1, new US0(1, "flex"), v14_1, v15_1, new US0(1, "column"), new US0(1, "$sm"), v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, new US0(1, "1px solid $neutral5"), v32, new US0(1, "3px 20px 0 8px"), v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45))))) : <></>, (v71.tag === 1) ? ((v82 = ((v_2: Heap0): any => closure13(void 0, v_2)), (v83 = v1_1.l31, (v89 = ((): any => closure43(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v47, v71.fields[0], void 0)), (v98 = "0", method14(v82, new Heap0(v2_1, v3_1, v4_1, new US0(1, "0 !important"), v6_1, v7_1, new US3(1, v89), v9_1, v10_1, v11_1, v12_1, new US0(1, "flex"), v14_1, new US4(1, 6), new US0(1, "column"), new US0(1, "$sm"), v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, new US0(1, v98), v27, new US0(1, "85vh"), v29, v30, new US0(1, v98), new US0(1, "auto"), new US0(1, (v83.tag === 1) ? v83.fields[0] : "0"), v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45))))))) : ((v72 = ((v_1: Heap0): any => closure13(void 0, v_1)), (v73 = ((): any => closure18(void 0, void 0)), method14(v72, new Heap0(v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US3(1, v73), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, new US0(1, "9px"), v26, v27, v28, v29, v30, v31, v32, new US0(1, "0"), v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45)))))];
+    return [(v48.tag === 1) ? ((v51 = ((v: Heap0): any => closure13(void 0, v)), (v54 = ((): any => closure14(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48.fields[0], void 0)), method14(v51, new Heap0(v2_1, v3_1, v4_1, new US0(1, "0 !important"), v6_1, v7_1, new US3(1, v54), new US0(1, "$neutral9"), v10_1, v11_1, v12_1, new US0(1, "flex"), v14_1, v15_1, new US0(1, "column"), new US0(1, "$sm"), v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, new US0(1, "1px solid $neutral5"), v32, new US0(1, "3px 20px 0 8px"), v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45))))) : <></>, (v71.tag === 1) ? ((v82 = ((v_2: Heap0): any => closure13(void 0, v_2)), (v83 = v1_1.l31, (v89 = ((): any => closure44(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v47, v71.fields[0], void 0)), (v98 = "0", method14(v82, new Heap0(v2_1, v3_1, v4_1, new US0(1, "0 !important"), v6_1, v7_1, new US3(1, v89), v9_1, v10_1, v11_1, v12_1, new US0(1, "flex"), v14_1, new US4(1, 6), new US0(1, "column"), new US0(1, "$sm"), v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, v25, new US0(1, v98), v27, new US0(1, "85vh"), v29, v30, new US0(1, v98), new US0(1, "auto"), new US0(1, (v83.tag === 1) ? v83.fields[0] : "0"), v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45))))))) : ((v72 = ((v_1: Heap0): any => closure13(void 0, v_1)), (v73 = ((): any => closure18(void 0, void 0)), method14(v72, new Heap0(v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, new US3(1, v73), v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23, v24, new US0(1, "9px"), v26, v27, v28, v29, v30, v31, v32, new US0(1, "0"), v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45)))))];
 }
 
-export function closure41(unitVar: void, _arg: [US10, Heap0]): any {
+export function closure42(unitVar: void, _arg: [US10, Heap0]): any {
     const v1_1 = _arg[1];
     const patternInput = method0();
     const v9_1 = patternInput[7];
@@ -1642,7 +1640,7 @@ export function closure41(unitVar: void, _arg: [US10, Heap0]): any {
     const v46 = v1_1.l37;
     const patternInput_1 = method17(((v46.tag === 1) && (v46.fields[0] === false)) !== true);
     const v54 = (v: Heap0): any => closure11(void 0, v);
-    const v59 = (): any => closure42(_arg[0], v1_1, v2_1, v3_1, v4_1, patternInput[3], v6_1, v7_1, patternInput[6], v9_1, v10_1, v11_1, v12_1, patternInput[11], v14_1, patternInput[13], patternInput[14], v17_1, v18_1, v19_1, v20_1, patternInput[19], v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, patternInput_1[1], patternInput_1[0], void 0);
+    const v59 = (): any => closure43(_arg[0], v1_1, v2_1, v3_1, v4_1, patternInput[3], v6_1, v7_1, patternInput[6], v9_1, v10_1, v11_1, v12_1, patternInput[11], v14_1, patternInput[13], patternInput[14], v17_1, v18_1, v19_1, v20_1, patternInput[19], v22_1, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, patternInput_1[1], patternInput_1[0], void 0);
     return method14(v54, new Heap0(v2_1, v3_1, v4_1, new US0(1, "1px solid $neutral5"), v6_1, v7_1, new US3(1, v59), v9_1, v10_1, v11_1, v12_1, new US0(1, "flex"), v14_1, new US4(1, 1), new US0(1, {
         "@initial": "column",
         "@sm": "row",
@@ -1681,13 +1679,13 @@ export const v14 = [v12, v13];
 
 export const v15 = "loader";
 
-export const v16 = (arg10$0040: [boolean, boolean, US10, Heap0]): any => closure37(void 0, arg10$0040);
+export const v16 = (arg10$0040: [boolean, boolean, US10, Heap0]): any => closure38(void 0, arg10$0040);
 
 export const v17 = [v15, v16];
 
 export const v18 = "row";
 
-export const v19 = (arg10$0040: [US10, Heap0]): any => closure41(void 0, arg10$0040);
+export const v19 = (arg10$0040: [US10, Heap0]): any => closure42(void 0, arg10$0040);
 
 export const v20 = [v18, v19];
 

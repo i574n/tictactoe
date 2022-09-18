@@ -38,10 +38,10 @@ and [<Struct>] US9 =
 and Mut0 = {mutable l0 : int32; mutable l1 : int32}
 and Mut1 = {mutable l0 : int32}
 and Mut2 = {mutable l0 : int32; mutable l1 : US0; mutable l2 : US1; mutable l3 : US0; mutable l4 : US0; mutable l5 : US0; mutable l6 : US2; mutable l7 : US3; mutable l8 : US0; mutable l9 : US0; mutable l10 : US2; mutable l11 : US0; mutable l12 : US0; mutable l13 : US2; mutable l14 : US4; mutable l15 : US0; mutable l16 : US0; mutable l17 : US0; mutable l18 : US0; mutable l19 : US5; mutable l20 : US0; mutable l21 : US0; mutable l22 : US0; mutable l23 : US6; mutable l24 : US0; mutable l25 : US0; mutable l26 : US0; mutable l27 : US0; mutable l28 : US7; mutable l29 : US8; mutable l30 : US0; mutable l31 : US0; mutable l32 : US0; mutable l33 : US0; mutable l34 : US0; mutable l35 : US0; mutable l36 : US0; mutable l37 : US0; mutable l38 : US2; mutable l39 : US0; mutable l40 : US0; mutable l41 : US5; mutable l42 : US0; mutable l43 : US0; mutable l44 : US4}
-and Heap1 = {l0 : US4}
+and Mut3 = {mutable l0 : int32}
 and [<Struct>] US10 =
     | US10_0
-    | US10_1 of f1_0 : (US4 -> ((string -> (Heap1 -> unit)) -> unit))
+    | US10_1 of f1_0 : (Mut3 -> ((Mut3 -> unit) -> unit))
 let rec method0 () : struct (US0 * US1 * US0 * US0 * US0 * US2 * US3 * US0 * US0 * US2 * US0 * US0 * US2 * US4 * US0 * US0 * US0 * US0 * US5 * US0 * US0 * US0 * US6 * US0 * US0 * US0 * US0 * US7 * US8 * US0 * US0 * US0 * US0 * US0 * US0 * US0 * US0 * US2 * US0 * US0 * US5 * US0 * US0 * US4) =
     let v0 : US0 = US0_0
     let v1 : US1 = US1_0
@@ -878,25 +878,24 @@ and method2 (v0 : Heap0) : (JSX.Prop []) =
     v154
 and closure0 () (v0 : Heap0) : JSX.Element =
     let struct (v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4) = method0()
-    let v45 : US3 = v0.l6
-    let v46 : string = "neutral"
-    let v47 : US0 = US0_1(v46)
-    let v48 : bool = true
-    let v49 : US2 = US2_1(v48)
-    let v50 : string = "left"
-    let v51 : US0 = US0_1(v50)
-    let v52 : string = "xs"
-    let v53 : US0 = US0_1(v52)
-    let v54 : Heap0 = method1(v0, v1, v2, v3, v4, v5, v6, v45, v8, v47, v49, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v51, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v53, v37, v38, v39, v40, v41, v42, v43, v44)
-    let v55 : (JSX.Prop []) = method2(v54)
-    let v56 : obj = createObj v55
-    let v57 : string = "createComponent"
-    let v58 : string = "solid-js"
-    let v59 : JS.Function = import v57 v58
-    let v60 : string = "Button"
-    let v61 : string = "@hope-ui/solid"
-    let v62 : JSX.Element = v59.Invoke ((import v60 v61), v56) |> unbox<JSX.Element>
-    v62
+    let v45 : string = "neutral"
+    let v46 : US0 = US0_1(v45)
+    let v47 : bool = true
+    let v48 : US2 = US2_1(v47)
+    let v49 : string = "left"
+    let v50 : US0 = US0_1(v49)
+    let v51 : string = "xs"
+    let v52 : US0 = US0_1(v51)
+    let v53 : Heap0 = method1(v0, v1, v2, v3, v4, v5, v6, v7, v8, v46, v48, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v50, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v52, v37, v38, v39, v40, v41, v42, v43, v44)
+    let v54 : (JSX.Prop []) = method2(v53)
+    let v55 : obj = createObj v54
+    let v56 : string = "createComponent"
+    let v57 : string = "solid-js"
+    let v58 : JS.Function = import v56 v57
+    let v59 : string = "Button"
+    let v60 : string = "@hope-ui/solid"
+    let v61 : JSX.Element = v58.Invoke ((import v59 v60), v55) |> unbox<JSX.Element>
+    v61
 and closure2 () (v0 : Heap0) : JSX.Element =
     let v1 : (JSX.Prop []) = method2(v0)
     let v2 : obj = createObj v1
@@ -1434,15 +1433,27 @@ and closure20 (v0 : (unit -> JSX.Element)) () : JSX.Element =
     let v2 : (JSX.Element []) = [|v1|]
     let v3 : JSX.Element = v2 |> unbox<JSX.Element>
     v3
-and closure21 (v0 : (unit -> bool)) () : (bool []) =
+and closure21 (v0 : JS.Function) (v1 : Mut3) : unit =
+    v0.Invoke ("set", v1) |> unbox
+    ()
+and method18 () : struct (Mut3 * (Mut3 -> unit)) =
+    let v0 : string = "useStoreon"
+    let v1 : string = "@storeon/solidjs"
+    let v2 : JS.Function = import v0 v1
+    let v3 : (JS.Function []) = v2.Invoke () |> unbox<JS.Function[]>
+    let v4 : Mut3 = v3.[0] |> unbox
+    let v5 : JS.Function = v3.[1] |> unbox
+    let v6 : (Mut3 -> unit) = closure21(v5)
+    struct (v4, v6)
+and closure22 (v0 : (unit -> bool)) () : (bool []) =
     let v1 : bool = v0 ()
     [|v1|]
-and closure22 (v0 : (bool -> unit), v1 : (unit -> bool)) () : unit =
+and closure23 (v0 : (bool -> unit), v1 : (unit -> bool)) () : unit =
     let v2 : bool = v1 ()
     if v2 then
         v0 false
         ()
-and closure23 () (v0 : Heap0) : JSX.Element =
+and closure24 () (v0 : Heap0) : JSX.Element =
     let v1 : (JSX.Prop []) = method2(v0)
     let v2 : obj = createObj v1
     let v3 : string = "createComponent"
@@ -1452,27 +1463,27 @@ and closure23 () (v0 : Heap0) : JSX.Element =
     let v7 : string = "@hope-ui/solid"
     let v8 : JSX.Element = v5.Invoke ((import v6 v7), v2) |> unbox<JSX.Element>
     v8
-and closure26 () () : JSX.Element =
+and closure27 () () : JSX.Element =
     let v0 : string = "Load"
     let v1 : JSX.Element = Html.fragment [ v0 |> unbox<JSX.Element> ]
     let v2 : (JSX.Element []) = [|v1|]
     let v3 : JSX.Element = v2 |> unbox<JSX.Element>
     v3
-and closure27 (v0 : (bool -> unit), v1 : (string -> (Heap1 -> unit)), v2 : US4) () : unit =
+and closure28 (v0 : (bool -> unit), v1 : (Mut3 -> unit), v2 : Mut3) () : unit =
     v0 true
     ()
-and closure25 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (bool -> unit), v45 : (string -> (Heap1 -> unit)), v46 : US4) () : JSX.Element =
+and closure26 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (bool -> unit), v45 : (Mut3 -> unit), v46 : Mut3) () : JSX.Element =
     let v47 : (Heap0 -> JSX.Element) = closure0()
-    let v48 : (unit -> JSX.Element) = closure26()
+    let v48 : (unit -> JSX.Element) = closure27()
     let v49 : US3 = US3_1(v48)
-    let v50 : (unit -> unit) = closure27(v44, v45, v46)
+    let v50 : (unit -> unit) = closure28(v44, v45, v46)
     let v51 : US8 = US8_1(v50)
     let v52 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v49; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v51; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v35; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
     let v53 : JSX.Element = method14(v47, v52)
     let v54 : (JSX.Element []) = [|v53|]
     let v55 : JSX.Element = v54 |> unbox<JSX.Element>
     v55
-and closure30 () (v0 : Heap0) : JSX.Element =
+and closure31 () (v0 : Heap0) : JSX.Element =
     let v1 : (JSX.Prop []) = method2(v0)
     let v2 : obj = createObj v1
     let v3 : string = "createComponent"
@@ -1482,43 +1493,41 @@ and closure30 () (v0 : Heap0) : JSX.Element =
     let v7 : string = "@hope-ui/solid"
     let v8 : JSX.Element = v5.Invoke ((import v6 v7), v2) |> unbox<JSX.Element>
     v8
-and method18 (v0 : JS.Function, v1 : Heap0) : JSX.Element =
+and method19 (v0 : JS.Function, v1 : Heap0) : JSX.Element =
     let v2 : JS.Function = v0 |> unbox<JS.Function>
     let v3 : string = "createComponent"
     let v4 : string = "solid-js"
     let v5 : JS.Function = import v3 v4
     let v6 : JSX.Element = v5.Invoke (v2, v1) |> unbox<JSX.Element>
     v6
-and closure32 (v0 : (bool -> unit)) () : unit =
+and closure33 (v0 : (bool -> unit)) () : unit =
     v0 true
     ()
-and closure33 (v0 : (string -> (Heap1 -> unit)), v1 : US4, v2 : int32, v3 : (bool -> unit), v4 : (unit -> bool)) () : unit =
+and closure34 (v0 : (Mut3 -> unit), v1 : Mut3, v2 : int32, v3 : (bool -> unit), v4 : (unit -> bool)) () : unit =
     let v5 : bool = v4 ()
     let v6 : bool = v5 = false
     v3 v6
-    let v9 : US4 =
+    let v7 : int32 =
         if v6 then
-            US4_1(v2)
+            v2
         else
-            US4_0
-    let v10 : Heap1 = {l0 = v9} : Heap1
-    let v11 : string = "new_state"
-    printfn $"%A{struct (v11, v10)}"
-    let v12 : string = "set"
-    let v13 : (Heap1 -> unit) = v0 v12
-    v13 v10
+            0
+    v1.l0 <- v7
+    let v8 : string = "new_state"
+    printfn $"%A{v8}"
+    v0 v1
     ()
-and closure34 (v0 : (bool -> unit)) () : unit =
+and closure35 (v0 : (bool -> unit)) () : unit =
     v0 false
     ()
-and closure31 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (string -> (Heap1 -> unit)), v45 : US4, v46 : int32, v47 : (bool -> unit), v48 : (bool -> unit), v49 : (bool -> unit), v50 : (unit -> bool)) () : JSX.Element =
+and closure32 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (Mut3 -> unit), v45 : Mut3, v46 : int32, v47 : (bool -> unit), v48 : (bool -> unit), v49 : (bool -> unit), v50 : (unit -> bool)) () : JSX.Element =
     let v51 : string = "BiRegularRefresh"
     let v52 : string = "solid-icons/bi"
     let v53 : JS.Function = import v51 v52
     let v54 : string = "14px"
     let v55 : US0 = US0_1(v54)
     let v56 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v6; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v55; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
-    let v57 : JSX.Element = method18(v53, v56)
+    let v57 : JSX.Element = method19(v53, v56)
     let v58 : string = "Refresh"
     let v59 : US0 = US0_1(v58)
     let v60 : string = "neutral"
@@ -1526,7 +1535,7 @@ and closure31 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : 
     let v62 : string = "20px"
     let v63 : US0 = US0_1(v62)
     let v64 : US5 = US5_1(v57)
-    let v65 : (unit -> unit) = closure32(v48)
+    let v65 : (unit -> unit) = closure33(v48)
     let v66 : US8 = US8_1(v65)
     let v67 : string = "xs"
     let v68 : US0 = US0_1(v67)
@@ -1559,12 +1568,12 @@ and closure31 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : 
             v86
     let v88 : US0 = US0_1(v54)
     let v89 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v6; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v88; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
-    let v90 : JSX.Element = method18(v87, v89)
+    let v90 : JSX.Element = method19(v87, v89)
     let v91 : US0 = US0_1(v81)
     let v92 : US0 = US0_1(v60)
     let v93 : US0 = US0_1(v62)
     let v94 : US5 = US5_1(v90)
-    let v95 : (unit -> unit) = closure33(v44, v45, v46, v49, v50)
+    let v95 : (unit -> unit) = closure34(v44, v45, v46, v49, v50)
     let v96 : US8 = US8_1(v95)
     let v97 : US0 = US0_1(v67)
     let v98 : Heap0 = {l0 = v91; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v6; l7 = v7; l8 = v92; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v93; l17 = v17; l18 = v94; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v96; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v97; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
@@ -1576,13 +1585,13 @@ and closure31 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : 
     let v104 : JS.Function = import v103 v52
     let v105 : US0 = US0_1(v54)
     let v106 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v6; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v105; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
-    let v107 : JSX.Element = method18(v104, v106)
+    let v107 : JSX.Element = method19(v104, v106)
     let v108 : string = "Unload"
     let v109 : US0 = US0_1(v108)
     let v110 : US0 = US0_1(v60)
     let v111 : US0 = US0_1(v62)
     let v112 : US5 = US5_1(v107)
-    let v113 : (unit -> unit) = closure34(v47)
+    let v113 : (unit -> unit) = closure35(v47)
     let v114 : US8 = US8_1(v113)
     let v115 : US0 = US0_1(v67)
     let v116 : Heap0 = {l0 = v109; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v6; l7 = v7; l8 = v110; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v111; l17 = v17; l18 = v112; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v114; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v115; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
@@ -1593,85 +1602,81 @@ and closure31 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : 
     let v121 : (JSX.Element []) = [|v77; v102; v120|]
     let v122 : JSX.Element = v121 |> unbox<JSX.Element>
     v122
-and closure29 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (string -> (Heap1 -> unit)), v45 : US4, v46 : int32, v47 : (bool -> unit), v48 : (bool -> unit), v49 : (unit -> bool), v50 : (bool -> unit), v51 : (unit -> bool), v52 : (unit -> JSX.Element)) () : JSX.Element =
-    let v53 : (Heap0 -> JSX.Element) = closure30()
-    let v57 : bool =
-        match v45 with
-        | US4_1(v55) -> (* Some *)
-            let v56 : bool = v55 = v46
-            v56
-        | _ ->
-            false
-    let v61 : US0 =
-        if v57 then
-            let v58 : string = "none"
-            US0_1(v58)
+and closure30 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (Mut3 -> unit), v45 : Mut3, v46 : int32, v47 : (bool -> unit), v48 : (bool -> unit), v49 : (unit -> bool), v50 : (bool -> unit), v51 : (unit -> bool), v52 : (unit -> JSX.Element)) () : JSX.Element =
+    let v53 : (Heap0 -> JSX.Element) = closure31()
+    let v54 : int32 = v45.l0
+    let v55 : bool = v54 = v46
+    let v59 : US0 =
+        if v55 then
+            let v56 : string = "none"
+            US0_1(v56)
         else
             US0_0
-    let v62 : (unit -> JSX.Element) = closure31(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51)
-    let v63 : US3 = US3_1(v62)
-    let v64 : string = "row"
+    let v60 : (unit -> JSX.Element) = closure32(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51)
+    let v61 : US3 = US3_1(v60)
+    let v62 : string = "row"
+    let v63 : US0 = US0_1(v62)
+    let v64 : string = "absolute"
     let v65 : US0 = US0_1(v64)
-    let v66 : string = "absolute"
+    let v66 : string = "6px"
     let v67 : US0 = US0_1(v66)
-    let v68 : string = "6px"
+    let v68 : string = "3px"
     let v69 : US0 = US0_1(v68)
-    let v70 : string = "3px"
-    let v71 : US0 = US0_1(v70)
-    let v72 : US0 = US0_1(v68)
-    let v73 : US4 = US4_1(1)
-    let v74 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v63; l7 = v7; l8 = v8; l9 = v9; l10 = v65; l11 = v61; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v67; l34 = v69; l35 = v35; l36 = v71; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v72; l42 = v42; l43 = v73} : Heap0
-    let v75 : JSX.Element = method14(v53, v74)
-    let v76 : bool = v49 ()
-    let v77 : bool = v76 = false
-    let v80 : JSX.Element =
-        if v77 then
-            let v78 : JSX.Element = v52 ()
-            v78
+    let v70 : US0 = US0_1(v66)
+    let v71 : US4 = US4_1(1)
+    let v72 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v61; l7 = v7; l8 = v8; l9 = v9; l10 = v63; l11 = v59; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v65; l34 = v67; l35 = v35; l36 = v69; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v70; l42 = v42; l43 = v71} : Heap0
+    let v73 : JSX.Element = method14(v53, v72)
+    let v74 : bool = v49 ()
+    let v75 : bool = v74 = false
+    let v78 : JSX.Element =
+        if v75 then
+            let v76 : JSX.Element = v52 ()
+            v76
         else
-            let v79 : JSX.Element = Html.fragment []
-            v79
-    let v81 : (JSX.Element []) = [|v75; v80|]
-    let v82 : JSX.Element = v81 |> unbox<JSX.Element>
-    v82
-and closure28 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (string -> (Heap1 -> unit)), v46 : US4, v47 : int32, v48 : (bool -> unit), v49 : (bool -> unit), v50 : (unit -> bool), v51 : (bool -> unit), v52 : (unit -> bool)) () : JSX.Element =
+            let v77 : JSX.Element = Html.fragment []
+            v77
+    let v79 : (JSX.Element []) = [|v73; v78|]
+    let v80 : JSX.Element = v79 |> unbox<JSX.Element>
+    v80
+and closure29 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (Mut3 -> unit), v46 : Mut3, v47 : int32, v48 : (bool -> unit), v49 : (bool -> unit), v50 : (unit -> bool), v51 : (bool -> unit), v52 : (unit -> bool)) () : JSX.Element =
     let v53 : US3 = v0.l6
-    let v69 : JSX.Element =
+    let v70 : JSX.Element =
         match v53 with
         | US3_0 -> (* None *)
             let v54 : JSX.Element = Html.fragment []
             v54
         | US3_1(v55) -> (* Some *)
-            let v56 : (Heap0 -> JSX.Element) = closure23()
-            let v61 : US0 =
-                match v46 with
-                | US4_0 -> (* None *)
-                    US0_0
-                | US4_1(v58) -> (* Some *)
+            let v56 : (Heap0 -> JSX.Element) = closure24()
+            let v57 : int32 = v46.l0
+            let v58 : bool = v57 <= 0
+            let v62 : US0 =
+                if v58 then
                     let v59 : string = "relative"
                     US0_1(v59)
-            let v62 : (unit -> JSX.Element) = closure29(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v55)
-            let v63 : US3 = US3_1(v62)
-            let v64 : string = "flex"
-            let v65 : US0 = US0_1(v64)
-            let v66 : US4 = US4_1(1)
-            let v67 : Heap0 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v63; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v65; l12 = v13; l13 = v66; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v61; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44} : Heap0
-            method14(v56, v67)
-    let v70 : (JSX.Element []) = [|v69|]
-    let v71 : JSX.Element = v70 |> unbox<JSX.Element>
-    v71
-and closure24 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (string -> (Heap1 -> unit)), v46 : US4, v47 : int32, v48 : (bool -> unit), v49 : (unit -> bool), v50 : (bool -> unit), v51 : (unit -> bool), v52 : (bool -> unit), v53 : (unit -> bool)) () : JSX.Element =
+                else
+                    US0_0
+            let v63 : (unit -> JSX.Element) = closure30(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v55)
+            let v64 : US3 = US3_1(v63)
+            let v65 : string = "flex"
+            let v66 : US0 = US0_1(v65)
+            let v67 : US4 = US4_1(1)
+            let v68 : Heap0 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v64; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v66; l12 = v13; l13 = v67; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v62; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44} : Heap0
+            method14(v56, v68)
+    let v71 : (JSX.Element []) = [|v70|]
+    let v72 : JSX.Element = v71 |> unbox<JSX.Element>
+    v72
+and closure25 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (Mut3 -> unit), v46 : Mut3, v47 : int32, v48 : (bool -> unit), v49 : (unit -> bool), v50 : (bool -> unit), v51 : (unit -> bool), v52 : (bool -> unit), v53 : (unit -> bool)) () : JSX.Element =
     let v54 : bool = v49 ()
     let v55 : bool = v54 = false
     let v103 : JSX.Element =
         if v55 then
-            let v56 : (Heap0 -> JSX.Element) = closure23()
-            let v57 : (unit -> JSX.Element) = closure25(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v45, v46)
+            let v56 : (Heap0 -> JSX.Element) = closure24()
+            let v57 : (unit -> JSX.Element) = closure26(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v45, v46)
             let v58 : US3 = US3_1(v57)
             let v59 : Heap0 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v58; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v12; l12 = v13; l13 = v14; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v34; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44} : Heap0
             method14(v56, v59)
         else
-            let v61 : (Heap0 -> JSX.Element) = closure23()
+            let v61 : (Heap0 -> JSX.Element) = closure24()
             let v62 : bool = v53 ()
             let v65 : US4 =
                 if v62 then
@@ -1720,7 +1725,7 @@ and closure24 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 
                     US0_1(v92)
                 else
                     US0_0
-            let v96 : (unit -> JSX.Element) = closure28(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53)
+            let v96 : (unit -> JSX.Element) = closure29(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53)
             let v97 : US3 = US3_1(v96)
             let v98 : string = "flex"
             let v99 : US0 = US0_1(v98)
@@ -1732,7 +1737,7 @@ and closure24 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 
     v105
 and closure19 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (unit -> bool), v46 : (unit -> JSX.Element)) () : JSX.Element =
     let v47 : US2 = v0.l37
-    let v133 : JSX.Element =
+    let v129 : JSX.Element =
         match v47 with
         | US2_0 -> (* None *)
             let v48 : JSX.Element = v46 ()
@@ -1744,43 +1749,38 @@ and closure19 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 
                 let v52 : US3 = US3_1(v51)
                 let v53 : Heap0 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v52; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v12; l12 = v13; l13 = v14; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v34; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44} : Heap0
                 let struct (v54 : US0, v55 : US1, v56 : US0, v57 : US0, v58 : US0, v59 : US2, v60 : US3, v61 : US0, v62 : US0, v63 : US2, v64 : US0, v65 : US0, v66 : US2, v67 : US4, v68 : US0, v69 : US0, v70 : US0, v71 : US0, v72 : US5, v73 : US0, v74 : US0, v75 : US0, v76 : US6, v77 : US0, v78 : US0, v79 : US0, v80 : US0, v81 : US7, v82 : US8, v83 : US0, v84 : US0, v85 : US0, v86 : US0, v87 : US0, v88 : US0, v89 : US0, v90 : US0, v91 : US2, v92 : US0, v93 : US0, v94 : US5, v95 : US0, v96 : US0, v97 : US4) = method0()
-                let v98 : string = "useStoreon"
-                let v99 : string = "@storeon/solidjs"
-                let v100 : JS.Function = import v98 v99
-                let v101 : (JS.Function []) = v100.Invoke () |> unbox<JS.Function[]>
-                let v102 : US4 = v101.[0] |> unbox
-                let v103 : (string -> (Heap1 -> unit)) = v101.[1] |> unbox
-                let v104 : int32 = Random().Next()
-                let v105 : bool = true
-                let struct (v106 : (unit -> bool), v107 : (bool -> unit)) = method17(v105)
-                let v108 : bool = false
-                let struct (v109 : (unit -> bool), v110 : (bool -> unit)) = method17(v108)
-                let v111 : bool = false
-                let struct (v112 : (unit -> bool), v113 : (bool -> unit)) = method17(v111)
-                let v114 : string = "on"
-                let v115 : string = "solid-js"
-                let v116 : JS.Function = import v114 v115
-                let v117 : (unit -> (bool [])) = closure21(v109)
-                let v118 : (unit -> unit) = closure22(v110, v109)
-                let v119 : JS.Function = v116.Invoke (v117, v118) |> unbox<JS.Function>
-                let v120 : string = "createEffect"
-                let v121 : JS.Function = import v120 v115
-                v121.Invoke v119 |> ignore
-                let v122 : (Heap0 -> JSX.Element) = closure23()
-                let v123 : US0 = v53.l19
-                let v124 : (unit -> JSX.Element) = closure24(v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v103, v102, v104, v107, v106, v110, v109, v113, v112)
-                let v125 : US3 = US3_1(v124)
-                let v126 : string = "flex"
-                let v127 : US0 = US0_1(v126)
-                let v128 : US4 = US4_1(1)
-                let v129 : Heap0 = {l0 = v54; l1 = v55; l2 = v56; l3 = v57; l4 = v58; l5 = v59; l6 = v125; l7 = v61; l8 = v62; l9 = v63; l10 = v64; l11 = v127; l12 = v66; l13 = v128; l14 = v68; l15 = v69; l16 = v70; l17 = v71; l18 = v72; l19 = v123; l20 = v74; l21 = v75; l22 = v76; l23 = v77; l24 = v78; l25 = v79; l26 = v80; l27 = v81; l28 = v82; l29 = v83; l30 = v84; l31 = v85; l32 = v86; l33 = v87; l34 = v88; l35 = v89; l36 = v90; l37 = v91; l38 = v92; l39 = v93; l40 = v94; l41 = v95; l42 = v96; l43 = v97} : Heap0
-                method14(v122, v129)
+                let struct (v98 : Mut3, v99 : (Mut3 -> unit)) = method18()
+                let v100 : int32 = Random().Next()
+                let v101 : bool = true
+                let struct (v102 : (unit -> bool), v103 : (bool -> unit)) = method17(v101)
+                let v104 : bool = false
+                let struct (v105 : (unit -> bool), v106 : (bool -> unit)) = method17(v104)
+                let v107 : bool = false
+                let struct (v108 : (unit -> bool), v109 : (bool -> unit)) = method17(v107)
+                let v110 : string = "on"
+                let v111 : string = "solid-js"
+                let v112 : JS.Function = import v110 v111
+                let v113 : (unit -> (bool [])) = closure22(v105)
+                let v114 : (unit -> unit) = closure23(v106, v105)
+                let v115 : JS.Function = v112.Invoke (v113, v114) |> unbox<JS.Function>
+                let v116 : string = "createEffect"
+                let v117 : JS.Function = import v116 v111
+                v117.Invoke v115 |> ignore
+                let v118 : (Heap0 -> JSX.Element) = closure24()
+                let v119 : US0 = v53.l19
+                let v120 : (unit -> JSX.Element) = closure25(v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v99, v98, v100, v103, v102, v106, v105, v109, v108)
+                let v121 : US3 = US3_1(v120)
+                let v122 : string = "flex"
+                let v123 : US0 = US0_1(v122)
+                let v124 : US4 = US4_1(1)
+                let v125 : Heap0 = {l0 = v54; l1 = v55; l2 = v56; l3 = v57; l4 = v58; l5 = v59; l6 = v121; l7 = v61; l8 = v62; l9 = v63; l10 = v64; l11 = v123; l12 = v66; l13 = v124; l14 = v68; l15 = v69; l16 = v70; l17 = v71; l18 = v72; l19 = v119; l20 = v74; l21 = v75; l22 = v76; l23 = v77; l24 = v78; l25 = v79; l26 = v80; l27 = v81; l28 = v82; l29 = v83; l30 = v84; l31 = v85; l32 = v86; l33 = v87; l34 = v88; l35 = v89; l36 = v90; l37 = v91; l38 = v92; l39 = v93; l40 = v94; l41 = v95; l42 = v96; l43 = v97} : Heap0
+                method14(v118, v125)
             else
-                let v131 : JSX.Element = Html.fragment []
-                v131
-    let v134 : (JSX.Element []) = [|v133|]
-    let v135 : JSX.Element = v134 |> unbox<JSX.Element>
-    v135
+                let v127 : JSX.Element = Html.fragment []
+                v127
+    let v130 : (JSX.Element []) = [|v129|]
+    let v131 : JSX.Element = v130 |> unbox<JSX.Element>
+    v131
 and closure12 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (bool -> unit), v46 : (unit -> bool)) () : JSX.Element =
     let v47 : US5 = v0.l40
     let v69 : JSX.Element =
@@ -1855,7 +1855,7 @@ and closure12 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 
     let v108 : (JSX.Element []) = [|v69; v107|]
     let v109 : JSX.Element = v108 |> unbox<JSX.Element>
     v109
-and closure35 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4) () : JSX.Element =
+and closure36 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4) () : JSX.Element =
     let v44 : (Heap0 -> JSX.Element) = closure6()
     let v45 : string = "https://fc1943s.github.io/tictactoe_spiral"
     let v46 : US0 = US0_1(v45)
@@ -1864,7 +1864,7 @@ and closure35 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : 
     let v49 : (JSX.Element []) = [|v48|]
     let v50 : JSX.Element = v49 |> unbox<JSX.Element>
     v50
-and closure36 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4) () : JSX.Element =
+and closure37 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4) () : JSX.Element =
     let v44 : (Heap0 -> JSX.Element) = closure6()
     let v45 : string = "https://fc1943s.github.io/tictactoe_spiral/docs"
     let v46 : US0 = US0_1(v45)
@@ -1903,7 +1903,7 @@ and closure9 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : U
     let v111 : US0 = US0_1(v103)
     let v112 : Heap0 = {l0 = v49; l1 = v50; l2 = v51; l3 = v105; l4 = v53; l5 = v54; l6 = v107; l7 = v56; l8 = v57; l9 = v58; l10 = v59; l11 = v109; l12 = v61; l13 = v110; l14 = v111; l15 = v64; l16 = v65; l17 = v66; l18 = v67; l19 = v102; l20 = v69; l21 = v70; l22 = v71; l23 = v72; l24 = v73; l25 = v74; l26 = v75; l27 = v76; l28 = v77; l29 = v78; l30 = v79; l31 = v80; l32 = v81; l33 = v82; l34 = v83; l35 = v84; l36 = v85; l37 = v86; l38 = v87; l39 = v88; l40 = v89; l41 = v90; l42 = v91; l43 = v92} : Heap0
     let v113 : JSX.Element = method14(v101, v112)
-    let v114 : (unit -> JSX.Element) = closure35(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43)
+    let v114 : (unit -> JSX.Element) = closure36(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43)
     let v115 : US3 = US3_1(v114)
     let v116 : US0 = US0_1(v46)
     let v117 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v115; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v116; l32 = v32; l33 = v33; l34 = v34; l35 = v35; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
@@ -1928,7 +1928,7 @@ and closure9 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : U
     let v177 : US0 = US0_1(v171)
     let v178 : Heap0 = {l0 = v118; l1 = v119; l2 = v120; l3 = v172; l4 = v122; l5 = v123; l6 = v174; l7 = v125; l8 = v126; l9 = v127; l10 = v128; l11 = v175; l12 = v130; l13 = v176; l14 = v177; l15 = v133; l16 = v134; l17 = v135; l18 = v136; l19 = v170; l20 = v138; l21 = v139; l22 = v140; l23 = v141; l24 = v142; l25 = v143; l26 = v144; l27 = v145; l28 = v146; l29 = v147; l30 = v148; l31 = v149; l32 = v150; l33 = v151; l34 = v152; l35 = v153; l36 = v154; l37 = v155; l38 = v156; l39 = v157; l40 = v158; l41 = v159; l42 = v160; l43 = v161} : Heap0
     let v179 : JSX.Element = method14(v101, v178)
-    let v180 : (unit -> JSX.Element) = closure36(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43)
+    let v180 : (unit -> JSX.Element) = closure37(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43)
     let v181 : US3 = US3_1(v180)
     let v182 : US0 = US0_1(v46)
     let v183 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v181; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v182; l32 = v32; l33 = v33; l34 = v34; l35 = v35; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
@@ -1963,39 +1963,39 @@ and closure8 () () : JSX.Element =
     let v46 : US3 = US3_1(v45)
     let v47 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v46; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v28; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v35; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
     method14(v44, v47)
-and closure40 (v0 : (bool -> unit), v1 : US10, v2 : (string -> (Heap1 -> unit)), v3 : US4) () : unit =
+and closure41 (v0 : (bool -> unit), v1 : US10, v2 : (Mut3 -> unit), v3 : Mut3) () : unit =
     match v1 with
     | US10_0 -> (* None *)
         ()
     | US10_1(v4) -> (* Some *)
-        let v5 : ((string -> (Heap1 -> unit)) -> unit) = v4 v3
+        let v5 : ((Mut3 -> unit) -> unit) = v4 v3
         v5 v2
         ()
     v0 true
     ()
-and closure39 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (bool -> unit), v45 : US10, v46 : (string -> (Heap1 -> unit)), v47 : US4) () : JSX.Element =
+and closure40 (v0 : US0, v1 : US1, v2 : US0, v3 : US0, v4 : US0, v5 : US2, v6 : US3, v7 : US0, v8 : US0, v9 : US2, v10 : US0, v11 : US0, v12 : US2, v13 : US4, v14 : US0, v15 : US0, v16 : US0, v17 : US0, v18 : US5, v19 : US0, v20 : US0, v21 : US0, v22 : US6, v23 : US0, v24 : US0, v25 : US0, v26 : US0, v27 : US7, v28 : US8, v29 : US0, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US2, v38 : US0, v39 : US0, v40 : US5, v41 : US0, v42 : US0, v43 : US4, v44 : (bool -> unit), v45 : US10, v46 : (Mut3 -> unit), v47 : Mut3) () : JSX.Element =
     let v48 : (Heap0 -> JSX.Element) = closure0()
-    let v49 : (unit -> JSX.Element) = closure26()
+    let v49 : (unit -> JSX.Element) = closure27()
     let v50 : US3 = US3_1(v49)
-    let v51 : (unit -> unit) = closure40(v44, v45, v46, v47)
+    let v51 : (unit -> unit) = closure41(v44, v45, v46, v47)
     let v52 : US8 = US8_1(v51)
     let v53 : Heap0 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3; l4 = v4; l5 = v5; l6 = v50; l7 = v7; l8 = v8; l9 = v9; l10 = v10; l11 = v11; l12 = v12; l13 = v13; l14 = v14; l15 = v15; l16 = v16; l17 = v17; l18 = v18; l19 = v19; l20 = v20; l21 = v21; l22 = v22; l23 = v23; l24 = v24; l25 = v25; l26 = v26; l27 = v27; l28 = v52; l29 = v29; l30 = v30; l31 = v31; l32 = v32; l33 = v33; l34 = v34; l35 = v35; l36 = v36; l37 = v37; l38 = v38; l39 = v39; l40 = v40; l41 = v41; l42 = v42; l43 = v43} : Heap0
     let v54 : JSX.Element = method14(v48, v53)
     let v55 : (JSX.Element []) = [|v54|]
     let v56 : JSX.Element = v55 |> unbox<JSX.Element>
     v56
-and closure38 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (string -> (Heap1 -> unit)), v46 : US4, v47 : int32, v48 : (bool -> unit), v49 : (unit -> bool), v50 : (bool -> unit), v51 : (unit -> bool), v52 : (bool -> unit), v53 : (unit -> bool), v54 : US10) () : JSX.Element =
+and closure39 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 : US2, v7 : US3, v8 : US0, v9 : US0, v10 : US2, v11 : US0, v12 : US0, v13 : US2, v14 : US4, v15 : US0, v16 : US0, v17 : US0, v18 : US0, v19 : US5, v20 : US0, v21 : US0, v22 : US0, v23 : US6, v24 : US0, v25 : US0, v26 : US0, v27 : US0, v28 : US7, v29 : US8, v30 : US0, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US2, v39 : US0, v40 : US0, v41 : US5, v42 : US0, v43 : US0, v44 : US4, v45 : (Mut3 -> unit), v46 : Mut3, v47 : int32, v48 : (bool -> unit), v49 : (unit -> bool), v50 : (bool -> unit), v51 : (unit -> bool), v52 : (bool -> unit), v53 : (unit -> bool), v54 : US10) () : JSX.Element =
     let v55 : bool = v49 ()
     let v56 : bool = v55 = false
     let v104 : JSX.Element =
         if v56 then
-            let v57 : (Heap0 -> JSX.Element) = closure23()
-            let v58 : (unit -> JSX.Element) = closure39(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v54, v45, v46)
+            let v57 : (Heap0 -> JSX.Element) = closure24()
+            let v58 : (unit -> JSX.Element) = closure40(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v48, v54, v45, v46)
             let v59 : US3 = US3_1(v58)
             let v60 : Heap0 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v59; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v12; l12 = v13; l13 = v14; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v34; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44} : Heap0
             method14(v57, v60)
         else
-            let v62 : (Heap0 -> JSX.Element) = closure23()
+            let v62 : (Heap0 -> JSX.Element) = closure24()
             let v63 : bool = v53 ()
             let v66 : US4 =
                 if v63 then
@@ -2044,7 +2044,7 @@ and closure38 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 
                     US0_1(v93)
                 else
                     US0_0
-            let v97 : (unit -> JSX.Element) = closure28(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53)
+            let v97 : (unit -> JSX.Element) = closure29(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v50, v51, v52, v53)
             let v98 : US3 = US3_1(v97)
             let v99 : string = "flex"
             let v100 : US0 = US0_1(v99)
@@ -2054,48 +2054,43 @@ and closure38 (v0 : Heap0, v1 : US0, v2 : US1, v3 : US0, v4 : US0, v5 : US0, v6 
     let v105 : (JSX.Element []) = [|v104|]
     let v106 : JSX.Element = v105 |> unbox<JSX.Element>
     v106
-and closure37 () struct (v0 : bool, v1 : bool, v2 : US10, v3 : Heap0) : JSX.Element =
+and closure38 () struct (v0 : bool, v1 : bool, v2 : US10, v3 : Heap0) : JSX.Element =
     let struct (v4 : US0, v5 : US1, v6 : US0, v7 : US0, v8 : US0, v9 : US2, v10 : US3, v11 : US0, v12 : US0, v13 : US2, v14 : US0, v15 : US0, v16 : US2, v17 : US4, v18 : US0, v19 : US0, v20 : US0, v21 : US0, v22 : US5, v23 : US0, v24 : US0, v25 : US0, v26 : US6, v27 : US0, v28 : US0, v29 : US0, v30 : US0, v31 : US7, v32 : US8, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US0, v39 : US0, v40 : US0, v41 : US2, v42 : US0, v43 : US0, v44 : US5, v45 : US0, v46 : US0, v47 : US4) = method0()
-    let v48 : string = "useStoreon"
-    let v49 : string = "@storeon/solidjs"
-    let v50 : JS.Function = import v48 v49
-    let v51 : (JS.Function []) = v50.Invoke () |> unbox<JS.Function[]>
-    let v52 : US4 = v51.[0] |> unbox
-    let v53 : (string -> (Heap1 -> unit)) = v51.[1] |> unbox
-    let v54 : int32 = Random().Next()
-    let struct (v55 : (unit -> bool), v56 : (bool -> unit)) = method17(v0)
-    let v57 : bool = false
-    let struct (v58 : (unit -> bool), v59 : (bool -> unit)) = method17(v57)
-    let struct (v60 : (unit -> bool), v61 : (bool -> unit)) = method17(v1)
-    let v62 : string = "on"
-    let v63 : string = "solid-js"
-    let v64 : JS.Function = import v62 v63
-    let v65 : (unit -> (bool [])) = closure21(v58)
-    let v66 : (unit -> unit) = closure22(v59, v58)
-    let v67 : JS.Function = v64.Invoke (v65, v66) |> unbox<JS.Function>
-    let v68 : string = "createEffect"
-    let v69 : JS.Function = import v68 v63
-    v69.Invoke v67 |> ignore
+    let struct (v48 : Mut3, v49 : (Mut3 -> unit)) = method18()
+    let v50 : int32 = Random().Next()
+    let struct (v51 : (unit -> bool), v52 : (bool -> unit)) = method17(v0)
+    let v53 : bool = false
+    let struct (v54 : (unit -> bool), v55 : (bool -> unit)) = method17(v53)
+    let struct (v56 : (unit -> bool), v57 : (bool -> unit)) = method17(v1)
+    let v58 : string = "on"
+    let v59 : string = "solid-js"
+    let v60 : JS.Function = import v58 v59
+    let v61 : (unit -> (bool [])) = closure22(v54)
+    let v62 : (unit -> unit) = closure23(v55, v54)
+    let v63 : JS.Function = v60.Invoke (v61, v62) |> unbox<JS.Function>
+    let v64 : string = "createEffect"
+    let v65 : JS.Function = import v64 v59
+    v65.Invoke v63 |> ignore
     if v0 then
         match v2 with
         | US10_0 -> (* None *)
             ()
-        | US10_1(v70) -> (* Some *)
-            let v71 : ((string -> (Heap1 -> unit)) -> unit) = v70 v52
-            v71 v53
+        | US10_1(v66) -> (* Some *)
+            let v67 : ((Mut3 -> unit) -> unit) = v66 v48
+            v67 v49
             ()
-    let v72 : (Heap0 -> JSX.Element) = closure23()
-    let v73 : US0 = v3.l19
-    let v74 : (unit -> JSX.Element) = closure38(v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v53, v52, v54, v56, v55, v59, v58, v61, v60, v2)
-    let v75 : US3 = US3_1(v74)
-    let v76 : string = "flex"
-    let v77 : US0 = US0_1(v76)
-    let v78 : US4 = US4_1(1)
-    let v79 : Heap0 = {l0 = v4; l1 = v5; l2 = v6; l3 = v7; l4 = v8; l5 = v9; l6 = v75; l7 = v11; l8 = v12; l9 = v13; l10 = v14; l11 = v77; l12 = v16; l13 = v78; l14 = v18; l15 = v19; l16 = v20; l17 = v21; l18 = v22; l19 = v73; l20 = v24; l21 = v25; l22 = v26; l23 = v27; l24 = v28; l25 = v29; l26 = v30; l27 = v31; l28 = v32; l29 = v33; l30 = v34; l31 = v35; l32 = v36; l33 = v37; l34 = v38; l35 = v39; l36 = v40; l37 = v41; l38 = v42; l39 = v43; l40 = v44; l41 = v45; l42 = v46; l43 = v47} : Heap0
-    method14(v72, v79)
-and closure43 (v0 : US10, v1 : Heap0, v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6 : US0, v7 : US2, v8 : US3, v9 : US0, v10 : US0, v11 : US2, v12 : US0, v13 : US0, v14 : US2, v15 : US4, v16 : US0, v17 : US0, v18 : US0, v19 : US0, v20 : US5, v21 : US0, v22 : US0, v23 : US0, v24 : US6, v25 : US0, v26 : US0, v27 : US0, v28 : US0, v29 : US7, v30 : US8, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US0, v39 : US2, v40 : US0, v41 : US0, v42 : US5, v43 : US0, v44 : US0, v45 : US4, v46 : (unit -> bool), v47 : (unit -> JSX.Element)) () : JSX.Element =
+    let v68 : (Heap0 -> JSX.Element) = closure24()
+    let v69 : US0 = v3.l19
+    let v70 : (unit -> JSX.Element) = closure39(v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v49, v48, v50, v52, v51, v55, v54, v57, v56, v2)
+    let v71 : US3 = US3_1(v70)
+    let v72 : string = "flex"
+    let v73 : US0 = US0_1(v72)
+    let v74 : US4 = US4_1(1)
+    let v75 : Heap0 = {l0 = v4; l1 = v5; l2 = v6; l3 = v7; l4 = v8; l5 = v9; l6 = v71; l7 = v11; l8 = v12; l9 = v13; l10 = v14; l11 = v73; l12 = v16; l13 = v74; l14 = v18; l15 = v19; l16 = v20; l17 = v21; l18 = v22; l19 = v69; l20 = v24; l21 = v25; l22 = v26; l23 = v27; l24 = v28; l25 = v29; l26 = v30; l27 = v31; l28 = v32; l29 = v33; l30 = v34; l31 = v35; l32 = v36; l33 = v37; l34 = v38; l35 = v39; l36 = v40; l37 = v41; l38 = v42; l39 = v43; l40 = v44; l41 = v45; l42 = v46; l43 = v47} : Heap0
+    method14(v68, v75)
+and closure44 (v0 : US10, v1 : Heap0, v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6 : US0, v7 : US2, v8 : US3, v9 : US0, v10 : US0, v11 : US2, v12 : US0, v13 : US0, v14 : US2, v15 : US4, v16 : US0, v17 : US0, v18 : US0, v19 : US0, v20 : US5, v21 : US0, v22 : US0, v23 : US0, v24 : US6, v25 : US0, v26 : US0, v27 : US0, v28 : US0, v29 : US7, v30 : US8, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US0, v39 : US2, v40 : US0, v41 : US0, v42 : US5, v43 : US0, v44 : US0, v45 : US4, v46 : (unit -> bool), v47 : (unit -> JSX.Element)) () : JSX.Element =
     let v48 : US2 = v1.l37
-    let v136 : JSX.Element =
+    let v132 : JSX.Element =
         match v48 with
         | US2_0 -> (* None *)
             let v49 : JSX.Element = v47 ()
@@ -2107,51 +2102,46 @@ and closure43 (v0 : US10, v1 : Heap0, v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6
                 let v53 : US3 = US3_1(v52)
                 let v54 : Heap0 = {l0 = v2; l1 = v3; l2 = v4; l3 = v5; l4 = v6; l5 = v7; l6 = v53; l7 = v9; l8 = v10; l9 = v11; l10 = v12; l11 = v13; l12 = v14; l13 = v15; l14 = v16; l15 = v17; l16 = v18; l17 = v19; l18 = v20; l19 = v21; l20 = v22; l21 = v23; l22 = v24; l23 = v25; l24 = v26; l25 = v27; l26 = v28; l27 = v29; l28 = v30; l29 = v31; l30 = v32; l31 = v33; l32 = v34; l33 = v35; l34 = v36; l35 = v37; l36 = v38; l37 = v39; l38 = v40; l39 = v41; l40 = v42; l41 = v43; l42 = v44; l43 = v45} : Heap0
                 let struct (v55 : US0, v56 : US1, v57 : US0, v58 : US0, v59 : US0, v60 : US2, v61 : US3, v62 : US0, v63 : US0, v64 : US2, v65 : US0, v66 : US0, v67 : US2, v68 : US4, v69 : US0, v70 : US0, v71 : US0, v72 : US0, v73 : US5, v74 : US0, v75 : US0, v76 : US0, v77 : US6, v78 : US0, v79 : US0, v80 : US0, v81 : US0, v82 : US7, v83 : US8, v84 : US0, v85 : US0, v86 : US0, v87 : US0, v88 : US0, v89 : US0, v90 : US0, v91 : US0, v92 : US2, v93 : US0, v94 : US0, v95 : US5, v96 : US0, v97 : US0, v98 : US4) = method0()
-                let v99 : string = "useStoreon"
-                let v100 : string = "@storeon/solidjs"
-                let v101 : JS.Function = import v99 v100
-                let v102 : (JS.Function []) = v101.Invoke () |> unbox<JS.Function[]>
-                let v103 : US4 = v102.[0] |> unbox
-                let v104 : (string -> (Heap1 -> unit)) = v102.[1] |> unbox
-                let v105 : int32 = Random().Next()
-                let v106 : bool = true
-                let struct (v107 : (unit -> bool), v108 : (bool -> unit)) = method17(v106)
-                let v109 : bool = false
-                let struct (v110 : (unit -> bool), v111 : (bool -> unit)) = method17(v109)
-                let v112 : bool = false
-                let struct (v113 : (unit -> bool), v114 : (bool -> unit)) = method17(v112)
-                let v115 : string = "on"
-                let v116 : string = "solid-js"
-                let v117 : JS.Function = import v115 v116
-                let v118 : (unit -> (bool [])) = closure21(v110)
-                let v119 : (unit -> unit) = closure22(v111, v110)
-                let v120 : JS.Function = v117.Invoke (v118, v119) |> unbox<JS.Function>
-                let v121 : string = "createEffect"
-                let v122 : JS.Function = import v121 v116
-                v122.Invoke v120 |> ignore
+                let struct (v99 : Mut3, v100 : (Mut3 -> unit)) = method18()
+                let v101 : int32 = Random().Next()
+                let v102 : bool = true
+                let struct (v103 : (unit -> bool), v104 : (bool -> unit)) = method17(v102)
+                let v105 : bool = false
+                let struct (v106 : (unit -> bool), v107 : (bool -> unit)) = method17(v105)
+                let v108 : bool = false
+                let struct (v109 : (unit -> bool), v110 : (bool -> unit)) = method17(v108)
+                let v111 : string = "on"
+                let v112 : string = "solid-js"
+                let v113 : JS.Function = import v111 v112
+                let v114 : (unit -> (bool [])) = closure22(v106)
+                let v115 : (unit -> unit) = closure23(v107, v106)
+                let v116 : JS.Function = v113.Invoke (v114, v115) |> unbox<JS.Function>
+                let v117 : string = "createEffect"
+                let v118 : JS.Function = import v117 v112
+                v118.Invoke v116 |> ignore
                 match v0 with
                 | US10_0 -> (* None *)
                     ()
-                | US10_1(v123) -> (* Some *)
-                    let v124 : ((string -> (Heap1 -> unit)) -> unit) = v123 v103
-                    v124 v104
+                | US10_1(v119) -> (* Some *)
+                    let v120 : ((Mut3 -> unit) -> unit) = v119 v99
+                    v120 v100
                     ()
-                let v125 : (Heap0 -> JSX.Element) = closure23()
-                let v126 : US0 = v54.l19
-                let v127 : (unit -> JSX.Element) = closure38(v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v104, v103, v105, v108, v107, v111, v110, v114, v113, v0)
-                let v128 : US3 = US3_1(v127)
-                let v129 : string = "flex"
-                let v130 : US0 = US0_1(v129)
-                let v131 : US4 = US4_1(1)
-                let v132 : Heap0 = {l0 = v55; l1 = v56; l2 = v57; l3 = v58; l4 = v59; l5 = v60; l6 = v128; l7 = v62; l8 = v63; l9 = v64; l10 = v65; l11 = v130; l12 = v67; l13 = v131; l14 = v69; l15 = v70; l16 = v71; l17 = v72; l18 = v73; l19 = v126; l20 = v75; l21 = v76; l22 = v77; l23 = v78; l24 = v79; l25 = v80; l26 = v81; l27 = v82; l28 = v83; l29 = v84; l30 = v85; l31 = v86; l32 = v87; l33 = v88; l34 = v89; l35 = v90; l36 = v91; l37 = v92; l38 = v93; l39 = v94; l40 = v95; l41 = v96; l42 = v97; l43 = v98} : Heap0
-                method14(v125, v132)
+                let v121 : (Heap0 -> JSX.Element) = closure24()
+                let v122 : US0 = v54.l19
+                let v123 : (unit -> JSX.Element) = closure39(v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v100, v99, v101, v104, v103, v107, v106, v110, v109, v0)
+                let v124 : US3 = US3_1(v123)
+                let v125 : string = "flex"
+                let v126 : US0 = US0_1(v125)
+                let v127 : US4 = US4_1(1)
+                let v128 : Heap0 = {l0 = v55; l1 = v56; l2 = v57; l3 = v58; l4 = v59; l5 = v60; l6 = v124; l7 = v62; l8 = v63; l9 = v64; l10 = v65; l11 = v126; l12 = v67; l13 = v127; l14 = v69; l15 = v70; l16 = v71; l17 = v72; l18 = v73; l19 = v122; l20 = v75; l21 = v76; l22 = v77; l23 = v78; l24 = v79; l25 = v80; l26 = v81; l27 = v82; l28 = v83; l29 = v84; l30 = v85; l31 = v86; l32 = v87; l33 = v88; l34 = v89; l35 = v90; l36 = v91; l37 = v92; l38 = v93; l39 = v94; l40 = v95; l41 = v96; l42 = v97; l43 = v98} : Heap0
+                method14(v121, v128)
             else
-                let v134 : JSX.Element = Html.fragment []
-                v134
-    let v137 : (JSX.Element []) = [|v136|]
-    let v138 : JSX.Element = v137 |> unbox<JSX.Element>
-    v138
-and closure42 (v0 : US10, v1 : Heap0, v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6 : US0, v7 : US2, v8 : US3, v9 : US0, v10 : US0, v11 : US2, v12 : US0, v13 : US0, v14 : US2, v15 : US4, v16 : US0, v17 : US0, v18 : US0, v19 : US0, v20 : US5, v21 : US0, v22 : US0, v23 : US0, v24 : US6, v25 : US0, v26 : US0, v27 : US0, v28 : US0, v29 : US7, v30 : US8, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US0, v39 : US2, v40 : US0, v41 : US0, v42 : US5, v43 : US0, v44 : US0, v45 : US4, v46 : (bool -> unit), v47 : (unit -> bool)) () : JSX.Element =
+                let v130 : JSX.Element = Html.fragment []
+                v130
+    let v133 : (JSX.Element []) = [|v132|]
+    let v134 : JSX.Element = v133 |> unbox<JSX.Element>
+    v134
+and closure43 (v0 : US10, v1 : Heap0, v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6 : US0, v7 : US2, v8 : US3, v9 : US0, v10 : US0, v11 : US2, v12 : US0, v13 : US0, v14 : US2, v15 : US4, v16 : US0, v17 : US0, v18 : US0, v19 : US0, v20 : US5, v21 : US0, v22 : US0, v23 : US0, v24 : US6, v25 : US0, v26 : US0, v27 : US0, v28 : US0, v29 : US7, v30 : US8, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US0, v39 : US2, v40 : US0, v41 : US0, v42 : US5, v43 : US0, v44 : US0, v45 : US4, v46 : (bool -> unit), v47 : (unit -> bool)) () : JSX.Element =
     let v48 : US5 = v1.l40
     let v70 : JSX.Element =
         match v48 with
@@ -2203,7 +2193,7 @@ and closure42 (v0 : US10, v1 : Heap0, v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6
                     v85
             let v87 : string = "0 !important"
             let v88 : US0 = US0_1(v87)
-            let v89 : (unit -> JSX.Element) = closure43(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v47, v81)
+            let v89 : (unit -> JSX.Element) = closure44(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v47, v81)
             let v90 : US3 = US3_1(v89)
             let v91 : string = "flex"
             let v92 : US0 = US0_1(v91)
@@ -2225,7 +2215,7 @@ and closure42 (v0 : US10, v1 : Heap0, v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6
     let v109 : (JSX.Element []) = [|v70; v108|]
     let v110 : JSX.Element = v109 |> unbox<JSX.Element>
     v110
-and closure41 () struct (v0 : US10, v1 : Heap0) : JSX.Element =
+and closure42 () struct (v0 : US10, v1 : Heap0) : JSX.Element =
     let struct (v2 : US0, v3 : US1, v4 : US0, v5 : US0, v6 : US0, v7 : US2, v8 : US3, v9 : US0, v10 : US0, v11 : US2, v12 : US0, v13 : US0, v14 : US2, v15 : US4, v16 : US0, v17 : US0, v18 : US0, v19 : US0, v20 : US5, v21 : US0, v22 : US0, v23 : US0, v24 : US6, v25 : US0, v26 : US0, v27 : US0, v28 : US0, v29 : US7, v30 : US8, v31 : US0, v32 : US0, v33 : US0, v34 : US0, v35 : US0, v36 : US0, v37 : US0, v38 : US0, v39 : US2, v40 : US0, v41 : US0, v42 : US5, v43 : US0, v44 : US0, v45 : US4) = method0()
     let v46 : US2 = v1.l37
     let v50 : bool =
@@ -2242,7 +2232,7 @@ and closure41 () struct (v0 : US10, v1 : Heap0) : JSX.Element =
     let v56 : string = {| ``@initial`` = "column"; ``@sm`` = "row" |} |> unbox<string>
     let v57 : string = "1px solid $neutral5"
     let v58 : US0 = US0_1(v57)
-    let v59 : (unit -> JSX.Element) = closure42(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v53, v52)
+    let v59 : (unit -> JSX.Element) = closure43(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v53, v52)
     let v60 : US3 = US3_1(v59)
     let v61 : string = "flex"
     let v62 : US0 = US0_1(v61)
@@ -2266,10 +2256,10 @@ let v12 : string = "links"
 let v13 : (unit -> JSX.Element) = closure8()
 let v14 : JSX.Prop = JSX.Prop (v12, v13)
 let v15 : string = "loader"
-let v16 : (struct (bool * bool * US10 * Heap0) -> JSX.Element) = closure37()
+let v16 : (struct (bool * bool * US10 * Heap0) -> JSX.Element) = closure38()
 let v17 : JSX.Prop = JSX.Prop (v15, v16)
 let v18 : string = "row"
-let v19 : (struct (US10 * Heap0) -> JSX.Element) = closure41()
+let v19 : (struct (US10 * Heap0) -> JSX.Element) = closure42()
 let v20 : JSX.Prop = JSX.Prop (v18, v19)
 let v21 : (JSX.Prop []) = [|v2; v5; v8; v11; v14; v17; v20|]
 let v22 : obj = createObj v21
