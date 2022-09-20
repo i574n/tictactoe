@@ -2,7 +2,7 @@ import * as store from "../store"
 import useStore from "../hooks/useStore"
 import { Stack, Box } from '@hope-ui/solid'
 import useFetch from "../hooks/useFetch"
-import { For } from "solid-js"
+import { Index } from "solid-js"
 import Row from "./Row"
 import BaseButton from "./BaseButton"
 import BaseTable from "./BaseTable"
@@ -35,7 +35,8 @@ function Counter<State extends store.State>() {
                     <Stack
                         alignItems="start"
                         direction="column"
-                        spacing="6px"
+                        marginBottom="8px"
+                        spacing="7px"
                         padding="3px"
                     >
                         <Box>Counter</Box>
@@ -55,16 +56,16 @@ function Counter<State extends store.State>() {
             }}
         >
             <BaseTable>
-                <For each={Object.entries(state.profile.tmp.counter || {}).reverse()}>
-                    {([k, v]) => (
+                <Index each={Object.entries(state.profile.tmp.counter || {}).reverse()}>
+                    {(item) => (
                         <Row
-                            title={k}
+                            title={item()[0]}
                             padding="3px"
                         >
-                            <pre>{JSON.stringify(v, null, 2)}</pre>
+                            <pre>{JSON.stringify(item()[1], null, 2)}</pre>
                         </Row>
                     )}
-                </For>
+                </Index>
             </BaseTable>
         </Row>
     )

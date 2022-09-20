@@ -14,16 +14,13 @@ function Row<State extends ui.UiState>(
         }
     }
 ) {
-    return <components_spi.v19
-        {...[
-            new components_spi.US10(props_?.onLoad ? 1 : 0, [props_?.onLoad]),
-            components_spi.v7(Object.entries({
-                ...props,
-                id: props_?.id,
-                status: props_?.loader,
-                title: props_?.title || props.title
-            }))
-        ]} />
+    return <components_spi.v28 {...components_spi.v13(Object.entries({
+        ...props,
+        _on_load: props_?.onLoad,
+        id: props_?.id,
+        status: props_?.loader,
+        title: props_?.title || props.title
+    }))} />
 }
 
 export default Row

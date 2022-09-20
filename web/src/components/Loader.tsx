@@ -8,13 +8,11 @@ function Loader<State extends ui.UiState>(props: {
     defaults?: { loaded?: boolean, refreshing?: boolean, modal?: boolean }
     children: any
 }) {
-    return <components_spi.v16
-        {...[
-            props.defaults?.loaded || false,
-            props.defaults?.modal || false,
-            new components_spi.US10(1, props.onLoad),
-            components_spi.v7(Object.entries(props))
-        ]} />
+    return <components_spi.v25 {...components_spi.v13(Object.entries({
+        _on_load: props?.onLoad,
+        _loaded: props.defaults?.loaded,
+        _modal: props.defaults?.modal
+    }))} />
 }
 
 export default Loader

@@ -5,22 +5,30 @@ import { globalCss, HopeProvider } from '@hope-ui/solid'
 import DbListener from './components/DbListener'
 import Content from './components/Content'
 import * as ui from "./ui"
+import { ErrorBoundary } from 'solid-js'
 
 
 function App() {
     globalCss(ui.globalCss)()
 
     return (
-        <StoreonProvider
-            store={store.store}
+        <ErrorBoundary
+            fallback={err => {
+                console.error(err)
+                return `ErrorBoundary: ${err}`
+            }}
         >
-            <HopeProvider
-                config={ui.config}
+            <StoreonProvider
+                store={store.store}
             >
-                <DbListener />
-                <Content />
-            </HopeProvider>
-        </StoreonProvider>
+                <HopeProvider
+                    config={ui.config}
+                >
+                    <DbListener />
+                    <Content />
+                </HopeProvider>
+            </StoreonProvider>
+        </ErrorBoundary>
     )
 }
 

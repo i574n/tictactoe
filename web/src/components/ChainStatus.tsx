@@ -4,7 +4,7 @@ import { Box, Stack } from '@hope-ui/solid'
 import useFetch from "../hooks/useFetch"
 import BaseButton from "./BaseButton"
 import { BiRegularPlus, BiRegularMinus } from "solid-icons/bi"
-import { For } from "solid-js"
+import { Index } from "solid-js"
 import BaseTable from "./BaseTable"
 import Row from "./Row"
 
@@ -55,16 +55,16 @@ function ChainStatus<State extends store.State>() {
             }}
         >
             <BaseTable>
-                <For each={Object.entries(state.profile.tmp.chainStatus || {}).reverse()}>
-                    {([k, v]) => (
+                <Index each={Object.entries(state.profile.tmp.chainStatus || {}).reverse()}>
+                    {(item) => (
                         <Row
-                            title={k}
+                            title={item()[0]}
                             padding="3px"
                         >
-                            <pre>{JSON.stringify(v, null, 2)}</pre>
+                            <pre>{JSON.stringify(item()[1], null, 2)}</pre>
                         </Row>
                     )}
-                </For>
+                </Index>
             </BaseTable>
         </Row>
     )

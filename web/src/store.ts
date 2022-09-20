@@ -38,7 +38,7 @@ const init: State = {
         } as { [_ in db.DbType]: boolean }
     },
     dbRef: {},
-    ui: {},
+    ui_modal: -1,
     profile: {
         tmp: {}
     }

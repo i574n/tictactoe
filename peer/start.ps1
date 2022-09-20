@@ -1,4 +1,4 @@
-pnpm install
+bun install
 
 [System.IO.Directory]::CreateDirectory('ssl')
 bun mkcert create-ca --cert=./ssl/ca.pem --key=./ssl/ca-key.pem

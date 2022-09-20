@@ -96,6 +96,11 @@ def spiral(arg, cell, test=False):
     def split_imports(code): return util.list_partition(code.splitlines(), lambda line: line.startswith('open '))
     cache_imports, cache_exports = split_imports(_spiral_cache[arg])
 
+    def cwpath(*arg): return os.path.abspath(os.path.join(os.getcwd(), '..', *arg))
+
+    if cell.strip() == '' and arg == '':
+        cell = util.read_file(cwpath('main.spi'))
+
     cell_imports, cell_exports = split_imports(cell)
     cell_exports = '\n'.join(cell_exports).strip('\n').split('\n')
 
@@ -113,8 +118,6 @@ def spiral(arg, cell, test=False):
             '\n'.join(exports).strip('\n') + '\n'
         ])
     new_code_spi = join_imports(spi_imports, spi_exports)
-
-    def cwpath(*arg): return os.path.abspath(os.path.join(os.getcwd(), '..', *arg))
 
     if _notebook_name is None:
         _notebook_name = util.get_notebook_name()

@@ -15,11 +15,13 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: "16.x"
+          node-version: "latest"
 
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: antongolub/action-setup-bun@v1
+
+      - uses: pnpm/action-setup@v2
         with:
-          version: 6.0
+          version: "latest"
 
       - uses: ATiltedTree/setup-rust@v1
         with:
@@ -27,13 +29,9 @@ jobs:
 
       - run: cargo install rod
 
-      - run: pnpm install
-      - run: cd ./web && pnpm install
-      - run: cd ./peer && pnpm install
-
-      - run: curl https://bun.sh/install | bash
-      - run: echo "BUN_INSTALL=$HOME/.bun" >> $GITHUB_ENV
-      - run: echo "PATH=$BUN_INSTALL/bin:$PATH" >> $GITHUB_ENV
+      - run: bun install
+      - run: cd ./web && bun install
+      - run: cd ./peer && bun install
 
       - run: cd ./web && bun run playwright-install
       - run: cd ./web && bun run e2e

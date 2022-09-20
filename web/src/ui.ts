@@ -2,9 +2,7 @@ import { HopeThemeConfig } from '@hope-ui/solid'
 
 
 export type UiState = {
-    ui: {
-        modal?: string
-    }
+    ui_modal?: number
 }
 
 export const globalCss = {

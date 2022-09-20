@@ -1,6 +1,6 @@
 import Loader from '../components/Loader'
 import { log1221_1, log1221_2, log1221_3, log1221_4, log1221_5 } from './raw'
-import { For } from 'solid-js'
+import { For, Index } from 'solid-js'
 import { Box } from '@hope-ui/solid'
 
 
@@ -123,7 +123,7 @@ export function Diff() {
                             flex={1}
                             flexDirection="row"
                         >
-                            <For each={Object.values(file)}>
+                            <Index each={Object.values(file)}>
                                 {(groups) => (
                                     <Box
                                         css={{ wordBreak: "break-all" }}
@@ -134,23 +134,23 @@ export function Diff() {
                                         fontFamily="monospace"
                                         fontSize={8}
                                     >
-                                        <For each={groups}>
+                                        <Index each={groups()}>
                                             {(groupLine) => (
                                                 <Box
                                                     classList={{
-                                                        [classes[groupLine] || '']: true
+                                                        [classes[groupLine()] || '']: true
                                                     }}
-                                                    color={lineColors[groupLine]}
+                                                    color={lineColors[groupLine()]}
                                                     marginTop="1px"
                                                     marginBottom="1px"
                                                 >
                                                     {groupLine}
                                                 </Box>
                                             )}
-                                        </For>
+                                        </Index>
                                     </Box>
                                 )}
-                            </For>
+                            </Index>
                         </Box>
                     )}
                 </For>
