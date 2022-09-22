@@ -7,7 +7,7 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "start-ci": "cross-env-shell \"pwsh ./start.ps1\"",
+        "start-ci": "cross-env-shell \"pwsh start.ps1\"",
         "start-dev": "cross-env-shell PEER_DOMAIN=localhost \"pnpm start-ci\"",
         "start-dev-local": "cross-env-shell HTTPS=true ROOT_PATH=./radata \"pnpm start-dev\"",
         "outdated-pre": "ncu --pre 1 -t greatest"

@@ -23,15 +23,23 @@ jobs:
         with:
           version: "latest"
 
+      - uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+          include-prerelease: true
+
       - uses: ATiltedTree/setup-rust@v1
         with:
           rust-version: nightly
 
-      - run: cargo install rod
+      - run: dotnet tool restore
+      - run: pwsh build-fsx-ts.ps1
 
       - run: pnpm install
       - run: cd ./web && pnpm install
       - run: cd ./peer && pnpm install
+
+      - run: cargo install rod
 
       - run: cd ./web && bun run playwright-install
       - run: cd ./web && bun run e2e
