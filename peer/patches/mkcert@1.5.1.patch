@@ -1,0 +1,13 @@
+diff --git a/src/cli.js b/src/cli.js
+index 7e140387212004390ff3550b9cf8321d570a3ba1..7709dce002b4f8690bcf6fb78b61bbbcd511a0e0 100644
+--- a/src/cli.js
++++ b/src/cli.js
+@@ -31,7 +31,7 @@ async function createCert({ domains, caKey, caCert, validity, key, cert }) {
+   validity = Number.parseInt(validity, 10);
+   if(!validity || validity < 0) return console.error('`--validity` must be at least 1 day.');
+ 
+-  domains = domains.split(',').map( str=> str.trim()); // split the comma separated list of addresses
++  domains = domains.toString().split(',').map( str=> str.trim()); // split the comma separated list of addresses
+   if(!domains.length) return console.error('`--domains` must be a comma separated list of ip/domains.');
+ 
+   const ca = {};

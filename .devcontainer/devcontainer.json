@@ -7,11 +7,24 @@
         8765,
         18765
     ],
+    "portsAttributes": {
+        "3700": {
+            "label": "vite",
+            "protocol": "https"
+        },
+        "4001": {
+            "label": "algorand sandbox"
+        },
+        "4944": {
+            "label": "gun rs"
+        },
+        "8765": {
+            "label": "gun js",
+            "protocol": "https"
+        }
+    },
     "build": {
-		"dockerfile": "Dockerfile",
-		"args": {
-			"VARIANT": "bullseye"
-		}
+		"dockerfile": "Dockerfile"
 	},
 	"features": {
         "docker-in-docker": "latest"

@@ -1,4 +1,4 @@
 // cell
-nominal _obj = $"obj"
+nominal any = $"obj"
 
 inl test b = assert b "test"

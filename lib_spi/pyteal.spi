@@ -1,6 +1,6 @@
 open util
 
-nominal expr = _obj
+nominal expr = any
 
 union txn_type =
     | Payment
@@ -17,85 +17,85 @@ inl app_global_get_ex n bytes : i32 =
 inl app_global_put bytes value : bool =
     $"(importAll \"pyteal\")?App?globalPut (!bytes, !value)"
 
-inl app_global_has_value value : bool = 
+inl app_global_has_value value : bool =
     inl value : i32 = value
     $"!value?hasValue ()"
 
-inl get_gtxn i : _obj =
+inl get_gtxn i : any =
     inl i : i32 = i
     $"(importAll \"pyteal\")?TxnGroup?__getitem__(import \"Gtxn\" \"pyteal\", !i)"
 
-inl get_gtxn_amount gtxn : i32 = 
+inl get_gtxn_amount gtxn : i32 =
     $"!gtxn?amount ()"
 
-inl get_gtxn_application_id gtxn : i32 = 
+inl get_gtxn_application_id gtxn : i32 =
     $"!gtxn?application_id ()"
 
-inl get_gtxn_asset_close_to gtxn : i32 = 
+inl get_gtxn_asset_close_to gtxn : i32 =
     $"!gtxn?asset_close_to ()"
 
-inl get_gtxn_fee gtxn : i32 = 
+inl get_gtxn_fee gtxn : i32 =
     $"!gtxn?fee ()"
 
-inl get_gtxn_receiver gtxn : i32 = 
+inl get_gtxn_receiver gtxn : i32 =
     $"!gtxn?receiver ()"
 
-inl get_gtxn_rekey_to gtxn : i32 = 
+inl get_gtxn_rekey_to gtxn : i32 =
     $"!gtxn?rekey_to ()"
 
-inl get_gtxn_sender gtxn : i32 = 
+inl get_gtxn_sender gtxn : i32 =
     $"!gtxn?sender ()"
 
-inl get_gtxn_type_enum gtxn : i32 = 
+inl get_gtxn_type_enum gtxn : i32 =
     $"!gtxn?type_enum ()"
 
-inl get_txn_application_args i : string = 
+inl get_txn_application_args i : string =
     inl i : i32 = i
     $"((importAll \"pyteal\")?Txn?application_args : string[]).[!i]"
 
-inl get_txn_application_id () : i32 = 
+inl get_txn_application_id () : i32 =
     $"(importAll \"pyteal\")?Txn?application_id ()"
 
-inl get_txn_fee () : i32 = 
+inl get_txn_fee () : i32 =
     $"(importAll \"pyteal\")?Txn?fee ()"
 
-inl get_txn_receiver () : i32 = 
+inl get_txn_receiver () : i32 =
     $"(importAll \"pyteal\")?Txn?receiver ()"
 
-inl get_txn_sender () : i32 = 
+inl get_txn_sender () : i32 =
     $"(importAll \"pyteal\")?Txn?sender ()"
 
-inl get_txn_type_enum () : i32 = 
+inl get_txn_type_enum () : i32 =
     $"(importAll \"pyteal\")?Txn?type_enum ()"
 
 inl get_txn_type txn_type : i32 =
     match txn_type with
     | Payment => $"(importAll \"pyteal\")?TxnType?Payment"
 
-inl global_group_size () : i32 = 
+inl global_group_size () : i32 =
     $"(importAll \"pyteal\")?Global?group_size ()"
 
-inl global_latest_timestamp () : i32 = 
+inl global_latest_timestamp () : i32 =
     $"(importAll \"pyteal\")?Global?latest_timestamp ()"
 
-inl global_zero_address () : i32 = 
+inl global_zero_address () : i32 =
     $"(importAll \"pyteal\")?Global?zero_address ()"
 
-inl new_addr addr : string = 
+inl new_addr addr : string =
     $"(importAll \"pyteal\")?Addr !addr"
 
-inl new_and e1 e2 : bool = 
+inl new_and e1 e2 : bool =
     inl e1 : bool = e1
     inl e2 : bool = e2
     $"(importAll \"pyteal\")?And !e1 !e2"
 
-inl new_and3 e1 e2 e3 : bool = 
+inl new_and3 e1 e2 e3 : bool =
     inl e1 : bool = e1
     inl e2 : bool = e2
     inl e3 : bool = e3
     $"(importAll \"pyteal\")?And !e1 !e2 !e3"
 
-inl new_assert b : bool = 
+inl new_assert b : bool =
     $"(importAll \"pyteal\")?Assert !b"
 
 inl new_bitwise_and n1 n2 : i32 =
@@ -104,37 +104,37 @@ inl new_bitwise_and n1 n2 : i32 =
 inl new_bitwise_or n1 n2 : i32 =
     $"(importAll \"pyteal\")?BitwiseOr !n1 !n2"
 
-inl new_btoi text : i32 = 
+inl new_btoi text : i32 =
     inl text : string = text
     $"(importAll \"pyteal\")?Btoi !text"
 
-inl new_bytes text : string = 
+inl new_bytes text : string =
     $"(importAll \"pyteal\")?Bytes !text"
 
-inl new_cond e1 e2 : bool = 
+inl new_cond e1 e2 : bool =
     $"(importAll \"pyteal\")?Cond !e1 !e2"
 
-inl new_cond3 e1 e2 e3 : bool = 
+inl new_cond3 e1 e2 e3 : bool =
     $"(importAll \"pyteal\")?Cond !e1 !e2 !e3"
 
-inl new_if e t : bool = 
+inl new_if e t : bool =
     inl e : bool = e
     $"(importAll \"pyteal\")?If !e !t"
 
-inl new_if_else e t f : bool = 
+inl new_if_else e t f : bool =
     inl e : bool = e
     $"(importAll \"pyteal\")?If !e !t !f"
 
-inl new_int n : i32 = 
+inl new_int n : i32 =
     inl n : i32 = n
     $"(importAll \"pyteal\")?Int !n"
 
-inl new_or e1 e2 : bool = 
+inl new_or e1 e2 : bool =
     inl e1 : bool = e1
     inl e2 : bool = e2
     $"(importAll \"pyteal\")?Or !e1 !e2"
 
-inl new_or8 e1 e2 e3 e4 e5 e6 e7 e8 : bool = 
+inl new_or8 e1 e2 e3 e4 e5 e6 e7 e8 : bool =
     inl e1 : bool = e1
     inl e2 : bool = e2
     inl e3 : bool = e3
@@ -145,10 +145,10 @@ inl new_or8 e1 e2 e3 e4 e5 e6 e7 e8 : bool =
     inl e8 : bool = e8
     $"(importAll \"pyteal\")?Or !e1 !e2 !e3 !e4 !e5 !e6 !e7 !e8"
 
-inl new_return e : bool = 
+inl new_return e : bool =
     $"(importAll \"pyteal\")?Return !e"
 
-inl new_seq exprs : bool = 
+inl new_seq exprs : bool =
     $"(importAll \"pyteal\")?Seq !exprs"
 
 inl new_seq3 e1 e2 e3 : bool =

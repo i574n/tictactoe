@@ -5,6 +5,7 @@ import wasm from "vite-plugin-wasm"
 import mkcert from 'vite-plugin-mkcert'
 import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
 
+
 export default defineConfig({
   base: '/tictactoe_spiral/',
   resolve: {

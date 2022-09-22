@@ -29,9 +29,9 @@ jobs:
 
       - run: cargo install rod
 
-      - run: bun install
-      - run: cd ./web && bun install
-      - run: cd ./peer && bun install
+      - run: pnpm install
+      - run: cd ./web && pnpm install
+      - run: cd ./peer && pnpm install
 
       - run: cd ./web && bun run playwright-install
       - run: cd ./web && bun run e2e
