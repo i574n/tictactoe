@@ -12,14 +12,14 @@ function DbConnectionInput<State extends db.DbState>(
         <StateInput<string | number, State>
             get={(state) => state.dbConnection[props.type][props.key]}
             set={(state, value) => ({
-                ...state,
                 dbConnection: {
+                    ...state.dbConnection,
                     [props.type]: {
                         ...state.dbConnection[props.type],
                         [props.key]: value
                     }
                 } as { [key in db.DbType]: typeof state.dbConnection[typeof props.type] }
-            })} />
+            } as State)} />
     )
 }
 

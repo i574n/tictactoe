@@ -26,7 +26,7 @@ function ChainDeploy<State extends store.State>() {
                     chainDeploy: newValue
                 }
             }
-        } as Partial<State>),
+        } as State),
         async (client) => {
             const address = state.chainAccounts[0]?.address
             const privateKey = state.chainAccounts[0]?.privateKey
@@ -61,19 +61,28 @@ function ChainDeploy<State extends store.State>() {
                 title:
                     <Stack
                         alignItems="start"
-                        direction="column"
-                        spacing="6px"
+                        direction={{
+                            "@initial": "row",
+                            "@sm": "column"
+                        }}
+                        marginBottom={{
+                            "@initial": "0",
+                            "@sm": "8px"
+                        }}
+                        spacing="7px"
                         padding="3px"
                     >
                         <Box>Chain Deploy</Box>
                         <BaseButton
                             leftIcon={<BiRegularPlus />}
+                            paddingRight="10px"
                             onClick={request}
                         >
                             Request
                         </BaseButton>
                         <BaseButton
                             leftIcon={<BiRegularMinus />}
+                            paddingRight="10px"
                             onClick={clear}
                         >
                             Clear

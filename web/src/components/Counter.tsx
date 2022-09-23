@@ -23,7 +23,7 @@ function Counter<State extends store.State>() {
                     counter: newValue
                 }
             }
-        } as Partial<State>),
+        } as State),
         async (_client) => Object.values(state.profile.tmp.counter || {}).reduce((acc, v) => v === null ? 0 : acc + 1, 0)
     )
 
@@ -34,20 +34,28 @@ function Counter<State extends store.State>() {
                 title:
                     <Stack
                         alignItems="start"
-                        direction="column"
-                        marginBottom="8px"
+                        direction={{
+                            "@initial": "row",
+                            "@sm": "column"
+                        }}
+                        marginBottom={{
+                            "@initial": "0",
+                            "@sm": "8px"
+                        }}
                         spacing="7px"
                         padding="3px"
                     >
                         <Box>Counter</Box>
                         <BaseButton
                             leftIcon={<BiRegularPlus />}
+                            paddingRight="10px"
                             onClick={request}
                         >
                             Request
                         </BaseButton>
                         <BaseButton
                             leftIcon={<BiRegularMinus />}
+                            paddingRight="10px"
                             onClick={clear}
                         >
                             Clear

@@ -12,15 +12,12 @@ function ChainAccountInput<State extends chain.ChainState>(
         <StateInput<ChainAccount[keyof ChainAccount], State>
             get={(_state) => props.account[props.key]}
             set={(state, value) => ({
-                ...state,
-                accounts:
-                    state.chainAccounts.map(
-                        (_account) =>
-                            _account.alias === props.account.alias
-                                ? { ..._account, [props.key]: value }
-                                : _account
-                    )
-            })} />
+                chainAccounts: state.chainAccounts.map((_account) =>
+                    _account.alias === props.account.alias
+                        ? { ..._account, [props.key]: value }
+                        : _account
+                )
+            } as State)} />
     )
 }
 

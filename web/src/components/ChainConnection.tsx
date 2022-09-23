@@ -13,7 +13,7 @@ function ChainConnection<State extends chain.ChainState>() {
             >
                 <StateInput<State['chainToken'], State>
                     get={(state) => state.chainToken}
-                    set={(state, value) => ({ ...state, token: value })} />
+                    set={(_state, value) => ({ chainToken: value } as State)} />
             </Row>
             <Row
                 title="URL"
@@ -21,7 +21,7 @@ function ChainConnection<State extends chain.ChainState>() {
             >
                 <StateInput<State['chainUrl'], State>
                     get={(state) => state.chainUrl}
-                    set={(state, value) => ({ ...state, chainUrl: value })} />
+                    set={(_state, value) => ({ chainUrl: value } as State)} />
             </Row>
             <Row
                 title="Port"
@@ -29,7 +29,7 @@ function ChainConnection<State extends chain.ChainState>() {
             >
                 <StateInput<State['chainPort'], State>
                     get={(state) => state.chainPort}
-                    set={(state, value) => ({ ...state, chainPort: value })} />
+                    set={(_state, value) => ({ chainPort: value } as State)} />
             </Row>
         </BaseTable>
     )

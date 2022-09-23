@@ -23,7 +23,7 @@ function ChainStatus<State extends store.State>() {
                     chainStatus: newValue
                 }
             }
-        } as Partial<State>),
+        } as State),
         (client) => client.status().do()
     )
 
@@ -34,19 +34,28 @@ function ChainStatus<State extends store.State>() {
                 title:
                     <Stack
                         alignItems="start"
-                        direction="column"
-                        spacing="6px"
+                        direction={{
+                            "@initial": "row",
+                            "@sm": "column"
+                        }}
+                        marginBottom={{
+                            "@initial": "0",
+                            "@sm": "8px"
+                        }}
+                        spacing="7px"
                         padding="3px"
                     >
                         <Box>Chain Status</Box>
                         <BaseButton
                             leftIcon={<BiRegularPlus />}
+                            paddingRight="10px"
                             onClick={request}
                         >
                             Request
                         </BaseButton>
                         <BaseButton
                             leftIcon={<BiRegularMinus />}
+                            paddingRight="10px"
                             onClick={clear}
                         >
                             Clear

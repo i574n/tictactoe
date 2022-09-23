@@ -119,7 +119,8 @@ const parse = (raw: object) => {
 }
 
 export const lastObjectEntry = (obj: any) => Object.values(obj || {}).slice(-1)[0]
-export const objectValueCount = (obj: any) => Object.values(obj || {}).filter((x) => x !== null).length
+// export const objectValueCount = (obj: any) => Object.values(obj || {}).filter((x) => x !== null).length
+export const objectValueCount = (obj: any) => Object.values(obj || {})//.filter((x) => x !== null).length
 
 
 export type ContentAddress = { contentAddress: string }

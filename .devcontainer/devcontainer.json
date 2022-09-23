@@ -10,17 +10,21 @@
     "portsAttributes": {
         "3700": {
             "label": "vite",
-            "protocol": "https"
+            "protocol": "https",
+            "onAutoForward": "silent"
         },
         "4001": {
-            "label": "algorand sandbox"
+            "label": "algorand sandbox",
+            "onAutoForward": "silent"
         },
         "4944": {
-            "label": "gun rs"
+            "label": "gun rs",
+            "onAutoForward": "silent"
         },
         "8765": {
             "label": "gun js",
-            "protocol": "https"
+            "protocol": "https",
+            "onAutoForward": "silent"
         }
     },
     "build": {

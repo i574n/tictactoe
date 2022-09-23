@@ -15,7 +15,6 @@ import { Box } from "@hope-ui/solid"
 function Content() {
     return (
         <Box
-            overflow="auto"
             display="flex"
             flex={1}
             flexDirection="column"
@@ -30,6 +29,8 @@ function Content() {
                 display="flex"
                 flex={1}
                 flexDirection="column"
+                overflowY="auto"
+                overflowX="hidden"
             >
                 <Row
                     title="Links"

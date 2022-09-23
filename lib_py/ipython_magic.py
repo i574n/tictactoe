@@ -98,7 +98,8 @@ def spiral(arg, cell, test=False):
 
     def cwpath(*arg): return os.path.abspath(os.path.join(os.getcwd(), '..', *arg))
 
-    if cell.strip() == '' and arg == '':
+    inplace = cell.strip() == '' and arg == ''
+    if inplace:
         cell = util.read_file(cwpath('main.spi'))
 
     cell_imports, cell_exports = split_imports(cell)
@@ -135,11 +136,13 @@ def spiral(arg, cell, test=False):
         old_code_spi = util.read_file(spi_path)
         if new_code_spi != old_code_spi:
             if arg in ['run', '']:
-                shutil.copyfile(cwpath('main.spi'), cwpath('main.spi.tmp'))
+                if not inplace:
+                    shutil.copyfile(cwpath('main.spi'), cwpath('main.spi.tmp'))
                 shutil.copyfile(cwpath('main.fsx'), cwpath('main.fsx.tmp'))
 
             try:
-                util.write_file(spi_path, new_code_spi)
+                if not inplace:
+                    util.write_file(spi_path, new_code_spi)
 
                 if arg in ['run', '']:
                     fsx_path = cwpath("lib_fsx", "_ipython_spi.fsx" if arg == 'run' else f'{_notebook_name}_spi.fsx')
@@ -175,7 +178,8 @@ def spiral(arg, cell, test=False):
                 raise e
             finally:
                 if arg in ['run', '']:
-                    os.rename(cwpath('main.spi.tmp'), cwpath('main.spi'))
+                    if not inplace:
+                        os.rename(cwpath('main.spi.tmp'), cwpath('main.spi'))
                     os.rename(cwpath('main.fsx.tmp'), cwpath('main.fsx'))
 
         return spi_path

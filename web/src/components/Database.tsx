@@ -22,7 +22,7 @@ function Database<State extends db.DbState & ui.UiState>() {
                                     gun_rs: true
                                 }
                             }
-                        } as Partial<State>)
+                        } as State)
                     }
                 }}
             >
@@ -44,7 +44,7 @@ function Database<State extends db.DbState & ui.UiState>() {
                                     gun_js: true
                                 }
                             }
-                        } as Partial<State>)
+                        } as State)
                     }
                 }}
             >
@@ -66,7 +66,7 @@ function Database<State extends db.DbState & ui.UiState>() {
                                     gun_js: true
                                 }
                             }
-                        } as Partial<State>)
+                        } as State)
                     }
                 }}
             >
@@ -88,7 +88,7 @@ function Database<State extends db.DbState & ui.UiState>() {
                                     gun_rs: true
                                 }
                             }
-                        } as Partial<State>)
+                        } as State)
                     }
                 }}
             >
