@@ -9,7 +9,6 @@ import { Tr, Td, Stack, IconButton, Checkbox, Box, Icon, Anchor, Table, Tbody, B
 import { BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow, BiRegularRefresh, BiRegularLinkExternal } from "solid-icons/bi";
 import { useStoreon } from "@storeon/solidjs";
 import { nonSeeded } from "./fable_modules/fable-library.4.0.0-theta-003/Random.js";
-import { interpolate, toConsole } from "./fable_modules/fable-library.4.0.0-theta-003/String.js";
 
 export class Mut0 extends Record {
     l0: any;
@@ -1363,32 +1362,22 @@ export function closure26(v0_1: (arg0: boolean) => void, v1_1: Heap1, v2_1: (arg
     v0_1(true);
 }
 
-export function method26(v0_1: (arg0: Heap1) => any, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0): any {
-    const v57 = new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55);
-    const v60 = createComponent;
-    return v60(v0_1, v57);
-}
-
 export function closure24(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, v55: (arg0: boolean) => void, v56: Heap1, v57: (arg0: any) => void, v58: any, unitVar: void): any {
     const v59 = (v: Heap1): any => closure1(void 0, v);
-    const v60 = (): any => closure25(void 0, void 0);
-    const v62 = (): void => {
+    const v61 = (): any => closure25(void 0, void 0);
+    const v63 = (): void => {
         closure26(v55, v56, v57, v58, void 0);
     };
-    return [method26(v59, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v60), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v62), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)];
-}
-
-export function method27(v0_1: any, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0): any {
-    const v57 = new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55);
-    const v60 = createComponent;
-    return v60(v0_1, v57);
+    const v65 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v61), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v63), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v68 = createComponent;
+    return [v68(v59, v65)];
 }
 
 export function closure30(v0_1: (arg0: boolean) => void, unitVar: void): void {
     v0_1(true);
 }
 
-export function method28(v0_1: US0): Array<[string, any]> {
+export function method26(v0_1: US0): Array<[string, any]> {
     const v3_1 = [method14("ui_modal", v0_1)];
     const v4_1 = v3_1.length | 0;
     const v5_1 = fill(new Array(v4_1), 0, v4_1, null);
@@ -1442,7 +1431,7 @@ export function method28(v0_1: US0): Array<[string, any]> {
 export function closure31(v0_1: (arg0: any) => void, v1_1: int32, v2_1: (arg0: boolean) => void, v3_1: (arg0: void) => boolean, unitVar: void): void {
     const v5_1 = v3_1() === false;
     v2_1(v5_1);
-    v0_1(createObj(method28(v5_1 ? (new US0(1, v1_1)) : (new US0(1, -3)))));
+    v0_1(createObj(method26(v5_1 ? (new US0(1, v1_1)) : (new US0(1, -3)))));
 }
 
 export function closure32(v0_1: (arg0: boolean) => void, unitVar: void): void {
@@ -1450,31 +1439,40 @@ export function closure32(v0_1: (arg0: boolean) => void, unitVar: void): void {
 }
 
 export function closure29(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, v55: (arg0: any) => void, v56: int32, v57: (arg0: boolean) => void, v58: (arg0: boolean) => void, v59: (arg0: boolean) => void, v60: (arg0: void) => boolean, unitVar: void): any {
-    let v93: any, v95: any;
+    let v96: any, v98: any;
     const v63 = BiRegularRefresh;
-    const v64 = "14px";
-    const v69 = "neutral";
-    const v71 = "20px";
-    const v74 = (): void => {
+    const v65 = "14px";
+    const v67 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
+    const v70 = createComponent;
+    const v74 = "neutral";
+    const v76 = "20px";
+    const v79 = (): void => {
         closure30(v58, void 0);
     };
-    const v76 = "xs";
-    const v80 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Refresh"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v69), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v71), v23_1, new US6(1, method27(v63, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v64), v47, v48, v49, v50, v51, v52, v53, v54)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v74), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v76), v47, v48, v49, v50, v51, v52, v53, v54)));
-    const v83 = createComponent;
-    const v86 = v83(IconButton, v80);
-    const v103 = (): void => {
+    const v81 = "xs";
+    const v85 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Refresh"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v70(v63, v67)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v79), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
+    const v86 = createComponent;
+    const v89 = v86(IconButton, v85);
+    const v93 = v60() ? "Restore" : "Maximize";
+    let v100;
+    v100 = (v60() ? ((v96 = BiRegularDownArrow, v96)) : ((v98 = BiRegularUpArrow, v98)));
+    const v102 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
+    const v103 = createComponent;
+    const v109 = (): void => {
         closure31(v55, v56, v59, v60, void 0);
     };
-    const v108 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, v60() ? "Restore" : "Maximize"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v69), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v71), v23_1, new US6(1, method27(v60() ? ((v93 = BiRegularDownArrow, v93)) : ((v95 = BiRegularUpArrow, v95)), v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v64), v47, v48, v49, v50, v51, v52, v53, v54)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v103), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v76), v47, v48, v49, v50, v51, v52, v53, v54)));
-    const v109 = createComponent;
-    const v110 = v109(IconButton, v108);
-    const v112 = BiRegularUndo;
-    const v120 = (): void => {
+    const v114 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, v93), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v103(v100, v102)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v109), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
+    const v115 = createComponent;
+    const v116 = v115(IconButton, v114);
+    const v118 = BiRegularUndo;
+    const v121 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
+    const v122 = createComponent;
+    const v129 = (): void => {
         closure32(v57, void 0);
     };
-    const v125 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Unload"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v69), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v71), v23_1, new US6(1, method27(v112, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v64), v47, v48, v49, v50, v51, v52, v53, v54)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v120), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v76), v47, v48, v49, v50, v51, v52, v53, v54)));
-    const v126 = createComponent;
-    return [v86, v110, v126(IconButton, v125)];
+    const v134 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Unload"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v122(v118, v121)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v129), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
+    const v135 = createComponent;
+    return [v89, v116, v135(IconButton, v134)];
 }
 
 export function closure28(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, v55: (arg0: any) => void, v56: int32, v57: (arg0: boolean) => void, v58: (arg0: boolean) => void, v59: (arg0: void) => boolean, v60: (arg0: boolean) => void, v61: (arg0: void) => boolean, v62: any, v63: (arg0: void) => any, unitVar: void): any {
@@ -1592,8 +1590,8 @@ export function closure33(v0_1: (arg0: void) => any, unitVar: void): any {
 }
 
 export function closure18(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: (arg0: void) => boolean, v57: (arg0: void) => any, unitVar: void): any {
-    let v66: (arg0: Heap1) => any, v70: (arg0: void) => any;
-    return [(v0_1.l48.tag === 1) ? (v56() ? ((v66 = ((v: Heap1): any => closure19(void 0, v)), (v70 = ((): any => closure33(v57, void 0)), method26(v66, new US1(1, true), v2_1, v0_1.l2, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v70), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)))) : <></>) : (("function" === (typeof v57)) ? v57 : ((): (arg0: void) => any => v57))];
+    let v67: (arg0: Heap1) => any, v70: (arg0: void) => any, v72: Heap1, v75: any;
+    return [(v0_1.l48.tag === 1) ? (v56() ? ((v67 = ((v: Heap1): any => closure19(void 0, v)), (v70 = ((): any => closure33(v57, void 0)), (v72 = (new Heap1(new US1(1, true), v2_1, v0_1.l2, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v70), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)), (v75 = createComponent, v75(v67, v72)))))) : <></>) : (("function" === (typeof v57)) ? v57 : ((): (arg0: void) => any => v57))];
 }
 
 export function closure12(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: (arg0: boolean) => void, v57: (arg0: void) => boolean, unitVar: void): any {
@@ -1658,16 +1656,13 @@ export function method22(v0_1: Heap1): any {
     const v1_1 = patternInput[0];
     const v56 = v0_1.l48;
     const patternInput_1 = method23(((v56.tag === 1) && (v56.fields[0] === false)) !== true);
-    const v62 = patternInput_1[0];
-    const v71 = "row";
-    toConsole(interpolate("%A%P()", [[[v71, "title:", v0_1.l51, "props.status <> Some true:", ((v56.tag === 1) && (v56.fields[0] === true)) !== true, "checked:", v62(), "props.status", v56]]]));
-    const v84 = (): any => closure12(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, patternInput[8], patternInput[9], v11_1, v12_1, patternInput[12], v14_1, v15_1, v16_1, v17_1, patternInput[17], v19_1, patternInput[19], patternInput[20], v22_1, v23_1, v24_1, v25_1, patternInput[25], v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, patternInput_1[1], v62, void 0);
-    const v93 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, new US3(1, "$neutral5"), new US3(1, "1px 2px"), v11_1, v12_1, new US5(1, v84), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), new US3(1, {
+    const v72 = (): any => closure12(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, patternInput[8], patternInput[9], v11_1, v12_1, patternInput[12], v14_1, v15_1, v16_1, v17_1, patternInput[17], v19_1, patternInput[19], patternInput[20], v22_1, v23_1, v24_1, v25_1, patternInput[25], v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, patternInput_1[1], patternInput_1[0], void 0);
+    const v81 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, new US3(1, "$neutral5"), new US3(1, "1px 2px"), v11_1, v12_1, new US5(1, v72), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), new US3(1, {
         "@initial": "column",
-        "@sm": v71,
+        "@sm": "row",
     }), v22_1, v23_1, v24_1, v25_1, v0_1.l25, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
-    const v96 = createComponent;
-    return v96(Tr, v93);
+    const v84 = createComponent;
+    return v84(Tr, v81);
 }
 
 export function closure11(unitVar: void, v0_1: Heap1): any {
@@ -1676,26 +1671,38 @@ export function closure11(unitVar: void, v0_1: Heap1): any {
 
 export function closure34(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, unitVar: void): any {
     const v55 = (v: Heap1): any => closure6(void 0, v);
-    return [method26(v55, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, new US3(1, "https://github.com/fc1943s/tictactoe_spiral"), v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)];
+    const v59 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, new US3(1, "https://github.com/fc1943s/tictactoe_spiral"), v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v62 = createComponent;
+    return [v62(v55, v59)];
 }
 
 export function closure35(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, unitVar: void): any {
     const v55 = (v: Heap1): any => closure6(void 0, v);
-    return [method26(v55, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, new US3(1, "https://fc1943s.github.io/tictactoe_spiral"), v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)];
+    const v59 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, new US3(1, "https://fc1943s.github.io/tictactoe_spiral"), v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v62 = createComponent;
+    return [v62(v55, v59)];
 }
 
 export function closure36(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, unitVar: void): any {
     const v55 = (v: Heap1): any => closure6(void 0, v);
-    return [method26(v55, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, new US3(1, "https://fc1943s.github.io/tictactoe_spiral/docs"), v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)];
+    const v59 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, new US3(1, "https://fc1943s.github.io/tictactoe_spiral/docs"), v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v62 = createComponent;
+    return [v62(v55, v59)];
 }
 
 export function closure10(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, unitVar: void): any {
     const v55 = (v: Heap1): any => closure11(void 0, v);
-    const v56 = (): any => closure34(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
-    const v58 = "1px 6px";
-    const v61 = (): any => closure35(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
-    const v65 = (): any => closure36(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
-    return [method26(v55, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v56), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, new US3(1, v58), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54), method26(v55, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v61), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, new US3(1, v58), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54), method26(v55, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v65), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, new US3(1, v58), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)];
+    const v57 = (): any => closure34(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
+    const v59 = "1px 6px";
+    const v61 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v57), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, new US3(1, v59), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v64 = createComponent;
+    const v67 = (): any => closure35(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
+    const v70 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v67), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, new US3(1, v59), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v71 = createComponent;
+    const v74 = (): any => closure36(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
+    const v77 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v74), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, new US3(1, v59), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v78 = createComponent;
+    return [v64(v55, v61), v71(v55, v70), v78(v55, v77)];
 }
 
 export function method21(): any {
@@ -1755,8 +1762,10 @@ export function method21(): any {
     const v1_1 = patternInput[1];
     const v0_1 = patternInput[0];
     const v55 = (v: Heap1): any => closure2(void 0, v);
-    const v56 = (): any => closure10(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, patternInput[12], v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
-    return method26(v55, v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v56), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v57 = (): any => closure10(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, patternInput[12], v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, void 0);
+    const v59 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v57), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54);
+    const v62 = createComponent;
+    return v62(v55, v59);
 }
 
 export function closure9(unitVar: void, unitVar_1: void): any {

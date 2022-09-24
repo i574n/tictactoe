@@ -1,6 +1,5 @@
-open util
+nominal py_any = $"obj"
 
-nominal expr = any
 
 union txn_type =
     | Payment
@@ -21,7 +20,7 @@ inl app_global_has_value value : bool =
     inl value : i32 = value
     $"!value?hasValue ()"
 
-inl get_gtxn i : any =
+inl get_gtxn i : py_any =
     inl i : i32 = i
     $"(importAll \"pyteal\")?TxnGroup?__getitem__(import \"Gtxn\" \"pyteal\", !i)"
 

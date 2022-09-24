@@ -2,6 +2,17 @@ packages: |core-
 modules:
     lib_spi/
         util
+        js
+        ui/
+            solid
+            state
+            components/
+                base_button
+                base_table
+                external_link
+                loader
+                row
+                links
         console_fsx
         pyteal
         tictactoe_pyteal

@@ -1,0 +1,37 @@
+open solid
+open base_table
+open row
+open external_link
+
+
+let links () =
+    inl empty_props' = empty_props ()
+
+    create_component base_table { empty_props' with
+        children = Some (fun () => els ;[
+            create_component row { empty_props' with
+                padding = Some "1px 6px"
+                children = Some (fun () => els ;[
+                    create_component external_link { empty_props' with
+                        href = Some "https://github.com/fc1943s/tictactoe_spiral"
+                    }
+                ])
+            }
+            create_component row { empty_props' with
+                padding = Some "1px 6px"
+                children = Some (fun () => els ;[
+                    create_component external_link { empty_props' with
+                        href = Some "https://fc1943s.github.io/tictactoe_spiral"
+                    }
+                ])
+            }
+            create_component row { empty_props' with
+                padding = Some "1px 6px"
+                children = Some (fun () => els ;[
+                    create_component external_link { empty_props' with
+                        href = Some "https://fc1943s.github.io/tictactoe_spiral/docs"
+                    }
+                ])
+            }
+        ])
+    }

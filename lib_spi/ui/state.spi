@@ -1,0 +1,40 @@
+open js
+open solid
+
+
+type state__ =
+    {
+        ui_modal : option i32
+    }
+
+let empty_state () : state__ =
+    {
+        ui_modal = None
+    }
+
+let create_obj_state_props props =
+    inl props : a i32 (any * any) = props
+
+    inl empty_state' = empty_state ()
+
+    inl v' v = Some $"!v |> unbox"
+
+    props
+    |> am.fold (fun acc (k, v) =>
+        inl acc : state__ = acc
+        if $"!v = JS.undefined" then
+            acc
+        else
+            match $"!k |> unbox<string>" with
+            | "ui_modal" => { acc with ui_modal = v' v }
+            | _ => acc // failwith $"$\"unknown prop: {!k} = {!v}\""
+        ) empty_state'
+    |> heap
+
+let state_props_array props : a i32 jsx_prop =
+    inl props : state__ = props
+
+    a ;[
+        to_jsx_prop "ui_modal" props.ui_modal
+    ]
+    |> am.filter (function Some v => true | None => false) |> am.map optionm.value

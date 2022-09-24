@@ -1,0 +1,14 @@
+open solid
+
+
+let base_button props =
+    inl props : heap props__ = props
+    inl empty_props' = empty_props ()
+
+    button
+        ({ empty_props' with
+            size = Some "xs"
+            justifyContent = Some "left"
+            compact = Some true
+            colorScheme = Some "neutral"
+        } |> merge_props props)

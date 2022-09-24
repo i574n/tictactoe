@@ -1,0 +1,452 @@
+open js
+
+
+nominal jsx_element = $"JSX.Element"
+
+type props__ =
+    {
+        _loaded : option bool
+        _modal : option bool
+        _on_load : option (any -> (any -> ()) -> ())
+        ariaLabel : option string
+        as' : option js_function_
+        backgroundColor : option string
+        border : option string
+        borderWidth : option string
+        borderBottomWidth : option string
+        borderColor : option string
+        bottom : option string
+        color : option string
+        checked : option bool
+        children : option (() -> jsx_element)
+        colorScheme : option string
+        compact : option bool
+        direction : option string
+        display : option string
+        external : option bool
+        flex : option string
+        flexDirection : option string
+        fontSize : option string
+        height : option string
+        href : option string
+        icon : option jsx_element
+        id : option string
+        justifyContent : option string
+        left : option string
+        leftIcon : option any
+        lineHeight : option string
+        margin : option string
+        marginBottom : option string
+        marginTop : option string
+        maxHeight : option string
+        onChange : option (any -> ())
+        onClick : option (() -> ())
+        outline : option string
+        overflowX : option string
+        overflowY : option string
+        padding : option string
+        paddingTop : option string
+        paddingRight : option string
+        paddingBottom : option string
+        paddingLeft : option string
+        position : option string
+        right : option string
+        size : option string
+        spacing : option string
+        status : option bool
+        striped : option string
+        thickness : option string
+        title : option jsx_element
+        top : option string
+        width : option string
+        zIndex : option i32
+    }
+
+let empty_props () : props__ =
+    {
+        _loaded = None
+        _modal = None
+        _on_load = None
+        ariaLabel = None
+        as' = None
+        backgroundColor = None
+        border = None
+        borderWidth = None
+        borderBottomWidth = None
+        borderColor = None
+        bottom = None
+        color = None
+        checked = None
+        children = None
+        colorScheme = None
+        compact = None
+        direction = None
+        display = None
+        external = None
+        flex = None
+        flexDirection = None
+        fontSize = None
+        height = None
+        href = None
+        icon = None
+        id = None
+        status = None
+        justifyContent = None
+        left = None
+        leftIcon = None
+        lineHeight = None
+        margin = None
+        marginBottom = None
+        marginTop = None
+        maxHeight = None
+        onChange = None
+        onClick = None
+        outline = None
+        overflowX = None
+        overflowY = None
+        padding = None
+        paddingTop = None
+        paddingRight = None
+        paddingBottom = None
+        paddingLeft = None
+        position = None
+        right = None
+        size = None
+        spacing = None
+        striped = None
+        thickness = None
+        title = None
+        top = None
+        width = None
+        zIndex = None
+    }
+
+let create_obj_props props =
+    inl props : a i32 (string * any) = props
+
+    inl empty_props' = empty_props ()
+
+    inl v' v = Some $"!v |> unbox"
+
+    props
+    |> am.fold (fun acc (k, v) =>
+        inl acc : props__ = acc
+        if $"!v = JS.undefined" then
+            acc
+        else
+            match k with
+            | "_loaded" => { acc with _loaded = v' v }
+            | "_modal" => { acc with _modal = v' v }
+            | "_on_load" => { acc with _on_load = v' v }
+            | "aria-label" => { acc with ariaLabel = v' v }
+            | "as" => { acc with as' = v' v }
+            | "backgroundColor" => { acc with backgroundColor = v' v }
+            | "border" => { acc with border = v' v }
+            | "borderWidth" => { acc with borderWidth = v' v }
+            | "borderBottomWidth" => { acc with borderBottomWidth = v' v }
+            | "borderColor" => { acc with borderColor = v' v }
+            | "bottom" => { acc with bottom = v' v }
+            | "color" => { acc with color = v' v }
+            | "checked" => { acc with checked = v' v }
+            | "children" => { acc with children = v' v }
+            | "colorScheme" => { acc with colorScheme = v' v }
+            | "compact" => { acc with compact = v' v }
+            | "display" => { acc with display = v' v }
+            | "direction" => { acc with direction = v' v }
+            | "external" => { acc with external = v' v }
+            | "flex" => { acc with flex = v' v }
+            | "flexDirection" => { acc with flexDirection = v' v }
+            | "fontSize" => { acc with fontSize = v' v }
+            | "height" => { acc with height = v' v }
+            | "href" => { acc with href = v' v }
+            | "icon" => { acc with icon = v' v }
+            | "id" => { acc with id = v' v }
+            | "justifyContent" => { acc with justifyContent = v' v }
+            | "left" => { acc with left = v' v }
+            | "leftIcon" => { acc with leftIcon = v' v }
+            | "lineHeight" => { acc with lineHeight = v' v }
+            | "margin" => { acc with margin = v' v }
+            | "marginBottom" => { acc with marginBottom = v' v }
+            | "marginTop" => { acc with marginTop = v' v }
+            | "maxHeight" => { acc with maxHeight = v' v }
+            | "onChange" => { acc with onChange = v' v }
+            | "onClick" => { acc with onClick = v' v }
+            | "outline" => { acc with outline = v' v }
+            | "overflowX" => { acc with overflowX = v' v }
+            | "overflowY" => { acc with overflowY = v' v }
+            | "padding" => { acc with padding = v' v }
+            | "paddingTop" => { acc with paddingTop = v' v }
+            | "paddingRight" => { acc with paddingRight = v' v }
+            | "paddingBottom" => { acc with paddingBottom = v' v }
+            | "paddingLeft" => { acc with paddingLeft = v' v }
+            | "position" => { acc with position = v' v }
+            | "right" => { acc with right = v' v }
+            | "size" => { acc with size = v' v }
+            | "spacing" => { acc with spacing = v' v }
+            | "status" => { acc with status = v' v }
+            | "striped" => { acc with striped = v' v }
+            | "thickness" => { acc with thickness = v' v }
+            | "title" => { acc with title = v' v }
+            | "top" => { acc with top = v' v }
+            | "width" => { acc with width = v' v }
+            | "zIndex" => { acc with zIndex = v' v }
+            | _ => failwith $"$\"unknown prop: {!k} = {!v}\""
+        ) empty_props'
+    |> heap
+
+nominal jsx_prop = $"JSX.Prop"
+
+inl new_jsx_prop k v =
+    $"JSX.Prop (!k, !v)"
+
+let to_jsx_prop k v : option jsx_prop =
+    v |> optionm.map (fun v => new_jsx_prop k v)
+
+let props_array props : a i32 jsx_prop =
+    inl props : heap props__ = props
+
+    a ;[
+        to_jsx_prop "aria-label" props.ariaLabel
+        to_jsx_prop "as" props.as'
+        to_jsx_prop "backgroundColor" props.backgroundColor
+        to_jsx_prop "border" props.border
+        to_jsx_prop "borderWidth" props.borderWidth
+        to_jsx_prop "borderBottomWidth" props.borderBottomWidth
+        to_jsx_prop "borderColor" props.borderColor
+        to_jsx_prop "bottom" props.bottom
+        to_jsx_prop "color" props.color
+        to_jsx_prop "checked" props.checked
+        to_jsx_prop "children" props.children
+        to_jsx_prop "colorScheme" props.colorScheme
+        to_jsx_prop "compact" props.compact
+        to_jsx_prop "display" props.display
+        to_jsx_prop "direction" props.direction
+        to_jsx_prop "external" props.external
+        to_jsx_prop "flex" props.flex
+        to_jsx_prop "flexDirection" props.flexDirection
+        to_jsx_prop "fontSize" props.fontSize
+        to_jsx_prop "height" props.height
+        to_jsx_prop "href" props.href
+        to_jsx_prop "icon" props.icon
+        to_jsx_prop "id" props.id
+        to_jsx_prop "justifyContent" props.justifyContent
+        to_jsx_prop "left" props.left
+        to_jsx_prop "leftIcon" props.leftIcon
+        to_jsx_prop "lineHeight" props.lineHeight
+        to_jsx_prop "margin" props.margin
+        to_jsx_prop "marginBottom" props.marginBottom
+        to_jsx_prop "marginTop" props.marginTop
+        to_jsx_prop "maxHeight" props.maxHeight
+        to_jsx_prop "onChange" props.onChange
+        to_jsx_prop "onClick" props.onClick
+        to_jsx_prop "outline" props.outline
+        to_jsx_prop "overflowX" props.overflowX
+        to_jsx_prop "overflowY" props.overflowY
+        to_jsx_prop "padding" props.padding
+        to_jsx_prop "paddingTop" props.paddingTop
+        to_jsx_prop "paddingRight" props.paddingRight
+        to_jsx_prop "paddingBottom" props.paddingBottom
+        to_jsx_prop "paddingLeft" props.paddingLeft
+        to_jsx_prop "position" props.position
+        to_jsx_prop "right" props.right
+        to_jsx_prop "size" props.size
+        to_jsx_prop "spacing" props.spacing
+        to_jsx_prop "status" props.status
+        to_jsx_prop "striped" props.striped
+        to_jsx_prop "thickness" props.thickness
+        to_jsx_prop "title" props.title
+        to_jsx_prop "top" props.top
+        to_jsx_prop "width" props.width
+        to_jsx_prop "zIndex" props.zIndex
+    ]
+    |> am.filter (function Some v => true | None => false) |> am.map optionm.value
+
+let merge_props old new =
+    inl old : heap props__ = old
+    inl new : props__ = new
+    inl new = heap new
+
+    inl merge_prop old new =
+        match old, new with
+        | _, Some new => Some new
+        | Some old, _ => Some old
+        | _ => None
+
+    inl result : heap props__ = heap {
+        _loaded = merge_prop old._loaded new._loaded
+        _modal = merge_prop old._modal new._modal
+        _on_load = merge_prop old._on_load new._on_load
+        ariaLabel = merge_prop old.ariaLabel new.ariaLabel
+        as' = merge_prop old.as' new.as'
+        backgroundColor = merge_prop old.backgroundColor new.backgroundColor
+        border = merge_prop old.border new.border
+        borderWidth = merge_prop old.borderWidth new.borderWidth
+        borderBottomWidth = merge_prop old.borderBottomWidth new.borderBottomWidth
+        borderColor = merge_prop old.borderColor new.borderColor
+        bottom = merge_prop old.bottom new.bottom
+        color = merge_prop old.color new.color
+        checked = merge_prop old.checked new.checked
+        children = merge_prop old.children new.children
+        colorScheme = merge_prop old.colorScheme new.colorScheme
+        compact = merge_prop old.compact new.compact
+        direction = merge_prop old.direction new.direction
+        display = merge_prop old.display new.display
+        external = merge_prop old.external new.external
+        flex = merge_prop old.flex new.flex
+        flexDirection = merge_prop old.flexDirection new.flexDirection
+        fontSize = merge_prop old.fontSize new.fontSize
+        height = merge_prop old.height new.height
+        href = merge_prop old.href new.href
+        icon = merge_prop old.icon new.icon
+        id = merge_prop old.id new.id
+        status = merge_prop old.status new.status
+        justifyContent = merge_prop old.justifyContent new.justifyContent
+        left = merge_prop old.left new.left
+        leftIcon = merge_prop old.leftIcon new.leftIcon
+        lineHeight = merge_prop old.lineHeight new.lineHeight
+        margin = merge_prop old.margin new.margin
+        marginBottom = merge_prop old.marginBottom new.marginBottom
+        marginTop = merge_prop old.marginTop new.marginTop
+        maxHeight = merge_prop old.maxHeight new.maxHeight
+        onChange = merge_prop old.onChange new.onChange
+        onClick = merge_prop old.onClick new.onClick
+        outline = merge_prop old.outline new.outline
+        overflowX = merge_prop old.overflowX new.overflowX
+        overflowY = merge_prop old.overflowY new.overflowY
+        padding = merge_prop old.padding new.padding
+        paddingTop = merge_prop old.paddingTop new.paddingTop
+        paddingRight = merge_prop old.paddingRight new.paddingRight
+        paddingBottom = merge_prop old.paddingBottom new.paddingBottom
+        paddingLeft = merge_prop old.paddingLeft new.paddingLeft
+        position = merge_prop old.position new.position
+        right = merge_prop old.right new.right
+        size = merge_prop old.size new.size
+        spacing = merge_prop old.spacing new.spacing
+        striped = merge_prop old.striped new.striped
+        thickness = merge_prop old.thickness new.thickness
+        title = merge_prop old.title new.title
+        top = merge_prop old.top new.top
+        width = merge_prop old.width new.width
+        zIndex = merge_prop old.zIndex new.zIndex
+    }
+
+    result
+
+
+inl createComponent_ () = import "createComponent" "solid-js"
+inl createEffect_ () = import "createEffect" "solid-js"
+inl createSignal_ () = import "createSignal" "solid-js"
+inl mergeProps_ ()  = import "mergeProps" "solid-js"
+inl on_ ()  = import "on" "solid-js"
+inl onCleanup_ ()  = import "onCleanup" "solid-js"
+inl storeonStore_ () = import "StoreonStore" "storeon"
+inl createStoreon_ () = import "createStoreon" "storeon"
+inl useStoreon_ () = import "useStoreon" "@storeon/solidjs"
+
+
+inl biRegularDownArrow_ () : js_function_ = import "BiRegularDownArrow" "solid-icons/bi"
+inl biRegularLinkExternal_ () : js_function_ = import "BiRegularLinkExternal" "solid-icons/bi"
+inl biRegularRefresh_ () : js_function_ = import "BiRegularRefresh" "solid-icons/bi"
+inl biRegularUpArrow_ () : js_function_ = import "BiRegularUpArrow" "solid-icons/bi"
+inl biRegularUndo_ () : js_function_ = import "BiRegularUndo" "solid-icons/bi"
+
+
+
+
+
+inl create_obj obj =
+    inl obj : a i32 jsx_prop = obj
+    $"createObj !obj" : any
+
+inl create_component_ext name module props : jsx_element =
+    inl name : string = name
+    inl module : string = module
+    inl props : a i32 jsx_prop = props
+
+    // $"JSX.create (import !name !module) (!props |> unbox<JSX.Prop list>)"
+
+    inl props = create_obj props
+    inl createComponent' = createComponent_ ()
+    $"!createComponent'.Invoke ((import !name !module), !props) |> unbox<JSX.Element>"
+
+inl anchor props = create_component_ext "Anchor" "@hope-ui/solid" (props_array props)
+inl box props = create_component_ext "Box" "@hope-ui/solid" (props_array props)
+inl button props = create_component_ext "Button" "@hope-ui/solid" (props_array props)
+inl icon_button props = create_component_ext "IconButton" "@hope-ui/solid" (props_array props)
+inl checkbox props = create_component_ext "Checkbox" "@hope-ui/solid" (props_array props)
+inl icon props = create_component_ext "Icon" "@hope-ui/solid" (props_array props)
+inl stack props = create_component_ext "Stack" "@hope-ui/solid" (props_array props)
+inl table props = create_component_ext "Table" "@hope-ui/solid" (props_array props)
+inl tbody props = create_component_ext "Tbody" "@hope-ui/solid" (props_array props)
+inl td props = create_component_ext "Td" "@hope-ui/solid" (props_array props)
+inl tr props = create_component_ext "Tr" "@hope-ui/solid" (props_array props)
+
+
+// inl to_jsx_element el : jsx_element = $"!el"
+
+
+inl create_component cmp props : jsx_element =
+    inl cmp : js_function_ = $"!cmp |> unbox<JS.Function>"
+    inl props : props__ = props
+    inl props = heap props
+
+    // inl props = props_array2 props
+    // $"JSX.create !cmp (!props |> unbox<JSX.Prop list>)"
+
+    inl createComponent' = createComponent_ ()
+    $"!createComponent'.Invoke (!cmp, !props) |> unbox<JSX.Element>"
+
+inl create_effect on =
+    inl create_effect' = createEffect_ ()
+    $"!create_effect'.Invoke !on |> ignore" : ()
+
+let create_signal forall a. default_value =
+    inl createSignal' = createSignal_ ()
+    inl fns : array js_function_ = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
+    inl get = $"!fns.[0] |> unbox" : () -> a
+    inl set = $"!fns.[1] |> unbox" : a -> ()
+    get, set
+
+inl on deps fn =
+    inl on' = on_ ()
+    $"!on'.Invoke (!deps, !fn) |> unbox<JS.Function>" : js_function_
+
+inl on_cleanup fn =
+    inl fn : () -> () =  fn
+    inl onCleanup' = onCleanup_ ()
+    $"!onCleanup'.Invoke !fn" : ()
+
+let create_storeon init : any =
+    inl init : any = init
+    inl createStoreon' = createStoreon_ ()
+    inl fn store =
+        inl store : any = store
+        inl store_on : js_function_ = $"!store?on |> unbox<JS.Function>"
+        $"!store_on.Invoke (\"@init\", fun () -> !init) |> ignore" : ()
+        $"!store_on.Invoke (\"set\", emitJsExpr () \"(_, state) => state\") |> ignore" : ()
+
+    $"!createStoreon'.Invoke [| !fn |]"
+
+inl empty_fragment () =
+    $"Html.fragment []" : jsx_element
+
+inl str str : jsx_element =
+    inl str : string = str
+    $"Html.fragment [ !str |> unbox<JSX.Element> ]"
+
+inl els items : jsx_element =
+    inl items : array jsx_element = items
+    $"!items |> unbox<JSX.Element>"
+
+let use_store () =
+    inl useStoreon' = useStoreon_ ()
+    inl fns : array js_function_ = $"!useStoreon'.Invoke () |> unbox<JS.Function[]>"
+    inl state : any = $"!fns.[0] |> unbox"
+    inl dispatch_raw : js_function_ = $"!fns.[1] |> unbox"
+    inl dispatch new_state : () =
+        inl new_state : any = new_state
+        $"!dispatch_raw.Invoke (\"set\", !new_state) |> unbox"
+    state, dispatch
+
+inl breakpoints { initial sm } =
+    $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<string>"
