@@ -11,7 +11,7 @@ let base_table props =
         flexDirection = Some "column"
         overflowX = Some "hidden"
         overflowY = props.overflowY |> optionm.defaultWith "hidden" |> Some
-        children = Some (fun () => els ;[
+        children = Some (fun () => ;[
             tbody (heap { empty_props' with
                 display = Some "flex"
                 flexDirection = Some "column"

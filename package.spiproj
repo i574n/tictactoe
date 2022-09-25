@@ -2,6 +2,7 @@ packages: |core-
 modules:
     lib_spi/
         util
+        console_fsx
         js
         ui/
             solid
@@ -13,7 +14,6 @@ modules:
                 loader
                 row
                 links
-        console_fsx
         pyteal
         tictactoe_pyteal
     main

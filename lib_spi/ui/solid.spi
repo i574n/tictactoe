@@ -18,7 +18,7 @@ type props__ =
         bottom : option string
         color : option string
         checked : option bool
-        children : option (() -> jsx_element)
+        children : option (() -> array jsx_element)
         colorScheme : option string
         compact : option bool
         direction : option string
@@ -400,7 +400,7 @@ inl create_effect on =
     inl create_effect' = createEffect_ ()
     $"!create_effect'.Invoke !on |> ignore" : ()
 
-let create_signal forall a. default_value =
+inl create_signal forall a. default_value =
     inl createSignal' = createSignal_ ()
     inl fns : array js_function_ = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
     inl get = $"!fns.[0] |> unbox" : () -> a
@@ -434,11 +434,7 @@ inl str str : jsx_element =
     inl str : string = str
     $"Html.fragment [ !str |> unbox<JSX.Element> ]"
 
-inl els items : jsx_element =
-    inl items : array jsx_element = items
-    $"!items |> unbox<JSX.Element>"
-
-let use_store () =
+inl use_store () =
     inl useStoreon' = useStoreon_ ()
     inl fns : array js_function_ = $"!useStoreon'.Invoke () |> unbox<JS.Function[]>"
     inl state : any = $"!fns.[0] |> unbox"
@@ -450,3 +446,7 @@ let use_store () =
 
 inl breakpoints { initial sm } =
     $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<string>"
+
+inl children_fragment children : jsx_element =
+    inl children : () -> array jsx_element = children
+    $"!children |> unbox<JSX.Element>"

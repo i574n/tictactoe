@@ -36,22 +36,22 @@ let loader props =
         id = props.id
         display = Some "flex"
         flex = Some "1"
-        children = Some (fun () => els ;[
+        children = Some (fun () => ;[
             if loaded () |> not then
                 box (heap { empty_props' with
                     padding = Some "4px 0"
-                    children = Some (fun () => els ;[
+                    children = Some (fun () => ;[
                         create_component base_button { empty_props' with
                             onClick = Some (fun () =>
                                 on_load' ()
                                 set_loaded true
                             )
-                            children = Some (fun () => els ;[
+                            children = Some (fun () => ;[
                                 str "Load"
                             ])
                         }
-                    ]
-                )})
+                    ])
+                })
             else
                 box (heap { empty_props' with
                     display = Some "flex"
@@ -63,14 +63,14 @@ let loader props =
                     bottom = if modal () then Some "0" else None
                     left = if modal () then Some "0" else None
                     backgroundColor = if modal () then Some "$bg" else None
-                    children = Some (fun () => els ;[
+                    children = Some (fun () => ;[
                         match props.children with
                         | Some children =>
                             box (heap { empty_props' with
                                 flex = Some "1"
                                 display = Some "flex"
                                 position = if ui_modal_ () <= 0 then Some "relative" else None
-                                children = Some (fun () => els ;[
+                                children = Some (fun () => ;[
                                     stack (heap { empty_props' with
                                         display =
                                             match ui_modal_ () with
@@ -82,7 +82,7 @@ let loader props =
                                         top = Some "6px"
                                         right = Some "6px"
                                         zIndex = Some 1
-                                        children = Some (fun () => els ;[
+                                        children = Some (fun () => ;[
                                             icon_button (heap { empty_props' with
                                                 ariaLabel = Some "Refresh"
                                                 size = Some "xs"
@@ -135,10 +135,9 @@ let loader props =
                                         ])
                                     })
 
-                                    if not (refreshing ()) then
-                                        children ()
-                                    else
-                                        empty_fragment ()
+                                    if refreshing ()
+                                    then empty_fragment ()
+                                    else children_fragment children
                                 ])
                             })
                         | None =>

@@ -15,7 +15,7 @@ let row props =
         borderWidth = Some "1px 2px"
         borderColor = Some "$neutral5"
         flexDirection = breakpoints { initial = "column"; sm = "row" } |> Some
-            children = Some (fun () => els ;[
+            children = Some (fun () => ;[
             match props.title with
             | Some title =>
                 td (heap { empty_props' with
@@ -29,7 +29,7 @@ let row props =
                     flexDirection = Some "column"
                     fontSize = Some "$sm"
                     padding = Some "3px 20px 0 8px"
-                    children = Some (fun () => els ;[
+                    children = Some (fun () => ;[
                         match props.status with
                         | Some status =>
                             checkbox (heap { empty_props' with
@@ -38,10 +38,10 @@ let row props =
                                 checked = Some (checked ())
                                 colorScheme = Some "neutral"
                                 onChange = Some (fun e => set_checked $"!e?target?checked")
-                                children = Some (fun () => els ;[
+                                children = Some (fun () => ;[
                                     box (heap { empty_props' with
                                         paddingTop = Some "2px"
-                                        children = Some (fun () => els ;[
+                                        children = Some (fun () => ;[
                                             title
                                         ])
                                     })
@@ -68,23 +68,19 @@ let row props =
                     fontSize = Some "$sm"
                     maxHeight = Some "85vh"
                     overflowY = Some "auto"
-                    children = Some (fun () => els ;[
+                    children = Some (fun () => ;[
                         match props.status with
                         | Some status =>
                             if checked () then
                                 create_component loader { empty_props' with
                                     _loaded = Some true
                                     _on_load = props._on_load
-                                    children = Some (fun () => els ;[
-                                        children ()
-                                    ])
+                                    children = Some children
                                 }
                             else
                                 empty_fragment ()
                         | None =>
-                            match $"jsTypeof !children" with
-                            | "function" => $"!children |> unbox"
-                            | _ => $"(fun () -> !children) |> unbox"
+                            children_fragment children
                     ])
                 })
             | None =>
@@ -92,7 +88,7 @@ let row props =
                     border = Some "0"
                     padding = Some "0"
                     lineHeight = Some "9px"
-                    children = Some (fun () => els ;[
+                    children = Some (fun () => ;[
                         str "&nbsp;"
                     ])
                 })
