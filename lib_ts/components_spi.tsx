@@ -3,9 +3,9 @@ import { tuple_type, array_type, class_type, string_type, lambda_type, unit_type
 import { int32 } from "./fable_modules/fable-library.4.0.0-theta-003/Int32.js";
 import { createStoreon } from "storeon";
 import { fill } from "./fable_modules/fable-library.4.0.0-theta-003/Array.js";
-import { uncurry, equals, createObj } from "./fable_modules/fable-library.4.0.0-theta-003/Util.js";
 import { createEffect, on, createSignal, createComponent } from "solid-js";
 import { Tr, Td, Stack, IconButton, Checkbox, Box, Icon, Anchor, Table, Tbody, Button } from "@hope-ui/solid";
+import { uncurry, equals, createObj } from "./fable_modules/fable-library.4.0.0-theta-003/Util.js";
 import { BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow, BiRegularRefresh, BiRegularLinkExternal } from "solid-icons/bi";
 import { useStoreon } from "@storeon/solidjs";
 import { nonSeeded } from "./fable_modules/fable-library.4.0.0-theta-003/Random.js";
@@ -811,9 +811,10 @@ export function method5(v0_1: Heap1): Array<[string, any]> {
 
 export function method2(v0_1: Heap1): any {
     const patternInput = method3();
-    const v66 = createObj(method5(method4(v0_1, patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], patternInput[10], patternInput[11], patternInput[12], patternInput[13], new US3(1, "neutral"), new US1(1, true), patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], new US3(1, "left"), patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], new US3(1, "xs"), patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54])));
-    const v69 = createComponent;
-    return v69(Button, v66);
+    const v68 = createComponent;
+    const v71 = Button;
+    const v72 = createObj(method5(method4(v0_1, patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], patternInput[10], patternInput[11], patternInput[12], patternInput[13], new US3(1, "neutral"), new US1(1, true), patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], new US3(1, "left"), patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], new US3(1, "xs"), patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54])));
+    return v68(v71, v72);
 }
 
 export function closure1(unitVar: void, v0_1: Heap1): any {
@@ -821,9 +822,10 @@ export function closure1(unitVar: void, v0_1: Heap1): any {
 }
 
 export function closure3(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, unitVar: void): Array<any> {
-    const v67 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, "$blackAlpha3"), v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v0_1.l12, v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, v20_1, new US3(1, "column"), v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, new US3(1, "-1px"), v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
-    const v70 = createComponent;
-    return [v70(Tbody, v67)];
+    const v69 = createComponent;
+    const v72 = Tbody;
+    const v73 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, new US3(1, "$blackAlpha3"), v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v0_1.l12, v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, v20_1, new US3(1, "column"), v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, new US3(1, "-1px"), v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
+    return [v69(v72, v73)];
 }
 
 export function method17(v0_1: Heap1): any {
@@ -879,9 +881,10 @@ export function method17(v0_1: Heap1): any {
     const v1_1 = patternInput[0];
     const v56 = v0_1.l38;
     const v60 = (): Array<any> => closure3(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, patternInput[12], v14_1, v15_1, v16_1, v17_1, patternInput[17], v19_1, patternInput[19], patternInput[20], v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, patternInput[37], patternInput[38], v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, void 0);
-    const v73 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v60), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), new US3(1, "column"), v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, new US3(1, "hidden"), new US3(1, (v56.tag === 1) ? v56.fields[0] : "hidden"), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
-    const v76 = createComponent;
-    return v76(Table, v73);
+    const v75 = createComponent;
+    const v78 = Table;
+    const v79 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v60), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), new US3(1, "column"), v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, new US3(1, "hidden"), new US3(1, (v56.tag === 1) ? v56.fields[0] : "hidden"), v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
+    return v75(v78, v79);
 }
 
 export function closure2(unitVar: void, v0_1: Heap1): any {
@@ -1208,16 +1211,18 @@ export function closure8(v0_1: Heap1, unitVar: void): Array<any> {
 
 export function closure7(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, unitVar: void): Array<any> {
     const v56 = (): Array<any> => closure8(v0_1, void 0);
-    const v62 = createObj(method5(method4(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v56), v14_1, v15_1, v16_1, v17_1, v18_1, new US1(1, true), v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
-    const v65 = createComponent;
-    const v68 = v65(Anchor, v62);
-    const v70 = <>
+    const v64 = createComponent;
+    const v67 = Anchor;
+    const v68 = createObj(method5(method4(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v56), v14_1, v15_1, v16_1, v17_1, v18_1, new US1(1, true), v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
+    const v69 = v64(v67, v68);
+    const v71 = <>
         &nbsp;
     </>;
-    const v73 = BiRegularLinkExternal;
-    const v77 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, new US4(1, v73), v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
+    const v74 = BiRegularLinkExternal;
     const v78 = createComponent;
-    return [v68, v70, v78(Icon, v77)];
+    const v80 = Icon;
+    const v81 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, new US4(1, v74), v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
+    return [v69, v71, v78(v80, v81)];
 }
 
 export function method20(v0_1: Heap1): any {
@@ -1277,9 +1282,10 @@ export function method20(v0_1: Heap1): any {
     const v10_1 = patternInput[9];
     const v1_1 = patternInput[0];
     const v56 = (): Array<any> => closure7(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, patternInput[12], v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, void 0);
-    const v60 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v56), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
-    const v63 = createComponent;
-    return v63(Box, v60);
+    const v62 = createComponent;
+    const v65 = Box;
+    const v66 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v56), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
+    return v62(v65, v66);
 }
 
 export function closure6(unitVar: void, v0_1: Heap1): any {
@@ -1292,9 +1298,10 @@ export function closure15(v0_1: any, unitVar: void): Array<any> {
 
 export function closure14(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, v55: any, unitVar: void): Array<any> {
     const v56 = (): Array<any> => closure15(v55, void 0);
-    const v62 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v56), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, new US3(1, "2px"), v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)));
-    const v65 = createComponent;
-    return [v65(Box, v62)];
+    const v64 = createComponent;
+    const v67 = Box;
+    const v68 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v56), v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, new US3(1, "2px"), v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54)));
+    return [v64(v67, v68)];
 }
 
 export function closure16(v0_1: (arg0: boolean) => void, v1_1: any): void {
@@ -1302,10 +1309,10 @@ export function closure16(v0_1: (arg0: boolean) => void, v1_1: any): void {
 }
 
 export function closure13(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: (arg0: boolean) => void, v57: (arg0: void) => boolean, v58: any, unitVar: void): Array<any> {
-    let v63: (arg0: void) => Array<any>, v69: (arg0: any) => void, v75: any, v78: any;
+    let v63: (arg0: void) => Array<any>, v69: (arg0: any) => void, v77: any, v80: any, v81: any;
     return [(v0_1.l48.tag === 1) ? ((v63 = ((): Array<any> => closure14(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v58, void 0)), (v69 = ((v: any): void => {
         closure16(v56, v);
-    }), (v75 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US1(1, v57()), new US5(1, v63), v14_1, new US3(1, "neutral"), v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, new US3(1, "2px"), v33_1, v34, new US8(1, v69), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, new US3(1, "sm"), v48, v49, v50, v51, v52, v53, v54, v55))), (v78 = createComponent, v78(Checkbox, v75)))))) : v58];
+    }), (v77 = createComponent, (v80 = Checkbox, (v81 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US1(1, v57()), new US5(1, v63), v14_1, new US3(1, "neutral"), v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, new US3(1, "2px"), v33_1, v34, new US8(1, v69), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, new US3(1, "sm"), v48, v49, v50, v51, v52, v53, v54, v55))), v77(v80, v81))))))) : v58];
 }
 
 export function closure17(unitVar: void, unitVar_1: void): Array<any> {
@@ -1423,7 +1430,7 @@ export function closure32(v0_1: (arg0: boolean) => void, unitVar: void): void {
 }
 
 export function closure29(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, v55: any, v56: int32, v57: (arg0: boolean) => void, v58: (arg0: boolean) => void, v59: (arg0: boolean) => void, v60: (arg0: void) => boolean, unitVar: void): Array<any> {
-    let v96: any, v98: any;
+    let v97: any, v99: any;
     const v63 = BiRegularRefresh;
     const v65 = "14px";
     const v67 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
@@ -1434,51 +1441,55 @@ export function closure29(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4,
         closure30(v58, void 0);
     };
     const v81 = "xs";
-    const v85 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Refresh"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v70(v63, v67)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v79), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
-    const v86 = createComponent;
-    const v89 = v86(IconButton, v85);
-    const v93 = v60() ? "Restore" : "Maximize";
-    let v100;
-    v100 = (v60() ? ((v96 = BiRegularDownArrow, v96)) : ((v98 = BiRegularUpArrow, v98)));
-    const v102 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
-    const v103 = createComponent;
-    const v109 = (): void => {
+    const v85 = createComponent;
+    const v88 = IconButton;
+    const v89 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Refresh"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v70(v63, v67)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v79), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
+    const v90 = v85(v88, v89);
+    const v94 = v60() ? "Restore" : "Maximize";
+    let v101;
+    v101 = (v60() ? ((v97 = BiRegularDownArrow, v97)) : ((v99 = BiRegularUpArrow, v99)));
+    const v103 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
+    const v104 = createComponent;
+    const v110 = (): void => {
         closure31(v55, v56, v59, v60, void 0);
     };
-    const v114 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, v93), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v103(v100, v102)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v109), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
     const v115 = createComponent;
-    const v116 = v115(IconButton, v114);
-    const v118 = BiRegularUndo;
-    const v121 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
-    const v122 = createComponent;
-    const v129 = (): void => {
+    const v116 = IconButton;
+    const v117 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, v94), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v104(v101, v103)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v110), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
+    const v118 = v115(v116, v117);
+    const v120 = BiRegularUndo;
+    const v123 = new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v65), v47, v48, v49, v50, v51, v52, v53, v54);
+    const v124 = createComponent;
+    const v131 = (): void => {
         closure32(v57, void 0);
     };
-    const v134 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Unload"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v122(v118, v121)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v129), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
-    const v135 = createComponent;
-    return [v89, v116, v135(IconButton, v134)];
+    const v136 = createComponent;
+    const v137 = IconButton;
+    const v138 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, new US3(1, "Unload"), v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, new US3(1, v74), v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, new US3(1, v76), v23_1, new US6(1, v124(v120, v123)), v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, new US9(1, v131), v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, new US3(1, v81), v47, v48, v49, v50, v51, v52, v53, v54)));
+    return [v90, v118, v136(v137, v138)];
 }
 
-export function closure28(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, v55: any, v56: int32, v57: (arg0: boolean) => void, v58: (arg0: boolean) => void, v59: (arg0: void) => boolean, v60: (arg0: boolean) => void, v61: (arg0: void) => boolean, v62: any, v63: (arg0: void) => Array<any>, unitVar: void): Array<any> {
+export function closure28(v0_1: US1, v1_1: US1, v2_1: US2, v3_1: US3, v4_1: US4, v5_1: US3, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US1, v12_1: US5, v13_1: US3, v14_1: US3, v15_1: US1, v16_1: US3, v17_1: US3, v18_1: US1, v19_1: US3, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US6, v25_1: US3, v26_1: US3, v27_1: US3, v28_1: US7, v29_1: US3, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US8, v35: US9, v36: US3, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US1, v49: US3, v50: US3, v51: US6, v52: US3, v53: US3, v54: US0, v55: any, v56: any, v57: int32, v58: (arg0: boolean) => void, v59: (arg0: boolean) => void, v60: (arg0: void) => boolean, v61: (arg0: boolean) => void, v62: (arg0: void) => boolean, v63: (arg0: void) => Array<any>, unitVar: void): Array<any> {
     let v64;
-    const matchValue = v62.ui_modal | 0;
+    const matchValue = v56.ui_modal | 0;
     v64 = ((matchValue === (void 0)) ? -2 : matchValue);
-    const v73 = (): Array<any> => closure29(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v60, v61, void 0);
+    const v73 = (): Array<any> => closure29(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v57, v58, v59, v61, v62, void 0);
     const v79 = "6px";
-    const v87 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v73), v13_1, v14_1, v15_1, new US3(1, "row"), ((v64 > 0) && ((v64 === v56) !== true)) ? (new US3(1, "none")) : (new US3(0)), v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, new US3(1, "absolute"), new US3(1, v79), v46, new US3(1, "3px"), v48, v49, v50, v51, new US3(1, v79), v53, new US0(1, 1))));
-    const v90 = createComponent;
-    return [v90(Stack, v87), v59() ? <></> : v63];
+    const v89 = createComponent;
+    const v92 = Stack;
+    const v93 = createObj(method5(new Heap1(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, new US5(1, v73), v13_1, v14_1, v15_1, new US3(1, "row"), ((v64 > 0) && ((v64 === v57) !== true)) ? (new US3(1, "none")) : (new US3(0)), v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, new US3(1, "absolute"), new US3(1, v79), v46, new US3(1, "3px"), v48, v49, v50, v51, new US3(1, v79), v53, new US0(1, 1))));
+    return [v89(v92, v93), v60() ? <></> : v63];
 }
 
-export function closure27(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: any, v57: int32, v58: (arg0: boolean) => void, v59: (arg0: boolean) => void, v60: (arg0: void) => boolean, v61: (arg0: boolean) => void, v62: (arg0: void) => boolean, v63: any, unitVar: void): Array<any> {
-    let v73: (arg0: void) => Array<any>, v81: any, matchValue: int32, v84: any;
+export function closure27(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: any, v57: any, v58: int32, v59: (arg0: boolean) => void, v60: (arg0: boolean) => void, v61: (arg0: void) => boolean, v62: (arg0: boolean) => void, v63: (arg0: void) => boolean, unitVar: void): Array<any> {
+    let v73: (arg0: void) => Array<any>, v83: any, v86: any, v87: any, matchValue: int32;
     const v64 = v0_1.l12;
-    return [(v64.tag === 1) ? ((v73 = ((): Array<any> => closure28(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64.fields[0], void 0)), (v81 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v73), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, (((matchValue = (v63.ui_modal | 0), (matchValue === (void 0)) ? -2 : matchValue)) <= 0) ? (new US3(1, "relative")) : (new US3(0)), v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), (v84 = createComponent, v84(Box, v81))))) : <></>];
+    return [(v64.tag === 1) ? ((v73 = ((): Array<any> => closure28(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64.fields[0], void 0)), (v83 = createComponent, (v86 = Box, (v87 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v73), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, (((matchValue = (v57.ui_modal | 0), (matchValue === (void 0)) ? -2 : matchValue)) <= 0) ? (new US3(1, "relative")) : (new US3(0)), v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), v83(v86, v87)))))) : <></>];
 }
 
-export function closure23(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: any, v57: int32, v58: (arg0: boolean) => void, v59: (arg0: void) => boolean, v60: (arg0: boolean) => void, v61: (arg0: void) => boolean, v62: (arg0: boolean) => void, v63: (arg0: void) => boolean, v64: any, unitVar: void): Array<any> {
-    let v67: (arg0: void) => Array<any>, v73: any, v76: any, v83: US0, v88: US3, v93: US3, v98: US3, v103: US3, v108: US3, v114: (arg0: void) => Array<any>, v122: any, v125: any;
-    return [(v59() === false) ? ((v67 = ((): Array<any> => closure24(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v58, v0_1, v56, v64, void 0)), (v73 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v67), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, new US3(1, "4px 0"), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), (v76 = createComponent, v76(Box, v73))))) : ((v83 = (v63() ? (new US0(1, 1)) : (new US0(0))), (v88 = (v63() ? (new US3(1, "absolute")) : (new US3(0))), (v93 = (v63() ? (new US3(1, "0")) : (new US3(0))), (v98 = (v63() ? (new US3(1, "0")) : (new US3(0))), (v103 = (v63() ? (new US3(1, "0")) : (new US3(0))), (v108 = (v63() ? (new US3(1, "0")) : (new US3(0))), (v114 = ((): Array<any> => closure27(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v60, v61, v62, v63, v64, void 0)), (v122 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v63() ? (new US3(1, "$bg")) : (new US3(0)), v7_1, v8_1, v9_1, v10_1, v103, v12_1, new US5(1, v114), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v108, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v88, v98, v47, v48, v49, v50, v51, v52, v93, v54, v83))), (v125 = createComponent, v125(Box, v122)))))))))))];
+export function closure23(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: any, v57: any, v58: int32, v59: (arg0: boolean) => void, v60: (arg0: void) => boolean, v61: (arg0: boolean) => void, v62: (arg0: void) => boolean, v63: (arg0: boolean) => void, v64: (arg0: void) => boolean, unitVar: void): Array<any> {
+    let v67: (arg0: void) => Array<any>, v75: any, v78: any, v79: any, v84: US0, v89: US3, v94: US3, v99: US3, v104: US3, v109: US3, v115: (arg0: void) => Array<any>, v125: any, v128: any, v129: any;
+    return [(v60() === false) ? ((v67 = ((): Array<any> => closure24(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v59, v0_1, v56, v57, void 0)), (v75 = createComponent, (v78 = Box, (v79 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v67), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, new US3(1, "4px 0"), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), v75(v78, v79)))))) : ((v84 = (v64() ? (new US0(1, 1)) : (new US0(0))), (v89 = (v64() ? (new US3(1, "absolute")) : (new US3(0))), (v94 = (v64() ? (new US3(1, "0")) : (new US3(0))), (v99 = (v64() ? (new US3(1, "0")) : (new US3(0))), (v104 = (v64() ? (new US3(1, "0")) : (new US3(0))), (v109 = (v64() ? (new US3(1, "0")) : (new US3(0))), (v115 = ((): Array<any> => closure27(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v61, v62, v63, v64, void 0)), (v125 = createComponent, (v128 = Box, (v129 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v64() ? (new US3(1, "$bg")) : (new US3(0)), v7_1, v8_1, v9_1, v10_1, v104, v12_1, new US5(1, v115), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v109, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v89, v99, v47, v48, v49, v50, v51, v52, v94, v54, v84))), v125(v128, v129))))))))))))];
 }
 
 export function method23(v0_1: Heap1): any {
@@ -1590,10 +1601,11 @@ export function method23(v0_1: Heap1): any {
             v94.fields[0](v60, v97);
         }
     }
-    const v99 = (): Array<any> => closure23(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, patternInput[12], v14_1, v15_1, v16_1, v17_1, patternInput[17], v19_1, patternInput[19], v21_1, v22_1, v23_1, v24_1, v25_1, patternInput[25], v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v61, v62, v71, v70, v75, v74, v82, v81, v60, void 0);
-    const v107 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v99), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), v21_1, v22_1, v23_1, v24_1, v25_1, v0_1.l25, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
-    const v109 = createComponent;
-    return v109(Box, v107);
+    const v99 = (): Array<any> => closure23(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, patternInput[12], v14_1, v15_1, v16_1, v17_1, patternInput[17], v19_1, patternInput[19], v21_1, v22_1, v23_1, v24_1, v25_1, patternInput[25], v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v61, v60, v62, v71, v70, v75, v74, v82, v81, void 0);
+    const v108 = createComponent;
+    const v111 = Box;
+    const v112 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v99), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), v21_1, v22_1, v23_1, v24_1, v25_1, v0_1.l25, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
+    return v108(v111, v112);
 }
 
 export function closure19(unitVar: void, v0_1: Heap1): any {
@@ -1606,13 +1618,13 @@ export function closure18(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US
 }
 
 export function closure12(v0_1: Heap1, v1_1: US1, v2_1: US1, v3_1: US2, v4_1: US3, v5_1: US4, v6_1: US3, v7_1: US3, v8_1: US3, v9_1: US3, v10_1: US3, v11_1: US3, v12_1: US1, v13_1: US5, v14_1: US3, v15_1: US3, v16_1: US1, v17_1: US3, v18_1: US3, v19_1: US1, v20_1: US3, v21_1: US3, v22_1: US3, v23_1: US3, v24_1: US3, v25_1: US6, v26_1: US3, v27_1: US3, v28_1: US3, v29_1: US7, v30_1: US3, v31_1: US3, v32_1: US3, v33_1: US3, v34: US3, v35: US8, v36: US9, v37: US3, v38: US3, v39: US3, v40: US3, v41: US3, v42: US3, v43: US3, v44: US3, v45: US3, v46: US3, v47: US3, v48: US3, v49: US1, v50: US3, v51: US3, v52: US6, v53: US3, v54: US3, v55: US0, v56: (arg0: boolean) => void, v57: (arg0: void) => boolean, unitVar: void): Array<any> {
-    let v75: (arg0: void) => Array<any>, v89: any, v92: any, v115: US3, v119: string, v121: (arg0: void) => Array<any>, v142: any, v145: any, v98: string, v100: (arg0: void) => Array<any>, v107: any, v110: any;
+    let v75: (arg0: void) => Array<any>, v91: any, v94: any, v95: any, v117: US3, v121: string, v123: (arg0: void) => Array<any>, v146: any, v149: any, v150: any, v99: string, v101: (arg0: void) => Array<any>, v110: any, v113: any, v114: any;
     const v58 = v0_1.l51;
-    const v97 = v0_1.l12;
-    return [(v58.tag === 1) ? ((v75 = ((): Array<any> => closure13(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58.fields[0], void 0)), (v89 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, ((v0_1.l48.tag === 0) ? true : v57()) ? (new US3(1, {
+    const v98 = v0_1.l12;
+    return [(v58.tag === 1) ? ((v75 = ((): Array<any> => closure13(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58.fields[0], void 0)), (v91 = createComponent, (v94 = Td, (v95 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, ((v0_1.l48.tag === 0) ? true : v57()) ? (new US3(1, {
         "@initial": "2px !important",
         "@sm": "0px !important",
-    })) : (new US3(1, "0px !important")), new US3(1, "$neutral5"), v10_1, v11_1, v12_1, new US5(1, v75), new US3(1, "$neutral9"), v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, v20_1, new US3(1, "column"), new US3(1, "$sm"), v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, new US3(1, "3px 20px 0 8px"), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), (v92 = createComponent, v92(Td, v89))))) : <></>, (v97.tag === 1) ? ((v115 = v0_1.l39, (v119 = "0", (v121 = ((): Array<any> => closure18(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v57, v97.fields[0], void 0)), (v142 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v119), v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v121), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "6"), new US3(1, "column"), new US3(1, "$sm"), v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, new US3(1, "$base"), new US3(1, v119), v32_1, v33_1, new US3(1, "85vh"), v35, v36, new US3(1, v119), v38, new US3(1, "auto"), new US3(1, (v115.tag === 1) ? v115.fields[0] : "0"), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), (v145 = createComponent, v145(Td, v142))))))) : ((v98 = "0", (v100 = ((): Array<any> => closure17(void 0, void 0)), (v107 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v98), v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v100), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, new US3(1, "9px"), v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, new US3(1, v98), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), (v110 = createComponent, v110(Td, v107))))))];
+    })) : (new US3(1, "0px !important")), new US3(1, "$neutral5"), v10_1, v11_1, v12_1, new US5(1, v75), new US3(1, "$neutral9"), v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, v20_1, new US3(1, "column"), new US3(1, "$sm"), v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, new US3(1, "3px 20px 0 8px"), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), v91(v94, v95)))))) : <></>, (v98.tag === 1) ? ((v117 = v0_1.l39, (v121 = "0", (v123 = ((): Array<any> => closure18(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, v9_1, v10_1, v11_1, v12_1, v13_1, v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v57, v98.fields[0], void 0)), (v146 = createComponent, (v149 = Td, (v150 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v121), v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v123), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "6"), new US3(1, "column"), new US3(1, "$sm"), v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, new US3(1, "$base"), new US3(1, v121), v32_1, v33_1, new US3(1, "85vh"), v35, v36, new US3(1, v121), v38, new US3(1, "auto"), new US3(1, (v117.tag === 1) ? v117.fields[0] : "0"), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), v146(v149, v150)))))))) : ((v99 = "0", (v101 = ((): Array<any> => closure17(void 0, void 0)), (v110 = createComponent, (v113 = Td, (v114 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, new US3(1, v99), v8_1, v9_1, v10_1, v11_1, v12_1, new US5(1, v101), v14_1, v15_1, v16_1, v17_1, v18_1, v19_1, v20_1, v21_1, v22_1, v23_1, v24_1, v25_1, v26_1, v27_1, v28_1, v29_1, new US3(1, "9px"), v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, new US3(1, v99), v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55))), v110(v113, v114)))))))];
 }
 
 export function method22(v0_1: Heap1): any {
@@ -1678,12 +1690,13 @@ export function method22(v0_1: Heap1): any {
         value_2(arg_1);
     });
     const v76 = (): Array<any> => closure12(v0_1, v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, patternInput[8], patternInput[9], v11_1, v12_1, patternInput[12], v14_1, v15_1, v16_1, v17_1, patternInput[17], v19_1, patternInput[19], patternInput[20], v22_1, v23_1, v24_1, v25_1, patternInput[25], v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v67, v66, void 0);
-    const v85 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, new US3(1, "$neutral5"), new US3(1, "1px 2px"), v11_1, v12_1, new US5(1, v76), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), new US3(1, {
+    const v86 = createComponent;
+    const v89 = Tr;
+    const v90 = createObj(method5(new Heap1(v1_1, v2_1, v3_1, v4_1, v5_1, v6_1, v7_1, v8_1, new US3(1, "$neutral5"), new US3(1, "1px 2px"), v11_1, v12_1, new US5(1, v76), v14_1, v15_1, v16_1, v17_1, new US3(1, "flex"), v19_1, new US3(1, "1"), new US3(1, {
         "@initial": "column",
         "@sm": "row",
     }), v22_1, v23_1, v24_1, v25_1, v0_1.l25, v27_1, v28_1, v29_1, v30_1, v31_1, v32_1, v33_1, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55)));
-    const v87 = createComponent;
-    return v87(Tr, v85);
+    return v86(v89, v90);
 }
 
 export function closure11(unitVar: void, v0_1: Heap1): any {

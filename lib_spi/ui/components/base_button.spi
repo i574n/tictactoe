@@ -1,8 +1,7 @@
 open solid
 
 
-let base_button props =
-    inl props : heap props__ = props
+let base_button (props : heap props__) =
     inl empty_props' = empty_props ()
 
     button

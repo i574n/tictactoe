@@ -16,12 +16,10 @@ inl app_global_get_ex n bytes : i32 =
 inl app_global_put bytes value : bool =
     $"(importAll \"pyteal\")?App?globalPut (!bytes, !value)"
 
-inl app_global_has_value value : bool =
-    inl value : i32 = value
+inl app_global_has_value (value : i32) : bool =
     $"!value?hasValue ()"
 
-inl get_gtxn i : py_any =
-    inl i : i32 = i
+inl get_gtxn (i : i32) : py_any =
     $"(importAll \"pyteal\")?TxnGroup?__getitem__(import \"Gtxn\" \"pyteal\", !i)"
 
 inl get_gtxn_amount gtxn : i32 =
@@ -48,8 +46,7 @@ inl get_gtxn_sender gtxn : i32 =
 inl get_gtxn_type_enum gtxn : i32 =
     $"!gtxn?type_enum ()"
 
-inl get_txn_application_args i : string =
-    inl i : i32 = i
+inl get_txn_application_args (i : i32) : string =
     $"((importAll \"pyteal\")?Txn?application_args : string[]).[!i]"
 
 inl get_txn_application_id () : i32 =
@@ -83,15 +80,10 @@ inl global_zero_address () : i32 =
 inl new_addr addr : string =
     $"(importAll \"pyteal\")?Addr !addr"
 
-inl new_and e1 e2 : bool =
-    inl e1 : bool = e1
-    inl e2 : bool = e2
+inl new_and (e1 : bool) (e2 : bool) : bool =
     $"(importAll \"pyteal\")?And !e1 !e2"
 
-inl new_and3 e1 e2 e3 : bool =
-    inl e1 : bool = e1
-    inl e2 : bool = e2
-    inl e3 : bool = e3
+inl new_and3 (e1 : bool) (e2 : bool) (e3 : bool) : bool =
     $"(importAll \"pyteal\")?And !e1 !e2 !e3"
 
 inl new_assert b : bool =
@@ -103,8 +95,7 @@ inl new_bitwise_and n1 n2 : i32 =
 inl new_bitwise_or n1 n2 : i32 =
     $"(importAll \"pyteal\")?BitwiseOr !n1 !n2"
 
-inl new_btoi text : i32 =
-    inl text : string = text
+inl new_btoi (text : string) : i32 =
     $"(importAll \"pyteal\")?Btoi !text"
 
 inl new_bytes text : string =
@@ -116,32 +107,19 @@ inl new_cond e1 e2 : bool =
 inl new_cond3 e1 e2 e3 : bool =
     $"(importAll \"pyteal\")?Cond !e1 !e2 !e3"
 
-inl new_if e t : bool =
-    inl e : bool = e
+inl new_if (e : bool) t : bool =
     $"(importAll \"pyteal\")?If !e !t"
 
-inl new_if_else e t f : bool =
-    inl e : bool = e
+inl new_if_else (e : bool) t f : bool =
     $"(importAll \"pyteal\")?If !e !t !f"
 
-inl new_int n : i32 =
-    inl n : i32 = n
+inl new_int (n : i32) : i32 =
     $"(importAll \"pyteal\")?Int !n"
 
-inl new_or e1 e2 : bool =
-    inl e1 : bool = e1
-    inl e2 : bool = e2
+inl new_or (e1 : bool) (e2 : bool) : bool =
     $"(importAll \"pyteal\")?Or !e1 !e2"
 
-inl new_or8 e1 e2 e3 e4 e5 e6 e7 e8 : bool =
-    inl e1 : bool = e1
-    inl e2 : bool = e2
-    inl e3 : bool = e3
-    inl e4 : bool = e4
-    inl e5 : bool = e5
-    inl e6 : bool = e6
-    inl e7 : bool = e7
-    inl e8 : bool = e8
+inl new_or8 (e1 : bool) (e2 : bool) (e3 : bool) (e4 : bool) (e5 : bool) (e6 : bool) (e7 : bool) (e8 : bool) : bool =
     $"(importAll \"pyteal\")?Or !e1 !e2 !e3 !e4 !e5 !e6 !e7 !e8"
 
 inl new_return e : bool =

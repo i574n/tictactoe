@@ -1,29 +1,29 @@
 {
-    "type": "module",
-    "scripts": {
-        "outdated-pre": "ncu --pre 1 -t greatest"
-    },
-    "dependencies": {
-        "algosdk": "~1.21",
-        "buffer": "~6.0",
+  "type": "module",
+  "scripts": {
+    "outdated-pre": "ncu --pre 1 -t greatest"
+  },
+  "dependencies": {
+    "algosdk": "~1.21",
+    "buffer": "~6.0",
 
-        "zeromq": "~6.0.0-beta.6",
+    "zeromq": "~6.0.0-beta.6",
 
-        "solid-js": "~1.5",
-        "solid-icons": "~1.0",
+    "solid-js": "~1.5",
+    "solid-icons": "~1.0",
 
-        "@stitches/core": "~1.2",
-        "solid-transition-group": "0.0.10",
-        "@hope-ui/solid": "~0.6",
+    "@stitches/core": "~1.2",
+    "solid-transition-group": "0.0.10",
+    "@hope-ui/solid": "~0.6",
 
-        "@storeon/solidjs": "~3.0",
-        "storeon": "~3.1"
-    },
-    "devDependencies": {
-        "@types/node": "~18.7",
-        "typescript": "~4.7",
-        "ts-node": "~10.9",
-        "npm-check-updates": "~16.1",
-        "path-browserify": "~1.0"
-    }
+    "@storeon/solidjs": "~3.0",
+    "storeon": "~3.1"
+  },
+  "devDependencies": {
+    "@types/node": "~18.7",
+    "typescript": "~4.9.1-beta",
+    "ts-node": "~10.9",
+    "npm-check-updates": "~16.3",
+    "path-browserify": "~1.0"
+  }
 }

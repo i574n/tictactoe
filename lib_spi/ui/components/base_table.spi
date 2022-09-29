@@ -1,8 +1,7 @@
 open solid
 
 
-let base_table props =
-    inl props : heap props__ = props
+let base_table (props : heap props__) =
     inl empty_props' = empty_props ()
 
     table (heap { empty_props' with

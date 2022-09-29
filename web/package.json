@@ -26,6 +26,8 @@
 
     "solid-js": "~1.5",
     "solid-icons": "~1.0",
+    "solid-devtools": "~0.16",
+    "@solid-devtools/transform": "~0.7",
 
     "@stitches/core": "~1.2",
     "solid-transition-group": "0.0.10",
@@ -35,16 +37,16 @@
     "storeon": "~3.1"
   },
   "devDependencies": {
-    "npm-check-updates": "~16.2",
-    "typescript": "~4.7",
+    "npm-check-updates": "~16.3",
+    "typescript": "~4.9.1-beta",
     "cross-env": "~7.0",
     "concurrently": "~7.4",
-    "@playwright/test": "~1.27.0-alpha-sep-21-2022",
-    "playwright-core": "~1.27.0-alpha-sep-21-2022",
+    "@playwright/test": "~1.27.0-alpha-sep-26-2022",
+    "playwright-core": "~1.27.0-alpha-sep-26-2022",
     "axe-playwright": "~1.1",
     "vite": "~3.1",
     "vite-plugin-solid": "~2.3",
-    "vite-plugin-wasm": "~2.1",
+    "vite-plugin-wasm": "~3.0",
     "vite-plugin-mkcert": "~1.9",
     "esbuild": "~0.15",
     "@esbuild-plugins/node-globals-polyfill": "~0.1",

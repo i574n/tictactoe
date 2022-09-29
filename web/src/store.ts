@@ -5,7 +5,7 @@ import * as ui from "./ui"
 import * as profile from "./profile"
 import * as util from "../../lib_ts/util"
 import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
-import { StoreonStore, createStoreon } from "storeon"
+import * as components_spi from "../../lib_ts/components_spi"
 
 
 export type State = db.DbState & chain.ChainState & ui.UiState & profile.ProfileState
@@ -44,7 +44,4 @@ const init: State = {
     }
 }
 
-export const store = createStoreon([(store: StoreonStore<State, { set: Partial<State> }>) => {
-    store.on('@init', () => init)
-    store.on('set', (_, state) => state)
-}])
+export const store = components_spi.v1.l0["create_storeon"](init)

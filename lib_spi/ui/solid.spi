@@ -121,16 +121,13 @@ let empty_props () : props__ =
         zIndex = None
     }
 
-let create_obj_props props =
-    inl props : a i32 (string * any) = props
-
+let create_obj_props (props : a i32 (string * any)) =
     inl empty_props' = empty_props ()
 
     inl v' v = Some $"!v |> unbox"
 
     props
-    |> am.fold (fun acc (k, v) =>
-        inl acc : props__ = acc
+    |> am.fold (fun (acc : props__) (k, v) =>
         if $"!v = JS.undefined" then
             acc
         else
@@ -202,9 +199,7 @@ inl new_jsx_prop k v =
 let to_jsx_prop k v : option jsx_prop =
     v |> optionm.map (fun v => new_jsx_prop k v)
 
-let props_array props : a i32 jsx_prop =
-    inl props : heap props__ = props
-
+let props_array (props : heap props__) : a i32 jsx_prop =
     a ;[
         to_jsx_prop "aria-label" props.ariaLabel
         to_jsx_prop "as" props.as'
@@ -261,9 +256,7 @@ let props_array props : a i32 jsx_prop =
     ]
     |> am.filter (function Some v => true | None => false) |> am.map optionm.value
 
-let merge_props old new =
-    inl old : heap props__ = old
-    inl new : props__ = new
+let merge_props (old : heap props__) (new : props__) : heap props__ =
     inl new = heap new
 
     inl merge_prop old new =
@@ -272,7 +265,7 @@ let merge_props old new =
         | Some old, _ => Some old
         | _ => None
 
-    inl result : heap props__ = heap {
+    heap {
         _loaded = merge_prop old._loaded new._loaded
         _modal = merge_prop old._modal new._modal
         _on_load = merge_prop old._on_load new._on_load
@@ -330,8 +323,6 @@ let merge_props old new =
         zIndex = merge_prop old.zIndex new.zIndex
     }
 
-    result
-
 
 inl createComponent_ () = import "createComponent" "solid-js"
 inl createEffect_ () = import "createEffect" "solid-js"
@@ -339,9 +330,6 @@ inl createSignal_ () = import "createSignal" "solid-js"
 inl mergeProps_ ()  = import "mergeProps" "solid-js"
 inl on_ ()  = import "on" "solid-js"
 inl onCleanup_ ()  = import "onCleanup" "solid-js"
-inl storeonStore_ () = import "StoreonStore" "storeon"
-inl createStoreon_ () = import "createStoreon" "storeon"
-inl useStoreon_ () = import "useStoreon" "@storeon/solidjs"
 
 
 inl biRegularDownArrow_ () : js_function_ = import "BiRegularDownArrow" "solid-icons/bi"
@@ -354,15 +342,10 @@ inl biRegularUndo_ () : js_function_ = import "BiRegularUndo" "solid-icons/bi"
 
 
 
-inl create_obj obj =
-    inl obj : a i32 jsx_prop = obj
+inl create_obj (obj : a i32 jsx_prop) =
     $"createObj !obj" : any
 
-inl create_component_ext name module props : jsx_element =
-    inl name : string = name
-    inl module : string = module
-    inl props : a i32 jsx_prop = props
-
+inl create_component_ext (name : string) (module : string) (props : a i32 jsx_prop) : jsx_element =
     // $"JSX.create (import !name !module) (!props |> unbox<JSX.Prop list>)"
 
     inl props = create_obj props
@@ -385,9 +368,8 @@ inl tr props = create_component_ext "Tr" "@hope-ui/solid" (props_array props)
 // inl to_jsx_element el : jsx_element = $"!el"
 
 
-inl create_component cmp props : jsx_element =
+inl create_component cmp (props : props__) : jsx_element =
     inl cmp : js_function_ = $"!cmp |> unbox<JS.Function>"
-    inl props : props__ = props
     inl props = heap props
 
     // inl props = props_array2 props
@@ -416,37 +398,14 @@ inl on_cleanup fn =
     inl onCleanup' = onCleanup_ ()
     $"!onCleanup'.Invoke !fn" : ()
 
-let create_storeon init : any =
-    inl init : any = init
-    inl createStoreon' = createStoreon_ ()
-    inl fn store =
-        inl store : any = store
-        inl store_on : js_function_ = $"!store?on |> unbox<JS.Function>"
-        $"!store_on.Invoke (\"@init\", fun () -> !init) |> ignore" : ()
-        $"!store_on.Invoke (\"set\", emitJsExpr () \"(_, state) => state\") |> ignore" : ()
-
-    $"!createStoreon'.Invoke [| !fn |]"
-
 inl empty_fragment () =
     $"Html.fragment []" : jsx_element
 
-inl str str : jsx_element =
-    inl str : string = str
+inl str (str : string) : jsx_element =
     $"Html.fragment [ !str |> unbox<JSX.Element> ]"
-
-inl use_store () =
-    inl useStoreon' = useStoreon_ ()
-    inl fns : array js_function_ = $"!useStoreon'.Invoke () |> unbox<JS.Function[]>"
-    inl state : any = $"!fns.[0] |> unbox"
-    inl dispatch_raw : js_function_ = $"!fns.[1] |> unbox"
-    inl dispatch new_state : () =
-        inl new_state : any = new_state
-        $"!dispatch_raw.Invoke (\"set\", !new_state) |> unbox"
-    state, dispatch
 
 inl breakpoints { initial sm } =
     $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<string>"
 
-inl children_fragment children : jsx_element =
-    inl children : () -> array jsx_element = children
+inl children_fragment (children : () -> array jsx_element) : jsx_element =
     $"!children |> unbox<JSX.Element>"

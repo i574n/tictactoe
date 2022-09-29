@@ -2,8 +2,7 @@ open solid
 open loader
 
 
-let row props =
-    inl props : heap props__ = props
+let row (props : heap props__) =
     inl empty_props' = empty_props ()
 
     inl checked, set_checked = create_signal (props.status <> Some false)

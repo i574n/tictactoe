@@ -4,37 +4,73 @@ open solid
 
 type state__ =
     {
-        ui_modal : option i32
+        ui : {
+            modal : option i32
+        }
     }
 
 let empty_state () : state__ =
     {
-        ui_modal = None
+        ui = {
+            modal = None
+        }
     }
 
-let create_obj_state_props props =
-    inl props : a i32 (any * any) = props
 
-    inl empty_state' = empty_state ()
+// let create_obj_state_props props =
+//     inl props : a i32 (any * any) = props
 
-    inl v' v = Some $"!v |> unbox"
+//     inl empty_state' = empty_state ()
 
-    props
-    |> am.fold (fun acc (k, v) =>
-        inl acc : state__ = acc
-        if $"!v = JS.undefined" then
-            acc
-        else
-            match $"!k |> unbox<string>" with
-            | "ui_modal" => { acc with ui_modal = v' v }
-            | _ => acc // failwith $"$\"unknown prop: {!k} = {!v}\""
-        ) empty_state'
-    |> heap
+//     inl v' v = Some $"!v |> unbox"
 
-let state_props_array props : a i32 jsx_prop =
-    inl props : state__ = props
+//     props
+//     |> am.fold (fun (acc : state__) (k, v) =>
+//         if $"!v = JS.undefined" then
+//             acc
+//         else
+//             match $"!k |> unbox<string>" with
+//             | "ui_modal" => { acc with ui_modal = v' v }
+//             | _ => acc // failwith $"$\"unknown prop: {!k} = {!v}\""
+//         ) empty_state'
+//     |> heap
 
+let state_props_array (props : state__) : a i32 jsx_prop =
     a ;[
-        to_jsx_prop "ui_modal" props.ui_modal
+        to_jsx_prop "ui_modal" props.ui.modal
     ]
     |> am.filter (function Some v => true | None => false) |> am.map optionm.value
+
+
+inl storeonStore_ () = import "StoreonStore" "storeon"
+inl createStoreon_ () = import "createStoreon" "storeon"
+inl useStoreon_ () = import "useStoreon" "@storeon/solidjs"
+
+
+let create_storeon (init : any) : any =
+    inl createStoreon' = createStoreon_ ()
+    inl fn (store : any) =
+        inl store_on : js_function_ = $"!store?on |> unbox<JS.Function>"
+        $"!store_on.Invoke (\"@init\", fun () -> !init) |> ignore" : ()
+        $"!store_on.Invoke (\"set\", emitJsExpr () \"(_, state) => state\") |> ignore" : ()
+
+    $"!createStoreon'.Invoke [| !fn |]"
+
+inl use_store () =
+    inl useStoreon' = useStoreon_ ()
+    inl fns : array js_function_ = $"!useStoreon'.Invoke () |> unbox<JS.Function[]>"
+    inl state_obj : any = $"!fns.[0] |> unbox"
+    inl dispatch_raw : js_function_ = $"!fns.[1] |> unbox"
+    inl dispatch_obj (new_state : any) : () =
+        $"!dispatch_raw.Invoke (\"set\", !new_state) |> unbox"
+
+    inl state = {
+        ui = {
+            modal = fun () => $"match !state_obj?ui_modal with x when x = JS.undefined -> -2 | x -> x"
+        }
+    }
+    inl dispatch (new_state : state__) =
+        inl props = state_props_array new_state
+        inl new_obj = create_obj props
+        dispatch_obj new_obj
+    state, dispatch, state_obj, dispatch_obj

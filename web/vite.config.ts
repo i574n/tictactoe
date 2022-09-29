@@ -4,6 +4,7 @@ import solidPlugin from 'vite-plugin-solid'
 import wasm from "vite-plugin-wasm"
 import mkcert from 'vite-plugin-mkcert'
 import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
+import devtoolsPlugin from '@solid-devtools/transform'
 
 
 export default defineConfig({
@@ -18,6 +19,9 @@ export default defineConfig({
     'process.env': process.env
   },
   plugins: [
+    devtoolsPlugin({
+      name: true,
+    }),
     solidPlugin() as any,
     splitVendorChunkPlugin(),
     wasm(),

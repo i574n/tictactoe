@@ -3,11 +3,10 @@ open state
 open base_button
 
 
-let loader props =
-    inl props : heap props__ = props
+let loader (props : heap props__) =
     inl empty_props' = empty_props ()
 
-    inl state, dispatch = use_store ()
+    inl state, dispatch, state_obj, dispatch_obj = use_store ()
 
     inl loader_id : i32 = $"Random().Next()"
 
@@ -22,15 +21,13 @@ let loader props =
 
     inl on_load' () =
         match props._on_load with
-        | Some on_load => on_load state dispatch
+        | Some on_load => on_load state_obj dispatch_obj
         | None => ()
 
     if props._loaded = Some true then on_load' ()
 
     inl icon_height = "20px"
     inl button_size = "14px"
-
-    inl ui_modal_ () : i32 = $"match !state?ui_modal with x when x = JS.undefined -> -2 | x -> x"
 
     box (heap { empty_props' with
         id = props.id
@@ -69,11 +66,11 @@ let loader props =
                             box (heap { empty_props' with
                                 flex = Some "1"
                                 display = Some "flex"
-                                position = if ui_modal_ () <= 0 then Some "relative" else None
+                                position = if state.ui.modal () <= 0 then Some "relative" else None
                                 children = Some (fun () => ;[
                                     stack (heap { empty_props' with
                                         display =
-                                            match ui_modal_ () with
+                                            match state.ui.modal () with
                                             | x when x > 0 && x <> loader_id => Some "none"
                                             | _ => None
                                         direction = Some "row"
@@ -104,11 +101,11 @@ let loader props =
                                                     inl new_modal = not (modal ())
                                                     set_modal new_modal
                                                     inl new_state = {
-                                                        ui_modal = if new_modal then Some loader_id else Some -3
+                                                        ui = {
+                                                            modal = if new_modal then Some loader_id else Some -3
+                                                        }
                                                     }
-                                                    inl props = state_props_array new_state
-                                                    inl new_obj = create_obj props
-                                                    dispatch new_obj
+                                                    dispatch new_state
                                                 )
                                                 icon = Some (
                                                     create_component

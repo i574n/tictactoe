@@ -1,32 +1,32 @@
 {
-    "name": "tictactoe_spiral_peer",
-    "version": "0.0.1",
-    "description": "",
-    "main": "server.js",
-    "author": "fc1943s",
-    "type": "module",
-    "private": true,
-    "scripts": {
-        "start-ci": "cross-env-shell \"pwsh start.ps1\"",
-        "start-dev": "cross-env-shell PEER_DOMAIN=localhost \"pnpm start-ci\"",
-        "start-dev-local": "cross-env-shell HTTPS=true ROOT_PATH=./radata \"pnpm start-dev\"",
-        "outdated-pre": "ncu --pre 1 -t greatest"
-    },
-    "dependencies": {
-        "gun": "~0.2020.1238"
-    },
-    "devDependencies": {
-        "@types/node": "~18.7",
-        "cross-env": "~7.0",
-        "mkcert": "~1.5",
-        "npm-check-updates": "~16.0",
-        "request": "~2.88",
-        "ts-node": "~10.9",
-        "typescript": "~4.8"
-    },
-    "pnpm": {
-        "patchedDependencies": {
-            "mkcert@1.5.1": "patches/mkcert@1.5.1.patch"
-        }
+  "name": "tictactoe_spiral_peer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "author": "fc1943s",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start-ci": "cross-env-shell \"pwsh start.ps1\"",
+    "start-dev": "cross-env-shell PEER_DOMAIN=localhost \"pnpm start-ci\"",
+    "start-dev-local": "cross-env-shell HTTPS=true ROOT_PATH=./radata \"pnpm start-dev\"",
+    "outdated-pre": "ncu --pre 1 -t greatest"
+  },
+  "dependencies": {
+    "gun": "~0.2020.1238"
+  },
+  "devDependencies": {
+    "@types/node": "~18.7",
+    "cross-env": "~7.0",
+    "mkcert": "~1.5",
+    "npm-check-updates": "~16.3",
+    "request": "~2.88",
+    "ts-node": "~10.9",
+    "typescript": "~4.9.1-beta"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "mkcert@1.5.1": "patches/mkcert@1.5.1.patch"
     }
+  }
 }

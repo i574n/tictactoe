@@ -1,8 +1,7 @@
 open solid
 
 
-let external_link props =
-    inl props : heap props__ = props
+let external_link (props : heap props__) =
     inl empty_props' = empty_props ()
 
     box (heap { empty_props' with

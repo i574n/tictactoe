@@ -4,7 +4,5 @@ nominal js_function_ = $"JS.Function"
 
 inl to_any obj : any = $"!obj"
 
-inl import name module =
-    inl name : string = name
-    inl module : string = module
+inl import (name : string) (module : string) =
     $"import !name !module" : js_function_
