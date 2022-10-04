@@ -1,22 +1,20 @@
 open solid
 
 
-let base_table (props : heap props__) =
-    inl empty_props' = empty_props ()
-
-    table (heap { empty_props' with
-        display = Some "flex"
-        flex = Some "1"
-        flexDirection = Some "column"
-        overflowX = Some "hidden"
-        overflowY = props.overflowY |> optionm.defaultWith "hidden" |> Some
-        children = Some (fun () => ;[
-            tbody (heap { empty_props' with
-                display = Some "flex"
-                flexDirection = Some "column"
-                backgroundColor = Some "$blackAlpha3"
-                margin = Some "-1px"
-                children = props.children
-            })
-        ])
-    })
+let base_table (props : list prop_) =
+    table [
+        Display "flex"
+        Flex "1"
+        FlexDirection "column"
+        OverflowX "hidden"
+        OverflowY <| props /. .OverflowY /? "hidden"
+        Children fun () => ;[
+            tbody [
+                Display "flex"
+                FlexDirection "column"
+                BackgroundColor "$blackAlpha3"
+                Margin "-1px"
+                Children <| props /. .Children /? fun () => ;[]
+            ]
+        ]
+    ]

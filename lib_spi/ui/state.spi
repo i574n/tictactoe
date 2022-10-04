@@ -16,7 +16,6 @@ let empty_state () : state__ =
         }
     }
 
-
 // let create_obj_state_props props =
 //     inl props : a i32 (any * any) = props
 
@@ -35,11 +34,12 @@ let empty_state () : state__ =
 //         ) empty_state'
 //     |> heap
 
-let state_props_array (props : state__) : a i32 jsx_prop =
+let state_props_array (props : state__) : a i32 js_obj_prop =
     a ;[
-        to_jsx_prop "ui_modal" props.ui.modal
+        try_js_obj_prop "ui_modal" props.ui.modal
     ]
-    |> am.filter (function Some v => true | None => false) |> am.map optionm.value
+    |> am.filter function Some v => true | None => false
+    |> am.map optionm.value
 
 
 inl storeonStore_ () = import "StoreonStore" "storeon"
@@ -66,7 +66,9 @@ inl use_store () =
 
     inl state = {
         ui = {
-            modal = fun () => $"match !state_obj?ui_modal with x when x = JS.undefined -> -2 | x -> x"
+            modal =
+                fun () : i32 =>
+                    $"match !state_obj?ui_modal with x when x = JS.undefined -> -2 | x -> x"
         }
     }
     inl dispatch (new_state : state__) =

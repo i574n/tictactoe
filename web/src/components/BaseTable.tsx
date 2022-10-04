@@ -11,7 +11,7 @@ function BaseTable(props: TableProps) {
             return (target as any)[phrase]
         }
     })
-    return <components_spi.v10 {...components_spi.v1.l0["create_obj_props"](Object.entries(props))} />
+    return <components_spi.v65 {...components_spi.v1.l0["create_obj_props"](Object.entries(props))} />
 }
 
 export default BaseTable

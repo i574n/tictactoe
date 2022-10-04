@@ -1,7 +1,10 @@
-packages: |core-
+packages:
+    |core-
 modules:
     lib_spi/
-        util
+        util-
+        real_util*
+        util_-
         console_fsx
         js
         ui/

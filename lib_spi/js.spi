@@ -2,7 +2,20 @@ nominal any = $"obj"
 
 nominal js_function_ = $"JS.Function"
 
-inl to_any obj : any = $"!obj"
+nominal js_obj_prop = $"(string * obj)"
 
-inl import (name : string) (module : string) =
-    $"import !name !module" : js_function_
+
+inl new_js_obj_prop (k : string) v : js_obj_prop =
+    $"!k, !v"
+
+inl to_any obj : any =
+    $"!obj"
+
+inl import (name : string) (module : string) : js_function_=
+    $"import !name !module"
+
+let try_js_obj_prop k v : option js_obj_prop =
+    v |> optionm.map fun v => new_js_obj_prop k v
+
+inl create_obj (obj : a i32 js_obj_prop) : any =
+    $"createObj !obj"

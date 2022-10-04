@@ -14,9 +14,9 @@ function Row<State extends ui.UiState>(
         }
     }
 ) {
-    return <components_spi.v28 {...components_spi.v1.l0["create_obj_props"](Object.entries({
+    return <components_spi.v83 {...components_spi.v1.l0["create_obj_props"](Object.entries({
         ...props,
-        _on_load: props_?.onLoad,
+        onLoad__: props_?.onLoad,
         id: props_?.id,
         status: props_?.loader,
         title: props_?.title || props.title

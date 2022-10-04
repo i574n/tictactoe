@@ -5,33 +5,31 @@ open external_link
 
 
 let links () =
-    inl empty_props' = empty_props ()
-
-    create_component base_table { empty_props' with
-        children = Some (fun () => ;[
-            create_component row { empty_props' with
-                padding = Some "1px 6px"
-                children = Some (fun () => ;[
-                    create_component external_link { empty_props' with
-                        href = Some "https://github.com/fc1943s/tictactoe_spiral"
-                    }
-                ])
-            }
-            create_component row { empty_props' with
-                padding = Some "1px 6px"
-                children = Some (fun () => ;[
-                    create_component external_link { empty_props' with
-                        href = Some "https://fc1943s.github.io/tictactoe_spiral"
-                    }
-                ])
-            }
-            create_component row { empty_props' with
-                padding = Some "1px 6px"
-                children = Some (fun () => ;[
-                    create_component external_link { empty_props' with
-                        href = Some "https://fc1943s.github.io/tictactoe_spiral/docs"
-                    }
-                ])
-            }
-        ])
-    }
+    create_component base_table [
+        Children fun () => ;[
+            create_component row [
+                Padding "1px 6px"
+                Children fun () => ;[
+                    create_component external_link [
+                        Href "https://github.com/fc1943s/tictactoe_spiral"
+                    ]
+                ]
+            ]
+            create_component row [
+                Padding "1px 6px"
+                Children fun () => ;[
+                    create_component external_link [
+                        Href "https://fc1943s.github.io/tictactoe_spiral"
+                    ]
+                ]
+            ]
+            create_component row [
+                Padding "1px 6px"
+                Children fun () => ;[
+                    create_component external_link [
+                        Href "https://fc1943s.github.io/tictactoe_spiral/docs"
+                    ]
+                ]
+            ]
+        ]
+    ]

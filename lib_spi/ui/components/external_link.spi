@@ -1,21 +1,18 @@
 open solid
 
 
-let external_link (props : heap props__) =
-    inl empty_props' = empty_props ()
-
-    box (heap { empty_props' with
-        children = Some (fun () => ;[
-            anchor (
-                { empty_props' with
-                    external = Some true
-                    children = Some (fun () => ;[
-                        str (props.href |> optionm.defaultWith "")
-                    ])
-                }
-                |> merge_props props
-            )
+let external_link (props : list prop_) =
+    box [
+        Children fun () => ;[
+            anchor <| props /@ [
+                External true
+                Children fun () => ;[
+                    str <| props /. .Href /? ""
+                ]
+            ]
             str "&nbsp;"
-            icon (heap { empty_props' with as' = Some (biRegularLinkExternal_ ()) })
-        ])
-    })
+            icon [
+                As <| biRegularLinkExternal_ ()
+            ]
+        ]
+    ]

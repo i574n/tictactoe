@@ -1,13 +1,10 @@
 open solid
 
 
-let base_button (props : heap props__) =
-    inl empty_props' = empty_props ()
-
-    button
-        ({ empty_props' with
-            size = Some "xs"
-            justifyContent = Some "left"
-            compact = Some true
-            colorScheme = Some "neutral"
-        } |> merge_props props)
+let base_button (props : list prop_) =
+    button <| props /@ [
+        Size "xs"
+        JustifyContent "left"
+        Compact true
+        ColorScheme "neutral"
+    ]

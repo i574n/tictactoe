@@ -2,94 +2,98 @@ open solid
 open loader
 
 
-let row (props : heap props__) =
-    inl empty_props' = empty_props ()
+let row (props : list prop_) =
+    inl checked, set_checked = create_signal (props /. .Status <> Some false)
 
-    inl checked, set_checked = create_signal (props.status <> Some false)
-
-    tr (heap { empty_props' with
-        id = props.id
-        display = Some "flex"
-        flex = Some "1"
-        borderWidth = Some "1px 2px"
-        borderColor = Some "$neutral5"
-        flexDirection = breakpoints { initial = "column"; sm = "row" } |> Some
-            children = Some (fun () => ;[
-            match props.title with
+    tr <| (
+        match props /. .Id with
+        | Some id => [
+        Id id
+        ] | _ => []) /@ [
+        Display "flex"
+        Flex "1"
+        BorderWidth "1px 2px"
+        BorderColor "$neutral5"
+        FlexDirection <| breakpoints { initial = "column"; sm = "row" }
+        Children fun () => ;[
+            match props /. .Title with
             | Some title =>
-                td (heap { empty_props' with
-                    borderBottomWidth =
-                        if props.status = None || checked ()
-                        then breakpoints { initial = "2px !important"; sm = "0px !important" } |> Some
-                        else Some "0px !important"
-                    borderColor = Some "$neutral5"
-                    color = Some "$neutral9"
-                    display = Some "flex"
-                    flexDirection = Some "column"
-                    fontSize = Some "$sm"
-                    padding = Some "3px 20px 0 8px"
-                    children = Some (fun () => ;[
-                        match props.status with
-                        | Some status =>
-                            checkbox (heap { empty_props' with
-                                size = Some "sm"
-                                marginBottom = Some "2px"
-                                checked = Some (checked ())
-                                colorScheme = Some "neutral"
-                                onChange = Some (fun e => set_checked $"!e?target?checked")
-                                children = Some (fun () => ;[
-                                    box (heap { empty_props' with
-                                        paddingTop = Some "2px"
-                                        children = Some (fun () => ;[
+                td [
+                    BorderBottomWidth <|
+                        if props /. .Status = (None : option bool) || checked ()
+                        then breakpoints { initial = "2px !important"; sm = "0px !important" }
+                        else "0px !important"
+                    BorderColor "$neutral5"
+                    Color "$neutral9"
+                    Display "flex"
+                    FlexDirection "column"
+                    FontSize "$sm"
+                    Padding "3px 20px 0 8px"
+                    Children fun () => ;[
+                        match props /. .Status with
+                        | Some (_status : bool) =>
+                            checkbox [
+                                Size "sm"
+                                MarginBottom "2px"
+                                Checked <| checked ()
+                                ColorScheme "neutral"
+                                OnChange fun e => set_checked $"!e?target?checked"
+                                Children fun () => ;[
+                                    box [
+                                        PaddingTop "2px"
+                                        Children fun () => ;[
                                             title
-                                        ])
-                                    })
-                                ])
-                            })
+                                        ]
+                                    ]
+                                ]
+                            ]
                         | None =>
                             title
-                    ])
-                })
+                    ]
+                ]
             | None =>
                 empty_fragment ()
 
-            match props.children with
+            match props /. .Children with
             | Some children =>
-                td (heap { empty_props' with
-                    border = Some "0"
-                    outline = Some "0"
-                    margin = Some "0"
-                    padding = props.padding |> optionm.defaultWith "0" |> Some
-                    display = Some "flex"
-                    flex = Some "6"
-                    lineHeight = Some "$base"
-                    flexDirection = Some "column"
-                    fontSize = Some "$sm"
-                    maxHeight = Some "85vh"
-                    overflowY = Some "auto"
-                    children = Some (fun () => ;[
-                        match props.status with
-                        | Some status =>
+                td [
+                    Border "0"
+                    Outline "0"
+                    Margin "0"
+                    Padding <| props /. .Padding /? "0"
+                    Display "flex"
+                    Flex "6"
+                    LineHeight "$base"
+                    FlexDirection "column"
+                    FontSize "$sm"
+                    MaxHeight "85vh"
+                    OverflowY "auto"
+                    Children fun () => ;[
+                        match props /. .Status with
+                        | Some (_status : bool) =>
                             if checked () then
-                                create_component loader { empty_props' with
-                                    _loaded = Some true
-                                    _on_load = props._on_load
-                                    children = Some children
-                                }
+                                create_component loader <| (
+                                    match props /. .OnLoad__ with
+                                    | Some onLoad => [
+                                    OnLoad__ onLoad
+                                    ] | _ => []) /@ [
+                                    Loaded__ true
+                                    Children children
+                                ]
                             else
                                 empty_fragment ()
                         | None =>
                             children_fragment children
-                    ])
-                })
+                    ]
+                ]
             | None =>
-                td (heap { empty_props' with
-                    border = Some "0"
-                    padding = Some "0"
-                    lineHeight = Some "9px"
-                    children = Some (fun () => ;[
+                td [
+                    Border "0"
+                    Padding "0"
+                    LineHeight "9px"
+                    Children fun () => ;[
                         str "&nbsp;"
-                    ])
-                })
-        ])
-    })
+                    ]
+                ]
+        ]
+    ]

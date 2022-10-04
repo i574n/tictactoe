@@ -1,0 +1,50 @@
+open real_util
+
+
+inl random () : i32 =
+    $"Random().Next ()"
+
+inl track_time forall a. (name : string) (n : i32) (fn : () -> a) : a =
+    $"JS.console.time !name"
+
+    inl result =
+        loop.for
+            {from = 0i32; nearTo = n}
+            fun _ _ => fn ()
+            $"JS.undefined" : a
+
+    $"JS.console.timeEnd !name"
+
+    result
+
+inl union_list_get forall union_type union_key_type value_type.
+    (union_key : union_key_type)
+    (union_list : list union_type)
+    : option value_type
+    =
+    inl record_typecheck_value : option value_type = None
+    real
+        union_record_check
+            `union_type
+            `(`({$union_key=record_typecheck_value}))
+            {check_length=false; check_type=CheckOption}
+
+    inl some (x : value_type) : option value_type = Some x
+
+    listm.foldBack (fun union_item acc =>
+        match acc with
+        | None =>
+            real
+                open real_core
+                unbox
+                    union_item
+                    fun (union_item_key, union_item_value) =>
+                        typecase `union_item_key * `union_key with
+                        | ~x * ~x => some union_item_value
+                        | _ => acc
+        | _ => acc
+    ) union_list None
+
+inl (/@) a b = b |> listm.append a
+inl (/.) props key = union_list_get key props
+inl (/?) a b = a |> optionm.defaultWith b
