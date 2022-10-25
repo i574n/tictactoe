@@ -1,10 +1,6 @@
 import { HopeThemeConfig } from '@hope-ui/solid'
 
 
-export type UiState = {
-    ui_modal?: number
-}
-
 export const globalCss = {
     body: {
         margin: '0px',

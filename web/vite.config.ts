@@ -42,6 +42,9 @@ export default defineConfig({
 
           'solid-js': ['solid-js'],
           'solid-icons': ['solid-icons'],
+          'solid-devtools': ['solid-devtools'],
+          'solid-devtools-transform': ['@solid-devtools/transform'],
+
           'storeon': ['storeon'],
           'storeon-solidjs': ['@storeon/solidjs'],
 

@@ -1,15 +1,12 @@
 open js
+open real_js
 open real_util
+open real_solid
 
 
-nominal jsx_element = $"JSX.Element"
-
-union prop_ =
-    | Loaded__ : bool
-    | Modal__ : bool
-    | OnLoad__ : any -> (any -> ()) -> ()
+union solid_prop =
     | AriaLabel : string
-    | As : js_function_
+    | As : js_function
     | BackgroundColor : string
     | Border : string
     | BorderWidth : string
@@ -21,8 +18,11 @@ union prop_ =
     | Children : () -> array jsx_element
     | ColorScheme : string
     | Compact : bool
+    | Css : any
+    | DefaultValue : string
     | Direction : string
     | Display : string
+    | Each : a i32 any
     | External : bool
     | Flex : string
     | FlexDirection : string
@@ -36,11 +36,15 @@ union prop_ =
     | LeftIcon : any
     | LineHeight : string
     | Margin : string
-    | MarginBottom : string
     | MarginTop : string
+    | MarginRight : string
+    | MarginBottom : string
+    | MarginLeft : string
     | MaxHeight : string
+    | MaxWidth : string
     | OnChange : any -> ()
     | OnClick : () -> ()
+    | OnInput : any -> ()
     | Outline : string
     | OverflowX : string
     | OverflowY : string
@@ -53,309 +57,245 @@ union prop_ =
     | Right : string
     | Size : string
     | Spacing : string
-    | Status : bool
+    | Src : string
     | Striped : string
     | Thickness : string
     | Title : jsx_element
     | Top : string
+    | Type : string
+    | Value : any
     | Width : string
     | ZIndex : i32
+    | Zoom : string
 
-type props_ =
-    {
-        Loaded__ : option bool
-        Modal__ : option bool
-        OnLoad__ : option (any -> (any -> ()) -> ())
-        AriaLabel : option string
-        As : option js_function_
-        BackgroundColor : option string
-        Border : option string
-        BorderWidth : option string
-        BorderBottomWidth : option string
-        BorderColor : option string
-        Bottom : option string
-        Color : option string
-        Checked : option bool
-        Children : option (() -> array jsx_element)
-        ColorScheme : option string
-        Compact : option bool
-        Direction : option string
-        Display : option string
-        External : option bool
-        Flex : option string
-        FlexDirection : option string
-        FontSize : option string
-        Height : option string
-        Href : option string
-        Icon : option jsx_element
-        Id : option string
-        JustifyContent : option string
-        Left : option string
-        LeftIcon : option any
-        LineHeight : option string
-        Margin : option string
-        MarginBottom : option string
-        MarginTop : option string
-        MaxHeight : option string
-        OnChange : option (any -> ())
-        OnClick : option (() -> ())
-        Outline : option string
-        OverflowX : option string
-        OverflowY : option string
-        Padding : option string
-        PaddingTop : option string
-        PaddingRight : option string
-        PaddingBottom : option string
-        PaddingLeft : option string
-        Position : option string
-        Right : option string
-        Size : option string
-        Spacing : option string
-        Status : option bool
-        Striped : option string
-        Thickness : option string
-        Title : option jsx_element
-        Top : option string
-        Width : option string
-        ZIndex : option i32
-    }
 
-inl prop_keys () =
-    {
-        Loaded__ = "loaded__"
-        Modal__ = "modal__"
-        OnLoad__ = "onLoad__"
-        AriaLabel = "aria-label"
-        As = "as"
-        BackgroundColor = "backgroundColor"
-        Border = "border"
-        BorderWidth = "borderWidth"
-        BorderBottomWidth = "borderBottomWidth"
-        BorderColor = "borderColor"
-        Bottom = "bottom"
-        Color = "color"
-        Checked = "checked"
-        Children = "children"
-        ColorScheme = "colorScheme"
-        Compact = "compact"
-        Direction = "direction"
-        Display = "display"
-        External = "external"
-        Flex = "flex"
-        FlexDirection = "flexDirection"
-        FontSize = "fontSize"
-        Height = "height"
-        Href = "href"
-        Icon = "icon"
-        Id = "id"
-        JustifyContent = "justifyContent"
-        Left = "left"
-        LeftIcon = "leftIcon"
-        LineHeight = "lineHeight"
-        Margin = "margin"
-        MarginBottom = "marginBottom"
-        MarginTop = "marginTop"
-        MaxHeight = "maxHeight"
-        OnChange = "onChange"
-        OnClick = "onClick"
-        Outline = "outline"
-        OverflowX = "overflowX"
-        OverflowY = "overflowY"
-        Padding = "padding"
-        PaddingTop = "paddingTop"
-        PaddingRight = "paddingRight"
-        PaddingBottom = "paddingBottom"
-        PaddingLeft = "paddingLeft"
-        Position = "position"
-        Right = "right"
-        Size = "size"
-        Spacing = "spacing"
-        Status = "status"
-        Striped = "striped"
-        Thickness = "thickness"
-        Title = "title"
-        Top = "top"
-        Width = "width"
-        ZIndex = "zIndex"
+
+inl empty_props () : solid_props =
+    join {
+        AriaLabel = None
+        As = None
+        BackgroundColor = None
+        Border = None
+        BorderWidth = None
+        BorderBottomWidth = None
+        BorderColor = None
+        Bottom = None
+        Color = None
+        Checked = None
+        Children = None
+        ColorScheme = None
+        Compact = None
+        Css = None
+        DefaultValue = None
+        Direction = None
+        Display = None
+        Each = None
+        External = None
+        Flex = None
+        FlexDirection = None
+        FontSize = None
+        Height = None
+        Href = None
+        Icon = None
+        Id = None
+        JustifyContent = None
+        Left = None
+        LeftIcon = None
+        LineHeight = None
+        Margin = None
+        MarginTop = None
+        MarginRight = None
+        MarginBottom = None
+        MarginLeft = None
+        MaxHeight = None
+        MaxWidth = None
+        OnChange = None
+        OnClick = None
+        OnInput = None
+        Outline = None
+        OverflowX = None
+        OverflowY = None
+        Padding = None
+        PaddingTop = None
+        PaddingRight = None
+        PaddingBottom = None
+        PaddingLeft = None
+        Position = None
+        Right = None
+        Size = None
+        Spacing = None
+        Src = None
+        Striped = None
+        Thickness = None
+        Title = None
+        Top = None
+        Type = None
+        Value = None
+        Width = None
+        ZIndex = None
+        Zoom = None
     }
 
 inl typecheck_props () =
-    real union_record_check `prop_ `(`(prop_keys ())) {check_length=true; check_type=CheckNone}
-    real union_record_check `prop_ `props_ {check_length=true; check_type=CheckOption}
+    real union_record_check `solid_prop `(`(prop_keys ())) {check_length=true; check_type=CheckNone}
+    real union_record_check `solid_prop `solid_props {check_length=true; check_type=CheckOption}
+
+type mut_props = mut_props
 
 
-let create_obj_props (props : a i32 (string * any)) : list prop_ =
-    inl v' v = $"!v |> unbox"
+inl init_props (props_fn : mut_props -> ()) : mut_props =
+    join
+        inl new_props = mut (empty_props ())
+        real
+            props_fn new_props
+            new_props
+
+inl props_entries (props_fn : mut_props -> ()) : a i32 js_obj_prop =
+    real
+        inl props = init_props props_fn
+        record_entries props
+
+inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
+
+inl some_children (children : () -> array jsx_element) = Some children
+
+let add_children_props_mut
+    (children : () -> array jsx_element)
+    (props : mut_props)
+    :
+    mut_props
+    =
+    inl solid_props' props_ = props
+    props.Children <- some_children children
+    $"emitJsExpr (!props, !children) \"$0.children = $1\"" : ()
+
     props
-    |> am.fold (fun (acc : list prop_) (k, v) =>
-        if $"!v = JS.undefined" then
-            acc
-        else
-            match k with
-            | "loaded__" => Loaded__ (v' v) :: acc
-            | "modal__" => Modal__ (v' v) :: acc
-            | "onLoad__" => OnLoad__ (v' v) :: acc
-            | "aria-label" => AriaLabel (v' v) :: acc
-            | "as" => As (v' v) :: acc
-            | "backgroundColor" => BackgroundColor (v' v) :: acc
-            | "border" => Border (v' v) :: acc
-            | "borderWidth" => BorderWidth (v' v) :: acc
-            | "borderBottomWidth" => BorderBottomWidth (v' v) :: acc
-            | "borderColor" => BorderColor (v' v) :: acc
-            | "bottom" => Bottom (v' v) :: acc
-            | "color" => Color (v' v) :: acc
-            | "checked" => Checked (v' v) :: acc
-            | "children" => Children (v' v) :: acc
-            | "colorScheme" => ColorScheme (v' v) :: acc
-            | "compact" => Compact (v' v) :: acc
-            | "direction" => Direction (v' v) :: acc
-            | "display" => Display (v' v) :: acc
-            | "external" => External (v' v) :: acc
-            | "flex" => Flex (v' v) :: acc
-            | "flexDirection" => FlexDirection (v' v) :: acc
-            | "fontSize" => FontSize (v' v) :: acc
-            | "height" => Height (v' v) :: acc
-            | "href" => Href (v' v) :: acc
-            | "icon" => Icon (v' v) :: acc
-            | "id" => Id (v' v) :: acc
-            | "justifyContent" => JustifyContent (v' v) :: acc
-            | "left" => Left (v' v) :: acc
-            | "leftIcon" => LeftIcon (v' v) :: acc
-            | "lineHeight" => LineHeight (v' v) :: acc
-            | "margin" => Margin (v' v) :: acc
-            | "marginBottom" => MarginBottom (v' v) :: acc
-            | "marginTop" => MarginTop (v' v) :: acc
-            | "maxHeight" => MaxHeight (v' v) :: acc
-            | "onChange" => OnChange (v' v) :: acc
-            | "onClick" => OnClick (v' v) :: acc
-            | "outline" => Outline (v' v) :: acc
-            | "overflowX" => OverflowX (v' v) :: acc
-            | "overflowY" => OverflowY (v' v) :: acc
-            | "padding" => Padding (v' v) :: acc
-            | "paddingTop" => PaddingTop (v' v) :: acc
-            | "paddingRight" => PaddingRight (v' v) :: acc
-            | "paddingBottom" => PaddingBottom (v' v) :: acc
-            | "paddingLeft" => PaddingLeft (v' v) :: acc
-            | "position" => Position (v' v) :: acc
-            | "right" => Right (v' v) :: acc
-            | "size" => Size (v' v) :: acc
-            | "spacing" => Spacing (v' v) :: acc
-            | "status" => Status (v' v) :: acc
-            | "striped" => Striped (v' v) :: acc
-            | "thickness" => Thickness (v' v) :: acc
-            | "title" => Title (v' v) :: acc
-            | "top" => Top (v' v) :: acc
-            | "width" => Width (v' v) :: acc
-            | "zIndex" => ZIndex (v' v) :: acc
-            | _ => failwith $"$\"unknown prop: {!k} = {!v}\""
-        ) []
+
+inl create_native_component
+    (cmp : js_function)
+    (props_fn : mut_props -> ())
+    ~(children : () -> array jsx_element)
+    : jsx_element
+    =
+    inl new_props_entries : a i32 js_obj_prop =
+        props_fn
+        |> real init_props
+        |> add_children_props_mut children
+        |> real record_entries
+
+    inl new_props_obj =
+        real create_obj new_props_entries
+
+    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+    $"\"create_native_component -> create_component'\" |> ignore" : ()
+    real create_component' new_cmp new_props_obj
+
+inl create_custom_component forall props_type.
+    ~(cmp : mut props_type -> jsx_element)
+    (props : props_type)
+    : jsx_element
+    =
+    inl mut_props = mut props
+    real
+        inl props_obj : any =
+            to_any `(mut props_type) mut_props
+
+        inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+        $"\"create_custom_component -> create_component'\" |> ignore" : ()
+        create_component' new_cmp props_obj
+
+inl create_component
+    ~(cmp : mut_props -> jsx_element)
+    (props_fn : mut_props -> ())
+    (children : () -> array jsx_element)
+    : jsx_element
+    =
+    inl new_props : solid_props =
+        props_fn
+        |> real init_props
+        |> add_children_props_mut children
+        |> fun x => *x
+
+    $"\"create_component -> create_custom_component\" |> ignore" : ()
+    real create_custom_component `solid_props cmp new_props
 
 
-inl createComponent_ () = import "createComponent" "solid-js"
-inl createEffect_ () = import "createEffect" "solid-js"
-inl createSignal_ () = import "createSignal" "solid-js"
-inl mergeProps_ ()  = import "mergeProps" "solid-js"
-inl on_ ()  = import "on" "solid-js"
-inl onCleanup_ ()  = import "onCleanup" "solid-js"
+inl on' (deps : () -> array any) (fn : () -> ()) : js_function = real on deps fn
+inl create_effect' (on : js_function) : () = real create_effect on
+inl create_signal' forall a. (default_value : a) : (() -> a) * (a -> ()) = real create_signal `a default_value
+
+inl biRegularDownArrow_ () = real import "BiRegularDownArrow" "solid-icons/bi"
+inl biRegularLinkExternal_ () = real import "BiRegularLinkExternal" "solid-icons/bi"
+inl biRegularRefresh_ () = real import "BiRegularRefresh" "solid-icons/bi"
+inl biRegularUpArrow_ () = real import "BiRegularUpArrow" "solid-icons/bi"
+inl biRegularUndo_ () = real import "BiRegularUndo" "solid-icons/bi"
+
+inl hope_ () : js_function = real import "hope" "@hope-ui/solid"
+inl iframe props =
+    inl hope : js_function = real hope_ ()
+    create_native_component $"!hope?iframe" props fun () => ;[]
+
+inl anchor_ () = real import "Anchor" "@hope-ui/solid"
+inl anchor props children = create_native_component (anchor_ ()) props children
+
+inl box_ () = real import "Box" "@hope-ui/solid"
+inl box props children = create_native_component (box_ ()) props children
+
+inl button_ () = real import "Button" "@hope-ui/solid"
+inl button props children = create_native_component (button_ ()) props children
+
+inl icon_button_ () = real import "IconButton" "@hope-ui/solid"
+inl icon_button props children = create_native_component (icon_button_ ()) props children
+
+inl checkbox_ () = real import "Checkbox" "@hope-ui/solid"
+inl checkbox props children = create_native_component (checkbox_ ()) props children
 
 
-inl unbox_prop (prop : prop_) : js_obj_prop =
-    inl prop_keys' = prop_keys ()
+union for_props item_type =
+    | Each' : a i32 item_type
 
-    inl result = real
-        open real_core
-        unbox
-            prop
-            fun (k, v) => new_js_obj_prop `any (prop_keys' k) ($"!v" : any)
+inl loop_props forall item_type. (props : list (for_props item_type)) : mut_props -> () =
+    fun props' =>
+        props'.Each <-
+            props /. .Each' /?? ((a ;[]) : a i32 item_type)
+            |> am.map real to_any `item_type
+            |> Some
 
-    result
+inl for_ () = real import "For" "solid-js"
+inl for' forall item_type. (props : list (for_props item_type)) (children : item_type -> array jsx_element) =
+    create_native_component (for_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
 
-let unbox_props_list (props : list prop_) : a i32 js_obj_prop =
-    props
-    |> listm.map unbox_prop
-    |> listm.toArray
+inl index_ () = real import "Index" "solid-js"
+inl index' forall item_type. (props : list (for_props item_type)) (children : (() -> item_type) -> array jsx_element) =
+    create_native_component (index_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
 
+inl icon_ () = real import "Icon" "@hope-ui/solid"
+inl icon props children = create_native_component (icon_ ()) props children
 
-let create_component cmp (props : list prop_) : jsx_element =
-    inl createComponent' = createComponent_ ()
-    $"!createComponent'.Invoke (!cmp, !props) |> unbox<JSX.Element>"
+inl input_ () = real import "Input" "@hope-ui/solid"
+inl input props children = create_native_component (input_ ()) props children
 
-let create_component_ext (cmp : js_function_) (props : list prop_) : jsx_element =
-    inl props =
-        props
-        |> unbox_props_list
-        |> create_obj
+inl radio_ () = real import "Radio" "@hope-ui/solid"
+inl radio props children = create_native_component (radio_ ()) props children
 
-    create_component cmp $"!props |> unbox"
+inl radio_group_ () = real import "RadioGroup" "@hope-ui/solid"
+inl radio_group props children = create_native_component (radio_group_ ()) props children
 
-inl biRegularDownArrow_ () = import "BiRegularDownArrow" "solid-icons/bi"
-inl biRegularDownArrow props = create_component_ext (biRegularDownArrow_ ()) props
+inl stack_ () = real import "Stack" "@hope-ui/solid"
+inl stack props children = create_native_component (stack_ ()) props children
 
-inl biRegularLinkExternal_ () = import "BiRegularLinkExternal" "solid-icons/bi"
-inl biRegularLinkExternal props = create_component_ext (biRegularLinkExternal_ ()) props
+inl table_ () = real import "Table" "@hope-ui/solid"
+inl table props children = create_native_component (table_ ()) props children
 
-inl biRegularRefresh_ () = import "BiRegularRefresh" "solid-icons/bi"
-inl biRegularRefresh props = create_component_ext (biRegularRefresh_ ()) props
+inl tbody_ () = real import "Tbody" "@hope-ui/solid"
+inl tbody props children = create_native_component (tbody_ ()) props children
 
-inl biRegularUpArrow_ () = import "BiRegularUpArrow" "solid-icons/bi"
-inl biRegularUpArrow props = create_component_ext (biRegularUpArrow_ ()) props
+inl td_ () = real import "Td" "@hope-ui/solid"
+inl td props children = create_native_component (td_ ()) props children
 
-inl biRegularUndo_ () = import "BiRegularUndo" "solid-icons/bi"
-inl biRegularUndo props = create_component_ext (biRegularUndo_ ()) props
+inl tr_ () = real import "Tr" "@hope-ui/solid"
+inl tr props children = create_native_component (tr_ ()) props children
 
-inl anchor_ () = import "Anchor" "@hope-ui/solid"
-inl anchor props = create_component_ext (anchor_ ()) props
-
-inl box_ () = import "Box" "@hope-ui/solid"
-inl box props = create_component_ext (box_ ()) props
-
-inl button_ () = import "Button" "@hope-ui/solid"
-inl button props = create_component_ext (button_ ()) props
-
-inl icon_button_ () = import "IconButton" "@hope-ui/solid"
-inl icon_button props = create_component_ext (icon_button_ ()) props
-
-inl checkbox_ () = import "Checkbox" "@hope-ui/solid"
-inl checkbox props = create_component_ext (checkbox_ ()) props
-
-inl icon_ () = import "Icon" "@hope-ui/solid"
-inl icon props = create_component_ext (icon_ ()) props
-
-inl stack_ () = import "Stack" "@hope-ui/solid"
-inl stack props = create_component_ext (stack_ ()) props
-
-inl table_ () = import "Table" "@hope-ui/solid"
-inl table props = create_component_ext (table_ ()) props
-
-inl tbody_ () = import "Tbody" "@hope-ui/solid"
-inl tbody props = create_component_ext (tbody_ ()) props
-
-inl td_ () = import "Td" "@hope-ui/solid"
-inl td props = create_component_ext (td_ ()) props
-
-inl tr_ () = import "Tr" "@hope-ui/solid"
-inl tr props = create_component_ext (tr_ ()) props
-
-
-inl create_effect on : () =
-    inl create_effect' = createEffect_ ()
-    $"!create_effect'.Invoke !on |> ignore"
-
-inl create_signal forall a. (default_value : a) =
-    inl createSignal' = createSignal_ ()
-    inl fns : array js_function_ = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
-    inl get = $"!fns.[0] |> unbox" : () -> a
-    inl set = $"!fns.[1] |> unbox" : a -> ()
-    get, set
-
-inl on deps fn : js_function_ =
-    inl on' = on_ ()
-    $"!on'.Invoke (!deps, !fn) |> unbox<JS.Function>"
-
-inl on_cleanup fn : () =
-    inl fn : () -> () = fn
-    inl onCleanup' = onCleanup_ ()
-    $"!onCleanup'.Invoke !fn"
 
 inl empty_fragment () : jsx_element =
     $"Html.fragment []"
@@ -368,3 +308,16 @@ inl breakpoints { initial sm } =
 
 inl children_fragment (children : () -> array jsx_element) : jsx_element =
     $"!children |> unbox<JSX.Element>"
+
+inl show_when cond cmp =
+    if cond then cmp else empty_fragment ()
+
+inl props_default_with a fn1 fn2 =
+    match a with
+    | Some x when fn1 x => fn2 x
+    | _ => []
+
+inl props_if a props =
+    if a
+    then props
+    else []

@@ -6,10 +6,20 @@ modules:
         real_util*
         util_-
         console_fsx
+        real_js*
         js
+        tictactoe_testnet
         ui/
+            real_solid*
             solid
             state
+            store
+            chain
+            db
+            profile
+            hooks/
+                use_store
+                use_fetch
             components/
                 base_button
                 base_table
@@ -17,6 +27,19 @@ modules:
                 loader
                 row
                 links
+                state_input
+                chain_connection
+                chain_accounts
+                chain
+                chain_deploy
+                chain_status
+                database
+                counter
+                db_connection
+                db_connection_input
+                db_listener
+                settings
+                content
         pyteal
         tictactoe_pyteal
     main

@@ -1,7 +1,7 @@
 open real_core
 
 
-union union_record_type_check =
+union union_record_check_type =
     | CheckNone
     | CheckEqual
     | CheckOption
@@ -15,8 +15,8 @@ inl union_record_check forall union_type record_type. {check_length check_type} 
                 inl record_length = record_type_length `record_type
 
                 if union_length <> record_length then
-                    print_static "Union length:", union_length
-                    print_static "Record length:", record_length
+                    print_static ("Union length:", union_length)
+                    print_static ("Record length:", record_length)
                     error_type "The number of keys in the record should be the same as in the union type."
 
             record_type_iter
@@ -28,11 +28,12 @@ inl union_record_check forall union_type record_type. {check_length check_type} 
                             forall union_record_key_type. =>
                                 inl throw () =
                                     print_static (
-                                        "Invalid type:",
-                                        record_key,
-                                        check_type,
-                                        ``union_record_key_type,
-                                        ``record_key_type
+                                        "real_util.union_record_check. Invalid type.", {
+                                            check_type
+                                            record_key
+                                        },
+                                        "\n``union_record_key_type:\n", ``union_record_key_type,
+                                        "\n``record_key_type:\n", ``record_key_type
                                     )
                                     error_type "The record's types must match those of the union."
                                 match check_type with
@@ -46,6 +47,15 @@ inl union_record_check forall union_type record_type. {check_length check_type} 
                                     | _ => throw ()
                                 | _ => ()
                             fun () =>
-                                print_static "Missing in union:", record_key
+                                print_static ("Missing in union:", record_key)
                                 error_type "The record's keys must match those of the union."
                 `record_type
+
+inl to_string forall a. (obj : a) : string =
+    $"!obj.ToString ()"
+
+inl ticks () : i64 =
+    $"DateTime.UtcNow.Ticks / 1000L"
+
+inl random () : i32 =
+    $"Random().Next ()"

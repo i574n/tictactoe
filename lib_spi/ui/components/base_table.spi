@@ -1,20 +1,20 @@
 open solid
 
 
-let base_table (props : list prop_) =
-    table [
-        Display "flex"
-        Flex "1"
-        FlexDirection "column"
-        OverflowX "hidden"
-        OverflowY <| props /. .OverflowY /? "hidden"
-        Children fun () => ;[
-            tbody [
-                Display "flex"
-                FlexDirection "column"
-                BackgroundColor "$blackAlpha3"
-                Margin "-1px"
-                Children <| props /. .Children /? fun () => ;[]
-            ]
+inl base_table (props : mut_props) =
+    table
+        fun props =>
+            props.Display <- Some "flex"
+            props.Flex <- Some "1"
+            props.FlexDirection <- Some "column"
+            props.OverflowX <- Some "hidden"
+            props.OverflowY <- Some <| props.OverflowY /?? "hidden"
+        fun () => ;[
+            tbody
+                fun props =>
+                    props.Display <- Some "flex"
+                    props.FlexDirection <- Some "column"
+                    props.BackgroundColor <- Some "$blackAlpha3"
+                    props.Margin <- Some "-1px"
+                (props.Children /?? fun () => ;[])
         ]
-    ]

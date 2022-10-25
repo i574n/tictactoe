@@ -1,10 +1,13 @@
 open solid
+open real_solid
 
 
-let base_button (props : list prop_) =
-    button <| props /@ [
-        Size "xs"
-        JustifyContent "left"
-        Compact true
-        ColorScheme "neutral"
-    ]
+inl base_button (props : mut_props) =
+    button
+        fun props' =>
+            props'.Size <- Some "xs"
+            props'.JustifyContent <- Some "left"
+            props'.Compact <- Some true
+            props'.ColorScheme <- Some "neutral"
+            real merge_props `solid_props props' props
+        fun () => ;[]

@@ -1,22 +1,6 @@
 open real_util
 
 
-inl random () : i32 =
-    $"Random().Next ()"
-
-inl track_time forall a. (name : string) (n : i32) (fn : () -> a) : a =
-    $"JS.console.time !name"
-
-    inl result =
-        loop.for
-            {from = 0i32; nearTo = n}
-            fun _ _ => fn ()
-            $"JS.undefined" : a
-
-    $"JS.console.timeEnd !name"
-
-    result
-
 inl union_list_get forall union_type union_key_type value_type.
     (union_key : union_key_type)
     (union_list : list union_type)
@@ -45,6 +29,12 @@ inl union_list_get forall union_type union_key_type value_type.
         | _ => acc
     ) union_list None
 
+let rec pad (count : i32) (n : string) : string =
+    inl n_length : i32 = $"String.length !n"
+    if n_length < count then pad count ($"$\"0{!n}\"" : string) else n
+
+inl empty_list forall a. () : list a = Nil
+
 inl (/@) a b = b |> listm.append a
+inl (/??) a b = a |> optionm.defaultWith b
 inl (/.) props key = union_list_get key props
-inl (/?) a b = a |> optionm.defaultWith b

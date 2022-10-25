@@ -1,0 +1,216 @@
+open real_js
+open real_core
+open real_util
+
+
+nominal jsx_element = $"JSX.Element"
+
+type solid_props =
+    {
+        AriaLabel : option string
+        As : option js_function
+        BackgroundColor : option string
+        Border : option string
+        BorderWidth : option string
+        BorderBottomWidth : option string
+        BorderColor : option string
+        Bottom : option string
+        Color : option string
+        Checked : option bool
+        Children : option (() -> array jsx_element)
+        ColorScheme : option string
+        Compact : option bool
+        Css : option any
+        DefaultValue : option string
+        Direction : option string
+        Display : option string
+        Each : option (a i32 any)
+        External : option bool
+        Flex : option string
+        FlexDirection : option string
+        FontSize : option string
+        Height : option string
+        Href : option string
+        Icon : option jsx_element
+        Id : option string
+        JustifyContent : option string
+        Left : option string
+        LeftIcon : option any
+        LineHeight : option string
+        Margin : option string
+        MarginTop : option string
+        MarginRight : option string
+        MarginBottom : option string
+        MarginLeft : option string
+        MaxHeight : option string
+        MaxWidth : option string
+        OnChange : option (any -> ())
+        OnClick : option (() -> ())
+        OnInput : option (any -> ())
+        Outline : option string
+        OverflowX : option string
+        OverflowY : option string
+        Padding : option string
+        PaddingTop : option string
+        PaddingRight : option string
+        PaddingBottom : option string
+        PaddingLeft : option string
+        Position : option string
+        Right : option string
+        Size : option string
+        Spacing : option string
+        Src : option string
+        Striped : option string
+        Thickness : option string
+        Title : option jsx_element
+        Top : option string
+        Type : option string
+        Value : option any
+        Width : option string
+        ZIndex : option i32
+        Zoom : option string
+    }
+
+inl prop_keys () =
+    {
+        AriaLabel = "aria-label"
+        As = "as"
+        BackgroundColor = "backgroundColor"
+        Border = "border"
+        BorderWidth = "borderWidth"
+        BorderBottomWidth = "borderBottomWidth"
+        BorderColor = "borderColor"
+        Bottom = "bottom"
+        Color = "color"
+        Checked = "checked"
+        Children = "children"
+        ColorScheme = "colorScheme"
+        Compact = "compact"
+        Css = "css"
+        DefaultValue = "defaultValue"
+        Direction = "direction"
+        Display = "display"
+        Each = "each"
+        External = "external"
+        Flex = "flex"
+        FlexDirection = "flexDirection"
+        FontSize = "fontSize"
+        Height = "height"
+        Href = "href"
+        Icon = "icon"
+        Id = "id"
+        JustifyContent = "justifyContent"
+        Left = "left"
+        LeftIcon = "leftIcon"
+        LineHeight = "lineHeight"
+        Margin = "margin"
+        MarginTop = "marginTop"
+        MarginRight = "marginRight"
+        MarginBottom = "marginBottom"
+        MarginLeft = "marginLeft"
+        MaxHeight = "maxHeight"
+        MaxWidth = "maxWidth"
+        OnChange = "onChange"
+        OnClick = "onClick"
+        OnInput = "onInput"
+        Outline = "outline"
+        OverflowX = "overflowX"
+        OverflowY = "overflowY"
+        Padding = "padding"
+        PaddingTop = "paddingTop"
+        PaddingRight = "paddingRight"
+        PaddingBottom = "paddingBottom"
+        PaddingLeft = "paddingLeft"
+        Position = "position"
+        Right = "right"
+        Size = "size"
+        Spacing = "spacing"
+        Src = "src"
+        Striped = "striped"
+        Thickness = "thickness"
+        Title = "title"
+        Top = "top"
+        Type = "type"
+        Value = "value"
+        Width = "width"
+        ZIndex = "zIndex"
+        Zoom = "zoom"
+    }
+
+type mut_props = mut solid_props
+
+inl record_entries (props : mut_props) : a i32 js_obj_prop =
+    inl prop_keys' = prop_keys ()
+    inl record_fold_item {state key value} =
+        inl v =
+            unbox
+                value
+                fun (_k, v) => $"!v" : any
+
+        if is_empty `any v then
+            state
+        else
+            inl k = prop_keys' key
+            inl prop = new_js_obj_prop `any k v
+            inl prop_array = listm.singleton `js_obj_prop prop
+            inl result = listm.append `js_obj_prop prop_array state
+            result
+
+    inl empty_list = empty_list `js_obj_prop ()
+
+    join
+        record_fold
+            record_fold_item
+            empty_list
+            *props
+        |> listm.toArray `a `i32 `js_obj_prop
+
+inl createComponent_ () = import "createComponent" "solid-js"
+inl createEffect_ () = import "createEffect" "solid-js"
+inl createSignal_ () = import "createSignal" "solid-js"
+inl mergeProps_ ()  = import "mergeProps" "solid-js"
+inl on_ ()  = import "on" "solid-js"
+inl onCleanup_ ()  = import "onCleanup" "solid-js"
+inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
+
+inl use_color_mode () =
+    inl useColorMode' = useColorMode_ ()
+    inl obj : any = $"!useColorMode'.Invoke () |> unbox"
+    inl color_mode : () -> string = $"!obj?colorMode |> unbox"
+    inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox"
+    color_mode, toggle_color_mode
+
+inl create_component'
+    (cmp : any -> jsx_element)
+    (props : any)
+    =
+    inl createComponent' = createComponent_ ()
+    $"!createComponent'.Invoke (!cmp, !props) |> unbox<JSX.Element>" : jsx_element
+
+inl create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
+    inl createSignal' = createSignal_ ()
+    inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
+    inl get = $"!fns.[0] |> unbox" : () -> a
+    inl set = $"!fns.[1] |> unbox" : a -> ()
+    get, set
+
+inl create_effect (on : js_function) =
+    inl create_effect' = createEffect_ ()
+    $"!create_effect'.Invoke !on |> ignore" : ()
+
+inl on (deps : () -> array any) (fn : () -> ()) =
+    inl on' = on_ ()
+    $"!on'.Invoke (!deps, !fn) |> unbox<JS.Function>" : js_function
+
+inl on_cleanup fn =
+    inl fn : () -> () = fn
+    inl onCleanup' = onCleanup_ ()
+    $"!onCleanup'.Invoke !fn |> ignore" : ()
+
+inl merge_props forall props_type. (p1 : mut props_type) (p2 : mut props_type) : () =
+    join
+        inl on_item (key : string) : () =
+            if $"emitJsExpr (!p2, !key) \"!!!!$0[$1].tag\"" : bool then
+                $"emitJsExpr (!p1, !key, !p2) \"$0[$1] = $2[$1]\"" : ()
+        inl keys = object_keys `(mut props_type) p2
+        am.iter `a `i32 `string on_item keys

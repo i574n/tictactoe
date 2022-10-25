@@ -16,7 +16,7 @@
     "gun": "~0.2020.1238"
   },
   "devDependencies": {
-    "@types/node": "~18.7",
+    "@types/node": "~18.11",
     "cross-env": "~7.0",
     "mkcert": "~1.5",
     "npm-check-updates": "~16.3",

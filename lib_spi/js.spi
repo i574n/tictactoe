@@ -1,21 +1,29 @@
-nominal any = $"obj"
-
-nominal js_function_ = $"JS.Function"
-
-nominal js_obj_prop = $"(string * obj)"
+open real_js
+open real_util
 
 
-inl new_js_obj_prop (k : string) v : js_obj_prop =
-    $"!k, !v"
-
-inl to_any obj : any =
-    $"!obj"
-
-inl import (name : string) (module : string) : js_function_=
-    $"import !name !module"
-
-let try_js_obj_prop k v : option js_obj_prop =
-    v |> optionm.map fun v => new_js_obj_prop k v
-
-inl create_obj (obj : a i32 js_obj_prop) : any =
-    $"createObj !obj"
+inl new_log (get_locals : () -> array any) (color : string) : array any -> () =
+    inl env' : env = real get_env ()
+    inl start_timestamp : i64 = real ticks ()
+    fun (args : array any) : () =>
+        inl new_timestamp () : i64 = (real ticks ()) - start_timestamp
+        inl timestamp : string = real to_string `i64 (new_timestamp ())
+        inl timestamp : string = pad 6 timestamp
+        inl run_id : i32 = $"emitJsExpr () \"components_spi.run_id\""
+        inl header : string = $"$\"[{!timestamp}] {!run_id}\""
+        inl args =
+            inl args : string = real stringify `(array any) args
+            inl locals : string = real stringify `(array any) (get_locals ())
+            if env'.is_test then
+                header,
+                args,
+                locals,
+                "",
+                ""
+            else
+                ($"$\"{!header} %%c%%s %%c%%s\"" : string),
+                ($"$\"font-weight: bold; color: {!color}\"" : string),
+                args,
+                "font-weight: bold; color: #444",
+                locals
+        $"emitJsExpr () $\"console.log.apply(console, {!args})\"" : ()

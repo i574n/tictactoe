@@ -1,0 +1,65 @@
+open real_util
+
+
+nominal any = $"obj"
+nominal js_function = $"JS.Function"
+nominal js_obj_prop = $"(string * obj)"
+
+
+inl to_any forall a. (obj : a) : any =
+    $"!obj"
+
+inl new_js_obj_prop forall a. (k : string) (v : a) : js_obj_prop =
+    $"!k, !v"
+
+inl try_js_obj_prop k v : option js_obj_prop =
+    v |> optionm.map fun v => new_js_obj_prop k v
+
+inl import (name : string) (module : string) : js_function =
+    $"import !name !module"
+
+inl create_obj (obj : a i32 js_obj_prop) : any =
+    $"createObj !obj"
+
+inl stringify forall a. (obj : a) : string =
+    $"JS.JSON.stringify !obj"
+
+inl is_empty forall a. (obj : a) : bool =
+    $"emitJsExpr !obj \"\!$0\""
+
+inl object_keys forall t. (obj : t) : a i32 string = $"JS.Constructors.Object.keys !obj |> unbox<string[]>"
+inl object_values obj : a i32 string = $"JS.Constructors.Object.values !obj"
+inl object_entries obj : a i32 string = $"JS.Constructors.Object.entries !obj"
+inl object_assign forall a. (target : a) source : a = $"JS.Constructors.Object.assign (!target, [| !target |])"
+
+type env =
+    {
+        env : any
+        github_run_id : string
+        is_test : bool
+    }
+inl get_env () : env =
+    join
+        inl env : any = ($"emitJsExpr () \"components_spi.env\"" : any)
+        inl github_run_id : string = $"!env?GITHUB_RUN_ID"
+        inl is_test' : any = $"!env?IS_TEST"
+        inl is_test' : bool = is_empty `any is_test'
+        inl is_test : bool = not is_test'
+        {
+            env
+            github_run_id
+            is_test
+        } : env
+
+inl track_time forall a. (name : string) (n : i32) (fn : () -> a) : a =
+    $"JS.console.time !name" : ()
+
+    inl result =
+        loop.for
+            {from = 0i32; nearTo = n}
+            fun _ _ => fn ()
+            ($"JS.undefined" : a)
+
+    $"JS.console.timeEnd !name" : ()
+
+    result

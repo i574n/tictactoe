@@ -4,32 +4,26 @@ open row
 open external_link
 
 
-let links () =
-    create_component base_table [
-        Children fun () => ;[
-            create_component row [
-                Padding "1px 6px"
-                Children fun () => ;[
-                    create_component external_link [
-                        Href "https://github.com/fc1943s/tictactoe_spiral"
-                    ]
+
+inl links (props : mut_props) =
+    inl link href =
+        create_custom_component row {
+            Status = CheckHidden
+            OnLoad = None
+            Props = init_props fun props =>
+                props.Padding <- Some "1px 6px"
+                props.Children <- Some fun () => ;[
+                    create_component external_link
+                        fun props =>
+                            props.Href <- Some href
+                        fun () => ;[]
                 ]
-            ]
-            create_component row [
-                Padding "1px 6px"
-                Children fun () => ;[
-                    create_component external_link [
-                        Href "https://fc1943s.github.io/tictactoe_spiral"
-                    ]
-                ]
-            ]
-            create_component row [
-                Padding "1px 6px"
-                Children fun () => ;[
-                    create_component external_link [
-                        Href "https://fc1943s.github.io/tictactoe_spiral/docs"
-                    ]
-                ]
-            ]
+        }
+
+    create_component base_table
+        fun props => ()
+        fun () => ;[
+            link "https://github.com/fc1943s/tictactoe_spiral"
+            link "https://fc1943s.github.io/tictactoe_spiral"
+            link "https://fc1943s.github.io/tictactoe_spiral/docs"
         ]
-    ]

@@ -1,0 +1,70 @@
+open solid
+open store
+open state
+open js
+open base_table
+open row
+open state_input
+
+
+inl chain_accounts (props : mut_props) =
+    inl state, dispatch, state_obj, dispatch_obj = use_store ()
+
+    create_component base_table
+        fun props => ()
+        fun () => ;[
+            for' [
+                Each' state.chain.accounts
+            ] fun account => ;[
+                create_custom_component row {
+                    Status = CheckHidden
+                        OnLoad = None
+                    Props = init_props fun props' =>
+                        props'.Title <- Some <| str account.alias
+                        props.Children <- Some fun () => ;[
+                            create_component base_table
+                                fun props => ()
+                                fun () => ;[
+                                    create_custom_component row {
+                                        Status = CheckHidden
+                                        OnLoad = None
+                                        Props = init_props fun props' =>
+                                            props'.Title <- Some <| str "Address"
+                                            props'.Padding <- Some "3px"
+                                            props.Children <- Some fun () => ;[
+                                                create_custom_component state_input {
+                                                    StateGet = fun state => Some account.address
+                                                    StateSet = fun old_state state value =>
+                                                        state.chain.accounts <-
+                                                            old_state.chain.accounts
+                                                            |> am.map fun account' =>
+                                                                if account'.alias = account.alias
+                                                                then {account' with address = value /?? ""}
+                                                                else account'
+                                                }
+                                            ]
+                                    }
+                                    create_custom_component row {
+                                        Status = CheckHidden
+                                        OnLoad = None
+                                        Props = init_props fun props' =>
+                                            props'.Title <- Some <| str "Private Key"
+                                            props'.Padding <- Some "3px"
+                                            props.Children <- Some fun () => ;[
+                                                create_custom_component state_input {
+                                                    StateGet = fun state => Some account.private_key
+                                                    StateSet = fun old_state state value =>
+                                                        state.chain.accounts <-
+                                                            old_state.chain.accounts
+                                                            |> am.map fun account' =>
+                                                                if account'.alias = account.alias
+                                                                then {account' with private_key = value /?? ""}
+                                                                else account'
+                                                }
+                                            ]
+                                    }
+                                ]
+                        ]
+                    }
+            ]
+        ]

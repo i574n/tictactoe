@@ -1,12 +1,14 @@
 import './buffer-shim'
-import * as store from "./store"
 import { StoreonProvider } from "@storeon/solidjs"
 import { globalCss, HopeProvider } from '@hope-ui/solid'
-import DbListener from './components/DbListener'
-import Content from './components/Content'
 import * as ui from "./ui"
+import * as components_spi from "../../lib_ts/components_spi"
 import { ErrorBoundary } from 'solid-js'
 
+
+function Render(Component: any, props = {}) {
+    return <Component.Component {...props} />
+}
 
 function App() {
     globalCss(ui.globalCss)()
@@ -19,13 +21,13 @@ function App() {
             }}
         >
             <StoreonProvider
-                store={store.store}
+                store={components_spi.v1.l0["store"]}
             >
                 <HopeProvider
                     config={ui.config}
                 >
-                    <DbListener />
-                    <Content />
+                    <Render Component={components_spi.v1.l0["db_listener"]} />
+                    <Render Component={components_spi.v1.l0["content"]} />
                 </HopeProvider>
             </StoreonProvider>
         </ErrorBoundary>

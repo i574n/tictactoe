@@ -1,0 +1,142 @@
+open solid
+open base_table
+open row
+open links
+open settings
+open chain
+open js
+open real_js
+open database
+open loader
+open counter
+open chain_status
+open chain_deploy
+
+
+inl content (props : mut_props) =
+    inl env : env = real get_env ()
+
+    box
+        fun props =>
+            props.Display <- Some "flex"
+            props.Flex <- Some "1"
+            props.FlexDirection <- Some "column"
+            props.MaxWidth <- Some "100vw"
+            props.Height <- Some "100vh"
+            props.BackgroundColor <- Some "$bg"
+            props.FontSize <- Some "$sm"
+            props.Color <- Some "$text1"
+            props.Padding <- Some "1px"
+        fun () => ;[
+            create_component base_table
+                fun props =>
+                    props.Display <- Some "flex"
+                    props.Flex <- Some "1"
+                    props.FlexDirection <- Some "column"
+                    props.OverflowY <- Some "auto"
+                    props.OverflowX <- Some "hidden"
+                fun () => ;[
+                    create_custom_component row {
+                        Status = CheckHidden
+                        OnLoad = None
+                        Props = init_props fun props =>
+                            props.Title <- Some <| str "Links"
+                            props.Children <- Some fun () => ;[
+                                create_component links
+                                    fun props => ()
+                                    fun () => ;[]
+                            ]
+                    }
+                    create_custom_component row {
+                        Status = CheckHidden
+                        OnLoad = None
+                        Props = init_props fun props => ()
+                    }
+
+                    create_custom_component row {
+                        Status = CheckHidden
+                        OnLoad = None
+                        Props = init_props fun props =>
+                            props.Title <- Some <| str "Settings"
+                            props.Children <- Some fun () => ;[
+                                create_component settings
+                                    fun props => ()
+                                    fun () => ;[]
+                            ]
+                    }
+                    create_custom_component row {
+                        Status = CheckHidden
+                        OnLoad = None
+                        Props = init_props fun props => ()
+                    }
+
+                    create_custom_component row {
+                        Status = CheckDisabled
+                        OnLoad = None
+                        Props = init_props fun props =>
+                            props.Id <- Some "db"
+                            props.Title <- Some <| str "Chain"
+                            props.Children <- Some fun () => ;[
+                                create_component chain
+                                    fun props => ()
+                                    fun () => ;[]
+                            ]
+                    }
+
+                    create_custom_component row {
+                        Status = CheckHidden
+                        OnLoad = None
+                        Props = init_props fun props => ()
+                    }
+
+                    create_custom_component row {
+                        Status = CheckDisabled
+                        OnLoad = None
+                        Props = init_props fun props =>
+                            props.Id <- Some "db"
+                            props.Title <- Some <| str "Database"
+                            props.Children <- Some fun () => ;[
+                                create_component database
+                                    fun props => ()
+                                    fun () => ;[]
+                            ]
+                    }
+                    
+                    create_custom_component row {
+                        Status = CheckHidden
+                        OnLoad = None
+                        Props = init_props fun props => ()
+                    }
+
+                    create_custom_component row {
+                        Status = CheckHidden
+                        OnLoad = None
+                        Props = init_props fun props =>
+                            props.Title <- Some <| str "Profile"
+                            props.Children <- Some fun () => ;[
+                                create_component base_table
+                                    fun props => ()
+                                    fun () => ;[
+                                        create_component counter
+                                            fun props => ()
+                                            fun () => ;[]
+
+                                        create_component chain_status
+                                            fun props => ()
+                                            fun () => ;[]
+                                        |> show_when (env.github_run_id <> "")
+
+                                        create_component chain_deploy
+                                            fun props => ()
+                                            fun () => ;[]
+                                        |> show_when (env.github_run_id <> "")
+
+                                        // create_component diff
+                                        //     fun props => ()
+                                        //     fun () => ;[]
+                                        // |> show_when (env.github_run_id = "" && not env.is_test)
+                                    ]
+                            ]
+                    }
+                ]
+        ]

@@ -1,0 +1,35 @@
+open js
+open real_js
+open solid
+open store
+open state
+open console_fsx
+
+
+type state_input_props state_type value_type =
+    {
+        StateGet : state_type -> option value_type
+        StateSet : state_type -> state_type -> option value_type -> ()
+    }
+
+inl state_input forall value_type. (props : mut (state_input_props (mut state__) value_type)) =
+    inl state, dispatch, state_obj, dispatch_obj = use_store ()
+
+    input
+        fun props' =>
+            props'.Type <- Some "text"
+            props'.Size <- Some "xs"
+            props'.Value <-
+                props.StateGet state
+                |> optionm.defaultWith $"JS.undefined"
+                |> real to_any `value_type
+                |> Some
+            props'.OnInput <-
+                Some fun e =>
+                    inl new_value : value_type = $"!e?currentTarget?value"
+                    dispatch fun old_state state =>
+                        props.StateSet
+                            old_state
+                            state
+                            (Some new_value)
+        fun () => ;[]

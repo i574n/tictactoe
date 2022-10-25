@@ -1,140 +1,177 @@
 open solid
+open real_solid
 open state
+open store
+open js
+open real_js
+open real_util
 open base_button
 
 
-let loader (props : list prop_) =
+type loader_props =
+    {
+        Loaded : bool
+        Modal : bool
+        OnLoad : option (any -> (any -> ()) -> ())
+        Props : mut_props
+    }
+
+inl loader (props : mut loader_props) =
+    inl custom_props = props
+    inl props = props.Props
+
     inl state, dispatch, state_obj, dispatch_obj = use_store ()
 
-    inl loader_id = random ()
+    inl loader_id = real random ()
 
-    inl loaded, set_loaded = create_signal (props /. .Loaded__ /? false)
-    inl refreshing, set_refreshing = create_signal false
-    inl modal, set_modal = create_signal (props /. .Modal__ /? false)
+    inl loaded, set_loaded = create_signal' custom_props.Loaded
+    inl refreshing, set_refreshing = create_signal' false
+    inl modal, set_modal = create_signal' custom_props.Modal
 
-    on
-        fun () => ;[refreshing ()]
+    on'
+        fun () => ;[real to_any `bool (refreshing ())]
         fun () => if refreshing () then set_refreshing false
-    |> create_effect
+    |> create_effect'
 
     inl on_load' () =
-        match props /. .OnLoad__ with
-        | Some on_load => on_load state_obj dispatch_obj
+        match custom_props.OnLoad with
+        | Some on_load => on_load (real to_any `(mut state__) state_obj) dispatch_obj
         | None => ()
 
-    if props /. .Loaded__ = Some true then on_load' ()
+    if custom_props.Loaded = true then on_load' ()
 
     inl icon_height = "20px"
     inl button_size = "14px"
 
-    box <| (
-        match props /. .Id with
-        | Some id => [
-        Id id
-        ] | _ => []) /@ [
-        Display "flex"
-        Flex "1"
-        Children fun () => ;[
+    box
+        fun props' =>
+            props'.Id <- props.Id
+            props.Display <- Some "flex"
+            props.Flex <- Some "1"
+        fun () => ;[
             if loaded () |> not then
-                box [
-                    Padding "4px 0"
-                    Children fun () => ;[
-                        create_component base_button [
-                            OnClick fun () =>
-                                on_load' ()
-                                set_loaded true
-                            Children fun () => ;[
+                box
+                    fun props =>
+                        props.Padding <- Some "3px 0"
+                    fun () => ;[
+                        create_component base_button
+                            fun props =>
+                                props.OnClick <- Some fun () =>
+                                    on_load' ()
+                                    set_loaded true
+                            fun () => ;[
                                 str "Load"
                             ]
-                        ]
                     ]
-                ]
             else
-                box <|
-                    (if modal () then [
-                    ZIndex 1
-                    Position "absolute"
-                    Top "0"
-                    Right "0"
-                    Bottom "0"
-                    Left "0"
-                    BackgroundColor "$bg"
-                    ] else []) /@ [
-                    Display "flex"
-                    Flex "1"
-                    Children fun () => ;[
-                        match props /. .Children with
+                box
+                    fun props =>
+                        if modal () then
+                            props.ZIndex <- Some 1
+                            props.Position <- Some "absolute"
+                            props.Top <- Some "0"
+                            props.Right <- Some "0"
+                            props.Bottom <- Some "0"
+                            props.Left <- Some "0"
+                            props.BackgroundColor <- Some "$bg"
+                        props.Display <- Some "flex"
+                        props.Flex <- Some "1"
+                    fun () => ;[
+                        match props.Children with
+                        | None => empty_fragment ()
                         | Some children =>
-                            box <|
-                                (if state.ui.modal () <= 0 then [
-                                Position "relative"
-                                ] else []) /@ [
-                                Flex "1"
-                                Display "flex"
-                                Children fun () => ;[
-                                    stack <|
-                                        (match state.ui.modal () with
-                                        | x when x > 0 && x <> loader_id => [
-                                            Display "none"
-                                        ] | _ => []) /@ [
-                                        Direction "row"
-                                        Spacing "3px"
-                                        Position "absolute"
-                                        Top "6px"
-                                        Right "6px"
-                                        ZIndex 1
-                                        Children fun () => ;[
-                                            icon_button [
-                                                AriaLabel "Refresh"
-                                                Size "xs"
-                                                Height icon_height
-                                                ColorScheme "neutral"
-                                                OnClick fun () => set_refreshing true
-                                                Icon <| biRegularRefresh [
-                                                    Size button_size
-                                                ]
-                                            ]
-                                            icon_button [
-                                                AriaLabel (if modal () then "Restore" else "Maximize")
-                                                Size "xs"
-                                                Height icon_height
-                                                ColorScheme "neutral"
-                                                OnClick fun () =>
-                                                    inl new_modal = not (modal ())
-                                                    set_modal new_modal
-                                                    inl new_state = {
-                                                        ui = {
-                                                            modal = if new_modal then Some loader_id else Some -3
-                                                        }
-                                                    }
-                                                    dispatch new_state
-                                                Icon <|
-                                                    (if modal ()
-                                                     then biRegularDownArrow
-                                                     else biRegularUpArrow) [
-                                                        Size button_size
-                                                    ]
-                                            ]
-                                            icon_button [
-                                                AriaLabel "Unload"
-                                                Size "xs"
-                                                Height icon_height
-                                                ColorScheme "neutral"
-                                                OnClick fun () => set_loaded false
-                                                Icon <| biRegularUndo [
-                                                    Size button_size
-                                                ]
-                                            ]
+                            box
+                                fun props =>
+                                    if state.ui.modal = None then
+                                        props.Position <- Some "relative"
+                                    props.Flex <- Some "1"
+                                    props.Display <- Some "flex"
+                                fun () => ;[
+                                    stack
+                                        fun props =>
+                                            match state.ui.modal with
+                                            | Some modal when modal <> loader_id =>
+                                                props.Display <- Some "none"
+                                            | _ => ()
+                                            props.Direction <- Some "row"
+                                            props.Spacing <- Some "3px"
+                                            props.Position <- Some "absolute"
+                                            props.Top <- Some "6px"
+                                            props.Right <- Some "6px"
+                                            props.ZIndex <- Some 1
+                                        fun () => ;[
+                                            icon_button
+                                                fun props =>
+                                                    props.AriaLabel <- Some "Refresh"
+                                                    props.Size <- Some "xs"
+                                                    props.Height <- Some icon_height
+                                                    props.ColorScheme <- Some "neutral"
+                                                    props.OnClick <- Some fun () => set_refreshing true
+                                                    props.Icon <- Some <|
+                                                        icon
+                                                            fun props =>
+                                                                props.As <- Some <| biRegularRefresh_ ()
+                                                                props.Size <- Some button_size
+                                                                props.Css <-
+                                                                    props_entries fun props =>
+                                                                        props.Zoom <- Some "0.6"
+                                                                        props.MarginTop <- Some "-12px"
+                                                                        props.MarginLeft <- Some "-12px"
+                                                                    |> create_props |> Some
+                                                            fun () => ;[]
+                                                fun () => ;[]
+                                            icon_button
+                                                fun props =>
+                                                    props.AriaLabel <- Some (if modal () then "Restore" else "Maximize")
+                                                    props.Size <- Some "xs"
+                                                    props.Height <- Some icon_height
+                                                    props.ColorScheme <- Some "neutral"
+                                                    props.OnClick <- Some fun () =>
+                                                        inl new_modal = not (modal ())
+                                                        set_modal new_modal
+                                                        dispatch fun _old_state state =>
+                                                            state.ui.modal <- if new_modal then Some loader_id else None
+                                                    props.Icon <- Some <|
+                                                        icon
+                                                            fun props =>
+                                                                props.As <- Some <|
+                                                                    if modal ()
+                                                                    then biRegularDownArrow_
+                                                                    else biRegularUpArrow_
+                                                                        ()
+                                                                props.Size <- Some button_size
+                                                                props.Css <-
+                                                                    props_entries fun props =>
+                                                                        props.Zoom <- Some "0.6"
+                                                                        props.MarginTop <- Some "-12px"
+                                                                        props.MarginLeft <- Some "-12px"
+                                                                    |> create_props |> Some
+                                                            fun () => ;[]
+                                                fun () => ;[]
+                                            icon_button
+                                                fun props =>
+                                                    props.AriaLabel <- Some "Unload"
+                                                    props.Size <- Some "xs"
+                                                    props.Height <- Some icon_height
+                                                    props.ColorScheme <- Some "neutral"
+                                                    props.OnClick <- Some fun () => set_loaded false
+                                                    props.Icon <- Some <|
+                                                        icon
+                                                            fun props =>
+                                                                props.As <- Some <| biRegularUndo_ ()
+                                                                props.Size <- Some button_size
+                                                                props.Css <-
+                                                                    props_entries fun props =>
+                                                                        props.Zoom <- Some "0.6"
+                                                                        props.MarginTop <- Some "-12px"
+                                                                        props.MarginLeft <- Some "-12px"
+                                                                    |> create_props |> Some
+                                                            fun () => ;[]
+                                                fun () => ;[]
                                         ]
-                                    ]
                                     if refreshing ()
                                     then empty_fragment ()
                                     else children_fragment children
                                 ]
-                            ]
-                        | None =>
-                            empty_fragment ()
                     ]
-                ]
         ]
-    ]

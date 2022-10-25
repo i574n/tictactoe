@@ -1,0 +1,52 @@
+open solid
+open real_solid
+open base_table
+open row
+open js
+open real_js
+
+
+inl settings (props : mut_props) =
+    inl color_mode, toggle_color_mode = real use_color_mode ()
+
+    create_component base_table
+        fun props => ()
+        fun () => ;[
+            create_custom_component row {
+                Status = CheckHidden
+                OnLoad = None
+                Props = init_props fun props =>
+                    props.Title <- Some <| str "Theme"
+                    props.Padding <- Some "5px 6px"
+                    props.Children <- Some fun () => ;[
+                        radio_group
+                            fun props =>
+                                props.DefaultValue <- Some <| color_mode ()
+                                props.OnChange <- Some fun _ => toggle_color_mode ()
+                            fun () => ;[
+                                stack
+                                    fun props =>
+                                        props.Direction <- Some "row"
+                                        props.Spacing <- Some "$4"
+                                    fun () => ;[
+                                        radio
+                                            fun props =>
+                                                props.Value <- Some <| real to_any `string "dark"
+                                                props.Size <- Some "sm"
+                                                props.ColorScheme <- Some "neutral"
+                                            fun () => ;[
+                                                str "Dark"
+                                            ]
+                                        radio
+                                            fun props =>
+                                                props.Value <- Some <| real to_any `string "light"
+                                                props.Size <- Some "sm"
+                                                props.ColorScheme <- Some "neutral"
+                                            fun () => ;[
+                                                str "Light"
+                                            ]
+                                    ]
+                            ]
+                    ]
+            }
+        ]

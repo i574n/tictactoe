@@ -1,99 +1,109 @@
 open solid
+open real_solid
 open loader
+open js
+open real_js
 
 
-let row (props : list prop_) =
-    inl checked, set_checked = create_signal (props /. .Status <> Some false)
+union row_status =
+    | CheckHidden
+    | CheckDisabled
+    | CheckEnabled
 
-    tr <| (
-        match props /. .Id with
-        | Some id => [
-        Id id
-        ] | _ => []) /@ [
-        Display "flex"
-        Flex "1"
-        BorderWidth "1px 2px"
-        BorderColor "$neutral5"
-        FlexDirection <| breakpoints { initial = "column"; sm = "row" }
-        Children fun () => ;[
-            match props /. .Title with
+type row_props =
+    {
+        Status : row_status
+        OnLoad : option (any -> (any -> ()) -> ())
+        Props : mut_props
+    }
+
+inl row (props : mut row_props) =
+    inl custom_props = props
+    inl props = props.Props
+
+    inl checked, set_checked = create_signal' (custom_props.Status <> CheckDisabled)
+
+    tr
+        fun props' =>
+            props'.Id <- props.Id
+            props'.Display <- Some "flex"
+            props'.Flex <- Some "1"
+            props'.BorderWidth <- Some "1px 2px"
+            props'.BorderColor <- Some "$neutral5"
+            props'.FlexDirection <- Some <| breakpoints {initial = "column"; sm = "row"}
+        fun () => ;[
+            match props.Title with
             | Some title =>
-                td [
-                    BorderBottomWidth <|
-                        if props /. .Status = (None : option bool) || checked ()
-                        then breakpoints { initial = "2px !important"; sm = "0px !important" }
-                        else "0px !important"
-                    BorderColor "$neutral5"
-                    Color "$neutral9"
-                    Display "flex"
-                    FlexDirection "column"
-                    FontSize "$sm"
-                    Padding "3px 20px 0 8px"
-                    Children fun () => ;[
-                        match props /. .Status with
-                        | Some (_status : bool) =>
-                            checkbox [
-                                Size "sm"
-                                MarginBottom "2px"
-                                Checked <| checked ()
-                                ColorScheme "neutral"
-                                OnChange fun e => set_checked $"!e?target?checked"
-                                Children fun () => ;[
-                                    box [
-                                        PaddingTop "2px"
-                                        Children fun () => ;[
+                td
+                    fun props' =>
+                        props'.BorderBottomWidth <- Some <|
+                            if custom_props.Status = CheckHidden || checked ()
+                            then breakpoints {initial = "2px !important"; sm = "0px !important"}
+                            else "0px !important"
+                        props'.BorderColor <- Some "$neutral5"
+                        props'.Color <- Some "$neutral9"
+                        props'.Display <- Some "flex"
+                        props'.FlexDirection <- Some "column"
+                        props'.FontSize <- Some "$sm"
+                        props'.Padding <- Some "3px 20px 0 8px"
+                    fun () => ;[
+                        match custom_props.Status with
+                        | CheckHidden => title
+                        | _ =>
+                            checkbox
+                                fun props' =>
+                                    props'.Size <- Some "sm"
+                                    props'.MarginBottom <- Some "2px"
+                                    props'.Checked <- Some <| checked ()
+                                    props'.ColorScheme <- Some "neutral"
+                                    props'.OnChange <- Some fun e => set_checked ($"!e?target?checked" : bool)
+                                fun () => ;[
+                                    box
+                                        fun props' =>
+                                            props'.PaddingTop <- Some "2px"
+                                        fun () => ;[
                                             title
                                         ]
-                                    ]
                                 ]
-                            ]
-                        | None =>
-                            title
                     ]
-                ]
-            | None =>
-                empty_fragment ()
+            | None => empty_fragment ()
 
-            match props /. .Children with
-            | Some children =>
-                td [
-                    Border "0"
-                    Outline "0"
-                    Margin "0"
-                    Padding <| props /. .Padding /? "0"
-                    Display "flex"
-                    Flex "6"
-                    LineHeight "$base"
-                    FlexDirection "column"
-                    FontSize "$sm"
-                    MaxHeight "85vh"
-                    OverflowY "auto"
-                    Children fun () => ;[
-                        match props /. .Status with
-                        | Some (_status : bool) =>
-                            if checked () then
-                                create_component loader <| (
-                                    match props /. .OnLoad__ with
-                                    | Some onLoad => [
-                                    OnLoad__ onLoad
-                                    ] | _ => []) /@ [
-                                    Loaded__ true
-                                    Children children
-                                ]
-                            else
-                                empty_fragment ()
-                        | None =>
-                            children_fragment children
-                    ]
-                ]
+            match props.Children with
             | None =>
-                td [
-                    Border "0"
-                    Padding "0"
-                    LineHeight "9px"
-                    Children fun () => ;[
+                td
+                    fun props' =>
+                        props'.Border <- Some "0"
+                        props'.Padding <- Some "0"
+                        props'.LineHeight <- Some "9px"
+                    fun () => ;[
                         str "&nbsp;"
                     ]
-                ]
+            | Some children =>
+                td
+                    fun props' =>
+                        props'.Border <- Some "0"
+                        props'.Outline <- Some "0"
+                        props'.Margin <- Some "0"
+                        props'.Padding <- Some <| props.Padding /?? "0"
+                        props'.Display <- Some "flex"
+                        props'.Flex <- Some "6"
+                        props'.LineHeight <- Some "$base"
+                        props'.FlexDirection <- Some "column"
+                        props'.FontSize <- Some "$sm"
+                        props'.MaxHeight <- Some "85vh"
+                        props'.OverflowY <- Some "auto"
+                    fun () => ;[
+                        match custom_props.Status with
+                        | CheckHidden => children_fragment children
+                        | _ =>
+                            if checked () then
+                                create_custom_component loader {
+                                    Loaded = true
+                                    Modal = false
+                                    OnLoad = custom_props.OnLoad
+                                    Props = init_props fun props' =>
+                                        props'.Children <- Some children
+                                }
+                            else empty_fragment ()
+                    ]
         ]
-    ]
