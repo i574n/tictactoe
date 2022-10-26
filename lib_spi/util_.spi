@@ -1,6 +1,22 @@
 open real_util
 
 
+inl empty_list forall a. () : list a = Nil
+inl some forall a. (x : a) : option a = Some x
+
+inl find_last forall item result. fold_fn fn target : option result =
+    fold_fn (fun (item : item) (result : option result) =>
+        match result with
+        | None => fn item
+        | result => result
+    ) target (None : option result)
+
+inl array_find_last forall item result. (fn : item -> option result) (target : a i32 item) : option result =
+    find_last am.foldBack fn target
+
+inl list_find_last forall item result. (fn : item -> option result) (target : list item) : option result =
+    find_last listm.foldBack fn target
+
 inl union_list_get forall union_type union_key_type value_type.
     (union_key : union_key_type)
     (union_list : list union_type)
@@ -13,28 +29,29 @@ inl union_list_get forall union_type union_key_type value_type.
             `(`({$union_key=record_typecheck_value}))
             {check_length=false; check_type=CheckOption}
 
-    inl some (x : value_type) : option value_type = Some x
 
-    listm.foldBack (fun union_item acc =>
-        match acc with
-        | None =>
-            real
-                open real_core
-                unbox
-                    union_item
-                    fun (union_item_key, union_item_value) =>
-                        typecase `union_item_key * `union_key with
-                        | ~x * ~x => some union_item_value
-                        | _ => acc
-        | _ => acc
-    ) union_list None
+    union_list |> list_find_last fun union_item =>
+        real
+            real_core.unbox
+                union_item
+                fun (union_item_key, union_item_value) =>
+                    typecase `union_item_key * `union_key with
+                    | ~x * ~x => some `value_type union_item_value
+                    | _ => None
 
 let rec pad (count : i32) (n : string) : string =
     inl n_length : i32 = $"String.length !n"
     if n_length < count then pad count ($"$\"0{!n}\"" : string) else n
 
-inl empty_list forall a. () : list a = Nil
 
-inl (/@) a b = b |> listm.append a
+prototype append t : t -> t -> t
+instance append list t = fun (x : list t) (y : list t) => y |> listm.append x
+instance append a dim {number} t = fun (x : a dim t) (y : a dim t) => y |> am.append x
+nominal array' t = array t
+instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>
+    failwith "util_.array'.append"
+    y |> array'
+
+inl (/@) a b = b |> append a
 inl (/??) a b = a |> optionm.defaultWith b
 inl (/.) props key = union_list_get key props

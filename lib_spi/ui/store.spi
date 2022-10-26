@@ -17,7 +17,6 @@ inl create_storeon (init : any) : any =
 
     $"!createStoreon'.Invoke [| !fn |]"
 
-
 inl use_store () =
     inl useStoreon' = real useStoreon_ ()
     inl fns : array js_function = $"!useStoreon'.Invoke () |> unbox<JS.Function[]>"
@@ -26,13 +25,10 @@ inl use_store () =
     inl dispatch_obj (new_state : any) : () =
         $"!dispatch_raw.Invoke (\"set\", !new_state) |> ignore"
 
-    inl dispatch (new_state : mut state__) =
-        dispatch_obj $"!new_state"
-
     inl dispatch (fn : mut state__ -> mut state__ -> ()) =
         inl new_state : any = real create_obj (am.empty `a `i32 `js_obj_prop)
         inl new_state : mut state__ = $"!new_state |> unbox"
         fn state_obj new_state
-        dispatch new_state
+        dispatch_obj (real to_any `(mut state__) new_state)
 
-    state_obj, dispatch, state_obj, dispatch_obj
+    state_obj, dispatch

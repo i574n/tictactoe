@@ -270,3 +270,7 @@
 //         node.off(subscription as any)
 //     }
 // }
+
+union db_type =
+    | GunRs
+    | GunJs

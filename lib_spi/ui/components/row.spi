@@ -3,6 +3,7 @@ open real_solid
 open loader
 open js
 open real_js
+open state
 
 
 union row_status =
@@ -13,7 +14,7 @@ union row_status =
 type row_props =
     {
         Status : row_status
-        OnLoad : option (any -> (any -> ()) -> ())
+        OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
         Props : mut_props
     }
 

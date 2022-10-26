@@ -1,6 +1,7 @@
 open js
 open real_js
 open solid
+open db
 
 
 // import './buffer-shim'
@@ -49,6 +50,8 @@ open solid
 // }
 
 type account__ = {alias : string; address : string; private_key : string; mnemonic : string}
+type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
+type db_status = {client : db_type; server : db_type}
 type state__ =
     {
         chain : {
@@ -58,8 +61,8 @@ type state__ =
             accounts : a i32 account__
         }
         db : {
-            status : option any
-            connection : option any
+            connection : a i32 db_connection
+            status : a i32 db_status
         }
         ui : {
             modal : option i32
@@ -71,24 +74,34 @@ type state__ =
         }
     }
 
-inl empty_state () : state__ = join
-    {
-        chain = {
-            token = Some (tictactoe_testnet.token ())
-            url = Some (tictactoe_testnet.url ())
-            port = Some (tictactoe_testnet.port ())
-            accounts = tictactoe_testnet.accounts ()
-        }
-        db = {
-            status = None
-            connection = None
-        }
-        ui = {
-            modal = None
-        }
-        profile = {
-            tmp = {
-                test = None
+inl empty_state () : state__ =
+    join
+        {
+            chain = {
+                token = Some (tictactoe_testnet.token ())
+                url = Some (tictactoe_testnet.url ())
+                port = Some (tictactoe_testnet.port ())
+                accounts = tictactoe_testnet.accounts ()
+            }
+            db = {
+                status = a ;[]
+                connection = a ;[]
+            }
+            ui = {
+                modal = None
+            }
+            profile = {
+                tmp = {
+                    test = None
+                }
             }
         }
-    }
+
+inl empty_db_connection () : db_connection =
+    join
+        {
+            db_type = GunRs
+            url = ""
+            port = 0
+            ws = ""
+        }

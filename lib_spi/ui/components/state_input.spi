@@ -13,7 +13,7 @@ type state_input_props state_type value_type =
     }
 
 inl state_input forall value_type. (props : mut (state_input_props (mut state__) value_type)) =
-    inl state, dispatch, state_obj, dispatch_obj = use_store ()
+    inl state, dispatch = use_store ()
 
     input
         fun props' =>

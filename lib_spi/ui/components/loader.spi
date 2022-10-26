@@ -12,7 +12,7 @@ type loader_props =
     {
         Loaded : bool
         Modal : bool
-        OnLoad : option (any -> (any -> ()) -> ())
+        OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
         Props : mut_props
     }
 
@@ -20,7 +20,7 @@ inl loader (props : mut loader_props) =
     inl custom_props = props
     inl props = props.Props
 
-    inl state, dispatch, state_obj, dispatch_obj = use_store ()
+    inl state, dispatch = use_store ()
 
     inl loader_id = real random ()
 
@@ -35,7 +35,7 @@ inl loader (props : mut loader_props) =
 
     inl on_load' () =
         match custom_props.OnLoad with
-        | Some on_load => on_load (real to_any `(mut state__) state_obj) dispatch_obj
+        | Some on_load => on_load state dispatch
         | None => ()
 
     if custom_props.Loaded = true then on_load' ()

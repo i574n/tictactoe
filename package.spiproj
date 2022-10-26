@@ -10,12 +10,12 @@ modules:
         js
         tictactoe_testnet
         ui/
+            db
             real_solid*
             solid
             state
             store
             chain
-            db
             profile
             hooks/
                 use_store
@@ -33,10 +33,10 @@ modules:
                 chain
                 chain_deploy
                 chain_status
-                database
                 counter
-                db_connection
                 db_connection_input
+                db_connection
+                database
                 db_listener
                 settings
                 content

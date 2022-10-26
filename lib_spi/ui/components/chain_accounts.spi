@@ -8,7 +8,7 @@ open state_input
 
 
 inl chain_accounts (props : mut_props) =
-    inl state, dispatch, state_obj, dispatch_obj = use_store ()
+    inl state, dispatch = use_store ()
 
     create_component base_table
         fun props => ()

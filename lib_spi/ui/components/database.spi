@@ -1,113 +1,68 @@
-
-// import Row from "./Row"
-// import * as db from "../db"
-// import * as ui from "../ui"
-// import DbConnection from './DbConnection'
-// import BaseTable from "./BaseTable"
-
-
-// function Database<State extends db.DbState & ui.UiState>() {
-//     return (
-//         <BaseTable>
-//             <Row<State>
-//                 title="Rust -> Rust"
-//                 props={{
-//                     id: "db-gun-rs-rs",
-//                     loader: false,
-//                     onLoad: (state, dispatch) => {
-//                         dispatch({
-//                             dbStatus: {
-//                                 ...state.dbStatus,
-//                                 gun_rs: {
-//                                     ...state.dbStatus.gun_rs,
-//                                     gun_rs: true
-//                                 }
-//                             }
-//                         } as State)
-//                     }
-//                 }}
-//             >
-//                 <DbConnection
-//                     type="gun_rs"
-//                 />
-//             </Row>
-//             <Row<State>
-//                 title="Rust -> JavaScript"
-//                 props={{
-//                     id: "db-gun-rs-js",
-//                     loader: false,
-//                     onLoad: (state, dispatch) => {
-//                         dispatch({
-//                             dbStatus: {
-//                                 ...state.dbStatus,
-//                                 gun_rs: {
-//                                     ...state.dbStatus.gun_rs,
-//                                     gun_js: true
-//                                 }
-//                             }
-//                         } as State)
-//                     }
-//                 }}
-//             >
-//                 <DbConnection
-//                     type="gun_js"
-//                 />
-//             </Row>
-//             <Row<State>
-//                 title="JavaScript -> JavaScript"
-//                 props={{
-//                     id: "db-gun-js-js",
-//                     loader: false,
-//                     onLoad: (state, dispatch) => {
-//                         dispatch({
-//                             dbStatus: {
-//                                 ...state.dbStatus,
-//                                 gun_js: {
-//                                     ...state.dbStatus.gun_js,
-//                                     gun_js: true
-//                                 }
-//                             }
-//                         } as State)
-//                     }
-//                 }}
-//             >
-//                 <DbConnection
-//                     type="gun_js"
-//                 />
-//             </Row>
-//             <Row<State>
-//                 title="JavaScript -> Rust"
-//                 props={{
-//                     id: "db-gun-js-rs",
-//                     loader: false,
-//                     onLoad: (state, dispatch) => {
-//                         dispatch({
-//                             dbStatus: {
-//                                 ...state.dbStatus,
-//                                 gun_js: {
-//                                     ...state.dbStatus.gun_js,
-//                                     gun_rs: true
-//                                 }
-//                             }
-//                         } as State)
-//                     }
-//                 }}
-//             >
-//                 <DbConnection
-//                     type="gun_rs"
-//                 />
-//             </Row>
-//         </BaseTable>
-//     )
-// }
-
-// export default Database
-
-
 open solid
+open base_table
+open row
+open db_connection
+open db
 
 
 inl database (props : mut_props) =
-    box
+    create_component base_table
         fun props => ()
-        fun () => ;[]
+        fun () => ;[
+            create_custom_component row {
+                Status = CheckDisabled
+                OnLoad = Some fun state dispatch =>
+                    dispatch fun _old_state state =>
+                        state.db.status <- state.db.status /@ a ;[{client = GunRs; server = GunRs}]
+                Props = init_props fun props =>
+                    props.Id <- Some "db-gun-rs-rs"
+                    props.Title <- Some <| str "Rust -> Rust"
+                    props.Children <- Some fun () => ;[
+                        create_custom_component db_connection {
+                            DbType = GunRs
+                        }
+                    ]
+            }
+            create_custom_component row {
+                Status = CheckDisabled
+                OnLoad = Some fun state dispatch =>
+                    dispatch fun _old_state state =>
+                        state.db.status <- state.db.status /@ a ;[{client = GunRs; server = GunJs}]
+                Props = init_props fun props =>
+                    props.Id <- Some "db-gun-rs-js"
+                    props.Title <- Some <| str "Rust -> JavaScript"
+                    props.Children <- Some fun () => ;[
+                        create_custom_component db_connection {
+                            DbType = GunJs
+                        }
+                    ]
+            }
+            create_custom_component row {
+                Status = CheckDisabled
+                OnLoad = Some fun state dispatch =>
+                    dispatch fun _old_state state =>
+                        state.db.status <- state.db.status /@ a ;[{client = GunJs; server = GunJs}]
+                Props = init_props fun props =>
+                    props.Id <- Some "db-gun-js-js"
+                    props.Title <- Some <| str "JavaScript -> JavaScript"
+                    props.Children <- Some fun () => ;[
+                        create_custom_component db_connection {
+                            DbType = GunJs
+                        }
+                    ]
+            }
+            create_custom_component row {
+                Status = CheckDisabled
+                OnLoad = Some fun state dispatch =>
+                    dispatch fun _old_state state =>
+                        state.db.status <- state.db.status /@ a ;[{client = GunJs; server = GunRs}]
+                Props = init_props fun props =>
+                    props.Id <- Some "db-gun-js-rs"
+                    props.Title <- Some <| str "JavaScript -> Rust"
+                    props.Children <- Some fun () => ;[
+                        create_custom_component db_connection {
+                            DbType = GunRs
+                        }
+                    ]
+            }
+        ]

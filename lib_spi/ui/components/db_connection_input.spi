@@ -1,36 +1,31 @@
-
-// import * as db from "../db"
-// import StateInput from "./StateInput"
-
-
-// function DbConnectionInput<State extends db.DbState>(
-//     props: {
-//         type: db.DbType,
-//         key: keyof db.DbState['dbConnection'][db.DbType]
-//     }
-// ) {
-//     return (
-//         <StateInput<string | number, State>
-//             get={(state) => state.dbConnection[props.type][props.key]}
-//             set={(state, value) => ({
-//                 dbConnection: {
-//                     ...state.dbConnection,
-//                     [props.type]: {
-//                         ...state.dbConnection[props.type],
-//                         [props.key]: value
-//                     }
-//                 } as { [key in db.DbType]: typeof state.dbConnection[typeof props.type] }
-//             } as State)} />
-//     )
-// }
-
-// export default DbConnectionInput
-
-
 open solid
+open state
+open state_input
+open db
 
 
-inl db_connection_input (props : mut_props) =
-    box
-        fun props => ()
-        fun () => ;[]
+type db_connection_input_props value_type =
+    {
+        DbType : db_type
+        Get : db_connection -> option value_type
+        Set : db_connection -> option value_type -> db_connection
+    }
+
+inl db_connection_input forall value_type. (props : mut (db_connection_input_props value_type)) =
+    create_custom_component state_input {
+        StateGet = fun state =>
+            state.db.connection
+            |> array_find_last props.Get
+        StateSet = fun _old_state state value =>
+            state.db.connection <-
+                state.db.connection /@ a ;[
+                    state.db.connection
+                    |> array_find_last fun db_connection =>
+                        if db_connection.db_type = props.DbType
+                        then Some db_connection
+                        else None
+                    |> fun db_connection =>
+                        inl db_connection = db_connection /?? empty_db_connection ()
+                        props.Set db_connection value
+                ]
+    }

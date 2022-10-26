@@ -46,7 +46,7 @@ open real_js
 
 inl db_listener (store : any) (props : mut_props) =
     inl get_locals () : array any = ;[]
-    inl log : array any -> () = real new_log get_locals "#cf1100"
+    inl log : array any -> () = new_log get_locals "#cf1100"
 
     log ;[real to_any `string "> db_listener ()"]
 
@@ -60,8 +60,8 @@ inl db_listener (store : any) (props : mut_props) =
             real to_any `(string * mut state__) ("b_changed:", b_changed)
         ]
 
-        if not (real is_empty `(option any) b_changed.db.status)
-            || not (real is_empty `(option any) b_changed.db.connection) then
+        if not (real is_empty `(a i32 db_status) b_changed.db.status)
+            || not (real is_empty `(a i32 db_connection) b_changed.db.connection) then
             ()
     inl unbind : () -> () =
         inl on_change_fn : js_function = $"emitJsExpr !on_change \"(...args: any[]) => $0(args)\""
