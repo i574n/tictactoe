@@ -3,18 +3,20 @@ open solid
 
 inl base_table (props : mut_props) =
     table
-        fun props =>
-            props.Display <- Some "flex"
-            props.Flex <- Some "1"
-            props.FlexDirection <- Some "column"
-            props.OverflowX <- Some "hidden"
-            props.OverflowY <- Some <| props.OverflowY /?? "hidden"
+        fun props' => {props' with
+            Display = Some "flex"
+            Flex = Some "1"
+            FlexDirection = Some "column"
+            OverflowX = Some "hidden"
+            OverflowY = Some <| props.OverflowY /?? "hidden"
+        }
         fun () => ;[
             tbody
-                fun props =>
-                    props.Display <- Some "flex"
-                    props.FlexDirection <- Some "column"
-                    props.BackgroundColor <- Some "$blackAlpha3"
-                    props.Margin <- Some "-1px"
+                fun props' => {props' with
+                    Display = Some "flex"
+                    FlexDirection = Some "column"
+                    BackgroundColor = Some "$blackAlpha3"
+                    Margin = Some "-1px"
+                }
                 (props.Children /?? fun () => ;[])
         ]

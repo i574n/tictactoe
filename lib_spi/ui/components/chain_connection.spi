@@ -13,40 +13,43 @@ inl chain_connection (props : mut_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props =>
-                    props.Title <- Some (str "Token")
-                    props.Padding <- Some "3px"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some (str "Token")
+                    Padding = Some "3px"
+                    Children = Some fun () => ;[
                         create_custom_component state_input {
                             StateGet = fun state => state.chain.token
                             StateSet = fun _old_state state value => state.chain.token <- value
                         }
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props =>
-                    props.Title <- Some (str "URL")
-                    props.Padding <- Some "3px"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some (str "URL")
+                    Padding = Some "3px"
+                    Children = Some fun () => ;[
                         create_custom_component state_input {
                             StateGet = fun state => state.chain.url
                             StateSet = fun _old_state state value => state.chain.url <- value
                         }
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props =>
-                    props.Title <- Some (str "Port")
-                    props.Padding <- Some "3px"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some (str "Port")
+                    Padding = Some "3px"
+                    Children = Some fun () => ;[
                         create_custom_component state_input {
                             StateGet = fun state => state.chain.port
                             StateSet = fun _old_state state value => state.chain.port <- value
                         }
                     ]
+                }
             }
         ]

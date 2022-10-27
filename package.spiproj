@@ -21,6 +21,7 @@ modules:
                 use_store
                 use_fetch
             components/
+                base_icon
                 base_button
                 base_table
                 external_link

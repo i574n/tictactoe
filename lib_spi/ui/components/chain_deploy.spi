@@ -55,65 +55,94 @@
 //         }
 //     )
 
-//     return (
-//         <Row
-//             props={{
-//                 id: "deploy",
-//                 title:
-//                     <Stack
-//                         alignItems="start"
-//                         direction={{
-//                             "@initial": "row",
-//                             "@sm": "column"
-//                         }}
-//                         marginBottom={{
-//                             "@initial": "0",
-//                             "@sm": "8px"
-//                         }}
-//                         spacing="7px"
-//                         padding="3px"
-//                     >
-//                         <Box>Chain Deploy</Box>
-//                         <BaseButton
-//                             leftIcon={<BiRegularPlus />}
-//                             paddingRight="10px"
-//                             onClick={request}
-//                         >
-//                             Request
-//                         </BaseButton>
-//                         <BaseButton
-//                             leftIcon={<BiRegularMinus />}
-//                             paddingRight="10px"
-//                             onClick={clear}
-//                         >
-//                             Clear
-//                         </BaseButton>
-//                     </Stack>
-//             }}
-//         >
-//             <BaseTable>
-//                 <Index each={Object.entries(state.profile.tmp.chainDeploy || {}).reverse()}>
-//                     {(item) => (
-//                         <Row
-//                             title={item()[0]}
-//                             padding="3px"
-//                         >
-//                             <pre>{JSON.stringify(item()[1], null, 2)}</pre>
-//                         </Row>
-//                     )}
-//                 </Index>
-//             </BaseTable>
-//         </Row>
-//     )
-// }
-
-// export default ChainDeploy
-
 
 open solid
+open row
+open base_button
+open base_table
+open base_icon
+open store
+open real_util
+open real_js
 
 
 inl chain_deploy (props : mut_props) =
-    box
-        fun props => ()
-        fun () => ;[]
+    inl state, dispatch = use_store ()
+
+    create_custom_component row {
+        Status = CheckHidden
+        OnLoad = None
+        Props = mut <| init_props fun props' => {props' with
+            Id = Some <| "deploy"
+            Title = Some <|
+                stack
+                    fun props' => {props' with
+                        AlignItems = Some "start"
+                        Direction = Some <| breakpoints {initial = "row"; sm = "column"}
+                        MarginBottom = Some <| breakpoints {initial = "0"; sm = "8px"}
+                        Spacing = Some "7px"
+                        Padding = Some "3px"
+                    }
+                    fun () => ;[
+                        box
+                            id
+                            fun () => ;[
+                                str "Chain Deploy"
+                            ]
+                        create_component base_button
+                            fun props =>
+                                props.LeftIcon <- Some <|
+                                    create_custom_component base_icon {
+                                        Icon = biRegularPlus_
+                                        Props = id
+                                        Css = id
+                                    }
+                                props.PaddingRight <- Some "10px"
+                                props.OnClick <- Some (fun () => ())
+                            fun () => ;[
+                                str "Request"
+                            ]
+                        create_component base_button
+                            fun props =>
+                                props.LeftIcon <- Some <|
+                                    create_custom_component base_icon {
+                                        Icon = biRegularMinus_
+                                        Props = id
+                                        Css = id
+                                    }
+                                props.PaddingRight <- Some "10px"
+                                props.OnClick <- Some (fun () => ())
+                            fun () => ;[
+                                str "Clear"
+                            ]
+                    ]
+            Children = Some fun () => ;[
+                create_component base_table
+                    fun props => ()
+                    fun () => ;[
+                        index' [
+                            Each' (state.profile.tmp.chain_deploy |> am.toList |> listm.rev |> listm.toArray)
+                        ] fun item => ;[
+                            create_custom_component row {
+                                Status = CheckHidden
+                                OnLoad = None
+                                Props = mut <| init_props fun props' => {props' with
+                                    Title = Some <| str (item () |> fst |> real to_string `i32)
+                                    Padding = Some "3px"
+                                    Children = Some fun () => ;[
+                                        pre
+                                            id
+                                            fun () => ;[
+                                                item ()
+                                                |> snd
+                                                |> real stringify_fmt `any
+                                                |> str
+                                            ]
+                                    ]
+                                }
+                            }
+                        ]
+                    ]
+            ]
+        }
+    }

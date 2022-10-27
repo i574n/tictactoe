@@ -17,10 +17,10 @@ inl db_connection (props : mut db_connection_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props' =>
-                    props'.Title <- Some (str "URL")
-                    props'.Padding <- Some "3px"
-                    props'.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some (str "URL")
+                    Padding = Some "3px"
+                    Children = Some fun () => ;[
                         create_custom_component db_connection_input {
                             DbType = props.DbType
                             Get = fun db_connection => Some db_connection.url
@@ -30,14 +30,15 @@ inl db_connection (props : mut db_connection_props) =
                             }
                         }
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props' =>
-                    props'.Title <- Some (str "Port")
-                    props'.Padding <- Some "3px"
-                    props'.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some (str "Port")
+                    Padding = Some "3px"
+                    Children = Some fun () => ;[
                         create_custom_component db_connection_input {
                             DbType = props.DbType
                             Get = fun db_connection => Some db_connection.port
@@ -47,5 +48,6 @@ inl db_connection (props : mut db_connection_props) =
                             }
                         }
                     ]
+                }
             }
         ]

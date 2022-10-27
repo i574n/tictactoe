@@ -12,38 +12,42 @@ inl chain (props : mut_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props =>
-                    props.Title <- Some <| str "Connection"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some <| str "Connection"
+                    Children = Some fun () => ;[
                         create_component chain_connection
                             fun props => ()
                             fun () => ;[]
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props =>
-                    props.Title <- Some <| str "Accounts"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some <| str "Accounts"
+                    Children = Some fun () => ;[
                         create_component chain_accounts
                             fun props => ()
                             fun () => ;[]
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = None
-                Props = init_props fun props =>
-                    props.Title <- Some <| str "Testnet Bank Dispenser"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some <| str "Testnet Bank Dispenser"
+                    Children = Some fun () => ;[
                         iframe
-                            fun props =>
-                                props.Src <- Some "https://bank.testnet.algorand.network"
-                                props.Title <- Some <| str "algorand testnet bank"
-                                props.BackgroundColor <- Some "#aaa"
-                                props.Height <- Some "350px"
-                                props.Flex <- Some "1"
+                            fun props' => {props' with
+                                Src = Some "https://bank.testnet.algorand.network"
+                                Title = Some <| str "algorand testnet bank"
+                                BackgroundColor = Some "#aaa"
+                                Height = Some "350px"
+                                Flex = Some "1"
+                            }
                     ]
+                }
             }
         ]

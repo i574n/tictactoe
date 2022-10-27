@@ -18,20 +18,20 @@ inl chain_accounts (props : mut_props) =
             ] fun account => ;[
                 create_custom_component row {
                     Status = CheckHidden
-                        OnLoad = None
-                    Props = init_props fun props' =>
-                        props'.Title <- Some <| str account.alias
-                        props.Children <- Some fun () => ;[
+                    OnLoad = None
+                    Props = mut <| init_props fun props' => {props' with
+                        Title = Some <| str account.alias
+                        Children = Some fun () => ;[
                             create_component base_table
                                 fun props => ()
                                 fun () => ;[
                                     create_custom_component row {
                                         Status = CheckHidden
                                         OnLoad = None
-                                        Props = init_props fun props' =>
-                                            props'.Title <- Some <| str "Address"
-                                            props'.Padding <- Some "3px"
-                                            props.Children <- Some fun () => ;[
+                                        Props = mut <| init_props fun props' => {props' with
+                                            Title = Some <| str "Address"
+                                            Padding = Some "3px"
+                                            Children = Some fun () => ;[
                                                 create_custom_component state_input {
                                                     StateGet = fun state => Some account.address
                                                     StateSet = fun old_state state value =>
@@ -43,14 +43,15 @@ inl chain_accounts (props : mut_props) =
                                                                 else account'
                                                 }
                                             ]
+                                        }
                                     }
                                     create_custom_component row {
                                         Status = CheckHidden
                                         OnLoad = None
-                                        Props = init_props fun props' =>
-                                            props'.Title <- Some <| str "Private Key"
-                                            props'.Padding <- Some "3px"
-                                            props.Children <- Some fun () => ;[
+                                        Props = mut <| init_props fun props' => {props' with
+                                            Title = Some <| str "Private Key"
+                                            Padding = Some "3px"
+                                            Children = Some fun () => ;[
                                                 create_custom_component state_input {
                                                     StateGet = fun state => Some account.private_key
                                                     StateSet = fun old_state state value =>
@@ -62,9 +63,11 @@ inl chain_accounts (props : mut_props) =
                                                                 else account'
                                                 }
                                             ]
+                                        }
                                     }
                                 ]
                         ]
                     }
+                }
             ]
         ]

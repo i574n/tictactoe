@@ -16,15 +16,15 @@ inl state_input forall value_type. (props : mut (state_input_props (mut state__)
     inl state, dispatch = use_store ()
 
     input
-        fun props' =>
-            props'.Type <- Some "text"
-            props'.Size <- Some "xs"
-            props'.Value <-
+        fun props' => {props' with
+            Type = Some "text"
+            Size = Some "xs"
+            Value =
                 props.StateGet state
                 |> optionm.defaultWith $"JS.undefined"
                 |> real to_any `value_type
                 |> Some
-            props'.OnInput <-
+            OnInput =
                 Some fun e =>
                     inl new_value : value_type = $"!e?currentTarget?value"
                     dispatch fun old_state state =>
@@ -32,4 +32,5 @@ inl state_input forall value_type. (props : mut (state_input_props (mut state__)
                             old_state
                             state
                             (Some new_value)
+        }
         fun () => ;[]

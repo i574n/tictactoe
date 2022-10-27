@@ -15,38 +15,43 @@ inl settings (props : mut_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = init_props fun props =>
-                    props.Title <- Some <| str "Theme"
-                    props.Padding <- Some "5px 6px"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Title = Some <| str "Theme"
+                    Padding = Some "5px 6px"
+                    Children = Some fun () => ;[
                         radio_group
-                            fun props =>
-                                props.DefaultValue <- Some <| color_mode ()
-                                props.OnChange <- Some fun _ => toggle_color_mode ()
+                            fun props' => {props' with
+                                DefaultValue = Some <| color_mode ()
+                                OnChange = Some fun _ => toggle_color_mode ()
+                            }
                             fun () => ;[
                                 stack
-                                    fun props =>
-                                        props.Direction <- Some "row"
-                                        props.Spacing <- Some "$4"
+                                    fun props' => {props' with
+                                        Direction = Some "row"
+                                        Spacing = Some "$4"
+                                    }
                                     fun () => ;[
                                         radio
-                                            fun props =>
-                                                props.Value <- Some <| real to_any `string "dark"
-                                                props.Size <- Some "sm"
-                                                props.ColorScheme <- Some "neutral"
+                                            fun props' => {props' with
+                                                Value = Some <| real to_any `string "dark"
+                                                Size = Some "sm"
+                                                ColorScheme = Some "neutral"
+                                            }
                                             fun () => ;[
                                                 str "Dark"
                                             ]
                                         radio
-                                            fun props =>
-                                                props.Value <- Some <| real to_any `string "light"
-                                                props.Size <- Some "sm"
-                                                props.ColorScheme <- Some "neutral"
+                                            fun props' => {props' with
+                                                Value = Some <| real to_any `string "light"
+                                                Size = Some "sm"
+                                                ColorScheme = Some "neutral"
+                                            }
                                             fun () => ;[
                                                 str "Light"
                                             ]
                                     ]
                             ]
                     ]
+                }
             }
         ]

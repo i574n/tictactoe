@@ -1,27 +1,28 @@
 open solid
 open real_solid
 open js
+open base_icon
 
 
 inl external_link (props : mut_props) =
     box
-        fun props => ()
+        id
         fun () => ;[
             anchor
                 fun props' =>
-                    props'.External <- Some true
-                    real merge_props `solid_props props' props
+                    {props' with
+                        External = Some true
+                    } |> merge_props *props
                 fun () => ;[
                     str (props.Href /?? "")
                 ]
             str "&nbsp;"
-            icon
-                fun props =>
-                    props.As <- Some (biRegularLinkExternal_ ())
-                    props.Css <-
-                        props_entries fun props =>
-                            props.Zoom <- Some "0.6"
-                            props.MarginTop <- Some "-13px"
-                        |> create_props |> Some
-                fun () => ;[]
+            create_custom_component base_icon {
+                Icon = biRegularLinkExternal_
+                Props = id
+                Css = fun props' => {props' with
+                    MarginTop = Some "-13px"
+                    MarginLeft = None
+                }
+            }
         ]

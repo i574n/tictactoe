@@ -69,7 +69,9 @@ type state__ =
         }
         profile : {
             tmp : {
-                test : option string
+                counter : a i32 (i32 * i32)
+                chain_status : a i32 (i32 * any)
+                chain_deploy : a i32 (i32 * any)
             }
         }
     }
@@ -92,7 +94,9 @@ inl empty_state () : state__ =
             }
             profile = {
                 tmp = {
-                    test = None
+                    counter = a ;[]
+                    chain_status = a ;[]
+                    chain_deploy = a ;[]
                 }
             }
         }

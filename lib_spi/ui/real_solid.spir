@@ -7,6 +7,7 @@ nominal jsx_element = $"JSX.Element"
 
 type solid_props =
     {
+        AlignItems : option string
         AriaLabel : option string
         As : option js_function
         BackgroundColor : option string
@@ -35,7 +36,7 @@ type solid_props =
         Id : option string
         JustifyContent : option string
         Left : option string
-        LeftIcon : option any
+        LeftIcon : option jsx_element
         LineHeight : option string
         Margin : option string
         MarginTop : option string
@@ -71,8 +72,77 @@ type solid_props =
         Zoom : option string
     }
 
+inl real_empty_props () : solid_props =
+    join
+        {
+            AlignItems = none `string ()
+            AriaLabel = none `string ()
+            As = none `js_function ()
+            BackgroundColor = none `string ()
+            Border = none `string ()
+            BorderWidth = none `string ()
+            BorderBottomWidth = none `string ()
+            BorderColor = none `string ()
+            Bottom = none `string ()
+            Color = none `string ()
+            Checked = none `bool ()
+            Children = none `(() -> array jsx_element) ()
+            ColorScheme = none `string ()
+            Compact = none `bool ()
+            Css = none `any ()
+            DefaultValue = none `string ()
+            Direction = none `string ()
+            Display = none `string ()
+            Each = none `(a i32 any) ()
+            External = none `bool ()
+            Flex = none `string ()
+            FlexDirection = none `string ()
+            FontSize = none `string ()
+            Height = none `string ()
+            Href = none `string ()
+            Icon = none `jsx_element ()
+            Id = none `string ()
+            JustifyContent = none `string ()
+            Left = none `string ()
+            LeftIcon = none `jsx_element ()
+            LineHeight = none `string ()
+            Margin = none `string ()
+            MarginTop = none `string ()
+            MarginRight = none `string ()
+            MarginBottom = none `string ()
+            MarginLeft = none `string ()
+            MaxHeight = none `string ()
+            MaxWidth = none `string ()
+            OnChange = none `(any -> ()) ()
+            OnClick = none `(() -> ()) ()
+            OnInput = none `(any -> ()) ()
+            Outline = none `string ()
+            OverflowX = none `string ()
+            OverflowY = none `string ()
+            Padding = none `string ()
+            PaddingTop = none `string ()
+            PaddingRight = none `string ()
+            PaddingBottom = none `string ()
+            PaddingLeft = none `string ()
+            Position = none `string ()
+            Right = none `string ()
+            Size = none `string ()
+            Spacing = none `string ()
+            Src = none `string ()
+            Striped = none `string ()
+            Thickness = none `string ()
+            Title = none `jsx_element ()
+            Top = none `string ()
+            Type = none `string ()
+            Value = none `any ()
+            Width = none `string ()
+            ZIndex = none `i32 ()
+            Zoom = none `string ()
+        }
+
 inl prop_keys () =
     {
+        AlignItems = "alignItems"
         AriaLabel = "aria-label"
         As = "as"
         BackgroundColor = "backgroundColor"
@@ -137,9 +207,15 @@ inl prop_keys () =
         Zoom = "zoom"
     }
 
+
 type mut_props = mut solid_props
 
-inl record_entries (props : mut_props) : a i32 js_obj_prop =
+inl real_init_props (props_fn : solid_props -> solid_props) : solid_props =
+    inl new_props : solid_props = real_empty_props ()
+    inl result : solid_props = props_fn new_props
+    result
+
+let record_entries (props : solid_props) : a i32 js_obj_prop =
     inl prop_keys' = prop_keys ()
     inl record_fold_item {state key value} =
         inl v =
@@ -162,7 +238,7 @@ inl record_entries (props : mut_props) : a i32 js_obj_prop =
         record_fold
             record_fold_item
             empty_list
-            *props
+            props
         |> listm.toArray `a `i32 `js_obj_prop
 
 inl createComponent_ () = import "createComponent" "solid-js"
@@ -207,10 +283,18 @@ inl on_cleanup fn =
     inl onCleanup' = onCleanup_ ()
     $"!onCleanup'.Invoke !fn |> ignore" : ()
 
-inl merge_props forall props_type. (p1 : mut props_type) (p2 : mut props_type) : () =
+inl real_merge_props forall props_type. (target : mut props_type) (source : mut props_type) : () =
     join
         inl on_item (key : string) : () =
-            if $"emitJsExpr (!p2, !key) \"!!!!$0[$1].tag\"" : bool then
-                $"emitJsExpr (!p1, !key, !p2) \"$0[$1] = $2[$1]\"" : ()
-        inl keys = object_keys `(mut props_type) p2
+            if $"emitJsExpr (!source, !key) \"!!!!$0[$1].tag\"" : bool then
+                $"emitJsExpr (!target, !key, !source) \"$0[$1] = $2[$1]\"" : ()
+        inl keys = object_keys `(mut props_type) target
         am.iter `a `i32 `string on_item keys
+
+inl add_children_props
+    (children : () -> array jsx_element)
+    (props : solid_props)
+    :
+    solid_props
+    =
+    {props with Children = some `(() -> array jsx_element) children}

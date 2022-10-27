@@ -5,6 +5,7 @@ open real_solid
 
 
 union solid_prop =
+    | AlignItems : string
     | AriaLabel : string
     | As : js_function
     | BackgroundColor : string
@@ -33,7 +34,7 @@ union solid_prop =
     | Id : string
     | JustifyContent : string
     | Left : string
-    | LeftIcon : any
+    | LeftIcon : jsx_element
     | LineHeight : string
     | Margin : string
     | MarginTop : string
@@ -69,119 +70,32 @@ union solid_prop =
     | Zoom : string
 
 
-
-inl empty_props () : solid_props =
-    join {
-        AriaLabel = None
-        As = None
-        BackgroundColor = None
-        Border = None
-        BorderWidth = None
-        BorderBottomWidth = None
-        BorderColor = None
-        Bottom = None
-        Color = None
-        Checked = None
-        Children = None
-        ColorScheme = None
-        Compact = None
-        Css = None
-        DefaultValue = None
-        Direction = None
-        Display = None
-        Each = None
-        External = None
-        Flex = None
-        FlexDirection = None
-        FontSize = None
-        Height = None
-        Href = None
-        Icon = None
-        Id = None
-        JustifyContent = None
-        Left = None
-        LeftIcon = None
-        LineHeight = None
-        Margin = None
-        MarginTop = None
-        MarginRight = None
-        MarginBottom = None
-        MarginLeft = None
-        MaxHeight = None
-        MaxWidth = None
-        OnChange = None
-        OnClick = None
-        OnInput = None
-        Outline = None
-        OverflowX = None
-        OverflowY = None
-        Padding = None
-        PaddingTop = None
-        PaddingRight = None
-        PaddingBottom = None
-        PaddingLeft = None
-        Position = None
-        Right = None
-        Size = None
-        Spacing = None
-        Src = None
-        Striped = None
-        Thickness = None
-        Title = None
-        Top = None
-        Type = None
-        Value = None
-        Width = None
-        ZIndex = None
-        Zoom = None
-    }
-
 inl typecheck_props () =
-    real union_record_check `solid_prop `(`(prop_keys ())) {check_length=true; check_type=CheckNone}
-    real union_record_check `solid_prop `solid_props {check_length=true; check_type=CheckOption}
-
-type mut_props = mut_props
-
-
-inl init_props (props_fn : mut_props -> ()) : mut_props =
-    join
-        inl new_props = mut (empty_props ())
-        real
-            props_fn new_props
-            new_props
-
-inl props_entries (props_fn : mut_props -> ()) : a i32 js_obj_prop =
     real
-        inl props = init_props props_fn
-        record_entries props
+        union_record_check `solid_prop `(`(prop_keys ())) {check_length=true; check_type=CheckNone}
+        union_record_check `solid_prop `solid_props {check_length=true; check_type=CheckOption}
+
+inl init_props (props_fn : solid_props -> solid_props) : solid_props =
+    real real_init_props props_fn
+
+inl props_entries (props : solid_props) : a i32 js_obj_prop =
+    real record_entries props
 
 inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
 
-inl some_children (children : () -> array jsx_element) = Some children
-
-let add_children_props_mut
-    (children : () -> array jsx_element)
-    (props : mut_props)
-    :
-    mut_props
-    =
-    inl solid_props' props_ = props
-    props.Children <- some_children children
-    $"emitJsExpr (!props, !children) \"$0.children = $1\"" : ()
-
-    props
 
 inl create_native_component
     (cmp : js_function)
-    (props_fn : mut_props -> ())
-    ~(children : () -> array jsx_element)
+    (props_fn : solid_props -> solid_props)
+    (children : () -> array jsx_element)
     : jsx_element
     =
+    inl new_props : solid_props = real real_empty_props ()
+    inl new_props : solid_props = props_fn new_props
     inl new_props_entries : a i32 js_obj_prop =
-        props_fn
-        |> real init_props
-        |> add_children_props_mut children
-        |> real record_entries
+        real
+            inl props : solid_props = add_children_props children new_props
+            record_entries props
 
     inl new_props_obj =
         real create_obj new_props_entries
@@ -210,11 +124,14 @@ inl create_component
     (children : () -> array jsx_element)
     : jsx_element
     =
-    inl new_props : solid_props =
-        props_fn
-        |> real init_props
-        |> add_children_props_mut children
-        |> fun x => *x
+    inl props : solid_props =
+        init_props
+            fun (props : solid_props) =>
+                inl props : mut_props = mut props
+                props_fn props
+                *props
+    inl new_props : solid_props = real add_children_props children props
+    $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
 
     $"\"create_component -> create_custom_component\" |> ignore" : ()
     real create_custom_component `solid_props cmp new_props
@@ -223,17 +140,30 @@ inl create_component
 inl on' (deps : () -> array any) (fn : () -> ()) : js_function = real on deps fn
 inl create_effect' (on : js_function) : () = real create_effect on
 inl create_signal' forall a. (default_value : a) : (() -> a) * (a -> ()) = real create_signal `a default_value
+inl merge_props_mut forall t. (target : mut t) (source : mut t) : () = real real_merge_props `t target source
+inl merge_props forall t. (source : t) (target : t) : t =
+    inl source = mut source
+    inl target = mut target
+    merge_props_mut target source
+    *target
+
 
 inl biRegularDownArrow_ () = real import "BiRegularDownArrow" "solid-icons/bi"
 inl biRegularLinkExternal_ () = real import "BiRegularLinkExternal" "solid-icons/bi"
 inl biRegularRefresh_ () = real import "BiRegularRefresh" "solid-icons/bi"
 inl biRegularUpArrow_ () = real import "BiRegularUpArrow" "solid-icons/bi"
 inl biRegularUndo_ () = real import "BiRegularUndo" "solid-icons/bi"
+inl biRegularPlus_ () = real import "BiRegularPlus" "solid-icons/bi"
+inl biRegularMinus_ () = real import "BiRegularMinus" "solid-icons/bi"
 
 inl hope_ () : js_function = real import "hope" "@hope-ui/solid"
 inl iframe props =
     inl hope : js_function = real hope_ ()
     create_native_component $"!hope?iframe" props fun () => ;[]
+
+inl pre props children =
+    inl hope : js_function = real hope_ ()
+    create_native_component $"!hope?pre" props children
 
 inl anchor_ () = real import "Anchor" "@hope-ui/solid"
 inl anchor props children = create_native_component (anchor_ ()) props children
@@ -254,12 +184,13 @@ inl checkbox props children = create_native_component (checkbox_ ()) props child
 union for_props item_type =
     | Each' : a i32 item_type
 
-inl loop_props forall item_type. (props : list (for_props item_type)) : mut_props -> () =
-    fun props' =>
-        props'.Each <-
+inl loop_props forall item_type. (props : list (for_props item_type)) : solid_props -> solid_props =
+    fun props' => {props' with
+        Each =
             props /. .Each' /?? ((a ;[]) : a i32 item_type)
             |> am.map real to_any `item_type
             |> Some
+    }
 
 inl for_ () = real import "For" "solid-js"
 inl for' forall item_type. (props : list (for_props item_type)) (children : item_type -> array jsx_element) =
@@ -303,8 +234,9 @@ inl empty_fragment () : jsx_element =
 inl str (str : string) : jsx_element =
     $"Html.fragment [ !str |> unbox<JSX.Element> ]"
 
-inl breakpoints { initial sm } =
-    $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<string>"
+inl breakpoints ~{ initial sm } =
+    join
+        $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<string>"
 
 inl children_fragment (children : () -> array jsx_element) : jsx_element =
     $"!children |> unbox<JSX.Element>"
@@ -321,3 +253,6 @@ inl props_if a props =
     if a
     then props
     else []
+
+
+type mut_props = mut_props

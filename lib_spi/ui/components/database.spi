@@ -14,55 +14,59 @@ inl database (props : mut_props) =
                 OnLoad = Some fun state dispatch =>
                     dispatch fun _old_state state =>
                         state.db.status <- state.db.status /@ a ;[{client = GunRs; server = GunRs}]
-                Props = init_props fun props =>
-                    props.Id <- Some "db-gun-rs-rs"
-                    props.Title <- Some <| str "Rust -> Rust"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Id = Some "db-gun-rs-rs"
+                    Title = Some <| str "Rust -> Rust"
+                    Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunRs
                         }
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = Some fun state dispatch =>
                     dispatch fun _old_state state =>
                         state.db.status <- state.db.status /@ a ;[{client = GunRs; server = GunJs}]
-                Props = init_props fun props =>
-                    props.Id <- Some "db-gun-rs-js"
-                    props.Title <- Some <| str "Rust -> JavaScript"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Id = Some "db-gun-rs-js"
+                    Title = Some <| str "Rust -> JavaScript"
+                    Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunJs
                         }
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = Some fun state dispatch =>
                     dispatch fun _old_state state =>
                         state.db.status <- state.db.status /@ a ;[{client = GunJs; server = GunJs}]
-                Props = init_props fun props =>
-                    props.Id <- Some "db-gun-js-js"
-                    props.Title <- Some <| str "JavaScript -> JavaScript"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Id = Some "db-gun-js-js"
+                    Title = Some <| str "JavaScript -> JavaScript"
+                    Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunJs
                         }
                     ]
+                }
             }
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = Some fun state dispatch =>
                     dispatch fun _old_state state =>
                         state.db.status <- state.db.status /@ a ;[{client = GunJs; server = GunRs}]
-                Props = init_props fun props =>
-                    props.Id <- Some "db-gun-js-rs"
-                    props.Title <- Some <| str "JavaScript -> Rust"
-                    props.Children <- Some fun () => ;[
+                Props = mut <| init_props fun props' => {props' with
+                    Id = Some "db-gun-js-rs"
+                    Title = Some <| str "JavaScript -> Rust"
+                    Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunRs
                         }
                     ]
+                }
             }
         ]

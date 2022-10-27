@@ -2,6 +2,7 @@ open real_util
 
 
 inl empty_list forall a. () : list a = Nil
+inl none forall a. () : option a = None
 inl some forall a. (x : a) : option a = Some x
 
 inl find_last forall item result. fold_fn fn target : option result =
