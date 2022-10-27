@@ -8,7 +8,7 @@ open state_input
 
 inl chain_connection (props : mut_props) =
     create_component base_table
-        fun props => ()
+        id
         fun () => ;[
             create_custom_component row {
                 Status = CheckHidden

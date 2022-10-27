@@ -14,15 +14,16 @@ inl links (props : mut_props) =
                 Padding = Some "1px 6px"
                 Children = Some fun () => ;[
                     create_component external_link
-                        fun props =>
-                            props.Href <- Some href
+                        fun props' => {props' with
+                            Href = Some href
+                        }
                         fun () => ;[]
                 ]
             }
         }
 
     create_component base_table
-        fun props => ()
+        id
         fun () => ;[
             link "https://github.com/fc1943s/tictactoe_spiral"
             link "https://fc1943s.github.io/tictactoe_spiral"

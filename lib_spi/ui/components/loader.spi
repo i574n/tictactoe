@@ -1,5 +1,4 @@
 open solid
-open real_solid
 open state
 open store
 open js
@@ -57,10 +56,11 @@ inl loader (props : mut loader_props) =
                     }
                     fun () => ;[
                         create_component base_button
-                            fun props =>
-                                props.OnClick <- Some fun () =>
+                            fun props' => {props' with
+                                OnClick = Some fun () =>
                                     on_load' ()
                                     set_loaded true
+                            }
                             fun () => ;[
                                 str "Load"
                             ]

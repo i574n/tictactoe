@@ -30,12 +30,13 @@ inl content (props : mut_props) =
         }
         fun () => ;[
             create_component base_table
-                fun props =>
-                    props.Display <- Some "flex"
-                    props.Flex <- Some "1"
-                    props.FlexDirection <- Some "column"
-                    props.OverflowY <- Some "auto"
-                    props.OverflowX <- Some "hidden"
+                fun props' => {props' with
+                    Display = Some "flex"
+                    Flex = Some "1"
+                    FlexDirection = Some "column"
+                    OverflowY = Some "auto"
+                    OverflowX = Some "hidden"
+                }
                 fun () => ;[
                     create_custom_component row {
                         Status = CheckHidden
@@ -44,7 +45,7 @@ inl content (props : mut_props) =
                             Title = Some <| str "Links"
                             Children = Some fun () => ;[
                                 create_component links
-                                    fun props => ()
+                                    id
                                     fun () => ;[]
                             ]
                         }
@@ -62,7 +63,7 @@ inl content (props : mut_props) =
                             Title = Some <| str "Settings"
                             Children = Some fun () => ;[
                                 create_component settings
-                                    fun props => ()
+                                    id
                                     fun () => ;[]
                             ]
                         }
@@ -81,7 +82,7 @@ inl content (props : mut_props) =
                             Title = Some <| str "Chain"
                             Children = Some fun () => ;[
                                 create_component chain
-                                    fun props => ()
+                                    id
                                     fun () => ;[]
                             ]
                         }
@@ -101,7 +102,7 @@ inl content (props : mut_props) =
                             Title = Some <| str "Database"
                             Children = Some fun () => ;[
                                 create_component database
-                                    fun props => ()
+                                    id
                                     fun () => ;[]
                             ]
                         }
@@ -120,19 +121,19 @@ inl content (props : mut_props) =
                             Title = Some <| str "Profile"
                             Children = Some fun () => ;[
                                 create_component base_table
-                                    fun props => ()
+                                    id
                                     fun () => ;[
                                         create_component counter
-                                            fun props => ()
+                                            id
                                             fun () => ;[]
 
                                         create_component chain_status
-                                            fun props => ()
+                                            id
                                             fun () => ;[]
                                         |> show_when (env.github_run_id <> "")
 
                                         create_component chain_deploy
-                                            fun props => ()
+                                            id
                                             fun () => ;[]
                                         |> show_when (env.github_run_id <> "")
 

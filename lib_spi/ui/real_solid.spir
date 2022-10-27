@@ -244,7 +244,6 @@ let record_entries (props : solid_props) : a i32 js_obj_prop =
 inl createComponent_ () = import "createComponent" "solid-js"
 inl createEffect_ () = import "createEffect" "solid-js"
 inl createSignal_ () = import "createSignal" "solid-js"
-inl mergeProps_ ()  = import "mergeProps" "solid-js"
 inl on_ ()  = import "on" "solid-js"
 inl onCleanup_ ()  = import "onCleanup" "solid-js"
 inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
@@ -262,6 +261,32 @@ inl create_component'
     =
     inl createComponent' = createComponent_ ()
     $"!createComponent'.Invoke (!cmp, !props) |> unbox<JSX.Element>" : jsx_element
+
+inl add_children_props
+    (children : () -> array jsx_element)
+    (props : solid_props)
+    :
+    solid_props
+    =
+    {props with Children = some `(() -> array jsx_element) children}
+
+inl create_native_component
+    (cmp : js_function)
+    (props_fn : solid_props -> solid_props)
+    (children : () -> array jsx_element)
+    : jsx_element
+    =
+    inl new_props : solid_props = real_empty_props ()
+    inl new_props : solid_props = props_fn new_props
+    inl new_props_entries : a i32 js_obj_prop =
+        inl props : solid_props = add_children_props children new_props
+        record_entries props
+
+    inl new_props_obj =
+        create_obj new_props_entries
+
+    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+    create_component' new_cmp new_props_obj
 
 inl create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
     inl createSignal' = createSignal_ ()
@@ -290,11 +315,3 @@ inl real_merge_props forall props_type. (target : mut props_type) (source : mut 
                 $"emitJsExpr (!target, !key, !source) \"$0[$1] = $2[$1]\"" : ()
         inl keys = object_keys `(mut props_type) target
         am.iter `a `i32 `string on_item keys
-
-inl add_children_props
-    (children : () -> array jsx_element)
-    (props : solid_props)
-    :
-    solid_props
-    =
-    {props with Children = some `(() -> array jsx_element) children}

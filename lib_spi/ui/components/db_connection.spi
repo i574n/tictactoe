@@ -12,7 +12,7 @@ type db_connection_props =
 
 inl db_connection (props : mut db_connection_props) =
     create_component base_table
-        fun props => ()
+        id
         fun () => ;[
             create_custom_component row {
                 Status = CheckHidden

@@ -63,35 +63,37 @@ inl chain_status (props : mut_props) =
                                 str "Chain Status"
                             ]
                         create_component base_button
-                            fun props =>
-                                props.LeftIcon <- Some <|
+                            fun props' => {props' with
+                                LeftIcon = Some <|
                                     create_custom_component base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
                                         Css = id
                                     }
-                                props.PaddingRight <- Some "10px"
-                                props.OnClick <- Some (fun () => ())
+                                PaddingRight = Some "10px"
+                                OnClick = Some (fun () => ())
+                            }
                             fun () => ;[
                                 str "Request"
                             ]
                         create_component base_button
-                            fun props =>
-                                props.LeftIcon <- Some <|
+                            fun props' => {props' with
+                                LeftIcon = Some <|
                                     create_custom_component base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
                                         Css = id
                                     }
-                                props.PaddingRight <- Some "10px"
-                                props.OnClick <- Some (fun () => ())
+                                PaddingRight = Some "10px"
+                                OnClick = Some (fun () => ())
+                            }
                             fun () => ;[
                                 str "Clear"
                             ]
                     ]
             Children = Some fun () => ;[
                 create_component base_table
-                    fun props => ()
+                    id
                     fun () => ;[
                         index' [
                             Each' (state.profile.tmp.chain_status |> am.toList |> listm.rev |> listm.toArray)

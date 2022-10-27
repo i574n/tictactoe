@@ -83,6 +83,32 @@ inl props_entries (props : solid_props) : a i32 js_obj_prop =
 
 inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
 
+inl create_custom_component forall props_type.
+    ~(cmp : mut props_type -> jsx_element)
+    (props : props_type)
+    : jsx_element
+    =
+    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+    inl mut_props = mut props
+    inl props_obj : any = real to_any `(mut props_type) mut_props
+    real create_component' new_cmp props_obj
+
+
+inl create_component
+    ~(cmp : mut_props -> jsx_element)
+    (props_fn : solid_props -> solid_props)
+    (children : () -> array jsx_element)
+    : jsx_element
+    =
+    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+    inl props : solid_props =
+        real
+            inl props = init_props props_fn
+            real add_children_props children props
+    inl new_props = mut props
+    $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
+    inl props_obj : any = real to_any `mut_props new_props
+    real create_component' new_cmp props_obj
 
 inl create_native_component
     (cmp : js_function)
@@ -90,61 +116,15 @@ inl create_native_component
     (children : () -> array jsx_element)
     : jsx_element
     =
-    inl new_props : solid_props = real real_empty_props ()
-    inl new_props : solid_props = props_fn new_props
-    inl new_props_entries : a i32 js_obj_prop =
-        real
-            inl props : solid_props = add_children_props children new_props
-            record_entries props
-
-    inl new_props_obj =
-        real create_obj new_props_entries
-
-    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
-    $"\"create_native_component -> create_component'\" |> ignore" : ()
-    real create_component' new_cmp new_props_obj
-
-inl create_custom_component forall props_type.
-    ~(cmp : mut props_type -> jsx_element)
-    (props : props_type)
-    : jsx_element
-    =
-    inl mut_props = mut props
-    real
-        inl props_obj : any =
-            to_any `(mut props_type) mut_props
-
-        inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
-        $"\"create_custom_component -> create_component'\" |> ignore" : ()
-        create_component' new_cmp props_obj
-
-inl create_component
-    ~(cmp : mut_props -> jsx_element)
-    (props_fn : mut_props -> ())
-    (children : () -> array jsx_element)
-    : jsx_element
-    =
-    inl props : solid_props =
-        init_props
-            fun (props : solid_props) =>
-                inl props : mut_props = mut props
-                props_fn props
-                *props
-    inl new_props : solid_props = real add_children_props children props
-    $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
-
-    $"\"create_component -> create_custom_component\" |> ignore" : ()
-    real create_custom_component `solid_props cmp new_props
-
+    real create_native_component cmp props_fn children
 
 inl on' (deps : () -> array any) (fn : () -> ()) : js_function = real on deps fn
 inl create_effect' (on : js_function) : () = real create_effect on
 inl create_signal' forall a. (default_value : a) : (() -> a) * (a -> ()) = real create_signal `a default_value
-inl merge_props_mut forall t. (target : mut t) (source : mut t) : () = real real_merge_props `t target source
 inl merge_props forall t. (source : t) (target : t) : t =
     inl source = mut source
     inl target = mut target
-    merge_props_mut target source
+    real real_merge_props `t target source
     *target
 
 

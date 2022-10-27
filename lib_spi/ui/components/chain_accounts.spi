@@ -11,7 +11,7 @@ inl chain_accounts (props : mut_props) =
     inl state, dispatch = use_store ()
 
     create_component base_table
-        fun props => ()
+        id
         fun () => ;[
             for' [
                 Each' state.chain.accounts
@@ -23,7 +23,7 @@ inl chain_accounts (props : mut_props) =
                         Title = Some <| str account.alias
                         Children = Some fun () => ;[
                             create_component base_table
-                                fun props => ()
+                                id
                                 fun () => ;[
                                     create_custom_component row {
                                         Status = CheckHidden

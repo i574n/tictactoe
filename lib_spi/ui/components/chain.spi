@@ -7,7 +7,7 @@ open chain_accounts
 
 inl chain (props : mut_props) =
     create_component base_table
-        fun props => ()
+        id
         fun () => ;[
             create_custom_component row {
                 Status = CheckHidden
@@ -16,7 +16,7 @@ inl chain (props : mut_props) =
                     Title = Some <| str "Connection"
                     Children = Some fun () => ;[
                         create_component chain_connection
-                            fun props => ()
+                            id
                             fun () => ;[]
                     ]
                 }
@@ -28,7 +28,7 @@ inl chain (props : mut_props) =
                     Title = Some <| str "Accounts"
                     Children = Some fun () => ;[
                         create_component chain_accounts
-                            fun props => ()
+                            id
                             fun () => ;[]
                     ]
                 }
