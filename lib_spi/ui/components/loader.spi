@@ -16,7 +16,7 @@ type loader_props =
         Props : mut_props
     }
 
-inl loader (props : mut loader_props) =
+let loader (props : mut loader_props) =
     inl custom_props = props
     inl props = props.Props
 

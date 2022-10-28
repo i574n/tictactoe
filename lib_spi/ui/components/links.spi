@@ -5,7 +5,7 @@ open external_link
 
 
 
-inl links (props : mut_props) =
+let links (props : mut_props) =
     inl link href =
         create_custom_component row {
             Status = CheckHidden

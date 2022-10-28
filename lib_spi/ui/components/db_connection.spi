@@ -10,7 +10,7 @@ type db_connection_props =
         DbType : db_type
     }
 
-inl db_connection (props : mut db_connection_props) =
+let db_connection (props : mut db_connection_props) =
     create_component base_table
         id
         fun () => ;[

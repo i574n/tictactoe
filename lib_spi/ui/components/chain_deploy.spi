@@ -64,10 +64,19 @@ open base_icon
 open store
 open real_util
 open real_js
+open hooks.use_fetch
 
 
-inl chain_deploy (props : mut_props) =
+let chain_deploy (props : mut_props) =
     inl state, dispatch = use_store ()
+
+    inl request, clear =
+        use_fetch
+            "profile/tmp/chain_deploy"
+            state.profile.tmp.chain_deploy
+            fun new_state state new_value =>
+                new_state.profile.tmp.chain_deploy <- new_value
+            fun client => promise ($"()" : any)
 
     create_custom_component row {
         Status = CheckHidden
@@ -95,10 +104,12 @@ inl chain_deploy (props : mut_props) =
                                     create_custom_component base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
-                                        Css = id
+                                        Css = fun props' => {props' with
+                                            MarginLeft = None
+                                        }
                                     }
                                 PaddingRight = Some "10px"
-                                OnClick = Some (fun () => ())
+                                OnClick = Some request
                             }
                             fun () => ;[
                                 str "Request"
@@ -109,10 +120,12 @@ inl chain_deploy (props : mut_props) =
                                     create_custom_component base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
-                                        Css = id
+                                        Css = fun props' => {props' with
+                                            MarginLeft = None
+                                        }
                                     }
                                 PaddingRight = Some "10px"
-                                OnClick = Some (fun () => ())
+                                OnClick = Some clear
                             }
                             fun () => ;[
                                 str "Clear"

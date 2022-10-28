@@ -3,17 +3,26 @@ open base_table
 open row
 open db_connection
 open db
+open real_js
+open state
 
 
-inl database (props : mut_props) =
+
+let database (props : mut_props) =
     create_component base_table
         id
         fun () => ;[
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = Some fun state dispatch =>
-                    dispatch fun _old_state state =>
-                        state.db.status <- state.db.status /@ a ;[{client = GunRs; server = GunRs}]
+                    dispatch fun old_state state =>
+                        console_fsx.inspect (
+                            "database row on_load",
+                            "old_state:", ((real stringify `(mut state__) old_state) : string),
+                            "state:", ((real stringify `(mut state__) state) : string),
+                            "state.db.status:", ((real stringify `(a i32 db_status) state.db.status) : string)
+                        )
+                        state.db.status <- old_state.db.status /@ a ;[{client = GunRs; server = GunRs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-rs-rs"
                     Title = Some <| str "Rust -> Rust"
@@ -27,8 +36,8 @@ inl database (props : mut_props) =
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = Some fun state dispatch =>
-                    dispatch fun _old_state state =>
-                        state.db.status <- state.db.status /@ a ;[{client = GunRs; server = GunJs}]
+                    dispatch fun old_state state =>
+                        state.db.status <- old_state.db.status /@ a ;[{client = GunRs; server = GunJs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-rs-js"
                     Title = Some <| str "Rust -> JavaScript"
@@ -42,8 +51,8 @@ inl database (props : mut_props) =
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = Some fun state dispatch =>
-                    dispatch fun _old_state state =>
-                        state.db.status <- state.db.status /@ a ;[{client = GunJs; server = GunJs}]
+                    dispatch fun old_state state =>
+                        state.db.status <- old_state.db.status /@ a ;[{client = GunJs; server = GunJs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-js-js"
                     Title = Some <| str "JavaScript -> JavaScript"
@@ -57,8 +66,8 @@ inl database (props : mut_props) =
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = Some fun state dispatch =>
-                    dispatch fun _old_state state =>
-                        state.db.status <- state.db.status /@ a ;[{client = GunJs; server = GunRs}]
+                    dispatch fun old_state state =>
+                        state.db.status <- old_state.db.status /@ a ;[{client = GunJs; server = GunRs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-js-rs"
                     Title = Some <| str "JavaScript -> Rust"

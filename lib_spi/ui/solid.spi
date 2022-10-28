@@ -84,7 +84,7 @@ inl props_entries (props : solid_props) : a i32 js_obj_prop =
 inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
 
 inl create_custom_component forall props_type.
-    ~(cmp : mut props_type -> jsx_element)
+    (cmp : mut props_type -> jsx_element)
     (props : props_type)
     : jsx_element
     =
@@ -95,7 +95,7 @@ inl create_custom_component forall props_type.
 
 
 inl create_component
-    ~(cmp : mut_props -> jsx_element)
+    (cmp : mut_props -> jsx_element)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
     : jsx_element

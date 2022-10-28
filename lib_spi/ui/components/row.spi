@@ -17,7 +17,7 @@ type row_props =
         Props : mut_props
     }
 
-inl row (props : mut row_props) =
+let row (props : mut row_props) =
     inl custom_props = props
     inl props = props.Props
 

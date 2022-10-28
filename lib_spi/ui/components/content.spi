@@ -13,8 +13,8 @@ open chain_status
 open chain_deploy
 
 
-inl content (props : mut_props) =
-    inl env : env = real get_env ()
+let content (props : mut_props) =
+    inl env = real get_env ()
 
     box
         fun props' => {props' with

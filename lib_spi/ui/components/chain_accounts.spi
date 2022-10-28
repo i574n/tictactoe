@@ -7,20 +7,20 @@ open row
 open state_input
 
 
-inl chain_accounts (props : mut_props) =
+let chain_accounts (props : mut_props) =
     inl state, dispatch = use_store ()
 
     create_component base_table
         id
         fun () => ;[
-            for' [
+            index' [
                 Each' state.chain.accounts
             ] fun account => ;[
                 create_custom_component row {
                     Status = CheckHidden
                     OnLoad = None
                     Props = mut <| init_props fun props' => {props' with
-                        Title = Some <| str account.alias
+                        Title = Some <| str account().alias
                         Children = Some fun () => ;[
                             create_component base_table
                                 id
@@ -33,12 +33,12 @@ inl chain_accounts (props : mut_props) =
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
-                                                    StateGet = fun state => Some account.address
+                                                    StateGet = fun state => Some account().address
                                                     StateSet = fun old_state state value =>
                                                         state.chain.accounts <-
                                                             old_state.chain.accounts
                                                             |> am.map fun account' =>
-                                                                if account'.alias = account.alias
+                                                                if account'.alias = account().alias
                                                                 then {account' with address = value /?? ""}
                                                                 else account'
                                                 }
@@ -53,12 +53,12 @@ inl chain_accounts (props : mut_props) =
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
-                                                    StateGet = fun state => Some account.private_key
+                                                    StateGet = fun state => Some account().private_key
                                                     StateSet = fun old_state state value =>
                                                         state.chain.accounts <-
                                                             old_state.chain.accounts
                                                             |> am.map fun account' =>
-                                                                if account'.alias = account.alias
+                                                                if account'.alias = account().alias
                                                                 then {account' with private_key = value /?? ""}
                                                                 else account'
                                                 }

@@ -299,3 +299,31 @@
 // }
 
 // export default useFetch
+
+open state
+
+
+nominal promise t = t
+nominal client = $"algosdk.Algodv2"
+
+inl use_fetch forall state_type value_type.
+    (content_address : string)
+    (proxy : state_type)
+    (apply : mut state__ -> mut state__ -> state_type -> ())
+    (request_fn : client -> promise value_type)
+    :
+    (() -> ()) * (() -> ())
+    =
+    inl request () =
+        console_fsx.inspect (
+            "use_fetch request.",
+            "content_address:", content_address
+        )
+        ()
+    inl clear () =
+        console_fsx.inspect (
+            "use_fetch clear.",
+            "content_address:", content_address
+        )
+        ()
+    request, clear

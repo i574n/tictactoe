@@ -44,7 +44,7 @@ open js
 open real_js
 
 
-inl db_listener (store : any) (props : mut_props) =
+let db_listener (store : any) (props : mut_props) =
     inl get_locals () : array any = ;[]
     inl log : array any -> () = new_log get_locals "#cf1100"
 

@@ -11,15 +11,15 @@ type db_connection_input_props value_type =
         Set : db_connection -> option value_type -> db_connection
     }
 
-inl db_connection_input forall value_type. (props : mut (db_connection_input_props value_type)) =
+let db_connection_input forall value_type. (props : mut (db_connection_input_props value_type)) =
     create_custom_component state_input {
         StateGet = fun state =>
             state.db.connection
             |> array_find_last props.Get
-        StateSet = fun _old_state state value =>
+        StateSet = fun old_state state value =>
             state.db.connection <-
-                state.db.connection /@ a ;[
-                    state.db.connection
+                old_state.db.connection /@ a ;[
+                    old_state.db.connection
                     |> array_find_last fun db_connection =>
                         if db_connection.db_type = props.DbType
                         then Some db_connection

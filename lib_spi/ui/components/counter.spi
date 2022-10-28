@@ -1,45 +1,29 @@
-// import * as store from "../store"
-// import useStore from "../hooks/useStore"
-// import { Stack, Box } from '@hope-ui/solid'
-// import useFetch from "../hooks/useFetch"
-// import { Index } from "solid-js"
-// import Row from "./Row"
-// import BaseButton from "./BaseButton"
-// import BaseTable from "./BaseTable"
-// import { BiRegularPlus, BiRegularMinus } from "solid-icons/bi"
-
-
-// function Counter<State extends store.State>() {
-//     const { state } = useStore<State>()
-
-//     const { request, clear } = useFetch<typeof state.profile.tmp.counter, State>(
-//         { contentAddress: `profile/tmp/counter` },
-//         state.profile.tmp.counter,
-//         (state, newValue) => ({
-//             profile: {
-//                 ...state.profile,
-//                 tmp: {
-//                     ...state.profile.tmp,
-//                     counter: newValue
-//                 }
-//             }
-//         } as State),
-//         async (_client) => Object.values(state.profile.tmp.counter || {}).reduce((acc, v) => v === null ? 0 : acc + 1, 0)
-//     )
-
-
 open solid
 open row
 open base_button
 open base_table
 open base_icon
 open store
+open hooks.use_fetch
 open real_util
 open real_js
 
 
-inl counter (props : mut_props) =
+let counter (props : mut_props) =
     inl state, dispatch = use_store ()
+
+    inl request, clear =
+        use_fetch
+            "profile/tmp/counter"
+            state.profile.tmp.counter
+            fun new_state state new_value =>
+                new_state.profile.tmp.counter <- new_value
+            fun client =>
+                state.profile.tmp.counter
+                |> am.fold
+                    fun acc (timestamp, n) => acc + 1i32
+                    0i32
+                |> promise
 
     create_custom_component row {
         Status = CheckHidden
@@ -67,10 +51,12 @@ inl counter (props : mut_props) =
                                     create_custom_component base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
-                                        Css = id
+                                        Css = fun props' => {props' with
+                                            MarginLeft = None
+                                        }
                                     }
                                 PaddingRight = Some "10px"
-                                OnClick = Some (fun () => ())
+                                OnClick = Some request
                             }
                             fun () => ;[
                                 str "Request"
@@ -81,10 +67,12 @@ inl counter (props : mut_props) =
                                     create_custom_component base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
-                                        Css = id
+                                        Css = fun props' => {props' with
+                                            MarginLeft = None
+                                        }
                                     }
                                 PaddingRight = Some "10px"
-                                OnClick = Some (fun () => ())
+                                OnClick = Some clear
                             }
                             fun () => ;[
                                 str "Clear"

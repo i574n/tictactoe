@@ -2,7 +2,7 @@ open solid
 open real_solid
 
 
-inl base_button (props : mut_props) =
+let base_button (props : mut_props) =
     button
         fun props' =>
             {props' with
@@ -11,4 +11,4 @@ inl base_button (props : mut_props) =
                 Compact = Some true
                 ColorScheme = Some "neutral"
             } |> merge_props *props
-        fun () => ;[]
+        (props.Children /?? fun () => ;[])

@@ -234,12 +234,11 @@ let record_entries (props : solid_props) : a i32 js_obj_prop =
 
     inl empty_list = empty_list `js_obj_prop ()
 
-    join
-        record_fold
-            record_fold_item
-            empty_list
-            props
-        |> listm.toArray `a `i32 `js_obj_prop
+    record_fold
+        record_fold_item
+        empty_list
+        props
+    |> listm.toArray `a `i32 `js_obj_prop
 
 inl createComponent_ () = import "createComponent" "solid-js"
 inl createEffect_ () = import "createEffect" "solid-js"

@@ -10,7 +10,7 @@ type base_icon_props =
         Css : solid_props -> solid_props
     }
 
-inl base_icon (props : mut base_icon_props) =
+let base_icon (props : mut base_icon_props) =
     icon
         fun props' =>
             {props' with

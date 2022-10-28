@@ -1,34 +1,3 @@
-
-// import * as store from "../store"
-// import useStore from "../hooks/useStore"
-// import { Box, Stack } from '@hope-ui/solid'
-// import useFetch from "../hooks/useFetch"
-// import BaseButton from "./BaseButton"
-// import { BiRegularPlus, BiRegularMinus } from "solid-icons/bi"
-// import { Index } from "solid-js"
-// import BaseTable from "./BaseTable"
-// import Row from "./Row"
-
-
-// function ChainStatus<State extends store.State>() {
-//     const { state } = useStore<State>()
-
-//     const { request, clear } = useFetch<typeof state.profile.tmp.chainStatus, State>(
-//         { contentAddress: `profile/tmp/chainStatus` },
-//         state.profile.tmp.chainStatus || {},
-//         (state, newValue) => ({
-//             profile: {
-//                 ...state.profile,
-//                 tmp: {
-//                     ...state.profile.tmp,
-//                     chainStatus: newValue
-//                 }
-//             }
-//         } as State),
-//         (client) => client.status().do()
-//     )
-
-
 open solid
 open row
 open base_button
@@ -37,10 +6,19 @@ open store
 open real_util
 open real_js
 open base_icon
+open hooks.use_fetch
 
 
-inl chain_status (props : mut_props) =
+let chain_status (props : mut_props) =
     inl state, dispatch = use_store ()
+
+    inl request, clear =
+        use_fetch
+            "profile/tmp/chain_status"
+            state.profile.tmp.chain_status
+            fun new_state state new_value =>
+                new_state.profile.tmp.chain_status <- new_value
+            fun client => promise ($"!client?status()?do()" : any)
 
     create_custom_component row {
         Status = CheckHidden
@@ -68,10 +46,12 @@ inl chain_status (props : mut_props) =
                                     create_custom_component base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
-                                        Css = id
+                                        Css = fun props' => {props' with
+                                            MarginLeft = None
+                                        }
                                     }
                                 PaddingRight = Some "10px"
-                                OnClick = Some (fun () => ())
+                                OnClick = Some request
                             }
                             fun () => ;[
                                 str "Request"
@@ -82,10 +62,12 @@ inl chain_status (props : mut_props) =
                                     create_custom_component base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
-                                        Css = id
+                                        Css = fun props' => {props' with
+                                            MarginLeft = None
+                                        }
                                     }
                                 PaddingRight = Some "10px"
-                                OnClick = Some (fun () => ())
+                                OnClick = Some clear
                             }
                             fun () => ;[
                                 str "Clear"
