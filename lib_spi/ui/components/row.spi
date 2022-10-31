@@ -14,7 +14,7 @@ type row_props =
     {
         Status : row_status
         OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
-        Props : mut_props
+        Props : mut solid_props
     }
 
 let row (props : mut row_props) =

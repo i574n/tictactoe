@@ -208,15 +208,11 @@ inl prop_keys () =
     }
 
 
-type mut_props = mut solid_props
-
 inl real_init_props (props_fn : solid_props -> solid_props) : solid_props =
     inl new_props : solid_props = real_empty_props ()
-    inl result : solid_props = props_fn new_props
-    result
+    props_fn new_props
 
 let record_entries (props : solid_props) : a i32 js_obj_prop =
-    inl prop_keys' = prop_keys ()
     inl record_fold_item {state key value} =
         inl v =
             unbox
@@ -226,11 +222,9 @@ let record_entries (props : solid_props) : a i32 js_obj_prop =
         if is_empty `any v then
             state
         else
-            inl k = prop_keys' key
+            inl k = prop_keys () key
             inl prop = new_js_obj_prop `any k v
-            inl prop_array = listm.singleton `js_obj_prop prop
-            inl result = listm.append `js_obj_prop prop_array state
-            result
+            (::) `js_obj_prop prop state
 
     inl empty_list = empty_list `js_obj_prop ()
 

@@ -13,7 +13,7 @@ open chain_status
 open chain_deploy
 
 
-let content (props : mut_props) =
+let content (props : mut solid_props) =
     inl env = real get_env ()
 
     box

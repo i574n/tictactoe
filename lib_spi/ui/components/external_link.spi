@@ -3,7 +3,7 @@ open js
 open base_icon
 
 
-let external_link (props : mut_props) =
+let external_link (props : mut solid_props) =
     box
         id
         fun () => ;[

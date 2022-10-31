@@ -2,7 +2,7 @@ open solid
 open real_solid
 
 
-let base_button (props : mut_props) =
+let base_button (props : mut solid_props) =
     button
         fun props' =>
             {props' with

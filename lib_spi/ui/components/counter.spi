@@ -9,7 +9,7 @@ open real_util
 open real_js
 
 
-let counter (props : mut_props) =
+let counter (props : mut solid_props) =
     inl state, dispatch = use_store ()
 
     inl request, clear =
@@ -82,9 +82,9 @@ let counter (props : mut_props) =
                 create_component base_table
                     id
                     fun () => ;[
-                        index' [
-                            Each' (state.profile.tmp.counter |> am.toList |> listm.rev |> listm.toArray)
-                        ] fun item => ;[
+                        index' {
+                            Each' = state.profile.tmp.counter |> am.toList |> listm.rev |> listm.toArray
+                        } fun item => ;[
                             create_custom_component row {
                                 Status = CheckHidden
                                 OnLoad = None

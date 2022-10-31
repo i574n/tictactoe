@@ -1,7 +1,7 @@
 open solid
 
 
-let base_table (props : mut_props) =
+let base_table (props : mut solid_props) =
     table
         fun props' => {props' with
             Display = Some "flex"

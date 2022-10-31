@@ -5,7 +5,7 @@ open chain_connection
 open chain_accounts
 
 
-let chain (props : mut_props) =
+let chain (props : mut solid_props) =
     create_component base_table
         id
         fun () => ;[

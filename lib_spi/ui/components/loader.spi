@@ -13,7 +13,7 @@ type loader_props =
         Loaded : bool
         Modal : bool
         OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
-        Props : mut_props
+        Props : mut solid_props
     }
 
 let loader (props : mut loader_props) =

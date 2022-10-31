@@ -8,7 +8,7 @@ open state
 
 
 
-let database (props : mut_props) =
+let database (props : mut solid_props) =
     create_component base_table
         id
         fun () => ;[
@@ -25,7 +25,7 @@ let database (props : mut_props) =
                         state.db.status <- old_state.db.status /@ a ;[{client = GunRs; server = GunRs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-rs-rs"
-                    Title = Some <| str "Rust -> Rust"
+                    Title = Some <| str "Rust -{'>'} Rust"
                     Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunRs
@@ -40,7 +40,7 @@ let database (props : mut_props) =
                         state.db.status <- old_state.db.status /@ a ;[{client = GunRs; server = GunJs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-rs-js"
-                    Title = Some <| str "Rust -> JavaScript"
+                    Title = Some <| str "Rust -{'>'} JavaScript"
                     Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunJs
@@ -55,7 +55,7 @@ let database (props : mut_props) =
                         state.db.status <- old_state.db.status /@ a ;[{client = GunJs; server = GunJs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-js-js"
-                    Title = Some <| str "JavaScript -> JavaScript"
+                    Title = Some <| str "JavaScript -{'>'} JavaScript"
                     Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunJs
@@ -70,7 +70,7 @@ let database (props : mut_props) =
                         state.db.status <- old_state.db.status /@ a ;[{client = GunJs; server = GunRs}]
                 Props = mut <| init_props fun props' => {props' with
                     Id = Some "db-gun-js-rs"
-                    Title = Some <| str "JavaScript -> Rust"
+                    Title = Some <| str "JavaScript -{'>'} Rust"
                     Children = Some fun () => ;[
                         create_custom_component db_connection {
                             DbType = GunRs

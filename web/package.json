@@ -25,7 +25,7 @@
     "rusty-gun": "~0.1.2",
     "gun": "~0.2020.1238",
 
-    "solid-js": "~1.6.0",
+    "solid-js": "~1.6.1",
     "solid-icons": "~1.0",
     "solid-devtools": "~0.20",
     "@solid-devtools/transform": "~0.7",

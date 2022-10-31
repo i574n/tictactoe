@@ -95,7 +95,7 @@ inl create_custom_component forall props_type.
 
 
 inl create_component
-    (cmp : mut_props -> jsx_element)
+    (cmp : mut solid_props -> jsx_element)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
     : jsx_element
@@ -107,7 +107,7 @@ inl create_component
             real add_children_props children props
     inl new_props = mut props
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
-    inl props_obj : any = real to_any `mut_props new_props
+    inl props_obj : any = real to_any `(mut solid_props) new_props
     real create_component' new_cmp props_obj
 
 inl create_native_component
@@ -161,23 +161,25 @@ inl checkbox_ () = real import "Checkbox" "@hope-ui/solid"
 inl checkbox props children = create_native_component (checkbox_ ()) props children
 
 
-union for_props item_type =
-    | Each' : a i32 item_type
+type for_props item_type =
+    {
+        Each' : a i32 item_type
+    }
 
-inl loop_props forall item_type. (props : list (for_props item_type)) : solid_props -> solid_props =
+inl loop_props forall item_type. (props : for_props item_type) : solid_props -> solid_props =
     fun props' => {props' with
         Each =
-            props /. .Each' /?? ((a ;[]) : a i32 item_type)
-            |> am.map real to_any `item_type
+            props.Each'
+            |> fun x : a i32 any => $"!x |> unbox<obj[]>"
             |> Some
     }
 
 inl for_ () = real import "For" "solid-js"
-inl for' forall item_type. (props : list (for_props item_type)) (children : item_type -> array jsx_element) =
+inl for' forall item_type. (props : for_props item_type) (children : item_type -> array jsx_element) =
     create_native_component (for_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
 
 inl index_ () = real import "Index" "solid-js"
-inl index' forall item_type. (props : list (for_props item_type)) (children : (() -> item_type) -> array jsx_element) =
+inl index' forall item_type. (props : for_props item_type) (children : (() -> item_type) -> array jsx_element) =
     create_native_component (index_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
 
 inl icon_ () = real import "Icon" "@hope-ui/solid"
@@ -235,4 +237,4 @@ inl props_if a props =
     else []
 
 
-type mut_props = mut_props
+type solid_props = solid_props

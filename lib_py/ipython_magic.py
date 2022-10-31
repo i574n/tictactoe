@@ -148,17 +148,18 @@ def spiral(arg, cell, test=False):
                     fsx_path = cwpath("lib_fsx", "_ipython_spi.fsx" if arg == 'run' else f'{_notebook_name}_spi.fsx')
                     util.write_file(fsx_path, '')
 
+                    timeout_seconds = 20
                     run_node_output = util.run_node(
                         '\n'.join([
                             f'import * as spiral_api from "../lib_ts/spiral_api"',
                             f'await spiral_api.spiToFsx("", "{fsx_path}")'
                         ]),
-                        timeout=int(get_arg(1, 10))
+                        timeout=int(get_arg(1, timeout_seconds))
                     ).splitlines()
 
                     new_code_fsx = ''
                     start = time.time()
-                    while new_code_fsx == '' and time.time() - start < 10:
+                    while new_code_fsx == '' and time.time() - start < timeout_seconds:
                         time.sleep(0.2)
                         new_code_fsx = util.read_file(fsx_path).strip(" \n")
 

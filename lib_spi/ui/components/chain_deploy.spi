@@ -67,7 +67,7 @@ open real_js
 open hooks.use_fetch
 
 
-let chain_deploy (props : mut_props) =
+let chain_deploy (props : mut solid_props) =
     inl state, dispatch = use_store ()
 
     inl request, clear =
@@ -135,9 +135,9 @@ let chain_deploy (props : mut_props) =
                 create_component base_table
                     id
                     fun () => ;[
-                        index' [
-                            Each' (state.profile.tmp.chain_deploy |> am.toList |> listm.rev |> listm.toArray)
-                        ] fun item => ;[
+                        index' {
+                            Each' = state.profile.tmp.chain_deploy |> am.toList |> listm.rev |> listm.toArray
+                        } fun item => ;[
                             create_custom_component row {
                                 Status = CheckHidden
                                 OnLoad = None

@@ -4,7 +4,7 @@ import { op_UnaryNegation_Int32, int32 } from "./fable_modules/fable-library-ts/
 import { createStoreon } from "storeon";
 import { int64, fromBits, op_Division, op_Subtraction, toString } from "./fable_modules/fable-library-ts/Long.js";
 import { getTicks, utcNow } from "./fable_modules/fable-library-ts/Date.js";
-import { Index, createEffect, on, createSignal, createComponent, onCleanup } from "solid-js";
+import { Index, For, createEffect, on, createSignal, createComponent, onCleanup } from "solid-js";
 import { fill } from "./fable_modules/fable-library-ts/Array.js";
 import { hope, Input, useColorMode, RadioGroup, Radio, Tr, Td, Stack, IconButton, Button, Checkbox, Box, Anchor, Icon, Table, Tbody } from "@hope-ui/solid";
 import { int32ToString, uncurry, createObj } from "./fable_modules/fable-library-ts/Util.js";
@@ -2075,156 +2075,147 @@ export function closure70(unitVar: void, unitVar_1: void): any[] {
     return [v71_1(v1_1, v67_1)];
 }
 
-export function closure101(v0_1: () => [string, string, string, string], v1_1: Mut1): US1 {
-    return US1_US1_1(v0_1()[0]);
+export function closure101(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1): US1 {
+    return US1_US1_1(v0_1);
 }
 
-export function closure104(v0_1: () => [string, string, string, string], v1_1: Mut1, v2: Mut1, v3: US1): void {
-    const v4: [string, string, string, string][] = v1_1.l0;
-    const v8: int32 = v4.length | 0;
-    const v9: [string, string, string, string][] = fill(new Array(v8), 0, v8, null);
-    const v10: Mut3 = new Mut3(0);
-    while (method15(v8, v10)) {
-        const v12: int32 = v10.l0 | 0;
-        const patternInput_1: [string, string, string, string] = v4[v12];
-        const v16: string = patternInput_1[3];
-        const v15: string = patternInput_1[2];
-        const v14: string = patternInput_1[1];
-        const patternInput_3: [string, string, string, string] = (v14 === v0_1()[1]) ? [(v3.tag === US1_Tag.US1_1) ? v3.fields[0] : "", v14, v15, v16] : [patternInput_1[0], v14, v15, v16];
-        v9[v12] = [patternInput_3[0], patternInput_3[1], patternInput_3[2], patternInput_3[3]];
-        const v29: int32 = (v12 + 1) | 0;
-        v10.l0 = (v29 | 0);
+export function closure104(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1, v5: Mut1, v6: US1): void {
+    const v7: [string, string, string, string][] = v4.l0;
+    const v11: int32 = v7.length | 0;
+    const v12: [string, string, string, string][] = fill(new Array(v11), 0, v11, null);
+    const v13: Mut3 = new Mut3(0);
+    while (method15(v11, v13)) {
+        const v15: int32 = v13.l0 | 0;
+        const patternInput_1: [string, string, string, string] = v7[v15];
+        const v19: string = patternInput_1[3];
+        const v18: string = patternInput_1[2];
+        const v17: string = patternInput_1[1];
+        const patternInput_2: [string, string, string, string] = (v17 === v1_1) ? [(v6.tag === US1_Tag.US1_1) ? v6.fields[0] : "", v17, v18, v19] : [patternInput_1[0], v17, v18, v19];
+        v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3]];
+        const v28: int32 = (v15 + 1) | 0;
+        v13.l0 = (v28 | 0);
     }
-    v2.l0 = v9;
+    v5.l0 = v12;
 }
 
-export function closure103(v0_1: () => [string, string, string, string], v1_1: Mut1, v2: Mut1): (arg0: US1) => void {
+export function closure103(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1, v5: Mut1): (arg0: US1) => void {
     return (v: US1): void => {
-        closure104(v0_1, v1_1, v2, v);
+        closure104(v0_1, v1_1, v2, v3, v4, v5, v);
     };
 }
 
-export function closure102(v0_1: () => [string, string, string, string], v1_1: Mut1): (arg0: Mut1, arg1: US1) => void {
-    return (v: Mut1): (arg0: US1) => void => closure103(v0_1, v1_1, v);
+export function closure102(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1): (arg0: Mut1, arg1: US1) => void {
+    return (v: Mut1): (arg0: US1) => void => closure103(v0_1, v1_1, v2, v3, v4, v);
 }
 
-export function closure100(v0_1: () => [string, string, string, string], unitVar: void): any[] {
-    const v1_1: (arg0: Mut7) => any = (v: Mut7): any => closure74(void 0, v);
-    const v2: (arg0: any) => any = v1_1;
-    const v3: (arg0: Mut1) => US1 = (v_1: Mut1): US1 => closure101(v0_1, v_1);
-    const v4: (arg0: Mut1, arg1: Mut1, arg2: US1) => void = (v_2: Mut1): (arg0: Mut1, arg1: US1) => void => closure102(v0_1, v_2);
-    const v5: Mut7 = new Mut7(v3, uncurry(3, v4));
-    const v9: any = createComponent;
-    return [v9(v2, v5)];
+export function closure100(v0_1: string, v1_1: string, v2: string, v3: string, unitVar: void): any[] {
+    const v4: (arg0: Mut7) => any = (v: Mut7): any => closure74(void 0, v);
+    const v5: (arg0: any) => any = v4;
+    const v6: (arg0: Mut1) => US1 = (v_1: Mut1): US1 => closure101(v0_1, v1_1, v2, v3, v_1);
+    const v7: (arg0: Mut1, arg1: Mut1, arg2: US1) => void = (v_2: Mut1): (arg0: Mut1, arg1: US1) => void => closure102(v0_1, v1_1, v2, v3, v_2);
+    const v8: Mut7 = new Mut7(v6, uncurry(3, v7));
+    const v12: any = createComponent;
+    return [v12(v5, v8)];
 }
 
-export function closure106(v0_1: () => [string, string, string, string], v1_1: Mut1): US1 {
-    return US1_US1_1(v0_1()[3]);
+export function closure106(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1): US1 {
+    return US1_US1_1(v3);
 }
 
-export function closure109(v0_1: () => [string, string, string, string], v1_1: Mut1, v2: Mut1, v3: US1): void {
-    const v4: [string, string, string, string][] = v1_1.l0;
-    const v8: int32 = v4.length | 0;
-    const v9: [string, string, string, string][] = fill(new Array(v8), 0, v8, null);
-    const v10: Mut3 = new Mut3(0);
-    while (method15(v8, v10)) {
-        const v12: int32 = v10.l0 | 0;
-        const patternInput_1: [string, string, string, string] = v4[v12];
-        const v15: string = patternInput_1[2];
-        const v14: string = patternInput_1[1];
-        const v13: string = patternInput_1[0];
-        const patternInput_3: [string, string, string, string] = (v14 === v0_1()[1]) ? [v13, v14, v15, (v3.tag === US1_Tag.US1_1) ? v3.fields[0] : ""] : [v13, v14, v15, patternInput_1[3]];
-        v9[v12] = [patternInput_3[0], patternInput_3[1], patternInput_3[2], patternInput_3[3]];
-        const v29: int32 = (v12 + 1) | 0;
-        v10.l0 = (v29 | 0);
+export function closure109(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1, v5: Mut1, v6: US1): void {
+    const v7: [string, string, string, string][] = v4.l0;
+    const v11: int32 = v7.length | 0;
+    const v12: [string, string, string, string][] = fill(new Array(v11), 0, v11, null);
+    const v13: Mut3 = new Mut3(0);
+    while (method15(v11, v13)) {
+        const v15: int32 = v13.l0 | 0;
+        const patternInput_1: [string, string, string, string] = v7[v15];
+        const v18: string = patternInput_1[2];
+        const v17: string = patternInput_1[1];
+        const v16: string = patternInput_1[0];
+        const patternInput_2: [string, string, string, string] = (v17 === v1_1) ? [v16, v17, v18, (v6.tag === US1_Tag.US1_1) ? v6.fields[0] : ""] : [v16, v17, v18, patternInput_1[3]];
+        v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3]];
+        const v28: int32 = (v15 + 1) | 0;
+        v13.l0 = (v28 | 0);
     }
-    v2.l0 = v9;
+    v5.l0 = v12;
 }
 
-export function closure108(v0_1: () => [string, string, string, string], v1_1: Mut1, v2: Mut1): (arg0: US1) => void {
+export function closure108(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1, v5: Mut1): (arg0: US1) => void {
     return (v: US1): void => {
-        closure109(v0_1, v1_1, v2, v);
+        closure109(v0_1, v1_1, v2, v3, v4, v5, v);
     };
 }
 
-export function closure107(v0_1: () => [string, string, string, string], v1_1: Mut1): (arg0: Mut1, arg1: US1) => void {
-    return (v: Mut1): (arg0: US1) => void => closure108(v0_1, v1_1, v);
+export function closure107(v0_1: string, v1_1: string, v2: string, v3: string, v4: Mut1): (arg0: Mut1, arg1: US1) => void {
+    return (v: Mut1): (arg0: US1) => void => closure108(v0_1, v1_1, v2, v3, v4, v);
 }
 
-export function closure105(v0_1: () => [string, string, string, string], unitVar: void): any[] {
-    const v1_1: (arg0: Mut7) => any = (v: Mut7): any => closure74(void 0, v);
-    const v2: (arg0: any) => any = v1_1;
-    const v3: (arg0: Mut1) => US1 = (v_1: Mut1): US1 => closure106(v0_1, v_1);
-    const v4: (arg0: Mut1, arg1: Mut1, arg2: US1) => void = (v_2: Mut1): (arg0: Mut1, arg1: US1) => void => closure107(v0_1, v_2);
-    const v5: Mut7 = new Mut7(v3, uncurry(3, v4));
-    const v9: any = createComponent;
-    return [v9(v2, v5)];
+export function closure105(v0_1: string, v1_1: string, v2: string, v3: string, unitVar: void): any[] {
+    const v4: (arg0: Mut7) => any = (v: Mut7): any => closure74(void 0, v);
+    const v5: (arg0: any) => any = v4;
+    const v6: (arg0: Mut1) => US1 = (v_1: Mut1): US1 => closure106(v0_1, v1_1, v2, v3, v_1);
+    const v7: (arg0: Mut1, arg1: Mut1, arg2: US1) => void = (v_2: Mut1): (arg0: Mut1, arg1: US1) => void => closure107(v0_1, v1_1, v2, v3, v_2);
+    const v8: Mut7 = new Mut7(v6, uncurry(3, v7));
+    const v12: any = createComponent;
+    return [v12(v5, v8)];
 }
 
-export function closure99(v0_1: () => [string, string, string, string], unitVar: void): any[] {
+export function closure99(v0_1: string, v1_1: string, v2: string, v3: string, unitVar: void): any[] {
     const patternInput: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v66_1: () => any[] = (): any[] => closure100(v0_1, void 0);
-    const v68_1: string = "3px";
-    const v72_1: (arg0: Mut5) => any = (v: Mut5): any => closure23(void 0, v);
-    const v73_1: (arg0: any) => any = v72_1;
-    const v76_1: Mut5 = new Mut5(US11_US11_0(), new Mut2(patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], US5_US5_1(v66_1), patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], US1_US1_1(v68_1), patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], US8_US8_1(<>
+    const v69_1: () => any[] = (): any[] => closure100(v0_1, v1_1, v2, v3, void 0);
+    const v71_1: string = "3px";
+    const v75_1: (arg0: Mut5) => any = (v: Mut5): any => closure23(void 0, v);
+    const v76_1: (arg0: any) => any = v75_1;
+    const v79_1: Mut5 = new Mut5(US11_US11_0(), new Mut2(patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], US5_US5_1(v69_1), patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], US1_US1_1(v71_1), patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], US8_US8_1(<>
         Address
     </>), patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62]), US12_US12_2());
-    const v80_1: any = createComponent;
-    const v81_1: any = v80_1(v73_1, v76_1);
+    const v83_1: any = createComponent;
+    const v84_1: any = v83_1(v76_1, v79_1);
     const patternInput_1: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v147: () => any[] = (): any[] => closure105(v0_1, void 0);
-    const v152: (arg0: any) => any = v72_1;
-    const v155: Mut5 = new Mut5(US11_US11_0(), new Mut2(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], US5_US5_1(v147), patternInput_1[11], patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], patternInput_1[18], patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], patternInput_1[26], patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], US1_US1_1(v68_1), patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], US8_US8_1(<>
+    const v150: () => any[] = (): any[] => closure105(v0_1, v1_1, v2, v3, void 0);
+    const v155: (arg0: any) => any = v75_1;
+    const v158: Mut5 = new Mut5(US11_US11_0(), new Mut2(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], US5_US5_1(v150), patternInput_1[11], patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], patternInput_1[18], patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], patternInput_1[26], patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], US1_US1_1(v71_1), patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], US8_US8_1(<>
         Private Key
     </>), patternInput_1[57], patternInput_1[58], patternInput_1[59], patternInput_1[60], patternInput_1[61], patternInput_1[62]), US12_US12_2());
-    const v157: any = createComponent;
-    return [v81_1, v157(v152, v155)];
+    const v160: any = createComponent;
+    return [v84_1, v160(v155, v158)];
 }
 
-export function closure98(v0_1: () => [string, string, string, string], unitVar: void): any[] {
-    const v1_1: (arg0: Mut2) => any = (v: Mut2): any => closure6(void 0, v);
-    const v2: (arg0: any) => any = v1_1;
+export function closure98(v0_1: string, v1_1: string, v2: string, v3: string, unitVar: void): any[] {
+    const v4: (arg0: Mut2) => any = (v: Mut2): any => closure6(void 0, v);
+    const v5: (arg0: any) => any = v4;
     const patternInput: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v66_1: () => any[] = (): any[] => closure99(v0_1, void 0);
-    const v68_1: Mut2 = new Mut2(patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], US5_US5_1(v66_1), patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], patternInput[56], patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62]);
-    v68_1.children = v66_1;
-    const v72_1: any = createComponent;
-    return [v72_1(v2, v68_1)];
+    const v69_1: () => any[] = (): any[] => closure99(v0_1, v1_1, v2, v3, void 0);
+    const v71_1: Mut2 = new Mut2(patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], US5_US5_1(v69_1), patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], patternInput[56], patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62]);
+    v71_1.children = v69_1;
+    const v75_1: any = createComponent;
+    return [v75_1(v5, v71_1)];
 }
 
-export function closure97(unitVar: void, v0_1: () => [string, string, string, string]): any[] {
+export function closure97(unitVar: void, _arg: [string, string, string, string]): any[] {
+    const v1_1: string = _arg[1];
     const patternInput: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v69_1: () => any[] = (): any[] => closure98(v0_1, void 0);
-    const v73_1: (arg0: Mut5) => any = (v: Mut5): any => closure23(void 0, v);
-    const v74_1: (arg0: any) => any = v73_1;
-    const v77_1: Mut5 = new Mut5(US11_US11_0(), new Mut2(patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], US5_US5_1(v69_1), patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], US8_US8_1(<>
-        {v0_1()[1]}
+    const v68_1: () => any[] = (): any[] => closure98(_arg[0], v1_1, _arg[2], _arg[3], void 0);
+    const v72_1: (arg0: Mut5) => any = (v: Mut5): any => closure23(void 0, v);
+    const v73_1: (arg0: any) => any = v72_1;
+    const v76_1: Mut5 = new Mut5(US11_US11_0(), new Mut2(patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], US5_US5_1(v68_1), patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], US8_US8_1(<>
+        {v1_1}
     </>), patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62]), US12_US12_2());
-    const v81_1: any = createComponent;
-    return [v81_1(v74_1, v77_1)];
+    const v80_1: any = createComponent;
+    return [v80_1(v73_1, v76_1)];
 }
 
 export function closure96(v0_1: Mut1, unitVar: void): any[] {
-    const v1_1: [string, string, string, string][] = v0_1.l0;
-    const v7: any = Index;
-    const v8: (arg0: () => [string, string, string, string]) => any[] = (v: () => [string, string, string, string]): any[] => closure97(void 0, v);
+    const patternInput: [[string, string, string, string][], US0, US1, US1] = [v0_1.l0, v0_1.l1, v0_1.l2, v0_1.l3];
+    const v7: any = For;
+    const v8: (arg0: [string, string, string, string]) => any[] = (arg10$0040: [string, string, string, string]): any[] => closure97(void 0, arg10$0040);
     const v9: () => any[] = v8;
     const patternInput_1: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v75_1: int32 = v1_1.length | 0;
-    const v76_1: any[] = fill(new Array(v75_1), 0, v75_1, null);
-    const v77_1: Mut3 = new Mut3(0);
-    while (method15(v75_1, v77_1)) {
-        const v79_1: int32 = v77_1.l0 | 0;
-        const patternInput_2: [string, string, string, string] = v1_1[v79_1];
-        v76_1[v79_1] = [patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3]];
-        const v85_1: int32 = (v79_1 + 1) | 0;
-        v77_1.l0 = (v85_1 | 0);
-    }
-    const v89_1: any = createObj(method8(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], US5_US5_1(v9), patternInput_1[11], patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], US7_US7_1(v76_1), patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], patternInput_1[26], patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], patternInput_1[44], patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], patternInput_1[56], patternInput_1[57], patternInput_1[58], patternInput_1[59], patternInput_1[60], patternInput_1[61], patternInput_1[62]));
-    const v90_1: (arg0: any) => any = v7;
-    const v92_1: any = createComponent;
-    return [v92_1(v90_1, v89_1)];
+    const v77_1: any = createObj(method8(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], US5_US5_1(v9), patternInput_1[11], patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], US7_US7_1(patternInput[0]), patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], patternInput_1[26], patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], patternInput_1[44], patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], patternInput_1[56], patternInput_1[57], patternInput_1[58], patternInput_1[59], patternInput_1[60], patternInput_1[61], patternInput_1[62]));
+    const v78_1: (arg0: any) => any = v7;
+    const v80_1: any = createComponent;
+    return [v80_1(v78_1, v77_1)];
 }
 
 export function method26(): any {
@@ -2834,7 +2825,7 @@ export function closure116(unitVar: void, unitVar_1: void): any[] {
     const v72_1: (arg0: any) => any = v71_1;
     const v73_1: (arg0: Mut1, arg1: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void = (v_1: Mut1): (arg0: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void => closure138(void 0, v_1);
     const v76_1: Mut5 = new Mut5(US11_US11_1(uncurry(2, v73_1)), new Mut2(patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], US5_US5_1(v65_1), patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], US1_US1_1("db-gun-rs-rs"), patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], US8_US8_1(<>
-        Rust -> Rust
+        Rust -{'>'} Rust
     </>), patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62]), US12_US12_0());
     const v80_1: any = createComponent;
     const v81_1: any = v80_1(v72_1, v76_1);
@@ -2843,7 +2834,7 @@ export function closure116(unitVar: void, unitVar_1: void): any[] {
     const v153: (arg0: any) => any = v71_1;
     const v154: (arg0: Mut1, arg1: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void = (v_2: Mut1): (arg0: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void => closure143(void 0, v_2);
     const v157: Mut5 = new Mut5(US11_US11_1(uncurry(2, v154)), new Mut2(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], US5_US5_1(v147), patternInput_1[11], patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], patternInput_1[18], patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], US1_US1_1("db-gun-rs-js"), patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], patternInput_1[44], patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], US8_US8_1(<>
-        Rust -> JavaScript
+        Rust -{'>'} JavaScript
     </>), patternInput_1[57], patternInput_1[58], patternInput_1[59], patternInput_1[60], patternInput_1[61], patternInput_1[62]), US12_US12_0());
     const v159: any = createComponent;
     const v160: any = v159(v153, v157);
@@ -2852,7 +2843,7 @@ export function closure116(unitVar: void, unitVar_1: void): any[] {
     const v232: (arg0: any) => any = v71_1;
     const v233: (arg0: Mut1, arg1: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void = (v_3: Mut1): (arg0: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void => closure148(void 0, v_3);
     const v236: Mut5 = new Mut5(US11_US11_1(uncurry(2, v233)), new Mut2(patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], US5_US5_1(v226), patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], patternInput_2[18], patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], US1_US1_1("db-gun-js-js"), patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], US8_US8_1(<>
-        JavaScript -> JavaScript
+        JavaScript -{'>'} JavaScript
     </>), patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62]), US12_US12_0());
     const v238: any = createComponent;
     const v239: any = v238(v232, v236);
@@ -2861,7 +2852,7 @@ export function closure116(unitVar: void, unitVar_1: void): any[] {
     const v311: (arg0: any) => any = v71_1;
     const v312: (arg0: Mut1, arg1: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void = (v_4: Mut1): (arg0: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void) => void => closure153(void 0, v_4);
     const v315: Mut5 = new Mut5(US11_US11_1(uncurry(2, v312)), new Mut2(patternInput_3[0], patternInput_3[1], patternInput_3[2], patternInput_3[3], patternInput_3[4], patternInput_3[5], patternInput_3[6], patternInput_3[7], patternInput_3[8], patternInput_3[9], US5_US5_1(v305), patternInput_3[11], patternInput_3[12], patternInput_3[13], patternInput_3[14], patternInput_3[15], patternInput_3[16], patternInput_3[17], patternInput_3[18], patternInput_3[19], patternInput_3[20], patternInput_3[21], patternInput_3[22], patternInput_3[23], patternInput_3[24], patternInput_3[25], US1_US1_1("db-gun-js-rs"), patternInput_3[27], patternInput_3[28], patternInput_3[29], patternInput_3[30], patternInput_3[31], patternInput_3[32], patternInput_3[33], patternInput_3[34], patternInput_3[35], patternInput_3[36], patternInput_3[37], patternInput_3[38], patternInput_3[39], patternInput_3[40], patternInput_3[41], patternInput_3[42], patternInput_3[43], patternInput_3[44], patternInput_3[45], patternInput_3[46], patternInput_3[47], patternInput_3[48], patternInput_3[49], patternInput_3[50], patternInput_3[51], patternInput_3[52], patternInput_3[53], patternInput_3[54], patternInput_3[55], US8_US8_1(<>
-        JavaScript -> Rust
+        JavaScript -{'>'} Rust
     </>), patternInput_3[57], patternInput_3[58], patternInput_3[59], patternInput_3[60], patternInput_3[61], patternInput_3[62]), US12_US12_0());
     const v317: any = createComponent;
     return [v81_1, v160, v239, v317(v311, v315)];
@@ -3094,20 +3085,10 @@ export function closure172(v0_1: Mut1, unitVar: void): any[] {
     const v24: (arg0: () => [int32, int32]) => any[] = (v: () => [int32, int32]): any[] => closure173(void 0, v);
     const v25: () => any[] = v24;
     const patternInput_2: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v91_1: int32 = v20.length | 0;
-    const v92_1: any[] = fill(new Array(v91_1), 0, v91_1, null);
-    const v93_1: Mut3 = new Mut3(0);
-    while (method15(v91_1, v93_1)) {
-        const v95: int32 = v93_1.l0 | 0;
-        const patternInput_3: [int32, int32] = v20[v95];
-        v92_1[v95] = [patternInput_3[0], patternInput_3[1]];
-        const v99: int32 = (v95 + 1) | 0;
-        v93_1.l0 = (v99 | 0);
-    }
-    const v103: any = createObj(method8(patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], US5_US5_1(v25), patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], US7_US7_1(v92_1), patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], patternInput_2[26], patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], patternInput_2[56], patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62]));
-    const v104: (arg0: any) => any = v23;
-    const v106: any = createComponent;
-    return [v106(v104, v103)];
+    const v93_1: any = createObj(method8(patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], US5_US5_1(v25), patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], US7_US7_1(v20), patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], patternInput_2[26], patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], patternInput_2[56], patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62]));
+    const v94_1: (arg0: any) => any = v23;
+    const v96: any = createComponent;
+    return [v96(v94_1, v93_1)];
 }
 
 export function closure171(v0_1: Mut1, unitVar: void): any[] {
@@ -3337,20 +3318,10 @@ export function closure187(v0_1: Mut1, unitVar: void): any[] {
     const v24: (arg0: () => [int32, any]) => any[] = (v: () => [int32, any]): any[] => closure188(void 0, v);
     const v25: () => any[] = v24;
     const patternInput_2: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v91_1: int32 = v20.length | 0;
-    const v92_1: any[] = fill(new Array(v91_1), 0, v91_1, null);
-    const v93_1: Mut3 = new Mut3(0);
-    while (method15(v91_1, v93_1)) {
-        const v95: int32 = v93_1.l0 | 0;
-        const patternInput_3: [int32, any] = v20[v95];
-        v92_1[v95] = [patternInput_3[0], patternInput_3[1]];
-        const v99: int32 = (v95 + 1) | 0;
-        v93_1.l0 = (v99 | 0);
-    }
-    const v103: any = createObj(method8(patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], US5_US5_1(v25), patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], US7_US7_1(v92_1), patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], patternInput_2[26], patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], patternInput_2[56], patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62]));
-    const v104: (arg0: any) => any = v23;
-    const v106: any = createComponent;
-    return [v106(v104, v103)];
+    const v93_1: any = createObj(method8(patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], US5_US5_1(v25), patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], US7_US7_1(v20), patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], patternInput_2[26], patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], patternInput_2[56], patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62]));
+    const v94_1: (arg0: any) => any = v23;
+    const v96: any = createComponent;
+    return [v96(v94_1, v93_1)];
 }
 
 export function closure186(v0_1: Mut1, unitVar: void): any[] {
@@ -3519,20 +3490,10 @@ export function closure202(v0_1: Mut1, unitVar: void): any[] {
     const v24: (arg0: () => [int32, any]) => any[] = (v: () => [int32, any]): any[] => closure203(void 0, v);
     const v25: () => any[] = v24;
     const patternInput_2: [US1, US1, US3, US1, US1, US1, US1, US1, US1, US4, US5, US1, US1, US4, US6, US1, US1, US1, US7, US4, US1, US1, US1, US1, US1, US8, US1, US1, US1, US8, US1, US1, US1, US1, US1, US1, US1, US1, US9, US10, US9, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US1, US8, US1, US1, US6, US1, US0, US1] = method6();
-    const v91_1: int32 = v20.length | 0;
-    const v92_1: any[] = fill(new Array(v91_1), 0, v91_1, null);
-    const v93_1: Mut3 = new Mut3(0);
-    while (method15(v91_1, v93_1)) {
-        const v95: int32 = v93_1.l0 | 0;
-        const patternInput_3: [int32, any] = v20[v95];
-        v92_1[v95] = [patternInput_3[0], patternInput_3[1]];
-        const v99: int32 = (v95 + 1) | 0;
-        v93_1.l0 = (v99 | 0);
-    }
-    const v103: any = createObj(method8(patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], US5_US5_1(v25), patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], US7_US7_1(v92_1), patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], patternInput_2[26], patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], patternInput_2[56], patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62]));
-    const v104: (arg0: any) => any = v23;
-    const v106: any = createComponent;
-    return [v106(v104, v103)];
+    const v93_1: any = createObj(method8(patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], US5_US5_1(v25), patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], US7_US7_1(v20), patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], patternInput_2[26], patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], patternInput_2[56], patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62]));
+    const v94_1: (arg0: any) => any = v23;
+    const v96: any = createComponent;
+    return [v96(v94_1, v93_1)];
 }
 
 export function closure201(v0_1: Mut1, unitVar: void): any[] {
@@ -3709,27 +3670,27 @@ export const v0 = void 0;
 
 export const v1 = new Mut0(v0);
 
-export const patternInput$00404836 = method0();
+export const patternInput$00404787 = method0();
 
-export const v74 = patternInput$00404836[9];
+export const v74 = patternInput$00404787[9];
 
-export const v73 = patternInput$00404836[8];
+export const v73 = patternInput$00404787[8];
 
-export const v72 = patternInput$00404836[7];
+export const v72 = patternInput$00404787[7];
 
-export const v71 = patternInput$00404836[6];
+export const v71 = patternInput$00404787[6];
 
-export const v70 = patternInput$00404836[5];
+export const v70 = patternInput$00404787[5];
 
-export const v69 = patternInput$00404836[4];
+export const v69 = patternInput$00404787[4];
 
-export const v68 = patternInput$00404836[3];
+export const v68 = patternInput$00404787[3];
 
-export const v67 = patternInput$00404836[2];
+export const v67 = patternInput$00404787[2];
 
-export const v66 = patternInput$00404836[1];
+export const v66 = patternInput$00404787[1];
 
-export const v65 = patternInput$00404836[0];
+export const v65 = patternInput$00404787[0];
 
 export const v75 = new Mut1(v65, v66, v67, v68, v69, v70, v71, v72, v73, v74);
 
