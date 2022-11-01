@@ -1,6 +1,4 @@
-open js
 open solid
-open state
 open base_table
 open row
 open state_input
@@ -13,7 +11,7 @@ let chain_connection (props : mut solid_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some (str "Token")
                     Padding = Some "3px"
                     Children = Some fun () => ;[
@@ -27,7 +25,7 @@ let chain_connection (props : mut solid_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some (str "URL")
                     Padding = Some "3px"
                     Children = Some fun () => ;[
@@ -41,7 +39,7 @@ let chain_connection (props : mut solid_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some (str "Port")
                     Padding = Some "3px"
                     Children = Some fun () => ;[

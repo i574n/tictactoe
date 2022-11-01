@@ -1,11 +1,10 @@
 open solid
 open state
-open store
-open js
 open real_js
 open real_util
 open base_button
 open base_icon
+open hooks.use_store
 
 
 type loader_props =
@@ -13,12 +12,12 @@ type loader_props =
         Loaded : bool
         Modal : bool
         OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
-        Props : mut solid_props
+        Props : solid_props -> solid_props
     }
 
 let loader (props : mut loader_props) =
     inl custom_props = props
-    inl props = props.Props
+    inl props = init_props props.Props
 
     inl state, dispatch = use_store ()
 

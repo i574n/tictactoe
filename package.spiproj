@@ -8,6 +8,7 @@ modules:
         console_fsx
         real_js*
         js
+        tictactoe
         tictactoe_testnet
         ui/
             db
@@ -25,6 +26,7 @@ modules:
                 base_button
                 base_table
                 external_link
+                debug
                 loader
                 row
                 links

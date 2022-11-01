@@ -242,6 +242,7 @@ inl createMemo_ () = import "createMemo" "solid-js"
 inl on_ ()  = import "on" "solid-js"
 inl onCleanup_ ()  = import "onCleanup" "solid-js"
 inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
+inl useStoreon_ () : js_function = import "useStoreon" "@storeon/solidjs"
 
 inl use_color_mode () =
     inl useColorMode' = useColorMode_ ()

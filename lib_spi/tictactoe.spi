@@ -1,0 +1,7 @@
+union player =
+    | X
+    | O
+
+union account =
+    | Admin
+    | Player : player

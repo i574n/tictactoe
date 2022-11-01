@@ -2,9 +2,10 @@ open js
 open real_js
 open solid
 open db
+open tictactoe
 
 
-type account__ = {alias : string; address : string; private_key : string; mnemonic : string}
+type chain_account = {account : account; address : string; private_key : string; mnemonic : string}
 type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
 type db_status = {client : db_type; server : db_type}
 type state__ =
@@ -13,7 +14,7 @@ type state__ =
             token : option string
             url : option string
             port : option i32
-            accounts : a i32 account__
+            accounts : a i32 chain_account
         }
         db : {
             connection : a i32 db_connection

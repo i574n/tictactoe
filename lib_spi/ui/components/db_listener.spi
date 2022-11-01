@@ -38,7 +38,6 @@
 
 open solid
 open real_solid
-open store
 open state
 open js
 open real_js

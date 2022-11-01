@@ -1,6 +1,5 @@
 open real_js
 open solid
-open real_solid
 
 
 type base_icon_props =

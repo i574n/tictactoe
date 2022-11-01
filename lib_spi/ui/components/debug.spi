@@ -1,0 +1,28 @@
+open hooks.use_store
+open solid
+open real_js
+
+
+let debug (props : mut ()) =
+    inl state, dispatch = use_store ()
+    box
+        fun props' => {props' with
+            OverflowY = Some "auto"
+            Position = Some "absolute"
+            Top = Some "0"
+            Right = Some "0"
+            Bottom = Some "0"
+            BackgroundColor = Some "#00000066"
+            ZIndex = Some 1
+        }
+        fun () => ;[
+            pre
+                fun props' => {props' with
+                    FontSize = Some "9px"
+                }
+                fun () => ;[
+                    state
+                    |> real stringify_fmt `(mut state.state__)
+                    |> str
+                ]
+        ]

@@ -11,7 +11,7 @@ let links (props : mut solid_props) =
         create_custom_component row {
             Status = CheckHidden
             OnLoad = None
-            Props = mut <| init_props fun props' => {props' with
+            Props = fun props' => {props' with
                 Padding = Some "1px 6px"
                 Children = Some fun () => ;[
                     create_component external_link

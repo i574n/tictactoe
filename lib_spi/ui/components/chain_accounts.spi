@@ -1,10 +1,8 @@
 open solid
-open store
-open state
-open js
 open base_table
 open row
 open state_input
+open hooks.use_store
 
 
 let chain_accounts (props : mut solid_props) =
@@ -19,8 +17,14 @@ let chain_accounts (props : mut solid_props) =
                 create_custom_component row {
                     Status = CheckHidden
                     OnLoad = None
-                    Props = mut <| init_props fun props' => {props' with
-                        Title = Some <| str account.alias
+                    Props = fun props' => {props' with
+                        Title =
+                            match account.account with
+                            | Admin => "admin"
+                            | Player (X) => "x"
+                            | Player (O) => "o"
+                            | _ => ""
+                            |> str |> Some
                         Children = Some fun () => ;[
                             create_component base_table
                                 id
@@ -28,7 +32,7 @@ let chain_accounts (props : mut solid_props) =
                                     create_custom_component row {
                                         Status = CheckHidden
                                         OnLoad = None
-                                        Props = mut <| init_props fun props' => {props' with
+                                        Props = fun props' => {props' with
                                             Title = Some <| str "Address"
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
@@ -38,7 +42,7 @@ let chain_accounts (props : mut solid_props) =
                                                         state.chain.accounts <-
                                                             old_state.chain.accounts
                                                             |> am.map fun account' =>
-                                                                if account'.alias = account.alias
+                                                                if account'.account = account.account
                                                                 then {account' with address = value /?? ""}
                                                                 else account'
                                                 }
@@ -48,7 +52,7 @@ let chain_accounts (props : mut solid_props) =
                                     create_custom_component row {
                                         Status = CheckHidden
                                         OnLoad = None
-                                        Props = mut <| init_props fun props' => {props' with
+                                        Props = fun props' => {props' with
                                             Title = Some <| str "Private Key"
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
@@ -58,7 +62,7 @@ let chain_accounts (props : mut solid_props) =
                                                         state.chain.accounts <-
                                                             old_state.chain.accounts
                                                             |> am.map fun account' =>
-                                                                if account'.alias = account.alias
+                                                                if account'.account = account.account
                                                                 then {account' with private_key = value /?? ""}
                                                                 else account'
                                                 }

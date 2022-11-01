@@ -4,13 +4,12 @@ open row
 open links
 open settings
 open chain
-open js
 open real_js
 open database
-open loader
 open counter
 open chain_status
 open chain_deploy
+open debug
 
 
 let content (props : mut solid_props) =
@@ -29,6 +28,9 @@ let content (props : mut solid_props) =
             Padding = Some "1px"
         }
         fun () => ;[
+            create_custom_component debug ()
+            |> show_when (env.github_run_id = "")
+
             create_component base_table
                 fun props' => {props' with
                     Display = Some "flex"
@@ -41,7 +43,7 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
-                        Props = mut <| init_props fun props' => {props' with
+                        Props = fun props' => {props' with
                             Title = Some <| str "Links"
                             Children = Some fun () => ;[
                                 create_component links
@@ -53,13 +55,13 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
-                        Props = mut <| init_props id
+                        Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
-                        Props = mut <| init_props fun props' => {props' with
+                        Props = fun props' => {props' with
                             Title = Some <| str "Settings"
                             Children = Some fun () => ;[
                                 create_component settings
@@ -71,13 +73,13 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
-                        Props = mut <| init_props id
+                        Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckDisabled
                         OnLoad = None
-                        Props = mut <| init_props fun props' => {props' with
+                        Props = fun props' => {props' with
                             Id = Some "db"
                             Title = Some <| str "Chain"
                             Children = Some fun () => ;[
@@ -91,13 +93,13 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
-                        Props = mut <| init_props id
+                        Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckDisabled
                         OnLoad = None
-                        Props = mut <| init_props fun props' => {props' with
+                        Props = fun props' => {props' with
                             Id = Some "db"
                             Title = Some <| str "Database"
                             Children = Some fun () => ;[
@@ -111,13 +113,13 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
-                        Props = mut <| init_props id
+                        Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
-                        Props = mut <| init_props fun props' => {props' with
+                        Props = fun props' => {props' with
                             Title = Some <| str "Profile"
                             Children = Some fun () => ;[
                                 create_component base_table

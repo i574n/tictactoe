@@ -12,7 +12,7 @@ let chain (props : mut solid_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some <| str "Connection"
                     Children = Some fun () => ;[
                         create_component chain_connection
@@ -24,7 +24,7 @@ let chain (props : mut solid_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some <| str "Accounts"
                     Children = Some fun () => ;[
                         create_component chain_accounts
@@ -36,7 +36,7 @@ let chain (props : mut solid_props) =
             create_custom_component row {
                 Status = CheckDisabled
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some <| str "Testnet Bank Dispenser"
                     Children = Some fun () => ;[
                         iframe

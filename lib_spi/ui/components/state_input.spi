@@ -1,9 +1,7 @@
-open js
 open real_js
 open solid
-open store
 open state
-open console_fsx
+open hooks.use_store
 
 
 type state_input_props state_type value_type =

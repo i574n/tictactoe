@@ -61,10 +61,10 @@ open row
 open base_button
 open base_table
 open base_icon
-open store
 open real_util
 open real_js
 open hooks.use_fetch
+open hooks.use_store
 
 
 let chain_deploy (props : mut solid_props) =
@@ -81,7 +81,7 @@ let chain_deploy (props : mut solid_props) =
     create_custom_component row {
         Status = CheckHidden
         OnLoad = None
-        Props = mut <| init_props fun props' => {props' with
+        Props = fun props' => {props' with
             Id = Some <| "deploy"
             Title = Some <|
                 stack
@@ -141,7 +141,7 @@ let chain_deploy (props : mut solid_props) =
                             create_custom_component row {
                                 Status = CheckHidden
                                 OnLoad = None
-                                Props = mut <| init_props fun props' => {props' with
+                                Props = fun props' => {props' with
                                     Title = Some <| str (item () |> fst |> real to_string `i32)
                                     Padding = Some "3px"
                                     Children = Some fun () => ;[

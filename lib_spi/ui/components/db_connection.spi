@@ -17,7 +17,7 @@ let db_connection (props : mut db_connection_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some (str "URL")
                     Padding = Some "3px"
                     Children = Some fun () => ;[
@@ -35,7 +35,7 @@ let db_connection (props : mut db_connection_props) =
             create_custom_component row {
                 Status = CheckHidden
                 OnLoad = None
-                Props = mut <| init_props fun props' => {props' with
+                Props = fun props' => {props' with
                     Title = Some (str "Port")
                     Padding = Some "3px"
                     Children = Some fun () => ;[
