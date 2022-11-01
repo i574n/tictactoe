@@ -14,7 +14,7 @@ open chain_deploy
 
 
 let content (props : mut solid_props) =
-    inl env = real get_env ()
+    inl env : env = real get_env ()
 
     box
         fun props' => {props' with

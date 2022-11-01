@@ -88,11 +88,7 @@ inl create_custom_component forall props_type.
     (props : props_type)
     : jsx_element
     =
-    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
-    inl mut_props = mut props
-    inl props_obj : any = real to_any `(mut props_type) mut_props
-    real create_component' new_cmp props_obj
-
+    real create_custom_component `props_type cmp props
 
 inl create_component
     (cmp : mut solid_props -> jsx_element)
@@ -100,15 +96,7 @@ inl create_component
     (children : () -> array jsx_element)
     : jsx_element
     =
-    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
-    inl props : solid_props =
-        real
-            inl props = init_props props_fn
-            real add_children_props children props
-    inl new_props = mut props
-    $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
-    inl props_obj : any = real to_any `(mut solid_props) new_props
-    real create_component' new_cmp props_obj
+    real create_component `solid_props cmp props_fn children
 
 inl create_native_component
     (cmp : js_function)
@@ -121,6 +109,7 @@ inl create_native_component
 inl on' (deps : () -> array any) (fn : () -> ()) : js_function = real on deps fn
 inl create_effect' (on : js_function) : () = real create_effect on
 inl create_signal' forall a. (default_value : a) : (() -> a) * (a -> ()) = real create_signal `a default_value
+inl create_memo forall a. (value : a) : a = real real_create_memo `a value
 inl merge_props forall t. (source : t) (target : t) : t =
     inl source = mut source
     inl target = mut target

@@ -12,9 +12,6 @@ inl to_any forall a. (obj : a) : any =
 inl new_js_obj_prop forall a. (k : string) (v : a) : js_obj_prop =
     $"!k, !v"
 
-inl try_js_obj_prop k v : option js_obj_prop =
-    v |> optionm.map fun v => new_js_obj_prop k v
-
 inl import (name : string) (module : string) : js_function =
     $"import !name !module"
 
@@ -38,21 +35,29 @@ inl object_assign forall a. (target : a) source : a = $"JS.Constructors.Object.a
 type env =
     {
         env : any
+        codespace_name : string
         github_run_id : string
+        github_sha : string
         is_test : bool
     }
 inl get_env () : env =
-    join
-        inl env : any = ($"emitJsExpr () \"components_spi.env\"" : any)
-        inl github_run_id : string = $"!env?GITHUB_RUN_ID"
+    inl env : any = ($"emitJsExpr () \"components_spi.env\"" : any)
+
+    inl codespace_name = $"emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
+    inl github_run_id = $"emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
+    inl github_sha = $"emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
+    inl is_test =
         inl is_test' : any = $"!env?IS_TEST"
         inl is_test' : bool = is_empty `any is_test'
-        inl is_test : bool = not is_test'
-        {
-            env
-            github_run_id
-            is_test
-        } : env
+        not is_test'
+
+    {
+        env
+        codespace_name
+        github_run_id
+        github_sha
+        is_test
+    } : env
 
 inl track_time forall a. (name : string) (n : i32) (fn : () -> a) : a =
     $"JS.console.time !name" : ()

@@ -234,9 +234,11 @@ let record_entries (props : solid_props) : a i32 js_obj_prop =
         props
     |> listm.toArray `a `i32 `js_obj_prop
 
+
 inl createComponent_ () = import "createComponent" "solid-js"
 inl createEffect_ () = import "createEffect" "solid-js"
 inl createSignal_ () = import "createSignal" "solid-js"
+inl createMemo_ () = import "createMemo" "solid-js"
 inl on_ ()  = import "on" "solid-js"
 inl onCleanup_ ()  = import "onCleanup" "solid-js"
 inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
@@ -247,6 +249,11 @@ inl use_color_mode () =
     inl color_mode : () -> string = $"!obj?colorMode |> unbox"
     inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox"
     color_mode, toggle_color_mode
+
+inl real_create_memo forall a. (value : a) : a =
+    inl create_memo : js_function = createMemo_ ()
+    inl create_memo : a -> a = $"!create_memo |> unbox<`a -> `a>"
+    real create_memo value
 
 inl create_component'
     (cmp : any -> jsx_element)
@@ -280,6 +287,31 @@ inl create_native_component
 
     inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
     create_component' new_cmp new_props_obj
+
+inl create_custom_component forall props_type.
+    (cmp : mut props_type -> jsx_element)
+    (props : props_type)
+    : jsx_element
+    =
+    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+    inl mut_props : mut props_type = mut `props_type props
+    inl props_obj : any = to_any `(mut props_type) mut_props
+    create_component' new_cmp props_obj
+
+
+inl create_component forall solid_props.
+    (cmp : mut solid_props -> jsx_element)
+    (props_fn : solid_props -> solid_props)
+    (children : () -> array jsx_element)
+    : jsx_element
+    =
+    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+    inl props : solid_props =
+        inl props = real_init_props props_fn
+        add_children_props children props
+    inl new_props : mut solid_props = mut `solid_props props
+    $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
+    create_component' new_cmp (to_any `(mut solid_props) new_props)
 
 inl create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
     inl createSignal' = createSignal_ ()

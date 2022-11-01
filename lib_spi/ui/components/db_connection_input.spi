@@ -15,7 +15,10 @@ let db_connection_input forall value_type. (props : mut (db_connection_input_pro
     create_custom_component state_input {
         StateGet = fun state =>
             state.db.connection
-            |> array_find_last props.Get
+            |> array_find_last fun db_connection =>
+                if db_connection.db_type = props.DbType
+                then props.Get db_connection
+                else None
         StateSet = fun old_state state value =>
             state.db.connection <-
                 old_state.db.connection /@ a ;[

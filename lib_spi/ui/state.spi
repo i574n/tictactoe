@@ -4,51 +4,6 @@ open solid
 open db
 
 
-// import './buffer-shim'
-// import * as db from "./db"
-// import * as chain from "./chain"
-// import * as profile from "./profile"
-// import * as util from "../../lib_ts/util"
-// import * as tictactoe_testnet from "../../lib_ts/tictactoe_testnet"
-// import * as components_spi from "../../lib_ts/components_spi"
-// import { StoreonStore } from 'storeon'
-
-
-// export type State = db.DbState & chain.ChainState & profile.ProfileState
-
-// const init: State = {
-//     chainToken: tictactoe_testnet.token,
-//     chainUrl: util.CODESPACE_NAME ? `http://${util.CODESPACE_NAME}-4001.githubpreview.dev` : tictactoe_testnet.url,
-//     chainPort: util.CODESPACE_NAME ? 80 : tictactoe_testnet.port,
-//     chainAccounts: tictactoe_testnet.accounts,
-//     dbConnection: {
-//         gun_rs: {
-//             url: util.CODESPACE_NAME && !util.IS_TEST ? `ws://${util.CODESPACE_NAME}-4944.githubpreview.dev` : 'ws://localhost',
-//             port: util.CODESPACE_NAME && !util.IS_TEST ? 80 : (util.IS_TEST ? 14944 : 4944),
-//             ws: "ws"
-//         },
-//         gun_js: {
-//             url: util.CODESPACE_NAME && !util.IS_TEST ? `ws://${util.CODESPACE_NAME}-8765.githubpreview.dev` : 'wss://localhost',
-//             port: util.CODESPACE_NAME && !util.IS_TEST ? 80 : (util.IS_TEST ? 18765 : 8765),
-//             ws: "gun"
-//         }
-//     },
-//     dbStatus: {
-//         gun_rs: {
-//             gun_rs: false,
-//             gun_js: false
-//         } as { [_ in db.DbType]: boolean },
-//         gun_js: {
-//             gun_rs: false,
-//             gun_js: false
-//         } as { [_ in db.DbType]: boolean }
-//     },
-//     dbRef: {},
-//     profile: {
-//         tmp: {}
-//     }
-// }
-
 type account__ = {alias : string; address : string; private_key : string; mnemonic : string}
 type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
 type db_status = {client : db_type; server : db_type}
@@ -77,17 +32,55 @@ type state__ =
     }
 
 inl empty_state () : state__ =
+    inl env : env = real get_env ()
     join
         {
             chain = {
                 token = Some (tictactoe_testnet.token ())
-                url = Some (tictactoe_testnet.url ())
-                port = Some (tictactoe_testnet.port ())
+                url =
+                    match env.codespace_name with
+                    | "" => tictactoe_testnet.url ()
+                    | codespace_name => $"$\"http://{!codespace_name}-4001.githubpreview.dev\""
+                    |> Some
+                port =
+                    match env.codespace_name with
+                    | "" => tictactoe_testnet.port ()
+                    | codespace_name => 80
+                    |> Some
                 accounts = tictactoe_testnet.accounts ()
             }
             db = {
                 status = a ;[]
-                connection = a ;[]
+                connection = a ;[
+                    {
+                        db_type = GunRs
+                        url =
+                            match env.codespace_name, env.is_test with
+                            | "", _ => "ws://localhost"
+                            | _, true => "ws://localhost"
+                            | codespace_name, _ => $"$\"ws://{!codespace_name}-4944.githubpreview.dev\""
+                        port =
+                            match env.codespace_name, env.is_test with
+                            | "", true => 14944
+                            | "", false => 4944
+                            | _, _ => 80
+                        ws = "ws"
+                    }
+                    {
+                        db_type = GunJs
+                        url =
+                            match env.codespace_name, env.is_test with
+                            | "", _ => "wss://localhost"
+                            | _, true => "wss://localhost"
+                            | codespace_name, _ => $"$\"ws://{!codespace_name}-8765.githubpreview.dev\""
+                        port =
+                            match env.codespace_name, env.is_test with
+                            | "", true => 18765
+                            | "", false => 8765
+                            | _, _ => 80
+                        ws = "gun"
+                    }
+                ]
             }
             ui = {
                 modal = None

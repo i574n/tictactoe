@@ -2,6 +2,7 @@ open solid
 open base_table
 open row
 open external_link
+open real_js
 
 
 
@@ -22,10 +23,16 @@ let links (props : mut solid_props) =
             }
         }
 
+    inl github_sha =
+        inl env : env = real get_env ()
+        env.github_sha
+
     create_component base_table
         id
         fun () => ;[
-            link "https://github.com/fc1943s/tictactoe_spiral"
+            match github_sha with
+            | "" => link "https://github.com/fc1943s/tictactoe_spiral"
+            | _ => link $"$\"https://github.com/fc1943s/tictactoe_spiral/tree/{!github_sha}\""
             link "https://fc1943s.github.io/tictactoe_spiral"
             link "https://fc1943s.github.io/tictactoe_spiral/docs"
         ]
