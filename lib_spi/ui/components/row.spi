@@ -1,6 +1,7 @@
 open solid
 open loader
 open state
+open base_checkbox
 
 
 union row_status =
@@ -50,23 +51,15 @@ let row (props : mut row_props) =
                         match custom_props.Status with
                         | CheckHidden => title
                         | _ =>
-                            checkbox
-                                fun props' => {props' with
-                                    Size = Some "sm"
-                                    MarginBottom = Some "2px"
-                                    Checked = Some <| checked ()
-                                    ColorScheme = Some "neutral"
-                                    OnChange = Some fun e => set_checked ($"!e?target?checked" : bool)
+                            create_custom_component base_checkbox {
+                                Checked = checked
+                                OnChange = set_checked
+                                Props = fun props' => {props' with
+                                    Children = Some <| fun () => ;[
+                                        title
+                                    ]
                                 }
-                                fun () => ;[
-                                    box
-                                        fun props' => {props' with
-                                            PaddingTop = Some "2px"
-                                        }
-                                        fun () => ;[
-                                            title
-                                        ]
-                                ]
+                            }
                     ]
             | None => empty_fragment ()
 

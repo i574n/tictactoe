@@ -8,6 +8,7 @@ nominal jsx_element = $"JSX.Element"
 type solid_props =
     {
         AlignItems : option string
+        AlignSelf : option string
         AriaLabel : option string
         As : option js_function
         BackgroundColor : option string
@@ -49,6 +50,7 @@ type solid_props =
         OnClick : option (() -> ())
         OnInput : option (any -> ())
         Outline : option string
+        Overflow : option string
         OverflowX : option string
         OverflowY : option string
         Padding : option string
@@ -76,6 +78,7 @@ inl real_empty_props () : solid_props =
     join
         {
             AlignItems = none `string ()
+            AlignSelf = none `string ()
             AriaLabel = none `string ()
             As = none `js_function ()
             BackgroundColor = none `string ()
@@ -117,6 +120,7 @@ inl real_empty_props () : solid_props =
             OnClick = none `(() -> ()) ()
             OnInput = none `(any -> ()) ()
             Outline = none `string ()
+            Overflow = none `string ()
             OverflowX = none `string ()
             OverflowY = none `string ()
             Padding = none `string ()
@@ -143,6 +147,7 @@ inl real_empty_props () : solid_props =
 inl prop_keys () =
     {
         AlignItems = "alignItems"
+        AlignSelf = "alignSelf"
         AriaLabel = "aria-label"
         As = "as"
         BackgroundColor = "backgroundColor"
@@ -184,6 +189,7 @@ inl prop_keys () =
         OnClick = "onClick"
         OnInput = "onInput"
         Outline = "outline"
+        Overflow = "overflow"
         OverflowX = "overflowX"
         OverflowY = "overflowY"
         Padding = "padding"

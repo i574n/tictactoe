@@ -1,0 +1,31 @@
+open solid
+
+
+type base_checkbox_props =
+    {
+        Checked : () -> bool
+        OnChange : bool -> ()
+        Props : solid_props -> solid_props
+    }
+
+inl base_checkbox (props : mut base_checkbox_props) =
+    inl custom_props = props
+    inl props = init_props props.Props
+
+    checkbox
+        fun props' => {props' with
+            Size = Some "sm"
+            MarginBottom = Some "2px"
+            Checked = Some <| custom_props.Checked ()
+            ColorScheme = Some "neutral"
+            OnChange = Some fun e =>
+                inl checked : bool = $"!e?target?checked"
+                custom_props.OnChange checked
+        }
+        fun () => ;[
+            box
+                fun props' => {props' with
+                    PaddingTop = Some "2px"
+                }
+                (props.Children /?? fun () => ;[])
+        ]

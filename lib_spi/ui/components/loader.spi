@@ -21,7 +21,7 @@ let loader (props : mut loader_props) =
 
     inl state, dispatch = use_store ()
 
-    inl loader_id = real random ()
+    inl loader_id : i32 = real random ()
 
     inl loaded, set_loaded = create_signal' custom_props.Loaded
     inl refreshing, set_refreshing = create_signal' false
@@ -102,7 +102,7 @@ let loader (props : mut loader_props) =
                                             Position = Some "absolute"
                                             Top = Some "6px"
                                             Right = Some "6px"
-                                            ZIndex = Some 1
+                                            ZIndex = Some 2
                                         }
                                         fun () => ;[
                                             icon_button

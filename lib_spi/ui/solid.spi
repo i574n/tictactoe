@@ -6,6 +6,7 @@ open real_solid
 
 union solid_prop =
     | AlignItems : string
+    | AlignSelf : string
     | AriaLabel : string
     | As : js_function
     | BackgroundColor : string
@@ -47,6 +48,7 @@ union solid_prop =
     | OnClick : () -> ()
     | OnInput : any -> ()
     | Outline : string
+    | Overflow : string
     | OverflowX : string
     | OverflowY : string
     | Padding : string

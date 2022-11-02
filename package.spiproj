@@ -25,6 +25,7 @@ modules:
                 base_icon
                 base_button
                 base_table
+                base_checkbox
                 external_link
                 debug
                 loader

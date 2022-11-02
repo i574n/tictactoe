@@ -1,28 +1,61 @@
-open hooks.use_store
 open solid
 open real_js
+open base_checkbox
+open hooks.use_store
 
 
 let debug (props : mut ()) =
     inl state, dispatch = use_store ()
+
+    inl checked, set_checked = create_signal' true
+
     box
         fun props' => {props' with
-            OverflowY = Some "auto"
+            Display = Some "flex"
+            FlexDirection = Some "column"
+            Padding = Some "2px 6px"
+            Overflow = Some "auto"
             Position = Some "absolute"
-            Top = Some "0"
             Right = Some "0"
             Bottom = Some "0"
+            MaxHeight = Some "80vh"
+            MaxWidth = Some "50vw"
             BackgroundColor = Some "#00000066"
-            ZIndex = Some 1
+            ZIndex = Some 2
         }
         fun () => ;[
-            pre
+            box
                 fun props' => {props' with
-                    FontSize = Some "9px"
+                    Flex = Some "1"
                 }
                 fun () => ;[
-                    state
-                    |> real stringify_fmt `(mut state.state__)
-                    |> str
+                    if checked () then
+                        pre
+                            fun props' => {props' with
+                                FontSize = Some "9px"
+                            }
+                            fun () => ;[
+                                state
+                                |> real stringify_fmt `(mut state.state__)
+                                |> str
+                            ]
+                    else
+                        empty_fragment ()
+                ]
+
+            box
+                fun props' => {props' with
+                    AlignSelf = Some "flex-end"
+                }
+                fun () => ;[
+                    create_custom_component base_checkbox {
+                        Checked = checked
+                        OnChange = set_checked
+                        Props = fun props' => {props' with
+                            Children = Some <| fun () => ;[
+                                str "Debug"
+                            ]
+                        }
+                    }
                 ]
         ]
