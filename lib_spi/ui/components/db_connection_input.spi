@@ -21,14 +21,9 @@ let db_connection_input forall value_type. (props : mut (db_connection_input_pro
                 else None
         StateSet = fun old_state state value =>
             state.db.connection <-
-                old_state.db.connection /@ a ;[
-                    old_state.db.connection
-                    |> array_find_last fun db_connection =>
-                        if db_connection.db_type = props.DbType
-                        then Some db_connection
-                        else None
-                    |> fun db_connection =>
-                        inl db_connection = db_connection /?? empty_db_connection ()
-                        props.Set db_connection value
-                ]
+                old_state.db.connection
+                |> am.map fun db_connection =>
+                    if db_connection.db_type = props.DbType
+                    then props.Set db_connection value
+                    else db_connection
     }

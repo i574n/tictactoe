@@ -11,6 +11,7 @@ let links (props : mut solid_props) =
         create_custom_component row {
             Status = CheckHidden
             OnLoad = None
+            OnUnload = None
             Props = fun props' => {props' with
                 Padding = Some "1px 6px"
                 Children = Some fun () => ;[

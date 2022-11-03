@@ -13,6 +13,7 @@ type row_props =
     {
         Status : row_status
         OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
+        OnUnload : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
         Props : solid_props -> solid_props
     }
 
@@ -98,6 +99,7 @@ let row (props : mut row_props) =
                                     Loaded = true
                                     Modal = false
                                     OnLoad = custom_props.OnLoad
+                                    OnUnload = custom_props.OnUnload
                                     Props = fun props' => {props' with
                                         Children = Some children
                                     }

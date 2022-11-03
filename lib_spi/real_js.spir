@@ -40,7 +40,7 @@ type env =
         github_sha : string
         is_test : bool
     }
-inl get_env () : env =
+let get_env () : env =
     inl env : any = ($"emitJsExpr () \"components_spi.env\"" : any)
 
     inl codespace_name = $"emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string

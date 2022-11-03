@@ -5,11 +5,11 @@ open tictactoe
 // export var getApplicationStartTeal = () => fs.readFileSync('../lib_teal/application_start.teal').toString()
 // export var getClearProgramTeal = () => fs.readFileSync('../lib_teal/clear_program.teal').toString()
 
-inl token () = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-inl url () = "http://localhost"
-inl port () = 4001i32
+let token () = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+let url () = "http://localhost"
+let port () = 4001i32
 
-inl accounts () =
+let accounts () =
     a ;[
         {
             account = Admin

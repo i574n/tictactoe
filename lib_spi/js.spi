@@ -2,7 +2,7 @@ open real_js
 open real_util
 
 
-inl new_log (get_locals : () -> array any) (color : string) : array any -> () =
+let new_log (get_locals : () -> array any) (color : string) : array any -> () =
     inl env : env = real get_env ()
     inl start_timestamp : i64 = real ticks ()
     fun (args : array any) : () =>

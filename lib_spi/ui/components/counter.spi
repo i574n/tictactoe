@@ -28,6 +28,7 @@ let counter (props : mut solid_props) =
     create_custom_component row {
         Status = CheckHidden
         OnLoad = None
+        OnUnload = None
         Props = fun props' => {props' with
             Id = Some <| "counter"
             Title = Some <|
@@ -88,6 +89,7 @@ let counter (props : mut solid_props) =
                             create_custom_component row {
                                 Status = CheckHidden
                                 OnLoad = None
+                                OnUnload = None
                                 Props = fun props' => {props' with
                                     Title = Some <| str (item () |> fst |> real to_string `i32)
                                     Padding = Some "3px"

@@ -6,75 +6,50 @@ open db
 open real_js
 open state
 
+inl db_item (status : db_status) (id : string) (title : string) (db_type : db_type) =
+    create_custom_component row {
+        Status = CheckDisabled
+        OnLoad = Some fun state dispatch =>
+            dispatch fun old_state state =>
+                state.db.status <- old_state.db.status /@ a ;[status]
+        OnUnload = Some fun state dispatch =>
+            dispatch fun old_state state =>
+                state.db.status <-
+                    old_state.db.status
+                    |> am.filter fun db_status => db_status <> status
+        Props = fun props' => {props' with
+            Id = Some id
+            Title = Some <| str title
+            Children = Some fun () => ;[
+                create_custom_component db_connection {
+                    DbType = db_type
+                }
+            ]
+        }
+    }
 
 let database (props : mut solid_props) =
     create_component base_table
         id
         fun () => ;[
-            create_custom_component row {
-                Status = CheckDisabled
-                OnLoad = Some fun state dispatch =>
-                    dispatch fun old_state state =>
-                        console_fsx.inspect (
-                            "database row on_load",
-                            "old_state:", ((real stringify `(mut state__) old_state) : string),
-                            "state:", ((real stringify `(mut state__) state) : string),
-                            "state.db.status:", ((real stringify `(a i32 db_status) state.db.status) : string)
-                        )
-                        state.db.status <- old_state.db.status /@ a ;[{client = GunRs; server = GunRs}]
-                Props = fun props' => {props' with
-                    Id = Some "db-gun-rs-rs"
-                    Title = Some <| str "Rust -{'>'} Rust"
-                    Children = Some fun () => ;[
-                        create_custom_component db_connection {
-                            DbType = GunRs
-                        }
-                    ]
-                }
-            }
-            create_custom_component row {
-                Status = CheckDisabled
-                OnLoad = Some fun state dispatch =>
-                    dispatch fun old_state state =>
-                        state.db.status <- old_state.db.status /@ a ;[{client = GunRs; server = GunJs}]
-                Props = fun props' => {props' with
-                    Id = Some "db-gun-rs-js"
-                    Title = Some <| str "Rust -{'>'} JavaScript"
-                    Children = Some fun () => ;[
-                        create_custom_component db_connection {
-                            DbType = GunJs
-                        }
-                    ]
-                }
-            }
-            create_custom_component row {
-                Status = CheckDisabled
-                OnLoad = Some fun state dispatch =>
-                    dispatch fun old_state state =>
-                        state.db.status <- old_state.db.status /@ a ;[{client = GunJs; server = GunJs}]
-                Props = fun props' => {props' with
-                    Id = Some "db-gun-js-js"
-                    Title = Some <| str "JavaScript -{'>'} JavaScript"
-                    Children = Some fun () => ;[
-                        create_custom_component db_connection {
-                            DbType = GunJs
-                        }
-                    ]
-                }
-            }
-            create_custom_component row {
-                Status = CheckDisabled
-                OnLoad = Some fun state dispatch =>
-                    dispatch fun old_state state =>
-                        state.db.status <- old_state.db.status /@ a ;[{client = GunJs; server = GunRs}]
-                Props = fun props' => {props' with
-                    Id = Some "db-gun-js-rs"
-                    Title = Some <| str "JavaScript -{'>'} Rust"
-                    Children = Some fun () => ;[
-                        create_custom_component db_connection {
-                            DbType = GunRs
-                        }
-                    ]
-                }
-            }
+            db_item
+                {client = GunRs; server = GunRs}
+                "db-gun-rs-rs"
+                "Rust -{'>'} Rust"
+                GunRs
+            db_item
+                {client = GunRs; server = GunJs}
+                "db-gun-rs-js"
+                "Rust -{'>'} JavaScript"
+                GunJs
+            db_item
+                {client = GunJs; server = GunJs}
+                "db-gun-js-js"
+                "JavaScript -{'>'} JavaScript"
+                GunJs
+            db_item
+                {client = GunJs; server = GunRs}
+                "db-gun-js-rs"
+                "JavaScript -{'>'} Rust"
+                GunRs
         ]

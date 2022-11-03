@@ -1,3 +1,4 @@
+open real_solid
 open solid
 open state
 open real_js
@@ -12,6 +13,7 @@ type loader_props =
         Loaded : bool
         Modal : bool
         OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
+        OnUnload : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
         Props : solid_props -> solid_props
     }
 
@@ -31,6 +33,15 @@ let loader (props : mut loader_props) =
         fun () => ;[real to_any `bool (refreshing ())]
         fun () => if refreshing () then set_refreshing false
     |> create_effect'
+
+    inl on_unload' () =
+        match custom_props.OnUnload with
+        | Some on_unload => on_unload state dispatch
+        | None => ()
+
+    inl unbind () =
+        on_unload' ()
+    real on_cleanup unbind
 
     inl on_load' () =
         match custom_props.OnLoad with
@@ -148,7 +159,10 @@ let loader (props : mut loader_props) =
                                                     Size = Some "xs"
                                                     Height = Some icon_height
                                                     ColorScheme = Some "neutral"
-                                                    OnClick = Some fun () => set_loaded false
+                                                    OnClick = Some fun () =>
+                                                        console_fsx.inspect "# on_click"
+                                                        on_unload' ()
+                                                        set_loaded false
                                                     Icon = Some <|
                                                         create_custom_component base_icon {
                                                             Icon = biRegularUndo_

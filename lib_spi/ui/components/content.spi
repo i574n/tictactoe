@@ -43,6 +43,7 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
+                        OnUnload = None
                         Props = fun props' => {props' with
                             Title = Some <| str "Links"
                             Children = Some fun () => ;[
@@ -55,12 +56,14 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
+                        OnUnload = None
                         Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
+                        OnUnload = None
                         Props = fun props' => {props' with
                             Title = Some <| str "Settings"
                             Children = Some fun () => ;[
@@ -73,12 +76,14 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
+                        OnUnload = None
                         Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckDisabled
                         OnLoad = None
+                        OnUnload = None
                         Props = fun props' => {props' with
                             Id = Some "db"
                             Title = Some <| str "Chain"
@@ -93,12 +98,14 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
+                        OnUnload = None
                         Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckDisabled
                         OnLoad = None
+                        OnUnload = None
                         Props = fun props' => {props' with
                             Id = Some "db"
                             Title = Some <| str "Database"
@@ -113,12 +120,14 @@ let content (props : mut solid_props) =
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
+                        OnUnload = None
                         Props = id
                     }
 
                     create_custom_component row {
                         Status = CheckHidden
                         OnLoad = None
+                        OnUnload = None
                         Props = fun props' => {props' with
                             Title = Some <| str "Profile"
                             Children = Some fun () => ;[

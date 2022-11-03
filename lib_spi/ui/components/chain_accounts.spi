@@ -17,6 +17,7 @@ let chain_accounts (props : mut solid_props) =
                 create_custom_component row {
                     Status = CheckHidden
                     OnLoad = None
+                    OnUnload = None
                     Props = fun props' => {props' with
                         Title =
                             match account.account with
@@ -32,6 +33,7 @@ let chain_accounts (props : mut solid_props) =
                                     create_custom_component row {
                                         Status = CheckHidden
                                         OnLoad = None
+                                        OnUnload = None
                                         Props = fun props' => {props' with
                                             Title = Some <| str "Address"
                                             Padding = Some "3px"
@@ -52,6 +54,7 @@ let chain_accounts (props : mut solid_props) =
                                     create_custom_component row {
                                         Status = CheckHidden
                                         OnLoad = None
+                                        OnUnload = None
                                         Props = fun props' => {props' with
                                             Title = Some <| str "Private Key"
                                             Padding = Some "3px"

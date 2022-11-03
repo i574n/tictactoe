@@ -5,7 +5,7 @@ inl storeonStore_ () = real import "StoreonStore" "storeon"
 inl createStoreon_ () : js_function = real import "createStoreon" "storeon"
 
 
-inl create_storeon (init : any) : any =
+let create_storeon (init : any) : any =
     inl createStoreon' : js_function = real createStoreon_ ()
     inl fn (store : any) =
         inl store_on : js_function = $"!store?on |> unbox<JS.Function>"

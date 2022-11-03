@@ -7,7 +7,7 @@ open hooks.use_store
 let debug (props : mut ()) =
     inl state, dispatch = use_store ()
 
-    inl checked, set_checked = create_signal' true
+    inl checked, set_checked = create_signal' false
 
     box
         fun props' => {props' with
