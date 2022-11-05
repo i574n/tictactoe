@@ -2,28 +2,29 @@ open real_js
 open real_util
 
 
-let new_log (get_locals : () -> array any) (color : string) : array any -> () =
+let new_log (is_enabled : () -> bool) (get_locals : () -> array any) (color : string) : array any -> () =
     inl env : env = real get_env ()
     inl start_timestamp : i64 = real ticks ()
     fun (args : array any) : () =>
-        inl new_timestamp () : i64 = (real ticks ()) - start_timestamp
-        inl timestamp : string = real to_string `i64 (new_timestamp ())
-        inl timestamp : string = pad 6 timestamp
-        inl run_id : i32 = $"emitJsExpr () \"components_spi.run_id\""
-        inl header : string = $"$\"[{!timestamp}] {!run_id}\""
-        inl args =
-            inl args : string = real stringify `(array any) args
-            inl locals : string = real stringify `(array any) (get_locals ())
-            if env.is_test then
-                header,
-                args,
-                locals,
-                "",
-                ""
-            else
-                ($"$\"{!header} %%c%%s %%c%%s\"" : string),
-                ($"$\"font-weight: bold; color: {!color}\"" : string),
-                args,
-                "font-weight: bold; color: #444",
-                locals
-        $"emitJsExpr () $\"console.log.apply(console, {!args})\"" : ()
+        if is_enabled () then
+            inl new_timestamp () : i64 = (real ticks ()) - start_timestamp
+            inl timestamp : string = real to_string `i64 (new_timestamp ())
+            inl timestamp : string = pad 6 timestamp
+            inl run_id : i32 = $"emitJsExpr () \"components_spi.run_id\""
+            inl header : string = $"$\"[{!timestamp}] {!run_id}\""
+            inl args =
+                inl args : string = real stringify `(array any) args
+                inl locals : string = real stringify `(array any) (get_locals ())
+                if env.is_test then
+                    header,
+                    args,
+                    locals,
+                    "",
+                    ""
+                else
+                    ($"$\"{!header} %%c%%s %%c%%s\"" : string),
+                    ($"$\"font-weight: bold; color: {!color}\"" : string),
+                    args,
+                    "font-weight: bold; color: #444",
+                    locals
+            $"emitJsExpr () $\"console.log.apply(console, {!args})\"" : ()

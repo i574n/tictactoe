@@ -18,7 +18,9 @@ let chain_status (props : mut solid_props) =
             state.profile.tmp.chain_status
             fun new_state state new_value =>
                 new_state.profile.tmp.chain_status <- new_value
-            fun client => promise ($"!client?status()?do()" : any)
+            fun client =>
+                // promise ($"!client?status()?do()" : any)
+                promise ($"\"status\"" : any)
 
     create_custom_component row {
         Status = CheckHidden

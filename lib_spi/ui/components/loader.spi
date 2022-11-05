@@ -38,10 +38,7 @@ let loader (props : mut loader_props) =
         match custom_props.OnUnload with
         | Some on_unload => on_unload state dispatch
         | None => ()
-
-    inl unbind () =
-        on_unload' ()
-    real on_cleanup unbind
+    real on_cleanup on_unload'
 
     inl on_load' () =
         match custom_props.OnLoad with
@@ -90,12 +87,11 @@ let loader (props : mut loader_props) =
                     }
                     fun () => ;[
                         match props.Children with
-                        | None => empty_fragment ()
                         | Some children =>
                             box
                                 fun props' => {props' with
                                     Position =
-                                        if state.ui.modal = None
+                                        if state.settings.ui.modal = None
                                         then Some "relative"
                                         else None
                                     Flex = Some "1"
@@ -105,7 +101,7 @@ let loader (props : mut loader_props) =
                                     stack
                                         fun props' => {props' with
                                             Display =
-                                                match state.ui.modal with
+                                                match state.settings.ui.modal with
                                                 | Some modal when modal <> loader_id => Some "none"
                                                 | _ => None
                                             Direction = Some "row"
@@ -141,7 +137,8 @@ let loader (props : mut loader_props) =
                                                         inl new_modal = not (modal ())
                                                         set_modal new_modal
                                                         dispatch fun _old_state state =>
-                                                            state.ui.modal <- if new_modal then Some loader_id else None
+                                                            state.settings.ui.modal <-
+                                                                if new_modal then Some loader_id else None
                                                     Icon = Some <|
                                                         create_custom_component base_icon {
                                                             Icon =
@@ -160,7 +157,6 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     ColorScheme = Some "neutral"
                                                     OnClick = Some fun () =>
-                                                        console_fsx.inspect "# on_click"
                                                         on_unload' ()
                                                         set_loaded false
                                                     Icon = Some <|
@@ -176,5 +172,6 @@ let loader (props : mut loader_props) =
                                     then empty_fragment ()
                                     else children_fragment children
                                 ]
+                        | None => empty_fragment ()
                     ]
         ]

@@ -30,6 +30,7 @@ type solid_props =
         External : option bool
         Flex : option string
         FlexDirection : option string
+        FlexFlow : option string
         FontSize : option string
         Height : option string
         Href : option string
@@ -58,6 +59,7 @@ type solid_props =
         PaddingRight : option string
         PaddingBottom : option string
         PaddingLeft : option string
+        Placeholder : option string
         Position : option string
         Right : option string
         Size : option string
@@ -69,6 +71,7 @@ type solid_props =
         Top : option string
         Type : option string
         Value : option any
+        When : option any
         Width : option string
         ZIndex : option i32
         Zoom : option string
@@ -100,6 +103,7 @@ inl real_empty_props () : solid_props =
             External = none `bool ()
             Flex = none `string ()
             FlexDirection = none `string ()
+            FlexFlow = none `string ()
             FontSize = none `string ()
             Height = none `string ()
             Href = none `string ()
@@ -128,6 +132,7 @@ inl real_empty_props () : solid_props =
             PaddingRight = none `string ()
             PaddingBottom = none `string ()
             PaddingLeft = none `string ()
+            Placeholder = none `string ()
             Position = none `string ()
             Right = none `string ()
             Size = none `string ()
@@ -139,6 +144,7 @@ inl real_empty_props () : solid_props =
             Top = none `string ()
             Type = none `string ()
             Value = none `any ()
+            When = none `any ()
             Width = none `string ()
             ZIndex = none `i32 ()
             Zoom = none `string ()
@@ -169,6 +175,7 @@ inl prop_keys () =
         External = "external"
         Flex = "flex"
         FlexDirection = "flexDirection"
+        FlexFlow = "flexFlow"
         FontSize = "fontSize"
         Height = "height"
         Href = "href"
@@ -197,6 +204,7 @@ inl prop_keys () =
         PaddingRight = "paddingRight"
         PaddingBottom = "paddingBottom"
         PaddingLeft = "paddingLeft"
+        Placeholder = "placeholder"
         Position = "position"
         Right = "right"
         Size = "size"
@@ -208,6 +216,7 @@ inl prop_keys () =
         Top = "top"
         Type = "type"
         Value = "value"
+        When = "when"
         Width = "width"
         ZIndex = "zIndex"
         Zoom = "zoom"
@@ -250,7 +259,7 @@ inl onCleanup_ ()  = import "onCleanup" "solid-js"
 inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
 inl useStoreon_ () : js_function = import "useStoreon" "@storeon/solidjs"
 
-inl use_color_mode () =
+let use_color_mode () =
     inl useColorMode' = useColorMode_ ()
     inl obj : any = $"!useColorMode'.Invoke () |> unbox"
     inl color_mode : () -> string = $"!obj?colorMode |> unbox"
@@ -277,7 +286,7 @@ inl add_children_props
     =
     {props with Children = some `(() -> array jsx_element) children}
 
-inl create_native_component
+let create_native_component
     (cmp : js_function)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
@@ -295,7 +304,7 @@ inl create_native_component
     inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
     create_component' new_cmp new_props_obj
 
-inl create_custom_component forall props_type.
+let create_custom_component forall props_type.
     (cmp : mut props_type -> jsx_element)
     (props : props_type)
     : jsx_element
@@ -306,7 +315,7 @@ inl create_custom_component forall props_type.
     create_component' new_cmp props_obj
 
 
-inl create_component forall solid_props.
+let create_component forall solid_props.
     (cmp : mut solid_props -> jsx_element)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
@@ -320,23 +329,22 @@ inl create_component forall solid_props.
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
     create_component' new_cmp (to_any `(mut solid_props) new_props)
 
-inl create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
+let create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
     inl createSignal' = createSignal_ ()
     inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
     inl get = $"!fns.[0] |> unbox" : () -> a
     inl set = $"!fns.[1] |> unbox" : a -> ()
     get, set
 
-inl create_effect (on : js_function) =
+let create_effect (on : js_function) =
     inl create_effect' = createEffect_ ()
     $"!create_effect'.Invoke !on |> ignore" : ()
 
-inl on (deps : () -> array any) (fn : () -> ()) =
+let on (deps : () -> array any) (fn : () -> ()) =
     inl on' = on_ ()
     $"!on'.Invoke (!deps, !fn) |> unbox<JS.Function>" : js_function
 
-inl on_cleanup fn =
-    inl fn : () -> () = fn
+let on_cleanup (fn : () -> ()) =
     inl onCleanup' = onCleanup_ ()
     $"!onCleanup'.Invoke !fn |> ignore" : ()
 

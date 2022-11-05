@@ -28,8 +28,9 @@ let content (props : mut solid_props) =
             Padding = Some "1px"
         }
         fun () => ;[
-            create_custom_component debug ()
-            |> show_when (env.github_run_id = "")
+            if env.github_run_id = ""
+            then create_custom_component debug ()
+            else empty_fragment ()
 
             create_component base_table
                 fun props' => {props' with
@@ -138,15 +139,17 @@ let content (props : mut solid_props) =
                                             id
                                             fun () => ;[]
 
-                                        create_component chain_status
-                                            id
-                                            fun () => ;[]
-                                        |> show_when (env.github_run_id <> "")
+                                        if env.github_run_id <> "" then
+                                            create_component chain_status
+                                                id
+                                                fun () => ;[]
+                                        else empty_fragment ()
 
-                                        create_component chain_deploy
-                                            id
-                                            fun () => ;[]
-                                        |> show_when (env.github_run_id <> "")
+                                        if env.github_run_id <> "" then
+                                            create_component chain_deploy
+                                                id
+                                                fun () => ;[]
+                                        else empty_fragment ()
 
                                         // create_component diff
                                         //     fun props => ()

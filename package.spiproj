@@ -26,6 +26,7 @@ modules:
                 base_button
                 base_table
                 base_checkbox
+                base_select
                 external_link
                 debug
                 loader

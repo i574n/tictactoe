@@ -28,6 +28,7 @@ union solid_prop =
     | External : bool
     | Flex : string
     | FlexDirection : string
+    | FlexFlow : string
     | FontSize : string
     | Height : string
     | Href : string
@@ -56,6 +57,7 @@ union solid_prop =
     | PaddingRight : string
     | PaddingBottom : string
     | PaddingLeft : string
+    | Placeholder : string
     | Position : string
     | Right : string
     | Size : string
@@ -67,6 +69,7 @@ union solid_prop =
     | Top : string
     | Type : string
     | Value : any
+    | When : any
     | Width : string
     | ZIndex : i32
     | Zoom : string
@@ -166,12 +169,15 @@ inl loop_props forall item_type. (props : for_props item_type) : solid_props -> 
     }
 
 inl for_ () = real import "For" "solid-js"
-inl for' forall item_type. (props : for_props item_type) (children : item_type -> array jsx_element) =
+let for' forall item_type. (props : for_props item_type) (children : item_type -> array jsx_element) =
     create_native_component (for_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
 
 inl index_ () = real import "Index" "solid-js"
-inl index' forall item_type. (props : for_props item_type) (children : (() -> item_type) -> array jsx_element) =
+let index' forall item_type. (props : for_props item_type) (children : (() -> item_type) -> array jsx_element) =
     create_native_component (index_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
+
+inl show_ () = real import "Show" "solid-js"
+inl show props children = create_native_component (show_ ()) props children
 
 inl icon_ () = real import "Icon" "@hope-ui/solid"
 inl icon props children = create_native_component (icon_ ()) props children
@@ -184,6 +190,42 @@ inl radio props children = create_native_component (radio_ ()) props children
 
 inl radio_group_ () = real import "RadioGroup" "@hope-ui/solid"
 inl radio_group props children = create_native_component (radio_group_ ()) props children
+
+inl select_ () = real import "Select" "@hope-ui/solid"
+inl select props children = create_native_component (select_ ()) props children
+
+inl select_content_ () = real import "SelectContent" "@hope-ui/solid"
+inl select_content props children = create_native_component (select_content_ ()) props children
+
+inl select_icon_ () = real import "SelectIcon" "@hope-ui/solid"
+inl select_icon props children = create_native_component (select_icon_ ()) props children
+
+inl select_listbox_ () = real import "SelectListbox" "@hope-ui/solid"
+inl select_listbox props children = create_native_component (select_listbox_ ()) props children
+
+inl select_option_ () = real import "SelectOption" "@hope-ui/solid"
+inl select_option props children = create_native_component (select_option_ ()) props children
+
+inl select_option_indicator_ () = real import "SelectOptionIndicator" "@hope-ui/solid"
+inl select_option_indicator props children = create_native_component (select_option_indicator_ ()) props children
+
+inl select_option_text_ () = real import "SelectOptionText" "@hope-ui/solid"
+inl select_option_text props children = create_native_component (select_option_text_ ()) props children
+
+inl select_placeholder_ () = real import "SelectPlaceholder" "@hope-ui/solid"
+inl select_placeholder props children = create_native_component (select_placeholder_ ()) props children
+
+inl select_trigger_ () = real import "SelectTrigger" "@hope-ui/solid"
+inl select_trigger props children = create_native_component (select_trigger_ ()) props children
+
+inl select_value_ () = real import "SelectValue" "@hope-ui/solid"
+inl select_value props children = create_native_component (select_value_ ()) props children
+
+inl simple_select_ () = real import "SimpleSelect" "@hope-ui/solid"
+inl simple_select props children = create_native_component (simple_select_ ()) props children
+
+inl simple_option_ () = real import "SimpleOption" "@hope-ui/solid"
+inl simple_option props children = create_native_component (simple_option_ ()) props children
 
 inl stack_ () = real import "Stack" "@hope-ui/solid"
 inl stack props children = create_native_component (stack_ ()) props children
@@ -214,18 +256,6 @@ inl breakpoints ~{ initial sm } =
 inl children_fragment (children : () -> array jsx_element) : jsx_element =
     $"!children |> unbox<JSX.Element>"
 
-inl show_when cond cmp =
-    if cond then cmp else empty_fragment ()
-
-inl props_default_with a fn1 fn2 =
-    match a with
-    | Some x when fn1 x => fn2 x
-    | _ => []
-
-inl props_if a props =
-    if a
-    then props
-    else []
 
 
 type solid_props = solid_props

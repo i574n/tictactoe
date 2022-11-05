@@ -1,6 +1,9 @@
 open solid
 open real_js
+open real_util
 open base_checkbox
+open base_select
+open state
 open hooks.use_store
 
 
@@ -39,15 +42,46 @@ let debug (props : mut ()) =
                                 |> real stringify_fmt `(mut state.state__)
                                 |> str
                             ]
-                    else
-                        empty_fragment ()
+                    else empty_fragment ()
                 ]
 
             box
                 fun props' => {props' with
                     AlignSelf = Some "flex-end"
+                    Display = Some "flex"
+                    FlexDirection = Some "column"
+                    Css =
+                        init_props fun props' => {props' with
+                            FlexFlow = Some "wrap"
+                        } |> props_entries |> create_props |> Some
                 }
                 fun () => ;[
+                    if checked () then
+                        create_component base_simple_select
+                            fun props' => {props' with
+                                Placeholder = Some "Log level"
+                                Each = Some <| a ;["Debug"; "Info"; "Warn"; "Error"] |> am.map real to_any `string
+                                Value =
+                                    match state.settings.log_level with
+                                    | Debug => "Debug"
+                                    | Info => "Info"
+                                    | Warn => "Warn"
+                                    | Error => "Error"
+                                    |> real to_any `string
+                                    |> Some
+                                OnChange = Some <| fun value =>
+                                    dispatch fun _old_state state =>
+                                        state.settings.log_level <-
+                                            match value |> real to_string `any with
+                                            | "Debug" => Debug
+                                            | "Info" => Info
+                                            | "Warn" => Warn
+                                            | "Error" => Error
+                                            | _ => state.settings.log_level
+                            }
+                            fun () => ;[]
+                    else empty_fragment ()
+
                     create_custom_component base_checkbox {
                         Checked = checked
                         OnChange = set_checked

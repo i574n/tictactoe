@@ -44,6 +44,9 @@ let rec pad (count : i32) (n : string) : string =
     inl n_length : i32 = $"String.length !n"
     if n_length < count then pad count ($"$\"0{!n}\"" : string) else n
 
+inl string_get_bytes (s : string) : a i32 u8 = $"System.Text.Encoding.UTF8.GetBytes !s"
+inl string_of_int (n : i32) : string = $"!n.ToString ()"
+
 
 prototype append t : t -> t -> t
 instance append list t = fun (x : list t) (y : list t) => y |> listm.append x

@@ -5,6 +5,11 @@ open db
 open tictactoe
 
 
+union log_level =
+    | Debug
+    | Info
+    | Warn
+    | Error
 type chain_account = {account : account; address : string; private_key : string; mnemonic : string}
 type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
 type db_status = {client : db_type; server : db_type}
@@ -20,9 +25,6 @@ type state__ =
             connection : a i32 db_connection
             status : a i32 db_status
         }
-        ui : {
-            modal : option i32
-        }
         profile : {
             tmp : {
                 counter : a i32 (i32 * i32)
@@ -30,7 +32,14 @@ type state__ =
                 chain_deploy : a i32 (i32 * any)
             }
         }
+        settings : {
+            log_level : log_level
+            ui : {
+                modal : option i32
+            }
+        }
     }
+
 
 let empty_state () : state__ =
     inl env : env = real get_env ()
@@ -82,8 +91,14 @@ let empty_state () : state__ =
                 }
             ]
         }
-        ui = {
-            modal = None
+        settings = {
+            log_level =
+                if env.github_run_id = ""
+                then Debug
+                else Warn
+            ui = {
+                modal = None
+            }
         }
         profile = {
             tmp = {

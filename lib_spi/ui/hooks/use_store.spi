@@ -4,7 +4,7 @@ open store
 open real_solid
 
 
-inl use_store () =
+let use_store () =
     inl useStoreon' = real useStoreon_ ()
     inl fns : array js_function = $"!useStoreon'.Invoke () |> unbox<JS.Function[]>"
     inl state_obj : mut state__ = $"!fns.[0] |> unbox"
@@ -16,11 +16,6 @@ inl use_store () =
         inl new_state : any = real create_obj (am.empty `a `i32 `js_obj_prop)
         inl new_state : mut state__ = $"!new_state |> unbox"
         fn state_obj new_state
-        console_fsx.inspect (
-            ("use_store dispatch" : string),
-            ("new_state(new):" : string),
-            ((real stringify `(mut state__) new_state) : string)
-        )
         dispatch_obj (real to_any `(mut state__) new_state)
 
     state_obj, dispatch

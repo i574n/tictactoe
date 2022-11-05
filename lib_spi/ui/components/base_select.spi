@@ -1,0 +1,77 @@
+open solid
+open real_js
+open real_util
+
+
+let base_simple_select (props : mut solid_props) =
+    simple_select
+        fun props' => {props' with
+            Placeholder = props.Placeholder
+            Value = props.Value
+            OnChange = props.OnChange
+        }
+        fun () => ;[
+            for' {
+                Each' =
+                    props.Each /?? a ;[] : a i32 any
+            } fun item => ;[
+                simple_option
+                    fun props' => {props' with
+                        Value = Some item
+                    }
+                    fun () => ;[
+                        str <| real to_string `any item
+                    ]
+            ]
+        ]
+
+let base_select (props : mut solid_props) =
+    select
+        fun props' => {props' with
+            Value = props.Value
+            OnChange = props.OnChange
+        }
+        fun () => ;[
+            select_trigger
+                id
+                fun () => ;[
+                    select_placeholder
+                        id
+                        fun () => ;[
+                            str <| props.Placeholder /?? "Select"
+                        ]
+                    select_value
+                        id
+                        fun () => ;[]
+                    select_icon
+                        id
+                        fun () => ;[]
+                ]
+            select_content
+                id
+                fun () => ;[
+                    select_listbox
+                        id
+                        fun () => ;[
+                            for' {
+                                Each' =
+                                    props.Each /?? a ;[] : a i32 any
+                            } fun item => ;[
+                                select_option
+                                    fun props' => {props' with
+                                        Value = Some item
+                                    }
+                                    fun () => ;[
+                                        select_option_text
+                                            id
+                                            fun () => ;[
+                                                str <| real to_string `any item
+                                            ]
+                                        select_option_indicator
+                                            id
+                                            fun () => ;[]
+                                    ]
+                            ]
+                        ]
+                ]
+        ]
