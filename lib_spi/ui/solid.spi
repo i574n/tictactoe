@@ -111,10 +111,10 @@ inl create_native_component
     =
     real create_native_component cmp props_fn children
 
-inl on' (deps : () -> array any) (fn : () -> ()) : js_function = real on deps fn
-inl create_effect' (on : js_function) : () = real create_effect on
-inl create_signal' forall a. (default_value : a) : (() -> a) * (a -> ()) = real create_signal `a default_value
-inl create_memo forall a. (value : a) : a = real real_create_memo `a value
+inl on (deps : () -> array any) (fn : () -> ()) : () -> () = real real_on deps fn
+inl create_effect (on : () -> ()) : () = real real_create_effect on
+inl create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) = real real_create_signal `a default_value
+inl create_memo forall a. (fn : () -> a) : (() -> a) = real real_create_memo `a fn
 inl merge_props forall t. (source : t) (target : t) : t =
     inl source = mut source
     inl target = mut target

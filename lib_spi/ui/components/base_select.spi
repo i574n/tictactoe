@@ -6,6 +6,8 @@ open real_util
 let base_simple_select (props : mut solid_props) =
     simple_select
         fun props' => {props' with
+            Size = Some "xs"
+            MarginTop = props.MarginTop
             Placeholder = props.Placeholder
             Value = props.Value
             OnChange = props.OnChange
@@ -28,6 +30,7 @@ let base_simple_select (props : mut solid_props) =
 let base_select (props : mut solid_props) =
     select
         fun props' => {props' with
+            Size = Some "xs"
             Value = props.Value
             OnChange = props.OnChange
         }

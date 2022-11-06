@@ -266,10 +266,10 @@ let use_color_mode () =
     inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox"
     color_mode, toggle_color_mode
 
-inl real_create_memo forall a. (value : a) : a =
+inl real_create_memo forall a. (fn : () -> a) : () -> a =
     inl create_memo : js_function = createMemo_ ()
-    inl create_memo : a -> a = $"!create_memo |> unbox<`a -> `a>"
-    real create_memo value
+    inl create_memo : (() -> a) -> (() -> a) = $"!create_memo |> unbox<(unit -> `a) -> (unit -> `a)>"
+    real create_memo fn
 
 inl create_component'
     (cmp : any -> jsx_element)
@@ -329,20 +329,20 @@ let create_component forall solid_props.
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
     create_component' new_cmp (to_any `(mut solid_props) new_props)
 
-let create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
+let real_create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
     inl createSignal' = createSignal_ ()
     inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
     inl get = $"!fns.[0] |> unbox" : () -> a
     inl set = $"!fns.[1] |> unbox" : a -> ()
     get, set
 
-let create_effect (on : js_function) =
+let real_create_effect (on : () -> ()) : () =
     inl create_effect' = createEffect_ ()
     $"!create_effect'.Invoke !on |> ignore" : ()
 
-let on (deps : () -> array any) (fn : () -> ()) =
+let real_on (deps : () -> array any) (fn : () -> ()) : () -> () =
     inl on' = on_ ()
-    $"!on'.Invoke (!deps, !fn) |> unbox<JS.Function>" : js_function
+    $"!on'.Invoke (!deps, !fn) |> unbox<unit -> unit>" : () -> ()
 
 let on_cleanup (fn : () -> ()) =
     inl onCleanup' = onCleanup_ ()

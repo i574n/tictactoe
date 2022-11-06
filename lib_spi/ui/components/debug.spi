@@ -4,90 +4,92 @@ open real_util
 open base_checkbox
 open base_select
 open state
+open base_table
+open row
 open hooks.use_store
 
 
 let debug (props : mut ()) =
     inl state, dispatch = use_store ()
 
-    inl checked, set_checked = create_signal' false
-
     box
         fun props' => {props' with
             Display = Some "flex"
             FlexDirection = Some "column"
-            Padding = Some "2px 6px"
             Overflow = Some "auto"
-            Position = Some "absolute"
+            Position = if state.settings.ui.modal = None then Some "absolute" else None
             Right = Some "0"
             Bottom = Some "0"
             MaxHeight = Some "80vh"
             MaxWidth = Some "50vw"
-            BackgroundColor = Some "#00000066"
+            BackgroundColor = Some "$blackAlpha9"
             ZIndex = Some 2
         }
         fun () => ;[
-            box
-                fun props' => {props' with
-                    Flex = Some "1"
-                }
+            create_component base_table
+                id
                 fun () => ;[
-                    if checked () then
-                        pre
-                            fun props' => {props' with
-                                FontSize = Some "9px"
-                            }
-                            fun () => ;[
-                                state
-                                |> real stringify_fmt `(mut state.state__)
-                                |> str
-                            ]
-                    else empty_fragment ()
-                ]
-
-            box
-                fun props' => {props' with
-                    AlignSelf = Some "flex-end"
-                    Display = Some "flex"
-                    FlexDirection = Some "column"
-                    Css =
-                        init_props fun props' => {props' with
-                            FlexFlow = Some "wrap"
-                        } |> props_entries |> create_props |> Some
-                }
-                fun () => ;[
-                    if checked () then
-                        create_component base_simple_select
-                            fun props' => {props' with
-                                Placeholder = Some "Log level"
-                                Each = Some <| a ;["Debug"; "Info"; "Warn"; "Error"] |> am.map real to_any `string
-                                Value =
-                                    match state.settings.log_level with
-                                    | Debug => "Debug"
-                                    | Info => "Info"
-                                    | Warn => "Warn"
-                                    | Error => "Error"
-                                    |> real to_any `string
-                                    |> Some
-                                OnChange = Some <| fun value =>
-                                    dispatch fun _old_state state =>
-                                        state.settings.log_level <-
-                                            match value |> real to_string `any with
-                                            | "Debug" => Debug
-                                            | "Info" => Info
-                                            | "Warn" => Warn
-                                            | "Error" => Error
-                                            | _ => state.settings.log_level
-                            }
-                            fun () => ;[]
-                    else empty_fragment ()
-
-                    create_custom_component base_checkbox {
-                        Checked = checked
-                        OnChange = set_checked
+                    create_custom_component row {
+                        Status = CheckDisabled
+                        OnLoad = None
+                        OnUnload = None
                         Props = fun props' => {props' with
-                            Children = Some <| fun () => ;[
-                                str "Debug"
+                            Title = Some <| str "Debug"
+                            Children = Some fun () => ;[
+                                create_component base_table
+                                    id
+                                    fun () => ;[
+                                        create_custom_component row {
+                                            Status = CheckHidden
+                                            OnLoad = None
+                                            OnUnload = None
+                                            Props = fun props' => {props' with
+                                                Title = Some <| str "Log Level"
+                                                Children = Some fun () => ;[
+                                                    create_component base_simple_select
+                                                        fun props' => {props' with
+                                                            MarginTop = Some "2px"
+                                                            Each = Some <|
+                                                                a ;[Debug; Info; Warn; Error]
+                                                                    |> am.map log_level_label
+                                                                    |> am.map real to_any `string
+                                                            Value =
+                                                                state.settings.log_level
+                                                                |> log_level_label
+                                                                |> real to_any `string
+                                                                |> Some
+                                                            OnChange = Some <| fun value =>
+                                                                dispatch fun _old_state state =>
+                                                                    state.settings.log_level <-
+                                                                        value
+                                                                        |> real to_string `any
+                                                                        |> new_log_level
+                                                        }
+                                                        fun () => ;[]
+                                                ]
+                                            }
+                                        }
+                                        create_custom_component row {
+                                            Status = CheckHidden
+                                            OnLoad = None
+                                            OnUnload = None
+                                            Props = fun props' => {props' with
+                                                Title = Some <| str "State"
+                                                // Padding = Some "3px"
+                                                Children = Some fun () => ;[
+                                                    pre
+                                                        fun props' => {props' with
+                                                            FontSize = Some "8px"
+                                                        }
+                                                        fun () => ;[
+                                                            state
+                                                            |> real stringify_fmt `(mut state.state__)
+                                                            |> str
+                                                        ]
+                                                ]
+                                            }
+                                        }
+                                    ]
                             ]
                         }
                     }

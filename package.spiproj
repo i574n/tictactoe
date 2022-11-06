@@ -28,9 +28,9 @@ modules:
                 base_checkbox
                 base_select
                 external_link
-                debug
                 loader
                 row
+                debug
                 links
                 state_input
                 chain_connection

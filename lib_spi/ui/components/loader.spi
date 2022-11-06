@@ -25,14 +25,15 @@ let loader (props : mut loader_props) =
 
     inl loader_id : i32 = real random ()
 
-    inl loaded, set_loaded = create_signal' custom_props.Loaded
-    inl refreshing, set_refreshing = create_signal' false
-    inl modal, set_modal = create_signal' custom_props.Modal
+    inl loaded, set_loaded = create_signal custom_props.Loaded
+    inl refreshing, set_refreshing = create_signal false
 
-    on'
-        fun () => ;[real to_any `bool (refreshing ())]
-        fun () => if refreshing () then set_refreshing false
-    |> create_effect'
+    create_effect fun () =>
+        if custom_props.Modal then
+            dispatch fun _old_state state =>
+                state.settings.ui.modal <- Some loader_id
+
+    create_effect fun () => if refreshing () then set_refreshing false
 
     inl on_unload' () =
         match custom_props.OnUnload with
@@ -48,6 +49,8 @@ let loader (props : mut loader_props) =
     if custom_props.Loaded = true then on_load' ()
 
     inl icon_height = "20px"
+
+    inl is_modal () = state.settings.ui.modal = Some loader_id
 
     box
         fun props' => {props' with
@@ -75,13 +78,13 @@ let loader (props : mut loader_props) =
             else
                 box
                     fun props' => {props' with
-                        ZIndex = if modal () then Some 1 else None
-                        Position = if modal () then Some "absolute" else None
-                        Top = if modal () then Some "0" else None
-                        Right = if modal () then Some "0" else None
-                        Bottom = if modal () then Some "0" else None
-                        Left = if modal () then Some "0" else None
-                        BackgroundColor = if modal () then Some "$bg" else None
+                        ZIndex = if is_modal () then Some 1 else None
+                        Position = if is_modal () then Some "absolute" else None
+                        Top = if is_modal () then Some "0" else None
+                        Right = if is_modal () then Some "0" else None
+                        Bottom = if is_modal () then Some "0" else None
+                        Left = if is_modal () then Some "0" else None
+                        BackgroundColor = if is_modal () then Some "$bg" else None
                         Display = Some "flex"
                         Flex = Some "1"
                     }
@@ -129,20 +132,18 @@ let loader (props : mut loader_props) =
                                                 fun () => ;[]
                                             icon_button
                                                 fun props' => {props' with
-                                                    AriaLabel = Some (if modal () then "Restore" else "Maximize")
+                                                    AriaLabel = Some <| if is_modal () then "Restore" else "Maximize"
                                                     Size = Some "xs"
                                                     Height = Some icon_height
                                                     ColorScheme = Some "neutral"
                                                     OnClick = Some fun () =>
-                                                        inl new_modal = not (modal ())
-                                                        set_modal new_modal
                                                         dispatch fun _old_state state =>
                                                             state.settings.ui.modal <-
-                                                                if new_modal then Some loader_id else None
+                                                                if is_modal () |> not then Some loader_id else None
                                                     Icon = Some <|
                                                         create_custom_component base_icon {
                                                             Icon =
-                                                                if modal ()
+                                                                if is_modal ()
                                                                 then biRegularDownArrow_
                                                                 else biRegularUpArrow_
                                                             Props = id

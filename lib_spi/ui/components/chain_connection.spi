@@ -13,7 +13,7 @@ let chain_connection (props : mut solid_props) =
                 OnLoad = None
                 OnUnload = None
                 Props = fun props' => {props' with
-                    Title = Some (str "Token")
+                    Title = Some <| str "Token"
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
@@ -28,7 +28,7 @@ let chain_connection (props : mut solid_props) =
                 OnLoad = None
                 OnUnload = None
                 Props = fun props' => {props' with
-                    Title = Some (str "URL")
+                    Title = Some <| str "URL"
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
@@ -43,7 +43,7 @@ let chain_connection (props : mut solid_props) =
                 OnLoad = None
                 OnUnload = None
                 Props = fun props' => {props' with
-                    Title = Some (str "Port")
+                    Title = Some <| str "Port"
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component state_input {

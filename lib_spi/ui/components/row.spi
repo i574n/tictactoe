@@ -21,7 +21,7 @@ let row (props : mut row_props) =
     inl custom_props = props
     inl props = init_props props.Props
 
-    inl checked, set_checked = create_signal' (custom_props.Status <> CheckDisabled)
+    inl checked, set_checked = create_signal (custom_props.Status <> CheckDisabled)
 
     tr
         fun props' => {props' with

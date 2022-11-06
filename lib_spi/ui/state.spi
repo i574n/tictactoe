@@ -10,6 +10,18 @@ union log_level =
     | Info
     | Warn
     | Error
+inl log_level_label = function
+    | Debug => "Debug"
+    | Info => "Info"
+    | Warn => "Warn"
+    | Error => "Error"
+inl new_log_level = function
+    | "Debug" => Debug
+    | "Info" => Info
+    | "Warn" => Warn
+    | "Error" => Error
+    | _ => Error
+
 type chain_account = {account : account; address : string; private_key : string; mnemonic : string}
 type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
 type db_status = {client : db_type; server : db_type}
