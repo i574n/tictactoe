@@ -65,16 +65,6 @@ let row (props : mut row_props) =
             | None => empty_fragment ()
 
             match props.Children with
-            | None =>
-                td
-                    fun props' => {props' with
-                        Border = Some "0"
-                        Padding = Some "0"
-                        LineHeight = Some "9px"
-                    }
-                    fun () => ;[
-                        str "&nbsp;"
-                    ]
             | Some children =>
                 td
                     fun props' => {props' with
@@ -105,5 +95,15 @@ let row (props : mut row_props) =
                                     }
                                 }
                             else empty_fragment ()
+                    ]
+            | None =>
+                td
+                    fun props' => {props' with
+                        Border = Some "0"
+                        Padding = Some "0"
+                        LineHeight = Some "9px"
+                    }
+                    fun () => ;[
+                        str "&nbsp;"
                     ]
         ]

@@ -2,6 +2,7 @@ open real_solid
 open solid
 open state
 open real_js
+open js
 open real_util
 open base_button
 open base_icon
@@ -24,6 +25,13 @@ let loader (props : mut loader_props) =
     inl state, dispatch = use_store ()
 
     inl loader_id : i32 = real random ()
+
+    inl get_locals () : array any = ;[
+        loader_id |> real to_any `i32
+    ]
+    inl log : array any -> () = new_log (fun () => state.settings.log_level = Debug) get_locals "#de884c"
+
+    log ;[real to_any `string "> loader ()"]
 
     inl loaded, set_loaded = create_signal custom_props.Loaded
     inl refreshing, set_refreshing = create_signal false
@@ -51,6 +59,8 @@ let loader (props : mut loader_props) =
     inl icon_height = "20px"
 
     inl is_modal () = state.settings.ui.modal = Some loader_id
+
+    inl children = props.Children |> optionm.map create_memo
 
     box
         fun props' => {props' with
@@ -89,7 +99,7 @@ let loader (props : mut loader_props) =
                         Flex = Some "1"
                     }
                     fun () => ;[
-                        match props.Children with
+                        match children with
                         | Some children =>
                             box
                                 fun props' => {props' with

@@ -47,7 +47,6 @@ open hooks.use_store
 let db_listener (store : any) (props : mut ()) =
     inl state, dispatch = use_store ()
     inl get_locals () : array any = ;[
-
     ]
     inl log : array any -> () = new_log (fun () => state.settings.log_level = Debug) get_locals "#cf1100"
 

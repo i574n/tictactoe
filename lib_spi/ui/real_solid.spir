@@ -284,7 +284,7 @@ inl add_children_props
     :
     solid_props
     =
-    {props with Children = some `(() -> array jsx_element) children}
+    {props with Children = children |> some `(() -> array jsx_element)}
 
 let create_native_component
     (cmp : js_function)
