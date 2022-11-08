@@ -1192,9 +1192,8 @@ export function closure8(unitVar: void, _arg: [US3, US3, US3, US6, US3, US3, US3
 }
 
 export function closure11(v0_1: Mut1, _arg: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]): [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3] {
-    const patternInput: [US5, US2] = [v0_1.l9, v0_1.l10];
-    const v78_1: string = "0";
-    return [_arg[0], _arg[1], _arg[2], _arg[3], US3_US3_1("$blackAlpha9"), _arg[5], _arg[6], _arg[7], _arg[8], US3_US3_1(v78_1), _arg[10], _arg[11], _arg[12], _arg[13], _arg[14], _arg[15], _arg[16], _arg[17], US3_US3_1("flex"), _arg[19], _arg[20], _arg[21], US3_US3_1("column"), _arg[23], _arg[24], _arg[25], _arg[26], _arg[27], _arg[28], _arg[29], _arg[30], _arg[31], _arg[32], _arg[33], _arg[34], _arg[35], _arg[36], _arg[37], US3_US3_1("80vh"), US3_US3_1("50vw"), _arg[40], _arg[41], _arg[42], _arg[43], US3_US3_1("auto"), _arg[45], _arg[46], _arg[47], _arg[48], _arg[49], _arg[50], _arg[51], _arg[52], (patternInput[1].tag === US2_Tag.US2_1) ? US3_US3_0() : US3_US3_1("absolute"), US3_US3_1(v78_1), _arg[55], _arg[56], _arg[57], _arg[58], _arg[59], _arg[60], _arg[61], _arg[62], _arg[63], _arg[64], _arg[65], US2_US2_1(2), _arg[67]];
+    const v79_1: string = "0";
+    return [_arg[0], _arg[1], _arg[2], _arg[3], US3_US3_1("$blackAlpha9"), _arg[5], _arg[6], _arg[7], _arg[8], US3_US3_1(v79_1), _arg[10], _arg[11], _arg[12], _arg[13], _arg[14], _arg[15], _arg[16], _arg[17], US3_US3_1("flex"), _arg[19], _arg[20], _arg[21], US3_US3_1("column"), _arg[23], _arg[24], _arg[25], _arg[26], _arg[27], _arg[28], _arg[29], _arg[30], _arg[31], _arg[32], _arg[33], _arg[34], _arg[35], _arg[36], _arg[37], US3_US3_1("80vh"), US3_US3_1("50vw"), _arg[40], _arg[41], _arg[42], _arg[43], US3_US3_1("auto"), _arg[45], _arg[46], _arg[47], _arg[48], _arg[49], _arg[50], _arg[51], _arg[52], (v0_1.l10.tag === US2_Tag.US2_0) ? US3_US3_1("absolute") : US3_US3_0(), US3_US3_1(v79_1), _arg[55], _arg[56], _arg[57], _arg[58], _arg[59], _arg[60], _arg[61], _arg[62], _arg[63], _arg[64], _arg[65], US2_US2_1(2), _arg[67]];
 }
 
 export function closure14(v0_1: Mut3, _arg: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]): [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3] {
@@ -1495,10 +1494,9 @@ export function closure31(v0_1: any, _arg: [US3, US3, US3, US6, US3, US3, US3, U
 }
 
 export function method24(v0_1: (arg0: Mut5) => any, v1_1: () => boolean, v2: (arg0: boolean) => void, v3: (arg0: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]) => [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]): any {
-    const v4: (arg0: any) => any = v0_1;
-    const v5: Mut5 = new Mut5(v1_1, v2, v3);
-    const v9: any = createComponent;
-    return v9(v4, v5);
+    const v4: Mut5 = new Mut5(v1_1, v2, v3);
+    const v7: any = createComponent;
+    return v7(v0_1, v4);
 }
 
 export function closure24(v0_1: Mut4, v1_1: (arg0: boolean) => void, v2: () => boolean, v3: any, unitVar: void): any[] {
@@ -1643,13 +1641,12 @@ export function closure54(unitVar: void, unitVar_1: void): any[] {
 }
 
 export function method30(v0_1: (arg0: Mut3) => any, v1_1: (arg0: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]) => [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3], v2: () => any[]): any {
-    const v3: (arg0: any) => any = v0_1;
     const patternInput: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3] = method16();
     const patternInput_1: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3] = v1_1([patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], patternInput[10], patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], patternInput[56], patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62], patternInput[63], patternInput[64], patternInput[65], patternInput[66], patternInput[67]]);
-    const v141: Mut3 = new Mut3(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], patternInput_1[10], US8_US8_1(v2), patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], patternInput_1[18], patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], patternInput_1[26], patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], patternInput_1[44], patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], patternInput_1[56], patternInput_1[57], patternInput_1[58], patternInput_1[59], patternInput_1[60], patternInput_1[61], patternInput_1[62], patternInput_1[63], patternInput_1[64], patternInput_1[65], patternInput_1[66], patternInput_1[67]);
-    v141.children = v2;
-    const v145: any = createComponent;
-    return v145(v3, v141);
+    const v140: Mut3 = new Mut3(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], patternInput_1[10], US8_US8_1(v2), patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], patternInput_1[18], patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], patternInput_1[26], patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], patternInput_1[44], patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], patternInput_1[56], patternInput_1[57], patternInput_1[58], patternInput_1[59], patternInput_1[60], patternInput_1[61], patternInput_1[62], patternInput_1[63], patternInput_1[64], patternInput_1[65], patternInput_1[66], patternInput_1[67]);
+    v140.children = v2;
+    const v143: any = createComponent;
+    return v143(v0_1, v140);
 }
 
 export function closure48(v0_1: (arg0: boolean) => void, v1_1: Mut6, v2: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void, v3: Mut1, unitVar: void): any[] {
@@ -1717,10 +1714,9 @@ export function closure65(unitVar: void, unitVar_1: void): any {
 }
 
 export function method32(v0_1: (arg0: Mut8) => any, v1_1: (arg0: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]) => [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3], v2: () => any): any {
-    const v3: (arg0: any) => any = v0_1;
-    const v4: Mut8 = new Mut8(v1_1, v2, v1_1);
-    const v8: any = createComponent;
-    return v8(v3, v4);
+    const v3: Mut8 = new Mut8(v1_1, v2, v1_1);
+    const v6: any = createComponent;
+    return v6(v0_1, v3);
 }
 
 export function closure66(v0_1: (arg0: boolean) => void, unitVar: void): void {
@@ -1899,10 +1895,9 @@ export function closure79(v0_1: () => any[], _arg: [US3, US3, US3, US6, US3, US3
 }
 
 export function method33(v0_1: (arg0: Mut6) => any, v1_1: boolean, v2: boolean, v3: US14, v4: US14, v5: (arg0: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]) => [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]): any {
-    const v6: (arg0: any) => any = v0_1;
-    const v7: Mut6 = new Mut6(v1_1, v2, v3, v4, v5);
-    const v11: any = createComponent;
-    return v11(v6, v7);
+    const v6: Mut6 = new Mut6(v1_1, v2, v3, v4, v5);
+    const v9: any = createComponent;
+    return v9(v0_1, v6);
 }
 
 export function closure36(v0_1: Mut4, v1_1: () => boolean, v2: () => any[], unitVar: void): any[] {
@@ -2129,10 +2124,9 @@ export function closure83(v0_1: (arg0: (arg0: Mut1, arg1: Mut1) => void) => void
 }
 
 export function method36(v0_1: (arg0: Mut4) => any, v1_1: US14, v2: US14, v3: (arg0: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]) => [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3], v4: US15): any {
-    const v5: (arg0: any) => any = v0_1;
-    const v6: Mut4 = new Mut4(v1_1, v2, v3, v4);
-    const v10: any = createComponent;
-    return v10(v5, v6);
+    const v5: Mut4 = new Mut4(v1_1, v2, v3, v4);
+    const v8: any = createComponent;
+    return v8(v0_1, v5);
 }
 
 export function closure99(unitVar: void, _arg: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]): [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3] {
@@ -2207,10 +2201,9 @@ export function closure10(unitVar: void, v0_1: Mut2): any {
 }
 
 export function method37(v0_1: (arg0: Mut2) => any): any {
-    const v1_1: (arg0: any) => any = v0_1;
-    const v2: Mut2 = Mut2_$ctor();
-    const v6: any = createComponent;
-    return v6(v1_1, v2);
+    const v1_1: Mut2 = Mut2_$ctor();
+    const v4: any = createComponent;
+    return v4(v0_1, v1_1);
 }
 
 export function closure101(unitVar: void, _arg: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]): [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3] {
@@ -2242,10 +2235,9 @@ export function closure114(unitVar: void, unitVar_1: void): any {
 }
 
 export function method40(v0_1: (arg0: Mut8) => any, v1_1: (arg0: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]) => [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3], v2: () => any, v3: (arg0: [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]) => [US3, US3, US3, US6, US3, US3, US3, US3, US3, US3, US7, US8, US3, US3, US7, US9, US3, US3, US3, US10, US7, US3, US3, US3, US3, US3, US3, US11, US3, US3, US3, US11, US3, US3, US3, US3, US3, US3, US3, US3, US12, US13, US12, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US3, US11, US3, US3, US9, US9, US3, US2, US3]): any {
-    const v4: (arg0: any) => any = v0_1;
-    const v5: Mut8 = new Mut8(v1_1, v2, v3);
-    const v9: any = createComponent;
-    return v9(v4, v5);
+    const v4: Mut8 = new Mut8(v1_1, v2, v3);
+    const v7: any = createComponent;
+    return v7(v0_1, v4);
 }
 
 export function closure110(v0_1: Mut3, unitVar: void): any[] {
@@ -2546,10 +2538,9 @@ export function closure160(unitVar: void, v0_1: Mut1): (arg0: Mut1, arg1: US3) =
 }
 
 export function method46(v0_1: (arg0: Mut9) => any, v1_1: (arg0: Mut1) => US3, v2: (arg0: Mut1, arg1: Mut1, arg2: US3) => void): any {
-    const v3: (arg0: any) => any = v0_1;
-    const v4: Mut9 = new Mut9(v1_1, v2);
-    const v8: any = createComponent;
-    return v8(v3, v4);
+    const v3: Mut9 = new Mut9(v1_1, v2);
+    const v6: any = createComponent;
+    return v6(v0_1, v3);
 }
 
 export function closure152(unitVar: void, unitVar_1: void): any[] {
@@ -2654,10 +2645,9 @@ export function closure177(unitVar: void, v0_1: Mut1): (arg0: Mut1, arg1: US2) =
 }
 
 export function method48(v0_1: (arg0: Mut10) => any, v1_1: (arg0: Mut1) => US2, v2: (arg0: Mut1, arg1: Mut1, arg2: US2) => void): any {
-    const v3: (arg0: any) => any = v0_1;
-    const v4: Mut10 = new Mut10(v1_1, v2);
-    const v8: any = createComponent;
-    return v8(v3, v4);
+    const v3: Mut10 = new Mut10(v1_1, v2);
+    const v6: any = createComponent;
+    return v6(v0_1, v3);
 }
 
 export function closure170(unitVar: void, unitVar_1: void): any[] {
@@ -3131,10 +3121,9 @@ export function closure232(v0_1: Mut12, _arg: [US4, int32, string, string]): (ar
 }
 
 export function method56(v0_1: (arg0: Mut13) => any, v1_1: US4, v2: (arg0: [US4, int32, string, string]) => US3, v3: (arg0: [US4, int32, string, string], arg1: US3) => [US4, int32, string, string]): any {
-    const v4: (arg0: any) => any = v0_1;
-    const v5: Mut13 = new Mut13(v1_1, v2, v3);
-    const v9: any = createComponent;
-    return v9(v4, v5);
+    const v4: Mut13 = new Mut13(v1_1, v2, v3);
+    const v7: any = createComponent;
+    return v7(v0_1, v4);
 }
 
 export function closure225(v0_1: Mut12, unitVar: void): any[] {
@@ -3242,10 +3231,9 @@ export function closure242(v0_1: Mut12, _arg: [US4, int32, string, string]): (ar
 }
 
 export function method59(v0_1: (arg0: Mut15) => any, v1_1: US4, v2: (arg0: [US4, int32, string, string]) => US2, v3: (arg0: [US4, int32, string, string], arg1: US2) => [US4, int32, string, string]): any {
-    const v4: (arg0: any) => any = v0_1;
-    const v5: Mut15 = new Mut15(v1_1, v2, v3);
-    const v9: any = createComponent;
-    return v9(v4, v5);
+    const v4: Mut15 = new Mut15(v1_1, v2, v3);
+    const v7: any = createComponent;
+    return v7(v0_1, v4);
 }
 
 export function closure235(v0_1: Mut12, unitVar: void): any[] {
@@ -3281,10 +3269,9 @@ export function closure222(unitVar: void, v0_1: Mut12): any {
 }
 
 export function method60(v0_1: (arg0: Mut12) => any, v1_1: US4): any {
-    const v2: (arg0: any) => any = v0_1;
-    const v3: Mut12 = new Mut12(v1_1);
-    const v7: any = createComponent;
-    return v7(v2, v3);
+    const v2: Mut12 = new Mut12(v1_1);
+    const v5: any = createComponent;
+    return v5(v0_1, v2);
 }
 
 export function closure221(unitVar: void, unitVar_1: void): any[] {
@@ -4405,29 +4392,29 @@ export const v74 = createObj(v73);
 
 window.components_spi = v74;
 
-export const patternInput$00405085 = method0();
+export const patternInput$00405066 = method0();
 
-export const v85 = patternInput$00405085[10];
+export const v85 = patternInput$00405066[10];
 
-export const v84 = patternInput$00405085[9];
+export const v84 = patternInput$00405066[9];
 
-export const v83 = patternInput$00405085[8];
+export const v83 = patternInput$00405066[8];
 
-export const v82 = patternInput$00405085[7];
+export const v82 = patternInput$00405066[7];
 
-export const v81 = patternInput$00405085[6];
+export const v81 = patternInput$00405066[6];
 
-export const v80 = patternInput$00405085[5];
+export const v80 = patternInput$00405066[5];
 
-export const v79 = patternInput$00405085[4];
+export const v79 = patternInput$00405066[4];
 
-export const v78 = patternInput$00405085[3];
+export const v78 = patternInput$00405066[3];
 
-export const v77 = patternInput$00405085[2];
+export const v77 = patternInput$00405066[2];
 
-export const v76 = patternInput$00405085[1];
+export const v76 = patternInput$00405066[1];
 
-export const v75 = patternInput$00405085[0];
+export const v75 = patternInput$00405066[0];
 
 export const v86 = new Mut1(v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85);
 

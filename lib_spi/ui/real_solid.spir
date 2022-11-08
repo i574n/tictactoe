@@ -223,10 +223,6 @@ inl prop_keys () =
     }
 
 
-inl real_init_props (props_fn : solid_props -> solid_props) : solid_props =
-    inl new_props : solid_props = real_empty_props ()
-    props_fn new_props
-
 let record_entries (props : solid_props) : a i32 js_obj_prop =
     inl record_fold_item {state key value} =
         inl v =
@@ -271,9 +267,10 @@ inl real_create_memo forall a. (fn : () -> a) : () -> a =
     inl create_memo : (() -> a) -> (() -> a) = $"!create_memo |> unbox<(unit -> `a) -> (unit -> `a)>"
     real create_memo fn
 
-inl create_component'
-    (cmp : any -> jsx_element)
-    (props : any)
+inl create_component' forall props_type.
+    (cmp : props_type -> jsx_element)
+    (props : props_type)
+    : jsx_element
     =
     inl createComponent' = createComponent_ ()
     $"!createComponent'.Invoke (!cmp, !props) |> unbox<JSX.Element>" : jsx_element
@@ -286,34 +283,29 @@ inl add_children_props
     =
     {props with Children = children |> some `(() -> array jsx_element)}
 
+inl real_init_props (props_fn : solid_props -> solid_props) : solid_props =
+    inl props : solid_props = real_empty_props ()
+    props_fn props
+
 let create_native_component
     (cmp : js_function)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
     : jsx_element
     =
-    inl new_props : solid_props = real_empty_props ()
-    inl new_props : solid_props = props_fn new_props
-    inl new_props_entries : a i32 js_obj_prop =
-        inl props : solid_props = add_children_props children new_props
-        record_entries props
-
-    inl new_props_obj =
-        create_obj new_props_entries
-
+    inl props : solid_props = props_fn |> real_init_props |> add_children_props children
+    inl new_props_entries : a i32 js_obj_prop = record_entries props
+    inl props : any = create_obj new_props_entries
     inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
-    create_component' new_cmp new_props_obj
+    create_component' `any new_cmp props
 
 let create_custom_component forall props_type.
     (cmp : mut props_type -> jsx_element)
     (props : props_type)
     : jsx_element
     =
-    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
-    inl mut_props : mut props_type = mut `props_type props
-    inl props_obj : any = to_any `(mut props_type) mut_props
-    create_component' new_cmp props_obj
-
+    inl new_props : mut props_type = mut `props_type props
+    create_component' `(mut props_type) cmp new_props
 
 let create_component forall solid_props.
     (cmp : mut solid_props -> jsx_element)
@@ -321,13 +313,10 @@ let create_component forall solid_props.
     (children : () -> array jsx_element)
     : jsx_element
     =
-    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
-    inl props : solid_props =
-        inl props = real_init_props props_fn
-        add_children_props children props
+    inl props : solid_props = props_fn |> real_init_props |> add_children_props children
     inl new_props : mut solid_props = mut `solid_props props
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
-    create_component' new_cmp (to_any `(mut solid_props) new_props)
+    create_component' `(mut solid_props) cmp new_props
 
 let real_create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
     inl createSignal' = createSignal_ ()
