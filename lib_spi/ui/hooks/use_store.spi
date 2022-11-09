@@ -6,6 +6,7 @@ open real_solid
 
 let use_store () =
     inl useStoreon' = real useStoreon_ ()
+    inl batch' = real batch_ ()
     inl fns : array js_function = $"!useStoreon'.Invoke () |> unbox<JS.Function[]>"
     inl state_obj : mut state__ = $"!fns.[0] |> unbox"
     inl dispatch_raw : js_function = $"!fns.[1] |> unbox"
@@ -15,7 +16,9 @@ let use_store () =
     inl dispatch (fn : mut state__ -> mut state__ -> ()) =
         inl new_state : any = real create_obj (am.empty `a `i32 `js_obj_prop)
         inl new_state : mut state__ = $"!new_state |> unbox"
-        fn state_obj new_state
-        dispatch_obj (real to_any `(mut state__) new_state)
+        inl batch_fn () : () =
+            fn state_obj new_state
+            dispatch_obj (real to_any `(mut state__) new_state)
+        $"!batch'.Invoke !batch_fn |> ignore" : ()
 
     state_obj, dispatch

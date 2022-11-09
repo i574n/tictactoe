@@ -17,7 +17,7 @@ let debug (props : mut ()) =
             Display = Some "flex"
             FlexDirection = Some "column"
             Overflow = Some "auto"
-            Position = if state.settings.ui.modal = None then Some "absolute" else None
+            Position = Some "absolute"
             Right = Some "0"
             Bottom = Some "0"
             MaxHeight = Some "80vh"
@@ -75,7 +75,6 @@ let debug (props : mut ()) =
                                             OnUnload = None
                                             Props = fun props' => {props' with
                                                 Title = Some <| str "State"
-                                                // Padding = Some "3px"
                                                 Children = Some fun () => ;[
                                                     pre
                                                         fun props' => {props' with

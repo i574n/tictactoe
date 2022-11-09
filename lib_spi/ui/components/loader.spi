@@ -60,8 +60,6 @@ let loader (props : mut loader_props) =
 
     inl is_modal () = state.settings.ui.modal = Some loader_id
 
-    inl children = props.Children |> optionm.map create_memo
-
     box
         fun props' => {props' with
             Id = props.Id
@@ -89,7 +87,7 @@ let loader (props : mut loader_props) =
                 box
                     fun props' => {props' with
                         ZIndex = if is_modal () then Some 1 else None
-                        Position = if is_modal () then Some "absolute" else None
+                        Position = if is_modal () then Some "fixed" else None
                         Top = if is_modal () then Some "0" else None
                         Right = if is_modal () then Some "0" else None
                         Bottom = if is_modal () then Some "0" else None
@@ -99,7 +97,7 @@ let loader (props : mut loader_props) =
                         Flex = Some "1"
                     }
                     fun () => ;[
-                        match children with
+                        match props.Children with
                         | Some children =>
                             box
                                 fun props' => {props' with

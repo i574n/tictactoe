@@ -88,6 +88,8 @@ inl props_entries (props : solid_props) : a i32 js_obj_prop =
 
 inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
 
+inl solid_children (children : () -> array jsx_element) : () -> array jsx_element = real real_children children
+
 inl create_custom_component forall props_type.
     (cmp : mut props_type -> jsx_element)
     (props : props_type)
@@ -135,24 +137,24 @@ inl iframe props =
     inl hope : js_function = real hope_ ()
     create_native_component $"!hope?iframe" props fun () => ;[]
 
-inl pre props children =
+inl pre props =
     inl hope : js_function = real hope_ ()
-    create_native_component $"!hope?pre" props children
+    create_native_component $"!hope?pre" props
 
 inl anchor_ () = real import "Anchor" "@hope-ui/solid"
-inl anchor props children = create_native_component (anchor_ ()) props children
+inl anchor props = create_native_component (anchor_ ()) props
 
 inl box_ () = real import "Box" "@hope-ui/solid"
-inl box props children = create_native_component (box_ ()) props children
+inl box props = create_native_component (box_ ()) props
 
 inl button_ () = real import "Button" "@hope-ui/solid"
-inl button props children = create_native_component (button_ ()) props children
+inl button props = create_native_component (button_ ()) props
 
 inl icon_button_ () = real import "IconButton" "@hope-ui/solid"
-inl icon_button props children = create_native_component (icon_button_ ()) props children
+inl icon_button props = create_native_component (icon_button_ ()) props
 
 inl checkbox_ () = real import "Checkbox" "@hope-ui/solid"
-inl checkbox props children = create_native_component (checkbox_ ()) props children
+inl checkbox props = create_native_component (checkbox_ ()) props
 
 
 type for_props item_type =
@@ -169,85 +171,84 @@ inl loop_props forall item_type. (props : for_props item_type) : solid_props -> 
     }
 
 inl for_ () = real import "For" "solid-js"
-let for' forall item_type. (props : for_props item_type) (children : item_type -> array jsx_element) =
+inl for' forall item_type. (props : for_props item_type) (children : item_type -> array jsx_element) =
     create_native_component (for_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
 
 inl index_ () = real import "Index" "solid-js"
-let index' forall item_type. (props : for_props item_type) (children : (() -> item_type) -> array jsx_element) =
+inl index' forall item_type. (props : for_props item_type) (children : (() -> item_type) -> array jsx_element) =
     create_native_component (index_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
 
 inl show_ () = real import "Show" "solid-js"
-inl show props children = create_native_component (show_ ()) props children
+inl show props = create_native_component (show_ ()) props
 
 inl icon_ () = real import "Icon" "@hope-ui/solid"
-inl icon props children = create_native_component (icon_ ()) props children
+inl icon props = create_native_component (icon_ ()) props
 
 inl input_ () = real import "Input" "@hope-ui/solid"
-inl input props children = create_native_component (input_ ()) props children
+inl input props = create_native_component (input_ ()) props
 
 inl radio_ () = real import "Radio" "@hope-ui/solid"
-inl radio props children = create_native_component (radio_ ()) props children
+inl radio props = create_native_component (radio_ ()) props
 
 inl radio_group_ () = real import "RadioGroup" "@hope-ui/solid"
-inl radio_group props children = create_native_component (radio_group_ ()) props children
+inl radio_group props = create_native_component (radio_group_ ()) props
 
 inl select_ () = real import "Select" "@hope-ui/solid"
-inl select props children = create_native_component (select_ ()) props children
+inl select props = create_native_component (select_ ()) props
 
 inl select_content_ () = real import "SelectContent" "@hope-ui/solid"
-inl select_content props children = create_native_component (select_content_ ()) props children
+inl select_content props = create_native_component (select_content_ ()) props
 
 inl select_icon_ () = real import "SelectIcon" "@hope-ui/solid"
-inl select_icon props children = create_native_component (select_icon_ ()) props children
+inl select_icon props = create_native_component (select_icon_ ()) props
 
 inl select_listbox_ () = real import "SelectListbox" "@hope-ui/solid"
-inl select_listbox props children = create_native_component (select_listbox_ ()) props children
+inl select_listbox props = create_native_component (select_listbox_ ()) props
 
 inl select_option_ () = real import "SelectOption" "@hope-ui/solid"
-inl select_option props children = create_native_component (select_option_ ()) props children
+inl select_option props = create_native_component (select_option_ ()) props
 
 inl select_option_indicator_ () = real import "SelectOptionIndicator" "@hope-ui/solid"
-inl select_option_indicator props children = create_native_component (select_option_indicator_ ()) props children
+inl select_option_indicator props = create_native_component (select_option_indicator_ ()) props
 
 inl select_option_text_ () = real import "SelectOptionText" "@hope-ui/solid"
-inl select_option_text props children = create_native_component (select_option_text_ ()) props children
+inl select_option_text props = create_native_component (select_option_text_ ()) props
 
 inl select_placeholder_ () = real import "SelectPlaceholder" "@hope-ui/solid"
-inl select_placeholder props children = create_native_component (select_placeholder_ ()) props children
+inl select_placeholder props = create_native_component (select_placeholder_ ()) props
 
 inl select_trigger_ () = real import "SelectTrigger" "@hope-ui/solid"
-inl select_trigger props children = create_native_component (select_trigger_ ()) props children
+inl select_trigger props = create_native_component (select_trigger_ ()) props
 
 inl select_value_ () = real import "SelectValue" "@hope-ui/solid"
-inl select_value props children = create_native_component (select_value_ ()) props children
+inl select_value props = create_native_component (select_value_ ()) props
 
 inl simple_select_ () = real import "SimpleSelect" "@hope-ui/solid"
-inl simple_select props children = create_native_component (simple_select_ ()) props children
+inl simple_select props = create_native_component (simple_select_ ()) props
 
 inl simple_option_ () = real import "SimpleOption" "@hope-ui/solid"
-inl simple_option props children = create_native_component (simple_option_ ()) props children
+inl simple_option props = create_native_component (simple_option_ ()) props
 
 inl stack_ () = real import "Stack" "@hope-ui/solid"
-inl stack props children = create_native_component (stack_ ()) props children
+inl stack props = create_native_component (stack_ ()) props
 
 inl table_ () = real import "Table" "@hope-ui/solid"
-inl table props children = create_native_component (table_ ()) props children
+inl table props = create_native_component (table_ ()) props
 
 inl tbody_ () = real import "Tbody" "@hope-ui/solid"
-inl tbody props children = create_native_component (tbody_ ()) props children
+inl tbody props = create_native_component (tbody_ ()) props
 
 inl td_ () = real import "Td" "@hope-ui/solid"
-inl td props children = create_native_component (td_ ()) props children
+inl td props = create_native_component (td_ ()) props
 
 inl tr_ () = real import "Tr" "@hope-ui/solid"
-inl tr props children = create_native_component (tr_ ()) props children
-
+inl tr props = create_native_component (tr_ ()) props
 
 inl empty_fragment () : jsx_element =
-    $"Html.fragment []"
+    $"null"
 
 inl str (str : string) : jsx_element =
-    $"Html.fragment [ !str |> unbox<JSX.Element> ]"
+    real fragment ($"!str |> unbox<JSX.Element>" : jsx_element)
 
 inl breakpoints ~{ initial sm } =
     join
