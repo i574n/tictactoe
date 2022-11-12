@@ -1,15 +1,58 @@
 open js
 open real_js
 open solid
+open real_solid
+open real_state
 open db
 open tictactoe
+open chain
 
 
-union log_level =
-    | Debug
-    | Info
-    | Warn
-    | Error
+
+inl use_context forall context_type value_type.
+    (signal_fn : context_type -> atom value_type)
+    : atom value_type
+    =
+    inl state_context : any = $"emitJsExpr () \"components_spi.state_context\""
+    inl useContext' = real useContext_ ()
+    inl context : context_type = $"!useContext'.Invoke !state_context |> unbox<`context_type>"
+    inl result : atom value_type = signal_fn context
+    result
+
+inl use_chain_token () : atom string =
+    real use_context `(`(new_state_context ())) `string fun context => context.chain.token
+
+inl use_chain_url () : atom string =
+    real use_context `(`(new_state_context ())) `string fun context => context.chain.url
+
+inl use_chain_port () : atom i32 =
+    real use_context `(`(new_state_context ())) `i32 fun context => context.chain.port
+
+inl use_chain_accounts () : atom (a i32 chain_account) =
+    real use_context `(`(new_state_context ())) `(a i32 chain_account) fun context => context.chain.accounts
+
+inl use_db_status () : atom (a i32 db_status) =
+    real use_context `(`(new_state_context ())) `(a i32 db_status) fun context => context.db.status
+
+inl use_db_connection () : atom (a i32 db_connection) =
+    real use_context `(`(new_state_context ())) `(a i32 db_connection) fun context => context.db.connection
+
+inl use_settings_log_level () : atom log_level =
+    real use_context `(`(new_state_context ())) `log_level fun context => context.settings.log_level
+
+inl use_settings_ui_modal () : atom (option i32) =
+    real use_context `(`(new_state_context ())) `(option i32) fun context => context.settings.ui.modal
+
+inl use_profile_tmp_counter () : atom (a i32 (i32 * i32)) =
+    real use_context `(`(new_state_context ())) `(a i32 (i32 * i32)) fun context => context.profile.tmp.counter
+
+inl use_profile_tmp_chain_status () : atom (a i32 (i32 * any)) =
+    real use_context `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_status
+
+inl use_profile_tmp_chain_deploy () : atom (a i32 (i32 * any)) =
+    real use_context `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_deploy
+
+
 inl log_level_label = function
     | Debug => "Debug"
     | Info => "Info"
@@ -21,105 +64,6 @@ inl new_log_level = function
     | "Warn" => Warn
     | "Error" => Error
     | _ => Error
-
-type chain_account = {account : account; address : string; private_key : string; mnemonic : string}
-type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
-type db_status = {client : db_type; server : db_type}
-type state__ =
-    {
-        chain : {
-            token : option string
-            url : option string
-            port : option i32
-            accounts : a i32 chain_account
-        }
-        db : {
-            connection : a i32 db_connection
-            status : a i32 db_status
-        }
-        profile : {
-            tmp : {
-                counter : a i32 (i32 * i32)
-                chain_status : a i32 (i32 * any)
-                chain_deploy : a i32 (i32 * any)
-            }
-        }
-        settings : {
-            log_level : log_level
-            ui : {
-                modal : option i32
-            }
-        }
-    }
-
-
-let empty_state () : state__ =
-    inl env : env = real get_env ()
-    {
-        chain = {
-            token = Some (tictactoe_testnet.token ())
-            url =
-                match env.codespace_name with
-                | "" => tictactoe_testnet.url ()
-                | codespace_name => $"$\"http://{!codespace_name}-4001.githubpreview.dev\""
-                |> Some
-            port =
-                match env.codespace_name with
-                | "" => tictactoe_testnet.port ()
-                | codespace_name => 80
-                |> Some
-            accounts = tictactoe_testnet.accounts ()
-        }
-        db = {
-            status = a ;[]
-            connection = a ;[
-                {
-                    db_type = GunRs
-                    url =
-                        match env.codespace_name, env.is_test with
-                        | "", _ => "ws://localhost"
-                        | _, true => "ws://localhost"
-                        | codespace_name, _ => $"$\"ws://{!codespace_name}-4944.githubpreview.dev\""
-                    port =
-                        match env.codespace_name, env.is_test with
-                        | "", true => 14944
-                        | "", false => 4944
-                        | _, _ => 80
-                    ws = "ws"
-                }
-                {
-                    db_type = GunJs
-                    url =
-                        match env.codespace_name, env.is_test with
-                        | "", _ => "wss://localhost"
-                        | _, true => "wss://localhost"
-                        | codespace_name, _ => $"$\"ws://{!codespace_name}-8765.githubpreview.dev\""
-                    port =
-                        match env.codespace_name, env.is_test with
-                        | "", true => 18765
-                        | "", false => 8765
-                        | _, _ => 80
-                    ws = "gun"
-                }
-            ]
-        }
-        settings = {
-            log_level =
-                if env.github_run_id = ""
-                then Debug
-                else Warn
-            ui = {
-                modal = None
-            }
-        }
-        profile = {
-            tmp = {
-                counter = a ;[]
-                chain_status = a ;[]
-                chain_deploy = a ;[]
-            }
-        }
-    }
 
 let empty_db_connection () : db_connection =
     {

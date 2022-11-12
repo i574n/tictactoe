@@ -45,9 +45,6 @@ export default defineConfig({
           'solid-devtools': ['solid-devtools'],
           'solid-devtools-transform': ['@solid-devtools/transform'],
 
-          'storeon': ['storeon'],
-          'storeon-solidjs': ['@storeon/solidjs'],
-
           'hope-ui': ['@hope-ui/solid'],
           'stitches': ['@stitches/core'],
           'solid-transition-group': ['solid-transition-group'],

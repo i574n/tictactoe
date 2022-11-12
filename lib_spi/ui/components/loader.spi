@@ -1,20 +1,20 @@
 open real_solid
 open solid
 open state
+open real_state
 open real_js
 open js
 open real_util
 open base_button
 open base_icon
-open hooks.use_store
 
 
 type loader_props =
     {
         Loaded : bool
         Modal : bool
-        OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
-        OnUnload : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
+        OnLoad : option (() -> ())
+        OnUnload : option (() -> ())
         Props : solid_props -> solid_props
     }
 
@@ -22,43 +22,48 @@ let loader (props : mut loader_props) =
     inl custom_props = props
     inl props = init_props props.Props
 
-    inl state, dispatch = use_store ()
-
     inl loader_id : i32 = real random ()
 
+    inl chain_token, set_chain_token = use_chain_token ()
+    inl log_level, set_log_level = use_settings_log_level ()
+    inl ui_modal, set_ui_modal = use_settings_ui_modal ()
+
     inl get_locals () : array any = ;[
+        "loader_id:" |> real to_any `string
         loader_id |> real to_any `i32
+        "chain_token:" |> real to_any `string
+        chain_token () |> real to_any `string
+        "log_level:" |> real to_any `string
+        log_level () |> real to_any `log_level
+        "ui_modal:" |> real to_any `string
+        ui_modal () |> real to_any `(option i32)
     ]
-    inl log : array any -> () = new_log (fun () => state.settings.log_level = Debug) get_locals "#de884c"
+    inl log : array any -> () = new_log (fun () => log_level () = Debug) get_locals "#de884c"
 
     log ;[real to_any `string "> loader ()"]
 
     inl loaded, set_loaded = create_signal custom_props.Loaded
     inl refreshing, set_refreshing = create_signal false
 
-    create_effect fun () =>
-        if custom_props.Modal then
-            dispatch fun _old_state state =>
-                state.settings.ui.modal <- Some loader_id
-
+    create_effect fun () => if custom_props.Modal then set_ui_modal <| Some loader_id
     create_effect fun () => if refreshing () then set_refreshing false
 
     inl on_unload' () =
         match custom_props.OnUnload with
-        | Some on_unload => on_unload state dispatch
+        | Some on_unload => on_unload ()
         | None => ()
     real on_cleanup on_unload'
 
     inl on_load' () =
         match custom_props.OnLoad with
-        | Some on_load => on_load state dispatch
+        | Some on_load => on_load ()
         | None => ()
 
     if custom_props.Loaded = true then on_load' ()
 
     inl icon_height = "20px"
 
-    inl is_modal () = state.settings.ui.modal = Some loader_id
+    inl is_modal () = ui_modal () = Some loader_id
 
     box
         fun props' => {props' with
@@ -102,7 +107,7 @@ let loader (props : mut loader_props) =
                             box
                                 fun props' => {props' with
                                     Position =
-                                        if state.settings.ui.modal = None
+                                        if ui_modal () = None
                                         then Some "relative"
                                         else None
                                     Flex = Some "1"
@@ -112,7 +117,7 @@ let loader (props : mut loader_props) =
                                     stack
                                         fun props' => {props' with
                                             Display =
-                                                match state.settings.ui.modal with
+                                                match ui_modal () with
                                                 | Some modal when modal <> loader_id => Some "none"
                                                 | _ => None
                                             Direction = Some "row"
@@ -145,9 +150,8 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     ColorScheme = Some "neutral"
                                                     OnClick = Some fun () =>
-                                                        dispatch fun _old_state state =>
-                                                            state.settings.ui.modal <-
-                                                                if is_modal () |> not then Some loader_id else None
+                                                        set_ui_modal
+                                                            if is_modal () |> not then Some loader_id else None
                                                     Icon = Some <|
                                                         create_custom_component base_icon {
                                                             Icon =

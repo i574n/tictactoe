@@ -1,0 +1,4 @@
+open tictactoe
+
+
+type chain_account = {account : account; address : string; private_key : string; mnemonic : string}

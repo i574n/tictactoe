@@ -4,13 +4,13 @@ open real_util
 open base_checkbox
 open base_select
 open state
+open real_state
 open base_table
 open row
-open hooks.use_store
 
 
 let debug (props : mut ()) =
-    inl state, dispatch = use_store ()
+    inl log_level, set_log_level = use_settings_log_level ()
 
     box
         fun props' => {props' with
@@ -54,16 +54,15 @@ let debug (props : mut ()) =
                                                                     |> am.map log_level_label
                                                                     |> am.map real to_any `string
                                                             Value =
-                                                                state.settings.log_level
+                                                                log_level ()
                                                                 |> log_level_label
                                                                 |> real to_any `string
                                                                 |> Some
                                                             OnChange = Some <| fun value =>
-                                                                dispatch fun _old_state state =>
-                                                                    state.settings.log_level <-
-                                                                        value
-                                                                        |> real to_string `any
-                                                                        |> new_log_level
+                                                                set_log_level <|
+                                                                    value
+                                                                    |> real to_string `any
+                                                                    |> new_log_level
                                                         }
                                                         fun () => ;[]
                                                 ]
@@ -81,9 +80,6 @@ let debug (props : mut ()) =
                                                             FontSize = Some "8px"
                                                         }
                                                         fun () => ;[
-                                                            state
-                                                            |> real stringify_fmt `(mut state.state__)
-                                                            |> str
                                                         ]
                                                 ]
                                             }

@@ -12,8 +12,8 @@ union row_status =
 type row_props =
     {
         Status : row_status
-        OnLoad : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
-        OnUnload : option (mut state__ -> ((mut state__ -> mut state__ -> ()) -> ()) -> ())
+        OnLoad : option (() -> ())
+        OnUnload : option (() -> ())
         Props : solid_props -> solid_props
     }
 

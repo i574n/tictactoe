@@ -251,13 +251,17 @@ let record_entries (props : solid_props) : a i32 js_obj_prop =
 inl batch_ ()  = import "batch" "solid-js"
 inl children_ ()  = import "children" "solid-js"
 inl createComponent_ () = import "createComponent" "solid-js"
+inl createContext_ () = import "createContext" "solid-js"
 inl createEffect_ () = import "createEffect" "solid-js"
-inl createSignal_ () = import "createSignal" "solid-js"
 inl createMemo_ () = import "createMemo" "solid-js"
+inl createResource_ () = import "createResource" "solid-js"
+inl createSignal_ () = import "createSignal" "solid-js"
+inl createStore_ () = import "createStore" "solid-js"
 inl on_ ()  = import "on" "solid-js"
 inl onCleanup_ ()  = import "onCleanup" "solid-js"
+inl useContext_ ()  = import "useContext" "solid-js"
+
 inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
-inl useStoreon_ () = import "useStoreon" "@storeon/solidjs"
 
 let use_color_mode () =
     inl useColorMode' = useColorMode_ ()
@@ -265,6 +269,11 @@ let use_color_mode () =
     inl color_mode : () -> string = $"!obj?colorMode |> unbox"
     inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox"
     color_mode, toggle_color_mode
+
+let use_context (context : any) =
+    inl useContext' = useContext_ ()
+    inl result : any = $"!useContext'.Invoke !context |> unbox"
+    result
 
 inl real_create_memo forall a. (fn : () -> a) : () -> a =
     inl create_memo : js_function = createMemo_ ()
@@ -341,12 +350,22 @@ inl create_component forall solid_props.
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
     create_component' `(mut solid_props) cmp new_props
 
-let real_create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) =
+
+type get a = () -> a
+type set a = a -> ()
+type atom a = get a * set a
+
+inl real_create_signal forall a. (default_value : a) : atom a =
     inl createSignal' = createSignal_ ()
     inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
-    inl get = $"!fns.[0] |> unbox" : () -> a
-    inl set = $"!fns.[1] |> unbox" : a -> ()
+    inl get = $"!fns.[0] |> unbox" : get a
+    inl set = $"!fns.[1] |> unbox" : set a
     get, set
+
+let real_create_context forall context_type. : any =
+    inl createContext' = createContext_ ()
+    inl context_fn : () -> context_type = $"fun () -> JS.undefined"
+    $"emitJsExpr () $\"{!createContext'}<ReturnType<typeof {!context_fn}>>()\"" : any
 
 let real_create_effect (on : () -> ()) : () =
     inl create_effect' = createEffect_ ()

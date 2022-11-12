@@ -5,21 +5,21 @@ open base_table
 open base_icon
 open real_util
 open real_js
-open hooks.use_store
+open state
 open hooks.use_fetch
 
 
 let counter (props : mut solid_props) =
-    inl state, dispatch = use_store ()
+    inl profile_tmp_counter, set_profile_tmp_counter = use_profile_tmp_counter ()
 
     inl request, clear =
         use_fetch
             "profile/tmp/counter"
-            state.profile.tmp.counter
+            (profile_tmp_counter ())
             fun new_state state new_value =>
-                new_state.profile.tmp.counter <- new_value
+                set_profile_tmp_counter new_value
             fun client =>
-                state.profile.tmp.counter
+                profile_tmp_counter ()
                 |> am.fold
                     fun acc (timestamp, n) => acc + 1i32
                     0i32
@@ -84,7 +84,7 @@ let counter (props : mut solid_props) =
                     id
                     fun () => ;[
                         index' {
-                            Each' = state.profile.tmp.counter |> am.toList |> listm.rev |> listm.toArray
+                            Each' = profile_tmp_counter () |> am.toList |> listm.rev |> listm.toArray
                         } fun item => ;[
                             create_custom_component row {
                                 Status = CheckHidden

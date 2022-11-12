@@ -1,18 +1,18 @@
 open solid
+open state
 open base_table
 open row
 open state_input
-open hooks.use_store
 
 
 let chain_accounts (props : mut solid_props) =
-    inl state, dispatch = use_store ()
+    inl chain_accounts, set_chain_accounts = use_chain_accounts ()
 
     create_component base_table
         id
         fun () => ;[
             for' {
-                Each' = state.chain.accounts
+                Each' = chain_accounts ()
             } fun account => ;[
                 create_custom_component row {
                     Status = CheckHidden
@@ -39,10 +39,10 @@ let chain_accounts (props : mut solid_props) =
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
-                                                    StateGet = fun state => Some account.address
-                                                    StateSet = fun old_state state value =>
-                                                        state.chain.accounts <-
-                                                            old_state.chain.accounts
+                                                    StateGet = fun () => Some account.address
+                                                    StateSet = fun value =>
+                                                        set_chain_accounts <|
+                                                            chain_accounts ()
                                                             |> am.map fun account' =>
                                                                 if account'.account = account.account
                                                                 then {account' with address = value /?? ""}
@@ -60,10 +60,10 @@ let chain_accounts (props : mut solid_props) =
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
-                                                    StateGet = fun state => Some account.private_key
-                                                    StateSet = fun old_state state value =>
-                                                        state.chain.accounts <-
-                                                            old_state.chain.accounts
+                                                    StateGet = fun () => Some account.private_key
+                                                    StateSet = fun value =>
+                                                        set_chain_accounts <|
+                                                            chain_accounts ()
                                                             |> am.map fun account' =>
                                                                 if account'.account = account.account
                                                                 then {account' with private_key = value /?? ""}

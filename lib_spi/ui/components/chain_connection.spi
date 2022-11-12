@@ -1,10 +1,15 @@
 open solid
 open base_table
 open row
+open state
 open state_input
 
 
 let chain_connection (props : mut solid_props) =
+    inl chain_token, set_chain_token = use_chain_token ()
+    inl chain_url, set_chain_url = use_chain_url ()
+    inl chain_port, set_chain_port = use_chain_port ()
+
     create_component base_table
         id
         fun () => ;[
@@ -17,8 +22,8 @@ let chain_connection (props : mut solid_props) =
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
-                            StateGet = fun state => state.chain.token
-                            StateSet = fun _old_state state value => state.chain.token <- value
+                            StateGet = chain_token >> Some
+                            StateSet = optionm.value >> set_chain_token
                         }
                     ]
                 }
@@ -32,8 +37,8 @@ let chain_connection (props : mut solid_props) =
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
-                            StateGet = fun state => state.chain.url
-                            StateSet = fun _old_state state value => state.chain.url <- value
+                            StateGet = chain_url >> Some
+                            StateSet = optionm.value >> set_chain_url
                         }
                     ]
                 }
@@ -47,8 +52,8 @@ let chain_connection (props : mut solid_props) =
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
-                            StateGet = fun state => state.chain.port
-                            StateSet = fun _old_state state value => state.chain.port <- value
+                            StateGet = chain_port >> Some
+                            StateSet = optionm.value >> set_chain_port
                         }
                     ]
                 }

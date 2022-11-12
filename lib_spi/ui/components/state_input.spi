@@ -1,34 +1,28 @@
 open real_js
 open solid
 open state
-open hooks.use_store
 
 
-type state_input_props state_type value_type =
+type state_input_props value_type =
     {
-        StateGet : state_type -> option value_type
-        StateSet : state_type -> state_type -> option value_type -> ()
+        StateGet : () -> option value_type
+        StateSet : option value_type -> ()
     }
 
-let state_input forall value_type. (props : mut (state_input_props (mut state__) value_type)) =
-    inl state, dispatch = use_store ()
+let state_input forall value_type. (props : mut (state_input_props value_type)) =
 
     input
         fun props' => {props' with
             Type = Some "text"
             Size = Some "xs"
             Value =
-                props.StateGet state
+                props.StateGet ()
                 |> optionm.defaultWith $"JS.undefined"
                 |> real to_any `value_type
                 |> Some
             OnInput =
                 Some fun e =>
                     inl new_value : value_type = $"!e?currentTarget?value"
-                    dispatch fun old_state state =>
-                        props.StateSet
-                            old_state
-                            state
-                            (Some new_value)
+                    props.StateSet (Some new_value)
         }
         fun () => ;[]

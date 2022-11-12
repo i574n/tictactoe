@@ -1,4 +1,5 @@
 open tictactoe
+open chain
 
 
 // // cell
@@ -9,7 +10,7 @@ let token () = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 let url () = "http://localhost"
 let port () = 4001i32
 
-let accounts () =
+let accounts () : a i32 chain_account =
     a ;[
         {
             account = Admin

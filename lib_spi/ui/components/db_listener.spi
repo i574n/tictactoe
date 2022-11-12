@@ -38,36 +38,19 @@
 
 open solid
 open real_solid
+open real_state
 open state
 open js
 open real_js
-open hooks.use_store
 
 
-let db_listener (store : any) (props : mut ()) =
-    inl state, dispatch = use_store ()
+let db_listener (props : mut ()) =
+    inl (log_level : get log_level), (set_log_level : set log_level) = use_settings_log_level ()
     inl get_locals () : array any = ;[
     ]
-    inl log : array any -> () = new_log (fun () => state.settings.log_level = Debug) get_locals "#cf1100"
+    inl log : array any -> () = new_log (fun () => log_level () = Debug) get_locals "#cf1100"
 
     log ;[real to_any `string "> db_listener ()"]
 
-    inl store_on : js_function = $"!store?on |> unbox<JS.Function>"
-    inl on_change (
-        {a_new_state b_changed c_store} :
-        {a_new_state : mut state__; b_changed : mut state__; c_store : any}
-    ) =
-        log ;[
-            real to_any `string ">> db_listener store.on(@changed)"
-            real to_any `(string * mut state__) ("b_changed:", b_changed)
-        ]
-
-        if not (real is_empty `(a i32 db_status) b_changed.db.status)
-            || not (real is_empty `(a i32 db_connection) b_changed.db.connection) then
-            ()
-    inl unbind : () -> () =
-        inl on_change_fn : js_function = $"emitJsExpr !on_change \"(...args: any[]) => $0(args)\""
-        $"!store_on.Invoke (\"@changed\", !on_change_fn) |> unbox<unit -> unit>"
-    real on_cleanup unbind
 
     empty_fragment ()

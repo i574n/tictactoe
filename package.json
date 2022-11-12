@@ -4,20 +4,17 @@
     "outdated-pre": "ncu --pre 1 -t greatest"
   },
   "dependencies": {
-    "algosdk": "~1.22",
+    "algosdk": "~1.23",
     "buffer": "~6.0",
 
     "zeromq": "~6.0.0-beta.6",
 
-    "solid-js": "~1.6.0",
+    "solid-js": "~1.6.2",
     "solid-icons": "~1.0",
 
-    "@stitches/core": "~1.2",
-    "solid-transition-group": "0.0.10",
-    "@hope-ui/solid": "~0.6",
-
-    "@storeon/solidjs": "~3.0",
-    "storeon": "~3.1"
+    "@stitches/core": "~1.3.1-1",
+    "solid-transition-group": "0.0.12",
+    "@hope-ui/solid": "~0.6"
   },
   "devDependencies": {
     "@types/node": "~18.11",

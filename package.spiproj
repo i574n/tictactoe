@@ -9,17 +9,16 @@ modules:
         real_js*
         js
         tictactoe
+        chain
         tictactoe_testnet
         ui/
             db
             real_solid*
             solid
+            real_state*
             state
-            store
-            chain
             profile
             hooks/
-                use_store
                 use_fetch
             components/
                 base_icon

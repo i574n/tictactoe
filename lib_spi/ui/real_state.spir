@@ -1,0 +1,87 @@
+open solid
+open db
+open real_js
+open real_solid
+open chain
+open tictactoe
+
+
+union log_level =
+    | Debug
+    | Info
+    | Warn
+    | Error
+
+type db_status = {client : db_type; server : db_type}
+type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
+
+inl new_state_context () =
+    inl env : env = get_env ()
+    {
+        chain = {
+            token = create_signal `string (tictactoe_testnet.token ())
+            url = create_signal `string (
+                match env.codespace_name with
+                | "" => tictactoe_testnet.url ()
+                | codespace_name => $"$\"http://{!codespace_name}-4001.githubpreview.dev\"" : string
+            )
+            port = create_signal `i32 (
+                match env.codespace_name with
+                | "" => tictactoe_testnet.port ()
+                | codespace_name => 80
+            )
+            accounts = create_signal `(a i32 chain_account) (tictactoe_testnet.accounts ())
+        }
+        db = {
+            connection = create_signal `(a i32 db_connection) (
+                a `i32 `db_connection (;[
+                    {
+                        db_type = GunRs
+                        url = // create_signal `string <|
+                            match env.codespace_name, env.is_test with
+                            | "", _ => "ws://localhost"
+                            | _, true => "ws://localhost"
+                            | codespace_name, _ => $"$\"ws://{!codespace_name}-4944.githubpreview.dev\"" : string
+                        port = // create_signal `i32 <|
+                            match env.codespace_name, env.is_test with
+                            | "", true => 14944
+                            | "", false => 4944
+                            | _, _ => 80
+                        ws = "ws"
+                    }
+                    {
+                        db_type = GunJs
+                        url = // create_signal `string <|
+                            match env.codespace_name, env.is_test with
+                            | "", _ => "wss://localhost"
+                            | _, true => "wss://localhost"
+                            | codespace_name, _ => $"$\"ws://{!codespace_name}-8765.githubpreview.dev\"" : string
+                        port = // create_signal `i32 <|
+                            match env.codespace_name, env.is_test with
+                            | "", true => 18765
+                            | "", false => 8765
+                            | _, _ => 80
+                        ws = "gun"
+                    }
+                                        ] : array db_connection)
+            )
+            status = create_signal `(a i32 db_status) (am.empty `a `i32 `db_status)
+        }
+        settings = {
+            log_level =
+                create_signal `log_level match env.github_run_id with "" => Debug | _ => Warn
+            ui = {
+                modal = create_signal `(option i32) (none `i32 ())
+            }
+        }
+        profile = {
+            tmp = {
+                counter = create_signal `(a i32 (i32 * i32)) (am.empty `a `i32 `(i32 * i32))
+                chain_status = create_signal `(a i32 (i32 * any)) (am.empty `a `i32 `(i32 * any))
+                chain_deploy = create_signal `(a i32 (i32 * any)) (am.empty `a `i32 `(i32 * any))
+            }
+        }
+    }
+
+inl new_state_context_any () : any =
+    to_any `(`(new_state_context ())) (new_state_context ())

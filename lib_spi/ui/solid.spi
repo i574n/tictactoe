@@ -115,8 +115,8 @@ inl create_native_component
 
 inl on (deps : () -> array any) (fn : () -> ()) : () -> () = real real_on deps fn
 inl create_effect (on : () -> ()) : () = real real_create_effect on
-inl create_signal forall a. (default_value : a) : (() -> a) * (a -> ()) = real real_create_signal `a default_value
-inl create_memo forall a. (fn : () -> a) : (() -> a) = real real_create_memo `a fn
+inl create_signal forall a. (default_value : a) : atom a = real real_create_signal `a default_value
+inl create_memo forall a. (fn : () -> a) : () -> a = real real_create_memo `a fn
 inl merge_props forall t. (source : t) (target : t) : t =
     inl source = mut source
     inl target = mut target
@@ -245,7 +245,7 @@ inl tr_ () = real import "Tr" "@hope-ui/solid"
 inl tr props = create_native_component (tr_ ()) props
 
 inl empty_fragment () : jsx_element =
-    $"null"
+    $"JS.undefined"
 
 inl str (str : string) : jsx_element =
     real fragment ($"!str |> unbox<JSX.Element>" : jsx_element)

@@ -301,7 +301,7 @@
 // export default useFetch
 
 open state
-open use_store
+open real_state
 open real_js
 open js
 
@@ -354,17 +354,18 @@ inl generate_color (text : string) : string =
 let use_fetch forall state_type value_type.
     (content_address : string)
     (proxy : state_type)
-    (apply : mut state__ -> mut state__ -> state_type -> ())
+    (apply : () -> () -> state_type -> ())
     (request_fn : client -> promise value_type)
     :
     (() -> ()) * (() -> ())
     =
-    inl state, dispatch = use_store ()
+    inl log_level, set_log_level = use_settings_log_level ()
     inl get_locals () : array any = ;[
-
+        "log_level:" |> real to_any `string
+        log_level () |> real to_any `log_level
     ]
     inl color = generate_color content_address
-    inl log : array any -> () = new_log (fun () => state.settings.log_level = Debug) get_locals color
+    inl log : array any -> () = new_log (fun () => log_level () = Debug) get_locals color
 
     log ;[real to_any `string "> use_fetch ()"]
 
