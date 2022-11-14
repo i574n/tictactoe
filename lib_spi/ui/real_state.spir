@@ -6,12 +6,6 @@ open chain
 open tictactoe
 
 
-union log_level =
-    | Debug
-    | Info
-    | Warn
-    | Error
-
 type db_status = {client : db_type; server : db_type}
 type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
 
@@ -69,7 +63,7 @@ inl new_state_context () =
         }
         settings = {
             log_level =
-                create_signal `log_level match env.github_run_id with "" => Debug | _ => Warn
+                create_signal `log_level_type match env.github_run_id with "" => Info | _ => Warn
             ui = {
                 modal = create_signal `(option i32) (none `i32 ())
             }

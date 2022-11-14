@@ -1,3 +1,4 @@
+open real_solid
 open solid
 open real_js
 open real_util
@@ -8,6 +9,34 @@ open real_state
 open base_table
 open row
 
+
+type atom_value_props value_type =
+    {
+        Title : string
+        Hook : () -> atom value_type
+    }
+
+let atom_value forall value_type. (props : mut (atom_value_props value_type)) =
+    inl (value : get value_type), (set_value : set value_type) = props.Hook ()
+
+    create_custom_component row {
+        Status = CheckHidden
+        OnLoad = None
+        OnUnload = None
+        Props = fun props' => {props' with
+            FontSize = Some "8px"
+            Title = Some <| str props.Title
+            Children = Some fun () => ;[
+                pre
+                    id
+                    fun () => ;[
+                        value ()
+                        |> real stringify_fmt `value_type
+                        |> str
+                    ]
+            ]
+        }
+    }
 
 let debug (props : mut ()) =
     inl log_level, set_log_level = use_settings_log_level ()
@@ -80,6 +109,50 @@ let debug (props : mut ()) =
                                                             FontSize = Some "8px"
                                                         }
                                                         fun () => ;[
+                                                            create_custom_component atom_value {
+                                                                Title = "chain.token"
+                                                                Hook = use_chain_token
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "chain.url"
+                                                                Hook = use_chain_url
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "chain.port"
+                                                                Hook = use_chain_port
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "chain.accounts"
+                                                                Hook = use_chain_accounts
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "db.status"
+                                                                Hook = use_db_status
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "db.connection"
+                                                                Hook = use_db_connection
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "settings.log_level"
+                                                                Hook = use_settings_log_level
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "settings.ui.modal"
+                                                                Hook = use_settings_ui_modal
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "profile.tmp.counter"
+                                                                Hook = use_profile_tmp_counter
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "profile.tmp.chain_status"
+                                                                Hook = use_profile_tmp_chain_status
+                                                            }
+                                                            create_custom_component atom_value {
+                                                                Title = "profile.tmp.chain_deploy"
+                                                                Hook = use_profile_tmp_chain_deploy
+                                                            }
                                                         ]
                                                 ]
                                             }

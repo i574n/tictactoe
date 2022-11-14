@@ -1,6 +1,12 @@
 open real_util
 
 
+union log_level_type =
+    | Debug
+    | Info
+    | Warn
+    | Error
+
 inl empty_list forall a. () : list a = Nil
 inl none forall a. () : option a = None
 inl some forall a. (x : a) : option a = Some x

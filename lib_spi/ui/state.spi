@@ -9,7 +9,7 @@ open chain
 
 
 
-inl use_context forall context_type value_type.
+inl use_atom forall context_type value_type.
     (signal_fn : context_type -> atom value_type)
     : atom value_type
     =
@@ -20,44 +20,48 @@ inl use_context forall context_type value_type.
     result
 
 inl use_chain_token () : atom string =
-    real use_context `(`(new_state_context ())) `string fun context => context.chain.token
+    real use_atom `(`(new_state_context ())) `string fun context => context.chain.token
 
 inl use_chain_url () : atom string =
-    real use_context `(`(new_state_context ())) `string fun context => context.chain.url
+    real use_atom `(`(new_state_context ())) `string fun context => context.chain.url
 
 inl use_chain_port () : atom i32 =
-    real use_context `(`(new_state_context ())) `i32 fun context => context.chain.port
+    real use_atom `(`(new_state_context ())) `i32 fun context => context.chain.port
 
 inl use_chain_accounts () : atom (a i32 chain_account) =
-    real use_context `(`(new_state_context ())) `(a i32 chain_account) fun context => context.chain.accounts
+    real use_atom `(`(new_state_context ())) `(a i32 chain_account) fun context => context.chain.accounts
 
 inl use_db_status () : atom (a i32 db_status) =
-    real use_context `(`(new_state_context ())) `(a i32 db_status) fun context => context.db.status
+    real use_atom `(`(new_state_context ())) `(a i32 db_status) fun context => context.db.status
 
 inl use_db_connection () : atom (a i32 db_connection) =
-    real use_context `(`(new_state_context ())) `(a i32 db_connection) fun context => context.db.connection
+    real use_atom `(`(new_state_context ())) `(a i32 db_connection) fun context => context.db.connection
 
-inl use_settings_log_level () : atom log_level =
-    real use_context `(`(new_state_context ())) `log_level fun context => context.settings.log_level
+inl use_settings_log_level () : atom log_level_type =
+    real use_atom `(`(new_state_context ())) `log_level_type fun context => context.settings.log_level
 
 inl use_settings_ui_modal () : atom (option i32) =
-    real use_context `(`(new_state_context ())) `(option i32) fun context => context.settings.ui.modal
+    real use_atom `(`(new_state_context ())) `(option i32) fun context => context.settings.ui.modal
 
 inl use_profile_tmp_counter () : atom (a i32 (i32 * i32)) =
-    real use_context `(`(new_state_context ())) `(a i32 (i32 * i32)) fun context => context.profile.tmp.counter
+    real use_atom `(`(new_state_context ())) `(a i32 (i32 * i32)) fun context => context.profile.tmp.counter
 
 inl use_profile_tmp_chain_status () : atom (a i32 (i32 * any)) =
-    real use_context `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_status
+    real use_atom `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_status
 
 inl use_profile_tmp_chain_deploy () : atom (a i32 (i32 * any)) =
-    real use_context `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_deploy
+    real use_atom `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_deploy
 
+let use_log get_locals color =
+    inl log_level, set_log_level = use_settings_log_level ()
+    new_log log_level get_locals color
 
 inl log_level_label = function
     | Debug => "Debug"
     | Info => "Info"
     | Warn => "Warn"
     | Error => "Error"
+
 inl new_log_level = function
     | "Debug" => Debug
     | "Info" => Info

@@ -45,7 +45,7 @@ let row (props : mut row_props) =
                         Color = Some "$neutral9"
                         Display = Some "flex"
                         FlexDirection = Some "column"
-                        FontSize = Some "$sm"
+                        FontSize = Some <| props.FontSize /?? "$sm"
                         Padding = Some "3px 20px 0 8px"
                     }
                     fun () => ;[
@@ -76,7 +76,7 @@ let row (props : mut row_props) =
                         Flex = Some "6"
                         LineHeight = Some "$base"
                         FlexDirection = Some "column"
-                        FontSize = Some "$sm"
+                        FontSize = Some <| props.FontSize /?? "$sm"
                         MaxHeight = Some "85vh"
                         OverflowY = Some "auto"
                     }

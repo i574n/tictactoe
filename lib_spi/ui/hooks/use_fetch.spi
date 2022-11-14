@@ -359,24 +359,20 @@ let use_fetch forall state_type value_type.
     :
     (() -> ()) * (() -> ())
     =
-    inl log_level, set_log_level = use_settings_log_level ()
     inl get_locals () : array any = ;[
-        "log_level:" |> real to_any `string
-        log_level () |> real to_any `log_level
     ]
     inl color = generate_color content_address
-    inl log : array any -> () = new_log (fun () => log_level () = Debug) get_locals color
-
-    log ;[real to_any `string "> use_fetch ()"]
+    inl log = use_log get_locals color
+    log Debug ;[real to_any `string "> use_fetch ()"]
 
     inl request () =
-        log ;[
+        log Info ;[
             real to_any `string ">> use_fetch request()"
             real to_any `(string * string) ("content_address:", content_address)
         ]
         ()
     inl clear () =
-        log ;[
+        log Info ;[
             real to_any `string ">> use_fetch clear()"
             real to_any `(string * string) ("content_address:", content_address)
         ]
