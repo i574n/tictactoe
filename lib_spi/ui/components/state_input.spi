@@ -1,4 +1,4 @@
-open real_js
+open js
 open solid
 open state
 
@@ -18,7 +18,7 @@ let state_input forall value_type. (props : mut (state_input_props value_type)) 
             Value =
                 props.StateGet ()
                 |> optionm.defaultWith $"JS.undefined"
-                |> real to_any `value_type
+                |> to_any
                 |> Some
             OnInput =
                 Some fun e =>

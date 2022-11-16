@@ -6,8 +6,27 @@ open chain
 open tictactoe
 
 
-type db_status = {client : db_type; server : db_type}
-type db_connection = {db_type : db_type; url : string; port : i32; ws : string}
+type db_connection =
+    {
+        db_type : db_type
+        url : string
+        port : i32
+        ws : string
+    }
+
+type db_connection_status =
+    {
+        client : db_type
+        server : db_type
+    }
+
+type chain_account_state =
+    {
+        account : atom account
+        private_key : atom string
+        address : atom string
+        mnemonic : atom string
+    }
 
 inl new_state_context () =
     inl env : env = get_env ()
@@ -24,7 +43,18 @@ inl new_state_context () =
                 | "" => tictactoe_testnet.port ()
                 | codespace_name => 80
             )
-            accounts = create_signal `(a i32 chain_account) (tictactoe_testnet.accounts ())
+            accounts =
+                create_signal `(a i32 chain_account_state) (
+                    am.map `a `i32 `chain_account `chain_account_state
+                        fun account'=>
+                            {
+                                account = create_signal `account account'.account
+                                private_key = create_signal `string account'.private_key
+                                address = create_signal `string account'.address
+                                mnemonic = create_signal `string account'.mnemonic
+                            }
+                        (tictactoe_testnet.accounts ())
+                )
         }
         db = {
             connection = create_signal `(a i32 db_connection) (
@@ -59,7 +89,7 @@ inl new_state_context () =
                     }
                                         ] : array db_connection)
             )
-            status = create_signal `(a i32 db_status) (am.empty `a `i32 `db_status)
+            connection_status = create_signal `(a i32 db_connection_status) (am.empty `a `i32 `db_connection_status)
         }
         settings = {
             log_level =
@@ -78,4 +108,4 @@ inl new_state_context () =
     }
 
 inl new_state_context_any () : any =
-    to_any `(`(new_state_context ())) (new_state_context ())
+    real_to_any `(`(new_state_context ())) (new_state_context ())

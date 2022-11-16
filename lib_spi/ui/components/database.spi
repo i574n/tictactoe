@@ -11,18 +11,23 @@ open db
 
 type database_item_props =
     {
-        Status : db_status
+        Status : db_connection_status
         Id : string
         Title : string
         DbType : db_type
     }
 
 let database_item (props : mut database_item_props) =
-    inl db_status, set_db_status = use_db_status ()
+    inl db_connection_status, set_db_connection_status = use_db_connection_status ()
     create_custom_component row {
         Status = CheckDisabled
-        OnLoad = Some fun () => set_db_status <| db_status () /@ a ;[props.Status]
-        OnUnload = Some fun () => set_db_status <| db_status () |> am.filter fun db_status => db_status <> props.Status
+        OnLoad = Some fun () =>
+            set_db_connection_status <|
+                db_connection_status () /@ a ;[props.Status]
+        OnUnload = Some fun () =>
+            set_db_connection_status <|
+                db_connection_status ()
+                |> am.filter fun db_status => db_status <> props.Status
         Props = fun props' => {props' with
             Id = Some props.Id
             Title = Some <| str props.Title

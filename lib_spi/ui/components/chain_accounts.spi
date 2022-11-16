@@ -20,7 +20,7 @@ let chain_accounts (props : mut solid_props) =
                     OnUnload = None
                     Props = fun props' => {props' with
                         Title =
-                            match account.account with
+                            match get_atom_value account.account with
                             | Admin => "admin"
                             | Player (X) => "x"
                             | Player (O) => "o"
@@ -39,14 +39,10 @@ let chain_accounts (props : mut solid_props) =
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
-                                                    StateGet = fun () => Some account.address
+                                                    StateGet = fun () =>
+                                                        account.address |> get_atom_value |> Some
                                                     StateSet = fun value =>
-                                                        set_chain_accounts <|
-                                                            chain_accounts ()
-                                                            |> am.map fun account' =>
-                                                                if account'.account = account.account
-                                                                then {account' with address = value /?? ""}
-                                                                else account'
+                                                        account.address |> set_atom_value (value /?? "")
                                                 }
                                             ]
                                         }
@@ -60,14 +56,10 @@ let chain_accounts (props : mut solid_props) =
                                             Padding = Some "3px"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
-                                                    StateGet = fun () => Some account.private_key
+                                                    StateGet = fun () =>
+                                                        account.private_key |> get_atom_value |> Some
                                                     StateSet = fun value =>
-                                                        set_chain_accounts <|
-                                                            chain_accounts ()
-                                                            |> am.map fun account' =>
-                                                                if account'.account = account.account
-                                                                then {account' with private_key = value /?? ""}
-                                                                else account'
+                                                        account.private_key |> set_atom_value (value /?? "")
                                                 }
                                             ]
                                         }

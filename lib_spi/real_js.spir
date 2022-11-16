@@ -6,7 +6,7 @@ nominal js_function = $"JS.Function"
 nominal js_obj_prop = $"(string * obj)"
 
 
-inl to_any forall a. (obj : a) : any =
+inl real_to_any forall a. (obj : a) : any =
     $"!obj"
 
 inl new_js_obj_prop forall a. (k : string) (v : a) : js_obj_prop =
@@ -18,7 +18,7 @@ inl import (name : string) (module : string) : js_function =
 inl create_obj (obj : a i32 js_obj_prop) : any =
     $"createObj !obj"
 
-inl stringify forall a. (obj : a) : string =
+inl real_stringify forall a. (obj : a) : string =
     $"JS.JSON.stringify !obj"
 
 inl stringify_fmt forall a. (obj : a) : string =

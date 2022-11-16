@@ -50,12 +50,3 @@ inl union_record_check forall union_type record_type. {check_length check_type} 
                                 print_static ("Missing in union:", record_key)
                                 error_type "The record's keys must match those of the union."
                 `record_type
-
-inl to_string forall a. (obj : a) : string =
-    $"!obj.ToString ()"
-
-inl ticks () : i64 =
-    $"DateTime.UtcNow.Ticks / 1000L"
-
-inl random () : i32 =
-    $"Random().Next ()"

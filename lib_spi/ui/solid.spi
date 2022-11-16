@@ -123,6 +123,14 @@ inl merge_props forall t. (source : t) (target : t) : t =
     real real_merge_props `t target source
     *target
 
+inl get_atom_value forall a. (atom : atom a) =
+    inl value, _set_value = atom
+    value ()
+
+inl set_atom_value forall a. (value : a) (atom : atom a) =
+    inl _value, set_value = atom
+    set_value value
+
 
 inl biRegularDownArrow_ () = real import "BiRegularDownArrow" "solid-icons/bi"
 inl biRegularLinkExternal_ () = real import "BiRegularLinkExternal" "solid-icons/bi"

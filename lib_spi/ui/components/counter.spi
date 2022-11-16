@@ -91,7 +91,7 @@ let counter (props : mut solid_props) =
                                 OnLoad = None
                                 OnUnload = None
                                 Props = fun props' => {props' with
-                                    Title = Some <| str (item () |> fst |> real to_string `i32)
+                                    Title = Some <| str (item () |> fst |> to_string')
                                     Padding = Some "3px"
                                     Children = Some fun () => ;[
                                         pre

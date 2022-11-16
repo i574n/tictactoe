@@ -22,7 +22,7 @@ let base_simple_select (props : mut solid_props) =
                         Value = Some item
                     }
                     fun () => ;[
-                        str <| real to_string `any item
+                        str <| to_string item
                     ]
             ]
         ]
@@ -68,7 +68,7 @@ let base_select (props : mut solid_props) =
                                         select_option_text
                                             id
                                             fun () => ;[
-                                                str <| real to_string `any item
+                                                str <| to_string item
                                             ]
                                         select_option_indicator
                                             id

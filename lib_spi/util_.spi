@@ -50,8 +50,13 @@ let rec pad (count : i32) (n : string) : string =
     inl n_length : i32 = $"String.length !n"
     if n_length < count then pad count ($"$\"0{!n}\"" : string) else n
 
+prototype to_string t : t -> string
+prototype of_string t : string -> t
+
 inl string_get_bytes (s : string) : a i32 u8 = $"System.Text.Encoding.UTF8.GetBytes !s"
-inl string_of_int (n : i32) : string = $"!n.ToString ()"
+inl to_string' forall a. (obj : a) : string = $"!obj.ToString ()"
+inl ticks () : i64 = $"DateTime.UtcNow.Ticks / 1000L"
+inl random () : i32 = $"Random().Next ()"
 
 
 prototype append t : t -> t -> t

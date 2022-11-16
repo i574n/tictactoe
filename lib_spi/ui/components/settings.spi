@@ -1,7 +1,7 @@
 open solid
 open base_table
 open row
-open real_js
+open js
 
 
 let settings (props : mut solid_props) =
@@ -32,7 +32,7 @@ let settings (props : mut solid_props) =
                                     fun () => ;[
                                         radio
                                             fun props' => {props' with
-                                                Value = Some <| real to_any `string "dark"
+                                                Value = Some <| to_any "dark"
                                                 Size = Some "sm"
                                                 ColorScheme = Some "neutral"
                                             }
@@ -41,7 +41,7 @@ let settings (props : mut solid_props) =
                                             ]
                                         radio
                                             fun props' => {props' with
-                                                Value = Some <| real to_any `string "light"
+                                                Value = Some <| to_any "light"
                                                 Size = Some "sm"
                                                 ColorScheme = Some "neutral"
                                             }

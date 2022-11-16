@@ -1,37 +1,50 @@
 open real_js
 open real_util
-open real_core
 
+
+instance to_string any = to_string'
+
+inl to_any forall a. (obj : a) : any =
+    real real_to_any `a obj
+
+inl stringify forall a. (obj : a) : string =
+    real real_stringify `a obj
 
 let new_log
     (get_log_level : () -> log_level_type)
-    (get_locals : () -> array any)
+    (obj_fn : () -> array any)
     (color : string)
     : log_level_type -> array any -> ()
     =
     inl env : env = real get_env ()
-    inl start_timestamp : i64 = real ticks ()
+    inl start_timestamp : i64 = ticks ()
     fun log_level (args : array any) : () =>
-        if real union_tag (get_log_level ()) <= real union_tag log_level then
-            inl new_ticks : i64 = real ticks ()
-            inl new_timestamp () : i64 = real new_ticks - start_timestamp
-            inl timestamp : string = real to_string `i64 (new_timestamp ())
+        if ((real real_core.union_tag (get_log_level ())) : i32) <= real real_core.union_tag log_level then
+            inl new_ticks : i64 = ticks ()
+            inl new_timestamp () : i64 = new_ticks - start_timestamp
+            inl timestamp : string = new_timestamp () |> to_any |> to_string
             inl timestamp : string = pad 6 timestamp
             inl run_id : i32 = $"emitJsExpr () \"components_spi.run_id\""
-            inl header : string = $"$\"[{!timestamp}] run_id: {!run_id}\""
-            inl args =
-                inl args : string = real stringify `(array any) args
-                inl locals : string = real stringify `(array any) (get_locals ())
+            inl locals : array any = ;[
+                "timestamp:" |> to_any
+                timestamp |> to_any
+                "run_id:" |> to_any
+                run_id |> to_any
+            ]
+            inl obj_json : string = stringify (obj_fn ())
+            inl args_json : string = stringify args
+            inl locals_json : string = stringify locals
+            inl new_args =
                 if env.is_test then
-                    header,
-                    args,
-                    locals,
+                    args_json,
+                    obj_json,
+                    locals_json,
                     "",
                     ""
                 else
-                    ($"$\"{!header} %%c%%s %%c%%s\"" : string),
+                    "%c%s %c%s",
                     ($"$\"font-weight: bold; color: {!color}\"" : string),
-                    args,
+                    args_json,
                     "font-weight: bold; color: #444",
-                    locals
-            $"emitJsExpr () $\"console.log.apply(console, {!args})\"" : ()
+                    $"$\"{!obj_json} {!locals_json}\""
+            $"emitJsExpr () $\"console.log.apply(console, {!new_args})\"" : ()

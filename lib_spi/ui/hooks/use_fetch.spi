@@ -307,7 +307,7 @@ open js
 
 
 nominal promise t = t
-nominal client = $"obj" // $"algosdk.Algodv2"
+nominal client = any // $a"algosdk.Algodv2"
 
 //     const getLocals = () => ({
 //         contentAddress,
@@ -343,9 +343,9 @@ inl generate_six_digit_numeric_hash_from_string (text : string) : string =
     text
     |> string_get_bytes
     |> am.fold
-        fun (acc : i32) n => acc + ($"(!n |> unbox)" * 12)
+        fun (acc : i32) n => acc + ($"(!n |> unbox<`i32>)" * 12)
         100000
-    |> string_of_int
+    |> to_string'
 
 inl generate_color (text : string) : string =
     inl color = generate_six_digit_numeric_hash_from_string text
@@ -363,18 +363,18 @@ let use_fetch forall state_type value_type.
     ]
     inl color = generate_color content_address
     inl log = use_log get_locals color
-    log Debug ;[real to_any `string "> use_fetch ()"]
+    log Debug ;[to_any "> use_fetch ()"]
 
     inl request () =
         log Info ;[
-            real to_any `string ">> use_fetch request()"
-            real to_any `(string * string) ("content_address:", content_address)
+            to_any ">> use_fetch request()"
+            to_any ("content_address:", content_address)
         ]
         ()
     inl clear () =
         log Info ;[
-            real to_any `string ">> use_fetch clear()"
-            real to_any `(string * string) ("content_address:", content_address)
+            to_any ">> use_fetch clear()"
+            to_any ("content_address:", content_address)
         ]
         ()
     request, clear

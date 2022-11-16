@@ -29,17 +29,17 @@ let loader (props : mut loader_props) =
     inl ui_modal, set_ui_modal = use_settings_ui_modal ()
 
     inl get_locals () : array any = ;[
-        "loader_id:" |> real to_any `string
-        loader_id |> real to_any `i32
-        "chain_token:" |> real to_any `string
-        chain_token () |> real to_any `string
-        "log_level:" |> real to_any `string
-        log_level () |> real to_any `log_level_type
-        "ui_modal:" |> real to_any `string
-        ui_modal () |> real to_any `(option i32)
+        "loader_id:" |> to_any
+        loader_id |> to_any
+        "chain_token:" |> to_any
+        chain_token () |> to_any
+        "log_level:" |> to_any
+        log_level () |> to_any
+        "ui_modal:" |> to_any
+        ui_modal () |> to_any
     ]
     inl log = use_log get_locals "#de884c"
-    log Debug ;[real to_any `string "> loader ()"]
+    log Debug ;[to_any "> loader ()"]
 
     inl loaded, set_loaded = create_signal custom_props.Loaded
     inl refreshing, set_refreshing = create_signal false
