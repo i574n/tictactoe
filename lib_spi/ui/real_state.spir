@@ -1,6 +1,6 @@
 open solid
 open db
-open real_js
+open js
 open real_solid
 open chain
 open tictactoe

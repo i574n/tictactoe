@@ -2,7 +2,6 @@ open real_solid
 open solid
 open state
 open real_state
-open real_js
 open js
 open real_util
 open base_button
@@ -22,24 +21,20 @@ let loader (props : mut loader_props) =
     inl custom_props = props
     inl props = init_props props.Props
 
-    inl loader_id : i32 = real random ()
+    inl loader_id = random ()
 
     inl chain_token, set_chain_token = use_chain_token ()
     inl log_level, set_log_level = use_settings_log_level ()
     inl ui_modal, set_ui_modal = use_settings_ui_modal ()
 
     inl get_locals () : array any = ;[
-        "loader_id:" |> to_any
-        loader_id |> to_any
-        "chain_token:" |> to_any
-        chain_token () |> to_any
-        "log_level:" |> to_any
-        log_level () |> to_any
-        "ui_modal:" |> to_any
-        ui_modal () |> to_any
+        !!("loader_id:",loader_id)
+        !!("chain_token:", chain_token ())
+        !!("log_level:", log_level ())
+        !!("ui_modal:", ui_modal ())
     ]
     inl log = use_log get_locals "#de884c"
-    log Debug ;[to_any "> loader ()"]
+    log Debug ;[!!"> loader ()"]
 
     inl loaded, set_loaded = create_signal custom_props.Loaded
     inl refreshing, set_refreshing = create_signal false
@@ -65,7 +60,7 @@ let loader (props : mut loader_props) =
     inl is_modal () = ui_modal () = Some loader_id
 
     box
-        fun props' => {props' with
+        fun props' => { props' with
             Id = props.Id
             Display = Some "flex"
             Flex = Some "1"
@@ -73,12 +68,12 @@ let loader (props : mut loader_props) =
         fun () => ;[
             if loaded () |> not then
                 box
-                    fun props' => {props' with
+                    fun props' => { props' with
                         Padding = Some "3px 0"
                     }
                     fun () => ;[
                         create_component base_button
-                            fun props' => {props' with
+                            fun props' => { props' with
                                 OnClick = Some fun () =>
                                     on_load' ()
                                     set_loaded true
@@ -89,94 +84,94 @@ let loader (props : mut loader_props) =
                     ]
             else
                 box
-                    fun props' => {props' with
-                        ZIndex = if is_modal () then Some 1 else None
-                        Position = if is_modal () then Some "fixed" else None
-                        Top = if is_modal () then Some "0" else None
-                        Right = if is_modal () then Some "0" else None
-                        Bottom = if is_modal () then Some "0" else None
-                        Left = if is_modal () then Some "0" else None
+                    fun props' => { props' with
                         BackgroundColor = if is_modal () then Some "$bg" else None
+                        Bottom = if is_modal () then Some "0" else None
                         Display = Some "flex"
                         Flex = Some "1"
+                        Left = if is_modal () then Some "0" else None
+                        Position = if is_modal () then Some "fixed" else None
+                        Right = if is_modal () then Some "0" else None
+                        Top = if is_modal () then Some "0" else None
+                        ZIndex = if is_modal () then Some 1 else None
                     }
                     fun () => ;[
                         match props.Children with
                         | Some children =>
                             box
-                                fun props' => {props' with
+                                fun props' => { props' with
+                                    Display = Some "flex"
+                                    Flex = Some "1"
                                     Position =
                                         if ui_modal () = None
                                         then Some "relative"
                                         else None
-                                    Flex = Some "1"
-                                    Display = Some "flex"
                                 }
                                 fun () => ;[
                                     stack
-                                        fun props' => {props' with
+                                        fun props' => { props' with
+                                            Direction = Some "row"
                                             Display =
                                                 match ui_modal () with
                                                 | Some modal when modal <> loader_id => Some "none"
                                                 | _ => None
-                                            Direction = Some "row"
-                                            Spacing = Some "3px"
                                             Position = Some "absolute"
-                                            Top = Some "6px"
                                             Right = Some "6px"
+                                            Top = Some "6px"
+                                            Spacing = Some "3px"
                                             ZIndex = Some 2
                                         }
                                         fun () => ;[
                                             icon_button
-                                                fun props' => {props' with
+                                                fun props' => { props' with
                                                     AriaLabel = Some "Refresh"
-                                                    Size = Some "xs"
-                                                    Height = Some icon_height
                                                     ColorScheme = Some "neutral"
-                                                    OnClick = Some fun () => set_refreshing true
+                                                    Height = Some icon_height
                                                     Icon = Some <|
                                                         create_custom_component base_icon {
+                                                            Css = id
                                                             Icon = biRegularRefresh_
                                                             Props = id
-                                                            Css = id
                                                         }
+                                                    OnClick = Some fun () => set_refreshing true
+                                                    Size = Some "xs"
                                                 }
                                                 fun () => ;[]
                                             icon_button
-                                                fun props' => {props' with
+                                                fun props' => { props' with
                                                     AriaLabel = Some <| if is_modal () then "Restore" else "Maximize"
-                                                    Size = Some "xs"
-                                                    Height = Some icon_height
                                                     ColorScheme = Some "neutral"
-                                                    OnClick = Some fun () =>
-                                                        set_ui_modal
-                                                            if is_modal () |> not then Some loader_id else None
+                                                    Height = Some icon_height
                                                     Icon = Some <|
                                                         create_custom_component base_icon {
+                                                            Css = id
                                                             Icon =
                                                                 if is_modal ()
                                                                 then biRegularDownArrow_
                                                                 else biRegularUpArrow_
                                                             Props = id
-                                                            Css = id
                                                         }
-                                                    }
+                                                    OnClick = Some fun () =>
+                                                        set_ui_modal
+                                                            if is_modal () |> not then Some loader_id else None
+                                                    Size = Some "xs"
+                                                }
                                                 fun () => ;[]
                                             icon_button
-                                                fun props' => {props' with
+                                                fun props' => { props' with
                                                     AriaLabel = Some "Unload"
-                                                    Size = Some "xs"
-                                                    Height = Some icon_height
                                                     ColorScheme = Some "neutral"
+                                                    Height = Some icon_height
+                                                    Icon = Some <|
+                                                        create_custom_component base_icon {
+                                                            Css = id
+                                                            Icon = biRegularUndo_
+                                                            Props = id
+                                                        }
                                                     OnClick = Some fun () =>
                                                         on_unload' ()
                                                         set_loaded false
-                                                    Icon = Some <|
-                                                        create_custom_component base_icon {
-                                                            Icon = biRegularUndo_
-                                                            Props = id
-                                                            Css = id
-                                                        }
+                                                    Size = Some "xs"
                                                 }
                                                 fun () => ;[]
                                         ]

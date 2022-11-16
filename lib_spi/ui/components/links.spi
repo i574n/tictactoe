@@ -2,7 +2,7 @@ open solid
 open base_table
 open row
 open external_link
-open real_js
+open js
 
 
 
@@ -12,11 +12,11 @@ let links (props : mut solid_props) =
             Status = CheckHidden
             OnLoad = None
             OnUnload = None
-            Props = fun props' => {props' with
+            Props = fun props' => { props' with
                 Padding = Some "1px 6px"
                 Children = Some fun () => ;[
                     create_component external_link
-                        fun props' => {props' with
+                        fun props' => { props' with
                             Href = Some href
                         }
                         fun () => ;[]

@@ -1,26 +1,27 @@
-open real_js
+open js
 open solid
 
 
 type base_icon_props =
     {
+        Css : solid_props -> solid_props
         Icon : () -> js_function
         Props : solid_props -> solid_props
-        Css : solid_props -> solid_props
     }
 
 let base_icon (props : mut base_icon_props) =
     icon
         fun props' =>
-            {props' with
+            { props' with
                 As = Some <| props.Icon ()
-                Size = Some "14px"
                 Css =
-                    init_props fun props' => {props' with
-                        Zoom = Some "0.6"
+                    init_props fun props' => { props' with
                         MarginTop = Some "-12px"
                         MarginLeft = Some "-12px"
+                        Zoom = Some "0.6"
                     }
                     |> props.Css |> props_entries |> create_props |> Some
-            } |> props.Props
+                Size = Some "14px"
+            }
+            |> props.Props
         fun () => ;[]

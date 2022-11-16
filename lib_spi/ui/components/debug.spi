@@ -1,7 +1,6 @@
 open real_solid
 open solid
 open js
-open real_js
 open real_util
 open base_checkbox
 open base_select
@@ -20,13 +19,13 @@ type atom_value_props value_type =
     }
 
 let atom_value forall value_type. (props : mut (atom_value_props value_type)) =
-    inl (value : get value_type), (set_value : set value_type) = props.Hook ()
+    inl value, set_value = props.Hook ()
 
     create_custom_component row {
-        Status = CheckHidden
         OnLoad = None
         OnUnload = None
-        Props = fun props' => {props' with
+        Status = CheckHidden
+        Props = fun props' => { props' with
             FontSize = Some "8px"
             Title = Some <| str props.Title
             Children = Some fun () => ;[
@@ -46,16 +45,16 @@ let debug (props : mut ()) =
     inl log_level, set_log_level = use_settings_log_level ()
 
     box
-        fun props' => {props' with
+        fun props' => { props' with
+            BackgroundColor = Some "$blackAlpha9"
+            Bottom = Some "0"
             Display = Some "flex"
             FlexDirection = Some "column"
+            MaxHeight = Some "80vh"
+            MaxWidth = Some "50vw"
             Overflow = Some "auto"
             Position = Some "absolute"
             Right = Some "0"
-            Bottom = Some "0"
-            MaxHeight = Some "80vh"
-            MaxWidth = Some "50vw"
-            BackgroundColor = Some "$blackAlpha9"
             ZIndex = Some 2
         }
         fun () => ;[
@@ -63,39 +62,39 @@ let debug (props : mut ()) =
                 id
                 fun () => ;[
                     create_custom_component row {
-                        Status = CheckDisabled
                         OnLoad = None
                         OnUnload = None
-                        Props = fun props' => {props' with
+                        Status = CheckDisabled
+                        Props = fun props' => { props' with
                             Title = Some <| str "Debug"
                             Children = Some fun () => ;[
                                 create_component base_table
                                     id
                                     fun () => ;[
                                         create_custom_component row {
-                                            Status = CheckHidden
                                             OnLoad = None
                                             OnUnload = None
-                                            Props = fun props' => {props' with
+                                            Status = CheckHidden
+                                            Props = fun props' => { props' with
                                                 Title = Some <| str "Log Level"
                                                 Children = Some fun () => ;[
                                                     create_component base_simple_select
-                                                        fun props' => {props' with
-                                                            MarginTop = Some "2px"
+                                                        fun props' => { props' with
                                                             Each = Some <|
                                                                 a ;[Debug; Info; Warn; Error]
                                                                     |> am.map to_string
                                                                     |> am.map to_any
-                                                            Value =
-                                                                log_level ()
-                                                                |> to_string
-                                                                |> to_any
-                                                                |> Some
+                                                            MarginTop = Some "2px"
                                                             OnChange = Some <| fun value =>
                                                                 set_log_level <|
                                                                     value
                                                                     |> to_string
                                                                     |> of_string
+                                                            Value =
+                                                                log_level ()
+                                                                |> to_string
+                                                                |> to_any
+                                                                |> Some
                                                         }
                                                         fun () => ;[]
                                                 ]
@@ -105,34 +104,30 @@ let debug (props : mut ()) =
                                             Status = CheckHidden
                                             OnLoad = None
                                             OnUnload = None
-                                            Props = fun props' => {props' with
+                                            Props = fun props' => { props' with
                                                 Title = Some <| str "State"
                                                 Children = Some fun () => ;[
                                                     pre
-                                                        fun props' => {props' with
+                                                        fun props' => { props' with
                                                             FontSize = Some "8px"
                                                         }
                                                         fun () => ;[
                                                             create_custom_component atom_value {
-                                                                Title = "chain.token"
+                                                                Get = to_any
                                                                 Hook = use_chain_token
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "chain.token"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "chain.url"
+                                                                Get = to_any
                                                                 Hook = use_chain_url
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "chain.url"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "chain.port"
+                                                                Get = to_any
                                                                 Hook = use_chain_port
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "chain.port"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "chain.accounts"
                                                                 Hook = use_chain_accounts
                                                                 Get = fun value =>
                                                                     value
@@ -144,48 +139,42 @@ let debug (props : mut ()) =
                                                                             mnemonic = get_atom_value account'.mnemonic
                                                                         }
                                                                     |> to_any
+                                                                Title = "chain.accounts"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "db.connection_status"
+                                                                Get = to_any
                                                                 Hook = use_db_connection_status
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "db.connection_status"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "db.connection"
+                                                                Get = to_any
                                                                 Hook = use_db_connection
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "db.connection"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "settings.log_level"
+                                                                Get = to_string >> to_any
                                                                 Hook = use_settings_log_level
-                                                                Get = fun value =>
-                                                                    value |> to_string |> to_any
+                                                                Title = "settings.log_level"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "settings.ui.modal"
+                                                                Get = to_any
                                                                 Hook = use_settings_ui_modal
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "settings.ui.modal"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "profile.tmp.counter"
+                                                                Get = to_any
                                                                 Hook = use_profile_tmp_counter
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "profile.tmp.counter"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "profile.tmp.chain_status"
+                                                                Get = to_any
                                                                 Hook = use_profile_tmp_chain_status
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "profile.tmp.chain_status"
                                                             }
                                                             create_custom_component atom_value {
-                                                                Title = "profile.tmp.chain_deploy"
+                                                                Get = to_any
                                                                 Hook = use_profile_tmp_chain_deploy
-                                                                Get = fun value =>
-                                                                    value |> to_any
+                                                                Title = "profile.tmp.chain_deploy"
                                                             }
                                                         ]
                                                 ]

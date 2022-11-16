@@ -3,7 +3,7 @@ open solid
 
 let base_table (props : mut solid_props) =
     table
-        fun props' => {props' with
+        fun props' => { props' with
             Display = Some "flex"
             Flex = Some "1"
             FlexDirection = Some "column"
@@ -12,10 +12,10 @@ let base_table (props : mut solid_props) =
         }
         fun () => ;[
             tbody
-                fun props' => {props' with
+                fun props' => { props' with
+                    BackgroundColor = Some "$blackAlpha3"
                     Display = Some "flex"
                     FlexDirection = Some "column"
-                    BackgroundColor = Some "$blackAlpha3"
                     Margin = Some "-1px"
                 }
                 (props.Children /?? fun () => ;[])

@@ -24,22 +24,22 @@ let row (props : mut row_props) =
     inl checked, set_checked = create_signal (custom_props.Status <> CheckDisabled)
 
     tr
-        fun props' => {props' with
+        fun props' => { props' with
             Id = props.Id
             Display = Some "flex"
             Flex = Some "1"
             BorderWidth = Some "1px 2px"
             BorderColor = Some "$neutral5"
-            FlexDirection = Some <| breakpoints {initial = "column"; sm = "row"}
+            FlexDirection = Some <| breakpoints { initial = "column"; sm = "row" }
         }
         fun () => ;[
             match props.Title with
             | Some title =>
                 td
-                    fun props' => {props' with
+                    fun props' => { props' with
                         BorderBottomWidth = Some <|
                             if custom_props.Status = CheckHidden || checked ()
-                            then breakpoints {initial = "2px !important"; sm = "0px !important"}
+                            then breakpoints { initial = "2px !important"; sm = "0px !important" }
                             else "0px !important"
                         BorderColor = Some "$neutral5"
                         Color = Some "$neutral9"
@@ -55,7 +55,7 @@ let row (props : mut row_props) =
                             create_custom_component base_checkbox {
                                 Checked = checked
                                 OnChange = set_checked
-                                Props = fun props' => {props' with
+                                Props = fun props' => { props' with
                                     Children = Some <| fun () => ;[
                                         title
                                     ]
@@ -67,18 +67,19 @@ let row (props : mut row_props) =
             match props.Children with
             | Some children =>
                 td
-                    fun props' => {props' with
+                    fun props' => { props' with
+                        AlignSelf = Some "center"
                         Border = Some "0"
-                        Outline = Some "0"
-                        Margin = Some "0"
-                        Padding = Some <| props.Padding /?? "0"
                         Display = Some "flex"
                         Flex = Some "6"
-                        LineHeight = Some "$base"
                         FlexDirection = Some "column"
                         FontSize = Some <| props.FontSize /?? "$sm"
+                        LineHeight = Some "$base"
+                        Margin = Some "0"
                         MaxHeight = Some "85vh"
+                        Outline = Some "0"
                         OverflowY = Some "auto"
+                        Padding = Some <| props.Padding /?? "0"
                     }
                     fun () => ;[
                         match custom_props.Status with
@@ -90,7 +91,7 @@ let row (props : mut row_props) =
                                     Modal = false
                                     OnLoad = custom_props.OnLoad
                                     OnUnload = custom_props.OnUnload
-                                    Props = fun props' => {props' with
+                                    Props = fun props' => { props' with
                                         Children = Some children
                                     }
                                 }
@@ -98,7 +99,7 @@ let row (props : mut row_props) =
                     ]
             | None =>
                 td
-                    fun props' => {props' with
+                    fun props' => { props' with
                         Border = Some "0"
                         Padding = Some "0"
                         LineHeight = Some "9px"

@@ -2,13 +2,83 @@ open real_js
 open real_util
 
 
-instance to_string any = to_string'
+
+
+nominal any = $"obj"
+nominal js_function = $"JS.Function"
+nominal js_obj_prop = $"(string * obj)"
+
 
 inl to_any forall a. (obj : a) : any =
-    real real_to_any `a obj
+    $"!obj"
+
+inl new_js_obj_prop forall a. (k : string) (v : a) : js_obj_prop =
+    $"!k, !v"
+
+inl import (name : string) (module : string) : js_function =
+    $"import !name !module"
+
+inl create_obj (obj : a i32 js_obj_prop) : any =
+    $"createObj !obj"
 
 inl stringify forall a. (obj : a) : string =
-    real real_stringify `a obj
+    $"JS.JSON.stringify !obj"
+
+inl stringify_fmt forall a. (obj : a) : string =
+    $"emitJsExpr !obj \"JSON.stringify($0, null, 2)\""
+
+inl is_empty forall a. (obj : a) : bool =
+    $"emitJsExpr !obj \"\!$0\""
+
+
+instance to_string any = to_string'
+
+inl (~!!) obj = to_any obj
+
+inl object_keys forall t. (obj : t) : a i32 string = $"JS.Constructors.Object.keys !obj |> unbox<string[]>"
+inl object_values obj : a i32 string = $"JS.Constructors.Object.values !obj"
+inl object_entries obj : a i32 string = $"JS.Constructors.Object.entries !obj"
+inl object_assign forall a. (target : a) source : a = $"JS.Constructors.Object.assign (!target, [| !target |])"
+
+type env =
+    {
+        env : any
+        codespace_name : string
+        github_run_id : string
+        github_sha : string
+        is_test : bool
+    }
+let get_env () : env =
+    inl env : any = ($"emitJsExpr () \"components_spi.env\"" : any)
+
+    inl codespace_name = $"emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
+    inl github_run_id = $"emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
+    inl github_sha = $"emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
+    inl is_test =
+        inl is_test' : any = $"!env?IS_TEST"
+        inl is_test' : bool = is_empty is_test'
+        not is_test'
+
+    {
+        env
+        codespace_name
+        github_run_id
+        github_sha
+        is_test
+    } : env
+
+inl track_time forall a. (name : string) (n : i32) (fn : () -> a) : a =
+    $"JS.console.time !name" : ()
+
+    inl result =
+        loop.for
+            {from = 0i32; nearTo = n}
+            fun _ _ => fn ()
+            ($"JS.undefined" : a)
+
+    $"JS.console.timeEnd !name" : ()
+
+    result
 
 let new_log
     (get_log_level : () -> log_level_type)
@@ -20,16 +90,13 @@ let new_log
     inl start_timestamp : i64 = ticks ()
     fun log_level (args : array any) : () =>
         if ((real real_core.union_tag (get_log_level ())) : i32) <= real real_core.union_tag log_level then
-            inl new_ticks : i64 = ticks ()
-            inl new_timestamp () : i64 = new_ticks - start_timestamp
-            inl timestamp : string = new_timestamp () |> to_any |> to_string
+            inl new_timestamp () : i64 = ticks () - start_timestamp
+            inl timestamp : string = new_timestamp () |> to_string'
             inl timestamp : string = pad 6 timestamp
             inl run_id : i32 = $"emitJsExpr () \"components_spi.run_id\""
             inl locals : array any = ;[
-                "timestamp:" |> to_any
-                timestamp |> to_any
-                "run_id:" |> to_any
-                run_id |> to_any
+                !!("timestamp:", timestamp)
+                !!("run_id:", run_id)
             ]
             inl obj_json : string = stringify (obj_fn ())
             inl args_json : string = stringify args

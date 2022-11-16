@@ -10,10 +10,10 @@ let chain (props : mut solid_props) =
         id
         fun () => ;[
             create_custom_component row {
-                Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
+                Status = CheckHidden
+                Props = fun props' => { props' with
                     Title = Some <| str "Connection"
                     Children = Some fun () => ;[
                         create_component chain_connection
@@ -23,10 +23,10 @@ let chain (props : mut solid_props) =
                 }
             }
             create_custom_component row {
-                Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
+                Status = CheckHidden
+                Props = fun props' => { props' with
                     Title = Some <| str "Accounts"
                     Children = Some fun () => ;[
                         create_component chain_accounts
@@ -39,11 +39,11 @@ let chain (props : mut solid_props) =
                 Status = CheckDisabled
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
+                Props = fun props' => { props' with
                     Title = Some <| str "Testnet Bank Dispenser"
                     Children = Some fun () => ;[
                         iframe
-                            fun props' => {props' with
+                            fun props' => { props' with
                                 Src = Some "https://bank.testnet.algorand.network"
                                 Title = Some <| str "algorand testnet bank"
                                 BackgroundColor = Some "#aaa"

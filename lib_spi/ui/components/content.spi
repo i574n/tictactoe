@@ -4,7 +4,7 @@ open row
 open links
 open settings
 open chain
-open real_js
+open js
 open database
 open counter
 open chain_status
@@ -13,10 +13,10 @@ open debug
 
 
 let content (props : mut solid_props) =
-    inl env : env = real get_env ()
+    inl env : env = get_env ()
 
     box
-        fun props' => {props' with
+        fun props' => { props' with
             Display = Some "flex"
             Flex = Some "1"
             FlexDirection = Some "column"
@@ -33,7 +33,7 @@ let content (props : mut solid_props) =
             else empty_fragment ()
 
             create_component base_table
-                fun props' => {props' with
+                fun props' => { props' with
                     Display = Some "flex"
                     Flex = Some "1"
                     FlexDirection = Some "column"
@@ -45,7 +45,7 @@ let content (props : mut solid_props) =
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
-                        Props = fun props' => {props' with
+                        Props = fun props' => { props' with
                             Title = Some <| str "Links"
                             Children = Some fun () => ;[
                                 create_component links
@@ -65,7 +65,7 @@ let content (props : mut solid_props) =
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
-                        Props = fun props' => {props' with
+                        Props = fun props' => { props' with
                             Title = Some <| str "Settings"
                             Children = Some fun () => ;[
                                 create_component settings
@@ -85,7 +85,7 @@ let content (props : mut solid_props) =
                         Status = CheckDisabled
                         OnLoad = None
                         OnUnload = None
-                        Props = fun props' => {props' with
+                        Props = fun props' => { props' with
                             Id = Some "db"
                             Title = Some <| str "Chain"
                             Children = Some fun () => ;[
@@ -107,7 +107,7 @@ let content (props : mut solid_props) =
                         Status = CheckDisabled
                         OnLoad = None
                         OnUnload = None
-                        Props = fun props' => {props' with
+                        Props = fun props' => { props' with
                             Id = Some "db"
                             Title = Some <| str "Database"
                             Children = Some fun () => ;[
@@ -129,7 +129,7 @@ let content (props : mut solid_props) =
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
-                        Props = fun props' => {props' with
+                        Props = fun props' => { props' with
                             Title = Some <| str "Profile"
                             Children = Some fun () => ;[
                                 create_component base_table

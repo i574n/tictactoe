@@ -3,7 +3,6 @@ open solid
 open base_table
 open row
 open db_connection
-open real_js
 open state
 open real_state
 open db
@@ -11,16 +10,15 @@ open db
 
 type database_item_props =
     {
-        Status : db_connection_status
-        Id : string
-        Title : string
         DbType : db_type
+        Id : string
+        Status : db_connection_status
+        Title : string
     }
 
 let database_item (props : mut database_item_props) =
     inl db_connection_status, set_db_connection_status = use_db_connection_status ()
     create_custom_component row {
-        Status = CheckDisabled
         OnLoad = Some fun () =>
             set_db_connection_status <|
                 db_connection_status () /@ a ;[props.Status]
@@ -28,7 +26,8 @@ let database_item (props : mut database_item_props) =
             set_db_connection_status <|
                 db_connection_status ()
                 |> am.filter fun db_status => db_status <> props.Status
-        Props = fun props' => {props' with
+        Status = CheckDisabled
+        Props = fun props' => { props' with
             Id = Some props.Id
             Title = Some <| str props.Title
             Children = Some fun () => ;[
@@ -44,27 +43,27 @@ let database (props : mut solid_props) =
         id
         fun () => ;[
             create_custom_component database_item {
-                Status = {client = GunRs; server = GunRs}
+                DbType = GunRs
                 Id = "db-gun-rs-rs"
+                Status = {client = GunRs; server = GunRs}
                 Title = "Rust -> Rust"
-                DbType = GunRs
             }
             create_custom_component database_item {
-                Status = {client = GunRs; server = GunJs}
+                DbType = GunJs
                 Id = "db-gun-rs-js"
+                Status = {client = GunRs; server = GunJs}
                 Title = "Rust -> JavaScript"
-                DbType = GunJs
             }
             create_custom_component database_item {
-                Status = {client = GunJs; server = GunJs}
+                DbType = GunJs
                 Id = "db-gun-js-js"
+                Status = {client = GunJs; server = GunJs}
                 Title = "JavaScript -> JavaScript"
-                DbType = GunJs
             }
             create_custom_component database_item {
-                Status = {client = GunJs; server = GunRs}
-                Id = "db-gun-js-rs"
-                Title = "JavaScript -> Rust"
                 DbType = GunRs
+                Id = "db-gun-js-rs"
+                Status = {client = GunJs; server = GunRs}
+                Title = "JavaScript -> Rust"
             }
         ]

@@ -63,7 +63,7 @@ open base_table
 open state
 open base_icon
 open real_util
-open real_js
+open js
 open hooks.use_fetch
 
 
@@ -78,19 +78,19 @@ let chain_deploy (props : mut solid_props) =
             fun client => promise ($"()" : any)
 
     create_custom_component row {
-        Status = CheckHidden
         OnLoad = None
         OnUnload = None
-        Props = fun props' => {props' with
+        Status = CheckHidden
+        Props = fun props' => { props' with
             Id = Some <| "deploy"
             Title = Some <|
                 stack
-                    fun props' => {props' with
+                    fun props' => { props' with
                         AlignItems = Some "start"
-                        Direction = Some <| breakpoints {initial = "row"; sm = "column"}
-                        MarginBottom = Some <| breakpoints {initial = "0"; sm = "8px"}
-                        Spacing = Some "7px"
+                        Direction = Some <| breakpoints { initial = "row"; sm = "column" }
+                        MarginBottom = Some <| breakpoints { initial = "0"; sm = "8px" }
                         Padding = Some "3px"
+                        Spacing = Some "7px"
                     }
                     fun () => ;[
                         box
@@ -99,14 +99,14 @@ let chain_deploy (props : mut solid_props) =
                                 str "Chain Deploy"
                             ]
                         create_component base_button
-                            fun props' => {props' with
+                            fun props' => { props' with
                                 LeftIcon = Some <|
                                     create_custom_component base_icon {
-                                        Icon = biRegularPlus_
-                                        Props = id
-                                        Css = fun props' => {props' with
+                                        Css = fun props' => { props' with
                                             MarginLeft = None
                                         }
+                                        Icon = biRegularPlus_
+                                        Props = id
                                     }
                                 PaddingRight = Some "10px"
                                 OnClick = Some request
@@ -115,14 +115,14 @@ let chain_deploy (props : mut solid_props) =
                                 str "Request"
                             ]
                         create_component base_button
-                            fun props' => {props' with
+                            fun props' => { props' with
                                 LeftIcon = Some <|
                                     create_custom_component base_icon {
-                                        Icon = biRegularMinus_
-                                        Props = id
-                                        Css = fun props' => {props' with
+                                        Css = fun props' => { props' with
                                             MarginLeft = None
                                         }
+                                        Icon = biRegularMinus_
+                                        Props = id
                                     }
                                 PaddingRight = Some "10px"
                                 OnClick = Some clear
@@ -142,7 +142,7 @@ let chain_deploy (props : mut solid_props) =
                                 Status = CheckHidden
                                 OnLoad = None
                                 OnUnload = None
-                                Props = fun props' => {props' with
+                                Props = fun props' => { props' with
                                     Title = Some <| str (item () |> fst |> to_string')
                                     Padding = Some "3px"
                                     Children = Some fun () => ;[

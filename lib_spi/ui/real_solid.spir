@@ -1,4 +1,4 @@
-open real_js
+open js
 open real_core
 open real_util
 
@@ -293,7 +293,7 @@ inl create_component' forall props_type.
     : jsx_element
     =
     inl createComponent' = createComponent_ ()
-    $"!createComponent'.Invoke (!cmp, !props) |> unbox<JSX.Element>" : jsx_element
+    $"!createComponent'.Invoke (!cmp, !props) |> unbox<`jsx_element>" : jsx_element
 
 inl add_children_props
     (children : () -> array jsx_element)
@@ -301,7 +301,7 @@ inl add_children_props
     :
     solid_props
     =
-    {props with Children =
+    { props with Children =
         some `(() -> array jsx_element)
             match props.Children with
             | Some children' => children'
@@ -311,7 +311,7 @@ inl add_children_props
 inl real_init_props (props_fn : solid_props -> solid_props) : solid_props =
     inl props : solid_props = real_empty_props ()
     inl props : solid_props = props_fn props
-    {props with
+    { props with
         Children =
             match props.Children with
             | Some children => some `(() -> array jsx_element) <| real_children children
@@ -328,7 +328,7 @@ inl create_native_component
     inl new_props_entries : a i32 js_obj_prop = record_entries props
     inl new_props : any = create_obj new_props_entries
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
-    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<obj -> JSX.Element>"
+    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<`any -> `jsx_element>"
     create_component' `any new_cmp new_props
 
 inl create_custom_component forall props_type.
@@ -351,15 +351,15 @@ inl create_component forall solid_props.
     create_component' `(mut solid_props) cmp new_props
 
 
-type get a = () -> a
-type set a = a -> ()
-type atom a = get a * set a
+type getter a = () -> a
+type setter a = a -> ()
+type atom a = getter a * setter a
 
 inl real_create_signal forall a. (default_value : a) : atom a =
     inl createSignal' = createSignal_ ()
     inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
-    inl get = $"!fns.[0] |> unbox" : get a
-    inl set = $"!fns.[1] |> unbox" : set a
+    inl get = $"!fns.[0] |> unbox" : getter a
+    inl set = $"!fns.[1] |> unbox" : setter a
     get, set
 
 let real_create_context forall context_type. : any =

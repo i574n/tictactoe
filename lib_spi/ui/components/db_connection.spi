@@ -18,7 +18,7 @@ let db_connection (props : mut db_connection_props) =
                 Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
+                Props = fun props' => { props' with
                     Title = Some (str "URL")
                     Padding = Some "3px"
                     Children = Some fun () => ;[
@@ -37,7 +37,7 @@ let db_connection (props : mut db_connection_props) =
                 Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
+                Props = fun props' => { props' with
                     Title = Some (str "Port")
                     Padding = Some "3px"
                     Children = Some fun () => ;[

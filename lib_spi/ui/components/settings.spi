@@ -14,25 +14,25 @@ let settings (props : mut solid_props) =
                 Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
+                Props = fun props' => { props' with
                     Title = Some <| str "Theme"
                     Padding = Some "5px 6px"
                     Children = Some fun () => ;[
                         radio_group
-                            fun props' => {props' with
+                            fun props' => { props' with
                                 DefaultValue = Some <| color_mode ()
                                 OnChange = Some fun _ => toggle_color_mode ()
                             }
                             fun () => ;[
                                 stack
-                                    fun props' => {props' with
+                                    fun props' => { props' with
                                         Direction = Some "row"
                                         Spacing = Some "$4"
                                     }
                                     fun () => ;[
                                         radio
-                                            fun props' => {props' with
-                                                Value = Some <| to_any "dark"
+                                            fun props' => { props' with
+                                                Value = Some !!"dark"
                                                 Size = Some "sm"
                                                 ColorScheme = Some "neutral"
                                             }
@@ -40,8 +40,8 @@ let settings (props : mut solid_props) =
                                                 str "Dark"
                                             ]
                                         radio
-                                            fun props' => {props' with
-                                                Value = Some <| to_any "light"
+                                            fun props' => { props' with
+                                                Value = Some !!"light"
                                                 Size = Some "sm"
                                                 ColorScheme = Some "neutral"
                                             }

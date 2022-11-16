@@ -1,24 +1,23 @@
 open solid
-open real_js
+open js
 open real_util
 
 
 let base_simple_select (props : mut solid_props) =
     simple_select
-        fun props' => {props' with
-            Size = Some "xs"
+        fun props' => { props' with
             MarginTop = props.MarginTop
             Placeholder = props.Placeholder
-            Value = props.Value
             OnChange = props.OnChange
+            Size = Some "xs"
+            Value = props.Value
         }
         fun () => ;[
             for' {
-                Each' =
-                    props.Each /?? a ;[] : a i32 any
+                Each' = props.Each /?? a ;[]
             } fun item => ;[
                 simple_option
-                    fun props' => {props' with
+                    fun props' => { props' with
                         Value = Some item
                     }
                     fun () => ;[
@@ -29,10 +28,10 @@ let base_simple_select (props : mut solid_props) =
 
 let base_select (props : mut solid_props) =
     select
-        fun props' => {props' with
+        fun props' => { props' with
+            OnChange = props.OnChange
             Size = Some "xs"
             Value = props.Value
-            OnChange = props.OnChange
         }
         fun () => ;[
             select_trigger
@@ -57,11 +56,10 @@ let base_select (props : mut solid_props) =
                         id
                         fun () => ;[
                             for' {
-                                Each' =
-                                    props.Each /?? a ;[] : a i32 any
+                                Each' = props.Each /?? a ;[]
                             } fun item => ;[
                                 select_option
-                                    fun props' => {props' with
+                                    fun props' => { props' with
                                         Value = Some item
                                     }
                                     fun () => ;[

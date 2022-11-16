@@ -4,10 +4,11 @@ open solid
 let base_button (props : mut solid_props) =
     button
         fun props' =>
-            {props' with
-                Size = Some "xs"
-                JustifyContent = Some "left"
-                Compact = Some true
+            { props' with
                 ColorScheme = Some "neutral"
-            } |> merge_props *props
+                Compact = Some true
+                JustifyContent = Some "left"
+                Size = Some "xs"
+            }
+            |> merge_props *props
         (props.Children /?? fun () => ;[])

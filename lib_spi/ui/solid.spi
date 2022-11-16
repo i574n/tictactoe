@@ -1,5 +1,4 @@
 open js
-open real_js
 open real_util
 open real_solid
 
@@ -171,7 +170,7 @@ type for_props item_type =
     }
 
 inl loop_props forall item_type. (props : for_props item_type) : solid_props -> solid_props =
-    fun props' => {props' with
+    fun props' => { props' with
         Each =
             props.Each'
             |> fun x : a i32 any => $"!x |> unbox<obj[]>"
@@ -256,14 +255,14 @@ inl empty_fragment () : jsx_element =
     $"JS.undefined"
 
 inl str (str : string) : jsx_element =
-    real fragment ($"!str |> unbox<JSX.Element>" : jsx_element)
+    real fragment ($"!str |> unbox<`jsx_element>" : jsx_element)
 
 inl breakpoints ~{ initial sm } =
     join
-        $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<string>"
+        $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<`string>"
 
 inl children_fragment (children : () -> array jsx_element) : jsx_element =
-    $"!children |> unbox<JSX.Element>"
+    $"!children |> unbox<`jsx_element>"
 
 
 

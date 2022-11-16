@@ -15,28 +15,27 @@ let chain_accounts (props : mut solid_props) =
                 Each' = chain_accounts ()
             } fun account => ;[
                 create_custom_component row {
-                    Status = CheckHidden
                     OnLoad = None
                     OnUnload = None
-                    Props = fun props' => {props' with
+                    Status = CheckHidden
+                    Props = fun props' => { props' with
                         Title =
                             match get_atom_value account.account with
                             | Admin => "admin"
                             | Player (X) => "x"
                             | Player (O) => "o"
-                            | _ => ""
                             |> str |> Some
                         Children = Some fun () => ;[
                             create_component base_table
                                 id
                                 fun () => ;[
                                     create_custom_component row {
-                                        Status = CheckHidden
                                         OnLoad = None
                                         OnUnload = None
-                                        Props = fun props' => {props' with
-                                            Title = Some <| str "Address"
+                                        Status = CheckHidden
+                                        Props = fun props' => { props' with
                                             Padding = Some "3px"
+                                            Title = Some <| str "Address"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
                                                     StateGet = fun () =>
@@ -48,12 +47,12 @@ let chain_accounts (props : mut solid_props) =
                                         }
                                     }
                                     create_custom_component row {
-                                        Status = CheckHidden
                                         OnLoad = None
                                         OnUnload = None
-                                        Props = fun props' => {props' with
-                                            Title = Some <| str "Private Key"
+                                        Status = CheckHidden
+                                        Props = fun props' => { props' with
                                             Padding = Some "3px"
+                                            Title = Some <| str "Private Key"
                                             Children = Some fun () => ;[
                                                 create_custom_component state_input {
                                                     StateGet = fun () =>

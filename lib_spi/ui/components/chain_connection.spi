@@ -14,12 +14,12 @@ let chain_connection (props : mut solid_props) =
         id
         fun () => ;[
             create_custom_component row {
-                Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
-                    Title = Some <| str "Token"
+                Status = CheckHidden
+                Props = fun props' => { props' with
                     Padding = Some "3px"
+                    Title = Some <| str "Token"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
                             StateGet = chain_token >> Some
@@ -29,12 +29,12 @@ let chain_connection (props : mut solid_props) =
                 }
             }
             create_custom_component row {
-                Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
-                    Title = Some <| str "URL"
+                Status = CheckHidden
+                Props = fun props' => { props' with
                     Padding = Some "3px"
+                    Title = Some <| str "URL"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
                             StateGet = chain_url >> Some
@@ -44,12 +44,12 @@ let chain_connection (props : mut solid_props) =
                 }
             }
             create_custom_component row {
-                Status = CheckHidden
                 OnLoad = None
                 OnUnload = None
-                Props = fun props' => {props' with
-                    Title = Some <| str "Port"
+                Status = CheckHidden
+                Props = fun props' => { props' with
                     Padding = Some "3px"
+                    Title = Some <| str "Port"
                     Children = Some fun () => ;[
                         create_custom_component state_input {
                             StateGet = chain_port >> Some

@@ -41,12 +41,11 @@ open real_solid
 open real_state
 open state
 open js
-open real_js
 
 let db_listener (props : mut ()) =
     inl get_locals () : array any = ;[
     ]
     inl log = use_log get_locals "#cf1100"
-    log Debug ;[to_any "> db_listener ()"]
+    log Debug ;[!!"> db_listener ()"]
 
     empty_fragment ()

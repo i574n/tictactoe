@@ -8,19 +8,20 @@ let external_link (props : mut solid_props) =
         fun () => ;[
             anchor
                 fun props' =>
-                    {props' with
+                    { props' with
                         External = Some true
-                    } |> merge_props *props
+                    }
+                    |> merge_props *props
                 fun () => ;[
-                    str (props.Href /?? "")
+                    str <| props.Href /?? ""
                 ]
             str "&nbsp;"
             create_custom_component base_icon {
-                Icon = biRegularLinkExternal_
-                Props = id
-                Css = fun props' => {props' with
+                Css = fun props' => { props' with
                     MarginTop = Some "-13px"
                     MarginLeft = None
                 }
+                Icon = biRegularLinkExternal_
+                Props = id
             }
         ]
