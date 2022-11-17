@@ -30,9 +30,6 @@ inl use_chain_port () : atom i32 =
 inl use_chain_accounts () : atom (a i32 chain_account_state) =
     real use_atom `(`(new_state_context ())) `(a i32 chain_account_state) fun context => context.chain.accounts
 
-inl use_db_connection_status () : atom (a i32 db_connection_status) =
-    real use_atom `(`(new_state_context ())) `(a i32 db_connection_status) fun context => context.db.connection_status
-
 inl use_db_connection () : atom (a i32 db_connection) =
     real use_atom `(`(new_state_context ())) `(a i32 db_connection) fun context => context.db.connection
 
@@ -71,8 +68,9 @@ instance of_string log_level_type = function
 
 let empty_db_connection () : db_connection =
     {
-        db_type = GunRs
+        server_type = GunRs
         url = ""
         port = 0
         ws = ""
+        clients = a ;[]
     }

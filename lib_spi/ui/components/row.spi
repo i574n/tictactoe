@@ -28,7 +28,7 @@ let row (props : mut row_props) =
             Id = props.Id
             Display = Some "flex"
             Flex = Some "1"
-            BorderWidth = Some "1px 2px"
+            BorderWidth = Some "1px 1px"
             BorderColor = Some "$neutral5"
             FlexDirection = Some <| breakpoints { initial = "column"; sm = "row" }
         }
@@ -39,28 +39,41 @@ let row (props : mut row_props) =
                     fun props' => { props' with
                         BorderBottomWidth = Some <|
                             if custom_props.Status = CheckHidden || checked ()
-                            then breakpoints { initial = "2px !important"; sm = "0px !important" }
+                            then breakpoints { initial = $"JS.undefined" : string; sm = "0px !important" }
                             else "0px !important"
                         BorderColor = Some "$neutral5"
-                        Color = Some "$neutral9"
+                        Color = Some "$neutral11"
                         Display = Some "flex"
                         FlexDirection = Some "column"
                         FontSize = Some <| props.FontSize /?? "$sm"
-                        Padding = Some "3px 20px 0 8px"
+                        JustifyContent = Some "center"
+                        Padding = Some <| breakpoints {
+                            initial = "0"
+                            sm =
+                                match props.PaddingLeft with
+                                | Some ("0") => "0"
+                                | _ => "0 20px 0 0"
+                        }
                     }
                     fun () => ;[
-                        match custom_props.Status with
-                        | CheckHidden => title
-                        | _ =>
-                            create_custom_component base_checkbox {
-                                Checked = checked
-                                OnChange = set_checked
-                                Props = fun props' => { props' with
-                                    Children = Some <| fun () => ;[
-                                        title
-                                    ]
-                                }
+                        box
+                            fun props' => { props' with
+                                PaddingLeft = Some <| props.PaddingLeft /?? "8px"
                             }
+                            fun () => ;[
+                                match custom_props.Status with
+                                | CheckHidden => title
+                                | _ =>
+                                    create_custom_component base_checkbox {
+                                        Checked = checked
+                                        OnChange = set_checked
+                                        Props = fun props' => { props' with
+                                            Children = Some <| fun () => ;[
+                                                title
+                                            ]
+                                        }
+                                    }
+                            ]
                     ]
             | None => empty_fragment ()
 
@@ -68,14 +81,17 @@ let row (props : mut row_props) =
             | Some children =>
                 td
                     fun props' => { props' with
-                        AlignSelf = Some "center"
                         Border = Some "0"
                         Display = Some "flex"
                         Flex = Some "6"
                         FlexDirection = Some "column"
                         FontSize = Some <| props.FontSize /?? "$sm"
+                        JustifyContent = Some "center"
                         LineHeight = Some "$base"
-                        Margin = Some "0"
+                        MarginTop = Some "0"
+                        MarginRight = Some "0"
+                        MarginLeft = Some <| props.MarginLeft /?? "0"
+                        MarginBottom = Some <| props.MarginBottom /?? "0"
                         MaxHeight = Some "85vh"
                         Outline = Some "0"
                         OverflowY = Some "auto"

@@ -301,48 +301,22 @@
 // export default useFetch
 
 open state
+open real_solid
+open solid
 open real_state
+open real_js
 open js
 
 
 nominal promise t = t
 nominal client = any // $a"algosdk.Algodv2"
 
-//     const getLocals = () => ({
-//         contentAddress,
-//         [`proxy`]: db.objectValueCount(proxy),
-//         [`events`]: Object.entries(events()),
-//         [`timers`]: Object.entries(timers()),
-//         [`values`]: Object.entries(values()).reduce(
-//             ([keys, emptyKeys]: (string | any[])[][], [id, value]) =>
-//                 !!value
-//                     ? [[...keys, [id, db.objectValueCount(value)]], emptyKeys]
-//                     : [keys, [...emptyKeys, id]],
-//             [[], []]),
-//         [`subscriptions`]: Object.entries(subscriptions()).map(([id, { subscription }]) => [id, subscription])
-//     })
-
-//     // const randomHexColorString = () => "#" + Math.floor(Math.random() * 16777215).toString(16)
-
-//     const generateSixDigitNumericHashFromString = (text: string) =>
-//         [...text].map((c) => c.charCodeAt(0)).reduce((acc, x) => acc + (x * 11), 100000).toString().substring(-6)
-
-//     const log = util.getLog(getLocals, `#${generateSixDigitNumericHashFromString(contentAddress.contentAddress)}`)
-
-// module sm =
-//     // Indexes into the string.
-//     inl index forall t{int}. (str : string) (i : t) : char = !!!!StringIndex(str,i)
-//     // Returns the length of the string.
-//     inl length forall t{int}. (str : string) : t = !!!!StringLength(`t,str)
-//     // Slice the string between the two points.
-//     inl slice forall t{int}. (str : string) {from=(a : t) to=(b : t)} = !!!!StringSlice(str,a,b)
-
 
 inl generate_six_digit_numeric_hash_from_string (text : string) : string =
     text
     |> string_get_bytes
     |> am.fold
-        fun (acc : i32) n => acc + ($"(!n |> unbox<`i32>)" * 14)
+        fun (acc : i32) n => acc + ((real real_unbox `u8 `i32 n) * 14)
         100000
     |> to_string'
 
@@ -351,21 +325,39 @@ inl generate_color (text : string) : string =
     $"$\"#{!color}\""
 
 
-
 let use_fetch forall state_type value_type.
     (content_address : string)
     (proxy : state_type)
     (apply : () -> () -> state_type -> ())
     (request_fn : client -> promise value_type)
-    :
-    (() -> ()) * (() -> ())
+    : (() -> ()) * (() -> ())
     =
+    inl events, set_events = create_signal ()
+    inl timers, set_timers = create_signal ()
+    inl values, set_values = create_signal ()
+    inl subscriptions, set_subscriptions = create_signal ()
+
     inl get_locals () : array any = ;[
         !!("content_address:", content_address)
+        !!("proxy:", proxy)
+        !!("events:", events)
+        !!("timers:", timers)
+        !!("values:", values)
+        !!("subscriptions:", subscriptions)
     ]
     inl color = generate_color content_address
     inl log = use_log get_locals color
     log Debug ;[!!"> use_fetch ()"]
+
+    inl unsubscribe () =
+        log Debug ;[!!"> use_fetch > unsubscribe () [1]"]
+
+        db.db_off content_address
+        ()
+
+    inl on_unload' () =
+        unsubscribe ()
+    real on_cleanup on_unload'
 
     inl request () =
         log Info ;[

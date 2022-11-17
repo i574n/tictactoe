@@ -1,5 +1,7 @@
 open real_solid
+open js
 open solid
+open base_checkbox
 open base_table
 open row
 open db_connection
@@ -8,62 +10,164 @@ open real_state
 open db
 
 
-type database_item_props =
-    {
-        DbType : db_type
-        Id : string
-        Status : db_connection_status
-        Title : string
-    }
+// type database_item_props =
+//     {
+//         DbType : db_type
+//         Id : string
+//         Status : { client : db_type; server : db_type }
+//         Title : string
+//     }
 
-let database_item (props : mut database_item_props) =
-    inl db_connection_status, set_db_connection_status = use_db_connection_status ()
-    create_custom_component row {
-        OnLoad = Some fun () =>
-            set_db_connection_status <|
-                db_connection_status () /@ a ;[props.Status]
-        OnUnload = Some fun () =>
-            set_db_connection_status <|
-                db_connection_status ()
-                |> am.filter fun db_status => db_status <> props.Status
-        Status = CheckDisabled
-        Props = fun props' => { props' with
-            Id = Some props.Id
-            Title = Some <| str props.Title
-            Children = Some fun () => ;[
-                create_custom_component db_connection {
-                    DbType = props.DbType
-                }
-            ]
-        }
-    }
+// let database_item (props : mut database_item_props) =
+//     inl db_connection, set_db_connection = use_db_connection ()
+//     create_custom_component row {
+//         OnLoad = Some fun () =>
+//             set_db_connection <|
+//                 db_connection () /@ a ;[{ db_type = props.DbType; id = props.Id }]
+
+//             inl subscribe id =
+//                 console_fsx.inspect "database_item subscribe"
+//                 console_fsx.inspect "id:"
+//                 console_fsx.inspect id
+//                 ()
+//             inl id = ()
+//             inl timeout = set_timeout (fun () => subscribe id) (get_db_init_timeout ())
+//             console_fsx.inspect "database_item OnLoad"
+//             console_fsx.inspect "timeout:"
+//             console_fsx.inspect timeout
+//             ()
+//         OnUnload = Some fun () =>
+//             set_db_connection <|
+//                 db_connection ()
+//                 |> am.filter fun db_status => db_status <> props.Status
+//         Status = CheckDisabled
+//         Props = fun props' => { props' with
+//             Id = Some props.Id
+//             Title = Some <| str props.Title
+//             Children = Some fun () => ;[
+//                 create_custom_component db_connection {
+//                     DbType = props.DbType
+//                 }
+//             ]
+//         }
+//     }
 
 let database (props : mut solid_props) =
     create_component base_table
         id
         fun () => ;[
-            create_custom_component database_item {
-                DbType = GunRs
-                Id = "db-gun-rs-rs"
-                Status = {client = GunRs; server = GunRs}
-                Title = "Rust -> Rust"
+            create_custom_component row {
+                OnLoad = None
+                OnUnload = None
+                Status = CheckHidden
+                Props = fun props' => { props' with
+                    Id = None
+                    PaddingLeft = Some "0"
+                    Title = Some <|
+                        create_custom_component row {
+                            OnLoad = None
+                            OnUnload = None
+                            Status = CheckHidden
+                            Props = fun props' => { props' with
+                                Id = None
+                                Title = Some <| str "Gun Rust"
+                                Children = Some fun () => ;[
+                                    create_custom_component db_connection {
+                                        ServerType = GunRs
+                                    }
+                                ]
+                            }
+                        }
+                    Children = Some fun () => ;[
+                        create_custom_component row {
+                            OnLoad = None
+                            OnUnload = None
+                            Status = CheckHidden
+                            Props = fun props' => { props' with
+                                Id = None
+                                MarginLeft = Some "8px"
+                                MarginBottom = Some "4px"
+                                Title = Some <| str "Clients"
+                                Children = Some fun () => ;[
+                                    create_custom_component base_checkbox {
+                                        Checked = fun () => false
+                                        OnChange = fun x => ()
+                                        Props = fun props' => { props' with
+                                            Children = Some <| fun () => ;[
+                                                str "Gun Rust"
+                                            ]
+                                        }
+                                    }
+                                    create_custom_component base_checkbox {
+                                        Checked = fun () => false
+                                        OnChange = fun x => ()
+                                        Props = fun props' => { props' with
+                                            Children = Some <| fun () => ;[
+                                                str "Gun JavaScript"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
             }
-            create_custom_component database_item {
-                DbType = GunJs
-                Id = "db-gun-rs-js"
-                Status = {client = GunRs; server = GunJs}
-                Title = "Rust -> JavaScript"
-            }
-            create_custom_component database_item {
-                DbType = GunJs
-                Id = "db-gun-js-js"
-                Status = {client = GunJs; server = GunJs}
-                Title = "JavaScript -> JavaScript"
-            }
-            create_custom_component database_item {
-                DbType = GunRs
-                Id = "db-gun-js-rs"
-                Status = {client = GunJs; server = GunRs}
-                Title = "JavaScript -> Rust"
+            create_custom_component row {
+                OnLoad = None
+                OnUnload = None
+                Status = CheckHidden
+                Props = fun props' => { props' with
+                    Id = None
+                    PaddingLeft = Some "0"
+                    Title = Some <|
+                        create_custom_component row {
+                            OnLoad = None
+                            OnUnload = None
+                            Status = CheckHidden
+                            Props = fun props' => { props' with
+                                Id = None
+                                Title = Some <| str "Gun JavaScript"
+                                Children = Some fun () => ;[
+                                    create_custom_component db_connection {
+                                        ServerType = GunJs
+                                    }
+                                ]
+                            }
+                        }
+                    Children = Some fun () => ;[
+                        create_custom_component row {
+                            OnLoad = None
+                            OnUnload = None
+                            Status = CheckHidden
+                            Props = fun props' => { props' with
+                                Id = None
+                                MarginLeft = Some "8px"
+                                MarginBottom = Some "4px"
+                                Title = Some <| str "Clients"
+                                Children = Some fun () => ;[
+                                    create_custom_component base_checkbox {
+                                        Checked = fun () => false
+                                        OnChange = fun x => ()
+                                        Props = fun props' => { props' with
+                                            Children = Some <| fun () => ;[
+                                                str "Gun Rust"
+                                            ]
+                                        }
+                                    }
+                                    create_custom_component base_checkbox {
+                                        Checked = fun () => false
+                                        OnChange = fun x => ()
+                                        Props = fun props' => { props' with
+                                            Children = Some <| fun () => ;[
+                                                str "Gun JavaScript"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
             }
         ]

@@ -13,6 +13,7 @@ let state_input forall value_type. (props : mut (state_input_props value_type)) 
 
     input
         fun props' => { props' with
+            MinWidth = Some "15vw"
             Type = Some "text"
             Size = Some "xs"
             Value =

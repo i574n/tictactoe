@@ -44,6 +44,8 @@ union solid_prop =
     | MarginLeft : string
     | MaxHeight : string
     | MaxWidth : string
+    | MinHeight : string
+    | MinWidth : string
     | OnChange : any -> ()
     | OnClick : () -> ()
     | OnInput : any -> ()
@@ -76,8 +78,8 @@ union solid_prop =
 
 inl typecheck_props () =
     real
-        union_record_check `solid_prop `(`(prop_keys ())) {check_length=true; check_type=CheckNone}
-        union_record_check `solid_prop `solid_props {check_length=true; check_type=CheckOption}
+        union_record_check `solid_prop `(`(prop_keys ())) { check_length = true; check_type = CheckNone }
+        union_record_check `solid_prop `solid_props { check_length = true; check_type = CheckOption }
 
 inl init_props (props_fn : solid_props -> solid_props) : solid_props =
     real real_init_props props_fn

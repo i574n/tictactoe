@@ -7,7 +7,7 @@ open db_connection_input
 
 type db_connection_props =
     {
-        DbType : db_type
+        ServerType : server_type
     }
 
 let db_connection (props : mut db_connection_props) =
@@ -19,14 +19,14 @@ let db_connection (props : mut db_connection_props) =
                 OnLoad = None
                 OnUnload = None
                 Props = fun props' => { props' with
-                    Title = Some (str "URL")
+                    Title = Some <| str "URL"
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component db_connection_input {
-                            DbType = props.DbType
+                            ServerType = props.ServerType
                             Get = fun db_connection => Some db_connection.url
-                            Set = fun db_connection value => {db_connection with
-                                db_type = props.DbType
+                            Set = fun db_connection value => { db_connection with
+                                server_type = props.ServerType
                                 url = value /?? ""
                             }
                         }
@@ -38,14 +38,14 @@ let db_connection (props : mut db_connection_props) =
                 OnLoad = None
                 OnUnload = None
                 Props = fun props' => { props' with
-                    Title = Some (str "Port")
+                    Title = Some <| str "Port"
                     Padding = Some "3px"
                     Children = Some fun () => ;[
                         create_custom_component db_connection_input {
-                            DbType = props.DbType
+                            ServerType = props.ServerType
                             Get = fun db_connection => Some db_connection.port
-                            Set = fun db_connection value => {db_connection with
-                                db_type = props.DbType
+                            Set = fun db_connection value => { db_connection with
+                                server_type = props.ServerType
                                 port = value /?? 0
                             }
                         }

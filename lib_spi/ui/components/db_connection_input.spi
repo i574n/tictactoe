@@ -7,7 +7,7 @@ open db
 
 type db_connection_input_props value_type =
     {
-        DbType : db_type
+        ServerType : server_type
         Get : db_connection -> option value_type
         Set : db_connection -> option value_type -> db_connection
     }
@@ -18,14 +18,14 @@ let db_connection_input forall value_type. (props : mut (db_connection_input_pro
         StateGet = fun state =>
             db_connection ()
             |> array_find_last fun db_connection =>
-                if db_connection.db_type = props.DbType
+                if db_connection.server_type = props.ServerType
                 then props.Get db_connection
                 else None
         StateSet = fun value =>
             set_db_connection <|
                 db_connection ()
                 |> am.map fun db_connection =>
-                    if db_connection.db_type = props.DbType
+                    if db_connection.server_type = props.ServerType
                     then props.Set db_connection value
                     else db_connection
     }

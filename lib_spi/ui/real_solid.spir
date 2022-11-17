@@ -1,3 +1,4 @@
+open real_js
 open js
 open real_core
 open real_util
@@ -47,6 +48,8 @@ type solid_props =
         MarginLeft : option string
         MaxHeight : option string
         MaxWidth : option string
+        MinHeight : option string
+        MinWidth : option string
         OnChange : option (any -> ())
         OnClick : option (() -> ())
         OnInput : option (any -> ())
@@ -120,6 +123,8 @@ inl real_empty_props () : solid_props =
             MarginLeft = none `string ()
             MaxHeight = none `string ()
             MaxWidth = none `string ()
+            MinHeight = none `string ()
+            MinWidth = none `string ()
             OnChange = none `(any -> ()) ()
             OnClick = none `(() -> ()) ()
             OnInput = none `(any -> ()) ()
@@ -192,6 +197,8 @@ inl prop_keys () =
         MarginLeft = "marginLeft"
         MaxHeight = "maxHeight"
         MaxWidth = "maxWidth"
+        MinHeight = "minHeight"
+        MinWidth = "minWidth"
         OnChange = "onChange"
         OnClick = "onClick"
         OnInput = "onInput"
@@ -328,7 +335,7 @@ inl create_native_component
     inl new_props_entries : a i32 js_obj_prop = record_entries props
     inl new_props : any = create_obj new_props_entries
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
-    inl new_cmp : any -> jsx_element = $"!cmp |> unbox<`any -> `jsx_element>"
+    inl new_cmp = real_unbox `js_function `(any -> jsx_element) cmp
     create_component' `any new_cmp new_props
 
 inl create_custom_component forall props_type.

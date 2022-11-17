@@ -46,7 +46,7 @@ let debug (props : mut ()) =
 
     box
         fun props' => { props' with
-            BackgroundColor = Some "$blackAlpha9"
+            BackgroundColor = Some "$blackAlpha12"
             Bottom = Some "0"
             Display = Some "flex"
             FlexDirection = Some "column"
@@ -140,11 +140,6 @@ let debug (props : mut ()) =
                                                                         }
                                                                     |> to_any
                                                                 Title = "chain.accounts"
-                                                            }
-                                                            create_custom_component atom_value {
-                                                                Get = to_any
-                                                                Hook = use_db_connection_status
-                                                                Title = "db.connection_status"
                                                             }
                                                             create_custom_component atom_value {
                                                                 Get = to_any

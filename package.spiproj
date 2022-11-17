@@ -12,9 +12,9 @@ modules:
         chain
         tictactoe_testnet
         ui/
-            db
             real_solid*
             solid
+            db
             real_state*
             state
             profile

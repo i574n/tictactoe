@@ -6,19 +6,7 @@ open chain
 open tictactoe
 
 
-type db_connection =
-    {
-        db_type : db_type
-        url : string
-        port : i32
-        ws : string
-    }
 
-type db_connection_status =
-    {
-        client : db_type
-        server : db_type
-    }
 
 type chain_account_state =
     {
@@ -60,7 +48,7 @@ inl new_state_context () =
             connection = create_signal `(a i32 db_connection) (
                 a `i32 `db_connection (;[
                     {
-                        db_type = GunRs
+                        server_type = GunRs
                         url = // create_signal `string <|
                             match env.codespace_name, env.is_test with
                             | "", _ => "ws://localhost"
@@ -72,9 +60,10 @@ inl new_state_context () =
                             | "", false => 4944
                             | _, _ => 80
                         ws = "ws"
+                        clients = am.empty `a `i32 `db_connection_status
                     }
                     {
-                        db_type = GunJs
+                        server_type = GunJs
                         url = // create_signal `string <|
                             match env.codespace_name, env.is_test with
                             | "", _ => "wss://localhost"
@@ -86,6 +75,7 @@ inl new_state_context () =
                             | "", false => 8765
                             | _, _ => 80
                         ws = "gun"
+                        clients = am.empty `a `i32 `db_connection_status
                     }
                                         ] : array db_connection)
             )
@@ -108,4 +98,4 @@ inl new_state_context () =
     }
 
 inl new_state_context_any () : any =
-    real_to_any `(`(new_state_context ())) (new_state_context ())
+    to_any `(`(new_state_context ())) (new_state_context ())

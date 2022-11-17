@@ -1,0 +1,3 @@
+
+inl real_unbox forall a b. (obj : a) : b =
+    $"!obj |> unbox<`b>"

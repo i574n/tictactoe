@@ -30,7 +30,7 @@ let loader (props : mut loader_props) =
     inl get_locals () : array any = ;[
         !!("loader_id:",loader_id)
         !!("chain_token:", chain_token ())
-        !!("log_level:", log_level ())
+        !!("log_level:", log_level () |> to_string)
         !!("ui_modal:", ui_modal ())
     ]
     inl log = use_log get_locals "#de884c"

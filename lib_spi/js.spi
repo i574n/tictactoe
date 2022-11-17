@@ -40,6 +40,12 @@ inl object_values obj : a i32 string = $"JS.Constructors.Object.values !obj"
 inl object_entries obj : a i32 string = $"JS.Constructors.Object.entries !obj"
 inl object_assign forall a. (target : a) source : a = $"JS.Constructors.Object.assign (!target, [| !target |])"
 
+inl set_timeout (callback : () -> ()) (ms : i32) : i32 = $"JS.setTimeout !callback !ms"
+inl clear_timeout (token : i32) : () = $"JS.clearTimeout !token"
+inl set_interval (callback : () -> ()) (ms : i32) : i32 = $"JS.setInterval !callback !ms"
+inl clear_interval (token : i32) : () = $"JS.clearInterval !token"
+
+
 type env =
     {
         env : any

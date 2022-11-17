@@ -12,6 +12,14 @@
 
 // const DB_TYPE = ['gun_rs', 'gun_js'] as const
 
+union client_type =
+    | GunRs
+    | GunJs
+
+union server_type =
+    | GunRs
+    | GunJs
+
 // export type Db =
 //     | { type: 'gun_rs', url: string, db: GunRS }
 //     | { type: 'gun_js', url: string, db: IGunJS }
@@ -79,8 +87,43 @@
 //     return url
 // }
 
+type db_connection_status =
+    {
+        client_type : client_type
+        subscriptions : a i32 i32
+    }
+
+type db_connection =
+    {
+        server_type : server_type
+        url : string
+        port : i32
+        ws : string
+        clients : a i32 db_connection_status
+    }
+
+inl new_url (db_connections : a i32 db_connection) (server_type : server_type) : string =
+    inl connection =
+        db_connections
+        |> array_find_last fun db_connection =>
+            if db_connection.server_type = server_type
+            then Some db_connection
+            else None
+    match connection with
+    | Some connection => $"\"{!connection.url}:{!connection.port}/{!connection.ws}\""
+    | None => ""
+
+
+
 
 // export type Id = { dbType: DbType, urlType: DbType, url: string, id: string }
+type id =
+    {
+        client_type : client_type
+        server_type : server_type
+        url : string
+        id : string
+    }
 
 // const newId = (state: DbState, dbType: DbType, urlType: DbType): Id => {
 //     const url = newUrl(state, urlType)
@@ -92,10 +135,26 @@
 //     }
 // }
 
+inl regex (str : string) : string =
+    $"$\"emitJsExpr () \"{!str}\""
+
+inl string_replace (pattern : string) (replace : string) (str : string) : string =
+    $"$\"emitJsExpr () \"{!str}\".replace({!pattern}, \"{!replace}\")"
+
+inl new_id (db_connections : a i32 db_connection) (client_type : client_type) (server_type : server_type) : id =
+    inl url = new_url db_connections server_type
+    inl url_id = url |> string_replace (regex "/\:\/\/localhost/g") ""
+    {
+        client_type
+        server_type
+        url
+        id = $"\"{!client_type}-{!url_id}\""
+    }
+
 // export const getDbIdList = (state: DbState): Id[][] =>
 //     Object.entries(state.dbStatus).reduce(
 //         (accKeys, [dbType, enabledMap]) =>
-//             Object.entries(enabledMap).reduce(
+//  i           Object.entries(enabledMap).reduce(
 //                 ([accEnabled, accDisabled]: Id[][], [urlType, enabled]) => {
 //                     const id = newId(state, dbType as DbType, urlType as DbType)
 //                     return enabled
@@ -104,6 +163,8 @@
 //                 }, accKeys
 //             ), [[], []] as Id[][]
 //     )
+inl get_db_id_list (db_connections : a i32 db_connection) (db_statuses : a i32 (a i32 bool)) : a i32 (a i32 id) =
+    a ;[]
 
 
 // const soul = "tictactoe_spiral"
@@ -180,9 +241,14 @@
 //     log('getDbNode() 0')
 //     return contentAddress.split('/').reduce((acc, k) => acc.get(k as any), db.db.get(soul))
 // }
+inl get_db_node (content_address : string) =
+    ()
 
 // export const DB_INIT_TIMEOUT = 2500
+inl get_db_init_timeout () : i32 = 2500
 // export const DB_RESUB_TIMEOUT = 10000
+inl get_db_resub_timeout () : i32 = 10000
+
 
 // export const dbPut = <TState extends DbState, TProxy extends Proxy>(
 //     state: TState,
@@ -270,7 +336,12 @@
 //         node.off(subscription as any)
 //     }
 // }
-
-union db_type =
-    | GunRs
-    | GunJs
+// inl db_off (state: DbState, id: string, content_address: string, subscription: i32) : void = {
+//     let db = state.db_ref[id]
+//     let node = get_db_node(db, content_address)
+//     if (node) {
+//         node.off(subscription)
+//     }
+// }
+inl db_off (content_address : string) =
+    console_fsx.inspect ("db_off", content_address)
