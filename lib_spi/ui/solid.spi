@@ -1,3 +1,4 @@
+open real_js
 open js
 open real_util
 open real_solid
@@ -174,18 +175,23 @@ type for_props item_type =
 inl loop_props forall item_type. (props : for_props item_type) : solid_props -> solid_props =
     fun props' => { props' with
         Each =
-            props.Each'
-            |> fun x : a i32 any => $"!x |> unbox<obj[]>"
+            real real_unbox `(a i32 item_type) `(a i32 any) props.Each'
             |> Some
     }
 
 inl for_ () = real import "For" "solid-js"
 inl for' forall item_type. (props : for_props item_type) (children : item_type -> array jsx_element) =
-    create_native_component (for_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
+    create_native_component
+        (for_ ())
+        (loop_props props)
+        (real real_unbox `(item_type -> array jsx_element) `(() -> array jsx_element) children)
 
 inl index_ () = real import "Index" "solid-js"
 inl index' forall item_type. (props : for_props item_type) (children : (() -> item_type) -> array jsx_element) =
-    create_native_component (index_ ()) (loop_props props) ($"!children |> unbox" : () -> array jsx_element)
+    create_native_component
+        (index_ ())
+        (loop_props props)
+        (real real_unbox `((() -> item_type) -> array jsx_element) `(() -> array jsx_element) children)
 
 inl show_ () = real import "Show" "solid-js"
 inl show props = create_native_component (show_ ()) props
@@ -264,8 +270,7 @@ inl breakpoints ~{ initial sm } =
         $"{| ````@initial```` = !initial; ````@sm```` = !sm |} |> unbox<`string>"
 
 inl children_fragment (children : () -> array jsx_element) : jsx_element =
-    $"!children |> unbox<`jsx_element>"
-
+    real real_unbox `(() -> array jsx_element) `jsx_element children
 
 
 type solid_props = solid_props

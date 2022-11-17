@@ -12,19 +12,26 @@
 
 // const DB_TYPE = ['gun_rs', 'gun_js'] as const
 
-union client_type =
-    | GunRs
-    | GunJs
+union client =
+    | GunRsClient : { url : string; db : js.any }
+    | GunJsClient : { url : string; db : js.any }
 
 union server_type =
-    | GunRs
-    | GunJs
+    | GunRsServer
+    | GunJsServer
+
+instance equable client = fun a b =>
+    match a, b with
+    | GunRsClient _, GunRsClient _ => true
+    | GunJsClient _, GunJsClient _ => true
+    | _ => false
 
 // export type Db =
 //     | { type: 'gun_rs', url: string, db: GunRS }
 //     | { type: 'gun_js', url: string, db: IGunJS }
 // export type DbType = Db["type"]
 // util.assertTypeEquals<DbType, typeof DB_TYPE>(DB_TYPE)
+
 
 // export type DbSubscription =
 //     | { type: 'gun_rs', subscription: number }
@@ -81,17 +88,6 @@ union server_type =
 //     return null
 // }
 
-// const newUrl = (state: DbState, type: DbType) => {
-//     const connection = state.dbConnection[type]
-//     const url = `${connection.url}:${connection.port}/${connection.ws}`
-//     return url
-// }
-
-type db_connection_status =
-    {
-        client_type : client_type
-        subscriptions : a i32 i32
-    }
 
 type db_connection =
     {
@@ -99,8 +95,15 @@ type db_connection =
         url : string
         port : i32
         ws : string
-        clients : a i32 db_connection_status
+        clients : a i32 client
     }
+
+
+// const newUrl = (state: DbState, type: DbType) => {
+//     const connection = state.dbConnection[type]
+//     const url = `${connection.url}:${connection.port}/${connection.ws}`
+//     return url
+// }
 
 inl new_url (db_connections : a i32 db_connection) (server_type : server_type) : string =
     inl connection =
@@ -119,7 +122,7 @@ inl new_url (db_connections : a i32 db_connection) (server_type : server_type) :
 // export type Id = { dbType: DbType, urlType: DbType, url: string, id: string }
 type id =
     {
-        client_type : client_type
+        client : client
         server_type : server_type
         url : string
         id : string
@@ -141,14 +144,14 @@ inl regex (str : string) : string =
 inl string_replace (pattern : string) (replace : string) (str : string) : string =
     $"$\"emitJsExpr () \"{!str}\".replace({!pattern}, \"{!replace}\")"
 
-inl new_id (db_connections : a i32 db_connection) (client_type : client_type) (server_type : server_type) : id =
+inl new_id (db_connections : a i32 db_connection) (client : client) (server_type : server_type) : id =
     inl url = new_url db_connections server_type
     inl url_id = url |> string_replace (regex "/\:\/\/localhost/g") ""
     {
-        client_type
+        client
         server_type
         url
-        id = $"\"{!client_type}-{!url_id}\""
+        id = $"\"{!client}-{!url_id}\""
     }
 
 // export const getDbIdList = (state: DbState): Id[][] =>

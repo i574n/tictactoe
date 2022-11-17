@@ -12,8 +12,8 @@ and [<Struct>] US0 =
     | US0_0
     | US0_1 of f1_0 : US1
 and [<Struct>] US2 =
-    | US2_0
-    | US2_1
+    | US2_0 of f0_0 : obj * f0_1 : string
+    | US2_1 of f1_0 : obj * f1_1 : string
 and [<Struct>] US3 =
     | US3_0
     | US3_1
@@ -69,7 +69,7 @@ and Mut7 = {mutable l0 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 
 and Mut8 = {mutable l0 : (string -> obj); mutable l1 : (unit -> struct ((unit -> string) * (string -> unit))); mutable l2 : string}
 and Mut9 = {mutable l0 : (int32 -> obj); mutable l1 : (unit -> struct ((unit -> int32) * (int32 -> unit))); mutable l2 : string}
 and Mut10 = {mutable l0 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> obj); mutable l1 : (unit -> struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit))); mutable l2 : string}
-and Mut11 = {mutable l0 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> obj); mutable l1 : (unit -> struct ((unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit))); mutable l2 : string}
+and Mut11 = {mutable l0 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> obj); mutable l1 : (unit -> struct ((unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit))); mutable l2 : string}
 and Mut12 = {mutable l0 : (US4 -> obj); mutable l1 : (unit -> struct ((unit -> US4) * (US4 -> unit))); mutable l2 : string}
 and Mut13 = {mutable l0 : (US5 -> obj); mutable l1 : (unit -> struct ((unit -> US5) * (US5 -> unit))); mutable l2 : string}
 and Mut14 = {mutable l0 : ((struct (int32 * int32) []) -> obj); mutable l1 : (unit -> struct ((unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit))); mutable l2 : string}
@@ -77,24 +77,25 @@ and Mut15 = {mutable l0 : ((struct (int32 * obj) []) -> obj); mutable l1 : (unit
 and Mut16 = {mutable l0 : (unit -> US6); mutable l1 : (US6 -> unit)}
 and Mut17 = {mutable l0 : (unit -> US5); mutable l1 : (US5 -> unit)}
 and Mut18 = {mutable l0 : US3}
-and Mut19 = {mutable l0 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> US6); mutable l1 : US3; mutable l2 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> (US6 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)))}
+and Mut19 = {mutable l0 : (struct ((US2 []) * int32 * US3 * string * string) -> US6); mutable l1 : US3; mutable l2 : (struct ((US2 []) * int32 * US3 * string * string) -> (US6 -> struct ((US2 []) * int32 * US3 * string * string)))}
 and Mut20 = {mutable l0 : int32; mutable l1 : US6}
-and Mut21 = {mutable l0 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> US5); mutable l1 : US3; mutable l2 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> (US5 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)))}
+and Mut21 = {mutable l0 : (struct ((US2 []) * int32 * US3 * string * string) -> US5); mutable l1 : US3; mutable l2 : (struct ((US2 []) * int32 * US3 * string * string) -> (US5 -> struct ((US2 []) * int32 * US3 * string * string)))}
 and Mut22 = {mutable l0 : int32; mutable l1 : US5}
-and Mut23 = {mutable l0 : int32; mutable l1 : int32}
+and Mut23 = {mutable l0 : (struct (obj * string) -> US2); mutable l1 : US3}
+and Mut24 = {mutable l0 : int32; mutable l1 : int32}
 and UH1 =
     | UH1_0 of int32 * int32 * UH1
     | UH1_1
-and Mut24 = {mutable l0 : int32; mutable l1 : UH1}
+and Mut25 = {mutable l0 : int32; mutable l1 : UH1}
 and UH2 =
     | UH2_0 of int32 * obj * UH2
     | UH2_1
-and Mut25 = {mutable l0 : int32; mutable l1 : UH2}
+and Mut26 = {mutable l0 : int32; mutable l1 : UH2}
 let rec method0 () : obj =
     let v0 : string = "createContext"
     let v1 : string = "solid-js"
     let v2 : JS.Function = import v0 v1
-    let v3 : (unit -> struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))) = fun () -> JS.undefined
+    let v3 : (unit -> struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))) = fun () -> JS.undefined
     let v4 : obj = emitJsExpr () $"{v2}<ReturnType<typeof {v3}>>()"
     v4
 and method2 () : struct (string * obj * string * string * bool) =
@@ -1399,9 +1400,9 @@ and closure13 (v0 : Mut1) () : (JSX.Element []) =
     let v6 : string = "solid-js"
     let v7 : JS.Function = import v5 v6
     let v8 : (obj -> (JSX.Element [])) = closure14()
-    let v9 : (unit -> (JSX.Element [])) = v8 |> unbox
+    let v9 : (unit -> (JSX.Element [])) = v8 |> unbox<(unit -> (JSX.Element []))>
     let struct (v10 : US6, v11 : US6, v12 : US6, v13 : US7, v14 : US6, v15 : US6, v16 : US6, v17 : US6, v18 : US6, v19 : US6, v20 : US8, v21 : US9, v22 : US6, v23 : US6, v24 : US8, v25 : US10, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US8, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US12, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US6, v43 : US6, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US13, v53 : US14, v54 : US13, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US6, v67 : US6, v68 : US6, v69 : US6, v70 : US6, v71 : US6, v72 : US12, v73 : US6, v74 : US6, v75 : US10, v76 : US10, v77 : US6, v78 : US5, v79 : US6) = method3()
-    let v80 : (obj []) = v4 |> unbox<obj[]>
+    let v80 : (obj []) = v4 |> unbox<(obj [])>
     let v87 : US9 =
         match v21 with
         | US9_0 -> (* None *)
@@ -1824,12 +1825,12 @@ and method15 (v0 : (unit -> US4), v1 : (unit -> (obj [])), v2 : string) : (US4 -
     let v8 : int64 = DateTime.UtcNow.Ticks / 1000L
     closure31(v0, v1, v2, v3, v4, v5, v6, v7, v8)
 and method14 (v0 : (unit -> (obj [])), v1 : string) : (US4 -> ((obj []) -> unit)) =
-    let v125 : obj = emitJsExpr () "components_spi.state_context"
-    let v126 : string = "useContext"
-    let v127 : string = "solid-js"
-    let v128 : JS.Function = import v126 v127
-    let struct (v129 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v130 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v131 : (unit -> int32), v132 : (int32 -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> string), v136 : (string -> unit), v137 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v138 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v139 : (unit -> (struct (US2 * (int32 [])) [])), v140 : ((struct (US2 * (int32 [])) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * obj) [])), v144 : ((struct (int32 * obj) []) -> unit), v145 : (unit -> (struct (int32 * int32) [])), v146 : ((struct (int32 * int32) []) -> unit), v147 : (unit -> US4), v148 : (US4 -> unit), v149 : (unit -> US5), v150 : (US5 -> unit)) = v128.Invoke v125 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    method15(v147, v0, v1)
+    let v120 : obj = emitJsExpr () "components_spi.state_context"
+    let v121 : string = "useContext"
+    let v122 : string = "solid-js"
+    let v123 : JS.Function = import v121 v122
+    let struct (v124 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v125 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v126 : (unit -> int32), v127 : (int32 -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> string), v131 : (string -> unit), v132 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v133 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * obj) [])), v137 : ((struct (int32 * obj) []) -> unit), v138 : (unit -> (struct (int32 * int32) [])), v139 : ((struct (int32 * int32) []) -> unit), v140 : (unit -> US4), v141 : (US4 -> unit), v142 : (unit -> US5), v143 : (US5 -> unit)) = v123.Invoke v120 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    method15(v140, v0, v1)
 and closure33 (v0 : Mut6, v1 : int32, v2 : (US5 -> unit)) () : unit =
     let v3 : bool = v0.l1
     if v3 then
@@ -2552,85 +2553,85 @@ and method13 (v0 : Mut6) : JSX.Element =
             let v147 : (unit -> (JSX.Element [])) = v146.Invoke v143 |> unbox<unit -> JSX.Element[]>
             US9_1(v147)
     let v150 : int32 = Random().Next ()
-    let v274 : obj = emitJsExpr () "components_spi.state_context"
-    let v275 : string = "useContext"
-    let v276 : string = "solid-js"
-    let v277 : JS.Function = import v275 v276
-    let struct (v278 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v279 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v280 : (unit -> int32), v281 : (int32 -> unit), v282 : (unit -> string), v283 : (string -> unit), v284 : (unit -> string), v285 : (string -> unit), v286 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v287 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v288 : (unit -> (struct (US2 * (int32 [])) [])), v289 : ((struct (US2 * (int32 [])) []) -> unit), v290 : (unit -> (struct (int32 * obj) [])), v291 : ((struct (int32 * obj) []) -> unit), v292 : (unit -> (struct (int32 * obj) [])), v293 : ((struct (int32 * obj) []) -> unit), v294 : (unit -> (struct (int32 * int32) [])), v295 : ((struct (int32 * int32) []) -> unit), v296 : (unit -> US4), v297 : (US4 -> unit), v298 : (unit -> US5), v299 : (US5 -> unit)) = v277.Invoke v274 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v422 : obj = emitJsExpr () "components_spi.state_context"
-    let v423 : JS.Function = import v275 v276
-    let struct (v424 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v425 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v426 : (unit -> int32), v427 : (int32 -> unit), v428 : (unit -> string), v429 : (string -> unit), v430 : (unit -> string), v431 : (string -> unit), v432 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v433 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v434 : (unit -> (struct (US2 * (int32 [])) [])), v435 : ((struct (US2 * (int32 [])) []) -> unit), v436 : (unit -> (struct (int32 * obj) [])), v437 : ((struct (int32 * obj) []) -> unit), v438 : (unit -> (struct (int32 * obj) [])), v439 : ((struct (int32 * obj) []) -> unit), v440 : (unit -> (struct (int32 * int32) [])), v441 : ((struct (int32 * int32) []) -> unit), v442 : (unit -> US4), v443 : (US4 -> unit), v444 : (unit -> US5), v445 : (US5 -> unit)) = v423.Invoke v422 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v568 : obj = emitJsExpr () "components_spi.state_context"
-    let v569 : JS.Function = import v275 v276
-    let struct (v570 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v571 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v572 : (unit -> int32), v573 : (int32 -> unit), v574 : (unit -> string), v575 : (string -> unit), v576 : (unit -> string), v577 : (string -> unit), v578 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v579 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v580 : (unit -> (struct (US2 * (int32 [])) [])), v581 : ((struct (US2 * (int32 [])) []) -> unit), v582 : (unit -> (struct (int32 * obj) [])), v583 : ((struct (int32 * obj) []) -> unit), v584 : (unit -> (struct (int32 * obj) [])), v585 : ((struct (int32 * obj) []) -> unit), v586 : (unit -> (struct (int32 * int32) [])), v587 : ((struct (int32 * int32) []) -> unit), v588 : (unit -> US4), v589 : (US4 -> unit), v590 : (unit -> US5), v591 : (US5 -> unit)) = v569.Invoke v568 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v592 : (unit -> (obj [])) = closure30(v150, v282, v442, v590)
-    let v593 : string = "#de884c"
-    let v594 : (US4 -> ((obj []) -> unit)) = method14(v592, v593)
-    let v595 : US4 = US4_0
-    let v596 : ((obj []) -> unit) = v594 v595
-    let v597 : string = "> loader ()"
-    let v598 : obj = v597
-    let v599 : (obj []) = [|v598|]
-    v596 v599
-    let v600 : bool = v0.l0
-    let v601 : string = "createSignal"
-    let v602 : JS.Function = import v601 v276
-    let v603 : (JS.Function []) = v602.Invoke v600 |> unbox<JS.Function[]>
-    let v604 : (unit -> bool) = v603.[0] |> unbox
-    let v605 : (bool -> unit) = v603.[1] |> unbox
-    let v606 : JS.Function = import v601 v276
-    let v607 : (JS.Function []) = v606.Invoke false |> unbox<JS.Function[]>
-    let v608 : (unit -> bool) = v607.[0] |> unbox
-    let v609 : (bool -> unit) = v607.[1] |> unbox
-    let v610 : (unit -> unit) = closure33(v0, v150, v591)
-    method17(v610)
-    let v611 : (unit -> unit) = closure34(v609, v608)
-    method17(v611)
-    let v612 : (unit -> unit) = closure35(v0)
-    method18(v612)
-    let v613 : bool = v0.l0
-    let v614 : bool = v613 = true
-    if v614 then
-        let v615 : US14 = v0.l2
-        match v615 with
+    let v269 : obj = emitJsExpr () "components_spi.state_context"
+    let v270 : string = "useContext"
+    let v271 : string = "solid-js"
+    let v272 : JS.Function = import v270 v271
+    let struct (v273 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v274 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v275 : (unit -> int32), v276 : (int32 -> unit), v277 : (unit -> string), v278 : (string -> unit), v279 : (unit -> string), v280 : (string -> unit), v281 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v282 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v283 : (unit -> (struct (int32 * obj) [])), v284 : ((struct (int32 * obj) []) -> unit), v285 : (unit -> (struct (int32 * obj) [])), v286 : ((struct (int32 * obj) []) -> unit), v287 : (unit -> (struct (int32 * int32) [])), v288 : ((struct (int32 * int32) []) -> unit), v289 : (unit -> US4), v290 : (US4 -> unit), v291 : (unit -> US5), v292 : (US5 -> unit)) = v272.Invoke v269 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v410 : obj = emitJsExpr () "components_spi.state_context"
+    let v411 : JS.Function = import v270 v271
+    let struct (v412 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v413 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v414 : (unit -> int32), v415 : (int32 -> unit), v416 : (unit -> string), v417 : (string -> unit), v418 : (unit -> string), v419 : (string -> unit), v420 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v421 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v422 : (unit -> (struct (int32 * obj) [])), v423 : ((struct (int32 * obj) []) -> unit), v424 : (unit -> (struct (int32 * obj) [])), v425 : ((struct (int32 * obj) []) -> unit), v426 : (unit -> (struct (int32 * int32) [])), v427 : ((struct (int32 * int32) []) -> unit), v428 : (unit -> US4), v429 : (US4 -> unit), v430 : (unit -> US5), v431 : (US5 -> unit)) = v411.Invoke v410 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v549 : obj = emitJsExpr () "components_spi.state_context"
+    let v550 : JS.Function = import v270 v271
+    let struct (v551 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v552 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v553 : (unit -> int32), v554 : (int32 -> unit), v555 : (unit -> string), v556 : (string -> unit), v557 : (unit -> string), v558 : (string -> unit), v559 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v560 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v561 : (unit -> (struct (int32 * obj) [])), v562 : ((struct (int32 * obj) []) -> unit), v563 : (unit -> (struct (int32 * obj) [])), v564 : ((struct (int32 * obj) []) -> unit), v565 : (unit -> (struct (int32 * int32) [])), v566 : ((struct (int32 * int32) []) -> unit), v567 : (unit -> US4), v568 : (US4 -> unit), v569 : (unit -> US5), v570 : (US5 -> unit)) = v550.Invoke v549 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v571 : (unit -> (obj [])) = closure30(v150, v277, v428, v569)
+    let v572 : string = "#de884c"
+    let v573 : (US4 -> ((obj []) -> unit)) = method14(v571, v572)
+    let v574 : US4 = US4_0
+    let v575 : ((obj []) -> unit) = v573 v574
+    let v576 : string = "> loader ()"
+    let v577 : obj = v576
+    let v578 : (obj []) = [|v577|]
+    v575 v578
+    let v579 : bool = v0.l0
+    let v580 : string = "createSignal"
+    let v581 : JS.Function = import v580 v271
+    let v582 : (JS.Function []) = v581.Invoke v579 |> unbox<JS.Function[]>
+    let v583 : (unit -> bool) = v582.[0] |> unbox
+    let v584 : (bool -> unit) = v582.[1] |> unbox
+    let v585 : JS.Function = import v580 v271
+    let v586 : (JS.Function []) = v585.Invoke false |> unbox<JS.Function[]>
+    let v587 : (unit -> bool) = v586.[0] |> unbox
+    let v588 : (bool -> unit) = v586.[1] |> unbox
+    let v589 : (unit -> unit) = closure33(v0, v150, v570)
+    method17(v589)
+    let v590 : (unit -> unit) = closure34(v588, v587)
+    method17(v590)
+    let v591 : (unit -> unit) = closure35(v0)
+    method18(v591)
+    let v592 : bool = v0.l0
+    let v593 : bool = v592 = true
+    if v593 then
+        let v594 : US14 = v0.l2
+        match v594 with
         | US14_0 -> (* None *)
             ()
-        | US14_1(v616) -> (* Some *)
-            v616 ()
+        | US14_1(v595) -> (* Some *)
+            v595 ()
             ()
-    let v617 : string = "Box"
-    let v618 : string = "@hope-ui/solid"
-    let v619 : JS.Function = import v617 v618
-    let struct (v620 : US6, v621 : US6, v622 : US6, v623 : US7, v624 : US6, v625 : US6, v626 : US6, v627 : US6, v628 : US6, v629 : US6, v630 : US8, v631 : US9, v632 : US6, v633 : US6, v634 : US8, v635 : US10, v636 : US6, v637 : US6, v638 : US6, v639 : US11, v640 : US8, v641 : US6, v642 : US6, v643 : US6, v644 : US6, v645 : US6, v646 : US6, v647 : US12, v648 : US6, v649 : US6, v650 : US6, v651 : US12, v652 : US6, v653 : US6, v654 : US6, v655 : US6, v656 : US6, v657 : US6, v658 : US6, v659 : US6, v660 : US6, v661 : US6, v662 : US13, v663 : US14, v664 : US13, v665 : US6, v666 : US6, v667 : US6, v668 : US6, v669 : US6, v670 : US6, v671 : US6, v672 : US6, v673 : US6, v674 : US6, v675 : US6, v676 : US6, v677 : US6, v678 : US6, v679 : US6, v680 : US6, v681 : US6, v682 : US12, v683 : US6, v684 : US6, v685 : US10, v686 : US10, v687 : US6, v688 : US5, v689 : US6) = method3()
-    let v696 : US9 =
-        match v631 with
+    let v596 : string = "Box"
+    let v597 : string = "@hope-ui/solid"
+    let v598 : JS.Function = import v596 v597
+    let struct (v599 : US6, v600 : US6, v601 : US6, v602 : US7, v603 : US6, v604 : US6, v605 : US6, v606 : US6, v607 : US6, v608 : US6, v609 : US8, v610 : US9, v611 : US6, v612 : US6, v613 : US8, v614 : US10, v615 : US6, v616 : US6, v617 : US6, v618 : US11, v619 : US8, v620 : US6, v621 : US6, v622 : US6, v623 : US6, v624 : US6, v625 : US6, v626 : US12, v627 : US6, v628 : US6, v629 : US6, v630 : US12, v631 : US6, v632 : US6, v633 : US6, v634 : US6, v635 : US6, v636 : US6, v637 : US6, v638 : US6, v639 : US6, v640 : US6, v641 : US13, v642 : US14, v643 : US13, v644 : US6, v645 : US6, v646 : US6, v647 : US6, v648 : US6, v649 : US6, v650 : US6, v651 : US6, v652 : US6, v653 : US6, v654 : US6, v655 : US6, v656 : US6, v657 : US6, v658 : US6, v659 : US6, v660 : US6, v661 : US12, v662 : US6, v663 : US6, v664 : US10, v665 : US10, v666 : US6, v667 : US5, v668 : US6) = method3()
+    let v675 : US9 =
+        match v610 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v691) -> (* Some *)
-            let v692 : string = "children"
-            let v693 : JS.Function = import v692 v276
-            let v694 : (unit -> (JSX.Element [])) = v693.Invoke v691 |> unbox<unit -> JSX.Element[]>
-            US9_1(v694)
-    let v699 : (unit -> (JSX.Element [])) =
-        match v696 with
+        | US9_1(v670) -> (* Some *)
+            let v671 : string = "children"
+            let v672 : JS.Function = import v671 v271
+            let v673 : (unit -> (JSX.Element [])) = v672.Invoke v670 |> unbox<unit -> JSX.Element[]>
+            US9_1(v673)
+    let v678 : (unit -> (JSX.Element [])) =
+        match v675 with
         | US9_0 -> (* None *)
-            closure36(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v150, v591, v590, v605, v604, v609, v608, v0)
-        | US9_1(v698) -> (* Some *)
-            v698
-    let v700 : US9 = US9_1(v699)
-    let v701 : string = "flex"
-    let v702 : US6 = US6_1(v701)
-    let v703 : string = "1"
-    let v704 : US6 = US6_1(v703)
-    let v705 : ((string * obj) []) = method7(v620, v621, v622, v623, v624, v625, v626, v627, v628, v629, v630, v700, v632, v633, v634, v635, v636, v637, v702, v639, v640, v704, v642, v643, v644, v645, v646, v647, v100, v649, v650, v651, v652, v653, v654, v655, v656, v657, v658, v659, v660, v661, v662, v663, v664, v665, v666, v667, v668, v669, v670, v671, v672, v673, v674, v675, v676, v677, v678, v679, v680, v681, v682, v683, v684, v685, v686, v687, v688, v689)
-    let v706 : obj = createObj v705
-    let v707 : (unit -> (JSX.Element [])) = closure36(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v150, v591, v590, v605, v604, v609, v608, v0)
-    emitJsExpr (v706, v707) "$0.children = $1"
-    let v708 : (obj -> JSX.Element) = v619 |> unbox<(obj -> JSX.Element)>
-    let v709 : string = "createComponent"
-    let v710 : JS.Function = import v709 v276
-    let v711 : JSX.Element = v710.Invoke (v708, v706) |> unbox<JSX.Element>
-    v711
+            closure36(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v150, v570, v569, v584, v583, v588, v587, v0)
+        | US9_1(v677) -> (* Some *)
+            v677
+    let v679 : US9 = US9_1(v678)
+    let v680 : string = "flex"
+    let v681 : US6 = US6_1(v680)
+    let v682 : string = "1"
+    let v683 : US6 = US6_1(v682)
+    let v684 : ((string * obj) []) = method7(v599, v600, v601, v602, v603, v604, v605, v606, v607, v608, v609, v679, v611, v612, v613, v614, v615, v616, v681, v618, v619, v683, v621, v622, v623, v624, v625, v626, v100, v628, v629, v630, v631, v632, v633, v634, v635, v636, v637, v638, v639, v640, v641, v642, v643, v644, v645, v646, v647, v648, v649, v650, v651, v652, v653, v654, v655, v656, v657, v658, v659, v660, v661, v662, v663, v664, v665, v666, v667, v668)
+    let v685 : obj = createObj v684
+    let v686 : (unit -> (JSX.Element [])) = closure36(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v150, v570, v569, v584, v583, v588, v587, v0)
+    emitJsExpr (v685, v686) "$0.children = $1"
+    let v687 : (obj -> JSX.Element) = v598 |> unbox<(obj -> JSX.Element)>
+    let v688 : string = "createComponent"
+    let v689 : JS.Function = import v688 v271
+    let v690 : JSX.Element = v689.Invoke (v687, v685) |> unbox<JSX.Element>
+    v690
 and closure29 () (v0 : Mut6) : JSX.Element =
     method13(v0)
 and closure27 (v0 : Mut4, v1 : (unit -> bool), v2 : (unit -> (JSX.Element []))) () : (JSX.Element []) =
@@ -2965,12 +2966,12 @@ and closure61 () (v0 : string) : obj =
     let v1 : obj = v0
     v1
 and closure62 () () : struct ((unit -> string) * (string -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v131, v132)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v126, v127)
 and closure66 (v0 : Mut8, v1 : (unit -> string)) () : (JSX.Element []) =
     let v2 : string = v1 ()
     let v3 : (string -> obj) = v0.l0
@@ -3039,22 +3040,22 @@ and method22 (v0 : Mut8) : JSX.Element =
 and closure63 () (v0 : Mut8) : JSX.Element =
     method22(v0)
 and closure67 () () : struct ((unit -> string) * (string -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v133, v134)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v128, v129)
 and closure68 () (v0 : int32) : obj =
     let v1 : obj = v0
     v1
 and closure69 () () : struct ((unit -> int32) * (int32 -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v129, v130)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v124, v125)
 and closure73 (v0 : Mut9, v1 : (unit -> int32)) () : (JSX.Element []) =
     let v2 : int32 = v1 ()
     let v3 : (int32 -> obj) = v0.l0
@@ -3140,12 +3141,12 @@ and closure74 () (v0 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string)
     let v19 : obj = v2
     v19
 and closure75 () () : struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v127, v128)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v122, v123)
 and closure79 (v0 : Mut10, v1 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []))) () : (JSX.Element []) =
     let v2 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) = v1 ()
     let v3 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> obj) = v0.l0
@@ -3213,25 +3214,25 @@ and method24 (v0 : Mut10) : JSX.Element =
     v13
 and closure76 () (v0 : Mut10) : JSX.Element =
     method24(v0)
-and closure80 () (v0 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) : obj =
+and closure80 () (v0 : (struct ((US2 []) * int32 * US3 * string * string) [])) : obj =
     let v1 : obj = v0
     v1
-and closure81 () () : struct ((unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v135, v136)
-and closure85 (v0 : Mut11, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []))) () : (JSX.Element []) =
-    let v2 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = v1 ()
-    let v3 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> obj) = v0.l0
+and closure81 () () : struct ((unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit)) =
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v130, v131)
+and closure85 (v0 : Mut11, v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : (JSX.Element []) =
+    let v2 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
+    let v3 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> obj) = v0.l0
     let v4 : obj = v3 v2
     let v5 : string = emitJsExpr v4 "JSON.stringify($0, null, 2)"
     let v6 : JSX.Element = v5 |> unbox<JSX.Element>
     let v7 : JSX.Element = Html.fragment [ v6 ]
     [|v7|]
-and closure84 (v0 : Mut11, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []))) () : (JSX.Element []) =
+and closure84 (v0 : Mut11, v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : (JSX.Element []) =
     let v2 : string = "hope"
     let v3 : string = "@hope-ui/solid"
     let v4 : JS.Function = import v2 v3
@@ -3264,7 +3265,7 @@ and closure84 (v0 : Mut11, v1 : (unit -> (struct ((struct (US2 * (int32 [])) [])
     let v94 : JS.Function = import v92 v93
     let v95 : JSX.Element = v94.Invoke (v91, v89) |> unbox<JSX.Element>
     [|v95|]
-and closure83 (v0 : Mut11, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []))) struct (v2 : US6, v3 : US6, v4 : US6, v5 : US7, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US8, v13 : US9, v14 : US6, v15 : US6, v16 : US8, v17 : US10, v18 : US6, v19 : US6, v20 : US6, v21 : US11, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US12, v30 : US6, v31 : US6, v32 : US6, v33 : US12, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US13, v45 : US14, v46 : US13, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US12, v65 : US6, v66 : US6, v67 : US10, v68 : US10, v69 : US6, v70 : US5, v71 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure83 (v0 : Mut11, v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) struct (v2 : US6, v3 : US6, v4 : US6, v5 : US7, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US8, v13 : US9, v14 : US6, v15 : US6, v16 : US8, v17 : US10, v18 : US6, v19 : US6, v20 : US6, v21 : US11, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US12, v30 : US6, v31 : US6, v32 : US6, v33 : US12, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US13, v45 : US14, v46 : US13, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US12, v65 : US6, v66 : US6, v67 : US10, v68 : US10, v69 : US6, v70 : US5, v71 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v72 : string = v0.l2
     let v73 : JSX.Element = v72 |> unbox<JSX.Element>
     let v74 : JSX.Element = Html.fragment [ v73 ]
@@ -3275,8 +3276,8 @@ and closure83 (v0 : Mut11, v1 : (unit -> (struct ((struct (US2 * (int32 [])) [])
     let v79 : US12 = US12_1(v74)
     struct (v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v76, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v78, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v79, v65, v66, v67, v68, v69, v70, v71)
 and method25 (v0 : Mut11) : JSX.Element =
-    let v1 : (unit -> struct ((unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit))) = v0.l1
-    let struct (v2 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v3 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit)) = v1 ()
+    let v1 : (unit -> struct ((unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit))) = v0.l1
+    let struct (v2 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v3 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit)) = v1 ()
     let v4 : US14 = US14_0
     let v5 : US14 = US14_0
     let v6 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure83(v0, v2)
@@ -3308,12 +3309,12 @@ and closure86 () (v0 : US4) : obj =
     let v6 : obj = v5
     v6
 and closure87 () () : struct ((unit -> US4) * (US4 -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v145, v146)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v138, v139)
 and closure91 (v0 : Mut12, v1 : (unit -> US4)) () : (JSX.Element []) =
     let v2 : US4 = v1 ()
     let v3 : (US4 -> obj) = v0.l0
@@ -3385,12 +3386,12 @@ and closure92 () (v0 : US5) : obj =
     let v1 : obj = v0
     v1
 and closure93 () () : struct ((unit -> US5) * (US5 -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v147, v148)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v140, v141)
 and closure97 (v0 : Mut13, v1 : (unit -> US5)) () : (JSX.Element []) =
     let v2 : US5 = v1 ()
     let v3 : (US5 -> obj) = v0.l0
@@ -3462,12 +3463,12 @@ and closure98 () (v0 : (struct (int32 * int32) [])) : obj =
     let v1 : obj = v0
     v1
 and closure99 () () : struct ((unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v143, v144)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v136, v137)
 and closure103 (v0 : Mut14, v1 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []) =
     let v2 : (struct (int32 * int32) []) = v1 ()
     let v3 : ((struct (int32 * int32) []) -> obj) = v0.l0
@@ -3539,12 +3540,12 @@ and closure104 () (v0 : (struct (int32 * obj) [])) : obj =
     let v1 : obj = v0
     v1
 and closure105 () () : struct ((unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v141, v142)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v134, v135)
 and closure109 (v0 : Mut15, v1 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
     let v2 : (struct (int32 * obj) []) = v1 ()
     let v3 : ((struct (int32 * obj) []) -> obj) = v0.l0
@@ -3613,12 +3614,12 @@ and method29 (v0 : Mut15) : JSX.Element =
 and closure106 () (v0 : Mut15) : JSX.Element =
     method29(v0)
 and closure110 () () : struct ((unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit)) =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v139, v140)
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v132, v133)
 and closure60 () () : (JSX.Element []) =
     let v0 : (string -> obj) = closure61()
     let v1 : (unit -> struct ((unit -> string) * (string -> unit))) = closure62()
@@ -3648,9 +3649,9 @@ and closure60 () () : (JSX.Element []) =
     let v25 : JS.Function = import v4 v5
     let v26 : (Mut10 -> JSX.Element) = closure76()
     let v27 : JSX.Element = v25.Invoke (v26, v24) |> unbox<JSX.Element>
-    let v28 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> obj) = closure80()
-    let v29 : (unit -> struct ((unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit))) = closure81()
-    let v30 : string = "db.connection"
+    let v28 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> obj) = closure80()
+    let v29 : (unit -> struct ((unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit))) = closure81()
+    let v30 : string = "db.connections"
     let v31 : Mut11 = {l0 = v28; l1 = v29; l2 = v30} : Mut11
     let v32 : JS.Function = import v4 v5
     let v33 : (Mut11 -> JSX.Element) = closure82()
@@ -3927,59 +3928,59 @@ and closure3 (v0 : (US4 -> unit), v1 : (unit -> US4)) () : (JSX.Element []) =
     let v90 : JSX.Element = v88.Invoke (v89, v84) |> unbox<JSX.Element>
     [|v90|]
 and method4 () : JSX.Element =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v149 : string = "Box"
-    let v150 : string = "@hope-ui/solid"
-    let v151 : JS.Function = import v149 v150
-    let struct (v152 : US6, v153 : US6, v154 : US6, v155 : US7, v156 : US6, v157 : US6, v158 : US6, v159 : US6, v160 : US6, v161 : US6, v162 : US8, v163 : US9, v164 : US6, v165 : US6, v166 : US8, v167 : US10, v168 : US6, v169 : US6, v170 : US6, v171 : US11, v172 : US8, v173 : US6, v174 : US6, v175 : US6, v176 : US6, v177 : US6, v178 : US6, v179 : US12, v180 : US6, v181 : US6, v182 : US6, v183 : US12, v184 : US6, v185 : US6, v186 : US6, v187 : US6, v188 : US6, v189 : US6, v190 : US6, v191 : US6, v192 : US6, v193 : US6, v194 : US13, v195 : US14, v196 : US13, v197 : US6, v198 : US6, v199 : US6, v200 : US6, v201 : US6, v202 : US6, v203 : US6, v204 : US6, v205 : US6, v206 : US6, v207 : US6, v208 : US6, v209 : US6, v210 : US6, v211 : US6, v212 : US6, v213 : US6, v214 : US12, v215 : US6, v216 : US6, v217 : US10, v218 : US10, v219 : US6, v220 : US5, v221 : US6) = method3()
-    let v228 : US9 =
-        match v163 with
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v142 : string = "Box"
+    let v143 : string = "@hope-ui/solid"
+    let v144 : JS.Function = import v142 v143
+    let struct (v145 : US6, v146 : US6, v147 : US6, v148 : US7, v149 : US6, v150 : US6, v151 : US6, v152 : US6, v153 : US6, v154 : US6, v155 : US8, v156 : US9, v157 : US6, v158 : US6, v159 : US8, v160 : US10, v161 : US6, v162 : US6, v163 : US6, v164 : US11, v165 : US8, v166 : US6, v167 : US6, v168 : US6, v169 : US6, v170 : US6, v171 : US6, v172 : US12, v173 : US6, v174 : US6, v175 : US6, v176 : US12, v177 : US6, v178 : US6, v179 : US6, v180 : US6, v181 : US6, v182 : US6, v183 : US6, v184 : US6, v185 : US6, v186 : US6, v187 : US13, v188 : US14, v189 : US13, v190 : US6, v191 : US6, v192 : US6, v193 : US6, v194 : US6, v195 : US6, v196 : US6, v197 : US6, v198 : US6, v199 : US6, v200 : US6, v201 : US6, v202 : US6, v203 : US6, v204 : US6, v205 : US6, v206 : US6, v207 : US12, v208 : US6, v209 : US6, v210 : US10, v211 : US10, v212 : US6, v213 : US5, v214 : US6) = method3()
+    let v221 : US9 =
+        match v156 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v223) -> (* Some *)
-            let v224 : string = "children"
-            let v225 : JS.Function = import v224 v125
-            let v226 : (unit -> (JSX.Element [])) = v225.Invoke v223 |> unbox<unit -> JSX.Element[]>
-            US9_1(v226)
-    let v231 : (unit -> (JSX.Element [])) =
-        match v228 with
+        | US9_1(v216) -> (* Some *)
+            let v217 : string = "children"
+            let v218 : JS.Function = import v217 v120
+            let v219 : (unit -> (JSX.Element [])) = v218.Invoke v216 |> unbox<unit -> JSX.Element[]>
+            US9_1(v219)
+    let v224 : (unit -> (JSX.Element [])) =
+        match v221 with
         | US9_0 -> (* None *)
-            closure3(v146, v145)
-        | US9_1(v230) -> (* Some *)
-            v230
-    let v232 : string = "$blackAlpha12"
+            closure3(v139, v138)
+        | US9_1(v223) -> (* Some *)
+            v223
+    let v225 : string = "$blackAlpha12"
+    let v226 : US6 = US6_1(v225)
+    let v227 : string = "0"
+    let v228 : US6 = US6_1(v227)
+    let v229 : US9 = US9_1(v224)
+    let v230 : string = "flex"
+    let v231 : US6 = US6_1(v230)
+    let v232 : string = "column"
     let v233 : US6 = US6_1(v232)
-    let v234 : string = "0"
+    let v234 : string = "80vh"
     let v235 : US6 = US6_1(v234)
-    let v236 : US9 = US9_1(v231)
-    let v237 : string = "flex"
-    let v238 : US6 = US6_1(v237)
-    let v239 : string = "column"
-    let v240 : US6 = US6_1(v239)
-    let v241 : string = "80vh"
-    let v242 : US6 = US6_1(v241)
-    let v243 : string = "50vw"
-    let v244 : US6 = US6_1(v243)
-    let v245 : string = "auto"
-    let v246 : US6 = US6_1(v245)
-    let v247 : string = "absolute"
-    let v248 : US6 = US6_1(v247)
-    let v249 : US6 = US6_1(v234)
-    let v250 : int32 = 2
-    let v251 : US5 = US5_1(v250)
-    let v252 : ((string * obj) []) = method7(v152, v153, v154, v155, v233, v157, v158, v159, v160, v235, v162, v236, v164, v165, v166, v167, v168, v169, v238, v171, v172, v173, v240, v175, v176, v177, v178, v179, v180, v181, v182, v183, v184, v185, v186, v187, v188, v189, v242, v244, v192, v193, v194, v195, v196, v197, v246, v199, v200, v201, v202, v203, v204, v205, v206, v248, v249, v209, v210, v211, v212, v213, v214, v215, v216, v217, v218, v219, v251, v221)
-    let v253 : obj = createObj v252
-    let v254 : (unit -> (JSX.Element [])) = closure3(v146, v145)
-    emitJsExpr (v253, v254) "$0.children = $1"
-    let v255 : (obj -> JSX.Element) = v151 |> unbox<(obj -> JSX.Element)>
-    let v256 : string = "createComponent"
-    let v257 : JS.Function = import v256 v125
-    let v258 : JSX.Element = v257.Invoke (v255, v253) |> unbox<JSX.Element>
-    v258
+    let v236 : string = "50vw"
+    let v237 : US6 = US6_1(v236)
+    let v238 : string = "auto"
+    let v239 : US6 = US6_1(v238)
+    let v240 : string = "absolute"
+    let v241 : US6 = US6_1(v240)
+    let v242 : US6 = US6_1(v227)
+    let v243 : int32 = 2
+    let v244 : US5 = US5_1(v243)
+    let v245 : ((string * obj) []) = method7(v145, v146, v147, v148, v226, v150, v151, v152, v153, v228, v155, v229, v157, v158, v159, v160, v161, v162, v231, v164, v165, v166, v233, v168, v169, v170, v171, v172, v173, v174, v175, v176, v177, v178, v179, v180, v181, v182, v235, v237, v185, v186, v187, v188, v189, v190, v239, v192, v193, v194, v195, v196, v197, v198, v199, v241, v242, v202, v203, v204, v205, v206, v207, v208, v209, v210, v211, v212, v244, v214)
+    let v246 : obj = createObj v245
+    let v247 : (unit -> (JSX.Element [])) = closure3(v139, v138)
+    emitJsExpr (v246, v247) "$0.children = $1"
+    let v248 : (obj -> JSX.Element) = v144 |> unbox<(obj -> JSX.Element)>
+    let v249 : string = "createComponent"
+    let v250 : JS.Function = import v249 v120
+    let v251 : JSX.Element = v250.Invoke (v248, v246) |> unbox<JSX.Element>
+    v251
 and closure2 () (v0 : Mut2) : JSX.Element =
     method4()
 and closure117 () () : (JSX.Element []) =
@@ -4834,42 +4835,42 @@ and closure155 (v0 : (string -> unit), v1 : (unit -> string), v2 : (string -> un
     let v29 : JSX.Element = v28.Invoke (v14, v27) |> unbox<JSX.Element>
     [|v15; v22; v29|]
 and method36 () : JSX.Element =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v271 : obj = emitJsExpr () "components_spi.state_context"
-    let v272 : JS.Function = import v124 v125
-    let struct (v273 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v274 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v275 : (unit -> int32), v276 : (int32 -> unit), v277 : (unit -> string), v278 : (string -> unit), v279 : (unit -> string), v280 : (string -> unit), v281 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v282 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v283 : (unit -> (struct (US2 * (int32 [])) [])), v284 : ((struct (US2 * (int32 [])) []) -> unit), v285 : (unit -> (struct (int32 * obj) [])), v286 : ((struct (int32 * obj) []) -> unit), v287 : (unit -> (struct (int32 * obj) [])), v288 : ((struct (int32 * obj) []) -> unit), v289 : (unit -> (struct (int32 * int32) [])), v290 : ((struct (int32 * int32) []) -> unit), v291 : (unit -> US4), v292 : (US4 -> unit), v293 : (unit -> US5), v294 : (US5 -> unit)) = v272.Invoke v271 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v417 : obj = emitJsExpr () "components_spi.state_context"
-    let v418 : JS.Function = import v124 v125
-    let struct (v419 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v420 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v421 : (unit -> int32), v422 : (int32 -> unit), v423 : (unit -> string), v424 : (string -> unit), v425 : (unit -> string), v426 : (string -> unit), v427 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v428 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v429 : (unit -> (struct (US2 * (int32 [])) [])), v430 : ((struct (US2 * (int32 [])) []) -> unit), v431 : (unit -> (struct (int32 * obj) [])), v432 : ((struct (int32 * obj) []) -> unit), v433 : (unit -> (struct (int32 * obj) [])), v434 : ((struct (int32 * obj) []) -> unit), v435 : (unit -> (struct (int32 * int32) [])), v436 : ((struct (int32 * int32) []) -> unit), v437 : (unit -> US4), v438 : (US4 -> unit), v439 : (unit -> US5), v440 : (US5 -> unit)) = v418.Invoke v417 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let struct (v441 : US6, v442 : US6, v443 : US6, v444 : US7, v445 : US6, v446 : US6, v447 : US6, v448 : US6, v449 : US6, v450 : US6, v451 : US8, v452 : US9, v453 : US6, v454 : US6, v455 : US8, v456 : US10, v457 : US6, v458 : US6, v459 : US6, v460 : US11, v461 : US8, v462 : US6, v463 : US6, v464 : US6, v465 : US6, v466 : US6, v467 : US6, v468 : US12, v469 : US6, v470 : US6, v471 : US6, v472 : US12, v473 : US6, v474 : US6, v475 : US6, v476 : US6, v477 : US6, v478 : US6, v479 : US6, v480 : US6, v481 : US6, v482 : US6, v483 : US13, v484 : US14, v485 : US13, v486 : US6, v487 : US6, v488 : US6, v489 : US6, v490 : US6, v491 : US6, v492 : US6, v493 : US6, v494 : US6, v495 : US6, v496 : US6, v497 : US6, v498 : US6, v499 : US6, v500 : US6, v501 : US6, v502 : US6, v503 : US12, v504 : US6, v505 : US6, v506 : US10, v507 : US10, v508 : US6, v509 : US5, v510 : US6) = method3()
-    let v517 : US9 =
-        match v452 with
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v259 : obj = emitJsExpr () "components_spi.state_context"
+    let v260 : JS.Function = import v119 v120
+    let struct (v261 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v262 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v263 : (unit -> int32), v264 : (int32 -> unit), v265 : (unit -> string), v266 : (string -> unit), v267 : (unit -> string), v268 : (string -> unit), v269 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v270 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v271 : (unit -> (struct (int32 * obj) [])), v272 : ((struct (int32 * obj) []) -> unit), v273 : (unit -> (struct (int32 * obj) [])), v274 : ((struct (int32 * obj) []) -> unit), v275 : (unit -> (struct (int32 * int32) [])), v276 : ((struct (int32 * int32) []) -> unit), v277 : (unit -> US4), v278 : (US4 -> unit), v279 : (unit -> US5), v280 : (US5 -> unit)) = v260.Invoke v259 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v398 : obj = emitJsExpr () "components_spi.state_context"
+    let v399 : JS.Function = import v119 v120
+    let struct (v400 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v401 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v402 : (unit -> int32), v403 : (int32 -> unit), v404 : (unit -> string), v405 : (string -> unit), v406 : (unit -> string), v407 : (string -> unit), v408 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v409 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v410 : (unit -> (struct (int32 * obj) [])), v411 : ((struct (int32 * obj) []) -> unit), v412 : (unit -> (struct (int32 * obj) [])), v413 : ((struct (int32 * obj) []) -> unit), v414 : (unit -> (struct (int32 * int32) [])), v415 : ((struct (int32 * int32) []) -> unit), v416 : (unit -> US4), v417 : (US4 -> unit), v418 : (unit -> US5), v419 : (US5 -> unit)) = v399.Invoke v398 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let struct (v420 : US6, v421 : US6, v422 : US6, v423 : US7, v424 : US6, v425 : US6, v426 : US6, v427 : US6, v428 : US6, v429 : US6, v430 : US8, v431 : US9, v432 : US6, v433 : US6, v434 : US8, v435 : US10, v436 : US6, v437 : US6, v438 : US6, v439 : US11, v440 : US8, v441 : US6, v442 : US6, v443 : US6, v444 : US6, v445 : US6, v446 : US6, v447 : US12, v448 : US6, v449 : US6, v450 : US6, v451 : US12, v452 : US6, v453 : US6, v454 : US6, v455 : US6, v456 : US6, v457 : US6, v458 : US6, v459 : US6, v460 : US6, v461 : US6, v462 : US13, v463 : US14, v464 : US13, v465 : US6, v466 : US6, v467 : US6, v468 : US6, v469 : US6, v470 : US6, v471 : US6, v472 : US6, v473 : US6, v474 : US6, v475 : US6, v476 : US6, v477 : US6, v478 : US6, v479 : US6, v480 : US6, v481 : US6, v482 : US12, v483 : US6, v484 : US6, v485 : US10, v486 : US10, v487 : US6, v488 : US5, v489 : US6) = method3()
+    let v496 : US9 =
+        match v431 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v512) -> (* Some *)
-            let v513 : string = "children"
-            let v514 : JS.Function = import v513 v125
-            let v515 : (unit -> (JSX.Element [])) = v514.Invoke v512 |> unbox<unit -> JSX.Element[]>
-            US9_1(v515)
-    let v520 : (unit -> (JSX.Element [])) =
-        match v517 with
+        | US9_1(v491) -> (* Some *)
+            let v492 : string = "children"
+            let v493 : JS.Function = import v492 v120
+            let v494 : (unit -> (JSX.Element [])) = v493.Invoke v491 |> unbox<unit -> JSX.Element[]>
+            US9_1(v494)
+    let v499 : (unit -> (JSX.Element [])) =
+        match v496 with
         | US9_0 -> (* None *)
-            closure155(v132, v131, v280, v279, v422, v421)
-        | US9_1(v519) -> (* Some *)
-            v519
-    let v521 : US9 = US9_1(v520)
-    let v522 : Mut1 = {l0 = v441; l1 = v442; l2 = v443; l3 = v444; l4 = v445; l5 = v446; l6 = v447; l7 = v448; l8 = v449; l9 = v450; l10 = v451; l11 = v521; l12 = v453; l13 = v454; l14 = v455; l15 = v456; l16 = v457; l17 = v458; l18 = v459; l19 = v460; l20 = v461; l21 = v462; l22 = v463; l23 = v464; l24 = v465; l25 = v466; l26 = v467; l27 = v468; l28 = v469; l29 = v470; l30 = v471; l31 = v472; l32 = v473; l33 = v474; l34 = v475; l35 = v476; l36 = v477; l37 = v478; l38 = v479; l39 = v480; l40 = v481; l41 = v482; l42 = v483; l43 = v484; l44 = v485; l45 = v486; l46 = v487; l47 = v488; l48 = v489; l49 = v490; l50 = v491; l51 = v492; l52 = v493; l53 = v494; l54 = v495; l55 = v496; l56 = v497; l57 = v498; l58 = v499; l59 = v500; l60 = v501; l61 = v502; l62 = v503; l63 = v504; l64 = v505; l65 = v506; l66 = v507; l67 = v508; l68 = v509; l69 = v510} : Mut1
-    let v523 : (unit -> (JSX.Element [])) = closure155(v132, v131, v280, v279, v422, v421)
-    emitJsExpr (v522, v523) "$0.children = $1"
-    let v524 : string = "createComponent"
-    let v525 : JS.Function = import v524 v125
-    let v526 : (Mut1 -> JSX.Element) = closure111()
-    let v527 : JSX.Element = v525.Invoke (v526, v522) |> unbox<JSX.Element>
-    v527
+            closure155(v127, v126, v268, v267, v403, v402)
+        | US9_1(v498) -> (* Some *)
+            v498
+    let v500 : US9 = US9_1(v499)
+    let v501 : Mut1 = {l0 = v420; l1 = v421; l2 = v422; l3 = v423; l4 = v424; l5 = v425; l6 = v426; l7 = v427; l8 = v428; l9 = v429; l10 = v430; l11 = v500; l12 = v432; l13 = v433; l14 = v434; l15 = v435; l16 = v436; l17 = v437; l18 = v438; l19 = v439; l20 = v440; l21 = v441; l22 = v442; l23 = v443; l24 = v444; l25 = v445; l26 = v446; l27 = v447; l28 = v448; l29 = v449; l30 = v450; l31 = v451; l32 = v452; l33 = v453; l34 = v454; l35 = v455; l36 = v456; l37 = v457; l38 = v458; l39 = v459; l40 = v460; l41 = v461; l42 = v462; l43 = v463; l44 = v464; l45 = v465; l46 = v466; l47 = v467; l48 = v468; l49 = v469; l50 = v470; l51 = v471; l52 = v472; l53 = v473; l54 = v474; l55 = v475; l56 = v476; l57 = v477; l58 = v478; l59 = v479; l60 = v480; l61 = v481; l62 = v482; l63 = v483; l64 = v484; l65 = v485; l66 = v486; l67 = v487; l68 = v488; l69 = v489} : Mut1
+    let v502 : (unit -> (JSX.Element [])) = closure155(v127, v126, v268, v267, v403, v402)
+    emitJsExpr (v501, v502) "$0.children = $1"
+    let v503 : string = "createComponent"
+    let v504 : JS.Function = import v503 v120
+    let v505 : (Mut1 -> JSX.Element) = closure111()
+    let v506 : JSX.Element = v504.Invoke (v505, v501) |> unbox<JSX.Element>
+    v506
 and closure154 () (v0 : Mut1) : JSX.Element =
     method36()
 and closure152 () () : (JSX.Element []) =
@@ -5062,9 +5063,9 @@ and closure175 (v0 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> 
     let v3 : string = "solid-js"
     let v4 : JS.Function = import v2 v3
     let v5 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) -> (JSX.Element [])) = closure176()
-    let v6 : (unit -> (JSX.Element [])) = v5 |> unbox
+    let v6 : (unit -> (JSX.Element [])) = v5 |> unbox<(unit -> (JSX.Element []))>
     let struct (v7 : US6, v8 : US6, v9 : US6, v10 : US7, v11 : US6, v12 : US6, v13 : US6, v14 : US6, v15 : US6, v16 : US6, v17 : US8, v18 : US9, v19 : US6, v20 : US6, v21 : US8, v22 : US10, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US8, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US6, v33 : US6, v34 : US12, v35 : US6, v36 : US6, v37 : US6, v38 : US12, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US13, v50 : US14, v51 : US13, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US6, v67 : US6, v68 : US6, v69 : US12, v70 : US6, v71 : US6, v72 : US10, v73 : US10, v74 : US6, v75 : US5, v76 : US6) = method3()
-    let v77 : (obj []) = v1 |> unbox<obj[]>
+    let v77 : (obj []) = v1 |> unbox<(obj [])>
     let v84 : US9 =
         match v18 with
         | US9_0 -> (* None *)
@@ -5091,36 +5092,36 @@ and closure175 (v0 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> 
     let v94 : JSX.Element = v93.Invoke (v91, v90) |> unbox<JSX.Element>
     [|v94|]
 and method39 () : JSX.Element =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let struct (v149 : US6, v150 : US6, v151 : US6, v152 : US7, v153 : US6, v154 : US6, v155 : US6, v156 : US6, v157 : US6, v158 : US6, v159 : US8, v160 : US9, v161 : US6, v162 : US6, v163 : US8, v164 : US10, v165 : US6, v166 : US6, v167 : US6, v168 : US11, v169 : US8, v170 : US6, v171 : US6, v172 : US6, v173 : US6, v174 : US6, v175 : US6, v176 : US12, v177 : US6, v178 : US6, v179 : US6, v180 : US12, v181 : US6, v182 : US6, v183 : US6, v184 : US6, v185 : US6, v186 : US6, v187 : US6, v188 : US6, v189 : US6, v190 : US6, v191 : US13, v192 : US14, v193 : US13, v194 : US6, v195 : US6, v196 : US6, v197 : US6, v198 : US6, v199 : US6, v200 : US6, v201 : US6, v202 : US6, v203 : US6, v204 : US6, v205 : US6, v206 : US6, v207 : US6, v208 : US6, v209 : US6, v210 : US6, v211 : US12, v212 : US6, v213 : US6, v214 : US10, v215 : US10, v216 : US6, v217 : US5, v218 : US6) = method3()
-    let v225 : US9 =
-        match v160 with
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let struct (v142 : US6, v143 : US6, v144 : US6, v145 : US7, v146 : US6, v147 : US6, v148 : US6, v149 : US6, v150 : US6, v151 : US6, v152 : US8, v153 : US9, v154 : US6, v155 : US6, v156 : US8, v157 : US10, v158 : US6, v159 : US6, v160 : US6, v161 : US11, v162 : US8, v163 : US6, v164 : US6, v165 : US6, v166 : US6, v167 : US6, v168 : US6, v169 : US12, v170 : US6, v171 : US6, v172 : US6, v173 : US12, v174 : US6, v175 : US6, v176 : US6, v177 : US6, v178 : US6, v179 : US6, v180 : US6, v181 : US6, v182 : US6, v183 : US6, v184 : US13, v185 : US14, v186 : US13, v187 : US6, v188 : US6, v189 : US6, v190 : US6, v191 : US6, v192 : US6, v193 : US6, v194 : US6, v195 : US6, v196 : US6, v197 : US6, v198 : US6, v199 : US6, v200 : US6, v201 : US6, v202 : US6, v203 : US6, v204 : US12, v205 : US6, v206 : US6, v207 : US10, v208 : US10, v209 : US6, v210 : US5, v211 : US6) = method3()
+    let v218 : US9 =
+        match v153 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v220) -> (* Some *)
-            let v221 : string = "children"
-            let v222 : JS.Function = import v221 v125
-            let v223 : (unit -> (JSX.Element [])) = v222.Invoke v220 |> unbox<unit -> JSX.Element[]>
-            US9_1(v223)
-    let v228 : (unit -> (JSX.Element [])) =
-        match v225 with
+        | US9_1(v213) -> (* Some *)
+            let v214 : string = "children"
+            let v215 : JS.Function = import v214 v120
+            let v216 : (unit -> (JSX.Element [])) = v215.Invoke v213 |> unbox<unit -> JSX.Element[]>
+            US9_1(v216)
+    let v221 : (unit -> (JSX.Element [])) =
+        match v218 with
         | US9_0 -> (* None *)
-            closure175(v127)
-        | US9_1(v227) -> (* Some *)
-            v227
-    let v229 : US9 = US9_1(v228)
-    let v230 : Mut1 = {l0 = v149; l1 = v150; l2 = v151; l3 = v152; l4 = v153; l5 = v154; l6 = v155; l7 = v156; l8 = v157; l9 = v158; l10 = v159; l11 = v229; l12 = v161; l13 = v162; l14 = v163; l15 = v164; l16 = v165; l17 = v166; l18 = v167; l19 = v168; l20 = v169; l21 = v170; l22 = v171; l23 = v172; l24 = v173; l25 = v174; l26 = v175; l27 = v176; l28 = v177; l29 = v178; l30 = v179; l31 = v180; l32 = v181; l33 = v182; l34 = v183; l35 = v184; l36 = v185; l37 = v186; l38 = v187; l39 = v188; l40 = v189; l41 = v190; l42 = v191; l43 = v192; l44 = v193; l45 = v194; l46 = v195; l47 = v196; l48 = v197; l49 = v198; l50 = v199; l51 = v200; l52 = v201; l53 = v202; l54 = v203; l55 = v204; l56 = v205; l57 = v206; l58 = v207; l59 = v208; l60 = v209; l61 = v210; l62 = v211; l63 = v212; l64 = v213; l65 = v214; l66 = v215; l67 = v216; l68 = v217; l69 = v218} : Mut1
-    let v231 : (unit -> (JSX.Element [])) = closure175(v127)
-    emitJsExpr (v230, v231) "$0.children = $1"
-    let v232 : string = "createComponent"
-    let v233 : JS.Function = import v232 v125
-    let v234 : (Mut1 -> JSX.Element) = closure111()
-    let v235 : JSX.Element = v233.Invoke (v234, v230) |> unbox<JSX.Element>
-    v235
+            closure175(v122)
+        | US9_1(v220) -> (* Some *)
+            v220
+    let v222 : US9 = US9_1(v221)
+    let v223 : Mut1 = {l0 = v142; l1 = v143; l2 = v144; l3 = v145; l4 = v146; l5 = v147; l6 = v148; l7 = v149; l8 = v150; l9 = v151; l10 = v152; l11 = v222; l12 = v154; l13 = v155; l14 = v156; l15 = v157; l16 = v158; l17 = v159; l18 = v160; l19 = v161; l20 = v162; l21 = v163; l22 = v164; l23 = v165; l24 = v166; l25 = v167; l26 = v168; l27 = v169; l28 = v170; l29 = v171; l30 = v172; l31 = v173; l32 = v174; l33 = v175; l34 = v176; l35 = v177; l36 = v178; l37 = v179; l38 = v180; l39 = v181; l40 = v182; l41 = v183; l42 = v184; l43 = v185; l44 = v186; l45 = v187; l46 = v188; l47 = v189; l48 = v190; l49 = v191; l50 = v192; l51 = v193; l52 = v194; l53 = v195; l54 = v196; l55 = v197; l56 = v198; l57 = v199; l58 = v200; l59 = v201; l60 = v202; l61 = v203; l62 = v204; l63 = v205; l64 = v206; l65 = v207; l66 = v208; l67 = v209; l68 = v210; l69 = v211} : Mut1
+    let v224 : (unit -> (JSX.Element [])) = closure175(v122)
+    emitJsExpr (v223, v224) "$0.children = $1"
+    let v225 : string = "createComponent"
+    let v226 : JS.Function = import v225 v120
+    let v227 : (Mut1 -> JSX.Element) = closure111()
+    let v228 : JSX.Element = v226.Invoke (v227, v223) |> unbox<JSX.Element>
+    v228
 and closure174 () (v0 : Mut1) : JSX.Element =
     method39()
 and closure172 () () : (JSX.Element []) =
@@ -5310,9 +5311,9 @@ and closure146 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v76, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v77, v63, v64, v65, v66, v67, v68, v69)
 and closure193 () () : (JSX.Element []) =
     [||]
-and closure203 () struct (v0 : (struct (US2 * (int32 [])) []), v1 : int32, v2 : US3, v3 : string, v4 : string) : US6 =
+and closure203 () struct (v0 : (US2 []), v1 : int32, v2 : US3, v3 : string, v4 : string) : US6 =
     US6_1(v3)
-and closure205 (v0 : Mut18, v1 : (struct (US2 * (int32 [])) []), v2 : int32, v3 : US3, v4 : string, v5 : string) (v6 : US6) : struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) =
+and closure205 (v0 : Mut18, v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) (v6 : US6) : struct ((US2 []) * int32 * US3 * string * string) =
     let v7 : US3 = v0.l0
     let v10 : string =
         match v6 with
@@ -5322,14 +5323,14 @@ and closure205 (v0 : Mut18, v1 : (struct (US2 * (int32 [])) []), v2 : int32, v3 
         | US6_1(v9) -> (* Some *)
             v9
     struct (v1, v2, v7, v10, v5)
-and closure204 (v0 : Mut18) struct (v1 : (struct (US2 * (int32 [])) []), v2 : int32, v3 : US3, v4 : string, v5 : string) : (US6 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)) =
+and closure204 (v0 : Mut18) struct (v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) : (US6 -> struct ((US2 []) * int32 * US3 * string * string)) =
     closure205(v0, v1, v2, v3, v4, v5)
 and method43 (v0 : int32, v1 : Mut20) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure207 (v0 : Mut19, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []))) () : US6 =
-    let v2 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = v1 ()
+and closure207 (v0 : Mut19, v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : US6 =
+    let v2 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     let v3 : int32 = v2.Length
     let v4 : US6 = US6_0
     let v5 : Mut20 = {l0 = 0; l1 = v4} : Mut20
@@ -5339,21 +5340,21 @@ and closure207 (v0 : Mut19, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []
         let v9 : int32 = v8 + v3
         let v10 : int32 = v9 - 1
         let v11 : US6 = v5.l1
-        let struct (v12 : (struct (US2 * (int32 [])) []), v13 : int32, v14 : US3, v15 : string, v16 : string) = v2.[int v10]
+        let struct (v12 : (US2 []), v13 : int32, v14 : US3, v15 : string, v16 : string) = v2.[int v10]
         let v24 : US6 =
             match v11 with
             | US6_0 -> (* None *)
                 let v17 : US3 = v0.l1
                 let v18 : bool =
                     match v14, v17 with
-                    | US3_0, US3_0 -> (* GunJs *)
+                    | US3_0, US3_0 -> (* GunJsServer *)
                         true
-                    | US3_1, US3_1 -> (* GunRs *)
+                    | US3_1, US3_1 -> (* GunRsServer *)
                         true
                     | _ ->
                         false
                 if v18 then
-                    let v19 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> US6) = v0.l0
+                    let v19 : (struct ((US2 []) * int32 * US3 * string * string) -> US6) = v0.l0
                     let v20 : US6 = v19 struct (v12, v13, v14, v15, v16)
                     v20
                 else
@@ -5366,28 +5367,28 @@ and closure207 (v0 : Mut19, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []
         ()
     let v26 : US6 = v5.l1
     v26
-and closure208 (v0 : Mut19, v1 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v2 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []))) (v3 : US6) : unit =
-    let v4 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = v2 ()
+and closure208 (v0 : Mut19, v1 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v2 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) (v3 : US6) : unit =
+    let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v2 ()
     let v5 : int32 = v4.Length
-    let v6 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = Array.zeroCreate<struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)> (v5)
+    let v6 : (struct ((US2 []) * int32 * US3 * string * string) []) = Array.zeroCreate<struct ((US2 []) * int32 * US3 * string * string)> (v5)
     let v7 : Mut3 = {l0 = 0} : Mut3
     while method5(v5, v7) do
         let v9 : int32 = v7.l0
-        let struct (v10 : (struct (US2 * (int32 [])) []), v11 : int32, v12 : US3, v13 : string, v14 : string) = v4.[int v9]
+        let struct (v10 : (US2 []), v11 : int32, v12 : US3, v13 : string, v14 : string) = v4.[int v9]
         let v15 : US3 = v0.l1
         let v16 : bool =
             match v12, v15 with
-            | US3_0, US3_0 -> (* GunJs *)
+            | US3_0, US3_0 -> (* GunJsServer *)
                 true
-            | US3_1, US3_1 -> (* GunRs *)
+            | US3_1, US3_1 -> (* GunRsServer *)
                 true
             | _ ->
                 false
-        let struct (v24 : (struct (US2 * (int32 [])) []), v25 : int32, v26 : US3, v27 : string, v28 : string) =
+        let struct (v24 : (US2 []), v25 : int32, v26 : US3, v27 : string, v28 : string) =
             if v16 then
-                let v17 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> (US6 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string))) = v0.l2
-                let v18 : (US6 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)) = v17 struct (v10, v11, v12, v13, v14)
-                let struct (v19 : (struct (US2 * (int32 [])) []), v20 : int32, v21 : US3, v22 : string, v23 : string) = v18 v3
+                let v17 : (struct ((US2 []) * int32 * US3 * string * string) -> (US6 -> struct ((US2 []) * int32 * US3 * string * string))) = v0.l2
+                let v18 : (US6 -> struct ((US2 []) * int32 * US3 * string * string)) = v17 struct (v10, v11, v12, v13, v14)
+                let struct (v19 : (US2 []), v20 : int32, v21 : US3, v22 : string, v23 : string) = v18 v3
                 struct (v19, v20, v21, v22, v23)
             else
                 struct (v10, v11, v12, v13, v14)
@@ -5398,25 +5399,25 @@ and closure208 (v0 : Mut19, v1 : ((struct ((struct (US2 * (int32 [])) []) * int3
     v1 v6
     ()
 and method42 (v0 : Mut19) : JSX.Element =
-    let v124 : obj = emitJsExpr () "components_spi.state_context"
-    let v125 : string = "useContext"
-    let v126 : string = "solid-js"
-    let v127 : JS.Function = import v125 v126
-    let struct (v128 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v129 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v130 : (unit -> int32), v131 : (int32 -> unit), v132 : (unit -> string), v133 : (string -> unit), v134 : (unit -> string), v135 : (string -> unit), v136 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v137 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v138 : (unit -> (struct (US2 * (int32 [])) [])), v139 : ((struct (US2 * (int32 [])) []) -> unit), v140 : (unit -> (struct (int32 * obj) [])), v141 : ((struct (int32 * obj) []) -> unit), v142 : (unit -> (struct (int32 * obj) [])), v143 : ((struct (int32 * obj) []) -> unit), v144 : (unit -> (struct (int32 * int32) [])), v145 : ((struct (int32 * int32) []) -> unit), v146 : (unit -> US4), v147 : (US4 -> unit), v148 : (unit -> US5), v149 : (US5 -> unit)) = v127.Invoke v124 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v150 : (unit -> US6) = closure207(v0, v136)
-    let v151 : (US6 -> unit) = closure208(v0, v137, v136)
-    let v152 : Mut16 = {l0 = v150; l1 = v151} : Mut16
-    let v153 : string = "createComponent"
-    let v154 : JS.Function = import v153 v126
-    let v155 : (Mut16 -> JSX.Element) = closure160()
-    let v156 : JSX.Element = v154.Invoke (v155, v152) |> unbox<JSX.Element>
-    v156
+    let v119 : obj = emitJsExpr () "components_spi.state_context"
+    let v120 : string = "useContext"
+    let v121 : string = "solid-js"
+    let v122 : JS.Function = import v120 v121
+    let struct (v123 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v124 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v125 : (unit -> int32), v126 : (int32 -> unit), v127 : (unit -> string), v128 : (string -> unit), v129 : (unit -> string), v130 : (string -> unit), v131 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v132 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v133 : (unit -> (struct (int32 * obj) [])), v134 : ((struct (int32 * obj) []) -> unit), v135 : (unit -> (struct (int32 * obj) [])), v136 : ((struct (int32 * obj) []) -> unit), v137 : (unit -> (struct (int32 * int32) [])), v138 : ((struct (int32 * int32) []) -> unit), v139 : (unit -> US4), v140 : (US4 -> unit), v141 : (unit -> US5), v142 : (US5 -> unit)) = v122.Invoke v119 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v143 : (unit -> US6) = closure207(v0, v131)
+    let v144 : (US6 -> unit) = closure208(v0, v132, v131)
+    let v145 : Mut16 = {l0 = v143; l1 = v144} : Mut16
+    let v146 : string = "createComponent"
+    let v147 : JS.Function = import v146 v121
+    let v148 : (Mut16 -> JSX.Element) = closure160()
+    let v149 : JSX.Element = v147.Invoke (v148, v145) |> unbox<JSX.Element>
+    v149
 and closure206 () (v0 : Mut19) : JSX.Element =
     method42(v0)
 and closure202 (v0 : Mut18) () : (JSX.Element []) =
     let v1 : US3 = v0.l0
-    let v2 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> US6) = closure203()
-    let v3 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> (US6 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string))) = closure204(v0)
+    let v2 : (struct ((US2 []) * int32 * US3 * string * string) -> US6) = closure203()
+    let v3 : (struct ((US2 []) * int32 * US3 * string * string) -> (US6 -> struct ((US2 []) * int32 * US3 * string * string))) = closure204(v0)
     let v4 : Mut19 = {l0 = v2; l1 = v1; l2 = v3} : Mut19
     let v5 : string = "createComponent"
     let v6 : string = "solid-js"
@@ -5434,9 +5435,9 @@ and closure201 (v0 : Mut18) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 :
     let v77 : US6 = US6_1(v76)
     let v78 : US12 = US12_1(v73)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v75, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v77, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v78, v64, v65, v66, v67, v68, v69, v70)
-and closure211 () struct (v0 : (struct (US2 * (int32 [])) []), v1 : int32, v2 : US3, v3 : string, v4 : string) : US5 =
+and closure211 () struct (v0 : (US2 []), v1 : int32, v2 : US3, v3 : string, v4 : string) : US5 =
     US5_1(v1)
-and closure213 (v0 : Mut18, v1 : (struct (US2 * (int32 [])) []), v2 : int32, v3 : US3, v4 : string, v5 : string) (v6 : US5) : struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) =
+and closure213 (v0 : Mut18, v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) (v6 : US5) : struct ((US2 []) * int32 * US3 * string * string) =
     let v7 : US3 = v0.l0
     let v9 : int32 =
         match v6 with
@@ -5445,14 +5446,14 @@ and closure213 (v0 : Mut18, v1 : (struct (US2 * (int32 [])) []), v2 : int32, v3 
         | US5_1(v8) -> (* Some *)
             v8
     struct (v1, v9, v7, v4, v5)
-and closure212 (v0 : Mut18) struct (v1 : (struct (US2 * (int32 [])) []), v2 : int32, v3 : US3, v4 : string, v5 : string) : (US5 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)) =
+and closure212 (v0 : Mut18) struct (v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) : (US5 -> struct ((US2 []) * int32 * US3 * string * string)) =
     closure213(v0, v1, v2, v3, v4, v5)
 and method45 (v0 : int32, v1 : Mut22) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure215 (v0 : Mut21, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []))) () : US5 =
-    let v2 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = v1 ()
+and closure215 (v0 : Mut21, v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : US5 =
+    let v2 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     let v3 : int32 = v2.Length
     let v4 : US5 = US5_0
     let v5 : Mut22 = {l0 = 0; l1 = v4} : Mut22
@@ -5462,21 +5463,21 @@ and closure215 (v0 : Mut21, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []
         let v9 : int32 = v8 + v3
         let v10 : int32 = v9 - 1
         let v11 : US5 = v5.l1
-        let struct (v12 : (struct (US2 * (int32 [])) []), v13 : int32, v14 : US3, v15 : string, v16 : string) = v2.[int v10]
+        let struct (v12 : (US2 []), v13 : int32, v14 : US3, v15 : string, v16 : string) = v2.[int v10]
         let v24 : US5 =
             match v11 with
             | US5_0 -> (* None *)
                 let v17 : US3 = v0.l1
                 let v18 : bool =
                     match v14, v17 with
-                    | US3_0, US3_0 -> (* GunJs *)
+                    | US3_0, US3_0 -> (* GunJsServer *)
                         true
-                    | US3_1, US3_1 -> (* GunRs *)
+                    | US3_1, US3_1 -> (* GunRsServer *)
                         true
                     | _ ->
                         false
                 if v18 then
-                    let v19 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> US5) = v0.l0
+                    let v19 : (struct ((US2 []) * int32 * US3 * string * string) -> US5) = v0.l0
                     let v20 : US5 = v19 struct (v12, v13, v14, v15, v16)
                     v20
                 else
@@ -5489,28 +5490,28 @@ and closure215 (v0 : Mut21, v1 : (unit -> (struct ((struct (US2 * (int32 [])) []
         ()
     let v26 : US5 = v5.l1
     v26
-and closure216 (v0 : Mut21, v1 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v2 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []))) (v3 : US5) : unit =
-    let v4 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = v2 ()
+and closure216 (v0 : Mut21, v1 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v2 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) (v3 : US5) : unit =
+    let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v2 ()
     let v5 : int32 = v4.Length
-    let v6 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = Array.zeroCreate<struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)> (v5)
+    let v6 : (struct ((US2 []) * int32 * US3 * string * string) []) = Array.zeroCreate<struct ((US2 []) * int32 * US3 * string * string)> (v5)
     let v7 : Mut3 = {l0 = 0} : Mut3
     while method5(v5, v7) do
         let v9 : int32 = v7.l0
-        let struct (v10 : (struct (US2 * (int32 [])) []), v11 : int32, v12 : US3, v13 : string, v14 : string) = v4.[int v9]
+        let struct (v10 : (US2 []), v11 : int32, v12 : US3, v13 : string, v14 : string) = v4.[int v9]
         let v15 : US3 = v0.l1
         let v16 : bool =
             match v12, v15 with
-            | US3_0, US3_0 -> (* GunJs *)
+            | US3_0, US3_0 -> (* GunJsServer *)
                 true
-            | US3_1, US3_1 -> (* GunRs *)
+            | US3_1, US3_1 -> (* GunRsServer *)
                 true
             | _ ->
                 false
-        let struct (v24 : (struct (US2 * (int32 [])) []), v25 : int32, v26 : US3, v27 : string, v28 : string) =
+        let struct (v24 : (US2 []), v25 : int32, v26 : US3, v27 : string, v28 : string) =
             if v16 then
-                let v17 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> (US5 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string))) = v0.l2
-                let v18 : (US5 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string)) = v17 struct (v10, v11, v12, v13, v14)
-                let struct (v19 : (struct (US2 * (int32 [])) []), v20 : int32, v21 : US3, v22 : string, v23 : string) = v18 v3
+                let v17 : (struct ((US2 []) * int32 * US3 * string * string) -> (US5 -> struct ((US2 []) * int32 * US3 * string * string))) = v0.l2
+                let v18 : (US5 -> struct ((US2 []) * int32 * US3 * string * string)) = v17 struct (v10, v11, v12, v13, v14)
+                let struct (v19 : (US2 []), v20 : int32, v21 : US3, v22 : string, v23 : string) = v18 v3
                 struct (v19, v20, v21, v22, v23)
             else
                 struct (v10, v11, v12, v13, v14)
@@ -5521,25 +5522,25 @@ and closure216 (v0 : Mut21, v1 : ((struct ((struct (US2 * (int32 [])) []) * int3
     v1 v6
     ()
 and method44 (v0 : Mut21) : JSX.Element =
-    let v124 : obj = emitJsExpr () "components_spi.state_context"
-    let v125 : string = "useContext"
-    let v126 : string = "solid-js"
-    let v127 : JS.Function = import v125 v126
-    let struct (v128 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v129 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v130 : (unit -> int32), v131 : (int32 -> unit), v132 : (unit -> string), v133 : (string -> unit), v134 : (unit -> string), v135 : (string -> unit), v136 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v137 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v138 : (unit -> (struct (US2 * (int32 [])) [])), v139 : ((struct (US2 * (int32 [])) []) -> unit), v140 : (unit -> (struct (int32 * obj) [])), v141 : ((struct (int32 * obj) []) -> unit), v142 : (unit -> (struct (int32 * obj) [])), v143 : ((struct (int32 * obj) []) -> unit), v144 : (unit -> (struct (int32 * int32) [])), v145 : ((struct (int32 * int32) []) -> unit), v146 : (unit -> US4), v147 : (US4 -> unit), v148 : (unit -> US5), v149 : (US5 -> unit)) = v127.Invoke v124 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v150 : (unit -> US5) = closure215(v0, v136)
-    let v151 : (US5 -> unit) = closure216(v0, v137, v136)
-    let v152 : Mut17 = {l0 = v150; l1 = v151} : Mut17
-    let v153 : string = "createComponent"
-    let v154 : JS.Function = import v153 v126
-    let v155 : (Mut17 -> JSX.Element) = closure169()
-    let v156 : JSX.Element = v154.Invoke (v155, v152) |> unbox<JSX.Element>
-    v156
+    let v119 : obj = emitJsExpr () "components_spi.state_context"
+    let v120 : string = "useContext"
+    let v121 : string = "solid-js"
+    let v122 : JS.Function = import v120 v121
+    let struct (v123 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v124 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v125 : (unit -> int32), v126 : (int32 -> unit), v127 : (unit -> string), v128 : (string -> unit), v129 : (unit -> string), v130 : (string -> unit), v131 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v132 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v133 : (unit -> (struct (int32 * obj) [])), v134 : ((struct (int32 * obj) []) -> unit), v135 : (unit -> (struct (int32 * obj) [])), v136 : ((struct (int32 * obj) []) -> unit), v137 : (unit -> (struct (int32 * int32) [])), v138 : ((struct (int32 * int32) []) -> unit), v139 : (unit -> US4), v140 : (US4 -> unit), v141 : (unit -> US5), v142 : (US5 -> unit)) = v122.Invoke v119 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v143 : (unit -> US5) = closure215(v0, v131)
+    let v144 : (US5 -> unit) = closure216(v0, v132, v131)
+    let v145 : Mut17 = {l0 = v143; l1 = v144} : Mut17
+    let v146 : string = "createComponent"
+    let v147 : JS.Function = import v146 v121
+    let v148 : (Mut17 -> JSX.Element) = closure169()
+    let v149 : JSX.Element = v147.Invoke (v148, v145) |> unbox<JSX.Element>
+    v149
 and closure214 () (v0 : Mut21) : JSX.Element =
     method44(v0)
 and closure210 (v0 : Mut18) () : (JSX.Element []) =
     let v1 : US3 = v0.l0
-    let v2 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> US5) = closure211()
-    let v3 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) -> (US5 -> struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string))) = closure212(v0)
+    let v2 : (struct ((US2 []) * int32 * US3 * string * string) -> US5) = closure211()
+    let v3 : (struct ((US2 []) * int32 * US3 * string * string) -> (US5 -> struct ((US2 []) * int32 * US3 * string * string))) = closure212(v0)
     let v4 : Mut21 = {l0 = v2; l1 = v1; l2 = v3} : Mut21
     let v5 : string = "createComponent"
     let v6 : string = "solid-js"
@@ -5624,74 +5625,256 @@ and closure197 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v75 : US6 = US6_0
     let v76 : US12 = US12_1(v72)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v75, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v76, v63, v64, v65, v66, v67, v68, v69)
-and closure220 () () : bool =
-    false
-and closure221 () (v0 : bool) : unit =
+and closure221 () struct (v0 : obj, v1 : string) : US2 =
+    US2_1(v0, v1)
+and method49 (v0 : US2, v1 : (US2 []), v2 : int32) : bool =
+    let v3 : int32 = v1.Length
+    let v4 : bool = v2 < v3
+    if v4 then
+        let v5 : US2 = v1.[int v2]
+        let v20 : bool =
+            match v5 with
+            | US2_0(v6, v7) -> (* GunJsClient *)
+                match v0 with
+                | US2_0(v8, v9) -> (* GunJsClient *)
+                    true
+                | US2_1(v10, v11) -> (* GunRsClient *)
+                    false
+            | US2_1(v13, v14) -> (* GunRsClient *)
+                match v0 with
+                | US2_0(v15, v16) -> (* GunJsClient *)
+                    false
+                | US2_1(v17, v18) -> (* GunRsClient *)
+                    true
+        if v20 then
+            true
+        else
+            let v21 : int32 = v2 + 1
+            method49(v0, v1, v21)
+    else
+        false
+and method48 (v0 : Mut23, v1 : US2, v2 : (struct ((US2 []) * int32 * US3 * string * string) []), v3 : int32) : bool =
+    let v4 : int32 = v2.Length
+    let v5 : bool = v3 < v4
+    if v5 then
+        let struct (v6 : (US2 []), v7 : int32, v8 : US3, v9 : string, v10 : string) = v2.[int v3]
+        let v11 : US3 = v0.l1
+        let v12 : bool =
+            match v8, v11 with
+            | US3_0, US3_0 -> (* GunJsServer *)
+                true
+            | US3_1, US3_1 -> (* GunRsServer *)
+                true
+            | _ ->
+                false
+        let v15 : bool =
+            if v12 then
+                let v13 : int32 = 0
+                method49(v1, v6, v13)
+            else
+                false
+        if v15 then
+            true
+        else
+            let v16 : int32 = v3 + 1
+            method48(v0, v1, v2, v16)
+    else
+        false
+and closure223 (v0 : Mut23, v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : US2) () : bool =
+    let v3 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
+    let v4 : int32 = 0
+    method48(v0, v2, v3, v4)
+and method50 (v0 : int32, v1 : Mut24) : bool =
+    let v2 : int32 = v1.l0
+    let v3 : bool = v2 < v0
+    v3
+and closure224 (v0 : Mut23, v1 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v2 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v3 : US2) (v4 : bool) : unit =
+    let v5 : (struct ((US2 []) * int32 * US3 * string * string) []) = v2 ()
+    let v6 : int32 = v5.Length
+    let v7 : (struct ((US2 []) * int32 * US3 * string * string) []) = Array.zeroCreate<struct ((US2 []) * int32 * US3 * string * string)> (v6)
+    let v8 : Mut3 = {l0 = 0} : Mut3
+    while method5(v6, v8) do
+        let v10 : int32 = v8.l0
+        let struct (v11 : (US2 []), v12 : int32, v13 : US3, v14 : string, v15 : string) = v5.[int v10]
+        let v16 : US3 = v0.l1
+        let v17 : bool =
+            match v13, v16 with
+            | US3_0, US3_0 -> (* GunJsServer *)
+                true
+            | US3_1, US3_1 -> (* GunRsServer *)
+                true
+            | _ ->
+                false
+        let struct (v66 : (US2 []), v67 : int32, v68 : US3, v69 : string, v70 : string) =
+            if v17 then
+                let v65 : (US2 []) =
+                    if v4 then
+                        let v18 : (US2 []) = [|v3|]
+                        let v19 : int32 = v11.Length
+                        let v20 : int32 = v18.Length
+                        let v21 : int32 = v19 + v20
+                        let v22 : (US2 []) = Array.zeroCreate<US2> (v21)
+                        let v23 : Mut3 = {l0 = 0} : Mut3
+                        while method5(v21, v23) do
+                            let v25 : int32 = v23.l0
+                            let v26 : bool = v25 < v19
+                            let v30 : US2 =
+                                if v26 then
+                                    let v27 : US2 = v11.[int v25]
+                                    v27
+                                else
+                                    let v28 : int32 = v25 - v19
+                                    let v29 : US2 = v18.[int v28]
+                                    v29
+                            v22.[int v25] <- v30
+                            let v31 : int32 = v25 + 1
+                            v23.l0 <- v31
+                            ()
+                        v22
+                    else
+                        let v32 : int32 = v11.Length
+                        let v33 : (US2 []) = Array.zeroCreate<US2> (v32)
+                        let v34 : Mut24 = {l0 = 0; l1 = 0} : Mut24
+                        while method50(v32, v34) do
+                            let v36 : int32 = v34.l0
+                            let v37 : int32 = v34.l1
+                            let v38 : US2 = v11.[int v36]
+                            let v53 : bool =
+                                match v38 with
+                                | US2_0(v39, v40) -> (* GunJsClient *)
+                                    match v3 with
+                                    | US2_0(v41, v42) -> (* GunJsClient *)
+                                        true
+                                    | US2_1(v43, v44) -> (* GunRsClient *)
+                                        false
+                                | US2_1(v46, v47) -> (* GunRsClient *)
+                                    match v3 with
+                                    | US2_0(v48, v49) -> (* GunJsClient *)
+                                        false
+                                    | US2_1(v50, v51) -> (* GunRsClient *)
+                                        true
+                            let v54 : bool = v53 <> true
+                            let v56 : int32 =
+                                if v54 then
+                                    v33.[int v37] <- v38
+                                    let v55 : int32 = v37 + 1
+                                    v55
+                                else
+                                    v37
+                            let v57 : int32 = v36 + 1
+                            v34.l0 <- v57
+                            v34.l1 <- v56
+                            ()
+                        let v58 : int32 = v34.l1
+                        let v59 : (US2 []) = Array.zeroCreate<US2> (v58)
+                        let v60 : Mut3 = {l0 = 0} : Mut3
+                        while method5(v58, v60) do
+                            let v62 : int32 = v60.l0
+                            let v63 : US2 = v33.[int v62]
+                            v59.[int v62] <- v63
+                            let v64 : int32 = v62 + 1
+                            v60.l0 <- v64
+                            ()
+                        v59
+                struct (v65, v12, v13, v14, v15)
+            else
+                struct (v11, v12, v13, v14, v15)
+        v7.[int v10] <- struct (v66, v67, v68, v69, v70)
+        let v71 : int32 = v10 + 1
+        v8.l0 <- v71
+        ()
+    v1 v7
     ()
-and closure223 () () : (JSX.Element []) =
-    let v0 : string = "Gun Rust"
-    let v1 : JSX.Element = v0 |> unbox<JSX.Element>
-    let v2 : JSX.Element = Html.fragment [ v1 ]
-    [|v2|]
-and closure222 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
-    let v70 : (unit -> (JSX.Element [])) = closure223()
-    let v71 : US9 = US9_1(v70)
-    struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v71, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure224 () () : bool =
-    false
-and closure225 () (v0 : bool) : unit =
-    ()
-and closure227 () () : (JSX.Element []) =
-    let v0 : string = "Gun JavaScript"
-    let v1 : JSX.Element = v0 |> unbox<JSX.Element>
-    let v2 : JSX.Element = Html.fragment [ v1 ]
-    [|v2|]
-and closure226 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
-    let v70 : (unit -> (JSX.Element [])) = closure227()
-    let v71 : US9 = US9_1(v70)
-    struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v71, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure219 () () : (JSX.Element []) =
-    let v0 : (unit -> bool) = closure220()
-    let v1 : (bool -> unit) = closure221()
-    let v2 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure222()
-    let v3 : Mut5 = {l0 = v0; l1 = v1; l2 = v2} : Mut5
+and closure226 (v0 : US2) () : (JSX.Element []) =
+    let v7 : string =
+        match v0 with
+        | US2_0(v1, v2) -> (* GunJsClient *)
+            let v3 : string = "Gun JavaScript"
+            v3
+        | US2_1(v4, v5) -> (* GunRsClient *)
+            let v6 : string = "Gun Rust"
+            v6
+    let v8 : JSX.Element = v7 |> unbox<JSX.Element>
+    let v9 : JSX.Element = Html.fragment [ v8 ]
+    [|v9|]
+and closure225 (v0 : US2) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+    let v71 : (unit -> (JSX.Element [])) = closure226(v0)
+    let v72 : US9 = US9_1(v71)
+    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v72, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
+and method47 (v0 : Mut23) : JSX.Element =
+    let v119 : obj = emitJsExpr () "components_spi.state_context"
+    let v120 : string = "useContext"
+    let v121 : string = "solid-js"
+    let v122 : JS.Function = import v120 v121
+    let struct (v123 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v124 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v125 : (unit -> int32), v126 : (int32 -> unit), v127 : (unit -> string), v128 : (string -> unit), v129 : (unit -> string), v130 : (string -> unit), v131 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v132 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v133 : (unit -> (struct (int32 * obj) [])), v134 : ((struct (int32 * obj) []) -> unit), v135 : (unit -> (struct (int32 * obj) [])), v136 : ((struct (int32 * obj) []) -> unit), v137 : (unit -> (struct (int32 * int32) [])), v138 : ((struct (int32 * int32) []) -> unit), v139 : (unit -> US4), v140 : (US4 -> unit), v141 : (unit -> US5), v142 : (US5 -> unit)) = v122.Invoke v119 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v143 : (struct (obj * string) -> US2) = v0.l0
+    let v144 : string = ""
+    let v145 : obj = v144
+    let v146 : US2 = v143 struct (v145, v144)
+    let v147 : (unit -> bool) = closure223(v0, v131, v146)
+    let v148 : (bool -> unit) = closure224(v0, v132, v131, v146)
+    let v149 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure225(v146)
+    let v150 : Mut5 = {l0 = v147; l1 = v148; l2 = v149} : Mut5
+    let v151 : string = "createComponent"
+    let v152 : JS.Function = import v151 v121
+    let v153 : (Mut5 -> JSX.Element) = closure22()
+    let v154 : JSX.Element = v152.Invoke (v153, v150) |> unbox<JSX.Element>
+    v154
+and closure222 () (v0 : Mut23) : JSX.Element =
+    method47(v0)
+and closure227 () struct (v0 : obj, v1 : string) : US2 =
+    US2_0(v0, v1)
+and closure220 (v0 : Mut18) () : (JSX.Element []) =
+    let v1 : US3 = v0.l0
+    let v2 : (struct (obj * string) -> US2) = closure221()
+    let v3 : Mut23 = {l0 = v2; l1 = v1} : Mut23
     let v4 : string = "createComponent"
     let v5 : string = "solid-js"
     let v6 : JS.Function = import v4 v5
-    let v7 : (Mut5 -> JSX.Element) = closure22()
+    let v7 : (Mut23 -> JSX.Element) = closure222()
     let v8 : JSX.Element = v6.Invoke (v7, v3) |> unbox<JSX.Element>
-    let v9 : (unit -> bool) = closure224()
-    let v10 : (bool -> unit) = closure225()
-    let v11 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure226()
-    let v12 : Mut5 = {l0 = v9; l1 = v10; l2 = v11} : Mut5
-    let v13 : JS.Function = import v4 v5
-    let v14 : JSX.Element = v13.Invoke (v7, v12) |> unbox<JSX.Element>
-    [|v8; v14|]
-and closure218 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
-    let v70 : string = "Clients"
-    let v71 : JSX.Element = v70 |> unbox<JSX.Element>
-    let v72 : JSX.Element = Html.fragment [ v71 ]
-    let v73 : (unit -> (JSX.Element [])) = closure219()
-    let v74 : US9 = US9_1(v73)
-    let v75 : US6 = US6_0
-    let v76 : string = "4px"
-    let v77 : US6 = US6_1(v76)
-    let v78 : string = "8px"
-    let v79 : US6 = US6_1(v78)
-    let v80 : US12 = US12_1(v72)
-    struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v75, v29, v30, v31, v32, v33, v77, v79, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v80, v63, v64, v65, v66, v67, v68, v69)
-and closure217 () () : (JSX.Element []) =
-    let v0 : US14 = US14_0
+    let v9 : US3 = v0.l0
+    let v10 : (struct (obj * string) -> US2) = closure227()
+    let v11 : Mut23 = {l0 = v10; l1 = v9} : Mut23
+    let v12 : JS.Function = import v4 v5
+    let v13 : JSX.Element = v12.Invoke (v7, v11) |> unbox<JSX.Element>
+    [|v8; v13|]
+and closure219 (v0 : Mut18) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+    let v71 : string = "Clients"
+    let v72 : JSX.Element = v71 |> unbox<JSX.Element>
+    let v73 : JSX.Element = Html.fragment [ v72 ]
+    let v74 : (unit -> (JSX.Element [])) = closure220(v0)
+    let v75 : US9 = US9_1(v74)
+    let v76 : US6 = US6_0
+    let v77 : string = "4px"
+    let v78 : US6 = US6_1(v77)
+    let v79 : string = "8px"
+    let v80 : US6 = US6_1(v79)
+    let v81 : US12 = US12_1(v73)
+    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v75, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v76, v30, v31, v32, v33, v34, v78, v80, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v81, v64, v65, v66, v67, v68, v69, v70)
+and method46 (v0 : Mut18) : JSX.Element =
     let v1 : US14 = US14_0
-    let v2 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure218()
-    let v3 : US15 = US15_2
-    let v4 : Mut4 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3} : Mut4
-    let v5 : string = "createComponent"
-    let v6 : string = "solid-js"
-    let v7 : JS.Function = import v5 v6
-    let v8 : (Mut4 -> JSX.Element) = closure16()
-    let v9 : JSX.Element = v7.Invoke (v8, v4) |> unbox<JSX.Element>
-    [|v9|]
+    let v2 : US14 = US14_0
+    let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure219(v0)
+    let v4 : US15 = US15_2
+    let v5 : Mut4 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4} : Mut4
+    let v6 : string = "createComponent"
+    let v7 : string = "solid-js"
+    let v8 : JS.Function = import v6 v7
+    let v9 : (Mut4 -> JSX.Element) = closure16()
+    let v10 : JSX.Element = v8.Invoke (v9, v5) |> unbox<JSX.Element>
+    v10
+and closure218 () (v0 : Mut18) : JSX.Element =
+    method46(v0)
+and closure217 () () : (JSX.Element []) =
+    let v0 : US3 = US3_1
+    let v1 : Mut18 = {l0 = v0} : Mut18
+    let v2 : string = "createComponent"
+    let v3 : string = "solid-js"
+    let v4 : JS.Function = import v2 v3
+    let v5 : (Mut18 -> JSX.Element) = closure218()
+    let v6 : JSX.Element = v4.Invoke (v5, v1) |> unbox<JSX.Element>
+    [|v6|]
 and closure196 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US14 = US14_0
     let v71 : US14 = US14_0
@@ -5728,74 +5911,15 @@ and closure229 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v75 : US6 = US6_0
     let v76 : US12 = US12_1(v72)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v75, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v76, v63, v64, v65, v66, v67, v68, v69)
-and closure234 () () : bool =
-    false
-and closure235 () (v0 : bool) : unit =
-    ()
-and closure237 () () : (JSX.Element []) =
-    let v0 : string = "Gun Rust"
-    let v1 : JSX.Element = v0 |> unbox<JSX.Element>
-    let v2 : JSX.Element = Html.fragment [ v1 ]
-    [|v2|]
-and closure236 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
-    let v70 : (unit -> (JSX.Element [])) = closure237()
-    let v71 : US9 = US9_1(v70)
-    struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v71, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure238 () () : bool =
-    false
-and closure239 () (v0 : bool) : unit =
-    ()
-and closure241 () () : (JSX.Element []) =
-    let v0 : string = "Gun JavaScript"
-    let v1 : JSX.Element = v0 |> unbox<JSX.Element>
-    let v2 : JSX.Element = Html.fragment [ v1 ]
-    [|v2|]
-and closure240 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
-    let v70 : (unit -> (JSX.Element [])) = closure241()
-    let v71 : US9 = US9_1(v70)
-    struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v71, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure233 () () : (JSX.Element []) =
-    let v0 : (unit -> bool) = closure234()
-    let v1 : (bool -> unit) = closure235()
-    let v2 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure236()
-    let v3 : Mut5 = {l0 = v0; l1 = v1; l2 = v2} : Mut5
-    let v4 : string = "createComponent"
-    let v5 : string = "solid-js"
-    let v6 : JS.Function = import v4 v5
-    let v7 : (Mut5 -> JSX.Element) = closure22()
-    let v8 : JSX.Element = v6.Invoke (v7, v3) |> unbox<JSX.Element>
-    let v9 : (unit -> bool) = closure238()
-    let v10 : (bool -> unit) = closure239()
-    let v11 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure240()
-    let v12 : Mut5 = {l0 = v9; l1 = v10; l2 = v11} : Mut5
-    let v13 : JS.Function = import v4 v5
-    let v14 : JSX.Element = v13.Invoke (v7, v12) |> unbox<JSX.Element>
-    [|v8; v14|]
-and closure232 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
-    let v70 : string = "Clients"
-    let v71 : JSX.Element = v70 |> unbox<JSX.Element>
-    let v72 : JSX.Element = Html.fragment [ v71 ]
-    let v73 : (unit -> (JSX.Element [])) = closure233()
-    let v74 : US9 = US9_1(v73)
-    let v75 : US6 = US6_0
-    let v76 : string = "4px"
-    let v77 : US6 = US6_1(v76)
-    let v78 : string = "8px"
-    let v79 : US6 = US6_1(v78)
-    let v80 : US12 = US12_1(v72)
-    struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v75, v29, v30, v31, v32, v33, v77, v79, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v80, v63, v64, v65, v66, v67, v68, v69)
 and closure231 () () : (JSX.Element []) =
-    let v0 : US14 = US14_0
-    let v1 : US14 = US14_0
-    let v2 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure232()
-    let v3 : US15 = US15_2
-    let v4 : Mut4 = {l0 = v0; l1 = v1; l2 = v2; l3 = v3} : Mut4
-    let v5 : string = "createComponent"
-    let v6 : string = "solid-js"
-    let v7 : JS.Function = import v5 v6
-    let v8 : (Mut4 -> JSX.Element) = closure16()
-    let v9 : JSX.Element = v7.Invoke (v8, v4) |> unbox<JSX.Element>
-    [|v9|]
+    let v0 : US3 = US3_0
+    let v1 : Mut18 = {l0 = v0} : Mut18
+    let v2 : string = "createComponent"
+    let v3 : string = "solid-js"
+    let v4 : JS.Function = import v2 v3
+    let v5 : (Mut18 -> JSX.Element) = closure218()
+    let v6 : JSX.Element = v4.Invoke (v5, v1) |> unbox<JSX.Element>
+    [|v6|]
 and closure228 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US14 = US14_0
     let v71 : US14 = US14_0
@@ -5901,24 +6025,20 @@ and closure191 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v76 : US6 = US6_1(v75)
     let v77 : US12 = US12_1(v72)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v76, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v77, v63, v64, v65, v66, v67, v68, v69)
-and closure245 () () : (JSX.Element []) =
+and closure235 () () : (JSX.Element []) =
     [||]
-and closure249 (v0 : ((struct (int32 * int32) []) -> unit)) (v1 : (struct (int32 * int32) [])) : unit =
+and closure239 (v0 : ((struct (int32 * int32) []) -> unit)) (v1 : (struct (int32 * int32) [])) : unit =
     v0 v1
     ()
-and closure248 (v0 : ((struct (int32 * int32) []) -> unit)) () : ((struct (int32 * int32) []) -> unit) =
-    closure249(v0)
-and closure247 (v0 : ((struct (int32 * int32) []) -> unit)) () : (unit -> ((struct (int32 * int32) []) -> unit)) =
-    closure248(v0)
-and method47 (v0 : int32, v1 : Mut23) : bool =
-    let v2 : int32 = v1.l0
-    let v3 : bool = v2 < v0
-    v3
-and closure250 (v0 : (unit -> (struct (int32 * int32) []))) (v1 : obj) : int32 =
+and closure238 (v0 : ((struct (int32 * int32) []) -> unit)) () : ((struct (int32 * int32) []) -> unit) =
+    closure239(v0)
+and closure237 (v0 : ((struct (int32 * int32) []) -> unit)) () : (unit -> ((struct (int32 * int32) []) -> unit)) =
+    closure238(v0)
+and closure240 (v0 : (unit -> (struct (int32 * int32) []))) (v1 : obj) : int32 =
     let v2 : (struct (int32 * int32) []) = v0 ()
     let v3 : int32 = v2.Length
-    let v4 : Mut23 = {l0 = 0; l1 = 0} : Mut23
-    while method47(v3, v4) do
+    let v4 : Mut24 = {l0 = 0; l1 = 0} : Mut24
+    while method50(v3, v4) do
         let v6 : int32 = v4.l0
         let v7 : int32 = v4.l1
         let struct (v8 : int32, v9 : int32) = v2.[int v6]
@@ -5929,7 +6049,7 @@ and closure250 (v0 : (unit -> (struct (int32 * int32) []))) (v1 : obj) : int32 =
         ()
     let v12 : int32 = v4.l1
     v12
-and closure251 (v0 : string, v1 : (struct (int32 * int32) []), v2 : (unit -> unit), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> unit)) () : (obj []) =
+and closure241 (v0 : string, v1 : (struct (int32 * int32) []), v2 : (unit -> unit), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> unit)) () : (obj []) =
     let v6 : string = "content_address:"
     let v7 : obj = struct (v6, v0)
     let v8 : string = "proxy:"
@@ -5943,7 +6063,7 @@ and closure251 (v0 : string, v1 : (struct (int32 * int32) []), v2 : (unit -> uni
     let v16 : string = "subscriptions:"
     let v17 : obj = struct (v16, v5)
     [|v7; v9; v11; v13; v15; v17|]
-and closure252 (v0 : string, v1 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure242 (v0 : string, v1 : (US4 -> ((obj []) -> unit))) () : unit =
     let v2 : US4 = US4_0
     let v3 : ((obj []) -> unit) = v1 v2
     let v4 : string = "> use_fetch > unsubscribe () [1]"
@@ -5953,7 +6073,7 @@ and closure252 (v0 : string, v1 : (US4 -> ((obj []) -> unit))) () : unit =
     let v7 : string = "db_off"
     printfn $"%A{struct (v7, v0)}"
     ()
-and closure253 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure243 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
     let v1 : US4 = US4_2
     let v2 : ((obj []) -> unit) = v0 v1
     let v3 : string = ">> use_fetch request()"
@@ -5961,7 +6081,7 @@ and closure253 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
     let v5 : (obj []) = [|v4|]
     v2 v5
     ()
-and closure254 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure244 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
     let v1 : US4 = US4_2
     let v2 : ((obj []) -> unit) = v0 v1
     let v3 : string = ">> use_fetch clear()"
@@ -5969,87 +6089,91 @@ and closure254 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
     let v5 : (obj []) = [|v4|]
     v2 v5
     ()
-and method48 (v0 : string, v1 : (struct (int32 * int32) [])) : struct ((unit -> unit) * (unit -> unit)) =
-    let v2 : string = "createSignal"
-    let v3 : string = "solid-js"
-    let v4 : JS.Function = import v2 v3
-    let v5 : (JS.Function []) = v4.Invoke () |> unbox<JS.Function[]>
-    let v6 : (unit -> unit) = v5.[0] |> unbox
-    let v7 : (unit -> unit) = v5.[1] |> unbox
-    let v8 : JS.Function = import v2 v3
-    let v9 : (JS.Function []) = v8.Invoke () |> unbox<JS.Function[]>
-    let v10 : (unit -> unit) = v9.[0] |> unbox
-    let v11 : (unit -> unit) = v9.[1] |> unbox
-    let v12 : JS.Function = import v2 v3
-    let v13 : (JS.Function []) = v12.Invoke () |> unbox<JS.Function[]>
-    let v14 : (unit -> unit) = v13.[0] |> unbox
-    let v15 : (unit -> unit) = v13.[1] |> unbox
-    let v16 : JS.Function = import v2 v3
-    let v17 : (JS.Function []) = v16.Invoke () |> unbox<JS.Function[]>
-    let v18 : (unit -> unit) = v17.[0] |> unbox
-    let v19 : (unit -> unit) = v17.[1] |> unbox
-    let v20 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
-    let v21 : int32 = v20.Length
-    let v22 : Mut23 = {l0 = 0; l1 = 100000} : Mut23
-    while method47(v21, v22) do
-        let v24 : int32 = v22.l0
-        let v25 : int32 = v22.l1
-        let v26 : uint8 = v20.[int v24]
-        let v27 : int32 = v26 |> unbox<int32>
-        let v28 : int32 = v27 * 14
-        let v29 : int32 = v25 + v28
-        let v30 : int32 = v24 + 1
-        v22.l0 <- v30
-        v22.l1 <- v29
+and method52 (v0 : string, v1 : (struct (int32 * int32) [])) : struct ((unit -> unit) * (unit -> unit)) =
+    let v120 : obj = emitJsExpr () "components_spi.state_context"
+    let v121 : string = "useContext"
+    let v122 : string = "solid-js"
+    let v123 : JS.Function = import v121 v122
+    let struct (v124 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v125 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v126 : (unit -> int32), v127 : (int32 -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> string), v131 : (string -> unit), v132 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v133 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * obj) [])), v137 : ((struct (int32 * obj) []) -> unit), v138 : (unit -> (struct (int32 * int32) [])), v139 : ((struct (int32 * int32) []) -> unit), v140 : (unit -> US4), v141 : (US4 -> unit), v142 : (unit -> US5), v143 : (US5 -> unit)) = v123.Invoke v120 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v144 : string = "createSignal"
+    let v145 : JS.Function = import v144 v122
+    let v146 : (JS.Function []) = v145.Invoke () |> unbox<JS.Function[]>
+    let v147 : (unit -> unit) = v146.[0] |> unbox
+    let v148 : (unit -> unit) = v146.[1] |> unbox
+    let v149 : JS.Function = import v144 v122
+    let v150 : (JS.Function []) = v149.Invoke () |> unbox<JS.Function[]>
+    let v151 : (unit -> unit) = v150.[0] |> unbox
+    let v152 : (unit -> unit) = v150.[1] |> unbox
+    let v153 : JS.Function = import v144 v122
+    let v154 : (JS.Function []) = v153.Invoke () |> unbox<JS.Function[]>
+    let v155 : (unit -> unit) = v154.[0] |> unbox
+    let v156 : (unit -> unit) = v154.[1] |> unbox
+    let v157 : JS.Function = import v144 v122
+    let v158 : (JS.Function []) = v157.Invoke () |> unbox<JS.Function[]>
+    let v159 : (unit -> unit) = v158.[0] |> unbox
+    let v160 : (unit -> unit) = v158.[1] |> unbox
+    let v161 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
+    let v162 : int32 = v161.Length
+    let v163 : Mut24 = {l0 = 0; l1 = 100000} : Mut24
+    while method50(v162, v163) do
+        let v165 : int32 = v163.l0
+        let v166 : int32 = v163.l1
+        let v167 : uint8 = v161.[int v165]
+        let v168 : int32 = v167 |> unbox<int32>
+        let v169 : int32 = v168 * 14
+        let v170 : int32 = v166 + v169
+        let v171 : int32 = v165 + 1
+        v163.l0 <- v171
+        v163.l1 <- v170
         ()
-    let v31 : int32 = v22.l1
-    let v32 : string = v31.ToString ()
-    let v33 : string = $"#{v32}"
-    let v34 : (unit -> (obj [])) = closure251(v0, v1, v6, v10, v14, v18)
-    let v35 : (US4 -> ((obj []) -> unit)) = method14(v34, v33)
-    let v36 : US4 = US4_0
-    let v37 : ((obj []) -> unit) = v35 v36
-    let v38 : string = "> use_fetch ()"
-    let v39 : obj = v38
-    let v40 : (obj []) = [|v39|]
-    v37 v40
-    let v41 : (unit -> unit) = closure252(v0, v35)
-    method18(v41)
-    let v42 : (unit -> unit) = closure253(v35)
-    let v43 : (unit -> unit) = closure254(v35)
-    struct (v42, v43)
-and closure257 () () : (JSX.Element []) =
+    let v172 : int32 = v163.l1
+    let v173 : string = v172.ToString ()
+    let v174 : string = $"#{v173}"
+    let v175 : (unit -> (obj [])) = closure241(v0, v1, v147, v151, v155, v159)
+    let v176 : (US4 -> ((obj []) -> unit)) = method14(v175, v174)
+    let v177 : US4 = US4_0
+    let v178 : ((obj []) -> unit) = v176 v177
+    let v179 : string = "> use_fetch ()"
+    let v180 : obj = v179
+    let v181 : (obj []) = [|v180|]
+    v178 v181
+    let v182 : (unit -> unit) = closure242(v0, v176)
+    method18(v182)
+    let v183 : (unit -> unit) = closure243(v176)
+    let v184 : (unit -> unit) = closure244(v176)
+    struct (v183, v184)
+and closure247 () () : (JSX.Element []) =
     let v0 : string = "Counter"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure258 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure248 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v70, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure259 () () : JS.Function =
+and closure249 () () : JS.Function =
     let v0 : string = "BiRegularPlus"
     let v1 : string = "solid-icons/bi"
     let v2 : JS.Function = import v0 v1
     v2
-and closure260 () () : (JSX.Element []) =
+and closure250 () () : (JSX.Element []) =
     let v0 : string = "Request"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure261 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure251 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v70, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure262 () () : JS.Function =
+and closure252 () () : JS.Function =
     let v0 : string = "BiRegularMinus"
     let v1 : string = "solid-icons/bi"
     let v2 : JS.Function = import v0 v1
     v2
-and closure263 () () : (JSX.Element []) =
+and closure253 () () : (JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure256 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
+and closure246 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/solid"
     let v4 : JS.Function = import v2 v3
@@ -6067,13 +6191,13 @@ and closure256 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure257()
+            closure247()
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : ((string * obj) []) = method7(v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v86, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74)
     let v88 : obj = createObj v87
-    let v89 : (unit -> (JSX.Element [])) = closure257()
+    let v89 : (unit -> (JSX.Element [])) = closure247()
     emitJsExpr (v88, v89) "$0.children = $1"
     let v90 : (obj -> JSX.Element) = v4 |> unbox<(obj -> JSX.Element)>
     let v91 : string = "createComponent"
@@ -6081,8 +6205,8 @@ and closure256 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v93 : JS.Function = import v91 v92
     let v94 : JSX.Element = v93.Invoke (v90, v88) |> unbox<JSX.Element>
     let struct (v95 : US6, v96 : US6, v97 : US6, v98 : US7, v99 : US6, v100 : US6, v101 : US6, v102 : US6, v103 : US6, v104 : US6, v105 : US8, v106 : US9, v107 : US6, v108 : US6, v109 : US8, v110 : US10, v111 : US6, v112 : US6, v113 : US6, v114 : US11, v115 : US8, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US12, v123 : US6, v124 : US6, v125 : US6, v126 : US12, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US6, v133 : US6, v134 : US6, v135 : US6, v136 : US6, v137 : US13, v138 : US14, v139 : US13, v140 : US6, v141 : US6, v142 : US6, v143 : US6, v144 : US6, v145 : US6, v146 : US6, v147 : US6, v148 : US6, v149 : US6, v150 : US6, v151 : US6, v152 : US6, v153 : US6, v154 : US6, v155 : US6, v156 : US6, v157 : US12, v158 : US6, v159 : US6, v160 : US10, v161 : US10, v162 : US6, v163 : US5, v164 : US6) = method3()
-    let v165 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure258()
-    let v166 : (unit -> JS.Function) = closure259()
+    let v165 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure248()
+    let v166 : (unit -> JS.Function) = closure249()
     let v167 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure45()
     let v168 : Mut7 = {l0 = v165; l1 = v166; l2 = v167} : Mut7
     let v169 : JS.Function = import v91 v92
@@ -6100,7 +6224,7 @@ and closure256 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v181 : (unit -> (JSX.Element [])) =
         match v178 with
         | US9_0 -> (* None *)
-            closure260()
+            closure250()
         | US9_1(v180) -> (* Some *)
             v180
     let v182 : US9 = US9_1(v181)
@@ -6109,14 +6233,14 @@ and closure256 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v185 : string = "10px"
     let v186 : US6 = US6_1(v185)
     let v187 : Mut1 = {l0 = v95; l1 = v96; l2 = v97; l3 = v98; l4 = v99; l5 = v100; l6 = v101; l7 = v102; l8 = v103; l9 = v104; l10 = v105; l11 = v182; l12 = v107; l13 = v108; l14 = v109; l15 = v110; l16 = v111; l17 = v112; l18 = v113; l19 = v114; l20 = v115; l21 = v116; l22 = v117; l23 = v118; l24 = v119; l25 = v120; l26 = v121; l27 = v122; l28 = v123; l29 = v124; l30 = v125; l31 = v183; l32 = v127; l33 = v128; l34 = v129; l35 = v130; l36 = v131; l37 = v132; l38 = v133; l39 = v134; l40 = v135; l41 = v136; l42 = v137; l43 = v184; l44 = v139; l45 = v140; l46 = v141; l47 = v142; l48 = v143; l49 = v144; l50 = v145; l51 = v146; l52 = v186; l53 = v148; l54 = v149; l55 = v150; l56 = v151; l57 = v152; l58 = v153; l59 = v154; l60 = v155; l61 = v156; l62 = v157; l63 = v158; l64 = v159; l65 = v160; l66 = v161; l67 = v162; l68 = v163; l69 = v164} : Mut1
-    let v188 : (unit -> (JSX.Element [])) = closure260()
+    let v188 : (unit -> (JSX.Element [])) = closure250()
     emitJsExpr (v187, v188) "$0.children = $1"
     let v189 : JS.Function = import v91 v92
     let v190 : (Mut1 -> JSX.Element) = closure40()
     let v191 : JSX.Element = v189.Invoke (v190, v187) |> unbox<JSX.Element>
     let struct (v192 : US6, v193 : US6, v194 : US6, v195 : US7, v196 : US6, v197 : US6, v198 : US6, v199 : US6, v200 : US6, v201 : US6, v202 : US8, v203 : US9, v204 : US6, v205 : US6, v206 : US8, v207 : US10, v208 : US6, v209 : US6, v210 : US6, v211 : US11, v212 : US8, v213 : US6, v214 : US6, v215 : US6, v216 : US6, v217 : US6, v218 : US6, v219 : US12, v220 : US6, v221 : US6, v222 : US6, v223 : US12, v224 : US6, v225 : US6, v226 : US6, v227 : US6, v228 : US6, v229 : US6, v230 : US6, v231 : US6, v232 : US6, v233 : US6, v234 : US13, v235 : US14, v236 : US13, v237 : US6, v238 : US6, v239 : US6, v240 : US6, v241 : US6, v242 : US6, v243 : US6, v244 : US6, v245 : US6, v246 : US6, v247 : US6, v248 : US6, v249 : US6, v250 : US6, v251 : US6, v252 : US6, v253 : US6, v254 : US12, v255 : US6, v256 : US6, v257 : US10, v258 : US10, v259 : US6, v260 : US5, v261 : US6) = method3()
-    let v262 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure261()
-    let v263 : (unit -> JS.Function) = closure262()
+    let v262 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure251()
+    let v263 : (unit -> JS.Function) = closure252()
     let v264 : Mut7 = {l0 = v262; l1 = v263; l2 = v167} : Mut7
     let v265 : JS.Function = import v91 v92
     let v266 : JSX.Element = v265.Invoke (v170, v264) |> unbox<JSX.Element>
@@ -6132,7 +6256,7 @@ and closure256 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v276 : (unit -> (JSX.Element [])) =
         match v273 with
         | US9_0 -> (* None *)
-            closure263()
+            closure253()
         | US9_1(v275) -> (* Some *)
             v275
     let v277 : US9 = US9_1(v276)
@@ -6140,51 +6264,51 @@ and closure256 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v279 : US14 = US14_1(v0)
     let v280 : US6 = US6_1(v185)
     let v281 : Mut1 = {l0 = v192; l1 = v193; l2 = v194; l3 = v195; l4 = v196; l5 = v197; l6 = v198; l7 = v199; l8 = v200; l9 = v201; l10 = v202; l11 = v277; l12 = v204; l13 = v205; l14 = v206; l15 = v207; l16 = v208; l17 = v209; l18 = v210; l19 = v211; l20 = v212; l21 = v213; l22 = v214; l23 = v215; l24 = v216; l25 = v217; l26 = v218; l27 = v219; l28 = v220; l29 = v221; l30 = v222; l31 = v278; l32 = v224; l33 = v225; l34 = v226; l35 = v227; l36 = v228; l37 = v229; l38 = v230; l39 = v231; l40 = v232; l41 = v233; l42 = v234; l43 = v279; l44 = v236; l45 = v237; l46 = v238; l47 = v239; l48 = v240; l49 = v241; l50 = v242; l51 = v243; l52 = v280; l53 = v245; l54 = v246; l55 = v247; l56 = v248; l57 = v249; l58 = v250; l59 = v251; l60 = v252; l61 = v253; l62 = v254; l63 = v255; l64 = v256; l65 = v257; l66 = v258; l67 = v259; l68 = v260; l69 = v261} : Mut1
-    let v282 : (unit -> (JSX.Element [])) = closure263()
+    let v282 : (unit -> (JSX.Element [])) = closure253()
     emitJsExpr (v281, v282) "$0.children = $1"
     let v283 : JS.Function = import v91 v92
     let v284 : JSX.Element = v283.Invoke (v190, v281) |> unbox<JSX.Element>
     [|v94; v191; v284|]
-and method49 (v0 : int32, v1 : Mut24) : bool =
+and method53 (v0 : int32, v1 : Mut25) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method50 (v0 : UH1, v1 : UH1) : UH1 =
+and method54 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
     | UH1_0(v2, v3, v4) -> (* Cons *)
         let v5 : UH1 = UH1_0(v2, v3, v1)
-        method50(v4, v5)
+        method54(v4, v5)
     | UH1_1 -> (* Nil *)
         v1
-and method52 (v0 : UH1, v1 : int32) : int32 =
+and method56 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
     | UH1_0(v2, v3, v4) -> (* Cons *)
         let v5 : int32 = v1 + 1
-        method52(v4, v5)
+        method56(v4, v5)
     | UH1_1 -> (* Nil *)
         v1
-and method53 (v0 : (struct (int32 * int32) []), v1 : UH1, v2 : int32) : int32 =
+and method57 (v0 : (struct (int32 * int32) []), v1 : UH1, v2 : int32) : int32 =
     match v1 with
     | UH1_0(v3, v4, v5) -> (* Cons *)
         v0.[int v2] <- struct (v3, v4)
         let v6 : int32 = v2 + 1
-        method53(v0, v5, v6)
+        method57(v0, v5, v6)
     | UH1_1 -> (* Nil *)
         v2
-and method51 (v0 : UH1) : (struct (int32 * int32) []) =
+and method55 (v0 : UH1) : (struct (int32 * int32) []) =
     let v1 : int32 = 0
-    let v2 : int32 = method52(v0, v1)
+    let v2 : int32 = method56(v0, v1)
     let v3 : (struct (int32 * int32) []) = Array.zeroCreate<struct (int32 * int32)> (v2)
     let v4 : int32 = 0
-    let v5 : int32 = method53(v3, v0, v4)
+    let v5 : int32 = method57(v3, v0, v4)
     v3
-and closure269 (v0 : (unit -> struct (int32 * int32))) () : (JSX.Element []) =
+and closure259 (v0 : (unit -> struct (int32 * int32))) () : (JSX.Element []) =
     let struct (v1 : int32, v2 : int32) = v0 ()
     let v3 : string = emitJsExpr v2 "JSON.stringify($0, null, 2)"
     let v4 : JSX.Element = v3 |> unbox<JSX.Element>
     let v5 : JSX.Element = Html.fragment [ v4 ]
     [|v5|]
-and closure268 (v0 : (unit -> struct (int32 * int32))) () : (JSX.Element []) =
+and closure258 (v0 : (unit -> struct (int32 * int32))) () : (JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/solid"
     let v3 : JS.Function = import v1 v2
@@ -6203,13 +6327,13 @@ and closure268 (v0 : (unit -> struct (int32 * int32))) () : (JSX.Element []) =
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure269(v0)
+            closure259(v0)
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : ((string * obj) []) = method7(v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v86, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74)
     let v88 : obj = createObj v87
-    let v89 : (unit -> (JSX.Element [])) = closure269(v0)
+    let v89 : (unit -> (JSX.Element [])) = closure259(v0)
     emitJsExpr (v88, v89) "$0.children = $1"
     let v90 : (obj -> JSX.Element) = v4 |> unbox<(obj -> JSX.Element)>
     let v91 : string = "createComponent"
@@ -6217,21 +6341,21 @@ and closure268 (v0 : (unit -> struct (int32 * int32))) () : (JSX.Element []) =
     let v93 : JS.Function = import v91 v92
     let v94 : JSX.Element = v93.Invoke (v90, v88) |> unbox<JSX.Element>
     [|v94|]
-and closure267 (v0 : (unit -> struct (int32 * int32))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure257 (v0 : (unit -> struct (int32 * int32))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let struct (v71 : int32, v72 : int32) = v0 ()
     let v73 : string = v71.ToString ()
     let v74 : JSX.Element = v73 |> unbox<JSX.Element>
     let v75 : JSX.Element = Html.fragment [ v74 ]
-    let v76 : (unit -> (JSX.Element [])) = closure268(v0)
+    let v76 : (unit -> (JSX.Element [])) = closure258(v0)
     let v77 : US9 = US9_1(v76)
     let v78 : string = "3px"
     let v79 : US6 = US6_1(v78)
     let v80 : US12 = US12_1(v75)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v77, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v79, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v80, v64, v65, v66, v67, v68, v69, v70)
-and closure266 () (v0 : (unit -> struct (int32 * int32))) : (JSX.Element []) =
+and closure256 () (v0 : (unit -> struct (int32 * int32))) : (JSX.Element []) =
     let v1 : US14 = US14_0
     let v2 : US14 = US14_0
-    let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure267(v0)
+    let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure257(v0)
     let v4 : US15 = US15_2
     let v5 : Mut4 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4} : Mut4
     let v6 : string = "createComponent"
@@ -6240,12 +6364,12 @@ and closure266 () (v0 : (unit -> struct (int32 * int32))) : (JSX.Element []) =
     let v9 : (Mut4 -> JSX.Element) = closure16()
     let v10 : JSX.Element = v8.Invoke (v9, v5) |> unbox<JSX.Element>
     [|v10|]
-and closure265 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []) =
+and closure255 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []) =
     let v1 : (struct (int32 * int32) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH1 = UH1_1
-    let v4 : Mut24 = {l0 = 0; l1 = v3} : Mut24
-    while method49(v2, v4) do
+    let v4 : Mut25 = {l0 = 0; l1 = v3} : Mut25
+    while method53(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : int32 =  -v6
         let v8 : int32 = v7 + v2
@@ -6259,15 +6383,15 @@ and closure265 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []
         ()
     let v15 : UH1 = v4.l1
     let v16 : UH1 = UH1_1
-    let v17 : UH1 = method50(v15, v16)
-    let v18 : (struct (int32 * int32) []) = method51(v17)
+    let v17 : UH1 = method54(v15, v16)
+    let v18 : (struct (int32 * int32) []) = method55(v17)
     let v19 : string = "Index"
     let v20 : string = "solid-js"
     let v21 : JS.Function = import v19 v20
-    let v22 : ((unit -> struct (int32 * int32)) -> (JSX.Element [])) = closure266()
-    let v23 : (unit -> (JSX.Element [])) = v22 |> unbox
+    let v22 : ((unit -> struct (int32 * int32)) -> (JSX.Element [])) = closure256()
+    let v23 : (unit -> (JSX.Element [])) = v22 |> unbox<(unit -> (JSX.Element []))>
     let struct (v24 : US6, v25 : US6, v26 : US6, v27 : US7, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US6, v33 : US6, v34 : US8, v35 : US9, v36 : US6, v37 : US6, v38 : US8, v39 : US10, v40 : US6, v41 : US6, v42 : US6, v43 : US11, v44 : US8, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US12, v52 : US6, v53 : US6, v54 : US6, v55 : US12, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US13, v67 : US14, v68 : US13, v69 : US6, v70 : US6, v71 : US6, v72 : US6, v73 : US6, v74 : US6, v75 : US6, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US6, v83 : US6, v84 : US6, v85 : US6, v86 : US12, v87 : US6, v88 : US6, v89 : US10, v90 : US10, v91 : US6, v92 : US5, v93 : US6) = method3()
-    let v94 : (obj []) = v18 |> unbox<obj[]>
+    let v94 : (obj []) = v18 |> unbox<(obj [])>
     let v101 : US9 =
         match v35 with
         | US9_0 -> (* None *)
@@ -6293,7 +6417,7 @@ and closure265 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []
     let v110 : JS.Function = import v109 v20
     let v111 : JSX.Element = v110.Invoke (v108, v107) |> unbox<JSX.Element>
     [|v111|]
-and closure264 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []) =
+and closure254 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []) =
     let struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) = method3()
     let v78 : US9 =
         match v12 with
@@ -6308,12 +6432,12 @@ and closure264 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []
     let v81 : (unit -> (JSX.Element [])) =
         match v78 with
         | US9_0 -> (* None *)
-            closure265(v0)
+            closure255(v0)
         | US9_1(v80) -> (* Some *)
             v80
     let v82 : US9 = US9_1(v81)
     let v83 : Mut1 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v7; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v82; l12 = v13; l13 = v14; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v34; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44; l44 = v45; l45 = v46; l46 = v47; l47 = v48; l48 = v49; l49 = v50; l50 = v51; l51 = v52; l52 = v53; l53 = v54; l54 = v55; l55 = v56; l56 = v57; l57 = v58; l58 = v59; l59 = v60; l60 = v61; l61 = v62; l62 = v63; l63 = v64; l64 = v65; l65 = v66; l66 = v67; l67 = v68; l68 = v69; l69 = v70} : Mut1
-    let v84 : (unit -> (JSX.Element [])) = closure265(v0)
+    let v84 : (unit -> (JSX.Element [])) = closure255(v0)
     emitJsExpr (v83, v84) "$0.children = $1"
     let v85 : string = "createComponent"
     let v86 : string = "solid-js"
@@ -6321,7 +6445,7 @@ and closure264 (v0 : (unit -> (struct (int32 * int32) []))) () : (JSX.Element []
     let v88 : (Mut1 -> JSX.Element) = closure111()
     let v89 : JSX.Element = v87.Invoke (v88, v83) |> unbox<JSX.Element>
     [|v89|]
-and closure255 (v0 : (unit -> (struct (int32 * int32) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US10, v19 : US6, v20 : US6, v21 : US6, v22 : US11, v23 : US8, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US12, v31 : US6, v32 : US6, v33 : US6, v34 : US12, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US13, v46 : US14, v47 : US13, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US12, v66 : US6, v67 : US6, v68 : US10, v69 : US10, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure245 (v0 : (unit -> (struct (int32 * int32) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US10, v19 : US6, v20 : US6, v21 : US6, v22 : US11, v23 : US8, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US12, v31 : US6, v32 : US6, v33 : US6, v34 : US12, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US13, v46 : US14, v47 : US13, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US12, v66 : US6, v67 : US6, v68 : US10, v69 : US10, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/solid"
     let v75 : JS.Function = import v73 v74
@@ -6345,7 +6469,7 @@ and closure255 (v0 : (unit -> (struct (int32 * int32) [])), v1 : (unit -> unit),
     let v162 : (unit -> (JSX.Element [])) =
         match v159 with
         | US9_0 -> (* None *)
-            closure256(v1, v2)
+            closure246(v1, v2)
         | US9_1(v161) -> (* Some *)
             v161
     let v163 : string = "start"
@@ -6359,55 +6483,55 @@ and closure255 (v0 : (unit -> (struct (int32 * int32) [])), v1 : (unit -> unit),
     let v171 : US6 = US6_1(v170)
     let v172 : ((string * obj) []) = method7(v164, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v165, v88, v89, v90, v91, v92, v166, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v167, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v169, v126, v127, v128, v129, v130, v131, v132, v133, v171, v135, v136, v137, v138, v139, v140, v141, v142, v143, v144, v145)
     let v173 : obj = createObj v172
-    let v174 : (unit -> (JSX.Element [])) = closure256(v1, v2)
+    let v174 : (unit -> (JSX.Element [])) = closure246(v1, v2)
     emitJsExpr (v173, v174) "$0.children = $1"
     let v175 : (obj -> JSX.Element) = v75 |> unbox<(obj -> JSX.Element)>
     let v176 : string = "createComponent"
     let v177 : string = "solid-js"
     let v178 : JS.Function = import v176 v177
     let v179 : JSX.Element = v178.Invoke (v175, v173) |> unbox<JSX.Element>
-    let v180 : (unit -> (JSX.Element [])) = closure264(v0)
+    let v180 : (unit -> (JSX.Element [])) = closure254(v0)
     let v181 : US9 = US9_1(v180)
     let v182 : string = "counter"
     let v183 : US6 = US6_1(v182)
     let v184 : US12 = US12_1(v179)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v181, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v183, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v184, v66, v67, v68, v69, v70, v71, v72)
-and method46 () : JSX.Element =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v149 : string = "profile/tmp/counter"
-    let v150 : (struct (int32 * int32) []) = v143 ()
-    let v151 : (unit -> (unit -> ((struct (int32 * int32) []) -> unit))) = closure247(v144)
-    let v152 : (obj -> int32) = closure250(v143)
-    let struct (v153 : (unit -> unit), v154 : (unit -> unit)) = method48(v149, v150)
-    let v155 : US14 = US14_0
-    let v156 : US14 = US14_0
-    let v157 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure255(v143, v154, v153)
-    let v158 : US15 = US15_2
-    let v159 : Mut4 = {l0 = v155; l1 = v156; l2 = v157; l3 = v158} : Mut4
-    let v160 : string = "createComponent"
-    let v161 : JS.Function = import v160 v125
-    let v162 : (Mut4 -> JSX.Element) = closure16()
-    let v163 : JSX.Element = v161.Invoke (v162, v159) |> unbox<JSX.Element>
-    v163
-and closure246 () (v0 : Mut1) : JSX.Element =
-    method46()
-and closure270 () () : (JSX.Element []) =
+and method51 () : JSX.Element =
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v142 : string = "profile/tmp/counter"
+    let v143 : (struct (int32 * int32) []) = v136 ()
+    let v144 : (unit -> (unit -> ((struct (int32 * int32) []) -> unit))) = closure237(v137)
+    let v145 : (obj -> int32) = closure240(v136)
+    let struct (v146 : (unit -> unit), v147 : (unit -> unit)) = method52(v142, v143)
+    let v148 : US14 = US14_0
+    let v149 : US14 = US14_0
+    let v150 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure245(v136, v147, v146)
+    let v151 : US15 = US15_2
+    let v152 : Mut4 = {l0 = v148; l1 = v149; l2 = v150; l3 = v151} : Mut4
+    let v153 : string = "createComponent"
+    let v154 : JS.Function = import v153 v120
+    let v155 : (Mut4 -> JSX.Element) = closure16()
+    let v156 : JSX.Element = v154.Invoke (v155, v152) |> unbox<JSX.Element>
+    v156
+and closure236 () (v0 : Mut1) : JSX.Element =
+    method51()
+and closure260 () () : (JSX.Element []) =
     [||]
-and closure274 (v0 : ((struct (int32 * obj) []) -> unit)) (v1 : (struct (int32 * obj) [])) : unit =
+and closure264 (v0 : ((struct (int32 * obj) []) -> unit)) (v1 : (struct (int32 * obj) [])) : unit =
     v0 v1
     ()
-and closure273 (v0 : ((struct (int32 * obj) []) -> unit)) () : ((struct (int32 * obj) []) -> unit) =
-    closure274(v0)
-and closure272 (v0 : ((struct (int32 * obj) []) -> unit)) () : (unit -> ((struct (int32 * obj) []) -> unit)) =
-    closure273(v0)
-and closure275 () (v0 : obj) : obj =
+and closure263 (v0 : ((struct (int32 * obj) []) -> unit)) () : ((struct (int32 * obj) []) -> unit) =
+    closure264(v0)
+and closure262 (v0 : ((struct (int32 * obj) []) -> unit)) () : (unit -> ((struct (int32 * obj) []) -> unit)) =
+    closure263(v0)
+and closure265 () (v0 : obj) : obj =
     let v1 : obj = "status"
     v1
-and closure276 (v0 : string, v1 : (struct (int32 * obj) []), v2 : (unit -> unit), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> unit)) () : (obj []) =
+and closure266 (v0 : string, v1 : (struct (int32 * obj) []), v2 : (unit -> unit), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> unit)) () : (obj []) =
     let v6 : string = "content_address:"
     let v7 : obj = struct (v6, v0)
     let v8 : string = "proxy:"
@@ -6421,77 +6545,81 @@ and closure276 (v0 : string, v1 : (struct (int32 * obj) []), v2 : (unit -> unit)
     let v16 : string = "subscriptions:"
     let v17 : obj = struct (v16, v5)
     [|v7; v9; v11; v13; v15; v17|]
-and method55 (v0 : string, v1 : (struct (int32 * obj) [])) : struct ((unit -> unit) * (unit -> unit)) =
-    let v2 : string = "createSignal"
-    let v3 : string = "solid-js"
-    let v4 : JS.Function = import v2 v3
-    let v5 : (JS.Function []) = v4.Invoke () |> unbox<JS.Function[]>
-    let v6 : (unit -> unit) = v5.[0] |> unbox
-    let v7 : (unit -> unit) = v5.[1] |> unbox
-    let v8 : JS.Function = import v2 v3
-    let v9 : (JS.Function []) = v8.Invoke () |> unbox<JS.Function[]>
-    let v10 : (unit -> unit) = v9.[0] |> unbox
-    let v11 : (unit -> unit) = v9.[1] |> unbox
-    let v12 : JS.Function = import v2 v3
-    let v13 : (JS.Function []) = v12.Invoke () |> unbox<JS.Function[]>
-    let v14 : (unit -> unit) = v13.[0] |> unbox
-    let v15 : (unit -> unit) = v13.[1] |> unbox
-    let v16 : JS.Function = import v2 v3
-    let v17 : (JS.Function []) = v16.Invoke () |> unbox<JS.Function[]>
-    let v18 : (unit -> unit) = v17.[0] |> unbox
-    let v19 : (unit -> unit) = v17.[1] |> unbox
-    let v20 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
-    let v21 : int32 = v20.Length
-    let v22 : Mut23 = {l0 = 0; l1 = 100000} : Mut23
-    while method47(v21, v22) do
-        let v24 : int32 = v22.l0
-        let v25 : int32 = v22.l1
-        let v26 : uint8 = v20.[int v24]
-        let v27 : int32 = v26 |> unbox<int32>
-        let v28 : int32 = v27 * 14
-        let v29 : int32 = v25 + v28
-        let v30 : int32 = v24 + 1
-        v22.l0 <- v30
-        v22.l1 <- v29
+and method59 (v0 : string, v1 : (struct (int32 * obj) [])) : struct ((unit -> unit) * (unit -> unit)) =
+    let v120 : obj = emitJsExpr () "components_spi.state_context"
+    let v121 : string = "useContext"
+    let v122 : string = "solid-js"
+    let v123 : JS.Function = import v121 v122
+    let struct (v124 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v125 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v126 : (unit -> int32), v127 : (int32 -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> string), v131 : (string -> unit), v132 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v133 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * obj) [])), v137 : ((struct (int32 * obj) []) -> unit), v138 : (unit -> (struct (int32 * int32) [])), v139 : ((struct (int32 * int32) []) -> unit), v140 : (unit -> US4), v141 : (US4 -> unit), v142 : (unit -> US5), v143 : (US5 -> unit)) = v123.Invoke v120 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v144 : string = "createSignal"
+    let v145 : JS.Function = import v144 v122
+    let v146 : (JS.Function []) = v145.Invoke () |> unbox<JS.Function[]>
+    let v147 : (unit -> unit) = v146.[0] |> unbox
+    let v148 : (unit -> unit) = v146.[1] |> unbox
+    let v149 : JS.Function = import v144 v122
+    let v150 : (JS.Function []) = v149.Invoke () |> unbox<JS.Function[]>
+    let v151 : (unit -> unit) = v150.[0] |> unbox
+    let v152 : (unit -> unit) = v150.[1] |> unbox
+    let v153 : JS.Function = import v144 v122
+    let v154 : (JS.Function []) = v153.Invoke () |> unbox<JS.Function[]>
+    let v155 : (unit -> unit) = v154.[0] |> unbox
+    let v156 : (unit -> unit) = v154.[1] |> unbox
+    let v157 : JS.Function = import v144 v122
+    let v158 : (JS.Function []) = v157.Invoke () |> unbox<JS.Function[]>
+    let v159 : (unit -> unit) = v158.[0] |> unbox
+    let v160 : (unit -> unit) = v158.[1] |> unbox
+    let v161 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
+    let v162 : int32 = v161.Length
+    let v163 : Mut24 = {l0 = 0; l1 = 100000} : Mut24
+    while method50(v162, v163) do
+        let v165 : int32 = v163.l0
+        let v166 : int32 = v163.l1
+        let v167 : uint8 = v161.[int v165]
+        let v168 : int32 = v167 |> unbox<int32>
+        let v169 : int32 = v168 * 14
+        let v170 : int32 = v166 + v169
+        let v171 : int32 = v165 + 1
+        v163.l0 <- v171
+        v163.l1 <- v170
         ()
-    let v31 : int32 = v22.l1
-    let v32 : string = v31.ToString ()
-    let v33 : string = $"#{v32}"
-    let v34 : (unit -> (obj [])) = closure276(v0, v1, v6, v10, v14, v18)
-    let v35 : (US4 -> ((obj []) -> unit)) = method14(v34, v33)
-    let v36 : US4 = US4_0
-    let v37 : ((obj []) -> unit) = v35 v36
-    let v38 : string = "> use_fetch ()"
-    let v39 : obj = v38
-    let v40 : (obj []) = [|v39|]
-    v37 v40
-    let v41 : (unit -> unit) = closure252(v0, v35)
-    method18(v41)
-    let v42 : (unit -> unit) = closure253(v35)
-    let v43 : (unit -> unit) = closure254(v35)
-    struct (v42, v43)
-and closure279 () () : (JSX.Element []) =
+    let v172 : int32 = v163.l1
+    let v173 : string = v172.ToString ()
+    let v174 : string = $"#{v173}"
+    let v175 : (unit -> (obj [])) = closure266(v0, v1, v147, v151, v155, v159)
+    let v176 : (US4 -> ((obj []) -> unit)) = method14(v175, v174)
+    let v177 : US4 = US4_0
+    let v178 : ((obj []) -> unit) = v176 v177
+    let v179 : string = "> use_fetch ()"
+    let v180 : obj = v179
+    let v181 : (obj []) = [|v180|]
+    v178 v181
+    let v182 : (unit -> unit) = closure242(v0, v176)
+    method18(v182)
+    let v183 : (unit -> unit) = closure243(v176)
+    let v184 : (unit -> unit) = closure244(v176)
+    struct (v183, v184)
+and closure269 () () : (JSX.Element []) =
     let v0 : string = "Chain Status"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure280 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure270 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v70, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure281 () () : (JSX.Element []) =
+and closure271 () () : (JSX.Element []) =
     let v0 : string = "Request"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure282 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure272 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v70, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure283 () () : (JSX.Element []) =
+and closure273 () () : (JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure278 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
+and closure268 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/solid"
     let v4 : JS.Function = import v2 v3
@@ -6509,13 +6637,13 @@ and closure278 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure279()
+            closure269()
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : ((string * obj) []) = method7(v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v86, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74)
     let v88 : obj = createObj v87
-    let v89 : (unit -> (JSX.Element [])) = closure279()
+    let v89 : (unit -> (JSX.Element [])) = closure269()
     emitJsExpr (v88, v89) "$0.children = $1"
     let v90 : (obj -> JSX.Element) = v4 |> unbox<(obj -> JSX.Element)>
     let v91 : string = "createComponent"
@@ -6523,8 +6651,8 @@ and closure278 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v93 : JS.Function = import v91 v92
     let v94 : JSX.Element = v93.Invoke (v90, v88) |> unbox<JSX.Element>
     let struct (v95 : US6, v96 : US6, v97 : US6, v98 : US7, v99 : US6, v100 : US6, v101 : US6, v102 : US6, v103 : US6, v104 : US6, v105 : US8, v106 : US9, v107 : US6, v108 : US6, v109 : US8, v110 : US10, v111 : US6, v112 : US6, v113 : US6, v114 : US11, v115 : US8, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US12, v123 : US6, v124 : US6, v125 : US6, v126 : US12, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US6, v133 : US6, v134 : US6, v135 : US6, v136 : US6, v137 : US13, v138 : US14, v139 : US13, v140 : US6, v141 : US6, v142 : US6, v143 : US6, v144 : US6, v145 : US6, v146 : US6, v147 : US6, v148 : US6, v149 : US6, v150 : US6, v151 : US6, v152 : US6, v153 : US6, v154 : US6, v155 : US6, v156 : US6, v157 : US12, v158 : US6, v159 : US6, v160 : US10, v161 : US10, v162 : US6, v163 : US5, v164 : US6) = method3()
-    let v165 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure280()
-    let v166 : (unit -> JS.Function) = closure259()
+    let v165 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure270()
+    let v166 : (unit -> JS.Function) = closure249()
     let v167 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure45()
     let v168 : Mut7 = {l0 = v165; l1 = v166; l2 = v167} : Mut7
     let v169 : JS.Function = import v91 v92
@@ -6542,7 +6670,7 @@ and closure278 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v181 : (unit -> (JSX.Element [])) =
         match v178 with
         | US9_0 -> (* None *)
-            closure281()
+            closure271()
         | US9_1(v180) -> (* Some *)
             v180
     let v182 : US9 = US9_1(v181)
@@ -6551,14 +6679,14 @@ and closure278 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v185 : string = "10px"
     let v186 : US6 = US6_1(v185)
     let v187 : Mut1 = {l0 = v95; l1 = v96; l2 = v97; l3 = v98; l4 = v99; l5 = v100; l6 = v101; l7 = v102; l8 = v103; l9 = v104; l10 = v105; l11 = v182; l12 = v107; l13 = v108; l14 = v109; l15 = v110; l16 = v111; l17 = v112; l18 = v113; l19 = v114; l20 = v115; l21 = v116; l22 = v117; l23 = v118; l24 = v119; l25 = v120; l26 = v121; l27 = v122; l28 = v123; l29 = v124; l30 = v125; l31 = v183; l32 = v127; l33 = v128; l34 = v129; l35 = v130; l36 = v131; l37 = v132; l38 = v133; l39 = v134; l40 = v135; l41 = v136; l42 = v137; l43 = v184; l44 = v139; l45 = v140; l46 = v141; l47 = v142; l48 = v143; l49 = v144; l50 = v145; l51 = v146; l52 = v186; l53 = v148; l54 = v149; l55 = v150; l56 = v151; l57 = v152; l58 = v153; l59 = v154; l60 = v155; l61 = v156; l62 = v157; l63 = v158; l64 = v159; l65 = v160; l66 = v161; l67 = v162; l68 = v163; l69 = v164} : Mut1
-    let v188 : (unit -> (JSX.Element [])) = closure281()
+    let v188 : (unit -> (JSX.Element [])) = closure271()
     emitJsExpr (v187, v188) "$0.children = $1"
     let v189 : JS.Function = import v91 v92
     let v190 : (Mut1 -> JSX.Element) = closure40()
     let v191 : JSX.Element = v189.Invoke (v190, v187) |> unbox<JSX.Element>
     let struct (v192 : US6, v193 : US6, v194 : US6, v195 : US7, v196 : US6, v197 : US6, v198 : US6, v199 : US6, v200 : US6, v201 : US6, v202 : US8, v203 : US9, v204 : US6, v205 : US6, v206 : US8, v207 : US10, v208 : US6, v209 : US6, v210 : US6, v211 : US11, v212 : US8, v213 : US6, v214 : US6, v215 : US6, v216 : US6, v217 : US6, v218 : US6, v219 : US12, v220 : US6, v221 : US6, v222 : US6, v223 : US12, v224 : US6, v225 : US6, v226 : US6, v227 : US6, v228 : US6, v229 : US6, v230 : US6, v231 : US6, v232 : US6, v233 : US6, v234 : US13, v235 : US14, v236 : US13, v237 : US6, v238 : US6, v239 : US6, v240 : US6, v241 : US6, v242 : US6, v243 : US6, v244 : US6, v245 : US6, v246 : US6, v247 : US6, v248 : US6, v249 : US6, v250 : US6, v251 : US6, v252 : US6, v253 : US6, v254 : US12, v255 : US6, v256 : US6, v257 : US10, v258 : US10, v259 : US6, v260 : US5, v261 : US6) = method3()
-    let v262 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure282()
-    let v263 : (unit -> JS.Function) = closure262()
+    let v262 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure272()
+    let v263 : (unit -> JS.Function) = closure252()
     let v264 : Mut7 = {l0 = v262; l1 = v263; l2 = v167} : Mut7
     let v265 : JS.Function = import v91 v92
     let v266 : JSX.Element = v265.Invoke (v170, v264) |> unbox<JSX.Element>
@@ -6574,7 +6702,7 @@ and closure278 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v276 : (unit -> (JSX.Element [])) =
         match v273 with
         | US9_0 -> (* None *)
-            closure283()
+            closure273()
         | US9_1(v275) -> (* Some *)
             v275
     let v277 : US9 = US9_1(v276)
@@ -6582,51 +6710,51 @@ and closure278 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v279 : US14 = US14_1(v0)
     let v280 : US6 = US6_1(v185)
     let v281 : Mut1 = {l0 = v192; l1 = v193; l2 = v194; l3 = v195; l4 = v196; l5 = v197; l6 = v198; l7 = v199; l8 = v200; l9 = v201; l10 = v202; l11 = v277; l12 = v204; l13 = v205; l14 = v206; l15 = v207; l16 = v208; l17 = v209; l18 = v210; l19 = v211; l20 = v212; l21 = v213; l22 = v214; l23 = v215; l24 = v216; l25 = v217; l26 = v218; l27 = v219; l28 = v220; l29 = v221; l30 = v222; l31 = v278; l32 = v224; l33 = v225; l34 = v226; l35 = v227; l36 = v228; l37 = v229; l38 = v230; l39 = v231; l40 = v232; l41 = v233; l42 = v234; l43 = v279; l44 = v236; l45 = v237; l46 = v238; l47 = v239; l48 = v240; l49 = v241; l50 = v242; l51 = v243; l52 = v280; l53 = v245; l54 = v246; l55 = v247; l56 = v248; l57 = v249; l58 = v250; l59 = v251; l60 = v252; l61 = v253; l62 = v254; l63 = v255; l64 = v256; l65 = v257; l66 = v258; l67 = v259; l68 = v260; l69 = v261} : Mut1
-    let v282 : (unit -> (JSX.Element [])) = closure283()
+    let v282 : (unit -> (JSX.Element [])) = closure273()
     emitJsExpr (v281, v282) "$0.children = $1"
     let v283 : JS.Function = import v91 v92
     let v284 : JSX.Element = v283.Invoke (v190, v281) |> unbox<JSX.Element>
     [|v94; v191; v284|]
-and method56 (v0 : int32, v1 : Mut25) : bool =
+and method60 (v0 : int32, v1 : Mut26) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method57 (v0 : UH2, v1 : UH2) : UH2 =
+and method61 (v0 : UH2, v1 : UH2) : UH2 =
     match v0 with
     | UH2_0(v2, v3, v4) -> (* Cons *)
         let v5 : UH2 = UH2_0(v2, v3, v1)
-        method57(v4, v5)
+        method61(v4, v5)
     | UH2_1 -> (* Nil *)
         v1
-and method59 (v0 : UH2, v1 : int32) : int32 =
+and method63 (v0 : UH2, v1 : int32) : int32 =
     match v0 with
     | UH2_0(v2, v3, v4) -> (* Cons *)
         let v5 : int32 = v1 + 1
-        method59(v4, v5)
+        method63(v4, v5)
     | UH2_1 -> (* Nil *)
         v1
-and method60 (v0 : (struct (int32 * obj) []), v1 : UH2, v2 : int32) : int32 =
+and method64 (v0 : (struct (int32 * obj) []), v1 : UH2, v2 : int32) : int32 =
     match v1 with
     | UH2_0(v3, v4, v5) -> (* Cons *)
         v0.[int v2] <- struct (v3, v4)
         let v6 : int32 = v2 + 1
-        method60(v0, v5, v6)
+        method64(v0, v5, v6)
     | UH2_1 -> (* Nil *)
         v2
-and method58 (v0 : UH2) : (struct (int32 * obj) []) =
+and method62 (v0 : UH2) : (struct (int32 * obj) []) =
     let v1 : int32 = 0
-    let v2 : int32 = method59(v0, v1)
+    let v2 : int32 = method63(v0, v1)
     let v3 : (struct (int32 * obj) []) = Array.zeroCreate<struct (int32 * obj)> (v2)
     let v4 : int32 = 0
-    let v5 : int32 = method60(v3, v0, v4)
+    let v5 : int32 = method64(v3, v0, v4)
     v3
-and closure289 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
+and closure279 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let struct (v1 : int32, v2 : obj) = v0 ()
     let v3 : string = emitJsExpr v2 "JSON.stringify($0, null, 2)"
     let v4 : JSX.Element = v3 |> unbox<JSX.Element>
     let v5 : JSX.Element = Html.fragment [ v4 ]
     [|v5|]
-and closure288 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
+and closure278 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/solid"
     let v3 : JS.Function = import v1 v2
@@ -6645,13 +6773,13 @@ and closure288 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure289(v0)
+            closure279(v0)
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : ((string * obj) []) = method7(v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v86, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74)
     let v88 : obj = createObj v87
-    let v89 : (unit -> (JSX.Element [])) = closure289(v0)
+    let v89 : (unit -> (JSX.Element [])) = closure279(v0)
     emitJsExpr (v88, v89) "$0.children = $1"
     let v90 : (obj -> JSX.Element) = v4 |> unbox<(obj -> JSX.Element)>
     let v91 : string = "createComponent"
@@ -6659,21 +6787,21 @@ and closure288 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let v93 : JS.Function = import v91 v92
     let v94 : JSX.Element = v93.Invoke (v90, v88) |> unbox<JSX.Element>
     [|v94|]
-and closure287 (v0 : (unit -> struct (int32 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure277 (v0 : (unit -> struct (int32 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let struct (v71 : int32, v72 : obj) = v0 ()
     let v73 : string = v71.ToString ()
     let v74 : JSX.Element = v73 |> unbox<JSX.Element>
     let v75 : JSX.Element = Html.fragment [ v74 ]
-    let v76 : (unit -> (JSX.Element [])) = closure288(v0)
+    let v76 : (unit -> (JSX.Element [])) = closure278(v0)
     let v77 : US9 = US9_1(v76)
     let v78 : string = "3px"
     let v79 : US6 = US6_1(v78)
     let v80 : US12 = US12_1(v75)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v77, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v79, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v80, v64, v65, v66, v67, v68, v69, v70)
-and closure286 () (v0 : (unit -> struct (int32 * obj))) : (JSX.Element []) =
+and closure276 () (v0 : (unit -> struct (int32 * obj))) : (JSX.Element []) =
     let v1 : US14 = US14_0
     let v2 : US14 = US14_0
-    let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure287(v0)
+    let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure277(v0)
     let v4 : US15 = US15_2
     let v5 : Mut4 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4} : Mut4
     let v6 : string = "createComponent"
@@ -6682,12 +6810,12 @@ and closure286 () (v0 : (unit -> struct (int32 * obj))) : (JSX.Element []) =
     let v9 : (Mut4 -> JSX.Element) = closure16()
     let v10 : JSX.Element = v8.Invoke (v9, v5) |> unbox<JSX.Element>
     [|v10|]
-and closure285 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
+and closure275 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
     let v1 : (struct (int32 * obj) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH2 = UH2_1
-    let v4 : Mut25 = {l0 = 0; l1 = v3} : Mut25
-    while method56(v2, v4) do
+    let v4 : Mut26 = {l0 = 0; l1 = v3} : Mut26
+    while method60(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : int32 =  -v6
         let v8 : int32 = v7 + v2
@@ -6701,15 +6829,15 @@ and closure285 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
         ()
     let v15 : UH2 = v4.l1
     let v16 : UH2 = UH2_1
-    let v17 : UH2 = method57(v15, v16)
-    let v18 : (struct (int32 * obj) []) = method58(v17)
+    let v17 : UH2 = method61(v15, v16)
+    let v18 : (struct (int32 * obj) []) = method62(v17)
     let v19 : string = "Index"
     let v20 : string = "solid-js"
     let v21 : JS.Function = import v19 v20
-    let v22 : ((unit -> struct (int32 * obj)) -> (JSX.Element [])) = closure286()
-    let v23 : (unit -> (JSX.Element [])) = v22 |> unbox
+    let v22 : ((unit -> struct (int32 * obj)) -> (JSX.Element [])) = closure276()
+    let v23 : (unit -> (JSX.Element [])) = v22 |> unbox<(unit -> (JSX.Element []))>
     let struct (v24 : US6, v25 : US6, v26 : US6, v27 : US7, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US6, v33 : US6, v34 : US8, v35 : US9, v36 : US6, v37 : US6, v38 : US8, v39 : US10, v40 : US6, v41 : US6, v42 : US6, v43 : US11, v44 : US8, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US12, v52 : US6, v53 : US6, v54 : US6, v55 : US12, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US13, v67 : US14, v68 : US13, v69 : US6, v70 : US6, v71 : US6, v72 : US6, v73 : US6, v74 : US6, v75 : US6, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US6, v83 : US6, v84 : US6, v85 : US6, v86 : US12, v87 : US6, v88 : US6, v89 : US10, v90 : US10, v91 : US6, v92 : US5, v93 : US6) = method3()
-    let v94 : (obj []) = v18 |> unbox<obj[]>
+    let v94 : (obj []) = v18 |> unbox<(obj [])>
     let v101 : US9 =
         match v35 with
         | US9_0 -> (* None *)
@@ -6735,7 +6863,7 @@ and closure285 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
     let v110 : JS.Function = import v109 v20
     let v111 : JSX.Element = v110.Invoke (v108, v107) |> unbox<JSX.Element>
     [|v111|]
-and closure284 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
+and closure274 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
     let struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) = method3()
     let v78 : US9 =
         match v12 with
@@ -6750,12 +6878,12 @@ and closure284 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
     let v81 : (unit -> (JSX.Element [])) =
         match v78 with
         | US9_0 -> (* None *)
-            closure285(v0)
+            closure275(v0)
         | US9_1(v80) -> (* Some *)
             v80
     let v82 : US9 = US9_1(v81)
     let v83 : Mut1 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v7; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v82; l12 = v13; l13 = v14; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v34; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44; l44 = v45; l45 = v46; l46 = v47; l47 = v48; l48 = v49; l49 = v50; l50 = v51; l51 = v52; l52 = v53; l53 = v54; l54 = v55; l55 = v56; l56 = v57; l57 = v58; l58 = v59; l59 = v60; l60 = v61; l61 = v62; l62 = v63; l63 = v64; l64 = v65; l65 = v66; l66 = v67; l67 = v68; l68 = v69; l69 = v70} : Mut1
-    let v84 : (unit -> (JSX.Element [])) = closure285(v0)
+    let v84 : (unit -> (JSX.Element [])) = closure275(v0)
     emitJsExpr (v83, v84) "$0.children = $1"
     let v85 : string = "createComponent"
     let v86 : string = "solid-js"
@@ -6763,7 +6891,7 @@ and closure284 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
     let v88 : (Mut1 -> JSX.Element) = closure111()
     let v89 : JSX.Element = v87.Invoke (v88, v83) |> unbox<JSX.Element>
     [|v89|]
-and closure277 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US10, v19 : US6, v20 : US6, v21 : US6, v22 : US11, v23 : US8, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US12, v31 : US6, v32 : US6, v33 : US6, v34 : US12, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US13, v46 : US14, v47 : US13, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US12, v66 : US6, v67 : US6, v68 : US10, v69 : US10, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure267 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US10, v19 : US6, v20 : US6, v21 : US6, v22 : US11, v23 : US8, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US12, v31 : US6, v32 : US6, v33 : US6, v34 : US12, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US13, v46 : US14, v47 : US13, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US12, v66 : US6, v67 : US6, v68 : US10, v69 : US10, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/solid"
     let v75 : JS.Function = import v73 v74
@@ -6787,7 +6915,7 @@ and closure277 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v
     let v162 : (unit -> (JSX.Element [])) =
         match v159 with
         | US9_0 -> (* None *)
-            closure278(v1, v2)
+            closure268(v1, v2)
         | US9_1(v161) -> (* Some *)
             v161
     let v163 : string = "start"
@@ -6801,76 +6929,76 @@ and closure277 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v
     let v171 : US6 = US6_1(v170)
     let v172 : ((string * obj) []) = method7(v164, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v165, v88, v89, v90, v91, v92, v166, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v167, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v169, v126, v127, v128, v129, v130, v131, v132, v133, v171, v135, v136, v137, v138, v139, v140, v141, v142, v143, v144, v145)
     let v173 : obj = createObj v172
-    let v174 : (unit -> (JSX.Element [])) = closure278(v1, v2)
+    let v174 : (unit -> (JSX.Element [])) = closure268(v1, v2)
     emitJsExpr (v173, v174) "$0.children = $1"
     let v175 : (obj -> JSX.Element) = v75 |> unbox<(obj -> JSX.Element)>
     let v176 : string = "createComponent"
     let v177 : string = "solid-js"
     let v178 : JS.Function = import v176 v177
     let v179 : JSX.Element = v178.Invoke (v175, v173) |> unbox<JSX.Element>
-    let v180 : (unit -> (JSX.Element [])) = closure284(v0)
+    let v180 : (unit -> (JSX.Element [])) = closure274(v0)
     let v181 : US9 = US9_1(v180)
     let v182 : string = "status"
     let v183 : US6 = US6_1(v182)
     let v184 : US12 = US12_1(v179)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v181, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v183, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v184, v66, v67, v68, v69, v70, v71, v72)
-and method54 () : JSX.Element =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v149 : string = "profile/tmp/chain_status"
-    let v150 : (struct (int32 * obj) []) = v141 ()
-    let v151 : (unit -> (unit -> ((struct (int32 * obj) []) -> unit))) = closure272(v142)
-    let v152 : (obj -> obj) = closure275()
-    let struct (v153 : (unit -> unit), v154 : (unit -> unit)) = method55(v149, v150)
-    let v155 : US14 = US14_0
-    let v156 : US14 = US14_0
-    let v157 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure277(v141, v154, v153)
-    let v158 : US15 = US15_2
-    let v159 : Mut4 = {l0 = v155; l1 = v156; l2 = v157; l3 = v158} : Mut4
-    let v160 : string = "createComponent"
-    let v161 : JS.Function = import v160 v125
-    let v162 : (Mut4 -> JSX.Element) = closure16()
-    let v163 : JSX.Element = v161.Invoke (v162, v159) |> unbox<JSX.Element>
-    v163
-and closure271 () (v0 : Mut1) : JSX.Element =
-    method54()
-and closure290 () () : (JSX.Element []) =
+and method58 () : JSX.Element =
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v142 : string = "profile/tmp/chain_status"
+    let v143 : (struct (int32 * obj) []) = v134 ()
+    let v144 : (unit -> (unit -> ((struct (int32 * obj) []) -> unit))) = closure262(v135)
+    let v145 : (obj -> obj) = closure265()
+    let struct (v146 : (unit -> unit), v147 : (unit -> unit)) = method59(v142, v143)
+    let v148 : US14 = US14_0
+    let v149 : US14 = US14_0
+    let v150 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure267(v134, v147, v146)
+    let v151 : US15 = US15_2
+    let v152 : Mut4 = {l0 = v148; l1 = v149; l2 = v150; l3 = v151} : Mut4
+    let v153 : string = "createComponent"
+    let v154 : JS.Function = import v153 v120
+    let v155 : (Mut4 -> JSX.Element) = closure16()
+    let v156 : JSX.Element = v154.Invoke (v155, v152) |> unbox<JSX.Element>
+    v156
+and closure261 () (v0 : Mut1) : JSX.Element =
+    method58()
+and closure280 () () : (JSX.Element []) =
     [||]
-and closure294 (v0 : ((struct (int32 * obj) []) -> unit)) (v1 : (struct (int32 * obj) [])) : unit =
+and closure284 (v0 : ((struct (int32 * obj) []) -> unit)) (v1 : (struct (int32 * obj) [])) : unit =
     v0 v1
     ()
-and closure293 (v0 : ((struct (int32 * obj) []) -> unit)) () : ((struct (int32 * obj) []) -> unit) =
-    closure294(v0)
-and closure292 (v0 : ((struct (int32 * obj) []) -> unit)) () : (unit -> ((struct (int32 * obj) []) -> unit)) =
-    closure293(v0)
-and closure295 () (v0 : obj) : obj =
+and closure283 (v0 : ((struct (int32 * obj) []) -> unit)) () : ((struct (int32 * obj) []) -> unit) =
+    closure284(v0)
+and closure282 (v0 : ((struct (int32 * obj) []) -> unit)) () : (unit -> ((struct (int32 * obj) []) -> unit)) =
+    closure283(v0)
+and closure285 () (v0 : obj) : obj =
     let v1 : obj = ()
     v1
-and closure298 () () : (JSX.Element []) =
+and closure288 () () : (JSX.Element []) =
     let v0 : string = "Chain Deploy"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure299 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure289 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v70, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure300 () () : (JSX.Element []) =
+and closure290 () () : (JSX.Element []) =
     let v0 : string = "Request"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure301 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure291 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US10, v16 : US6, v17 : US6, v18 : US6, v19 : US11, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US12, v28 : US6, v29 : US6, v30 : US6, v31 : US12, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US13, v43 : US14, v44 : US13, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US12, v63 : US6, v64 : US6, v65 : US10, v66 : US10, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v70, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure302 () () : (JSX.Element []) =
+and closure292 () () : (JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure297 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
+and closure287 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/solid"
     let v4 : JS.Function = import v2 v3
@@ -6888,13 +7016,13 @@ and closure297 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure298()
+            closure288()
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : ((string * obj) []) = method7(v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v86, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74)
     let v88 : obj = createObj v87
-    let v89 : (unit -> (JSX.Element [])) = closure298()
+    let v89 : (unit -> (JSX.Element [])) = closure288()
     emitJsExpr (v88, v89) "$0.children = $1"
     let v90 : (obj -> JSX.Element) = v4 |> unbox<(obj -> JSX.Element)>
     let v91 : string = "createComponent"
@@ -6902,8 +7030,8 @@ and closure297 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v93 : JS.Function = import v91 v92
     let v94 : JSX.Element = v93.Invoke (v90, v88) |> unbox<JSX.Element>
     let struct (v95 : US6, v96 : US6, v97 : US6, v98 : US7, v99 : US6, v100 : US6, v101 : US6, v102 : US6, v103 : US6, v104 : US6, v105 : US8, v106 : US9, v107 : US6, v108 : US6, v109 : US8, v110 : US10, v111 : US6, v112 : US6, v113 : US6, v114 : US11, v115 : US8, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US12, v123 : US6, v124 : US6, v125 : US6, v126 : US12, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US6, v133 : US6, v134 : US6, v135 : US6, v136 : US6, v137 : US13, v138 : US14, v139 : US13, v140 : US6, v141 : US6, v142 : US6, v143 : US6, v144 : US6, v145 : US6, v146 : US6, v147 : US6, v148 : US6, v149 : US6, v150 : US6, v151 : US6, v152 : US6, v153 : US6, v154 : US6, v155 : US6, v156 : US6, v157 : US12, v158 : US6, v159 : US6, v160 : US10, v161 : US10, v162 : US6, v163 : US5, v164 : US6) = method3()
-    let v165 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure299()
-    let v166 : (unit -> JS.Function) = closure259()
+    let v165 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure289()
+    let v166 : (unit -> JS.Function) = closure249()
     let v167 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure45()
     let v168 : Mut7 = {l0 = v165; l1 = v166; l2 = v167} : Mut7
     let v169 : JS.Function = import v91 v92
@@ -6921,7 +7049,7 @@ and closure297 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v181 : (unit -> (JSX.Element [])) =
         match v178 with
         | US9_0 -> (* None *)
-            closure300()
+            closure290()
         | US9_1(v180) -> (* Some *)
             v180
     let v182 : US9 = US9_1(v181)
@@ -6930,14 +7058,14 @@ and closure297 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v185 : string = "10px"
     let v186 : US6 = US6_1(v185)
     let v187 : Mut1 = {l0 = v95; l1 = v96; l2 = v97; l3 = v98; l4 = v99; l5 = v100; l6 = v101; l7 = v102; l8 = v103; l9 = v104; l10 = v105; l11 = v182; l12 = v107; l13 = v108; l14 = v109; l15 = v110; l16 = v111; l17 = v112; l18 = v113; l19 = v114; l20 = v115; l21 = v116; l22 = v117; l23 = v118; l24 = v119; l25 = v120; l26 = v121; l27 = v122; l28 = v123; l29 = v124; l30 = v125; l31 = v183; l32 = v127; l33 = v128; l34 = v129; l35 = v130; l36 = v131; l37 = v132; l38 = v133; l39 = v134; l40 = v135; l41 = v136; l42 = v137; l43 = v184; l44 = v139; l45 = v140; l46 = v141; l47 = v142; l48 = v143; l49 = v144; l50 = v145; l51 = v146; l52 = v186; l53 = v148; l54 = v149; l55 = v150; l56 = v151; l57 = v152; l58 = v153; l59 = v154; l60 = v155; l61 = v156; l62 = v157; l63 = v158; l64 = v159; l65 = v160; l66 = v161; l67 = v162; l68 = v163; l69 = v164} : Mut1
-    let v188 : (unit -> (JSX.Element [])) = closure300()
+    let v188 : (unit -> (JSX.Element [])) = closure290()
     emitJsExpr (v187, v188) "$0.children = $1"
     let v189 : JS.Function = import v91 v92
     let v190 : (Mut1 -> JSX.Element) = closure40()
     let v191 : JSX.Element = v189.Invoke (v190, v187) |> unbox<JSX.Element>
     let struct (v192 : US6, v193 : US6, v194 : US6, v195 : US7, v196 : US6, v197 : US6, v198 : US6, v199 : US6, v200 : US6, v201 : US6, v202 : US8, v203 : US9, v204 : US6, v205 : US6, v206 : US8, v207 : US10, v208 : US6, v209 : US6, v210 : US6, v211 : US11, v212 : US8, v213 : US6, v214 : US6, v215 : US6, v216 : US6, v217 : US6, v218 : US6, v219 : US12, v220 : US6, v221 : US6, v222 : US6, v223 : US12, v224 : US6, v225 : US6, v226 : US6, v227 : US6, v228 : US6, v229 : US6, v230 : US6, v231 : US6, v232 : US6, v233 : US6, v234 : US13, v235 : US14, v236 : US13, v237 : US6, v238 : US6, v239 : US6, v240 : US6, v241 : US6, v242 : US6, v243 : US6, v244 : US6, v245 : US6, v246 : US6, v247 : US6, v248 : US6, v249 : US6, v250 : US6, v251 : US6, v252 : US6, v253 : US6, v254 : US12, v255 : US6, v256 : US6, v257 : US10, v258 : US10, v259 : US6, v260 : US5, v261 : US6) = method3()
-    let v262 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure301()
-    let v263 : (unit -> JS.Function) = closure262()
+    let v262 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure291()
+    let v263 : (unit -> JS.Function) = closure252()
     let v264 : Mut7 = {l0 = v262; l1 = v263; l2 = v167} : Mut7
     let v265 : JS.Function = import v91 v92
     let v266 : JSX.Element = v265.Invoke (v170, v264) |> unbox<JSX.Element>
@@ -6953,7 +7081,7 @@ and closure297 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v276 : (unit -> (JSX.Element [])) =
         match v273 with
         | US9_0 -> (* None *)
-            closure302()
+            closure292()
         | US9_1(v275) -> (* Some *)
             v275
     let v277 : US9 = US9_1(v276)
@@ -6961,18 +7089,18 @@ and closure297 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) 
     let v279 : US14 = US14_1(v0)
     let v280 : US6 = US6_1(v185)
     let v281 : Mut1 = {l0 = v192; l1 = v193; l2 = v194; l3 = v195; l4 = v196; l5 = v197; l6 = v198; l7 = v199; l8 = v200; l9 = v201; l10 = v202; l11 = v277; l12 = v204; l13 = v205; l14 = v206; l15 = v207; l16 = v208; l17 = v209; l18 = v210; l19 = v211; l20 = v212; l21 = v213; l22 = v214; l23 = v215; l24 = v216; l25 = v217; l26 = v218; l27 = v219; l28 = v220; l29 = v221; l30 = v222; l31 = v278; l32 = v224; l33 = v225; l34 = v226; l35 = v227; l36 = v228; l37 = v229; l38 = v230; l39 = v231; l40 = v232; l41 = v233; l42 = v234; l43 = v279; l44 = v236; l45 = v237; l46 = v238; l47 = v239; l48 = v240; l49 = v241; l50 = v242; l51 = v243; l52 = v280; l53 = v245; l54 = v246; l55 = v247; l56 = v248; l57 = v249; l58 = v250; l59 = v251; l60 = v252; l61 = v253; l62 = v254; l63 = v255; l64 = v256; l65 = v257; l66 = v258; l67 = v259; l68 = v260; l69 = v261} : Mut1
-    let v282 : (unit -> (JSX.Element [])) = closure302()
+    let v282 : (unit -> (JSX.Element [])) = closure292()
     emitJsExpr (v281, v282) "$0.children = $1"
     let v283 : JS.Function = import v91 v92
     let v284 : JSX.Element = v283.Invoke (v190, v281) |> unbox<JSX.Element>
     [|v94; v191; v284|]
-and closure308 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
+and closure298 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let struct (v1 : int32, v2 : obj) = v0 ()
     let v3 : string = emitJsExpr v2 "JSON.stringify($0, null, 2)"
     let v4 : JSX.Element = v3 |> unbox<JSX.Element>
     let v5 : JSX.Element = Html.fragment [ v4 ]
     [|v5|]
-and closure307 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
+and closure297 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/solid"
     let v3 : JS.Function = import v1 v2
@@ -6991,13 +7119,13 @@ and closure307 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure308(v0)
+            closure298(v0)
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : ((string * obj) []) = method7(v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v86, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73, v74)
     let v88 : obj = createObj v87
-    let v89 : (unit -> (JSX.Element [])) = closure308(v0)
+    let v89 : (unit -> (JSX.Element [])) = closure298(v0)
     emitJsExpr (v88, v89) "$0.children = $1"
     let v90 : (obj -> JSX.Element) = v4 |> unbox<(obj -> JSX.Element)>
     let v91 : string = "createComponent"
@@ -7005,21 +7133,21 @@ and closure307 (v0 : (unit -> struct (int32 * obj))) () : (JSX.Element []) =
     let v93 : JS.Function = import v91 v92
     let v94 : JSX.Element = v93.Invoke (v90, v88) |> unbox<JSX.Element>
     [|v94|]
-and closure306 (v0 : (unit -> struct (int32 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure296 (v0 : (unit -> struct (int32 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let struct (v71 : int32, v72 : obj) = v0 ()
     let v73 : string = v71.ToString ()
     let v74 : JSX.Element = v73 |> unbox<JSX.Element>
     let v75 : JSX.Element = Html.fragment [ v74 ]
-    let v76 : (unit -> (JSX.Element [])) = closure307(v0)
+    let v76 : (unit -> (JSX.Element [])) = closure297(v0)
     let v77 : US9 = US9_1(v76)
     let v78 : string = "3px"
     let v79 : US6 = US6_1(v78)
     let v80 : US12 = US12_1(v75)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v77, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v79, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v80, v64, v65, v66, v67, v68, v69, v70)
-and closure305 () (v0 : (unit -> struct (int32 * obj))) : (JSX.Element []) =
+and closure295 () (v0 : (unit -> struct (int32 * obj))) : (JSX.Element []) =
     let v1 : US14 = US14_0
     let v2 : US14 = US14_0
-    let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure306(v0)
+    let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure296(v0)
     let v4 : US15 = US15_2
     let v5 : Mut4 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4} : Mut4
     let v6 : string = "createComponent"
@@ -7028,12 +7156,12 @@ and closure305 () (v0 : (unit -> struct (int32 * obj))) : (JSX.Element []) =
     let v9 : (Mut4 -> JSX.Element) = closure16()
     let v10 : JSX.Element = v8.Invoke (v9, v5) |> unbox<JSX.Element>
     [|v10|]
-and closure304 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
+and closure294 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
     let v1 : (struct (int32 * obj) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH2 = UH2_1
-    let v4 : Mut25 = {l0 = 0; l1 = v3} : Mut25
-    while method56(v2, v4) do
+    let v4 : Mut26 = {l0 = 0; l1 = v3} : Mut26
+    while method60(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : int32 =  -v6
         let v8 : int32 = v7 + v2
@@ -7047,15 +7175,15 @@ and closure304 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
         ()
     let v15 : UH2 = v4.l1
     let v16 : UH2 = UH2_1
-    let v17 : UH2 = method57(v15, v16)
-    let v18 : (struct (int32 * obj) []) = method58(v17)
+    let v17 : UH2 = method61(v15, v16)
+    let v18 : (struct (int32 * obj) []) = method62(v17)
     let v19 : string = "Index"
     let v20 : string = "solid-js"
     let v21 : JS.Function = import v19 v20
-    let v22 : ((unit -> struct (int32 * obj)) -> (JSX.Element [])) = closure305()
-    let v23 : (unit -> (JSX.Element [])) = v22 |> unbox
+    let v22 : ((unit -> struct (int32 * obj)) -> (JSX.Element [])) = closure295()
+    let v23 : (unit -> (JSX.Element [])) = v22 |> unbox<(unit -> (JSX.Element []))>
     let struct (v24 : US6, v25 : US6, v26 : US6, v27 : US7, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US6, v33 : US6, v34 : US8, v35 : US9, v36 : US6, v37 : US6, v38 : US8, v39 : US10, v40 : US6, v41 : US6, v42 : US6, v43 : US11, v44 : US8, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US12, v52 : US6, v53 : US6, v54 : US6, v55 : US12, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US13, v67 : US14, v68 : US13, v69 : US6, v70 : US6, v71 : US6, v72 : US6, v73 : US6, v74 : US6, v75 : US6, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US6, v83 : US6, v84 : US6, v85 : US6, v86 : US12, v87 : US6, v88 : US6, v89 : US10, v90 : US10, v91 : US6, v92 : US5, v93 : US6) = method3()
-    let v94 : (obj []) = v18 |> unbox<obj[]>
+    let v94 : (obj []) = v18 |> unbox<(obj [])>
     let v101 : US9 =
         match v35 with
         | US9_0 -> (* None *)
@@ -7081,7 +7209,7 @@ and closure304 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
     let v110 : JS.Function = import v109 v20
     let v111 : JSX.Element = v110.Invoke (v108, v107) |> unbox<JSX.Element>
     [|v111|]
-and closure303 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
+and closure293 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) =
     let struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US10, v17 : US6, v18 : US6, v19 : US6, v20 : US11, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US12, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US13, v44 : US14, v45 : US13, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US12, v64 : US6, v65 : US6, v66 : US10, v67 : US10, v68 : US6, v69 : US5, v70 : US6) = method3()
     let v78 : US9 =
         match v12 with
@@ -7096,12 +7224,12 @@ and closure303 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
     let v81 : (unit -> (JSX.Element [])) =
         match v78 with
         | US9_0 -> (* None *)
-            closure304(v0)
+            closure294(v0)
         | US9_1(v80) -> (* Some *)
             v80
     let v82 : US9 = US9_1(v81)
     let v83 : Mut1 = {l0 = v1; l1 = v2; l2 = v3; l3 = v4; l4 = v5; l5 = v6; l6 = v7; l7 = v8; l8 = v9; l9 = v10; l10 = v11; l11 = v82; l12 = v13; l13 = v14; l14 = v15; l15 = v16; l16 = v17; l17 = v18; l18 = v19; l19 = v20; l20 = v21; l21 = v22; l22 = v23; l23 = v24; l24 = v25; l25 = v26; l26 = v27; l27 = v28; l28 = v29; l29 = v30; l30 = v31; l31 = v32; l32 = v33; l33 = v34; l34 = v35; l35 = v36; l36 = v37; l37 = v38; l38 = v39; l39 = v40; l40 = v41; l41 = v42; l42 = v43; l43 = v44; l44 = v45; l45 = v46; l46 = v47; l47 = v48; l48 = v49; l49 = v50; l50 = v51; l51 = v52; l52 = v53; l53 = v54; l54 = v55; l55 = v56; l56 = v57; l57 = v58; l58 = v59; l59 = v60; l60 = v61; l61 = v62; l62 = v63; l63 = v64; l64 = v65; l65 = v66; l66 = v67; l67 = v68; l68 = v69; l69 = v70} : Mut1
-    let v84 : (unit -> (JSX.Element [])) = closure304(v0)
+    let v84 : (unit -> (JSX.Element [])) = closure294(v0)
     emitJsExpr (v83, v84) "$0.children = $1"
     let v85 : string = "createComponent"
     let v86 : string = "solid-js"
@@ -7109,7 +7237,7 @@ and closure303 (v0 : (unit -> (struct (int32 * obj) []))) () : (JSX.Element []) 
     let v88 : (Mut1 -> JSX.Element) = closure111()
     let v89 : JSX.Element = v87.Invoke (v88, v83) |> unbox<JSX.Element>
     [|v89|]
-and closure296 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US10, v19 : US6, v20 : US6, v21 : US6, v22 : US11, v23 : US8, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US12, v31 : US6, v32 : US6, v33 : US6, v34 : US12, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US13, v46 : US14, v47 : US13, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US12, v66 : US6, v67 : US6, v68 : US10, v69 : US10, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure286 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US10, v19 : US6, v20 : US6, v21 : US6, v22 : US11, v23 : US8, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US12, v31 : US6, v32 : US6, v33 : US6, v34 : US12, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US13, v46 : US14, v47 : US13, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US12, v66 : US6, v67 : US6, v68 : US10, v69 : US10, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/solid"
     let v75 : JS.Function = import v73 v74
@@ -7133,7 +7261,7 @@ and closure296 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v
     let v162 : (unit -> (JSX.Element [])) =
         match v159 with
         | US9_0 -> (* None *)
-            closure297(v1, v2)
+            closure287(v1, v2)
         | US9_1(v161) -> (* Some *)
             v161
     let v163 : string = "start"
@@ -7147,43 +7275,43 @@ and closure296 (v0 : (unit -> (struct (int32 * obj) [])), v1 : (unit -> unit), v
     let v171 : US6 = US6_1(v170)
     let v172 : ((string * obj) []) = method7(v164, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v165, v88, v89, v90, v91, v92, v166, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v167, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v169, v126, v127, v128, v129, v130, v131, v132, v133, v171, v135, v136, v137, v138, v139, v140, v141, v142, v143, v144, v145)
     let v173 : obj = createObj v172
-    let v174 : (unit -> (JSX.Element [])) = closure297(v1, v2)
+    let v174 : (unit -> (JSX.Element [])) = closure287(v1, v2)
     emitJsExpr (v173, v174) "$0.children = $1"
     let v175 : (obj -> JSX.Element) = v75 |> unbox<(obj -> JSX.Element)>
     let v176 : string = "createComponent"
     let v177 : string = "solid-js"
     let v178 : JS.Function = import v176 v177
     let v179 : JSX.Element = v178.Invoke (v175, v173) |> unbox<JSX.Element>
-    let v180 : (unit -> (JSX.Element [])) = closure303(v0)
+    let v180 : (unit -> (JSX.Element [])) = closure293(v0)
     let v181 : US9 = US9_1(v180)
     let v182 : string = "deploy"
     let v183 : US6 = US6_1(v182)
     let v184 : US12 = US12_1(v179)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v181, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v183, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v184, v66, v67, v68, v69, v70, v71, v72)
-and method61 () : JSX.Element =
-    let v123 : obj = emitJsExpr () "components_spi.state_context"
-    let v124 : string = "useContext"
-    let v125 : string = "solid-js"
-    let v126 : JS.Function = import v124 v125
-    let struct (v127 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v128 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v129 : (unit -> int32), v130 : (int32 -> unit), v131 : (unit -> string), v132 : (string -> unit), v133 : (unit -> string), v134 : (string -> unit), v135 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])), v136 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit), v137 : (unit -> (struct (US2 * (int32 [])) [])), v138 : ((struct (US2 * (int32 [])) []) -> unit), v139 : (unit -> (struct (int32 * obj) [])), v140 : ((struct (int32 * obj) []) -> unit), v141 : (unit -> (struct (int32 * obj) [])), v142 : ((struct (int32 * obj) []) -> unit), v143 : (unit -> (struct (int32 * int32) [])), v144 : ((struct (int32 * int32) []) -> unit), v145 : (unit -> US4), v146 : (US4 -> unit), v147 : (unit -> US5), v148 : (US5 -> unit)) = v126.Invoke v123 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) * ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * (int32 [])) [])) * ((struct (US2 * (int32 [])) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v149 : string = "profile/tmp/chain_deploy"
-    let v150 : (struct (int32 * obj) []) = v139 ()
-    let v151 : (unit -> (unit -> ((struct (int32 * obj) []) -> unit))) = closure292(v140)
-    let v152 : (obj -> obj) = closure295()
-    let struct (v153 : (unit -> unit), v154 : (unit -> unit)) = method55(v149, v150)
-    let v155 : US14 = US14_0
-    let v156 : US14 = US14_0
-    let v157 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure296(v139, v154, v153)
-    let v158 : US15 = US15_2
-    let v159 : Mut4 = {l0 = v155; l1 = v156; l2 = v157; l3 = v158} : Mut4
-    let v160 : string = "createComponent"
-    let v161 : JS.Function = import v160 v125
-    let v162 : (Mut4 -> JSX.Element) = closure16()
-    let v163 : JSX.Element = v161.Invoke (v162, v159) |> unbox<JSX.Element>
-    v163
-and closure291 () (v0 : Mut1) : JSX.Element =
-    method61()
-and closure244 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () : (JSX.Element []) =
+and method65 () : JSX.Element =
+    let v118 : obj = emitJsExpr () "components_spi.state_context"
+    let v119 : string = "useContext"
+    let v120 : string = "solid-js"
+    let v121 : JS.Function = import v119 v120
+    let struct (v122 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v123 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v124 : (unit -> int32), v125 : (int32 -> unit), v126 : (unit -> string), v127 : (string -> unit), v128 : (unit -> string), v129 : (string -> unit), v130 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v131 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v132 : (unit -> (struct (int32 * obj) [])), v133 : ((struct (int32 * obj) []) -> unit), v134 : (unit -> (struct (int32 * obj) [])), v135 : ((struct (int32 * obj) []) -> unit), v136 : (unit -> (struct (int32 * int32) [])), v137 : ((struct (int32 * int32) []) -> unit), v138 : (unit -> US4), v139 : (US4 -> unit), v140 : (unit -> US5), v141 : (US5 -> unit)) = v121.Invoke v118 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * obj) [])) * ((struct (int32 * obj) []) -> unit) * (unit -> (struct (int32 * int32) [])) * ((struct (int32 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v142 : string = "profile/tmp/chain_deploy"
+    let v143 : (struct (int32 * obj) []) = v132 ()
+    let v144 : (unit -> (unit -> ((struct (int32 * obj) []) -> unit))) = closure282(v133)
+    let v145 : (obj -> obj) = closure285()
+    let struct (v146 : (unit -> unit), v147 : (unit -> unit)) = method59(v142, v143)
+    let v148 : US14 = US14_0
+    let v149 : US14 = US14_0
+    let v150 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure286(v132, v147, v146)
+    let v151 : US15 = US15_2
+    let v152 : Mut4 = {l0 = v148; l1 = v149; l2 = v150; l3 = v151} : Mut4
+    let v153 : string = "createComponent"
+    let v154 : JS.Function = import v153 v120
+    let v155 : (Mut4 -> JSX.Element) = closure16()
+    let v156 : JSX.Element = v154.Invoke (v155, v152) |> unbox<JSX.Element>
+    v156
+and closure281 () (v0 : Mut1) : JSX.Element =
+    method65()
+and closure234 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () : (JSX.Element []) =
     let struct (v5 : US6, v6 : US6, v7 : US6, v8 : US7, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US6, v14 : US6, v15 : US8, v16 : US9, v17 : US6, v18 : US6, v19 : US8, v20 : US10, v21 : US6, v22 : US6, v23 : US6, v24 : US11, v25 : US8, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US12, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US6, v46 : US6, v47 : US13, v48 : US14, v49 : US13, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US6, v67 : US12, v68 : US6, v69 : US6, v70 : US10, v71 : US10, v72 : US6, v73 : US5, v74 : US6) = method3()
     let v82 : US9 =
         match v16 with
@@ -7198,17 +7326,17 @@ and closure244 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () :
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure245()
+            closure235()
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : Mut1 = {l0 = v5; l1 = v6; l2 = v7; l3 = v8; l4 = v9; l5 = v10; l6 = v11; l7 = v12; l8 = v13; l9 = v14; l10 = v15; l11 = v86; l12 = v17; l13 = v18; l14 = v19; l15 = v20; l16 = v21; l17 = v22; l18 = v23; l19 = v24; l20 = v25; l21 = v26; l22 = v27; l23 = v28; l24 = v29; l25 = v30; l26 = v31; l27 = v32; l28 = v33; l29 = v34; l30 = v35; l31 = v36; l32 = v37; l33 = v38; l34 = v39; l35 = v40; l36 = v41; l37 = v42; l38 = v43; l39 = v44; l40 = v45; l41 = v46; l42 = v47; l43 = v48; l44 = v49; l45 = v50; l46 = v51; l47 = v52; l48 = v53; l49 = v54; l50 = v55; l51 = v56; l52 = v57; l53 = v58; l54 = v59; l55 = v60; l56 = v61; l57 = v62; l58 = v63; l59 = v64; l60 = v65; l61 = v66; l62 = v67; l63 = v68; l64 = v69; l65 = v70; l66 = v71; l67 = v72; l68 = v73; l69 = v74} : Mut1
-    let v88 : (unit -> (JSX.Element [])) = closure245()
+    let v88 : (unit -> (JSX.Element [])) = closure235()
     emitJsExpr (v87, v88) "$0.children = $1"
     let v89 : string = "createComponent"
     let v90 : string = "solid-js"
     let v91 : JS.Function = import v89 v90
-    let v92 : (Mut1 -> JSX.Element) = closure246()
+    let v92 : (Mut1 -> JSX.Element) = closure236()
     let v93 : JSX.Element = v91.Invoke (v92, v87) |> unbox<JSX.Element>
     let v95 : bool = v2 = ""
     let v96 : bool = v95 <> true
@@ -7227,15 +7355,15 @@ and closure244 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () :
             let v176 : (unit -> (JSX.Element [])) =
                 match v173 with
                 | US9_0 -> (* None *)
-                    closure270()
+                    closure260()
                 | US9_1(v175) -> (* Some *)
                     v175
             let v177 : US9 = US9_1(v176)
             let v178 : Mut1 = {l0 = v97; l1 = v98; l2 = v99; l3 = v100; l4 = v101; l5 = v102; l6 = v103; l7 = v104; l8 = v105; l9 = v106; l10 = v107; l11 = v177; l12 = v109; l13 = v110; l14 = v111; l15 = v112; l16 = v113; l17 = v114; l18 = v115; l19 = v116; l20 = v117; l21 = v118; l22 = v119; l23 = v120; l24 = v121; l25 = v122; l26 = v123; l27 = v124; l28 = v125; l29 = v126; l30 = v127; l31 = v128; l32 = v129; l33 = v130; l34 = v131; l35 = v132; l36 = v133; l37 = v134; l38 = v135; l39 = v136; l40 = v137; l41 = v138; l42 = v139; l43 = v140; l44 = v141; l45 = v142; l46 = v143; l47 = v144; l48 = v145; l49 = v146; l50 = v147; l51 = v148; l52 = v149; l53 = v150; l54 = v151; l55 = v152; l56 = v153; l57 = v154; l58 = v155; l59 = v156; l60 = v157; l61 = v158; l62 = v159; l63 = v160; l64 = v161; l65 = v162; l66 = v163; l67 = v164; l68 = v165; l69 = v166} : Mut1
-            let v179 : (unit -> (JSX.Element [])) = closure270()
+            let v179 : (unit -> (JSX.Element [])) = closure260()
             emitJsExpr (v178, v179) "$0.children = $1"
             let v180 : JS.Function = import v89 v90
-            let v181 : (Mut1 -> JSX.Element) = closure271()
+            let v181 : (Mut1 -> JSX.Element) = closure261()
             let v182 : JSX.Element = v180.Invoke (v181, v178) |> unbox<JSX.Element>
             v182
         else
@@ -7256,22 +7384,22 @@ and closure244 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () :
             let v265 : (unit -> (JSX.Element [])) =
                 match v262 with
                 | US9_0 -> (* None *)
-                    closure290()
+                    closure280()
                 | US9_1(v264) -> (* Some *)
                     v264
             let v266 : US9 = US9_1(v265)
             let v267 : Mut1 = {l0 = v186; l1 = v187; l2 = v188; l3 = v189; l4 = v190; l5 = v191; l6 = v192; l7 = v193; l8 = v194; l9 = v195; l10 = v196; l11 = v266; l12 = v198; l13 = v199; l14 = v200; l15 = v201; l16 = v202; l17 = v203; l18 = v204; l19 = v205; l20 = v206; l21 = v207; l22 = v208; l23 = v209; l24 = v210; l25 = v211; l26 = v212; l27 = v213; l28 = v214; l29 = v215; l30 = v216; l31 = v217; l32 = v218; l33 = v219; l34 = v220; l35 = v221; l36 = v222; l37 = v223; l38 = v224; l39 = v225; l40 = v226; l41 = v227; l42 = v228; l43 = v229; l44 = v230; l45 = v231; l46 = v232; l47 = v233; l48 = v234; l49 = v235; l50 = v236; l51 = v237; l52 = v238; l53 = v239; l54 = v240; l55 = v241; l56 = v242; l57 = v243; l58 = v244; l59 = v245; l60 = v246; l61 = v247; l62 = v248; l63 = v249; l64 = v250; l65 = v251; l66 = v252; l67 = v253; l68 = v254; l69 = v255} : Mut1
-            let v268 : (unit -> (JSX.Element [])) = closure290()
+            let v268 : (unit -> (JSX.Element [])) = closure280()
             emitJsExpr (v267, v268) "$0.children = $1"
             let v269 : JS.Function = import v89 v90
-            let v270 : (Mut1 -> JSX.Element) = closure291()
+            let v270 : (Mut1 -> JSX.Element) = closure281()
             let v271 : JSX.Element = v269.Invoke (v270, v267) |> unbox<JSX.Element>
             v271
         else
             let v272 : JSX.Element = JS.undefined
             v272
     [|v93; v184; v273|]
-and closure243 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () : (JSX.Element []) =
+and closure233 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () : (JSX.Element []) =
     let struct (v5 : US6, v6 : US6, v7 : US6, v8 : US7, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US6, v14 : US6, v15 : US8, v16 : US9, v17 : US6, v18 : US6, v19 : US8, v20 : US10, v21 : US6, v22 : US6, v23 : US6, v24 : US11, v25 : US8, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US12, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US6, v46 : US6, v47 : US13, v48 : US14, v49 : US13, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US6, v67 : US12, v68 : US6, v69 : US6, v70 : US10, v71 : US10, v72 : US6, v73 : US5, v74 : US6) = method3()
     let v82 : US9 =
         match v16 with
@@ -7286,12 +7414,12 @@ and closure243 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () :
     let v85 : (unit -> (JSX.Element [])) =
         match v82 with
         | US9_0 -> (* None *)
-            closure244(v0, v1, v2, v3, v4)
+            closure234(v0, v1, v2, v3, v4)
         | US9_1(v84) -> (* Some *)
             v84
     let v86 : US9 = US9_1(v85)
     let v87 : Mut1 = {l0 = v5; l1 = v6; l2 = v7; l3 = v8; l4 = v9; l5 = v10; l6 = v11; l7 = v12; l8 = v13; l9 = v14; l10 = v15; l11 = v86; l12 = v17; l13 = v18; l14 = v19; l15 = v20; l16 = v21; l17 = v22; l18 = v23; l19 = v24; l20 = v25; l21 = v26; l22 = v27; l23 = v28; l24 = v29; l25 = v30; l26 = v31; l27 = v32; l28 = v33; l29 = v34; l30 = v35; l31 = v36; l32 = v37; l33 = v38; l34 = v39; l35 = v40; l36 = v41; l37 = v42; l38 = v43; l39 = v44; l40 = v45; l41 = v46; l42 = v47; l43 = v48; l44 = v49; l45 = v50; l46 = v51; l47 = v52; l48 = v53; l49 = v54; l50 = v55; l51 = v56; l52 = v57; l53 = v58; l54 = v59; l55 = v60; l56 = v61; l57 = v62; l58 = v63; l59 = v64; l60 = v65; l61 = v66; l62 = v67; l63 = v68; l64 = v69; l65 = v70; l66 = v71; l67 = v72; l68 = v73; l69 = v74} : Mut1
-    let v88 : (unit -> (JSX.Element [])) = closure244(v0, v1, v2, v3, v4)
+    let v88 : (unit -> (JSX.Element [])) = closure234(v0, v1, v2, v3, v4)
     emitJsExpr (v87, v88) "$0.children = $1"
     let v89 : string = "createComponent"
     let v90 : string = "solid-js"
@@ -7299,11 +7427,11 @@ and closure243 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () :
     let v92 : (Mut1 -> JSX.Element) = closure111()
     let v93 : JSX.Element = v91.Invoke (v92, v87) |> unbox<JSX.Element>
     [|v93|]
-and closure242 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) struct (v5 : US6, v6 : US6, v7 : US6, v8 : US7, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US6, v14 : US6, v15 : US8, v16 : US9, v17 : US6, v18 : US6, v19 : US8, v20 : US10, v21 : US6, v22 : US6, v23 : US6, v24 : US11, v25 : US8, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US12, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US6, v46 : US6, v47 : US13, v48 : US14, v49 : US13, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US6, v67 : US12, v68 : US6, v69 : US6, v70 : US10, v71 : US10, v72 : US6, v73 : US5, v74 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
+and closure232 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) struct (v5 : US6, v6 : US6, v7 : US6, v8 : US7, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US6, v14 : US6, v15 : US8, v16 : US9, v17 : US6, v18 : US6, v19 : US8, v20 : US10, v21 : US6, v22 : US6, v23 : US6, v24 : US11, v25 : US8, v26 : US6, v27 : US6, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US12, v33 : US6, v34 : US6, v35 : US6, v36 : US12, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US6, v46 : US6, v47 : US13, v48 : US14, v49 : US13, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US6, v67 : US12, v68 : US6, v69 : US6, v70 : US10, v71 : US10, v72 : US6, v73 : US5, v74 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) =
     let v75 : string = "Profile"
     let v76 : JSX.Element = v75 |> unbox<JSX.Element>
     let v77 : JSX.Element = Html.fragment [ v76 ]
-    let v78 : (unit -> (JSX.Element [])) = closure243(v0, v1, v2, v3, v4)
+    let v78 : (unit -> (JSX.Element [])) = closure233(v0, v1, v2, v3, v4)
     let v79 : US9 = US9_1(v78)
     let v80 : US12 = US12_1(v77)
     struct (v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v79, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v80, v68, v69, v70, v71, v72, v73, v74)
@@ -7366,7 +7494,7 @@ and closure114 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () :
     let v60 : JSX.Element = v59.Invoke (v13, v58) |> unbox<JSX.Element>
     let v61 : US14 = US14_0
     let v62 : US14 = US14_0
-    let v63 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure242(v0, v1, v2, v3, v4)
+    let v63 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US10 * US6 * US6 * US6 * US11 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US13 * US14 * US13 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US6 * US6 * US10 * US10 * US6 * US5 * US6)) = closure232(v0, v1, v2, v3, v4)
     let v64 : US15 = US15_2
     let v65 : Mut4 = {l0 = v61; l1 = v62; l2 = v63; l3 = v64} : Mut4
     let v66 : JS.Function = import v10 v11
@@ -7476,10 +7604,10 @@ and method1 () : JSX.Element =
     v115
 and closure0 () (v0 : Mut1) : JSX.Element =
     method1()
-and closure310 () () : (obj []) =
+and closure300 () () : (obj []) =
     [||]
-and method62 () : JSX.Element =
-    let v0 : (unit -> (obj [])) = closure310()
+and method66 () : JSX.Element =
+    let v0 : (unit -> (obj [])) = closure300()
     let v1 : string = "#cf1100"
     let v2 : (US4 -> ((obj []) -> unit)) = method14(v0, v1)
     let v3 : US4 = US4_0
@@ -7490,17 +7618,17 @@ and method62 () : JSX.Element =
     v4 v7
     let v8 : JSX.Element = JS.undefined
     v8
-and closure309 () (v0 : Mut2) : JSX.Element =
-    method62()
-and method63 () : string =
+and closure299 () (v0 : Mut2) : JSX.Element =
+    method66()
+and method67 () : string =
     let v0 : string = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     v0
-and method64 () : string =
+and method68 () : string =
     let v0 : string = "http://localhost"
     v0
-and method65 () : int32 =
+and method69 () : int32 =
     4001
-and method66 () : (struct (US0 * string * string * string) []) =
+and method70 () : (struct (US0 * string * string * string) []) =
     let v0 : US0 = US0_0
     let v1 : string = "4ZZJNAAPJGOUBHORYKX5DQSJJIMQLADNUIH7ONXZAVEZYZGOAM5CM7HV2M"
     let v2 : string = "poem slush dry adult final thunder price pause concert topic mesh wild dry gate judge celery winter list promote clump country loan move about faith"
@@ -7517,164 +7645,159 @@ and method66 () : (struct (US0 * string * string * string) []) =
     let v13 : string = "0DNKDAK5QfWuMCTMNJ+Re5mSlc7rbI0q1UOUYDmvPGpVTJc2PAknfOwS1rk+MAkE5ynA1XbqLeAGlYGA1H9T4w=="
     let v14 : (struct (US0 * string * string * string) []) = [|struct (v0, v1, v2, v3); struct (v5, v6, v7, v8); struct (v10, v11, v12, v13)|]
     v14
-and closure311 () () : obj =
-    let struct (v123 : string, v124 : obj, v125 : string, v126 : string, v127 : bool) = method2()
-    let v128 : string = method63()
-    let v129 : string = "createSignal"
-    let v130 : string = "solid-js"
-    let v131 : JS.Function = import v129 v130
-    let v132 : (JS.Function []) = v131.Invoke v128 |> unbox<JS.Function[]>
-    let v133 : (unit -> string) = v132.[0] |> unbox
-    let v134 : (string -> unit) = v132.[1] |> unbox
-    let v135 : bool = "" = v123
-    let v138 : string =
-        if v135 then
-            method64()
+and closure301 () () : obj =
+    let struct (v118 : string, v119 : obj, v120 : string, v121 : string, v122 : bool) = method2()
+    let v123 : string = method67()
+    let v124 : string = "createSignal"
+    let v125 : string = "solid-js"
+    let v126 : JS.Function = import v124 v125
+    let v127 : (JS.Function []) = v126.Invoke v123 |> unbox<JS.Function[]>
+    let v128 : (unit -> string) = v127.[0] |> unbox
+    let v129 : (string -> unit) = v127.[1] |> unbox
+    let v130 : bool = "" = v118
+    let v133 : string =
+        if v130 then
+            method68()
         else
-            let v137 : string = $"http://{v123}-4001.githubpreview.dev"
-            v137
-    let v139 : JS.Function = import v129 v130
-    let v140 : (JS.Function []) = v139.Invoke v138 |> unbox<JS.Function[]>
-    let v141 : (unit -> string) = v140.[0] |> unbox
-    let v142 : (string -> unit) = v140.[1] |> unbox
-    let v144 : int32 =
-        if v135 then
-            method65()
+            let v132 : string = $"http://{v118}-4001.githubpreview.dev"
+            v132
+    let v134 : JS.Function = import v124 v125
+    let v135 : (JS.Function []) = v134.Invoke v133 |> unbox<JS.Function[]>
+    let v136 : (unit -> string) = v135.[0] |> unbox
+    let v137 : (string -> unit) = v135.[1] |> unbox
+    let v139 : int32 =
+        if v130 then
+            method69()
         else
             80
-    let v145 : JS.Function = import v129 v130
-    let v146 : (JS.Function []) = v145.Invoke v144 |> unbox<JS.Function[]>
-    let v147 : (unit -> int32) = v146.[0] |> unbox
-    let v148 : (int32 -> unit) = v146.[1] |> unbox
-    let v149 : (struct (US0 * string * string * string) []) = method66()
-    let v150 : int32 = v149.Length
-    let v151 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) = Array.zeroCreate<struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit))> (v150)
-    let v152 : Mut3 = {l0 = 0} : Mut3
-    while method5(v150, v152) do
-        let v154 : int32 = v152.l0
-        let struct (v155 : US0, v156 : string, v157 : string, v158 : string) = v149.[int v154]
-        let v159 : JS.Function = import v129 v130
-        let v160 : (JS.Function []) = v159.Invoke v155 |> unbox<JS.Function[]>
-        let v161 : (unit -> US0) = v160.[0] |> unbox
-        let v162 : (US0 -> unit) = v160.[1] |> unbox
-        let v163 : JS.Function = import v129 v130
-        let v164 : (JS.Function []) = v163.Invoke v158 |> unbox<JS.Function[]>
-        let v165 : (unit -> string) = v164.[0] |> unbox
-        let v166 : (string -> unit) = v164.[1] |> unbox
-        let v167 : JS.Function = import v129 v130
-        let v168 : (JS.Function []) = v167.Invoke v156 |> unbox<JS.Function[]>
-        let v169 : (unit -> string) = v168.[0] |> unbox
-        let v170 : (string -> unit) = v168.[1] |> unbox
-        let v171 : JS.Function = import v129 v130
-        let v172 : (JS.Function []) = v171.Invoke v157 |> unbox<JS.Function[]>
-        let v173 : (unit -> string) = v172.[0] |> unbox
-        let v174 : (string -> unit) = v172.[1] |> unbox
-        v151.[int v154] <- struct (v161, v162, v169, v170, v173, v174, v165, v166)
-        let v175 : int32 = v154 + 1
-        v152.l0 <- v175
+    let v140 : JS.Function = import v124 v125
+    let v141 : (JS.Function []) = v140.Invoke v139 |> unbox<JS.Function[]>
+    let v142 : (unit -> int32) = v141.[0] |> unbox
+    let v143 : (int32 -> unit) = v141.[1] |> unbox
+    let v144 : (struct (US0 * string * string * string) []) = method70()
+    let v145 : int32 = v144.Length
+    let v146 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) = Array.zeroCreate<struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit))> (v145)
+    let v147 : Mut3 = {l0 = 0} : Mut3
+    while method5(v145, v147) do
+        let v149 : int32 = v147.l0
+        let struct (v150 : US0, v151 : string, v152 : string, v153 : string) = v144.[int v149]
+        let v154 : JS.Function = import v124 v125
+        let v155 : (JS.Function []) = v154.Invoke v150 |> unbox<JS.Function[]>
+        let v156 : (unit -> US0) = v155.[0] |> unbox
+        let v157 : (US0 -> unit) = v155.[1] |> unbox
+        let v158 : JS.Function = import v124 v125
+        let v159 : (JS.Function []) = v158.Invoke v153 |> unbox<JS.Function[]>
+        let v160 : (unit -> string) = v159.[0] |> unbox
+        let v161 : (string -> unit) = v159.[1] |> unbox
+        let v162 : JS.Function = import v124 v125
+        let v163 : (JS.Function []) = v162.Invoke v151 |> unbox<JS.Function[]>
+        let v164 : (unit -> string) = v163.[0] |> unbox
+        let v165 : (string -> unit) = v163.[1] |> unbox
+        let v166 : JS.Function = import v124 v125
+        let v167 : (JS.Function []) = v166.Invoke v152 |> unbox<JS.Function[]>
+        let v168 : (unit -> string) = v167.[0] |> unbox
+        let v169 : (string -> unit) = v167.[1] |> unbox
+        v146.[int v149] <- struct (v156, v157, v164, v165, v168, v169, v160, v161)
+        let v170 : int32 = v149 + 1
+        v147.l0 <- v170
         ()
-    let v176 : JS.Function = import v129 v130
-    let v177 : (JS.Function []) = v176.Invoke v151 |> unbox<JS.Function[]>
-    let v178 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) = v177.[0] |> unbox
-    let v179 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) = v177.[1] |> unbox
-    let v185 : string =
-        if v135 then
-            let v180 : string = "ws://localhost"
-            v180
+    let v171 : JS.Function = import v124 v125
+    let v172 : (JS.Function []) = v171.Invoke v146 |> unbox<JS.Function[]>
+    let v173 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) = v172.[0] |> unbox
+    let v174 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) = v172.[1] |> unbox
+    let v180 : string =
+        if v130 then
+            let v175 : string = "ws://localhost"
+            v175
         else
-            let v181 : bool = true = v127
-            if v181 then
-                let v182 : string = "ws://localhost"
-                v182
+            let v176 : bool = true = v122
+            if v176 then
+                let v177 : string = "ws://localhost"
+                v177
             else
-                let v183 : string = $"ws://{v123}-4944.githubpreview.dev"
-                v183
-    let v190 : int32 =
-        if v135 then
-            let v186 : bool = true = v127
-            if v186 then
+                let v178 : string = $"ws://{v118}-4944.githubpreview.dev"
+                v178
+    let v185 : int32 =
+        if v130 then
+            let v181 : bool = true = v122
+            if v181 then
                 14944
             else
-                let v187 : bool = false = v127
-                if v187 then
+                let v182 : bool = false = v122
+                if v182 then
                     4944
                 else
                     80
         else
             80
-    let v191 : (struct (US2 * (int32 [])) []) = Array.zeroCreate<struct (US2 * (int32 []))> (0)
-    let v192 : US3 = US3_1
-    let v193 : string = "ws"
-    let v199 : string =
-        if v135 then
-            let v194 : string = "wss://localhost"
-            v194
+    let v186 : (US2 []) = Array.zeroCreate<US2> (0)
+    let v187 : US3 = US3_1
+    let v188 : string = "ws"
+    let v194 : string =
+        if v130 then
+            let v189 : string = "wss://localhost"
+            v189
         else
-            let v195 : bool = true = v127
-            if v195 then
-                let v196 : string = "wss://localhost"
-                v196
+            let v190 : bool = true = v122
+            if v190 then
+                let v191 : string = "wss://localhost"
+                v191
             else
-                let v197 : string = $"ws://{v123}-8765.githubpreview.dev"
-                v197
-    let v204 : int32 =
-        if v135 then
-            let v200 : bool = true = v127
-            if v200 then
+                let v192 : string = $"ws://{v118}-8765.githubpreview.dev"
+                v192
+    let v199 : int32 =
+        if v130 then
+            let v195 : bool = true = v122
+            if v195 then
                 18765
             else
-                let v201 : bool = false = v127
-                if v201 then
+                let v196 : bool = false = v122
+                if v196 then
                     8765
                 else
                     80
         else
             80
-    let v205 : (struct (US2 * (int32 [])) []) = Array.zeroCreate<struct (US2 * (int32 []))> (0)
-    let v206 : US3 = US3_0
-    let v207 : string = "gun"
-    let v208 : (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) = [|struct (v191, v190, v192, v185, v193); struct (v205, v204, v206, v199, v207)|]
-    let v209 : JS.Function = import v129 v130
-    let v210 : (JS.Function []) = v209.Invoke v208 |> unbox<JS.Function[]>
-    let v211 : (unit -> (struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) [])) = v210.[0] |> unbox
-    let v212 : ((struct ((struct (US2 * (int32 [])) []) * int32 * US3 * string * string) []) -> unit) = v210.[1] |> unbox
-    let v213 : (struct (US2 * (int32 [])) []) = Array.zeroCreate<struct (US2 * (int32 []))> (0)
-    let v214 : JS.Function = import v129 v130
-    let v215 : (JS.Function []) = v214.Invoke v213 |> unbox<JS.Function[]>
-    let v216 : (unit -> (struct (US2 * (int32 [])) [])) = v215.[0] |> unbox
-    let v217 : ((struct (US2 * (int32 [])) []) -> unit) = v215.[1] |> unbox
-    let v218 : bool = "" = v125
-    let v221 : US4 =
-        if v218 then
+    let v200 : (US2 []) = Array.zeroCreate<US2> (0)
+    let v201 : US3 = US3_0
+    let v202 : string = "gun"
+    let v203 : (struct ((US2 []) * int32 * US3 * string * string) []) = [|struct (v186, v185, v187, v180, v188); struct (v200, v199, v201, v194, v202)|]
+    let v204 : JS.Function = import v124 v125
+    let v205 : (JS.Function []) = v204.Invoke v203 |> unbox<JS.Function[]>
+    let v206 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) = v205.[0] |> unbox
+    let v207 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) = v205.[1] |> unbox
+    let v208 : bool = "" = v120
+    let v211 : US4 =
+        if v208 then
             US4_2
         else
             US4_3
-    let v222 : JS.Function = import v129 v130
+    let v212 : JS.Function = import v124 v125
+    let v213 : (JS.Function []) = v212.Invoke v211 |> unbox<JS.Function[]>
+    let v214 : (unit -> US4) = v213.[0] |> unbox
+    let v215 : (US4 -> unit) = v213.[1] |> unbox
+    let v216 : JS.Function = import v124 v125
+    let v217 : US5 = US5_0
+    let v218 : (JS.Function []) = v216.Invoke v217 |> unbox<JS.Function[]>
+    let v219 : (unit -> US5) = v218.[0] |> unbox
+    let v220 : (US5 -> unit) = v218.[1] |> unbox
+    let v221 : (struct (int32 * int32) []) = Array.zeroCreate<struct (int32 * int32)> (0)
+    let v222 : JS.Function = import v124 v125
     let v223 : (JS.Function []) = v222.Invoke v221 |> unbox<JS.Function[]>
-    let v224 : (unit -> US4) = v223.[0] |> unbox
-    let v225 : (US4 -> unit) = v223.[1] |> unbox
-    let v226 : JS.Function = import v129 v130
-    let v227 : US5 = US5_0
-    let v228 : (JS.Function []) = v226.Invoke v227 |> unbox<JS.Function[]>
-    let v229 : (unit -> US5) = v228.[0] |> unbox
-    let v230 : (US5 -> unit) = v228.[1] |> unbox
-    let v231 : (struct (int32 * int32) []) = Array.zeroCreate<struct (int32 * int32)> (0)
-    let v232 : JS.Function = import v129 v130
+    let v224 : (unit -> (struct (int32 * int32) [])) = v223.[0] |> unbox
+    let v225 : ((struct (int32 * int32) []) -> unit) = v223.[1] |> unbox
+    let v226 : (struct (int32 * obj) []) = Array.zeroCreate<struct (int32 * obj)> (0)
+    let v227 : JS.Function = import v124 v125
+    let v228 : (JS.Function []) = v227.Invoke v226 |> unbox<JS.Function[]>
+    let v229 : (unit -> (struct (int32 * obj) [])) = v228.[0] |> unbox
+    let v230 : ((struct (int32 * obj) []) -> unit) = v228.[1] |> unbox
+    let v231 : (struct (int32 * obj) []) = Array.zeroCreate<struct (int32 * obj)> (0)
+    let v232 : JS.Function = import v124 v125
     let v233 : (JS.Function []) = v232.Invoke v231 |> unbox<JS.Function[]>
-    let v234 : (unit -> (struct (int32 * int32) [])) = v233.[0] |> unbox
-    let v235 : ((struct (int32 * int32) []) -> unit) = v233.[1] |> unbox
-    let v236 : (struct (int32 * obj) []) = Array.zeroCreate<struct (int32 * obj)> (0)
-    let v237 : JS.Function = import v129 v130
-    let v238 : (JS.Function []) = v237.Invoke v236 |> unbox<JS.Function[]>
-    let v239 : (unit -> (struct (int32 * obj) [])) = v238.[0] |> unbox
-    let v240 : ((struct (int32 * obj) []) -> unit) = v238.[1] |> unbox
-    let v241 : (struct (int32 * obj) []) = Array.zeroCreate<struct (int32 * obj)> (0)
-    let v242 : JS.Function = import v129 v130
-    let v243 : (JS.Function []) = v242.Invoke v241 |> unbox<JS.Function[]>
-    let v244 : (unit -> (struct (int32 * obj) [])) = v243.[0] |> unbox
-    let v245 : ((struct (int32 * obj) []) -> unit) = v243.[1] |> unbox
-    let v246 : obj = struct (v178, v179, v147, v148, v133, v134, v141, v142, v211, v212, v216, v217, v244, v245, v239, v240, v234, v235, v224, v225, v229, v230)
-    v246
+    let v234 : (unit -> (struct (int32 * obj) [])) = v233.[0] |> unbox
+    let v235 : ((struct (int32 * obj) []) -> unit) = v233.[1] |> unbox
+    let v236 : obj = struct (v173, v174, v142, v143, v128, v129, v136, v137, v206, v207, v234, v235, v229, v230, v224, v225, v214, v215, v219, v220)
+    v236
 let v0 : obj = JS.undefined
 let v1 : Mut0 = {l0 = v0} : Mut0
 let v72 : obj = emitJsExpr () "process.env"
@@ -7684,22 +7807,22 @@ let v75 : ((string * obj) []) = [|v74|]
 let v76 : obj = createObj v75
 Browser.Dom.window?components_spi <- v76
 let v77 : int32 = Random().Next ()
-let v201 : obj = method0()
-let v202 : string = "content"
-let v203 : (Mut1 -> JSX.Element) = closure0()
-let v204 : (string * obj) = v202, v203
-let v205 : string = "db_listener"
-let v206 : (Mut2 -> JSX.Element) = closure309()
+let v196 : obj = method0()
+let v197 : string = "content"
+let v198 : (Mut1 -> JSX.Element) = closure0()
+let v199 : (string * obj) = v197, v198
+let v200 : string = "db_listener"
+let v201 : (Mut2 -> JSX.Element) = closure299()
+let v202 : (string * obj) = v200, v201
+let v203 : string = "run_id"
+let v204 : (string * obj) = v203, v77
+let v205 : string = "new_state_context_any"
+let v206 : (unit -> obj) = closure301()
 let v207 : (string * obj) = v205, v206
-let v208 : string = "run_id"
-let v209 : (string * obj) = v208, v77
-let v210 : string = "new_state_context_any"
-let v211 : (unit -> obj) = closure311()
-let v212 : (string * obj) = v210, v211
-let v213 : string = "state_context"
-let v214 : (string * obj) = v213, v201
-let v215 : ((string * obj) []) = [|v204; v207; v209; v212; v214; v74|]
-let v216 : obj = createObj v215
-Browser.Dom.window?components_spi <- v216
-v1.l0 <- v216
+let v208 : string = "state_context"
+let v209 : (string * obj) = v208, v196
+let v210 : ((string * obj) []) = [|v199; v202; v204; v207; v209; v74|]
+let v211 : obj = createObj v210
+Browser.Dom.window?components_spi <- v211
+v1.l0 <- v211
 ()

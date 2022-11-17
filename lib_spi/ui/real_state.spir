@@ -45,10 +45,10 @@ inl new_state_context () =
                 )
         }
         db = {
-            connection = create_signal `(a i32 db_connection) (
+            connections = create_signal `(a i32 db_connection) (
                 a `i32 `db_connection (;[
                     {
-                        server_type = GunRs
+                        server_type = GunRsServer
                         url = // create_signal `string <|
                             match env.codespace_name, env.is_test with
                             | "", _ => "ws://localhost"
@@ -60,10 +60,10 @@ inl new_state_context () =
                             | "", false => 4944
                             | _, _ => 80
                         ws = "ws"
-                        clients = am.empty `a `i32 `db_connection_status
+                        clients = am.empty `a `i32 `client
                     }
                     {
-                        server_type = GunJs
+                        server_type = GunJsServer
                         url = // create_signal `string <|
                             match env.codespace_name, env.is_test with
                             | "", _ => "wss://localhost"
@@ -75,11 +75,10 @@ inl new_state_context () =
                             | "", false => 8765
                             | _, _ => 80
                         ws = "gun"
-                        clients = am.empty `a `i32 `db_connection_status
+                        clients = am.empty `a `i32 `client
                     }
                                         ] : array db_connection)
             )
-            connection_status = create_signal `(a i32 db_connection_status) (am.empty `a `i32 `db_connection_status)
         }
         settings = {
             log_level =

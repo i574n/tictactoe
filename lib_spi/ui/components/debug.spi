@@ -143,8 +143,8 @@ let debug (props : mut ()) =
                                                             }
                                                             create_custom_component atom_value {
                                                                 Get = to_any
-                                                                Hook = use_db_connection
-                                                                Title = "db.connection"
+                                                                Hook = use_db_connections
+                                                                Title = "db.connections"
                                                             }
                                                             create_custom_component atom_value {
                                                                 Get = to_string >> to_any
