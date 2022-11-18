@@ -33,6 +33,9 @@ inl use_chain_accounts () : atom (a i32 chain_account_state) =
 inl use_db_connections () : atom (a i32 db_connection) =
     real use_atom `(`(new_state_context ())) `(a i32 db_connection) fun context => context.db.connections
 
+inl use_db_connection_options () : atom (a i32 db_connection_options) =
+    real use_atom `(`(new_state_context ())) `(a i32 db_connection_options) fun context => context.db.connection_options
+
 inl use_settings_log_level () : atom log_level_type =
     real use_atom `(`(new_state_context ())) `log_level_type fun context => context.settings.log_level
 
@@ -66,7 +69,7 @@ instance of_string log_level_type = function
     | "Error" => Error
     | _ => Error
 
-let empty_db_connection () : db_connection =
+let empty_db_connection () : db_connection_options =
     {
         server_type = GunRsServer
         url = ""

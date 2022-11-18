@@ -5,7 +5,7 @@ open links
 open settings
 open chain
 open js
-open database
+open db_connections
 open counter
 open chain_status
 open chain_deploy
@@ -111,7 +111,7 @@ let content (props : mut solid_props) =
                             Id = Some "db"
                             Title = Some <| str "Database"
                             Children = Some fun () => ;[
-                                create_component database
+                                create_component db_connections
                                     id
                                     fun () => ;[]
                             ]

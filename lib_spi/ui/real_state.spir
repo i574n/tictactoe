@@ -20,17 +20,6 @@ inl new_state_context () =
     inl env : env = get_env ()
     {
         chain = {
-            token = create_signal `string (tictactoe_testnet.token ())
-            url = create_signal `string (
-                match env.codespace_name with
-                | "" => tictactoe_testnet.url ()
-                | codespace_name => $"$\"http://{!codespace_name}-4001.githubpreview.dev\"" : string
-            )
-            port = create_signal `i32 (
-                match env.codespace_name with
-                | "" => tictactoe_testnet.port ()
-                | codespace_name => 80
-            )
             accounts =
                 create_signal `(a i32 chain_account_state) (
                     am.map `a `i32 `chain_account `chain_account_state
@@ -43,41 +32,54 @@ inl new_state_context () =
                             }
                         (tictactoe_testnet.accounts ())
                 )
+            port = create_signal `i32 (
+                match env.codespace_name with
+                | "" => tictactoe_testnet.port ()
+                | codespace_name => 80
+            )
+            token = create_signal `string (tictactoe_testnet.token ())
+            url = create_signal `string (
+                match env.codespace_name with
+                | "" => tictactoe_testnet.url ()
+                | codespace_name => $"$\"http://{!codespace_name}-4001.githubpreview.dev\"" : string
+            )
         }
         db = {
-            connections = create_signal `(a i32 db_connection) (
-                a `i32 `db_connection (;[
-                    {
-                        server_type = GunRsServer
-                        url = // create_signal `string <|
-                            match env.codespace_name, env.is_test with
-                            | "", _ => "ws://localhost"
-                            | _, true => "ws://localhost"
-                            | codespace_name, _ => $"$\"ws://{!codespace_name}-4944.githubpreview.dev\"" : string
-                        port = // create_signal `i32 <|
-                            match env.codespace_name, env.is_test with
-                            | "", true => 14944
-                            | "", false => 4944
-                            | _, _ => 80
-                        ws = "ws"
-                        clients = am.empty `a `i32 `client
-                    }
-                    {
-                        server_type = GunJsServer
-                        url = // create_signal `string <|
-                            match env.codespace_name, env.is_test with
-                            | "", _ => "wss://localhost"
-                            | _, true => "wss://localhost"
-                            | codespace_name, _ => $"$\"ws://{!codespace_name}-8765.githubpreview.dev\"" : string
-                        port = // create_signal `i32 <|
-                            match env.codespace_name, env.is_test with
-                            | "", true => 18765
-                            | "", false => 8765
-                            | _, _ => 80
-                        ws = "gun"
-                        clients = am.empty `a `i32 `client
-                    }
-                                        ] : array db_connection)
+            connections = create_signal `(a i32 db_connection) (am.empty `a `i32 `db_connection)
+            connection_options = create_signal `(a i32 db_connection_options) (
+                a `i32 `db_connection_options
+                    (;[
+                        {
+                            server_type = GunRsServer
+                            url = // create_signal `string <|
+                                match env.codespace_name, env.is_test with
+                                | "", _ => "ws://localhost"
+                                | _, true => "ws://localhost"
+                                | codespace_name, _ => $"$\"ws://{!codespace_name}-4944.githubpreview.dev\"" : string
+                            port = // create_signal `i32 <|
+                                match env.codespace_name, env.is_test with
+                                | "", true => 14944
+                                | "", false => 4944
+                                | _, _ => 80
+                            ws = "ws"
+                            clients = am.empty `a `i32 `client_type
+                        }
+                        {
+                            server_type = GunJsServer
+                            url = // create_signal `string <|
+                                match env.codespace_name, env.is_test with
+                                | "", _ => "wss://localhost"
+                                | _, true => "wss://localhost"
+                                | codespace_name, _ => $"$\"ws://{!codespace_name}-8765.githubpreview.dev\"" : string
+                            port = // create_signal `i32 <|
+                                match env.codespace_name, env.is_test with
+                                | "", true => 18765
+                                | "", false => 8765
+                                | _, _ => 80
+                            ws = "gun"
+                            clients = am.empty `a `i32 `client_type
+                        }
+                    ] : array db_connection_options)
             )
         }
         settings = {

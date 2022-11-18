@@ -351,6 +351,13 @@ let use_fetch forall state_type value_type.
     inl log = use_log get_locals color
     log Debug ;[!!"> use_fetch ()"]
 
+    create_effect fun () =>
+        inl connections = db_connections ()
+        log Info ;[
+            !!"> use_fetch > effect"
+            !!("connections:", connections)
+        ]
+
     inl unsubscribe () =
         log Debug ;[!!"> use_fetch > unsubscribe () [1]"]
 

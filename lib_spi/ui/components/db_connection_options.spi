@@ -2,7 +2,7 @@ open solid
 open db
 open base_table
 open row
-open db_connection_input
+open db_connection_options_input
 
 
 type db_connection_props =
@@ -10,7 +10,7 @@ type db_connection_props =
         ServerType : server_type
     }
 
-let db_connection (props : mut db_connection_props) =
+let db_connection_options (props : mut db_connection_props) =
     create_component base_table
         id
         fun () => ;[
@@ -22,7 +22,7 @@ let db_connection (props : mut db_connection_props) =
                     Title = Some <| str "URL"
                     Padding = Some "3px"
                     Children = Some fun () => ;[
-                        create_custom_component db_connection_input {
+                        create_custom_component db_connection_options_input {
                             ServerType = props.ServerType
                             Get = fun db_connection => Some db_connection.url
                             Set = fun db_connection value => { db_connection with
@@ -41,7 +41,7 @@ let db_connection (props : mut db_connection_props) =
                     Title = Some <| str "Port"
                     Padding = Some "3px"
                     Children = Some fun () => ;[
-                        create_custom_component db_connection_input {
+                        create_custom_component db_connection_options_input {
                             ServerType = props.ServerType
                             Get = fun db_connection => Some db_connection.port
                             Set = fun db_connection value => { db_connection with

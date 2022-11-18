@@ -1,0 +1,88 @@
+
+// open real_solid
+open js
+open solid
+open base_checkbox
+// open db_connection
+open state
+// open real_state
+open db
+
+
+type db_client_props =
+    {
+        ServerType : server_type
+        ClientType : client_type
+    }
+
+
+let db_client (props : mut db_client_props) =
+    // create_custom_component row {
+    //     OnLoad = Some fun () =>
+    //         set_db_connection <|
+    //             db_connection () /@ a ;[{ db_type = props.DbType; id = props.Id }]
+
+    //         inl subscribe id =
+    //             console_fsx.inspect "database_item subscribe"
+    //             console_fsx.inspect "id:"
+    //             console_fsx.inspect id
+    //             ()
+    //         inl id = ()
+    //         inl timeout = set_timeout (fun () => subscribe id) (get_db_init_timeout ())
+    //         console_fsx.inspect "database_item OnLoad"
+    //         console_fsx.inspect "timeout:"
+    //         console_fsx.inspect timeout
+    //         ()
+    //     OnUnload = Some fun () =>
+    //         set_db_connection <|
+    //             db_connection ()
+    //             |> am.filter fun db_status => db_status <> props.Status
+    //     Status = CheckDisabled
+    //     Props = fun props' => { props' with
+    //         Id = Some props.Id
+    //         Title = Some <| str props.Title
+    //         Children = Some fun () => ;[
+    //             create_custom_component db_connection {
+    //                 DbType = props.DbType
+    //             }
+    //         ]
+    //     }
+    // }
+
+
+    inl db_connection_options, set_db_connection_options = use_db_connection_options ()
+
+    inl get_locals () : array any = ;[
+        !!("props.ServerType:", props.ServerType)
+        !!("props.ClientType:", props.ClientType)
+    ]
+    inl log = use_log get_locals "#666"
+    log Debug ;[!!"> db_client ()"]
+
+    create_custom_component base_checkbox {
+        Checked = fun () =>
+            db_connection_options ()
+            |> am.exists fun connection =>
+                connection.server_type = props.ServerType
+                && (connection.clients |> am.exists ((=) props.ClientType))
+        OnChange = fun checked =>
+            set_db_connection_options <|
+                db_connection_options ()
+                |> am.map fun connection =>
+                    if connection.server_type = props.ServerType then
+                        { connection with
+                            clients =
+                                if checked
+                                then connection.clients /@ a ;[props.ClientType]
+                                else connection.clients |> am.filter ((<>) props.ClientType)
+                        }
+                    else connection
+        Props = fun props' => { props' with
+            Children = Some <| fun () => ;[
+                match props.ClientType with
+                | GunRsClient => "Gun Rust"
+                | GunJsClient => "Gun JavaScript"
+                |> str
+            ]
+        }
+    }

@@ -48,4 +48,14 @@ let db_listener (props : mut ()) =
     inl log = use_log get_locals "#cf1100"
     log Debug ;[!!"> db_listener ()"]
 
+    inl db_connection_options, set_db_connection_options = use_db_connection_options ()
+
+    create_effect fun () =>
+        inl connection_options = db_connection_options ()
+        log Info ;[
+            !!"> db_listener > effect"
+            !!("connection_options:", connection_options)
+        ]
+
+
     empty_fragment ()

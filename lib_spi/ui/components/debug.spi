@@ -147,6 +147,11 @@ let debug (props : mut ()) =
                                                                 Title = "db.connections"
                                                             }
                                                             create_custom_component atom_value {
+                                                                Get = to_any
+                                                                Hook = use_db_connection_options
+                                                                Title = "db.connection_options"
+                                                            }
+                                                            create_custom_component atom_value {
                                                                 Get = to_string >> to_any
                                                                 Hook = use_settings_log_level
                                                                 Title = "settings.log_level"

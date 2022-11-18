@@ -38,9 +38,11 @@ modules:
                 chain_deploy
                 chain_status
                 counter
-                db_connection_input
-                db_connection
-                database
+                db_connection_options_input
+                db_connection_options
+                db_client
+                db_clients
+                db_connections
                 db_listener
                 settings
                 content

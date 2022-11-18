@@ -1,0 +1,34 @@
+
+open solid
+open row
+open db
+open db_client
+
+
+type db_clients_props =
+    {
+        ServerType : server_type
+    }
+
+let db_clients (props : mut db_clients_props) =
+    create_custom_component row {
+        OnLoad = None
+        OnUnload = None
+        Status = CheckHidden
+        Props = fun props' => { props' with
+            Id = None
+            MarginLeft = Some "8px"
+            MarginBottom = Some "4px"
+            Title = Some <| str "Clients"
+            Children = Some fun () => ;[
+                create_custom_component db_client {
+                    ServerType = props.ServerType
+                    ClientType = GunRsClient
+                }
+                create_custom_component db_client {
+                    ServerType = props.ServerType
+                    ClientType = GunJsClient
+                }
+            ]
+        }
+    }

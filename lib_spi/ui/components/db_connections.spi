@@ -1,0 +1,71 @@
+open solid
+open base_table
+open row
+open db_connection_options
+open db
+open db_clients
+
+
+let db_connections (props : mut solid_props) =
+    create_component base_table
+        id
+        fun () => ;[
+            create_custom_component row {
+                OnLoad = None
+                OnUnload = None
+                Status = CheckHidden
+                Props = fun props' => { props' with
+                    Id = None
+                    PaddingLeft = Some "0"
+                    Title = Some <|
+                        create_custom_component row {
+                            OnLoad = None
+                            OnUnload = None
+                            Status = CheckHidden
+                            Props = fun props' => { props' with
+                                Id = None
+                                Title = Some <| str "Gun Rust"
+                                Children = Some fun () => ;[
+                                    create_custom_component db_connection_options {
+                                        ServerType = GunRsServer
+                                    }
+                                ]
+                            }
+                        }
+                    Children = Some fun () => ;[
+                        create_custom_component db_clients {
+                            ServerType = GunRsServer
+                        }
+                    ]
+                }
+            }
+            create_custom_component row {
+                OnLoad = None
+                OnUnload = None
+                Status = CheckHidden
+                Props = fun props' => { props' with
+                    Id = None
+                    PaddingLeft = Some "0"
+                    Title = Some <|
+                        create_custom_component row {
+                            OnLoad = None
+                            OnUnload = None
+                            Status = CheckHidden
+                            Props = fun props' => { props' with
+                                Id = None
+                                Title = Some <| str "Gun JavaScript"
+                                Children = Some fun () => ;[
+                                    create_custom_component db_connection_options {
+                                        ServerType = GunJsServer
+                                    }
+                                ]
+                            }
+                        }
+                    Children = Some fun () => ;[
+                        create_custom_component db_clients {
+                            ServerType = GunJsServer
+                        }
+                    ]
+                }
+            }
+        ]
