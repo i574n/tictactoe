@@ -312,13 +312,6 @@ nominal promise t = t
 nominal client = any // $a"algosdk.Algodv2"
 
 
-inl generate_six_digit_numeric_hash_from_string (text : string) : string =
-    text
-    |> string_get_bytes
-    |> am.fold
-        fun (acc : i32) n => acc + ((real real_unbox `u8 `i32 n) * 14)
-        100000
-    |> to_string'
 
 inl generate_color (text : string) : string =
     inl color = generate_six_digit_numeric_hash_from_string text

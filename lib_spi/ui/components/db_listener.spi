@@ -41,6 +41,7 @@ open real_solid
 open real_state
 open state
 open js
+open db
 
 let db_listener (props : mut ()) =
     inl get_locals () : array any = ;[
@@ -48,14 +49,44 @@ let db_listener (props : mut ()) =
     inl log = use_log get_locals "#cf1100"
     log Debug ;[!!"> db_listener ()"]
 
+    inl db_connections, set_db_connections = use_db_connections ()
     inl db_connection_options, set_db_connection_options = use_db_connection_options ()
 
     create_effect fun () =>
+        inl connections = db_connections ()
         inl connection_options = db_connection_options ()
-        log Info ;[
-            !!"> db_listener > effect"
-            !!("connection_options:", connection_options)
-        ]
+
+        inl new_connections =
+            connection_options
+            |> array_collect fun options =>
+                options.clients
+                |> am.map fun client_type =>
+                    connections
+                    |> array_find_last fun connection =>
+                        if connection.client_type = client_type && connection.url = options.url
+                        then Some connection
+                        else None
+                    |> function
+                    | Some connection => connection
+                    | None => {
+                        client_type
+                        url = new_url connection_options options.server_type
+                        db = !!""
+                    }
+
+        inl connections_hash (connections : a i32 db_connection) =
+            connections |> am.map fun { client_type url } => client_type, url
+
+        if connections_hash connections <> connections_hash new_connections then
+
+            log Info ;[
+                !!"> db_listener > effect"
+                !!("connection_options:", connection_options)
+                !!("connections:", connections)
+                !!("new_connections:", new_connections)
+            ]
+
+            set_db_connections new_connections
 
 
     empty_fragment ()

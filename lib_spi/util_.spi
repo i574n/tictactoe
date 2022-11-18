@@ -58,6 +58,13 @@ inl to_string' forall a. (obj : a) : string = $"!obj.ToString ()"
 inl ticks () : i64 = $"DateTime.UtcNow.Ticks / 1000L"
 inl random () : i32 = $"Random().Next ()"
 
+inl generate_six_digit_numeric_hash_from_string (text : string) : string =
+    text
+    |> string_get_bytes
+    |> am.fold
+        fun (acc : i32) n => acc + ((real real_unbox `u8 `i32 n) * 14)
+        100000
+    |> to_string'
 
 prototype append t : t -> t -> t
 instance append list t = fun (x : list t) (y : list t) => y |> listm.append x
@@ -70,3 +77,8 @@ instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>
 inl (/@) a b = b |> append a
 inl (/??) a b = a |> optionm.defaultWith b
 inl (/.) props key = union_list_get key props
+
+inl array_collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
+    items
+    |> am.map fn
+    |> am.fold (/@) (a ;[])
