@@ -300,12 +300,45 @@
 
 // export default useFetch
 
+    // create_custom_component row {
+    //     OnLoad = Some fun () =>
+    //         set_db_connection <|
+    //             db_connection () /@ a ;[{ db_type = props.DbType; id = props.Id }]
+
+    //         inl subscribe id =
+    //             console_fsx.inspect "database_item subscribe"
+    //             console_fsx.inspect "id:"
+    //             console_fsx.inspect id
+    //             ()
+    //         inl id = ()
+    //         inl timeout = set_timeout (fun () => subscribe id) (get_db_init_timeout ())
+    //         console_fsx.inspect "database_item OnLoad"
+    //         console_fsx.inspect "timeout:"
+    //         console_fsx.inspect timeout
+    //         ()
+    //     OnUnload = Some fun () =>
+    //         set_db_connection <|
+    //             db_connection ()
+    //             |> am.filter fun db_status => db_status <> props.Status
+    //     Status = CheckDisabled
+    //     Props = fun props' => { props' with
+    //         Id = Some props.Id
+    //         Title = Some <| str props.Title
+    //         Children = Some fun () => ;[
+    //             create_custom_component db_connection {
+    //                 DbType = props.DbType
+    //             }
+    //         ]
+    //     }
+    // }
+
 open state
 open real_solid
 open solid
 open real_state
 open real_js
 open js
+open db
 
 
 nominal promise t = t
@@ -344,12 +377,21 @@ let use_fetch forall state_type value_type.
     inl log = use_log get_locals color
     log Debug ;[!!"> use_fetch ()"]
 
+    inl connections_change () =
+        log Info ;[
+            !!"> use_fetch > connections_change"
+        ]
+
+    inl debounced_connections_change : () -> () = real debounce `(()) `(()) connections_change (get_db_init_timeout ())
+
     create_effect fun () =>
         inl connections = db_connections ()
         log Info ;[
             !!"> use_fetch > effect"
             !!("connections:", connections)
         ]
+
+        debounced_connections_change ()
 
     inl unsubscribe () =
         log Debug ;[!!"> use_fetch > unsubscribe () [1]"]

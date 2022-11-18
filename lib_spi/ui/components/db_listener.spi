@@ -68,11 +68,14 @@ let db_listener (props : mut ()) =
                         else None
                     |> function
                     | Some connection => connection
-                    | None => {
-                        client_type
-                        url = new_url connection_options options.server_type
-                        db = !!""
-                    }
+                    | None =>
+                        inl url = new_url connection_options options.server_type
+                        inl db = new_db client_type url
+                        {
+                            client_type
+                            db
+                            url
+                        }
 
         inl connections_hash (connections : a i32 db_connection) =
             connections |> am.map fun { client_type url } => client_type, url

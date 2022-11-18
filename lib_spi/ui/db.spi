@@ -1,3 +1,5 @@
+open js
+
 
 // import * as util from "../../lib_ts/util"
 // import { Node as GunRS } from "rusty-gun"
@@ -8,6 +10,14 @@
 // import "gun/lib/radisk"
 // import "gun/lib/store"
 // import "gun/lib/rindexed"
+
+inl gun_rs_ () = import "Node" "rusty-gun"
+inl gun_js_ () = import_default "gun/gun"
+
+inl gun_radix_ () = import_side_effects "gun/lib/radix"
+inl gun_radisk_ () = import_side_effects "gun/lib/radisk"
+inl gun_store_ () = import_side_effects "gun/lib/store"
+inl gun_rindexed_ () = import_side_effects "gun/lib/rindexed"
 
 
 // const DB_TYPE = ['gun_rs', 'gun_js'] as const
@@ -81,7 +91,28 @@ union server_type =
 //     }
 //     return null
 // }
+inl new_db (client_type : client_type) (url : string) =
+    inl db =
+        match client_type with
+        | GunRsClient =>
+            inl gun_rs = gun_rs_ ()
+            inl args = !!url
+            create_new gun_rs args
+        | GunJsClient =>
+            inl gun_js = gun_js_ ()
 
+            gun_radix_ ()
+            gun_radisk_ ()
+            gun_store_ ()
+            gun_rindexed_ ()
+
+            inl args = create_obj (a ;[
+                new_js_obj_prop "url" url
+                new_js_obj_prop "localStorage" false
+                new_js_obj_prop "radisk" true
+            ])
+            create_new gun_js args
+    db
 
 type db_connection_options =
     {
@@ -96,7 +127,7 @@ type db_connection =
     {
         client_type : client_type
         url : string
-        db : js.any
+        db : any
     }
 
 // const newUrl = (state: DbState, type: DbType) => {

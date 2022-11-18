@@ -18,6 +18,12 @@ inl new_js_obj_prop forall a. (k : string) (v : a) : js_obj_prop =
 inl import (name : string) (module : string) : js_function =
     $"import !name !module"
 
+inl import_default (module : string) : js_function =
+    $"importDefault !module"
+
+inl import_side_effects (module : string) : () =
+    $"importSideEffects !module"
+
 inl create_obj (obj : a i32 js_obj_prop) : any =
     $"createObj !obj"
 
@@ -30,6 +36,8 @@ inl stringify_fmt forall a. (obj : a) : string =
 inl is_empty forall a. (obj : a) : bool =
     $"emitJsExpr !obj \"\!$0\""
 
+inl create_new (o : js_function) (args : any) : any =
+    $"createNew !o !args"
 
 instance to_string any = to_string'
 

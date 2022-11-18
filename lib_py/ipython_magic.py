@@ -160,7 +160,7 @@ def spiral(arg, cell, test=False):
                     new_code_fsx = ''
                     start = time.time()
                     while new_code_fsx == '' and time.time() - start < timeout_seconds:
-                        time.sleep(0.2)
+                        time.sleep(0.5)
                         new_code_fsx = util.read_file(fsx_path).strip(" \n")
 
                     if arg == 'run':

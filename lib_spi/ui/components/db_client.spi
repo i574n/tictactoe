@@ -1,11 +1,7 @@
-
-// open real_solid
 open js
 open solid
 open base_checkbox
-// open db_connection
 open state
-// open real_state
 open db
 
 
@@ -15,41 +11,7 @@ type db_client_props =
         ClientType : client_type
     }
 
-
 let db_client (props : mut db_client_props) =
-    // create_custom_component row {
-    //     OnLoad = Some fun () =>
-    //         set_db_connection <|
-    //             db_connection () /@ a ;[{ db_type = props.DbType; id = props.Id }]
-
-    //         inl subscribe id =
-    //             console_fsx.inspect "database_item subscribe"
-    //             console_fsx.inspect "id:"
-    //             console_fsx.inspect id
-    //             ()
-    //         inl id = ()
-    //         inl timeout = set_timeout (fun () => subscribe id) (get_db_init_timeout ())
-    //         console_fsx.inspect "database_item OnLoad"
-    //         console_fsx.inspect "timeout:"
-    //         console_fsx.inspect timeout
-    //         ()
-    //     OnUnload = Some fun () =>
-    //         set_db_connection <|
-    //             db_connection ()
-    //             |> am.filter fun db_status => db_status <> props.Status
-    //     Status = CheckDisabled
-    //     Props = fun props' => { props' with
-    //         Id = Some props.Id
-    //         Title = Some <| str props.Title
-    //         Children = Some fun () => ;[
-    //             create_custom_component db_connection {
-    //                 DbType = props.DbType
-    //             }
-    //         ]
-    //     }
-    // }
-
-
     inl db_connection_options, set_db_connection_options = use_db_connection_options ()
 
     inl get_locals () : array any = ;[
