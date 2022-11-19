@@ -372,26 +372,34 @@ let use_fetch forall state_type value_type.
         !!("timers:", timers)
         !!("values:", values)
         !!("subscriptions:", subscriptions)
+        !!("db_connections:", db_connections ())
     ]
     inl color = generate_color content_address
     inl log = use_log get_locals color
     log Debug ;[!!"> use_fetch ()"]
 
-    inl connections_change () =
+    inl connections_change (db_connections' : a i32 db_connection) =
+        inl client_type = GunRsClient
+
+        inl subscriptions =
+            db_connections'
+            |> am.map fun ({client_type url db} as db_connection) =>
+                log Info ;[
+                    !!"> use_fetch > connections_change > before db_on"
+                    !!("db_connection:", db_connection)
+                ]
+                inl subscription = db_on db content_address client_type
+                subscription
+
         log Info ;[
             !!"> use_fetch > connections_change"
+            !!("subscriptions:", subscriptions)
         ]
 
-    inl debounced_connections_change : () -> () = real debounce `(()) `(()) connections_change (get_db_init_timeout ())
-
+    inl debounced_connections_change = debounce connections_change (get_db_init_timeout ())
     create_effect fun () =>
-        inl connections = db_connections ()
-        log Info ;[
-            !!"> use_fetch > effect"
-            !!("connections:", connections)
-        ]
-
-        debounced_connections_change ()
+        inl db_connections' = db_connections ()
+        debounced_connections_change db_connections'
 
     inl unsubscribe () =
         log Debug ;[!!"> use_fetch > unsubscribe () [1]"]
@@ -400,6 +408,7 @@ let use_fetch forall state_type value_type.
         ()
 
     inl on_unload' () =
+        $"!debounced_connections_change?clear ()" : ()
         unsubscribe ()
     real on_cleanup on_unload'
 

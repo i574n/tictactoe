@@ -6,8 +6,6 @@ open chain
 open tictactoe
 
 
-
-
 type chain_account_state =
     {
         account : atom account
@@ -84,7 +82,7 @@ inl new_state_context () =
         }
         settings = {
             log_level =
-                create_signal `log_level_type match env.github_run_id with "" => Info | _ => Warn
+                create_signal `log_level_type match env.github_run_id with "" => Debug | _ => Warn
             ui = {
                 modal = create_signal `(option i32) (none `i32 ())
             }

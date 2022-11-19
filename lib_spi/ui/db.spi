@@ -91,28 +91,26 @@ union server_type =
 //     }
 //     return null
 // }
-inl new_db (client_type : client_type) (url : string) =
-    inl db =
-        match client_type with
-        | GunRsClient =>
-            inl gun_rs = gun_rs_ ()
-            inl args = !!url
-            create_new gun_rs args
-        | GunJsClient =>
-            inl gun_js = gun_js_ ()
+inl new_db (client_type : client_type) (url : string) : any =
+    match client_type with
+    | GunRsClient =>
+        inl gun_rs = gun_rs_ ()
+        inl args = !!url
+        create_new gun_rs args
+    | GunJsClient =>
+        inl gun_js = gun_js_ ()
 
-            gun_radix_ ()
-            gun_radisk_ ()
-            gun_store_ ()
-            gun_rindexed_ ()
+        gun_radix_ ()
+        gun_radisk_ ()
+        gun_store_ ()
+        gun_rindexed_ ()
 
-            inl args = create_obj (a ;[
-                new_js_obj_prop "url" url
-                new_js_obj_prop "localStorage" false
-                new_js_obj_prop "radisk" true
-            ])
-            create_new gun_js args
-    db
+        inl args = create_obj (a ;[
+            new_js_obj_prop "url" url
+            new_js_obj_prop "localStorage" false
+            new_js_obj_prop "radisk" true
+        ])
+        create_new gun_js args
 
 type db_connection_options =
     {
@@ -204,6 +202,7 @@ inl get_db_id_list
 
 
 // const soul = "tictactoe_spiral"
+inl soul () = "tictactoe_spiral"
 
 // const parse = (raw: object) => {
 //     const getLocals = () => ({ nRaw: `${raw}`.length })
@@ -277,8 +276,10 @@ inl get_db_id_list
 //     log('getDbNode() 0')
 //     return contentAddress.split('/').reduce((acc, k) => acc.get(k as any), db.db.get(soul))
 // }
-inl get_db_node (content_address : string) =
-    ()
+inl get_db_node (db : any) (content_address : string) : any =
+    content_address
+    |> string_split '/'
+    |> am.fold (fun acc k => $"!acc?get" k) ($"!db?get" (soul ()))
 
 // export const DB_INIT_TIMEOUT = 2500
 inl get_db_init_timeout () : i32 = 2500
@@ -350,6 +351,21 @@ inl get_db_resub_timeout () : i32 = 10000
 //         }
 //     }
 // }
+inl db_on
+    (db : any)
+    (content_address : string)
+    (client_type : client_type)
+    : i64
+    =
+    inl handler = fun () => ()
+    inl node = get_db_node db content_address
+    match client_type with
+    | GunRsClient =>
+        $"!node?on !handler" : i64
+    | GunJsClient =>
+        $"!node?on !handler" : ()
+        ticks ()
+
 
 // export const dbOff = <TState extends DbState>(
 //     state: TState,

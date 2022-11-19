@@ -272,10 +272,6 @@ inl debounce_ ()  = import "debounce" "@solid-primitives/scheduled"
 
 inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
 
-inl debounce forall a b. (fn : a -> b) (timeout : i32) : a -> b =
-    inl debounce' = debounce_ ()
-    $"!debounce'.Invoke (!fn, !timeout) |> unbox<`a -> `b>" : a -> b
-
 let use_color_mode () =
     inl useColorMode' = useColorMode_ ()
     inl obj : any = $"!useColorMode'.Invoke () |> unbox"

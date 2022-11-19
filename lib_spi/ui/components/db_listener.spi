@@ -52,24 +52,21 @@ let db_listener (props : mut ()) =
     inl db_connections, set_db_connections = use_db_connections ()
     inl db_connection_options, set_db_connection_options = use_db_connection_options ()
 
-    create_effect fun () =>
-        inl connections = db_connections ()
-        inl connection_options = db_connection_options ()
-
+    inl connections_change { db_connections' db_connection_options' } =
         inl new_connections =
-            connection_options
-            |> array_collect fun options =>
+            db_connection_options'
+            |> array_collect fun (options : db_connection_options) =>
                 options.clients
                 |> am.map fun client_type =>
-                    connections
-                    |> array_find_last fun connection =>
+                    db_connections'
+                    |> array_find_last fun (connection : db_connection) =>
                         if connection.client_type = client_type && connection.url = options.url
                         then Some connection
                         else None
                     |> function
                     | Some connection => connection
                     | None =>
-                        inl url = new_url connection_options options.server_type
+                        inl url = new_url db_connection_options' options.server_type
                         inl db = new_db client_type url
                         {
                             client_type
@@ -80,16 +77,25 @@ let db_listener (props : mut ()) =
         inl connections_hash (connections : a i32 db_connection) =
             connections |> am.map fun { client_type url } => client_type, url
 
-        if connections_hash connections <> connections_hash new_connections then
-
+        if connections_hash db_connections' <> connections_hash new_connections then
             log Info ;[
                 !!"> db_listener > effect"
-                !!("connection_options:", connection_options)
-                !!("connections:", connections)
+                !!("db_connection_options':", db_connection_options')
+                !!("db_connections':", db_connections')
                 !!("new_connections:", new_connections)
             ]
 
             set_db_connections new_connections
 
+    inl debounced_connections_change = debounce connections_change 300
+    create_effect fun () =>
+        inl db_connections' = db_connections ()
+        inl db_connection_options' = db_connection_options ()
+
+        debounced_connections_change { db_connections' db_connection_options' }
+
+    inl on_unload' () =
+        $"!debounced_connections_change?clear ()" : ()
+    real on_cleanup on_unload'
 
     empty_fragment ()

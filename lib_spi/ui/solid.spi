@@ -272,5 +272,8 @@ inl breakpoints ~{ initial sm } =
 inl children_fragment (children : () -> array jsx_element) : jsx_element =
     real real_unbox `(() -> array jsx_element) `jsx_element children
 
+inl debounce forall a b. (fn : a -> b) (timeout : i32) : a -> b =
+    inl debounce' = real debounce_ ()
+    $"!debounce'.Invoke (!fn, !timeout) |> unbox<`a -> `b>" : a -> b
 
 type solid_props = solid_props
