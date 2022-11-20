@@ -43,6 +43,61 @@ instance to_string any = to_string'
 
 inl (~!!) obj = to_any obj
 
+nominal promise t = $"JS.Promise<`t>"
+
+inl promise_create forall t. (fn : ((t -> ()) -> (exn -> ()) -> ())) : promise t =
+    $"Promise.create !fn"
+
+inl promise_map forall t1 t2. (fn : t1 -> t2) (p : promise t1) : promise t2 =
+    $"!p |> Promise.map !fn"
+
+inl promise_iter forall t. (fn : t -> ()) (p : promise t) : () =
+    $"!p |> Promise.iter !fn"
+
+inl promise_tap forall t. (fn : t -> ()) (p : promise t) : promise t =
+    $"!p |> Promise.tap !fn"
+
+inl promise_catch forall t. (fn : exn -> t) (p : promise t) : promise t =
+    $"!p |> Promise.catch !fn"
+
+inl promise_catch_bind forall t. (fn : exn -> promise t) (p : promise t) : promise t =
+    $"!p |> Promise.catchBind !fn"
+
+inl promise_catch_end forall t. (fn : exn -> ()) (p : promise t) : () =
+    $"!p |> Promise.catchEnd !fn"
+
+inl promise_either forall t1 t2. (success : t1 -> t2) (fail : exn -> t2) (p : promise t1) : promise t2 =
+    $"!p |> Promise.either !success !fail"
+
+inl promise_either_bind forall t1 t2.
+    (success : t1 -> promise t2)
+    (fail : exn -> promise t2)
+    (p : promise t1)
+    : promise t2
+    =
+    $"!p |> Promise.eitherBind !success !fail"
+
+inl promise_either_end forall t1 t2.
+    (success : t1 -> t2)
+    (fail : exn -> t2)
+    (p : promise t1)
+    : promise t2
+    =
+    $"!p |> Promise.eitherEnd !success !fail"
+
+inl promise_start forall t. (p : promise t) : () =
+    $"!p |> Promise.start"
+
+inl promise_try_start forall t. (fail : exn -> ()) (p : promise t) : () =
+    $"!p |> Promise.tryStart !fail"
+
+inl promise_parallel forall t. (p : a i32 (promise t)) : promise (a i32 t) =
+    $"!p |> Promise.Parallel"
+
+inl promise_all forall t. (p : a i32 (promise t)) : promise (a i32 t) =
+    $"!p |> Promise.all"
+
+
 inl object_keys forall t. (obj : t) : a i32 string = $"JS.Constructors.Object.keys !obj |> unbox<string[]>"
 inl object_values obj : a i32 string = $"JS.Constructors.Object.values !obj"
 inl object_entries obj : a i32 string = $"JS.Constructors.Object.entries !obj"

@@ -33,8 +33,8 @@ inl union_list_get forall union_type union_key_type value_type.
     real
         union_record_check
             `union_type
-            `(`({$union_key=record_typecheck_value}))
-            {check_length=false; check_type=CheckOption}
+            `(`({ $union_key = record_typecheck_value }))
+            { check_length = false; check_type = CheckOption }
 
 
     union_list |> list_find_last fun union_item =>
@@ -67,6 +67,8 @@ inl generate_six_digit_numeric_hash_from_string (text : string) : string =
         fun (acc : i32) n => acc + ((real real_unbox `u8 `i32 n) * 14)
         100000
     |> to_string'
+
+nominal exn = $"exn"
 
 prototype append t : t -> t -> t
 instance append list t = fun (x : list t) (y : list t) => y |> listm.append x

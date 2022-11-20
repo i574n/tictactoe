@@ -16,14 +16,15 @@ let counter (props : mut solid_props) =
         use_fetch
             "profile/tmp/counter"
             (profile_tmp_counter ())
-            fun new_state state new_value =>
+            fun new_value =>
                 set_profile_tmp_counter new_value
             fun client =>
-                profile_tmp_counter ()
-                |> am.fold
-                    fun acc (timestamp, n) => acc + 1i32
-                    0i32
-                |> promise
+                promise_create fun res err =>
+                    profile_tmp_counter ()
+                    |> am.fold
+                        fun acc (timestamp, n) => acc + 1i32
+                        0i32
+                    |> res
 
     create_custom_component row {
         Status = CheckHidden
@@ -35,8 +36,8 @@ let counter (props : mut solid_props) =
                 stack
                     fun props' => { props' with
                         AlignItems = Some "start"
-                        Direction = Some <| breakpoints {initial = "row"; sm = "column"}
-                        MarginBottom = Some <| breakpoints {initial = "0"; sm = "8px"}
+                        Direction = Some <| breakpoints { initial = "row"; sm = "column" }
+                        MarginBottom = Some <| breakpoints { initial = "0"; sm = "8px" }
                         Spacing = Some "7px"
                         Padding = Some "3px"
                     }

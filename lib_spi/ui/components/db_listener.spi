@@ -67,10 +67,9 @@ let db_listener (props : mut ()) =
                     | Some connection => connection
                     | None =>
                         inl url = new_url db_connection_options' options.server_type
-                        inl db = new_db client_type url
                         {
                             client_type
-                            db
+                            db = new_db client_type url
                             url
                         }
 

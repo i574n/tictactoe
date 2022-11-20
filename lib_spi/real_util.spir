@@ -10,7 +10,7 @@ union union_record_check_type =
     | CheckEqual
     | CheckOption
 
-inl union_record_check forall union_type record_type. {check_length check_type} =
+inl union_record_check forall union_type record_type. { check_length check_type } =
     union_to_record
         `union_type
         forall union_record_type. =>

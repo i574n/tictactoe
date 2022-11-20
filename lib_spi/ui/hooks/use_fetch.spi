@@ -341,7 +341,6 @@ open js
 open db
 
 
-nominal promise t = t
 nominal client = any // $a"algosdk.Algodv2"
 
 
@@ -350,11 +349,12 @@ inl generate_color (text : string) : string =
     inl color = generate_six_digit_numeric_hash_from_string text
     $"$\"#{!color}\""
 
+type subscription = {client_type : client_type; subscription : i64; url : string}
 
 let use_fetch forall state_type value_type.
     (content_address : string)
     (proxy : state_type)
-    (apply : () -> () -> state_type -> ())
+    (setter : setter state_type)
     (request_fn : client -> promise value_type)
     : (() -> ()) * (() -> ())
     =
@@ -362,16 +362,16 @@ let use_fetch forall state_type value_type.
 
     inl events, set_events = create_signal ()
     inl timers, set_timers = create_signal ()
-    inl values, set_values = create_signal ()
-    inl subscriptions, set_subscriptions = create_signal ()
+    inl values, set_values = create_signal (a ;[] : a i32 value_type)
+    inl subscriptions, set_subscriptions = create_signal (a ;[] : a i32 subscription)
 
     inl get_locals () : array any = ;[
         !!("content_address:", content_address)
         !!("proxy:", proxy)
-        !!("events:", events)
-        !!("timers:", timers)
-        !!("values:", values)
-        !!("subscriptions:", subscriptions)
+        !!("events:", events ())
+        !!("timers:", timers ())
+        !!("values:", values ())
+        !!("subscriptions:", subscriptions ())
         !!("db_connections:", db_connections ())
     ]
     inl color = generate_color content_address
@@ -379,22 +379,40 @@ let use_fetch forall state_type value_type.
     log Debug ;[!!"> use_fetch ()"]
 
     inl connections_change (db_connections' : a i32 db_connection) =
-        inl client_type = GunRsClient
+        inl subscriptions' = subscriptions ()
 
-        inl subscriptions =
+        inl new_subscriptions =
             db_connections'
-            |> am.map fun ({client_type url db} as db_connection) =>
-                log Info ;[
-                    !!"> use_fetch > connections_change > before db_on"
-                    !!("db_connection:", db_connection)
-                ]
-                inl subscription = db_on db content_address client_type
-                subscription
+            |> am.map fun {client_type url db} =>
+                // log Info ;[
+                //     !!"> use_fetch > connections_change > before db_on"
+                //     !!("db_connection:", db_connection)
+                // ]
+                subscriptions'
+                |> array_find_last fun subscription =>
+                    if subscription.client_type = client_type && subscription.url = url
+                    then Some subscription
+                    else None
+                |> function
+                | Some subscription => subscription
+                | None =>
+                    {
+                        client_type
+                        url
+                        subscription = db_on db content_address client_type
+                    }
 
-        log Info ;[
-            !!"> use_fetch > connections_change"
-            !!("subscriptions:", subscriptions)
-        ]
+        inl subscriptions_hash (subscriptions : a i32 subscription) =
+            subscriptions |> am.map fun { client_type url } => client_type, url
+
+        if subscriptions_hash subscriptions' <> subscriptions_hash new_subscriptions then
+            log Info ;[
+                !!"> use_fetch > connections_change"
+                !!("db_connections':", db_connections')
+                !!("subscriptions':", subscriptions')
+                !!("new_subscriptions:", new_subscriptions)
+            ]
+            set_subscriptions new_subscriptions
 
     inl debounced_connections_change = debounce connections_change (get_db_init_timeout ())
     create_effect fun () =>
@@ -413,10 +431,29 @@ let use_fetch forall state_type value_type.
     real on_cleanup on_unload'
 
     inl request () =
+        let timestamp = ticks ()
+        inl value_promise = request_fn ($"()" : client)
+            // |> promise_map setter
+
         log Info ;[
             !!">> use_fetch request()"
         ]
-        ()
+
+        value_promise
+        |> promise_iter fun value =>
+            log Info ;[
+                !!">> use_fetch request() > promise_iter"
+                !!("value:", value)
+            ]
+            set_values <| values () /@ a ;[value]
+
+    create_effect fun () =>
+        inl values' = values ()
+        log Info ;[
+            !!">> use_fetch > effect > values change"
+            !!("values':", values')
+        ]
+
     inl clear () =
         log Info ;[
             !!">> use_fetch clear()"
