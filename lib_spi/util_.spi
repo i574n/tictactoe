@@ -58,6 +58,8 @@ inl to_string' forall a. (obj : a) : string = $"!obj.ToString ()"
 inl ticks () : i64 = $"DateTime.UtcNow.Ticks / 1000L"
 inl random () : i32 = $"Random().Next ()"
 
+inl array_last forall t. (items : a i32 t) : t = $"Array.last !items"
+
 inl string_split (separator : char) (s : string) : a i32 string = $"!s.Split [| !separator |]"
 
 inl generate_six_digit_numeric_hash_from_string (text : string) : string =

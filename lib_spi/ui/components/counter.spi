@@ -16,8 +16,8 @@ let counter (props : mut solid_props) =
         use_fetch
             "profile/tmp/counter"
             (profile_tmp_counter ())
-            fun new_value =>
-                set_profile_tmp_counter new_value
+            fun (proxy, (timestamp, new_value)) =>
+                set_profile_tmp_counter (proxy /@ a ;[timestamp, new_value])
             fun client =>
                 promise_create fun res err =>
                     profile_tmp_counter ()

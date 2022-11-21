@@ -351,10 +351,10 @@ inl generate_color (text : string) : string =
 
 type subscription = {client_type : client_type; subscription : i64; url : string}
 
-let use_fetch forall state_type value_type.
+let use_fetch forall state_type {append} value_type.
     (content_address : string)
     (proxy : state_type)
-    (setter : setter state_type)
+    (setter : setter (state_type * (i64 * value_type)))
     (request_fn : client -> promise value_type)
     : (() -> ()) * (() -> ())
     =
@@ -362,7 +362,7 @@ let use_fetch forall state_type value_type.
 
     inl events, set_events = create_signal ()
     inl timers, set_timers = create_signal ()
-    inl values, set_values = create_signal (a ;[] : a i32 value_type)
+    inl values, set_values = create_signal (a ;[] : a i32 (i64 * value_type))
     inl subscriptions, set_subscriptions = create_signal (a ;[] : a i32 subscription)
 
     inl get_locals () : array any = ;[
@@ -371,19 +371,42 @@ let use_fetch forall state_type value_type.
         !!("events:", events ())
         !!("timers:", timers ())
         !!("values:", values ())
-        !!("subscriptions:", subscriptions ())
-        !!("db_connections:", db_connections ())
+        !!("subscriptions:", subscriptions () |> am.map fun { client_type subscription } => client_type, subscription)
+        !!("db_connections:", db_connections () |> am.map fun { client_type } => client_type)
     ]
     inl color = generate_color content_address
     inl log = use_log get_locals color
     log Debug ;[!!"> use_fetch ()"]
+
+    inl on_value (new_value : value_type) =
+
+        log Info ;[
+            !!"> use_fetch > on_value"
+            !!("new_value:", new_value)
+        ]
+
+        inl values' = values ()
+        inl set () =
+            inl timestamp = ticks ()
+            inl new_item = timestamp, new_value
+            inl new_values = values' /@ a ;[new_item]
+            set_values new_values
+            setter (proxy, new_item)
+
+        if length values' > 0 then
+            inl last_timestamp, last_value =
+                values' |> array_last
+
+            if $"!last_value <> !new_value" then
+                set ()
+        else set()
 
     inl connections_change (db_connections' : a i32 db_connection) =
         inl subscriptions' = subscriptions ()
 
         inl new_subscriptions =
             db_connections'
-            |> am.map fun {client_type url db} =>
+            |> am.map fun { client_type url db } =>
                 // log Info ;[
                 //     !!"> use_fetch > connections_change > before db_on"
                 //     !!("db_connection:", db_connection)
@@ -399,7 +422,7 @@ let use_fetch forall state_type value_type.
                     {
                         client_type
                         url
-                        subscription = db_on db content_address client_type
+                        subscription = db_on db content_address client_type on_value
                     }
 
         inl subscriptions_hash (subscriptions : a i32 subscription) =
@@ -432,7 +455,8 @@ let use_fetch forall state_type value_type.
 
     inl request () =
         let timestamp = ticks ()
-        inl value_promise = request_fn ($"()" : client)
+        inl value_promise =
+            request_fn ($"()" : client)
             // |> promise_map setter
 
         log Info ;[
@@ -445,14 +469,30 @@ let use_fetch forall state_type value_type.
                 !!">> use_fetch request() > promise_iter"
                 !!("value:", value)
             ]
-            set_values <| values () /@ a ;[value]
+
+            set_values <| values () /@ a ;[timestamp, value]
 
     create_effect fun () =>
         inl values' = values ()
+        inl db_connections' = db_connections ()
+
         log Info ;[
             !!">> use_fetch > effect > values change"
-            !!("values':", values')
         ]
+
+        inl new_requests =
+            db_connections'
+            |> am.map fun { client_type url db } =>
+                values'
+                |> am.iter fun (timestamp, value) =>
+                    log Info ;[
+                        !!">> use_fetch > effect > values change > db_put"
+                        !!("timestamp:", timestamp)
+                        !!("value:", value)
+                    ]
+                    db_put db content_address timestamp value
+
+        ()
 
     inl clear () =
         log Info ;[

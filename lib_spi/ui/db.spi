@@ -322,6 +322,25 @@ inl get_db_resub_timeout () : i32 = 10000
 //         }
 //     }
 // }
+inl db_put forall t.
+    (db : any)
+    // (client_type : client_type)
+    // (server_type : server_type)
+    (content_address : string)
+    (timestamp : i64)
+    (new_value : t)
+    : () =
+    let node = get_db_node db content_address
+    $"!node?put !new_value" : ()
+    // if client_type = GunJsClient && server_type = GunRsServer then
+    //     let db = new_db GunRsServer ("http://localhost:8765/gun")
+    //     if db then
+    //         get_db_init_timeout ()
+    //         |> setTimeout (fun () =>
+    //             let node = get_db_node db content_address
+    //             $"!node?put !new_value" : ()
+    //         )
+
 
 // export const dbOn = <TState extends DbState, TProxy extends Proxy>(
 //     state: TState,
@@ -351,13 +370,20 @@ inl get_db_resub_timeout () : i32 = 10000
 //         }
 //     }
 // }
-inl db_on
+inl db_on forall value_type.
     (db : any)
     (content_address : string)
     (client_type : client_type)
+    (on_value : value_type -> ())
     : i64
     =
-    inl handler = fun () => ()
+    let on_value (v : value_type) (k : any) =
+        console_fsx.inspect "v:"
+        console_fsx.inspect v
+        console_fsx.inspect "k:"
+        console_fsx.inspect k
+        on_value v
+    inl handler = $"emitJsExpr () $\"(v: any, k: any) => {!on_value}(v)(k)\"" : (any * any) -> ()
     inl node = get_db_node db content_address
     match client_type with
     | GunRsClient =>

@@ -42,14 +42,14 @@ inl use_settings_log_level () : atom log_level_type =
 inl use_settings_ui_modal () : atom (option i32) =
     real use_atom `(`(new_state_context ())) `(option i32) fun context => context.settings.ui.modal
 
-inl use_profile_tmp_counter () : atom (a i32 (i32 * i32)) =
-    real use_atom `(`(new_state_context ())) `(a i32 (i32 * i32)) fun context => context.profile.tmp.counter
+inl use_profile_tmp_counter () : atom (a i32 (i64 * i32)) =
+    real use_atom `(`(new_state_context ())) `(a i32 (i64 * i32)) fun context => context.profile.tmp.counter
 
-inl use_profile_tmp_chain_status () : atom (a i32 (i32 * any)) =
-    real use_atom `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_status
+inl use_profile_tmp_chain_status () : atom (a i32 (i64 * any)) =
+    real use_atom `(`(new_state_context ())) `(a i32 (i64 * any)) fun context => context.profile.tmp.chain_status
 
-inl use_profile_tmp_chain_deploy () : atom (a i32 (i32 * any)) =
-    real use_atom `(`(new_state_context ())) `(a i32 (i32 * any)) fun context => context.profile.tmp.chain_deploy
+inl use_profile_tmp_chain_deploy () : atom (a i32 (i64 * any)) =
+    real use_atom `(`(new_state_context ())) `(a i32 (i64 * any)) fun context => context.profile.tmp.chain_deploy
 
 let use_log get_locals color =
     inl log_level, set_log_level = use_settings_log_level ()
