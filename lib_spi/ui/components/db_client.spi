@@ -44,6 +44,7 @@ let db_client (props : mut db_client_props) =
                 match props.ClientType with
                 | GunRsClient => "Gun Rust"
                 | GunJsClient => "Gun JavaScript"
+                | _ => "???"
                 |> str
             ]
         }

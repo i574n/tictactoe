@@ -23,6 +23,7 @@ inl gun_rindexed_ () = import_side_effects "gun/lib/rindexed"
 // const DB_TYPE = ['gun_rs', 'gun_js'] as const
 
 union client_type =
+    | Memory
     | GunRsClient
     | GunJsClient
 
@@ -111,6 +112,7 @@ inl new_db (client_type : client_type) (url : string) : any =
             new_js_obj_prop "radisk" true
         ])
         create_new gun_js args
+    | Memory => failwith "new_db Memory"
 
 type db_connection_options =
     {
@@ -371,18 +373,30 @@ inl db_put forall t.
 //     }
 // }
 inl db_on forall value_type.
+    (get_log_level : () -> log_level_type)
     (db : any)
     (content_address : string)
     (client_type : client_type)
-    (on_value : value_type -> ())
+    (on_value : i64 -> value_type -> ())
     : i64
     =
+    inl get_locals () : array any = ;[
+        !!("content_address:", content_address)
+        !!("client_type:", client_type)
+    ]
+    inl log = new_log get_log_level get_locals "#666"
+    log Debug ;[!!"> db_on ()"]
+
     let on_value (v : value_type) (k : any) =
-        console_fsx.inspect "v:"
-        console_fsx.inspect v
-        console_fsx.inspect "k:"
-        console_fsx.inspect k
-        on_value v
+        inl new_timestamp = ticks ()
+
+        log Info ;[
+            !!"> db_on > on_value ()"
+            !!("v:", v)
+            !!("k:", k)
+            !!("new_timestamp:", new_timestamp)
+        ]
+        on_value new_timestamp v
     inl handler = $"emitJsExpr () $\"(v: any, k: any) => {!on_value}(v)(k)\"" : (any * any) -> ()
     inl node = get_db_node db content_address
     match client_type with
@@ -391,6 +405,7 @@ inl db_on forall value_type.
     | GunJsClient =>
         $"!node?on !handler" : ()
         ticks ()
+    | Memory => failwith "db_on Memory"
 
 
 // export const dbOff = <TState extends DbState>(

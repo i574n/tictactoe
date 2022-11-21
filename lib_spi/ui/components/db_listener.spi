@@ -44,13 +44,16 @@ open js
 open db
 
 let db_listener (props : mut ()) =
+    inl db_connections, set_db_connections = use_db_connections ()
+    inl db_connection_options, set_db_connection_options = use_db_connection_options ()
+
     inl get_locals () : array any = ;[
+        !!("db_connection_options':", db_connection_options ())
+        !!("db_connections':", db_connections ())
     ]
     inl log = use_log get_locals "#cf1100"
     log Debug ;[!!"> db_listener ()"]
 
-    inl db_connections, set_db_connections = use_db_connections ()
-    inl db_connection_options, set_db_connection_options = use_db_connection_options ()
 
     inl connections_change { db_connections' db_connection_options' } =
         inl new_connections =
@@ -79,8 +82,6 @@ let db_listener (props : mut ()) =
         if connections_hash db_connections' <> connections_hash new_connections then
             log Info ;[
                 !!"> db_listener > effect"
-                !!("db_connection_options':", db_connection_options')
-                !!("db_connections':", db_connections')
                 !!("new_connections:", new_connections)
             ]
 

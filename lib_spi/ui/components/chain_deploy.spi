@@ -74,7 +74,7 @@ let chain_deploy (props : mut solid_props) =
         use_fetch
             "profile/tmp/chain_deploy"
             (profile_tmp_chain_deploy ())
-            fun (proxy, (timestamp, new_value)) => set_profile_tmp_chain_deploy new_value
+            fun (proxy, { timestamp value }) => set_profile_tmp_chain_deploy value
             fun client =>
                 promise_create fun res err =>
                     profile_tmp_chain_deploy ()

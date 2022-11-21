@@ -16,7 +16,7 @@ let chain_status (props : mut solid_props) =
         use_fetch
             "profile/tmp/chain_status"
             (profile_tmp_chain_status ())
-            fun (proxy, (timestamp, new_value)) => set_profile_tmp_chain_status new_value
+            fun (proxy,{ timestamp value }) => set_profile_tmp_chain_status value
             fun client =>
                 // promise ($"!client?status()?do()" : any)
                 promise_create fun res err =>
