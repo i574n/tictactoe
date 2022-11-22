@@ -66,6 +66,8 @@ let debug (props : mut ()) =
                         OnUnload = None
                         Status = CheckDisabled
                         Props = fun props' => { props' with
+                            JustifyContent = Some "flex-start"
+                            PaddingRight = Some "15px"
                             Title = Some <| str "Debug"
                             Children = Some fun () => ;[
                                 create_component base_table
@@ -105,6 +107,7 @@ let debug (props : mut ()) =
                                             OnLoad = None
                                             OnUnload = None
                                             Props = fun props' => { props' with
+                                                JustifyContent = Some "flex-start"
                                                 Title = Some <| str "State"
                                                 Children = Some fun () => ;[
                                                     pre

@@ -41,8 +41,8 @@ export var spiToFsx = async (mainSpiPath = '', newFsxPath = '', log = false) => 
     const fsxPath = mainSpiPath.replace('.spi', '.fsx')
     fs.writeFileSync(fsxPath, '')
     
-    await util.timeout(spiprojOpenReq(spiprojPath, fs.readFileSync(spiprojPath).toString()), 2000)
-    await util.timeout(spiBuildFileReq(mainSpiPath, 'Fsharp'), 2000)
+    await util.timeout(spiprojOpenReq(spiprojPath, fs.readFileSync(spiprojPath).toString()), 5000)
+    await util.timeout(spiBuildFileReq(mainSpiPath, 'Fsharp'), 5000)
 
     const lines = (await util_node.waitFileChange(fsxPath)).split('\n')
     const [imports, code] = lines.reduce(

@@ -16,6 +16,8 @@ let db_connections (props : mut solid_props) =
                 Status = CheckHidden
                 Props = fun props' => { props' with
                     Id = None
+                    PaddingTop = Some "0"
+                    PaddingBottom = Some "0"
                     PaddingLeft = Some "0"
                     Title = Some <|
                         create_custom_component row {
@@ -45,6 +47,8 @@ let db_connections (props : mut solid_props) =
                 Status = CheckHidden
                 Props = fun props' => { props' with
                     Id = None
+                    PaddingTop = Some "0"
+                    PaddingBottom = Some "0"
                     PaddingLeft = Some "0"
                     Title = Some <|
                         create_custom_component row {

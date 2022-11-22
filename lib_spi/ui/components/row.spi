@@ -46,18 +46,22 @@ let row (props : mut row_props) =
                         Display = Some "flex"
                         FlexDirection = Some "column"
                         FontSize = Some <| props.FontSize /?? "$sm"
-                        JustifyContent = Some "center"
-                        Padding = Some <| breakpoints {
-                            initial = "0"
+                        PaddingTop = Some "0"
+                        PaddingRight = Some <| breakpoints {
+                            initial = props.PaddingRight /?? "0"
                             sm =
                                 match props.PaddingLeft with
                                 | Some ("0") => "0"
-                                | _ => "0 20px 0 0"
+                                | _ => "15px"
                         }
+                        PaddingBottom = Some "0"
+                        PaddingLeft = Some "0"
                     }
                     fun () => ;[
                         box
                             fun props' => { props' with
+                                PaddingTop = Some <| props.PaddingTop /?? "4px"
+                                PaddingBottom = Some <| props.PaddingBottom /?? "2px"
                                 PaddingLeft = Some <| props.PaddingLeft /?? "8px"
                             }
                             fun () => ;[
@@ -86,7 +90,7 @@ let row (props : mut row_props) =
                         Flex = Some "6"
                         FlexDirection = Some "column"
                         FontSize = Some <| props.FontSize /?? "$sm"
-                        JustifyContent = Some "center"
+                        JustifyContent = Some <| props.JustifyContent /?? "center"
                         LineHeight = Some "$base"
                         MarginTop = Some "0"
                         MarginRight = Some "0"
@@ -94,7 +98,7 @@ let row (props : mut row_props) =
                         MarginBottom = Some <| props.MarginBottom /?? "0"
                         MaxHeight = Some "85vh"
                         Outline = Some "0"
-                        OverflowY = Some "auto"
+                        Overflow = Some "auto"
                         Padding = Some <| props.Padding /?? "0"
                     }
                     fun () => ;[

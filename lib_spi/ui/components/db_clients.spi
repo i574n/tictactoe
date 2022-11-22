@@ -18,7 +18,6 @@ let db_clients (props : mut db_clients_props) =
         Props = fun props' => { props' with
             Id = None
             MarginLeft = Some "8px"
-            MarginBottom = Some "4px"
             Title = Some <| str "Clients"
             Children = Some fun () => ;[
                 create_custom_component db_client {

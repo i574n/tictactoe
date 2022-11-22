@@ -37,8 +37,8 @@ let content (props : mut solid_props) =
                     Display = Some "flex"
                     Flex = Some "1"
                     FlexDirection = Some "column"
-                    OverflowY = Some "auto"
                     OverflowX = Some "hidden"
+                    OverflowY = Some "auto"
                 }
                 fun () => ;[
                     create_custom_component row {

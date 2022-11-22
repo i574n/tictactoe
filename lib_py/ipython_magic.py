@@ -159,9 +159,14 @@ def spiral(arg, cell, test=False):
 
                     new_code_fsx = ''
                     start = time.time()
-                    while new_code_fsx == '' and time.time() - start < timeout_seconds:
+
+                    def read_fsx():
                         time.sleep(0.5)
                         new_code_fsx = util.read_file(fsx_path).strip(" \n")
+
+                    while new_code_fsx == '' and time.time() - start < timeout_seconds:
+                        read_fsx()
+                    read_fsx()
 
                     if arg == 'run':
                         util.write_file(fsx_path, '')

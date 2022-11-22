@@ -7,7 +7,7 @@ let base_table (props : mut solid_props) =
             Display = Some "flex"
             Flex = Some "1"
             FlexDirection = Some "column"
-            OverflowX = Some "hidden"
+            OverflowX = Some <| props.OverflowX /?? "hidden"
             OverflowY = Some <| props.OverflowY /?? "hidden"
         }
         fun () => ;[

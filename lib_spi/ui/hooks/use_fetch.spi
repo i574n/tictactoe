@@ -365,7 +365,7 @@ type db_value value_type =
 
 inl use_fetch forall state_type {append} value_type.
     (content_address : string)
-    (proxy : state_type)
+    (getter : getter state_type)
     (setter : setter (state_type * db_value value_type))
     (request_fn : client -> promise value_type)
     : (() -> ()) * (() -> ())
@@ -375,11 +375,7 @@ inl use_fetch forall state_type {append} value_type.
 
     inl events, set_events = create_signal ()
     inl timers, set_timers = create_signal ()
-    inl values, set_values =
-        create_signal (
-            a ;[]
-            : a i32 (db_value value_type)
-        )
+    inl value, set_value = create_signal (None : option (db_value value_type))
     inl subscriptions, set_subscriptions = create_signal (a ;[] : a i32 subscription)
 
     inl subscriptions_to_string (subscriptions : a i32 subscription) =
@@ -387,10 +383,10 @@ inl use_fetch forall state_type {append} value_type.
 
     inl get_locals () : array any = ;[
         !!("content_address:", content_address)
-        !!("proxy:", proxy)
+        !!("getter:", getter ())
         !!("events:", events ())
         !!("timers:", timers ())
-        !!("values:", values ())
+        !!("value:", value ())
         !!("subscriptions:", subscriptions () |> subscriptions_to_string)
         !!("db_connections:", db_connections () |> am.map fun { client_type } => client_type)
     ]
@@ -398,47 +394,86 @@ inl use_fetch forall state_type {append} value_type.
     inl log = use_log get_locals color
     log Debug ;[!!"> use_fetch ()"]
 
-    create_effect fun () =>
-        inl values' = values ()
-        inl db_connections' = db_connections ()
+    // create_effect fun () =>
+    //     inl values' = values ()
+    //     inl db_connections' = db_connections ()
 
-        log Info ;[
-            !!">> use_fetch > effect[values'; db_connections']"
-        ]
+    //     log Info ;[
+    //         !!">> use_fetch > effect[values'; db_connections']"
+    //     ]
 
-        db_connections'
-        |> am.iter fun { client_type url db } =>
-            values'
-            |> am.iter fun { timestamp value } =>
-                log Info ;[
-                    !!">> use_fetch > effect[values'; db_connections'] > db_put"
-                    !!("timestamp:", timestamp)
-                    !!("value:", value)
-                ]
-                db_put db content_address timestamp value
+    //     db_connections'
+    //     |> am.iter fun { client_type url db } =>
+    //         inl aux =
+    //             values'
+    //             |> array_find_last fun {
+    //                 timestamp
+    //                 client_type = client_type'
+    //                 value
+    //             } =>
+    //                 client_type = client_type'
+    //                 && timestamp > 0
+    //                 && value <> null
+    //         ()
+                // |> function
+                // | Some subscription => subscription
+                // | None =>
+                //     {
+                //         client_type
+                //         url
+                //         subscription = db_on log_level db content_address client_type (on_value client_type)
+                //     }
+
+            // values'
+            // |> am.iter fun { timestamp value } =>
+            //     log Info ;[
+            //         !!">> use_fetch > effect[values'; db_connections'] > db_put"
+            //         !!("timestamp:", timestamp)
+            //         !!("value:", value)
+            //     ]
+            //     db_put db content_address timestamp value
 
 
-    inl on_value (client_type : client_type) (new_timestamp : i64) (new_value : value_type) =
-        inl values' = values ()
+    inl on_value
+        (client_type : client_type)
+        (db_connections' : a i32 db_connection)
+        (new_timestamp : i64)
+        (new_value : value_type)
+        =
+        inl value' = value ()
         inl set () =
-            inl new_item = { timestamp = new_timestamp; client_type; value = new_value }
-            inl new_values = values' /@ a ;[new_item]
+            inl new_value' = {
+                client_type
+                timestamp = new_timestamp
+                value = new_value
+            }
 
             log Info ;[
                 !!"> use_fetch > on_value > set ()"
-                !!("client_type:", client_type)
-                !!("new_timestamp:", new_timestamp)
                 !!("new_value:", new_value)
             ]
 
-            setter (proxy, new_item)
-            set_values new_values
+            setter (getter (), new_value')
+            set_value (Some new_value')
 
-        if length values' > 0 then
-            inl { value timestamp } = values' |> array_last
-            if $"!value <> !new_value && !new_timestamp > !timestamp" then
-                set ()
-        else set ()
+            db_connections'
+            |> am.iter fun {
+                client_type = connection_client_type
+                url
+                db
+            } =>
+                if connection_client_type <> client_type then
+                    log Info ;[
+                        !!"> use_fetch > on_value > set () > db_put"
+                        !!("new_value:", new_value)
+                        !!("connection_client_type:", connection_client_type)
+                    ]
+                    db_put db content_address new_timestamp new_value
+
+        match value' with
+        | Some { value timestamp } when $"!value <> !new_value && !new_timestamp > !timestamp" => set ()
+        | None => set ()
+        | _ => ()
 
     inl connections_change (db_connections' : a i32 db_connection) =
         inl subscriptions' = subscriptions ()
@@ -461,7 +496,13 @@ inl use_fetch forall state_type {append} value_type.
                     {
                         client_type
                         url
-                        subscription = db_on log_level db content_address client_type (on_value client_type)
+                        subscription =
+                            db_on
+                                log_level
+                                db
+                                content_address
+                                client_type
+                                (on_value client_type db_connections')
                     }
 
         inl subscriptions_hash (subscriptions : a i32 subscription) =
@@ -490,10 +531,12 @@ inl use_fetch forall state_type {append} value_type.
     real on_cleanup on_unload'
 
     inl request () =
+        inl db_connections' = db_connections ()
+
         inl new_timestamp = ticks ()
 
         request_fn ($"()" : client)
-        |> promise_iter (on_value Memory new_timestamp)
+        |> promise_iter (on_value Memory db_connections' new_timestamp)
 
     inl clear () =
         log Info ;[
