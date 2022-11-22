@@ -18,7 +18,7 @@ let state_input forall value_type. (props : mut (state_input_props value_type)) 
             Size = Some "xs"
             Value =
                 props.StateGet ()
-                |> optionm.defaultWith $"JS.undefined"
+                |> optionm.defaultWith (undefined ())
                 |> to_any
                 |> Some
             OnInput =

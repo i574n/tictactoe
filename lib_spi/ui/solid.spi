@@ -92,14 +92,14 @@ inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
 
 inl solid_children (children : () -> array jsx_element) : () -> array jsx_element = real real_children children
 
-inl create_custom_component forall props_type.
+let create_custom_component forall props_type.
     (cmp : mut props_type -> jsx_element)
     (props : props_type)
     : jsx_element
     =
     real create_custom_component `props_type cmp props
 
-inl create_component
+let create_component
     (cmp : mut solid_props -> jsx_element)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
@@ -107,7 +107,7 @@ inl create_component
     =
     real create_component `solid_props cmp props_fn children
 
-inl create_native_component
+let create_native_component
     (cmp : js_function)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
@@ -260,7 +260,7 @@ inl tr_ () = real import "Tr" "@hope-ui/solid"
 inl tr props = create_native_component (tr_ ()) props
 
 inl empty_fragment () : jsx_element =
-    $"JS.undefined"
+    undefined ()
 
 inl str (str : string) : jsx_element =
     real fragment ($"!str |> unbox<`jsx_element>" : jsx_element)

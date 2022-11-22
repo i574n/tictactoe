@@ -337,6 +337,7 @@ open real_solid
 open solid
 open real_state
 open real_js
+open real_util
 open js
 open db
 
@@ -363,7 +364,7 @@ type db_value value_type =
         value : value_type
     }
 
-inl use_fetch forall state_type {append} value_type.
+let use_fetch forall state_type {append} value_type.
     (content_address : string)
     (getter : getter state_type)
     (setter : setter (state_type * db_value value_type))
@@ -542,5 +543,9 @@ inl use_fetch forall state_type {append} value_type.
         log Info ;[
             !!">> use_fetch clear()"
         ]
-        ()
+
+        inl db_connections' = db_connections ()
+
+        inl new_timestamp = ticks ()
+        on_value Memory db_connections' new_timestamp (null ())
     request, clear

@@ -272,14 +272,14 @@ inl debounce_ ()  = import "debounce" "@solid-primitives/scheduled"
 
 inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
 
-let use_color_mode () =
+inl use_color_mode () =
     inl useColorMode' = useColorMode_ ()
     inl obj : any = $"!useColorMode'.Invoke () |> unbox"
     inl color_mode : () -> string = $"!obj?colorMode |> unbox"
     inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox"
     color_mode, toggle_color_mode
 
-let use_context (context : any) =
+inl use_context (context : any) =
     inl useContext' = useContext_ ()
     inl result : any = $"!useContext'.Invoke !context |> unbox"
     result
@@ -364,27 +364,28 @@ type getter a = () -> a
 type setter a = a -> ()
 type atom a = getter a * setter a
 
-inl real_create_signal forall a. (default_value : a) : atom a =
+let real_create_signal forall a. (default_value : a) : atom a =
     inl createSignal' = createSignal_ ()
     inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
-    inl get = $"!fns.[0] |> unbox" : getter a
-    inl set = $"!fns.[1] |> unbox" : setter a
+    inl get = $"!fns.[0] |> unbox<`(getter a)>" : getter a
+    inl set = $"!fns.[1] |> unbox<`(setter a)>" : setter a
     get, set
 
-let real_create_context forall context_type. : any =
-    inl createContext' = createContext_ ()
-    inl context_fn : () -> context_type = $"fun () -> JS.undefined"
-    $"emitJsExpr () $\"{!createContext'}<ReturnType<typeof {!context_fn}>>()\"" : any
+inl real_create_context forall context_type. : any =
+    join
+        inl createContext' = createContext_ ()
+        inl context_fn : () -> context_type = undefined `context_type
+        $"emitJsExpr () $\"{!createContext'}<ReturnType<typeof {!context_fn}>>()\"" : any
 
-let real_create_effect (on : () -> ()) : () =
+inl real_create_effect (on : () -> ()) : () =
     inl create_effect' = createEffect_ ()
     $"!create_effect'.Invoke !on |> ignore" : ()
 
-let real_on (deps : () -> array any) (fn : () -> ()) : () -> () =
+inl real_on (deps : () -> array any) (fn : () -> ()) : () -> () =
     inl on' = on_ ()
     $"!on'.Invoke (!deps, !fn) |> unbox<unit -> unit>" : () -> ()
 
-let on_cleanup (fn : () -> ()) =
+inl on_cleanup (fn : () -> ()) =
     inl onCleanup' = onCleanup_ ()
     $"!onCleanup'.Invoke !fn |> ignore" : ()
 

@@ -1,3 +1,4 @@
+open js
 open solid
 open loader
 open state
@@ -39,7 +40,7 @@ let row (props : mut row_props) =
                     fun props' => { props' with
                         BorderBottomWidth = Some <|
                             if custom_props.Status = CheckHidden || checked ()
-                            then breakpoints { initial = $"JS.undefined" : string; sm = "0px !important" }
+                            then breakpoints { initial = undefined () : string; sm = "0px !important" }
                             else "0px !important"
                         BorderColor = Some "$neutral5"
                         Color = Some "$neutral11"
