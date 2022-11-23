@@ -23,13 +23,23 @@ inl gun_rindexed_ () = import_side_effects "gun/lib/rindexed"
 // const DB_TYPE = ['gun_rs', 'gun_js'] as const
 
 union client_type =
-    | Memory
     | GunRsClient
     | GunJsClient
+    | Memory
 
 union server_type =
     | GunRsServer
     | GunJsServer
+
+
+instance to_string client_type = function
+    | GunRsClient => "Gun Rust"
+    | GunJsClient => "Gun JavaScript"
+    | Memory => "Memory"
+
+instance to_string server_type = function
+    | GunRsServer => "Gun Rust"
+    | GunJsServer => "Gun JavaScript"
 
 // export type Db =
 //     | { type: 'gun_rs', url: string, db: GunRS }
@@ -382,7 +392,7 @@ inl db_on forall value_type.
     =
     inl get_locals () : array any = ;[
         !!("content_address:", content_address)
-        !!("client_type:", client_type)
+        !!("client_type:", client_type |> to_string)
     ]
     inl log = new_log get_log_level get_locals "#666"
     log Debug ;[!!"> db_on ()"]

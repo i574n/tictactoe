@@ -42,8 +42,8 @@ inl use_settings_log_level () : atom log_level_type =
 inl use_settings_ui_modal () : atom (option i32) =
     real use_atom `(`(new_state_context ())) `(option i32) fun context => context.settings.ui.modal
 
-inl use_profile_tmp_counter () : atom (a i32 (i64 * i32)) =
-    real use_atom `(`(new_state_context ())) `(a i32 (i64 * i32)) fun context => context.profile.tmp.counter
+inl use_profile_tmp_counter () : atom (a i32 (i64 * (option i32))) =
+    real use_atom `(`(new_state_context ())) `(a i32 (i64 * (option i32))) fun context => context.profile.tmp.counter
 
 inl use_profile_tmp_chain_status () : atom (a i32 (i64 * any)) =
     real use_atom `(`(new_state_context ())) `(a i32 (i64 * any)) fun context => context.profile.tmp.chain_status

@@ -27,10 +27,13 @@ inl import_side_effects (module : string) : () =
 inl create_obj (obj : a i32 js_obj_prop) : any =
     $"createObj !obj"
 
-inl stringify forall a. (obj : a) : string =
+inl json_parse forall a. (json : string) : a =
+    $"JS.JSON.parse !json"
+
+inl json_stringify forall a. (obj : a) : string =
     $"JS.JSON.stringify !obj"
 
-inl stringify_fmt forall a. (obj : a) : string =
+inl json_stringify_space forall a. (obj : a) : string =
     $"emitJsExpr !obj \"JSON.stringify($0, null, 2)\""
 
 inl null forall t. () : t =
@@ -49,7 +52,7 @@ inl create_new (o : js_function) (args : any) : any =
 
 instance to_string any = to_string'
 
-inl (~!!) obj = to_any obj
+instance (~!!) any = to_any
 
 nominal promise t = $"JS.Promise<`t>"
 
@@ -175,9 +178,9 @@ let new_log
                 !!("timestamp:", timestamp)
                 !!("run_id:", run_id)
             ]
-            inl obj_json : string = stringify (obj_fn ())
-            inl args_json : string = stringify args
-            inl locals_json : string = stringify locals
+            inl obj_json : string = json_stringify (obj_fn ())
+            inl args_json : string = json_stringify args
+            inl locals_json : string = json_stringify locals
             inl new_args =
                 if env.is_test then
                     args_json,

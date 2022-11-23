@@ -14,7 +14,8 @@ type db_connection_options_input_props value_type =
 
 let db_connection_options_input forall value_type. (props : mut (db_connection_options_input_props value_type)) =
     inl db_connection_options, set_db_connection_options = use_db_connection_options ()
-    create_custom_component state_input {
+
+    /!!state_input {
         StateGet = fun state =>
             db_connection_options ()
             |> array_find_last fun db_connection =>

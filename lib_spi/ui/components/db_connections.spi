@@ -7,10 +7,10 @@ open db_clients
 
 
 let db_connections (props : mut solid_props) =
-    create_component base_table
+    /!!!base_table
         id
         fun () => ;[
-            create_custom_component row {
+            /!!row {
                 OnLoad = None
                 OnUnload = None
                 Status = CheckHidden
@@ -20,7 +20,7 @@ let db_connections (props : mut solid_props) =
                     PaddingBottom = Some "0"
                     PaddingLeft = Some "0"
                     Title = Some <|
-                        create_custom_component row {
+                        /!!row {
                             OnLoad = None
                             OnUnload = None
                             Status = CheckHidden
@@ -28,20 +28,20 @@ let db_connections (props : mut solid_props) =
                                 Id = None
                                 Title = Some <| str "Gun Rust"
                                 Children = Some fun () => ;[
-                                    create_custom_component db_connection_options {
+                                    /!!db_connection_options {
                                         ServerType = GunRsServer
                                     }
                                 ]
                             }
                         }
                     Children = Some fun () => ;[
-                        create_custom_component db_clients {
+                        /!!db_clients {
                             ServerType = GunRsServer
                         }
                     ]
                 }
             }
-            create_custom_component row {
+            /!!row {
                 OnLoad = None
                 OnUnload = None
                 Status = CheckHidden
@@ -51,7 +51,7 @@ let db_connections (props : mut solid_props) =
                     PaddingBottom = Some "0"
                     PaddingLeft = Some "0"
                     Title = Some <|
-                        create_custom_component row {
+                        /!!row {
                             OnLoad = None
                             OnUnload = None
                             Status = CheckHidden
@@ -59,14 +59,14 @@ let db_connections (props : mut solid_props) =
                                 Id = None
                                 Title = Some <| str "Gun JavaScript"
                                 Children = Some fun () => ;[
-                                    create_custom_component db_connection_options {
+                                    /!!db_connection_options {
                                         ServerType = GunJsServer
                                     }
                                 ]
                             }
                         }
                     Children = Some fun () => ;[
-                        create_custom_component db_clients {
+                        /!!db_clients {
                             ServerType = GunJsServer
                         }
                     ]

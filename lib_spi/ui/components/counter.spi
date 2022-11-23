@@ -22,9 +22,10 @@ let counter (props : mut solid_props) =
                 promise_create fun res err =>
                     profile_tmp_counter ()
                     |> length
+                    |> Some
                     |> res
 
-    create_custom_component row {
+    /!!row {
        Status = CheckHidden
         OnLoad = None
         OnUnload = None
@@ -45,10 +46,10 @@ let counter (props : mut solid_props) =
                             fun () => ;[
                                 str "Counter"
                             ]
-                        create_component base_button
+                        /!!!base_button
                             fun props' => { props' with
                                 LeftIcon = Some <|
-                                    create_custom_component base_icon {
+                                    /!!base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
                                         Css = fun props' => { props' with
@@ -61,10 +62,10 @@ let counter (props : mut solid_props) =
                             fun () => ;[
                                 str "Request"
                             ]
-                        create_component base_button
+                        /!!!base_button
                             fun props' => { props' with
                                 LeftIcon = Some <|
-                                    create_custom_component base_icon {
+                                    /!!base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
                                         Css = fun props' => { props' with
@@ -79,13 +80,13 @@ let counter (props : mut solid_props) =
                             ]
                     ]
             Children = Some fun () => ;[
-                create_component base_table
+                /!!!base_table
                     id
                     fun () => ;[
                         index' {
                             Each' = profile_tmp_counter () |> am.toList |> listm.rev |> listm.toArray
                         } fun item => ;[
-                            create_custom_component row {
+                            /!!row {
                                 Status = CheckHidden
                                 OnLoad = None
                                 OnUnload = None
@@ -96,10 +97,12 @@ let counter (props : mut solid_props) =
                                         pre
                                             id
                                             fun () => ;[
-                                                item ()
-                                                |> snd
-                                                |> real stringify_fmt `i32
-                                                |> str
+                                                match item () |> snd with
+                                                | Some value =>
+                                                    value
+                                                    |> real json_stringify_space `i32
+                                                    |> str
+                                                | None => str "None"
                                             ]
                                     ]
                                 }

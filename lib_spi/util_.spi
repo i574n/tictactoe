@@ -50,6 +50,8 @@ let rec pad (count : i32) (n : string) : string =
     inl n_length : i32 = $"String.length !n"
     if n_length < count then pad count ($"$\"0{!n}\"" : string) else n
 
+prototype (~!!) r : forall t. t -> r
+
 prototype to_string t : t -> string
 prototype of_string t : string -> t
 

@@ -16,7 +16,7 @@ let external_link (props : mut solid_props) =
                     str <| props.Href /?? ""
                 ]
             str "&nbsp;"
-            create_custom_component base_icon {
+            /!!base_icon {
                 Css = fun props' => { props' with
                     MarginTop = Some "-13px"
                     MarginLeft = None

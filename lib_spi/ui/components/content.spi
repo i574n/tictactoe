@@ -29,10 +29,10 @@ let content (props : mut solid_props) =
         }
         fun () => ;[
             if env.github_run_id = ""
-            then create_custom_component debug ()
+            then /!!debug ()
             else empty_fragment ()
 
-            create_component base_table
+            /!!!base_table
                 fun props' => { props' with
                     Display = Some "flex"
                     Flex = Some "1"
@@ -41,47 +41,47 @@ let content (props : mut solid_props) =
                     OverflowY = Some "auto"
                 }
                 fun () => ;[
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = fun props' => { props' with
                             Title = Some <| str "Links"
                             Children = Some fun () => ;[
-                                create_component links
+                                /!!!links
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = fun props' => { props' with
                             Title = Some <| str "Settings"
                             Children = Some fun () => ;[
-                                create_component settings
+                                /!!!settings
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckDisabled
                         OnLoad = None
                         OnUnload = None
@@ -89,21 +89,21 @@ let content (props : mut solid_props) =
                             Id = Some "db"
                             Title = Some <| str "Chain"
                             Children = Some fun () => ;[
-                                create_component chain
+                                /!!!chain
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
 
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckDisabled
                         OnLoad = None
                         OnUnload = None
@@ -111,47 +111,47 @@ let content (props : mut solid_props) =
                             Id = Some "db"
                             Title = Some <| str "Database"
                             Children = Some fun () => ;[
-                                create_component db_connections
+                                /!!!db_connections
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
 
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    create_custom_component row {
+                    /!!row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = fun props' => { props' with
                             Title = Some <| str "Profile"
                             Children = Some fun () => ;[
-                                create_component base_table
+                                /!!!base_table
                                     id
                                     fun () => ;[
-                                        create_component counter
+                                        /!!!counter
                                             id
                                             fun () => ;[]
 
                                         if env.github_run_id <> "" then
-                                            create_component chain_status
+                                            /!!!chain_status
                                                 id
                                                 fun () => ;[]
                                         else empty_fragment ()
 
                                         if env.github_run_id <> "" then
-                                            create_component chain_deploy
+                                            /!!!chain_deploy
                                                 id
                                                 fun () => ;[]
                                         else empty_fragment ()
 
-                                        // create_component diff
+                                        // /!!!diff
                                         //     fun props => ()
                                         //     fun () => ;[]
                                         // |> show_when (env.github_run_id = "" && not env.is_test)

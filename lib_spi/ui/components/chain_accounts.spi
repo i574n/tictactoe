@@ -8,13 +8,13 @@ open state_input
 let chain_accounts (props : mut solid_props) =
     inl chain_accounts, set_chain_accounts = use_chain_accounts ()
 
-    create_component base_table
+    /!!!base_table
         id
         fun () => ;[
             for' {
                 Each' = chain_accounts ()
             } fun account => ;[
-                create_custom_component row {
+                /!!row {
                     OnLoad = None
                     OnUnload = None
                     Status = CheckHidden
@@ -26,10 +26,10 @@ let chain_accounts (props : mut solid_props) =
                             | Player (O) => "o"
                             |> str |> Some
                         Children = Some fun () => ;[
-                            create_component base_table
+                            /!!!base_table
                                 id
                                 fun () => ;[
-                                    create_custom_component row {
+                                    /!!row {
                                         OnLoad = None
                                         OnUnload = None
                                         Status = CheckHidden
@@ -37,7 +37,7 @@ let chain_accounts (props : mut solid_props) =
                                             Padding = Some "3px"
                                             Title = Some <| str "Address"
                                             Children = Some fun () => ;[
-                                                create_custom_component state_input {
+                                                /!!state_input {
                                                     StateGet = fun () =>
                                                         account.address |> get_atom_value |> Some
                                                     StateSet = fun value =>
@@ -46,7 +46,7 @@ let chain_accounts (props : mut solid_props) =
                                             ]
                                         }
                                     }
-                                    create_custom_component row {
+                                    /!!row {
                                         OnLoad = None
                                         OnUnload = None
                                         Status = CheckHidden
@@ -54,7 +54,7 @@ let chain_accounts (props : mut solid_props) =
                                             Padding = Some "3px"
                                             Title = Some <| str "Private Key"
                                             Children = Some fun () => ;[
-                                                create_custom_component state_input {
+                                                /!!state_input {
                                                     StateGet = fun () =>
                                                         account.private_key |> get_atom_value |> Some
                                                     StateSet = fun value =>

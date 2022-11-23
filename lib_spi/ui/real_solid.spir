@@ -274,14 +274,14 @@ inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
 
 inl use_color_mode () =
     inl useColorMode' = useColorMode_ ()
-    inl obj : any = $"!useColorMode'.Invoke () |> unbox"
-    inl color_mode : () -> string = $"!obj?colorMode |> unbox"
-    inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox"
+    inl obj : any = $"!useColorMode'.Invoke () |> unbox<`any>"
+    inl color_mode : () -> string = $"!obj?colorMode |> unbox<unit -> `string>"
+    inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox<unit -> unit>"
     color_mode, toggle_color_mode
 
 inl use_context (context : any) =
     inl useContext' = useContext_ ()
-    inl result : any = $"!useContext'.Invoke !context |> unbox"
+    inl result : any = $"!useContext'.Invoke !context |> unbox<`any>"
     result
 
 inl real_create_memo forall a. (fn : () -> a) : () -> a =
@@ -340,7 +340,7 @@ inl create_native_component
     inl new_cmp = real_unbox `js_function `(any -> jsx_element) cmp
     create_component' `any new_cmp new_props
 
-inl create_custom_component forall props_type.
+let create_custom_component forall props_type.
     (cmp : mut props_type -> jsx_element)
     (props : props_type)
     : jsx_element
@@ -348,7 +348,7 @@ inl create_custom_component forall props_type.
     inl new_props : mut props_type = mut `props_type props
     create_component' `(mut props_type) cmp new_props
 
-inl create_component forall solid_props.
+let create_component forall solid_props.
     (cmp : mut solid_props -> jsx_element)
     (props_fn : solid_props -> solid_props)
     (children : () -> array jsx_element)
@@ -367,8 +367,8 @@ type atom a = getter a * setter a
 let real_create_signal forall a. (default_value : a) : atom a =
     inl createSignal' = createSignal_ ()
     inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
-    inl get = $"!fns.[0] |> unbox<`(getter a)>" : getter a
-    inl set = $"!fns.[1] |> unbox<`(setter a)>" : setter a
+    inl get = $"!fns.[0] |> unbox<unit -> `a>" : getter a
+    inl set = $"!fns.[1] |> unbox<`a -> unit>" : setter a
     get, set
 
 inl real_create_context forall context_type. : any =

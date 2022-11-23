@@ -10,10 +10,10 @@ let chain_connection (props : mut solid_props) =
     inl chain_url, set_chain_url = use_chain_url ()
     inl chain_port, set_chain_port = use_chain_port ()
 
-    create_component base_table
+    /!!!base_table
         id
         fun () => ;[
-            create_custom_component row {
+            /!!row {
                 OnLoad = None
                 OnUnload = None
                 Status = CheckHidden
@@ -21,14 +21,14 @@ let chain_connection (props : mut solid_props) =
                     Padding = Some "3px"
                     Title = Some <| str "Token"
                     Children = Some fun () => ;[
-                        create_custom_component state_input {
+                        /!!state_input {
                             StateGet = chain_token >> Some
                             StateSet = optionm.value >> set_chain_token
                         }
                     ]
                 }
             }
-            create_custom_component row {
+            /!!row {
                 OnLoad = None
                 OnUnload = None
                 Status = CheckHidden
@@ -36,14 +36,14 @@ let chain_connection (props : mut solid_props) =
                     Padding = Some "3px"
                     Title = Some <| str "URL"
                     Children = Some fun () => ;[
-                        create_custom_component state_input {
+                        /!!state_input {
                             StateGet = chain_url >> Some
                             StateSet = optionm.value >> set_chain_url
                         }
                     ]
                 }
             }
-            create_custom_component row {
+            /!!row {
                 OnLoad = None
                 OnUnload = None
                 Status = CheckHidden
@@ -51,7 +51,7 @@ let chain_connection (props : mut solid_props) =
                     Padding = Some "3px"
                     Title = Some <| str "Port"
                     Children = Some fun () => ;[
-                        create_custom_component state_input {
+                        /!!state_input {
                             StateGet = chain_port >> Some
                             StateSet = optionm.value >> set_chain_port
                         }

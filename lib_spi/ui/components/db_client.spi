@@ -15,13 +15,13 @@ let db_client (props : mut db_client_props) =
     inl db_connection_options, set_db_connection_options = use_db_connection_options ()
 
     inl get_locals () : array any = ;[
-        !!("props.ServerType:", props.ServerType)
-        !!("props.ClientType:", props.ClientType)
+        !!("props.ServerType:", props.ServerType |> to_string)
+        !!("props.ClientType:", props.ClientType |> to_string)
     ]
     inl log = use_log get_locals "#666"
     log Debug ;[!!"> db_client ()"]
 
-    create_custom_component base_checkbox {
+    /!!base_checkbox {
         Checked = fun () =>
             db_connection_options ()
             |> am.exists fun connection =>
@@ -41,11 +41,7 @@ let db_client (props : mut db_client_props) =
                     else connection
         Props = fun props' => { props' with
             Children = Some <| fun () => ;[
-                match props.ClientType with
-                | GunRsClient => "Gun Rust"
-                | GunJsClient => "Gun JavaScript"
-                | _ => "???"
-                |> str
+                props.ClientType |> to_string |> str
             ]
         }
     }
