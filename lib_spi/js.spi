@@ -37,9 +37,7 @@ inl json_stringify_space forall a. (obj : a) : string =
     $"emitJsExpr !obj \"JSON.stringify($0, null, 2)\""
 
 inl null forall t. () : t =
-    inl new_value : any = $"emitJsExpr () \"null\""
-    inl new_value : t = $"!new_value |> unbox"
-    new_value
+    $"emitJsExpr () \"null\""
 
 inl undefined forall t. () : t =
     $"JS.undefined"

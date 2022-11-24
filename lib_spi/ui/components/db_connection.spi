@@ -1,0 +1,44 @@
+open solid
+open row
+open db_connection_options
+open db
+open db_clients
+
+
+type db_connection_props =
+    {
+        ServerType : server_type
+    }
+
+let db_connection (props : mut db_connection_props) =
+    /!!row {
+        OnLoad = None
+        OnUnload = None
+        Status = CheckHidden
+        Props = fun props' => { props' with
+            Id = None
+            PaddingTop = Some "0"
+            PaddingBottom = Some "0"
+            PaddingLeft = Some "0"
+            Title = Some <|
+                /!!row {
+                    OnLoad = None
+                    OnUnload = None
+                    Status = CheckHidden
+                    Props = fun props' => { props' with
+                        Id = None
+                        Title = Some <| props.ServerType |> to_string |> str
+                        Children = Some fun () => ;[
+                            /!!db_connection_options {
+                                ServerType = props.ServerType
+                            }
+                        ]
+                    }
+                }
+            Children = Some fun () => ;[
+                /!!db_clients {
+                    ServerType = props.ServerType
+                }
+            ]
+        }
+    }

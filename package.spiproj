@@ -42,6 +42,7 @@ modules:
                 db_connection_options
                 db_client
                 db_clients
+                db_connection
                 db_connections
                 db_listener
                 settings

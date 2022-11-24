@@ -97,7 +97,7 @@ let chain_status (props : mut solid_props) =
                                             fun () => ;[
                                                 item ()
                                                 |> snd
-                                                |> real json_stringify_space `any
+                                                |> json_stringify_space
                                                 |> str
                                             ]
                                     ]

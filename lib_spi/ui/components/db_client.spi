@@ -40,6 +40,17 @@ let db_client (props : mut db_client_props) =
                         }
                     else connection
         Props = fun props' => { props' with
+            Id =
+                inl client =
+                    match props.ClientType with
+                    | GunRsClient => "gunrs"
+                    | GunJsClient => "gunjs"
+                    | Memory => "mem"
+                inl server =
+                    match props.ServerType with
+                    | GunRsServer => "gunrs"
+                    | GunJsServer => "gunjs"
+                Some $"$\"db-{!client}-{!server}\""
             Children = Some <| fun () => ;[
                 props.ClientType |> to_string |> str
             ]

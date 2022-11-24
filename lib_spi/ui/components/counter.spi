@@ -98,6 +98,7 @@ let counter (props : mut solid_props) =
                                             id
                                             fun () => ;[
                                                 match item () |> snd with
+                                                | value when $"!value |> unbox<`any> = null" => str "null"
                                                 | Some value =>
                                                     value
                                                     |> real json_stringify_space `i32

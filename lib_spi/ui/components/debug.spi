@@ -34,7 +34,7 @@ let atom_value forall value_type. (props : mut (atom_value_props value_type)) =
                     fun () => ;[
                         value ()
                         |> props.Get
-                        |> real json_stringify_space `any
+                        |> json_stringify_space
                         |> str
                     ]
             ]
@@ -134,13 +134,12 @@ let debug (props : mut ()) =
                                                                 Hook = use_chain_accounts
                                                                 Get = fun value =>
                                                                     value
-                                                                    |> am.map fun account' =>
-                                                                        {
-                                                                            account = get_atom_value account'.account
-                                                                            private_key = get_atom_value account'.private_key
-                                                                            address = get_atom_value account'.address
-                                                                            mnemonic = get_atom_value account'.mnemonic
-                                                                        }
+                                                                    |> am.map fun account' => {
+                                                                        account = get_atom_value account'.account
+                                                                        private_key = get_atom_value account'.private_key
+                                                                        address = get_atom_value account'.address
+                                                                        mnemonic = get_atom_value account'.mnemonic
+                                                                    }
                                                                     |> to_any
                                                                 Title = "chain.accounts"
                                                             }

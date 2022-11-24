@@ -108,7 +108,7 @@ let content (props : mut solid_props) =
                         OnLoad = None
                         OnUnload = None
                         Props = fun props' => { props' with
-                            Id = Some "db"
+                            Id = Some "db-connections"
                             Title = Some <| str "Database"
                             Children = Some fun () => ;[
                                 /!!!db_connections
