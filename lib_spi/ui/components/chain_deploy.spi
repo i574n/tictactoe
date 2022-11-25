@@ -3,7 +3,7 @@
 // import * as algo_network from "../../../lib_ts/algo_network"
 // import * as tictactoe_pyteal from "../../../lib_ts/tictactoe_pyteal"
 // import * as raw from "../raw"
-// import { Stack, Box } from "@hope-ui/solid"
+// import { Stack, Box } from "@hope-ui/core"
 // import useFetch from "../hooks/useFetch"
 // import useStore from "../hooks/useStore"
 // import BaseButton from "./BaseButton"
@@ -89,9 +89,9 @@ let chain_deploy (props : mut solid_props) =
             Title = Some <|
                 stack
                     fun props' => { props' with
-                        AlignItems = Some <| breakpoints { initial = "center"; sm = "baseline" }
-                        Direction = Some <| breakpoints { initial = "row"; sm = "column" }
-                        MarginBottom = Some <| breakpoints { initial = "0"; sm = "8px" }
+                        AlignItems = Some <| breakpoints { base = "center"; sm = "baseline" }
+                        Direction = Some <| breakpoints { base = "row"; sm = "column" }
+                        MarginBottom = Some <| breakpoints { base = "0"; sm = "8px" }
                         Padding = Some "3px"
                         Spacing = Some "7px"
                     }
@@ -105,7 +105,7 @@ let chain_deploy (props : mut solid_props) =
                             fun props' => { props' with
                                 LeftIcon = Some <|
                                     /!!base_icon {
-                                        Css = fun props' => { props' with
+                                        Xs = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                         Icon = biRegularPlus_
@@ -121,7 +121,7 @@ let chain_deploy (props : mut solid_props) =
                             fun props' => { props' with
                                 LeftIcon = Some <|
                                     /!!base_icon {
-                                        Css = fun props' => { props' with
+                                        Xs = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                         Icon = biRegularMinus_

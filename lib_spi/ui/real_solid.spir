@@ -23,7 +23,6 @@ type solid_props =
         Children : option (() -> array jsx_element)
         ColorScheme : option string
         Compact : option bool
-        Css : option any
         DefaultValue : option string
         Direction : option string
         Display : option string
@@ -76,6 +75,7 @@ type solid_props =
         Value : option any
         When : option any
         Width : option string
+        Xs : option any
         ZIndex : option i32
         Zoom : option string
     }
@@ -98,7 +98,6 @@ inl real_empty_props () : solid_props =
             Children = none `(() -> array jsx_element) ()
             ColorScheme = none `string ()
             Compact = none `bool ()
-            Css = none `any ()
             DefaultValue = none `string ()
             Direction = none `string ()
             Display = none `string ()
@@ -151,6 +150,7 @@ inl real_empty_props () : solid_props =
             Value = none `any ()
             When = none `any ()
             Width = none `string ()
+            Xs = none `any ()
             ZIndex = none `i32 ()
             Zoom = none `string ()
         }
@@ -172,7 +172,6 @@ inl prop_keys () =
         Children = "children"
         ColorScheme = "colorScheme"
         Compact = "compact"
-        Css = "css"
         DefaultValue = "defaultValue"
         Direction = "direction"
         Display = "display"
@@ -225,6 +224,7 @@ inl prop_keys () =
         Value = "value"
         When = "when"
         Width = "width"
+        Xs = "xs"
         ZIndex = "zIndex"
         Zoom = "zoom"
     }
@@ -270,7 +270,7 @@ inl useContext_ ()  = import "useContext" "solid-js"
 
 inl debounce_ ()  = import "debounce" "@solid-primitives/scheduled"
 
-inl useColorMode_ ()  = import "useColorMode" "@hope-ui/solid"
+inl useColorMode_ ()  = import "useColorMode" "@hope-ui/core"
 
 inl use_color_mode () =
     inl useColorMode' = useColorMode_ ()

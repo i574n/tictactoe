@@ -17,7 +17,7 @@ let external_link (props : mut solid_props) =
                 ]
             str "&nbsp;"
             /!!base_icon {
-                Css = fun props' => { props' with
+                Xs = fun props' => { props' with
                     MarginTop = Some "-13px"
                     MarginLeft = None
                 }

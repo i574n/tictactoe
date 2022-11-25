@@ -5,7 +5,7 @@ open js
 
 
 let settings (props : mut solid_props) =
-    inl color_mode, toggle_color_mode = real real_solid.use_color_mode ()
+    // inl color_mode, toggle_color_mode = real real_solid.use_color_mode ()
 
     /!!!base_table
         id
@@ -20,14 +20,14 @@ let settings (props : mut solid_props) =
                     Children = Some fun () => ;[
                         radio_group
                             fun props' => { props' with
-                                DefaultValue = Some <| color_mode ()
-                                OnChange = Some fun _ => toggle_color_mode ()
+                                // DefaultValue = Some <| color_mode ()
+                                // OnChange = Some fun _ => toggle_color_mode ()
                             }
                             fun () => ;[
                                 stack
                                     fun props' => { props' with
                                         Direction = Some "row"
-                                        Spacing = Some "$4"
+                                        Spacing = Some "4"
                                     }
                                     fun () => ;[
                                         radio

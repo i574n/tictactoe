@@ -32,9 +32,9 @@ let chain_status (props : mut solid_props) =
             Title = Some <|
                 stack
                     fun props' => { props' with
-                        AlignItems = Some <| breakpoints { initial = "center"; sm = "baseline" }
-                        Direction = Some <| breakpoints { initial = "row"; sm = "column" }
-                        MarginBottom = Some <| breakpoints { initial = "0"; sm = "8px" }
+                        AlignItems = Some <| breakpoints { base = "center"; sm = "baseline" }
+                        Direction = Some <| breakpoints { base = "row"; sm = "column" }
+                        MarginBottom = Some <| breakpoints { base = "0"; sm = "8px" }
                         Padding = Some "3px"
                         Spacing = Some "7px"
                     }
@@ -50,7 +50,7 @@ let chain_status (props : mut solid_props) =
                                     /!!base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
-                                        Css = fun props' => { props' with
+                                        Xs = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                     }
@@ -66,7 +66,7 @@ let chain_status (props : mut solid_props) =
                                     /!!base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
-                                        Css = fun props' => { props' with
+                                        Xs = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                     }

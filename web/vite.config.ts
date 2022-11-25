@@ -41,11 +41,15 @@ export default defineConfig({
           'gun': ['gun'],
 
           'solid-js': ['solid-js'],
+          'solid-primitives-scheduled': ['@solid-primitives/scheduled'],
           'solid-icons': ['solid-icons'],
+
           'solid-devtools': ['solid-devtools'],
           'solid-devtools-transform': ['@solid-devtools/transform'],
 
-          'hope-ui': ['@hope-ui/solid'],
+          'hope-ui-solid': ['@hope-ui/solid'],
+          'hope-ui-core': ['@hope-ui/core'],
+          'clsx': ['clsx'],
           'stitches': ['@stitches/core'],
           'solid-transition-group': ['solid-transition-group'],
 

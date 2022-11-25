@@ -1,7 +1,7 @@
 import Loader from '../components/Loader'
 import { log1221_1, log1221_2, log1221_3, log1221_4, log1221_5 } from './raw'
 import { For, Index } from 'solid-js'
-import { Box } from '@hope-ui/solid'
+import { Box } from '@hope-ui/core'
 
 
 // const rawFiles = [log1221_1, log1221_2, log1221_3, log1221_4, log1221_5]

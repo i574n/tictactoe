@@ -18,7 +18,9 @@
 
     "@stitches/core": "~1.3.1-1",
     "solid-transition-group": "0.0.12",
-    "@hope-ui/solid": "~0.6"
+    "@hope-ui/solid": "~0.6",
+    "@hope-ui/core": "~1.0.0-next.11",
+    "clsx": "~1.2"
   },
   "devDependencies": {
     "@types/node": "~18.11",

@@ -46,7 +46,7 @@ let debug (props : mut ()) =
 
     box
         fun props' => { props' with
-            BackgroundColor = Some "$blackAlpha12"
+            BackgroundColor = Some "blackAlpha.900"
             Bottom = Some "0"
             Display = Some "flex"
             FlexDirection = Some "column"
@@ -80,25 +80,28 @@ let debug (props : mut ()) =
                                             Props = fun props' => { props' with
                                                 Title = Some <| str "Log Level"
                                                 Children = Some fun () => ;[
-                                                    /!!!base_simple_select
-                                                        fun props' => { props' with
-                                                            Each = Some <|
-                                                                a ;[Debug; Info; Warn; Error]
-                                                                    |> am.map to_string
-                                                                    |> am.map to_any
-                                                            MarginTop = Some "2px"
-                                                            OnChange = Some <| fun value =>
-                                                                set_log_level <|
-                                                                    value
-                                                                    |> to_string
-                                                                    |> of_string
-                                                            Value =
-                                                                log_level ()
-                                                                |> to_string
-                                                                |> to_any
-                                                                |> Some
-                                                        }
-                                                        fun () => ;[]
+                                                    log_level ()
+                                                    |> to_string
+                                                    |> str
+                                                    // /!!!base_simple_select
+                                                    //     fun props' => { props' with
+                                                    //         Each = Some <|
+                                                    //             a ;[Debug; Info; Warn; Error]
+                                                    //                 |> am.map to_string
+                                                    //                 |> am.map to_any
+                                                    //         MarginTop = Some "2px"
+                                                    //         OnChange = Some <| fun value =>
+                                                    //             set_log_level <|
+                                                    //                 value
+                                                    //                 |> to_string
+                                                    //                 |> of_string
+                                                    //         Value =
+                                                    //             log_level ()
+                                                    //             |> to_string
+                                                    //             |> to_any
+                                                    //             |> Some
+                                                    //     }
+                                                    //     fun () => ;[]
                                                 ]
                                             }
                                         }

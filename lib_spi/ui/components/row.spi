@@ -30,8 +30,8 @@ let row (props : mut row_props) =
             Display = Some "flex"
             Flex = Some "1"
             BorderWidth = Some "1px 1px"
-            BorderColor = Some "$neutral5"
-            FlexDirection = Some <| breakpoints { initial = "column"; sm = "row" }
+            BorderColor = Some "neutral.500"
+            FlexDirection = Some <| breakpoints { base = "column"; sm = "row" }
         }
         fun () => ;[
             match props.Title with
@@ -40,16 +40,16 @@ let row (props : mut row_props) =
                     fun props' => { props' with
                         BorderBottomWidth = Some <|
                             if custom_props.Status = CheckHidden || checked ()
-                            then breakpoints { initial = undefined () : string; sm = "0px !important" }
+                            then breakpoints { base = undefined () : string; sm = "0px !important" }
                             else "0px !important"
-                        BorderColor = Some "$neutral5"
-                        Color = Some "$neutral11"
+                        BorderColor = Some "neutral.500"
+                        Color = Some "neutral.400"
                         Display = Some "flex"
                         FlexDirection = Some "column"
-                        FontSize = Some <| props.FontSize /?? "$sm"
+                        FontSize = Some <| props.FontSize /?? "sm"
                         PaddingTop = Some "0"
                         PaddingRight = Some <| breakpoints {
-                            initial = props.PaddingRight /?? "0"
+                            base = props.PaddingRight /?? "0"
                             sm =
                                 match props.PaddingLeft with
                                 | Some ("0") => "0"
@@ -90,9 +90,9 @@ let row (props : mut row_props) =
                         Display = Some "flex"
                         Flex = Some "6"
                         FlexDirection = Some "column"
-                        FontSize = Some <| props.FontSize /?? "$sm"
+                        FontSize = Some <| props.FontSize /?? "sm"
                         JustifyContent = Some <| props.JustifyContent /?? "center"
-                        LineHeight = Some "$base"
+                        LineHeight = Some "base"
                         MarginTop = Some "0"
                         MarginRight = Some "0"
                         MarginLeft = Some <| props.MarginLeft /?? "0"

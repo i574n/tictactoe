@@ -85,7 +85,7 @@ let loader (props : mut loader_props) =
             else
                 box
                     fun props' => { props' with
-                        BackgroundColor = if is_modal () then Some "$bg" else None
+                        BackgroundColor = if is_modal () then Some "neutral.800" else None
                         Bottom = if is_modal () then Some "0" else None
                         Display = Some "flex"
                         Flex = Some "1"
@@ -129,7 +129,7 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     Icon = Some <|
                                                         /!!base_icon {
-                                                            Css = id
+                                                            Xs = id
                                                             Icon = biRegularRefresh_
                                                             Props = id
                                                         }
@@ -144,7 +144,7 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     Icon = Some <|
                                                         /!!base_icon {
-                                                            Css = id
+                                                            Xs = id
                                                             Icon =
                                                                 if is_modal ()
                                                                 then biRegularDownArrow_
@@ -164,7 +164,7 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     Icon = Some <|
                                                         /!!base_icon {
-                                                            Css = id
+                                                            Xs = id
                                                             Icon = biRegularUndo_
                                                             Props = id
                                                         }

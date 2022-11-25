@@ -22,9 +22,9 @@ let content (props : mut solid_props) =
             FlexDirection = Some "column"
             MaxWidth = Some "100vw"
             Height = Some "100vh"
-            BackgroundColor = Some "$bg"
-            FontSize = Some "$sm"
-            Color = Some "$text1"
+            BackgroundColor = Some "neutral.900"
+            FontSize = Some "sm"
+            Color = Some "neutral.400"
             Padding = Some "1px"
         }
         fun () => ;[

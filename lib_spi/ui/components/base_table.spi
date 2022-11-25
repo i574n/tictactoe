@@ -13,7 +13,7 @@ let base_table (props : mut solid_props) =
         fun () => ;[
             tbody
                 fun props' => { props' with
-                    BackgroundColor = Some "$blackAlpha7"
+                    BackgroundColor = Some "blackAlpha.700"
                     Display = Some "flex"
                     FlexDirection = Some "column"
                     Margin = Some "-1px"

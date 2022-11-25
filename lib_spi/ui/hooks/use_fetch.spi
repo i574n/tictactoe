@@ -435,54 +435,55 @@ let use_fetch forall state_type {append} value_type.
             //     db_put db content_address timestamp value
 
 
-    inl on_value
+    let on_value
         (client_type : client_type)
         (db_connections' : a i32 db_connection)
         (new_timestamp : i64)
-        (new_value : value_type)
+        (new_value_raw : value_type)
         =
         inl value' = value ()
-        inl set () =
-            join
-                inl old_value = getter ()
-                inl new_value' = {
-                    client_type
-                    timestamp = new_timestamp
-                    value = new_value
-                }
 
-                log Info ;[
-                    !!"> use_fetch > on_value > set ()"
-                    !!("old_value:", old_value)
-                    !!("client_type:", client_type |> to_string)
-                    !!("new_timestamp:", new_timestamp)
-                    !!("new_value:", new_value)
-                ]
+        inl changed =
+            match value' with
+            | Some { value timestamp } when $"!value <> !new_value_raw && !new_timestamp > !timestamp" => true
+            | None => true
+            | _ => false
 
-                setter (old_value, new_value')
-                set_value (Some new_value')
+        if changed then
+            inl old_value = getter ()
+            inl new_value = {
+                client_type
+                timestamp = new_timestamp
+                value = new_value_raw
+            }
 
-                db_connections'
-                |> am.iter fun {
-                    client_type = connection_client_type
-                    url
-                    db
-                } =>
-                    if connection_client_type <> client_type then
-                        log Info ;[
-                            !!"> use_fetch > on_value > set () > db_put"
-                            !!("old_value:", old_value)
-                            !!("client_type:", client_type |> to_string)
-                            !!("new_timestamp:", new_timestamp)
-                            !!("new_value:", new_value)
-                            !!("connection_client_type:", connection_client_type)
-                        ]
-                        db_put db content_address new_timestamp new_value
+            log Info ;[
+                !!"> use_fetch > on_value > set ()"
+                !!("old_value:", old_value)
+                !!("client_type:", client_type |> to_string)
+                !!("new_timestamp:", new_timestamp)
+                !!("new_value_raw:", new_value_raw)
+            ]
 
-        match value' with
-        | Some { value timestamp } when $"!value <> !new_value && !new_timestamp > !timestamp" => set ()
-        | None => set ()
-        | _ => ()
+            setter (old_value, new_value)
+            set_value (Some new_value)
+
+            db_connections'
+            |> am.iter fun {
+                client_type = connection_client_type
+                url
+                db
+            } =>
+                if connection_client_type <> client_type then
+                    log Info ;[
+                        !!"> use_fetch > on_value > set () > db_put"
+                        !!("old_value:", old_value)
+                        !!("client_type:", client_type |> to_string)
+                        !!("new_timestamp:", new_timestamp)
+                        !!("new_value_raw:", new_value_raw)
+                        !!("connection_client_type:", connection_client_type)
+                    ]
+                    db_put db content_address new_timestamp new_value_raw
 
     inl connections_change (db_connections' : a i32 db_connection) =
         inl subscriptions' = subscriptions ()

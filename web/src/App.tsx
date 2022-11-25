@@ -1,5 +1,5 @@
 import './buffer-shim'
-import { globalCss, HopeProvider } from '@hope-ui/solid'
+import { ColorModeScript, createGlobalStyles, extendTheme, HopeProvider } from '@hope-ui/core'
 import * as ui from "./ui"
 import * as components_spi from "../../lib_ts/components_spi"
 
@@ -14,16 +14,22 @@ function Render(Component: any) {
     )
 }
 
-function App() {
-    globalCss(ui.globalCss)()
+const useGlobalStyles = createGlobalStyles(ui.globalCss)
+const theme = extendTheme({})
 
+function App() {
+    useGlobalStyles()
     return (
         <Render
             Component={components_spi.v1.l0["state_context"].Provider}
             value={components_spi.v1.l0["new_state_context_any"]()}
         >
+            <ColorModeScript
+                initialColorMode='system'
+            />
             <HopeProvider
-                config={ui.config}
+                initialColorMode='system'
+                theme={theme}
             >
                 <Render
                     Component={components_spi.v1.l0["db_listener"]}

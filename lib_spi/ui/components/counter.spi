@@ -22,11 +22,10 @@ let counter (props : mut solid_props) =
                 promise_create fun res err =>
                     profile_tmp_counter ()
                     |> length
-                    |> Some
                     |> res
 
     /!!row {
-       Status = CheckHidden
+        Status = CheckHidden
         OnLoad = None
         OnUnload = None
         Props = fun props' => { props' with
@@ -34,9 +33,9 @@ let counter (props : mut solid_props) =
             Title = Some <|
                 stack
                     fun props' => { props' with
-                        AlignItems = Some <| breakpoints { initial = "center"; sm = "baseline" }
-                        Direction = Some <| breakpoints { initial = "row"; sm = "column" }
-                        MarginBottom = Some <| breakpoints { initial = "0"; sm = "8px" }
+                        AlignItems = Some <| breakpoints { base = "center"; sm = "baseline" }
+                        Direction = Some <| breakpoints { base = "row"; sm = "column" }
+                        MarginBottom = Some <| breakpoints { base = "0"; sm = "8px" }
                         Spacing = Some "7px"
                         Padding = Some "3px"
                     }
@@ -52,7 +51,7 @@ let counter (props : mut solid_props) =
                                     /!!base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
-                                        Css = fun props' => { props' with
+                                        Xs = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                     }
@@ -68,7 +67,7 @@ let counter (props : mut solid_props) =
                                     /!!base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
-                                        Css = fun props' => { props' with
+                                        Xs = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                     }
@@ -97,13 +96,10 @@ let counter (props : mut solid_props) =
                                         pre
                                             id
                                             fun () => ;[
-                                                match item () |> snd with
-                                                | value when $"!value |> unbox<`any> = null" => str "null"
-                                                | Some value =>
-                                                    value
-                                                    |> real json_stringify_space `i32
-                                                    |> str
-                                                | None => str "None"
+                                                item ()
+                                                |> snd
+                                                |> json_stringify_space
+                                                |> str
                                             ]
                                     ]
                                 }

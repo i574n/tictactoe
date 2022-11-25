@@ -1,10 +1,7 @@
-import { HopeThemeConfig } from '@hope-ui/solid'
-
-
 export const globalCss = {
     body: {
         margin: '0px',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
         display: 'flex',
@@ -46,21 +43,5 @@ export const globalCss = {
     '#root': {
         display: 'flex',
         flex: '1'
-    }
-}
-
-export const config: HopeThemeConfig = {
-    initialColorMode: 'system',
-    darkTheme: {
-        colors: {
-            bg: "$neutral3",
-            text1: "$neutral11"
-        }
-    },
-    lightTheme: {
-        colors: {
-            bg: "$neutral3",
-            text1: "$neutral11"
-        }
     }
 }
