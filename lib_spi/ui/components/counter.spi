@@ -51,7 +51,7 @@ let counter (props : mut solid_props) =
                                     /!!base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
-                                        Xs = fun props' => { props' with
+                                        Sx = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                     }
@@ -67,7 +67,7 @@ let counter (props : mut solid_props) =
                                     /!!base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
-                                        Xs = fun props' => { props' with
+                                        Sx = fun props' => { props' with
                                             MarginLeft = None
                                         }
                                     }

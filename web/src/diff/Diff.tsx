@@ -1,4 +1,3 @@
-import Loader from '../components/Loader'
 import { log1221_1, log1221_2, log1221_3, log1221_4, log1221_5 } from './raw'
 import { For, Index } from 'solid-js'
 import { Box } from '@hope-ui/core'
@@ -107,54 +106,52 @@ export function Diff() {
             , {})
 
     return (
-        <Loader defaults={{ loaded: true, modal: true }}>
-            <Box
-                display="flex"
-                flex={1}
-                flexDirection="column"
-                maxHeight="100vh"
-                overflowY="auto"
-                lineHeight="$base"
-            >
-                <For each={Object.values(fileGroups)}>
-                    {(file) => (
-                        <Box
-                            display="flex"
-                            flex={1}
-                            flexDirection="row"
-                        >
-                            <Index each={Object.values(file)}>
-                                {(groups) => (
-                                    <Box
-                                        css={{ wordBreak: "break-all" }}
-                                        border="1px solid #222"
-                                        display="flex"
-                                        flex={1}
-                                        flexDirection="column"
-                                        fontFamily="monospace"
-                                        fontSize={8}
-                                    >
-                                        <Index each={groups()}>
-                                            {(groupLine) => (
-                                                <Box
-                                                    classList={{
-                                                        [classes[groupLine()] || '']: true
-                                                    }}
-                                                    color={lineColors[groupLine()]}
-                                                    marginTop="1px"
-                                                    marginBottom="1px"
-                                                >
-                                                    {groupLine}
-                                                </Box>
-                                            )}
-                                        </Index>
-                                    </Box>
-                                )}
-                            </Index>
-                        </Box>
-                    )}
-                </For>
-            </Box>
-        </Loader>
+        <Box
+            display="flex"
+            flex={1}
+            flexDirection="column"
+            maxHeight="100vh"
+            overflowY="auto"
+            lineHeight="$base"
+        >
+            <For each={Object.values(fileGroups)}>
+                {(file) => (
+                    <Box
+                        display="flex"
+                        flex={1}
+                        flexDirection="row"
+                    >
+                        <Index each={Object.values(file)}>
+                            {(groups) => (
+                                <Box
+                                    border="1px solid #222"
+                                    display="flex"
+                                    flex={1}
+                                    flexDirection="column"
+                                    fontFamily="monospace"
+                                    fontSize={8}
+                                    sx={{ wordBreak: "break-all" }}
+                                >
+                                    <Index each={groups()}>
+                                        {(groupLine) => (
+                                            <Box
+                                                classList={{
+                                                    [classes[groupLine()] || '']: true
+                                                }}
+                                                color={lineColors[groupLine()]}
+                                                marginTop="1px"
+                                                marginBottom="1px"
+                                            >
+                                                {groupLine}
+                                            </Box>
+                                        )}
+                                    </Index>
+                                </Box>
+                            )}
+                        </Index>
+                    </Box>
+                )}
+            </For>
+        </Box>
     )
 }

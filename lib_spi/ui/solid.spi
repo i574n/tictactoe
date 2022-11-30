@@ -65,6 +65,7 @@ union solid_prop =
     | Spacing : string
     | Src : string
     | Striped : string
+    | Sx : any
     | Thickness : string
     | Title : jsx_element
     | Top : string
@@ -72,7 +73,6 @@ union solid_prop =
     | Value : any
     | When : any
     | Width : string
-    | Xs : any
     | ZIndex : i32
     | Zoom : string
 

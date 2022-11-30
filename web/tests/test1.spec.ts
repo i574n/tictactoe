@@ -147,7 +147,7 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
                         .evaluateAll((nodes) => nodes.map((node) => node.textContent))))
             console.log(
                 `\n!### action() ${actionIndex}: ${title}. ${i === 0 ? 'before' : 'after'} fn`,
-                ...textContent.flat().map((text) => JSON.parse(text || '""'))
+                textContent.flat()//.map((text) => JSON.parse(text || '""')))
             )
         }
 
@@ -214,7 +214,7 @@ newTest("test1", async ({ browser }) => {
 
     await action(pages, 'load db', '#counter pre', async (pages) => {
         await Promise.all(pages.map(async (page, index) => {
-            await page.locator('#db-connections .hope-checkbox').nth(0).click()
+            await page.locator('#db-connections input[type=checkbox]').nth(0).click()
 
             if (index == 0 || index == 1) {
                 await page.locator('#db-gunrs-gunrs').nth(0).click()

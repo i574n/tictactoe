@@ -129,7 +129,7 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     Icon = Some <|
                                                         /!!base_icon {
-                                                            Xs = id
+                                                            Sx = id
                                                             Icon = biRegularRefresh_
                                                             Props = id
                                                         }
@@ -144,7 +144,7 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     Icon = Some <|
                                                         /!!base_icon {
-                                                            Xs = id
+                                                            Sx = id
                                                             Icon =
                                                                 if is_modal ()
                                                                 then biRegularDownArrow_
@@ -164,7 +164,7 @@ let loader (props : mut loader_props) =
                                                     Height = Some icon_height
                                                     Icon = Some <|
                                                         /!!base_icon {
-                                                            Xs = id
+                                                            Sx = id
                                                             Icon = biRegularUndo_
                                                             Props = id
                                                         }

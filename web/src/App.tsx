@@ -2,6 +2,7 @@ import './buffer-shim'
 import { ColorModeScript, createGlobalStyles, extendTheme, HopeProvider } from '@hope-ui/core'
 import * as ui from "./ui"
 import * as components_spi from "../../lib_ts/components_spi"
+import { Diff } from './diff/Diff'
 
 
 function Render(Component: any) {
@@ -37,6 +38,7 @@ function App() {
                 <Render
                     Component={components_spi.v1.l0["content"]}
                 />
+                {/* <Diff /> */}
             </HopeProvider>
         </Render>
     )

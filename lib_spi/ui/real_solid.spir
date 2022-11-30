@@ -68,6 +68,7 @@ type solid_props =
         Spacing : option string
         Src : option string
         Striped : option string
+        Sx : option any
         Thickness : option string
         Title : option jsx_element
         Top : option string
@@ -75,7 +76,6 @@ type solid_props =
         Value : option any
         When : option any
         Width : option string
-        Xs : option any
         ZIndex : option i32
         Zoom : option string
     }
@@ -143,6 +143,7 @@ inl real_empty_props () : solid_props =
             Spacing = none `string ()
             Src = none `string ()
             Striped = none `string ()
+            Sx = none `any ()
             Thickness = none `string ()
             Title = none `jsx_element ()
             Top = none `string ()
@@ -150,7 +151,6 @@ inl real_empty_props () : solid_props =
             Value = none `any ()
             When = none `any ()
             Width = none `string ()
-            Xs = none `any ()
             ZIndex = none `i32 ()
             Zoom = none `string ()
         }
@@ -217,6 +217,7 @@ inl prop_keys () =
         Spacing = "spacing"
         Src = "src"
         Striped = "striped"
+        Sx = "sx"
         Thickness = "thickness"
         Title = "title"
         Top = "top"
@@ -224,7 +225,6 @@ inl prop_keys () =
         Value = "value"
         When = "when"
         Width = "width"
-        Xs = "xs"
         ZIndex = "zIndex"
         Zoom = "zoom"
     }

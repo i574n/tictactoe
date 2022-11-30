@@ -4,7 +4,7 @@ open solid
 
 type base_icon_props =
     {
-        Xs : solid_props -> solid_props
+        Sx : solid_props -> solid_props
         Icon : () -> js_function
         Props : solid_props -> solid_props
     }
@@ -14,13 +14,13 @@ let base_icon (props : mut base_icon_props) =
         fun props' =>
             { props' with
                 As = Some <| props.Icon ()
-                Xs =
+                Sx =
                     init_props fun props' => { props' with
                         MarginTop = Some "-12px"
                         MarginLeft = Some "-12px"
                         Zoom = Some "0.6"
                     }
-                    |> props.Xs |> props_entries |> create_props |> Some
+                    |> props.Sx |> props_entries |> create_props |> Some
                 Size = Some "14px"
             }
             |> props.Props
