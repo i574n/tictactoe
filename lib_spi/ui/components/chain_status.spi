@@ -83,7 +83,7 @@ let chain_status (props : mut solid_props) =
                     fun () => ;[
                         index' {
                             Each' = profile_tmp_chain_status () |> am.toList |> listm.rev |> listm.toArray
-                        } fun item => ;[
+                        } fun item _index => ;[
                             /!!row {
                                 OnLoad = None
                                 OnUnload = None

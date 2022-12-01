@@ -231,33 +231,34 @@ newTest("test1", async ({ browser }) => {
         }))
     })
 
-    await action(pages, 'wait db', '#counter pre', async (pages) => {
+    await action(pages, 'wait db', '#counter table', async (pages) => {
         await Promise.all(pages.map(async (page, _index) => {
             await page.waitForTimeout(3500)
         }))
     })
 
-    await action(pages, 'clear click 1', '#counter pre', async (pages) => {
+    await action(pages, 'clear click 1', '#counter table', async (pages) => {
         await Promise.all(pages.map(async (page, _index) => {
             await page.locator('#counter button').nth(1).click()
         }))
     })
 
-    await waitFor(pages, 'wait empty 1', '#counter pre', { hasText: 'null' })
+    await waitFor(pages, 'wait empty 1', '#counter table', { hasText: "0: null" })
 
     for (const [index, page] of pages.entries()) {
-        await action(pages, `request click p${index}`, '#counter pre', async (_pages) => {
+        const i = index + 1
+        await action(pages, `request click p${i}`, '#counter table', async (_pages) => {
             await page.locator('#counter button').nth(0).click()
         })
 
-        await waitFor(pages, `wait i::${index}`, '#counter pre', { hasText: `${index}` })
+        await waitFor(pages, `wait i::${i}`, '#counter table', { hasText: `0: ${i}` })
     }
 
-    await action(pages, 'clear click 2', '#counter pre', async (pages) => {
+    await action(pages, 'clear click 2', '#counter table', async (pages) => {
         await pages[0].locator('#counter button').nth(1).click()
     })
 
-    await waitFor(pages, 'wait empty 2', '#counter pre', { hasText: 'null' })
+    await waitFor(pages, 'wait empty 2', '#counter table', { hasText: `0: null` })
 
     return pages
 })

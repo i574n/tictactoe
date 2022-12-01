@@ -13,7 +13,7 @@ let chain_accounts (props : mut solid_props) =
         fun () => ;[
             for' {
                 Each' = chain_accounts ()
-            } fun account => ;[
+            } fun account _index => ;[
                 /!!row {
                     OnLoad = None
                     OnUnload = None

@@ -140,7 +140,7 @@ let chain_deploy (props : mut solid_props) =
                     fun () => ;[
                         index' {
                             Each' = profile_tmp_chain_deploy () |> am.toList |> listm.rev |> listm.toArray
-                        } fun item => ;[
+                        } fun item _index => ;[
                             /!!row {
                                 Status = CheckHidden
                                 OnLoad = None

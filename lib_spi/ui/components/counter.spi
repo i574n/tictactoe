@@ -84,7 +84,7 @@ let counter (props : mut solid_props) =
                     fun () => ;[
                         index' {
                             Each' = profile_tmp_counter () |> am.toList |> listm.rev |> listm.toArray
-                        } fun item => ;[
+                        } fun item index => ;[
                             /!!row {
                                 Status = CheckHidden
                                 OnLoad = None
@@ -96,6 +96,7 @@ let counter (props : mut solid_props) =
                                         pre
                                             id
                                             fun () => ;[
+                                                str $"$\"{!index}: \""
                                                 item ()
                                                 |> snd
                                                 |> json_stringify_space

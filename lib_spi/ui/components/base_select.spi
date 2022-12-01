@@ -15,7 +15,7 @@ let base_simple_select (props : mut solid_props) =
         fun () => ;[
             for' {
                 Each' = props.Each /?? a ;[]
-            } fun item => ;[
+            } fun item _index => ;[
                 simple_option
                     fun props' => { props' with
                         Value = Some item
@@ -57,7 +57,7 @@ let base_select (props : mut solid_props) =
                         fun () => ;[
                             for' {
                                 Each' = props.Each /?? a ;[]
-                            } fun item => ;[
+                            } fun item _index => ;[
                                 select_option
                                     fun props' => { props' with
                                         Value = Some item

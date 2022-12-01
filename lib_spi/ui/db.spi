@@ -390,7 +390,7 @@ inl db_on forall value_type.
     (on_value : i64 -> value_type -> ())
     : i64
     =
-    inl get_locals () : array any = ;[
+    inl get_locals () = ;[
         !!("content_address:", content_address)
         !!("client_type:", client_type |> to_string)
     ]
@@ -407,11 +407,10 @@ inl db_on forall value_type.
             !!("new_timestamp:", new_timestamp)
         ]
         on_value new_timestamp v
-    inl handler = $"emitJsExpr () $\"(v: any, k: any) => {!on_value}(v)(k)\"" : (any * any) -> ()
+    inl handler : any * i32 -> () = $"emitJsExpr () $\"(v: any, k: any) => {!on_value}(v)(k)\""
     inl node = get_db_node db content_address
     match client_type with
-    | GunRsClient =>
-        $"!node?on !handler" : i64
+    | GunRsClient => $"!node?on !handler" : i64
     | GunJsClient =>
         $"!node?on !handler" : ()
         ticks ()

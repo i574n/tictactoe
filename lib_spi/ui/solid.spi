@@ -165,19 +165,31 @@ inl loop_props forall item_type. (props : for_props item_type) : solid_props -> 
             |> Some
     }
 
-inl for_ () = real import "For" "solid-js"
-inl for' forall item_type. (props : for_props item_type) (children : item_type -> array jsx_element) =
+inl loop forall item_type.
+    (fn : () -> js_function)
+    (props : for_props item_type)
+    (children : _ -> _ -> array jsx_element)
+    =
+    inl children : () -> array jsx_element =
+        $"emitJsExpr () $\"(item: any, index: () => number) => {!children}(item)(index)\""
     create_native_component
-        (for_ ())
+        (fn ())
         (loop_props props)
-        (real real_unbox `(item_type -> array jsx_element) `(() -> array jsx_element) children)
+        children
+
+inl for_ () = real import "For" "solid-js"
+inl for' forall item_type.
+    (props : for_props item_type)
+    (children : item_type -> (() -> i32) -> array jsx_element)
+    =
+    loop for_ props children
 
 inl index_ () = real import "Index" "solid-js"
-inl index' forall item_type. (props : for_props item_type) (children : (() -> item_type) -> array jsx_element) =
-    create_native_component
-        (index_ ())
-        (loop_props props)
-        (real real_unbox `((() -> item_type) -> array jsx_element) `(() -> array jsx_element) children)
+inl index' forall item_type.
+    (props : for_props item_type)
+    (children : (() -> item_type) -> i32 -> array jsx_element)
+    =
+    loop index_ props children
 
 
 inl hope_ () : js_function = real import "hope" "@hope-ui/core"

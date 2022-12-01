@@ -1,28 +1,24 @@
 beforeAll { retry: 0 }
 beforeEach { retry: 0 }
 ***0 request *** GET https:3700/tictactoe_spiral
-***4 request *** GET https:3700/tictactoe_spiral
-***2 request *** GET https:3700/tictactoe_spiral
 ***3 request *** GET https:3700/tictactoe_spiral
 ***1 request *** GET https:3700/tictactoe_spiral
+***4 request *** GET https:3700/tictactoe_spiral
+***2 request *** GET https:3700/tictactoe_spiral
 ***0 response ** 200 https:3700/tictactoe_spiral
 ***0 framenavigated ***
  { url: 'https:3700/tictactoe_spiral' }
-***0 requestfinished *** GET https:3700/tictactoe_spiral
-***4 response ** 200 https:3700/tictactoe_spiral
-***2 response ** 200 https:3700/tictactoe_spiral
 ***3 response ** 200 https:3700/tictactoe_spiral
 ***1 response ** 200 https:3700/tictactoe_spiral
-***2 framenavigated ***
- { url: 'https:3700/tictactoe_spiral' }
-***2 requestfinished *** GET https:3700/tictactoe_spiral
-***4 framenavigated ***
- { url: 'https:3700/tictactoe_spiral' }
 ***3 framenavigated ***
  { url: 'https:3700/tictactoe_spiral' }
 ***1 framenavigated ***
  { url: 'https:3700/tictactoe_spiral' }
-***3 request *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral
+***0 requestfinished *** GET https:3700/tictactoe_spiral
+***4 response ** 200 https:3700/tictactoe_spiral
+***1 request *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
 ***3 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***3 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
 ***3 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
@@ -30,9 +26,8 @@ beforeEach { retry: 0 }
 ***3 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***3 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***3 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
 ***3 requestfinished *** GET https:3700/tictactoe_spiral
-***1 request *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
 ***1 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***1 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
 ***1 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
@@ -40,27 +35,10 @@ beforeEach { retry: 0 }
 ***1 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***1 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***1 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral
-***0 request *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***4 framenavigated ***
+ { url: 'https:3700/tictactoe_spiral' }
+***4 request *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
 ***4 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***4 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
 ***4 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
@@ -68,650 +46,377 @@ beforeEach { retry: 0 }
 ***4 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***4 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***4 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
 ***4 requestfinished *** GET https:3700/tictactoe_spiral
-***2 response ** 200 https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***2 response ** 200 https:3700/tictactoe_spiral
+***3 response ** 200 https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
 ***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
 ***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
 ***3 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
 ***3 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***2 framenavigated ***
+ { url: 'https:3700/tictactoe_spiral' }
 ***3 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***3 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***2 request *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
 ***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
 ***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
 ***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
 ***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
 ***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***1 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***1 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-72e4ee2e.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/App-7dc881a7.js
 ***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
 ***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-8c3fa2fe.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***0 domcontentloaded *** https:3700/tictactoe_spiral
-***0 load *** https:3700/tictactoe_spiral
-***2 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***2 domcontentloaded *** https:3700/tictactoe_spiral
+***0 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***0 response ** 200 https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
 ***3 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
 ***3 domcontentloaded *** https:3700/tictactoe_spiral
-***4 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***4 domcontentloaded *** https:3700/tictactoe_spiral
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***3 load *** https:3700/tictactoe_spiral
+***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***2 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-6f1ba5f7.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
+***3> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 ***1 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
 ***1 domcontentloaded *** https:3700/tictactoe_spiral
-***3 load *** https:3700/tictactoe_spiral
-***2 load *** https:3700/tictactoe_spiral
-***4 load *** https:3700/tictactoe_spiral
 ***1 load *** https:3700/tictactoe_spiral
-***3 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***0 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***2 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-7dc881a7.js
 ***1 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
 ***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***0> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
-***3> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 ***1> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
-***2> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
+***0 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***0 domcontentloaded *** https:3700/tictactoe_spiral
+***4 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***4 domcontentloaded *** https:3700/tictactoe_spiral
+***4 load *** https:3700/tictactoe_spiral
+***0 load *** https:3700/tictactoe_spiral
+***0 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***2 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***2 domcontentloaded *** https:3700/tictactoe_spiral
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***0> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 ***4> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
-***3> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000010"],["run_id:",1208051035]]
-***0> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000010"],["run_id:",758277968]]
-***1> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000010"],["run_id:",590262077]]
-***4> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000010"],["run_id:",1918823339]]
-***2> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000030"],["run_id:",1713657754]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***0> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",758277968]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000010"],["run_id:",590262077]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",590262077]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",590262077]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",590262077]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***1> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",590262077]]
-***4> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",1918823339]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***3> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000010"],["run_id:",1713657754]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***2> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",1713657754]]
+***2 load *** https:3700/tictactoe_spiral
+***2 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***2> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 
 !### action() 0: load db
 
 !### action() 0: load db. before fn []
-***4> ["> loader ()"] [["loader_id:",1148320220],["chain_token:","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],["log_level:","Debug"],["ui_modal:","US5_0"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***3> ["> loader ()"] [["loader_id:",141868526],["chain_token:","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],["log_level:","Debug"],["ui_modal:","US5_0"]] [["timestamp:","000010"],["run_id:",1208051035]]
-***1> ["> loader ()"] [["loader_id:",1396315386],["chain_token:","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],["log_level:","Debug"],["ui_modal:","US5_0"]] [["timestamp:","000000"],["run_id:",590262077]]
-***0> ["> loader ()"] [["loader_id:",1527682990],["chain_token:","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],["log_level:","Debug"],["ui_modal:","US5_0"]] [["timestamp:","000000"],["run_id:",758277968]]
-***2> ["> loader ()"] [["loader_id:",1034833094],["chain_token:","aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],["log_level:","Debug"],["ui_modal:","US5_0"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***3> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","033490"],["run_id:",1208051035]]
-***3> db_off,profile/tmp/counter
-***2> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","032800"],["run_id:",1713657754]]
-***2> db_off,profile/tmp/counter
-***2> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[["US2_1"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000010"],["run_id:",1713657754]]
-***3> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[["US2_0"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000010"],["run_id:",1208051035]]
-***4> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","034240"],["run_id:",1918823339]]
-***4> db_off,profile/tmp/counter
-***4> ["> db_listener ()"] [["db_connection_options':",[[["US2_0"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000000"],["run_id:",1918823339]]
-***1> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","035540"],["run_id:",590262077]]
-***1> db_off,profile/tmp/counter
-***1> ["> db_listener ()"] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000000"],["run_id:",590262077]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***3> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",1713657754]]
-***0> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","037580"],["run_id:",758277968]]
-***0> db_off,profile/tmp/counter
-***4> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000010"],["run_id:",1918823339]]
-***0> ["> db_listener ()"] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","000000"],["run_id:",758277968]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000010"],["run_id:",1918823339]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",590262077]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***3> ["> db_listener > effect",["new_connections:",[["US2_0",null,"wss://localhost:80/gun"]]]] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[["US2_0"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","006130"],["run_id:",1208051035]]
-***3> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","003480"],["run_id:",1208051035]]
-***3> db_off,profile/tmp/counter
-***2> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1114784},"wss://localhost:80/gun"]]]] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[["US2_1"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","006350"],["run_id:",1713657754]]
-***2> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","003780"],["run_id:",1713657754]]
-***2> db_off,profile/tmp/counter
-***3> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[["US2_0"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_0",null,"wss://localhost:80/gun"]]]] [["timestamp:","000000"],["run_id:",1208051035]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000030"],["run_id:",758277968]]
-***2> ["> db_listener ()"] [["db_connection_options':",[[[],80,"US3_1","ws://localhost","ws"],[["US2_1"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114784},"wss://localhost:80/gun"]]]] [["timestamp:","000000"],["run_id:",1713657754]]
-***4> ["> db_listener > effect",["new_connections:",[["US2_0",null,"ws://localhost:80/ws"]]]] [["db_connection_options':",[[["US2_0"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","006640"],["run_id:",1918823339]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***4> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","003300"],["run_id:",1918823339]]
-***4> db_off,profile/tmp/counter
-***4> ["> db_listener ()"] [["db_connection_options':",[[["US2_0"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_0",null,"ws://localhost:80/ws"]]]] [["timestamp:","000000"],["run_id:",1918823339]]
-***0> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",[]]] [["timestamp:","000000"],["run_id:",758277968]]
-***1> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","007070"],["run_id:",590262077]]
-***1> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","003320"],["run_id:",590262077]]
-***1> db_off,profile/tmp/counter
-***1> ["> db_listener ()"] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["timestamp:","000000"],["run_id:",590262077]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***3> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***2> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***3> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","000000"],["run_id:",1208051035]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***2> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","000000"],["run_id:",1713657754]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","000000"],["run_id:",1918823339]]
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",590262077]]
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","007470"],["run_id:",758277968]]
-***0> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","003160"],["run_id:",758277968]]
-***0> db_off,profile/tmp/counter
-***0> ["> db_listener ()"] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[[],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["timestamp:","000000"],["run_id:",758277968]]
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","000000"],["run_id:",590262077]]
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***3> Warning: reusing same IndexedDB store and options as 1st.
-***0> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","000000"],["run_id:",758277968]]
+***1 websocket *** { url: 'ws:14944/ws', tmpLog: '[["1",{"wsCount":1}]]' }
+***1> socket opened
+***1 framesent *** ws:14944/ws {"#":"0VyQlSTX","dam":"hi","pid":"HJA3r6EV"}
+***1 framereceived *** ws:14944/ws {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
+***1> received: {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
+***2 websocket *** {
+  url: 'wss:18765/gun',
+  tmpLog: '[["1",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}],["2",{"wsCount":1}]]'
+}
+***2 framesent *** wss:18765/gun {"#":"Yp1UYCvS","dam":"hi","pid":"BILusq51"}
+***2> socket opened
+***2 framereceived *** wss:18765/gun {"#":"JP8NsTMTp","dam":"?","pid":"UAVpotVDD"}
+***2> received: {"#":"JP8NsTMTp","dam":"?","pid":"UAVpotVDD"}
+***1 websocket *** {
+  url: 'ws:14944/ws',
+  tmpLog: '[["1",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}],["2",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}]]'
+}
+***1 framesent *** ws:14944/ws {"#":"u1OwGFBD","dam":"hi","pid":"wlB9Hswq"}
+***1 framereceived *** ws:14944/ws {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
+***1> socket opened
+***1> received: {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
 ***4> Warning: reusing same IndexedDB store and options as 1st.
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","002130"],["run_id:",758277968]]
-***0> db_off,profile/tmp/counter
-***0> ["> db_listener ()"] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[["US2_1"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["timestamp:","000000"],["run_id:",758277968]]
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","001300"],["run_id:",758277968]]
-***0> db_off,profile/tmp/counter
-***0> ["> db_listener ()"] [["db_connection_options':",[[["US2_1"],80,"US3_1","ws://localhost","ws"],[["US2_1","US2_0"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["timestamp:","000010"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","000930"],["run_id:",758277968]]
-***0> db_off,profile/tmp/counter
-***0> ["> db_listener ()"] [["db_connection_options':",[[["US2_1","US2_0"],80,"US3_1","ws://localhost","ws"],[["US2_1","US2_0"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","000010"],["run_id:",758277968]]
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
+***2 websocket *** {
+  url: 'wss:18765/gun',
+  tmpLog: '[["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}]]'
+}
+***3> Warning: reusing same IndexedDB store and options as 1st.
+***2 framesent *** wss:18765/gun {"#":"xPdXWC7c","dam":"hi","pid":"IHsEilG7"}
+***2 framereceived *** wss:18765/gun {"#":"QfbJlKZsr","dam":"?","pid":"UAVpotVDD"}
+***2> socket opened
+***2> received: {"#":"QfbJlKZsr","dam":"?","pid":"UAVpotVDD"}
 
 !### action() 0: load db. after fn []
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
+***0 websocket *** {
+  url: 'ws:14944/ws',
+  tmpLog: '[["0",{"wsCount":1}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
+}
 ***0> Warning: reusing same IndexedDB store and options as 1st.
-***0> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1118248},"ws://localhost:80/ws"],["US2_0",null,"ws://localhost:80/ws"],["US2_1",{"ptr":1118928},"wss://localhost:80/gun"],["US2_0",null,"wss://localhost:80/gun"]]]] [["db_connection_options':",[[["US2_1","US2_0"],80,"US3_1","ws://localhost","ws"],[["US2_1","US2_0"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114768},"ws://localhost:80/ws"]]]] [["timestamp:","004270"],["run_id:",758277968]]
-***0> ["> use_fetch > unsubscribe () [1]"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","003150"],["run_id:",758277968]]
-***0> db_off,profile/tmp/counter
-***0> ["> db_listener ()"] [["db_connection_options':",[[["US2_1","US2_0"],80,"US3_1","ws://localhost","ws"],[["US2_1","US2_0"],80,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1118248},"ws://localhost:80/ws"],["US2_0",null,"ws://localhost:80/ws"],["US2_1",{"ptr":1118928},"wss://localhost:80/gun"],["US2_0",null,"wss://localhost:80/gun"]]]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun Rust"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_client ()"] [["props.ServerType:","Gun JavaScript"],["props.ClientType:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> use_fetch ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","000000"],["run_id:",758277968]]
+***0> socket opened
+***0 framesent *** ws:14944/ws {"#":"j8W1AU1M","dam":"hi","pid":"MzferFqB"}
+***0 framereceived *** ws:14944/ws {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
+***0> received: {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
+***0 websocket *** {
+  url: 'wss:18765/gun',
+  tmpLog: '[["0",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
+}
+***0 framesent *** wss:18765/gun {"#":"pdr496hw","dam":"hi","pid":"iI0RmaGV"}
+***0> socket opened
+***0 framereceived *** wss:18765/gun {"#":"K9VQhU6pG","dam":"?","pid":"UAVpotVDD"}
+***0> received: {"#":"K9VQhU6pG","dam":"?","pid":"UAVpotVDD"}
+***0 websocket *** {
+  url: 'ws:14944/ws',
+  tmpLog: '[["0",{"wsCount":3,"wsFrameSent":2,"wsFrameReceived":2}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
+}
 ***0> Warning: reusing same IndexedDB store and options as 1st.
 ***0> Warning: reusing same IndexedDB store and options as 1st.
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***3> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1208051035]]
-***3> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638054262356810"]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","025370"],["run_id:",1208051035]]
-***2> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","000000"],["run_id:",1713657754]]
-***2> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",5]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","025360"],["run_id:",1713657754]]
-***4> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",1918823339]]
-***4> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638054262357120"]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","025250"],["run_id:",1918823339]]
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","000000"],["run_id:",590262077]]
-***1> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",5]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","025170"],["run_id:",590262077]]
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
+***0 framesent *** ws:14944/ws {"#":"9vj0tf6O","dam":"hi","pid":"fowX2bfe"}
+***0 framereceived *** ws:14944/ws {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
+***0> socket opened
+***0> received: {"#":"ZHspWb6XDqGQcPJp","dam":"hi"}
+***0 websocket *** {
+  url: 'wss:18765/gun',
+  tmpLog: '[["0",{"wsCount":4,"wsFrameSent":3,"wsFrameReceived":3}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
+}
+***0 framesent *** wss:18765/gun {"#":"arz9rx5y","dam":"hi","pid":"M7EK1PUD"}
+***0 framereceived *** wss:18765/gun {"#":"vUrlHW9tp","dam":"?","pid":"UAVpotVDD"}
+***0> socket opened
+***0> received: {"#":"vUrlHW9tp","dam":"?","pid":"UAVpotVDD"}
+***1 framesent *** ws:14944/ws {"#":"vv4cFgxK","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***1> sent: {"#":"vv4cFgxK","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***1 framesent *** ws:14944/ws {"#":"6sY8LAqu","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***1 framesent *** ws:14944/ws {"#":"n8ng3PLc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1> sent: {"#":"6sY8LAqu","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***1> sent: {"#":"n8ng3PLc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
 
 !### action() 1: wait db
 
 !### action() 1: wait db. before fn []
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> db_on ()"] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","000000"],["run_id:",758277968]]
-***0> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",5],["Gun JavaScript","638054262372000"],["Gun Rust",10],["Gun JavaScript","638054262372010"]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","025100"],["run_id:",758277968]]
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
+***2 framesent *** wss:18765/gun {"#":"LstjVvEL","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framesent *** wss:18765/gun {"#":"XOcGETc3","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2 framesent *** wss:18765/gun {"#":"HifAJBz8","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> sent: {"#":"LstjVvEL","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> sent: {"#":"XOcGETc3","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2> sent: {"#":"HifAJBz8","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun {"#":"12iXDni5Z","##":642296942,"@":"XOcGETc3","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831367076}},"counter":"1"}}}
+***2> received: {"#":"12iXDni5Z","##":642296942,"@":"XOcGETc3","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831367076}},"counter":"1"}}}
+***2 framereceived *** wss:18765/gun {"#":"MxqHGFUTC","@":"LstjVvEL"}
+***2 framereceived *** wss:18765/gun [{"#":"FSVZW4tVw","@":"HifAJBz8"}]
+***2> received: {"#":"MxqHGFUTC","@":"LstjVvEL"}
+***2> received: [{"#":"FSVZW4tVw","@":"HifAJBz8"}]
+***2 framereceived *** wss:18765/gun {"#":"LstjVvEL","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"LstjVvEL","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"HifAJBz8","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun {"#":"HifAJBz8","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> received: {"#":"LstjVvEL","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"LstjVvEL","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"HifAJBz8","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***2> received: {"#":"HifAJBz8","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0 framereceived *** wss:18765/gun {"#":"LstjVvEL","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"HifAJBz8","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> received: {"#":"LstjVvEL","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"HifAJBz8","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***1 framereceived *** ws:14944/ws {"#":"0htbUo7E","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framesent *** ws:14944/ws {"#":"0htbUo7E","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framesent *** wss:18765/gun {"#":"3rfGgOaX","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framereceived *** wss:18765/gun {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framesent *** ws:14944/ws {"#":"53GxpEJn","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0 framesent *** wss:18765/gun {"#":"nM7t0gKB","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0 framesent *** ws:14944/ws {"#":"bcPqBtzj","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framesent *** wss:18765/gun {"#":"W7U30SE7","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framereceived *** wss:18765/gun {"#":"iD6KhmKeE","@":"3rfGgOaX"}
+***2 framereceived *** wss:18765/gun [{"#":"nM7t0gKB","##":642296942,"><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}]
+***0 framereceived *** wss:18765/gun [{"#":"WJkXE9DE5","##":642296942,"@":"nM7t0gKB","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831367076}},"counter":"1"}}}]
+***0 framereceived *** wss:18765/gun {"#":"PAI64Jwt9","@":"W7U30SE7"}
+***2 framereceived *** wss:18765/gun {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1> received: {"#":"0htbUo7E","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> sent: {"#":"0htbUo7E","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> sent: {"#":"3rfGgOaX","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> received: {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> sent: {"#":"53GxpEJn","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0> sent: {"#":"nM7t0gKB","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0> sent: {"#":"bcPqBtzj","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> sent: {"#":"W7U30SE7","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> received: {"#":"iD6KhmKeE","@":"3rfGgOaX"}
+***2> received: [{"#":"nM7t0gKB","##":642296942,"><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}]
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
+***0> received: [{"#":"WJkXE9DE5","##":642296942,"@":"nM7t0gKB","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831367076}},"counter":"1"}}}]
+***0> received: {"#":"PAI64Jwt9","@":"W7U30SE7"}
+***2> received: {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***2 framereceived *** wss:18765/gun {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framereceived *** wss:18765/gun {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framereceived *** wss:18765/gun {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> received: {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***2> received: {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***2> received: {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***2> received: {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0 framereceived *** wss:18765/gun {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> received: {"#":"3rfGgOaX","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"W7U30SE7","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***1 framereceived *** ws:14944/ws {"#":"bcPqBtzj","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1> received: {"#":"bcPqBtzj","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
 
 !### action() 1: wait db. after fn []
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
 
 !### action() 2: clear click 1
 
 !### action() 2: clear click 1. before fn []
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","172870"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262460530"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","172880"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262460530"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262460530",null]],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","172890"],["run_id:",758277968]]
-***1> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","172510"],["run_id:",590262077]]
-***1> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262460530"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","172520"],["run_id:",590262077]]
-***1> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262460530"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262460530",null]],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","172540"],["run_id:",590262077]]
-***1> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262460560"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","102380"],["run_id:",590262077]]
-***1> ["> use_fetch > on_value > set ()",["old_value:",[["638054262460530",null]]],["client_type:","Gun Rust"],["new_timestamp:","638054262460560"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null]]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",5]]],["db_connections:",["Gun Rust"]]] [["timestamp:","127540"],["run_id:",590262077]]
-***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262460550"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","088580"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set ()",["old_value:",[["638054262460530",null]]],["client_type:","Gun Rust"],["new_timestamp:","638054262460550"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null]]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",5],["Gun JavaScript","638054262372000"],["Gun Rust",10],["Gun JavaScript","638054262372010"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","113640"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[["638054262460530",null]]],["client_type:","Gun Rust"],["new_timestamp:","638054262460550"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null],["638054262460550",null]]],"events:","timers:",["value:",["US16_1","US2_1","638054262460550",null]],["subscriptions:",[["Gun Rust",5],["Gun JavaScript","638054262372000"],["Gun Rust",10],["Gun JavaScript","638054262372010"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","113660"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[["638054262460530",null]]],["client_type:","Gun Rust"],["new_timestamp:","638054262460550"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null],["638054262460550",null]]],"events:","timers:",["value:",["US16_1","US2_1","638054262460550",null]],["subscriptions:",[["Gun Rust",5],["Gun JavaScript","638054262372000"],["Gun Rust",10],["Gun JavaScript","638054262372010"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","113670"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262460530"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null],["638054262460550",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262460530",null]],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","172930"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262460530"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null],["638054262460550",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262460530",null]],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","172940"],["run_id:",758277968]]
-***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262460590"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","088590"],["run_id:",758277968]]
-***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262460530"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262460530",null],["638054262460550",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262460530",null]],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","172940"],["run_id:",758277968]]
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262460860"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","088890"],["run_id:",758277968]]
-***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262460920"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","088910"],["run_id:",758277968]]
-***4> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","173320"],["run_id:",1918823339]]
-***2> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","171960"],["run_id:",1713657754]]
-***2> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262461430"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","171980"],["run_id:",1713657754]]
-***4> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262461420"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","173330"],["run_id:",1918823339]]
-***4> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262461420"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262461420",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262461420",null]],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","173390"],["run_id:",1918823339]]
-***2> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262461430"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262461430",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262461430",null]],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","172050"],["run_id:",1713657754]]
-***3> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","172760"],["run_id:",1208051035]]
-***2> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262461580"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","104670"],["run_id:",1713657754]]
-***2> ["> use_fetch > on_value > set ()",["old_value:",[["638054262461430",null]]],["client_type:","Gun Rust"],["new_timestamp:","638054262461580"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262461430",null]]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",5]]],["db_connections:",["Gun Rust"]]] [["timestamp:","130060"],["run_id:",1713657754]]
-***3> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262461590"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","172850"],["run_id:",1208051035]]
-***4> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262461650"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","104550"],["run_id:",1918823339]]
-***4> ["> use_fetch > on_value > set ()",["old_value:",[["638054262461420",null]]],["client_type:","Gun JavaScript"],["new_timestamp:","638054262461650"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262461420",null]]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun JavaScript","638054262357120"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","129800"],["run_id:",1918823339]]
-***3> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638054262461590"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262461590",null]]],"events:","timers:",["value:",["US16_1","US2_2","638054262461590",null]],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","172930"],["run_id:",1208051035]]
-***3> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638054262461860"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","105070"],["run_id:",1208051035]]
-***3> ["> use_fetch > on_value > set ()",["old_value:",[["638054262461590",null]]],["client_type:","Gun JavaScript"],["new_timestamp:","638054262461860"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[["638054262461590",null]]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun JavaScript","638054262356810"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","130440"],["run_id:",1208051035]]
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
+***2 framesent *** wss:18765/gun {"#":"bEGylnnC","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404656.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404656.0}},"counter":"null"}}}
+***0 framesent *** ws:14944/ws {"#":"U26Nhmg0","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404662.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404662.0}},"counter":"null"}}}
+***0 framesent *** wss:18765/gun {"#":"VPljSVDd","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404665.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404665.0}},"counter":"null"}}}
+***2> sent: {"#":"bEGylnnC","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404656.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404656.0}},"counter":"null"}}}
+***2 framereceived *** wss:18765/gun {"#":"VIMZpX4lU","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404665}},"counter":"null"}}}
+***0> sent: {"#":"U26Nhmg0","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404662.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404662.0}},"counter":"null"}}}
+***0> sent: {"#":"VPljSVDd","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404665.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404665.0}},"counter":"null"}}}
+***2> received: {"#":"VIMZpX4lU","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404665}},"counter":"null"}}}
+***0 framereceived *** wss:18765/gun {"#":"qK2PJBsND","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404665}},"counter":"null"}}}
+***0> received: {"#":"qK2PJBsND","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404665}},"counter":"null"}}}
+***1 framesent *** ws:14944/ws {"#":"RZbHucDA","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404714.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404714.0}},"counter":"null"}}}
+***1> sent: {"#":"RZbHucDA","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831404714.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831404714.0}},"counter":"null"}}}
 
-!### action() 2: clear click 1. after fn []
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
+!### action() 2: clear click 1. after fn [ 'null', 'null', 'null', 'null', 'null' ]
+***0 framereceived *** wss:18765/gun {"#":"v1TKEibpS","@":"VPljSVDd","ok":true}
+***0> received: {"#":"v1TKEibpS","@":"VPljSVDd","ok":true}
+***2 framereceived *** wss:18765/gun {"#":"NoJJmleBK","@":"bEGylnnC","ok":true}
+***2> received: {"#":"NoJJmleBK","@":"bEGylnnC","ok":true}
 
 !### action() 3: wait empty 1
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
 
-!### action() 3: wait empty 1. before fn []
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-  ✘  1 [chromium] › test1.spec.ts:112:16 › test1 (45s)
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***1> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***1> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***2> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***2> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
+!### action() 3: wait empty 1. before fn [ 'null', 'null', 'null', 'null', 'null' ]
+
+!### action() 3: wait empty 1. after fn [ 'null', 'null', 'null', 'null', 'null' ]
+
+!### action() 4: request click p0
+
+!### action() 4: request click p0. before fn [ 'null', 'null', 'null', 'null', 'null' ]
+***2 framereceived *** wss:18765/gun []
+***2> received: []
+***2 framereceived *** wss:18765/gun []
+***2> received: []
+***0 framesent *** ws:14944/ws {"#":"if5JZVgX","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831412973.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412973.0}},"counter":"1"}}}
+***0 framesent *** wss:18765/gun {"#":"5dfD0GMC","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831412974.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412974.0}},"counter":"1"}}}
+***0> sent: {"#":"if5JZVgX","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831412973.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412973.0}},"counter":"1"}}}
+***0> sent: {"#":"5dfD0GMC","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669831412974.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412974.0}},"counter":"1"}}}
+***0 framereceived *** wss:18765/gun {"#":"P4VemOS6t","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412974}},"counter":"1"}}}
+***2 framereceived *** wss:18765/gun {"#":"wLmzmTpOH","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412974}},"counter":"1"}}}
+***0> received: {"#":"P4VemOS6t","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412974}},"counter":"1"}}}
+***2> received: {"#":"wLmzmTpOH","><":"dbU3hrPnk,aQoUoGjJ4,agpXI7NVQ,oUcs52na5","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669831412974}},"counter":"1"}}}
+
+!### action() 4: request click p0. after fn [ '1', 'null', 'null', 'null', 'null', 'null' ]
+***0 framereceived *** wss:18765/gun []
+***0> received: []
+***0 framereceived *** wss:18765/gun {"#":"Msumdxu7u","@":"5dfD0GMC","ok":true}
+***0> received: {"#":"Msumdxu7u","@":"5dfD0GMC","ok":true}
+***0 framereceived *** wss:18765/gun []
+***0> received: []
+
+!### action() 5: wait i::0
+
+!### action() 5: wait i::0. before fn [ '1', 'null', 'null', 'null', 'null', 'null' ]
 afterEach { retry: 0 }
 afterAll { retry: 0 }
-***0> websocket error: ErrorEvent { obj: Event { obj: Object { obj: JsValue(Event) } } }
-***0> socket closed
+***2 framereceived *** wss:18765/gun []
+***2> received: []
 ***4 close *** https:3700/tictactoe_spiral
-***3 close *** https:3700/tictactoe_spiral
 ***2 close *** https:3700/tictactoe_spiral
 ***1 close *** https:3700/tictactoe_spiral
+***3 close *** https:3700/tictactoe_spiral
 ***0 close *** https:3700/tictactoe_spiral
