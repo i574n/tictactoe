@@ -25,6 +25,15 @@
             "label": "gun js",
             "protocol": "https",
             "onAutoForward": "silent"
+        },
+        "14944": {
+            "label": "gun rs test",
+            "onAutoForward": "silent"
+        },
+        "18765": {
+            "label": "gun js test",
+            "protocol": "https",
+            "onAutoForward": "silent"
         }
     },
     "build": {

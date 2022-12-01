@@ -243,7 +243,7 @@ newTest("test1", async ({ browser }) => {
         }))
     })
 
-    await waitFor(pages, 'wait empty 1', '#counter table', { hasText: "0: null" })
+    await waitFor(pages, 'wait empty 1', '#counter table', { hasText: "[0=null]" })
 
     for (const [index, page] of pages.entries()) {
         const i = index + 1
@@ -251,14 +251,14 @@ newTest("test1", async ({ browser }) => {
             await page.locator('#counter button').nth(0).click()
         })
 
-        await waitFor(pages, `wait i::${i}`, '#counter table', { hasText: `0: ${i}` })
+        await waitFor(pages, `wait i::${i}`, '#counter table', { hasText: `[0=${i}]` })
     }
 
     await action(pages, 'clear click 2', '#counter table', async (pages) => {
         await pages[0].locator('#counter button').nth(1).click()
     })
 
-    await waitFor(pages, 'wait empty 2', '#counter table', { hasText: `0: null` })
+    await waitFor(pages, 'wait empty 2', '#counter table', { hasText: `[0=null]` })
 
     return pages
 })

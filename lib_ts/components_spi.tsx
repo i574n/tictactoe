@@ -2,7 +2,7 @@ import { Union, Record } from "./fable_modules/fable-library-ts/Types.js";
 import { getUnionFields, int64_type, tuple_type, lambda_type, array_type, unit_type, bool_type, class_type, string_type, int32_type, union_type, record_type, obj_type, TypeInfo } from "./fable_modules/fable-library-ts/Reflection.js";
 import { uint8, op_UnaryNegation_Int32, int32 } from "./fable_modules/fable-library-ts/Int32.js";
 import { compare, fromBits, op_Division, op_Subtraction, toString, int64 } from "./fable_modules/fable-library-ts/Long.js";
-import { Index, For, onCleanup, createEffect, useContext, createSignal, createComponent, children as children_2, createContext } from "solid-js";
+import { Index, For, onCleanup, createEffect, useContext, createSignal, createComponent, children as children_3, createContext } from "solid-js";
 import { equalsWith, fill } from "./fable_modules/fable-library-ts/Array.js";
 import { equalArrays, int32ToString, partialApply, uncurry, createObj } from "./fable_modules/fable-library-ts/Util.js";
 import { Input, Anchor, Stack, IconButton, Icon, Button, Box, hope } from "@hope-ui/core";
@@ -1624,7 +1624,7 @@ export function method5(v0_1: any, v1_1: (arg0: [US6, US6, US6, US7, US6, US6, U
     const v84: US9 = patternInput_1[11];
     let v150: US9;
     if (v84.tag === US9_Tag.US9_1) {
-        const v147: any = children_2;
+        const v147: any = children_3;
         v150 = US9_US9_1(v147(v84.fields[0]));
     }
     else {
@@ -1744,7 +1744,7 @@ export function closure21(unitVar: void, v0_1: Mut4): any {
     const v83: US9 = patternInput_1[11];
     let v149: US9;
     if (v83.tag === US9_Tag.US9_1) {
-        const v146: any = children_2;
+        const v146: any = children_3;
         v149 = US9_US9_1(v146(v83.fields[0]));
     }
     else {
@@ -1959,7 +1959,7 @@ export function method22(v0_1: (arg0: Mut1) => any, v1_1: (arg0: [US6, US6, US6,
     const v84: US9 = patternInput_1[11];
     let v150: US9;
     if (v84.tag === US9_Tag.US9_1) {
-        const v147: any = children_2;
+        const v147: any = children_3;
         v150 = US9_US9_1(v147(v84.fields[0]));
     }
     else {
@@ -2011,7 +2011,7 @@ export function closure61(v0_1: Mut7, _arg: [US6, US6, US6, US7, US6, US6, US6, 
     const v84: US9 = patternInput[11];
     let v150: US9;
     if (v84.tag === US9_Tag.US9_1) {
-        const v147: any = children_2;
+        const v147: any = children_3;
         v150 = US9_US9_1(v147(v84.fields[0]));
     }
     else {
@@ -2232,7 +2232,7 @@ export function method15(v0_1: Mut5): any {
     const v100: US6 = patternInput_1[28];
     let v149: US9;
     if (v83.tag === US9_Tag.US9_1) {
-        const v146: any = children_2;
+        const v146: any = children_3;
         v149 = US9_US9_1(v146(v83.fields[0]));
     }
     else {
@@ -2384,7 +2384,7 @@ export function method11(v0_1: Mut3): any {
     const v100: US6 = patternInput_1[28];
     let v149: US9;
     if (v83.tag === US9_Tag.US9_1) {
-        const v146: any = children_2;
+        const v146: any = children_3;
         v149 = US9_US9_1(v146(v83.fields[0]));
     }
     else {
@@ -4666,11 +4666,13 @@ export function method85(v0_1: UH1): [int64, int32][] {
 
 export function closure309(v0_1: () => [int64, int32], v1_1: int32, unitVar: void): any[] {
     const v4: any = <>
-        {`${v1_1}: `}
+        {`[${v1_1}=`}
     </>;
     const patternInput: [int64, int32] = v0_1();
     return [v4, <>
         {JSON.stringify(patternInput[1], null, 2)}
+    </>, <>
+        ]
     </>];
 }
 

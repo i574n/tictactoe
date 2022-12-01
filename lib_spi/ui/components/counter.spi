@@ -29,7 +29,7 @@ let counter (props : mut solid_props) =
         OnLoad = None
         OnUnload = None
         Props = fun props' => { props' with
-            Id = Some <| "counter"
+            Id = Some "counter"
             Title = Some <|
                 stack
                     fun props' => { props' with
@@ -96,11 +96,12 @@ let counter (props : mut solid_props) =
                                         pre
                                             id
                                             fun () => ;[
-                                                str $"$\"{!index}: \""
+                                                str $"$\"[{!index}=\""
                                                 item ()
                                                 |> snd
                                                 |> json_stringify_space
                                                 |> str
+                                                str "]"
                                             ]
                                     ]
                                 }

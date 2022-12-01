@@ -5378,14 +5378,17 @@ and method85 (v0 : UH1) : (struct (int64 * int32) []) =
     let v5 : int32 = method87(v3, v0, v4)
     v3
 and closure309 (v0 : (unit -> struct (int64 * int32)), v1 : int32) () : (JSX.Element []) =
-    let v2 : string = $"{v1}: "
+    let v2 : string = $"[{v1}="
     let v3 : JSX.Element = v2 |> unbox<JSX.Element>
     let v4 : JSX.Element = Html.fragment [ v3 ]
     let struct (v5 : int64, v6 : int32) = v0 ()
     let v7 : string = emitJsExpr v6 "JSON.stringify($0, null, 2)"
     let v8 : JSX.Element = v7 |> unbox<JSX.Element>
     let v9 : JSX.Element = Html.fragment [ v8 ]
-    [|v4; v9|]
+    let v10 : string = "]"
+    let v11 : JSX.Element = v10 |> unbox<JSX.Element>
+    let v12 : JSX.Element = Html.fragment [ v11 ]
+    [|v4; v9; v12|]
 and closure308 (v0 : (unit -> struct (int64 * int32)), v1 : int32) () : (JSX.Element []) =
     let v2 : string = "hope"
     let v3 : string = "@hope-ui/core"

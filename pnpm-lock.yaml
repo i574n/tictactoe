@@ -18,7 +18,7 @@ specifiers:
   solid-transition-group: 0.0.12
   ts-node: ~10.9
   typescript: ~4.9.1-beta
-  zeromq: ~6.0.0-beta.6
+  zeromq: 6.0.0-beta.6
 
 dependencies:
   '@hope-ui/core': 1.0.0-next.11_k6sd3zeqfnqpamqwrjxkllodum
