@@ -132,6 +132,18 @@ function newTest(title: string, testFn: (_: { browser: Browser }) => any) {
     })
 }
 
+const selectorTextContent = async (pages: Page[], selector: string) => {
+    return await Promise.all(
+        pages
+            .map(page =>
+                page
+                    .locator(selector)
+                    .evaluateAll((nodes) => nodes.map((node) => node.textContent))
+            )
+            .flat()
+    )
+}
+
 let actionIndex = 0
 const action = async (pages: Page[], title: string, selector: string, fn: (_: Page[]) => Promise<any>) => {
     console.log(
@@ -140,16 +152,10 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
     let result
     for (let i = 0; i < 2; i++) {
         if (selector) {
-            const textContent = await Promise.all(
-                pages.map(page =>
-                    page
-                        .locator(selector)
-                        .evaluateAll((nodes) => nodes.map((node) => node.textContent))
-                )
-            )
+            const pagesTextContent = selectorTextContent(pages, selector)
             console.log(
                 `\n!### action() ${actionIndex}: ${title}. ${i === 0 ? 'before' : 'after'} fn`,
-                textContent.flat() //.map((text) => JSON.parse(text || '""')))
+                pagesTextContent
             )
         }
 
@@ -167,22 +173,14 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
     return result
 }
 
-const waitFor = (
-    pages: Page[],
-    title: string,
-    selector: string,
-    opts?: { has?: Locator; hasText?: string | RegExp }
-) => action(
-    pages,
-    title,
-    selector,
-    (pages) =>
-        Promise.all(
-            pages.map((page) =>
-                page.locator(selector, opts)
-                    .waitFor())
-        )
-)
+const waitFor = async (pages: Page[], title: string, selector: string, text: string) => {
+    const pagesTextContent = await selectorTextContent(pages, selector)
+    pagesTextContent.forEach((textContent, index) => {
+        if(!textContent.includes(text)) {
+            throw new Error(`${title}: textContent ${index} does not include ${text}: ${textContent}`)
+        }
+    })
+}
 
 test.beforeEach(async ({ }, testInfo) => {
     console.log('beforeEach', { retry: testInfo.retry })
@@ -245,7 +243,8 @@ newTest("test1", async ({ browser }) => {
         }))
     })
 
-    await waitFor(pages, 'wait empty 1', '#counter table', { hasText: "[0=null]" })
+
+    await waitFor(pages, 'wait empty 1', '#counter table', '[0=null]')
 
     for (const [index, page] of pages.entries()) {
         const i = index + 1
@@ -253,14 +252,14 @@ newTest("test1", async ({ browser }) => {
             await page.locator('#counter button').nth(0).click()
         })
 
-        await waitFor(pages, `wait i::${i}`, '#counter table', { hasText: `[0=${i}]` })
+        await waitFor(pages, `wait i::${i}`, '#counter table', `[0=${i}]`)
     }
 
     await action(pages, 'clear click 2', '#counter table', async (pages) => {
         await pages[0].locator('#counter button').nth(1).click()
     })
 
-    await waitFor(pages, 'wait empty 2', '#counter table', { hasText: `[0=null]` })
+    await waitFor(pages, 'wait empty 2', '#counter table', '[0=null]')
 
     return pages
 })
