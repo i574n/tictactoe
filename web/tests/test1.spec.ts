@@ -132,17 +132,15 @@ function newTest(title: string, testFn: (_: { browser: Browser }) => any) {
     })
 }
 
-const selectorTextContent = async (pages: Page[], selector: string) => {
-    return await Promise.all(
+const selectorTextContent = async (pages: Page[], selector: string) =>
+    (await Promise.all(
         pages
             .map(page =>
                 page
                     .locator(selector)
                     .evaluateAll((nodes) => nodes.map((node) => node.textContent))
             )
-            .flat()
-    )
-}
+    )).flat()
 
 let actionIndex = 0
 const action = async (pages: Page[], title: string, selector: string, fn: (_: Page[]) => Promise<any>) => {
@@ -152,7 +150,7 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
     let result
     for (let i = 0; i < 2; i++) {
         if (selector) {
-            const pagesTextContent = selectorTextContent(pages, selector)
+            const pagesTextContent = await selectorTextContent(pages, selector)
             console.log(
                 `\n!### action() ${actionIndex}: ${title}. ${i === 0 ? 'before' : 'after'} fn`,
                 pagesTextContent
@@ -176,7 +174,7 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
 const waitFor = async (pages: Page[], title: string, selector: string, text: string) => {
     const pagesTextContent = await selectorTextContent(pages, selector)
     pagesTextContent.forEach((textContent, index) => {
-        if(!textContent.includes(text)) {
+        if(!(textContent || '').includes(text)) {
             throw new Error(`${title}: textContent ${index} does not include ${text}: ${textContent}`)
         }
     })
