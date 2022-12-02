@@ -12,7 +12,7 @@ const config: PlaywrightTestConfig = {
     ],
     retries: process.env.CI ? 2 : 0,
     testDir: './tests',
-    timeout: 45 * 1000,
+    timeout: 60 * 1000,
     workers: 1,
     expect: {
         timeout: 30000
@@ -38,7 +38,7 @@ const config: PlaywrightTestConfig = {
     webServer: {
         command: 'bun run e2e-deps',
         port: 18765,
-        timeout: 30 * 1000,
+        timeout: 60 * 1000,
         reuseExistingServer: false
     }
 }

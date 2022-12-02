@@ -84,24 +84,19 @@ let counter (props : mut solid_props) =
                     fun () => ;[
                         index' {
                             Each' = profile_tmp_counter () |> am.toList |> listm.rev |> listm.toArray
-                        } fun item index => ;[
+                        } fun item index => inl timestamp, value = item () in ;[
                             /!!row {
                                 Status = CheckHidden
                                 OnLoad = None
                                 OnUnload = None
                                 Props = fun props' => { props' with
-                                    Title = Some <| str (item () |> fst |> to_string')
+                                    Title = Some <| str (timestamp |> to_string')
                                     Padding = Some "3px"
                                     Children = Some fun () => ;[
                                         pre
                                             id
-                                            fun () => ;[
-                                                str $"$\"[{!index}=\""
-                                                item ()
-                                                |> snd
-                                                |> json_stringify_space
-                                                |> str
-                                                str "]"
+                                            fun () => inl json = value |> json_stringify_space in ;[
+                                                str $"$\"[{!index}={!json}]\""
                                             ]
                                     ]
                                 }

@@ -141,13 +141,15 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
     for (let i = 0; i < 2; i++) {
         if (selector) {
             const textContent = await Promise.all(
-                pages
-                    .map(page => page
+                pages.map(page =>
+                    page
                         .locator(selector)
-                        .evaluateAll((nodes) => nodes.map((node) => node.textContent))))
+                        .evaluateAll((nodes) => nodes.map((node) => node.textContent))
+                )
+            )
             console.log(
                 `\n!### action() ${actionIndex}: ${title}. ${i === 0 ? 'before' : 'after'} fn`,
-                textContent.flat()//.map((text) => JSON.parse(text || '""')))
+                textContent.flat() //.map((text) => JSON.parse(text || '""')))
             )
         }
 
