@@ -37,7 +37,7 @@ jobs:
 
       - run: pnpm install
       - run: cd ./web && pnpm install
-      - run: cd ./peer && pnpm install
+      - run: cd ./peer_gunjs && pnpm install
 
       - run: cargo install rod
 

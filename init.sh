@@ -27,6 +27,6 @@ echo "export PATH=\"\$HOME/.cargo/bin:\$PATH\"" >> ~/.bashrc
 cargo install rod
 
 pnpm install
-cd peer && pnpm install && cd ..
+cd peer_gunjs && pnpm install && cd ..
 cd web && pnpm install && cd ..
 cd web && bun run playwright-install && cd ..

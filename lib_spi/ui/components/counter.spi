@@ -12,6 +12,15 @@ open hooks.use_fetch
 let counter (props : mut solid_props) =
     inl profile_tmp_counter, set_profile_tmp_counter = use_profile_tmp_counter ()
 
+    inl get_locals () : array any = ;[
+        !!("profile_tmp_counter:", profile_tmp_counter ())
+    ]
+    inl log = use_log get_locals "#666"
+    log Debug ;[!!"> counter ()"]
+
+    create_effect fun () =>
+        log Info ;[!!"> counter -> effect ()"]
+
     inl request, clear =
         use_fetch
             "profile/tmp/counter"

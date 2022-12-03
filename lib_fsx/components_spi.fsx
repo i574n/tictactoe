@@ -4694,7 +4694,20 @@ and closure235 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v76 : US6 = US6_1(v75)
     let v77 : US11 = US11_1(v72)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v76, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v77, v63, v64, v65, v66, v67, v68, v69)
-and closure276 (v0 : ((struct (int64 * int32) []) -> unit)) struct (v1 : (struct (int64 * int32) []), v2 : US2, v3 : int64, v4 : int32) : unit =
+and closure276 (v0 : (unit -> (struct (int64 * int32) []))) () : (obj []) =
+    let v1 : (struct (int64 * int32) []) = v0 ()
+    let v2 : string = "profile_tmp_counter:"
+    let v3 : obj = struct (v2, v1)
+    [|v3|]
+and closure277 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
+    let v1 : US4 = US4_2
+    let v2 : ((obj []) -> unit) = v0 v1
+    let v3 : string = "> counter -> effect ()"
+    let v4 : obj = v3
+    let v5 : (obj []) = [|v4|]
+    v2 v5
+    ()
+and closure278 (v0 : ((struct (int64 * int32) []) -> unit)) struct (v1 : (struct (int64 * int32) []), v2 : US2, v3 : int64, v4 : int32) : unit =
     let v5 : (struct (int64 * int32) []) = [|struct (v3, v4)|]
     let v6 : int32 = v1.Length
     let v7 : int32 = v5.Length
@@ -4718,15 +4731,15 @@ and closure276 (v0 : ((struct (int64 * int32) []) -> unit)) struct (v1 : (struct
         ()
     v0 v9
     ()
-and closure279 (v0 : (unit -> (struct (int64 * int32) [])), v1 : (int32 -> unit)) (v2 : (exn -> unit)) : unit =
+and closure281 (v0 : (unit -> (struct (int64 * int32) [])), v1 : (int32 -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (int64 * int32) []) = v0 ()
     let v4 : int32 = v3.Length
     v1 v4
     ()
-and closure278 (v0 : (unit -> (struct (int64 * int32) []))) (v1 : (int32 -> unit)) : ((exn -> unit) -> unit) =
-    closure279(v0, v1)
-and closure277 (v0 : (unit -> (struct (int64 * int32) []))) (v1 : obj) : JS.Promise<int32> =
-    let v2 : ((int32 -> unit) -> ((exn -> unit) -> unit)) = closure278(v0)
+and closure280 (v0 : (unit -> (struct (int64 * int32) []))) (v1 : (int32 -> unit)) : ((exn -> unit) -> unit) =
+    closure281(v0, v1)
+and closure279 (v0 : (unit -> (struct (int64 * int32) []))) (v1 : obj) : JS.Promise<int32> =
+    let v2 : ((int32 -> unit) -> ((exn -> unit) -> unit)) = closure280(v0)
     let v3 : JS.Promise<int32> = Promise.create v2
     v3
 and method75 () : struct ((unit -> unit) * (unit -> unit)) =
@@ -4753,7 +4766,7 @@ and method77 (v0 : (struct (US2 * int64 * string) [])) : struct ((unit -> (struc
     let v5 : (unit -> (struct (US2 * int64 * string) [])) = v4.[0] |> unbox<unit -> (struct (US2 * int64 * string) [])>
     let v6 : ((struct (US2 * int64 * string) []) -> unit) = v4.[1] |> unbox<(struct (US2 * int64 * string) []) -> unit>
     struct (v5, v6)
-and closure280 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US16), v6 : (unit -> (struct (US2 * int64 * string) []))) () : (obj []) =
+and closure282 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US16), v6 : (unit -> (struct (US2 * int64 * string) []))) () : (obj []) =
     let v7 : string = "content_address:"
     let v8 : obj = struct (v7, v0)
     let v9 : (struct (int64 * int32) []) = v1 ()
@@ -4821,7 +4834,7 @@ and method78 (v0 : int32, v1 : Mut26) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure282 (v0 : string, v1 : US2) () : (obj []) =
+and closure284 (v0 : string, v1 : US2) () : (obj []) =
     let v2 : string = "content_address:"
     let v3 : obj = struct (v2, v0)
     let v7 : string =
@@ -4970,10 +4983,10 @@ and method79 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (str
     let v22 : (obj []) = [|v15; v17; v19; v21|]
     v13 v22
     method80(v0, v1, v2, v3, v4, v5, v6, v7, v11, v9)
-and closure284 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v3 : (US16 -> unit), v4 : (unit -> US16), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit)), v9 : int32) (v10 : obj) : unit =
+and closure286 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v3 : (US16 -> unit), v4 : (unit -> US16), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit)), v9 : int32) (v10 : obj) : unit =
     method79(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10)
-and closure283 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v3 : (US16 -> unit), v4 : (unit -> US16), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit))) (v9 : int32) : (obj -> unit) =
-    closure284(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
+and closure285 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v3 : (US16 -> unit), v4 : (unit -> US16), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit))) (v9 : int32) : (obj -> unit) =
+    closure286(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
 and method82 (v0 : (struct (US2 * string) []), v1 : (struct (US2 * string) []), v2 : int32) : bool =
     let v3 : int32 = v0.Length
     let v4 : bool = v2 < v3
@@ -5003,7 +5016,7 @@ and method82 (v0 : (struct (US2 * string) []), v1 : (struct (US2 * string) []), 
             false
     else
         true
-and closure281 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * string) []) -> unit), v3 : (unit -> (struct (US2 * int64 * string) [])), v4 : (US4 -> ((obj []) -> unit)), v5 : (unit -> (struct (int64 * int32) [])), v6 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v7 : (US16 -> unit), v8 : (unit -> US16)) (v9 : (struct (US2 * obj * string) [])) : unit =
+and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * string) []) -> unit), v3 : (unit -> (struct (US2 * int64 * string) [])), v4 : (US4 -> ((obj []) -> unit)), v5 : (unit -> (struct (int64 * int32) [])), v6 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v7 : (US16 -> unit), v8 : (unit -> US16)) (v9 : (struct (US2 * obj * string) [])) : unit =
     let v10 : (struct (US2 * int64 * string) []) = v3 ()
     let v11 : int32 = v9.Length
     let v12 : (struct (US2 * int64 * string) []) = Array.zeroCreate<struct (US2 * int64 * string)> (v11)
@@ -5054,7 +5067,7 @@ and closure281 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
         let struct (v74 : US2, v75 : int64, v76 : string) =
             match v42 with
             | US17_0 -> (* None *)
-                let v43 : (unit -> (obj [])) = closure282(v0, v16)
+                let v43 : (unit -> (obj [])) = closure284(v0, v16)
                 let v44 : string = "#666"
                 let v45 : (US4 -> ((obj []) -> unit)) = method17(v1, v43, v44)
                 let v46 : US4 = US4_0
@@ -5063,7 +5076,7 @@ and closure281 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
                 let v49 : obj = v48
                 let v50 : (obj []) = [|v49|]
                 v47 v50
-                let v51 : (int32 -> (obj -> unit)) = closure283(v0, v5, v6, v7, v8, v4, v16, v9, v45)
+                let v51 : (int32 -> (obj -> unit)) = closure285(v0, v5, v6, v7, v8, v4, v16, v9, v45)
                 let v52 : (struct (obj * int32) -> unit) = emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
                 let v53 : (string []) = v0.Split [| '/' |]
                 let v54 : (string -> obj) = v17?get
@@ -5162,11 +5175,11 @@ and closure281 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
         v105 v122
         v2 v12
         ()
-and closure285 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : ((struct (US2 * obj * string) []) -> unit)) () : unit =
+and closure287 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : ((struct (US2 * obj * string) []) -> unit)) () : unit =
     let v2 : (struct (US2 * obj * string) []) = v0 ()
     v1 v2
     ()
-and closure286 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : string, v2 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure288 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : string, v2 : (US4 -> ((obj []) -> unit))) () : unit =
     v0?clear ()
     let v3 : US4 = US4_0
     let v4 : ((obj []) -> unit) = v2 v3
@@ -5177,18 +5190,18 @@ and closure286 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : string, v2
     let v8 : string = "db_off"
     printfn $"%A{struct (v8, v1)}"
     ()
-and closure288 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v3 : (US16 -> unit), v4 : (unit -> US16), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : int64) (v9 : int32) : unit =
+and closure290 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v3 : (US16 -> unit), v4 : (unit -> US16), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : int64) (v9 : int32) : unit =
     method80(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
-and closure287 (v0 : (obj -> JS.Promise<int32>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (int64 * int32) [])), v4 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v5 : (US16 -> unit), v6 : (unit -> US16), v7 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure289 (v0 : (obj -> JS.Promise<int32>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (int64 * int32) [])), v4 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v5 : (US16 -> unit), v6 : (unit -> US16), v7 : (US4 -> ((obj []) -> unit))) () : unit =
     let v8 : (struct (US2 * obj * string) []) = v1 ()
     let v9 : int64 = DateTime.UtcNow.Ticks / 1000L
     let v10 : obj = ()
     let v11 : JS.Promise<int32> = v0 v10
     let v12 : US2 = US2_2
-    let v13 : (int32 -> unit) = closure288(v2, v3, v4, v5, v6, v7, v12, v8, v9)
+    let v13 : (int32 -> unit) = closure290(v2, v3, v4, v5, v6, v7, v12, v8, v9)
     v11 |> Promise.iter v13
     ()
-and closure289 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (int64 * int32) [])), v4 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v5 : (US16 -> unit), v6 : (unit -> US16)) () : unit =
+and closure291 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (int64 * int32) [])), v4 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit), v5 : (US16 -> unit), v6 : (unit -> US16)) () : unit =
     let v7 : US4 = US4_2
     let v8 : ((obj []) -> unit) = v1 v7
     let v9 : string = ">> use_fetch clear ()"
@@ -5232,7 +5245,7 @@ and method74 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (str
     let v263 : int32 = v254.l1
     let v264 : string = v263.ToString ()
     let v265 : string = $"#{v264}"
-    let v266 : (unit -> (obj [])) = closure280(v0, v1, v230, v242, v244, v247, v250)
+    let v266 : (unit -> (obj [])) = closure282(v0, v1, v230, v242, v244, v247, v250)
     let v267 : (US4 -> ((obj []) -> unit)) = method16(v266, v265)
     let v268 : US4 = US4_0
     let v269 : ((obj []) -> unit) = v267 v268
@@ -5243,20 +5256,20 @@ and method74 (v0 : string, v1 : (unit -> (struct (int64 * int32) [])), v2 : (str
     let v273 : string = "debounce"
     let v274 : string = "@solid-primitives/scheduled"
     let v275 : JS.Function = import v273 v274
-    let v276 : ((struct (US2 * obj * string) []) -> unit) = closure281(v0, v120, v251, v250, v267, v1, v2, v248, v247)
+    let v276 : ((struct (US2 * obj * string) []) -> unit) = closure283(v0, v120, v251, v250, v267, v1, v2, v248, v247)
     let v277 : ((struct (US2 * obj * string) []) -> unit) = v275.Invoke (v276, 2500) |> unbox<(struct (US2 * obj * string) []) -> unit>
     let v278 : string = "createEffect"
     let v279 : JS.Function = import v278 v100
-    let v280 : (unit -> unit) = closure285(v230, v277)
+    let v280 : (unit -> unit) = closure287(v230, v277)
     v279.Invoke v280 |> ignore
     let v281 : string = "onCleanup"
     let v282 : JS.Function = import v281 v100
-    let v283 : (unit -> unit) = closure286(v277, v0, v267)
+    let v283 : (unit -> unit) = closure288(v277, v0, v267)
     v282.Invoke v283 |> ignore
-    let v284 : (unit -> unit) = closure287(v3, v230, v0, v1, v2, v248, v247, v267)
-    let v285 : (unit -> unit) = closure289(v230, v267, v0, v1, v2, v248, v247)
+    let v284 : (unit -> unit) = closure289(v3, v230, v0, v1, v2, v248, v247, v267)
+    let v285 : (unit -> unit) = closure291(v230, v267, v0, v1, v2, v248, v247)
     struct (v284, v285)
-and closure291 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure293 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : string = "center"
     let v71 : string = "baseline"
     let v72 : string = method13(v71, v70)
@@ -5274,74 +5287,74 @@ and closure291 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v84 : string = "7px"
     let v85 : US6 = US6_1(v84)
     struct (v79, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v80, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v81, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v83, v49, v50, v51, v52, v53, v54, v55, v56, v85, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure293 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure295 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure294 () () : (JSX.Element []) =
+and closure296 () () : (JSX.Element []) =
     let v0 : string = "Counter"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure296 () () : JS.Function =
+and closure298 () () : JS.Function =
     let v0 : string = "BiRegularPlus"
     let v1 : string = "solid-icons/bi"
     let v2 : JS.Function = import v0 v1
     v2
-and closure297 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure299 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure295 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure297 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (Mut7 -> JSX.Element) = closure60()
-    let v72 : (unit -> JS.Function) = closure296()
+    let v72 : (unit -> JS.Function) = closure298()
     let v73 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure297()
+    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure299()
     let v75 : JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US11 = US11_1(v75)
     let v77 : US13 = US13_1(v0)
     let v78 : string = "10px"
     let v79 : US6 = US6_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure298 () () : (JSX.Element []) =
+and closure300 () () : (JSX.Element []) =
     let v0 : string = "Request"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure300 () () : JS.Function =
+and closure302 () () : JS.Function =
     let v0 : string = "BiRegularMinus"
     let v1 : string = "solid-icons/bi"
     let v2 : JS.Function = import v0 v1
     v2
-and closure301 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure303 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure299 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure301 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (Mut7 -> JSX.Element) = closure60()
-    let v72 : (unit -> JS.Function) = closure300()
+    let v72 : (unit -> JS.Function) = closure302()
     let v73 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure301()
+    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure303()
     let v75 : JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US11 = US11_1(v75)
     let v77 : US13 = US13_1(v0)
     let v78 : string = "10px"
     let v79 : US6 = US6_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure302 () () : (JSX.Element []) =
+and closure304 () () : (JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure292 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
+and closure294 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/core"
     let v4 : JS.Function = import v2 v3
-    let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure293()
-    let v6 : (unit -> (JSX.Element [])) = closure294()
+    let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure295()
+    let v6 : (unit -> (JSX.Element [])) = closure296()
     let v7 : JSX.Element = method5(v4, v5, v6)
     let v8 : (Mut1 -> JSX.Element) = closure47()
-    let v9 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure295(v1)
-    let v10 : (unit -> (JSX.Element [])) = closure298()
+    let v9 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure297(v1)
+    let v10 : (unit -> (JSX.Element [])) = closure300()
     let v11 : JSX.Element = method22(v8, v9, v10)
-    let v12 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure299(v0)
-    let v13 : (unit -> (JSX.Element [])) = closure302()
+    let v12 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure301(v0)
+    let v13 : (unit -> (JSX.Element [])) = closure304()
     let v14 : JSX.Element = method22(v8, v12, v13)
     [|v7; v11; v14|]
 and method83 (v0 : int32, v1 : Mut28) : bool =
@@ -5377,47 +5390,47 @@ and method85 (v0 : UH1) : (struct (int64 * int32) []) =
     let v4 : int32 = 0
     let v5 : int32 = method87(v3, v0, v4)
     v3
-and closure309 (v0 : int32, v1 : int32) () : (JSX.Element []) =
+and closure311 (v0 : int32, v1 : int32) () : (JSX.Element []) =
     let v2 : string = emitJsExpr v1 "JSON.stringify($0, null, 2)"
     let v3 : string = $"[{v0}={v2}]"
     let v4 : JSX.Element = v3 |> unbox<JSX.Element>
     let v5 : JSX.Element = Html.fragment [ v4 ]
     [|v5|]
-and closure308 (v0 : int32, v1 : int32) () : (JSX.Element []) =
+and closure310 (v0 : int32, v1 : int32) () : (JSX.Element []) =
     let v2 : string = "hope"
     let v3 : string = "@hope-ui/core"
     let v4 : JS.Function = import v2 v3
     let v5 : JS.Function = v4?pre
     let v6 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v7 : (unit -> (JSX.Element [])) = closure309(v0, v1)
+    let v7 : (unit -> (JSX.Element [])) = closure311(v0, v1)
     let v8 : JSX.Element = method5(v5, v6, v7)
     [|v8|]
-and closure307 (v0 : int32, v1 : int32, v2 : int64) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure309 (v0 : int32, v1 : int32, v2 : int64) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v73 : string = v2.ToString ()
     let v74 : JSX.Element = v73 |> unbox<JSX.Element>
     let v75 : JSX.Element = Html.fragment [ v74 ]
-    let v76 : (unit -> (JSX.Element [])) = closure308(v0, v1)
+    let v76 : (unit -> (JSX.Element [])) = closure310(v0, v1)
     let v77 : US9 = US9_1(v76)
     let v78 : string = "3px"
     let v79 : US6 = US6_1(v78)
     let v80 : US11 = US11_1(v75)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v77, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v79, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v80, v66, v67, v68, v69, v70, v71, v72)
-and closure306 (v0 : (unit -> struct (int64 * int32))) (v1 : int32) : (JSX.Element []) =
+and closure308 (v0 : (unit -> struct (int64 * int32))) (v1 : int32) : (JSX.Element []) =
     let struct (v2 : int64, v3 : int32) = v0 ()
     let v4 : (Mut3 -> JSX.Element) = closure14()
     let v5 : US13 = US13_0
     let v6 : US13 = US13_0
-    let v7 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure307(v1, v3, v2)
+    let v7 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure309(v1, v3, v2)
     let v8 : US15 = US15_2
     let v9 : JSX.Element = method26(v4, v5, v6, v7, v8)
     [|v9|]
-and closure305 () (v0 : (unit -> struct (int64 * int32))) : (int32 -> (JSX.Element [])) =
-    closure306(v0)
-and closure310 (v0 : (struct (int64 * int32) [])) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure307 () (v0 : (unit -> struct (int64 * int32))) : (int32 -> (JSX.Element [])) =
+    closure308(v0)
+and closure312 (v0 : (struct (int64 * int32) [])) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (obj []) = v0 |> unbox<(obj [])>
     let v72 : US10 = US10_1(v71)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v72, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure304 (v0 : (unit -> (struct (int64 * int32) []))) () : (JSX.Element []) =
+and closure306 (v0 : (unit -> (struct (int64 * int32) []))) () : (JSX.Element []) =
     let v1 : (struct (int64 * int32) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH1 = UH1_1
@@ -5438,28 +5451,28 @@ and closure304 (v0 : (unit -> (struct (int64 * int32) []))) () : (JSX.Element []
     let v16 : UH1 = UH1_1
     let v17 : UH1 = method84(v15, v16)
     let v18 : (struct (int64 * int32) []) = method85(v17)
-    let v19 : ((unit -> struct (int64 * int32)) -> (int32 -> (JSX.Element []))) = closure305()
+    let v19 : ((unit -> struct (int64 * int32)) -> (int32 -> (JSX.Element []))) = closure307()
     let v20 : (unit -> (JSX.Element [])) = emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
     let v21 : string = "Index"
     let v22 : string = "solid-js"
     let v23 : JS.Function = import v21 v22
-    let v24 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure310(v18)
+    let v24 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure312(v18)
     let v25 : JSX.Element = method5(v23, v24, v20)
     [|v25|]
-and closure303 (v0 : (unit -> (struct (int64 * int32) []))) () : (JSX.Element []) =
+and closure305 (v0 : (unit -> (struct (int64 * int32) []))) () : (JSX.Element []) =
     let v1 : (Mut1 -> JSX.Element) = closure7()
     let v2 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v3 : (unit -> (JSX.Element [])) = closure304(v0)
+    let v3 : (unit -> (JSX.Element [])) = closure306(v0)
     let v4 : JSX.Element = method22(v1, v2, v3)
     [|v4|]
-and closure290 (v0 : (unit -> (struct (int64 * int32) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure292 (v0 : (unit -> (struct (int64 * int32) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/core"
     let v75 : JS.Function = import v73 v74
-    let v76 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure291()
-    let v77 : (unit -> (JSX.Element [])) = closure292(v1, v2)
+    let v76 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure293()
+    let v77 : (unit -> (JSX.Element [])) = closure294(v1, v2)
     let v78 : JSX.Element = method5(v75, v76, v77)
-    let v79 : (unit -> (JSX.Element [])) = closure303(v0)
+    let v79 : (unit -> (JSX.Element [])) = closure305(v0)
     let v80 : US9 = US9_1(v79)
     let v81 : string = "counter"
     let v82 : US6 = US6_1(v81)
@@ -5471,31 +5484,44 @@ and method73 () : JSX.Element =
     let v96 : string = "solid-js"
     let v97 : JS.Function = import v95 v96
     let struct (v98 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v99 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v100 : (unit -> int32), v101 : (int32 -> unit), v102 : (unit -> string), v103 : (string -> unit), v104 : (unit -> string), v105 : (string -> unit), v106 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v107 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v108 : (unit -> (struct (US2 * obj * string) [])), v109 : ((struct (US2 * obj * string) []) -> unit), v110 : (unit -> (struct (int64 * obj) [])), v111 : ((struct (int64 * obj) []) -> unit), v112 : (unit -> (struct (int64 * obj) [])), v113 : ((struct (int64 * obj) []) -> unit), v114 : (unit -> (struct (int64 * int32) [])), v115 : ((struct (int64 * int32) []) -> unit), v116 : (unit -> US4), v117 : (US4 -> unit), v118 : (unit -> US5), v119 : (US5 -> unit)) = v97.Invoke v94 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * int32) [])) * ((struct (int64 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v120 : string = "profile/tmp/counter"
-    let v121 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit) = closure276(v115)
-    let v122 : (obj -> JS.Promise<int32>) = closure277(v114)
-    let struct (v123 : (unit -> unit), v124 : (unit -> unit)) = method74(v120, v114, v121, v122)
-    let v125 : (Mut3 -> JSX.Element) = closure14()
-    let v126 : US13 = US13_0
-    let v127 : US13 = US13_0
-    let v128 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure290(v114, v124, v123)
-    let v129 : US15 = US15_2
-    method26(v125, v126, v127, v128, v129)
+    let v120 : (unit -> (obj [])) = closure276(v114)
+    let v121 : string = "#666"
+    let v122 : (US4 -> ((obj []) -> unit)) = method16(v120, v121)
+    let v123 : US4 = US4_0
+    let v124 : ((obj []) -> unit) = v122 v123
+    let v125 : string = "> counter ()"
+    let v126 : obj = v125
+    let v127 : (obj []) = [|v126|]
+    v124 v127
+    let v128 : string = "createEffect"
+    let v129 : JS.Function = import v128 v96
+    let v130 : (unit -> unit) = closure277(v122)
+    v129.Invoke v130 |> ignore
+    let v131 : string = "profile/tmp/counter"
+    let v132 : (struct ((struct (int64 * int32) []) * US2 * int64 * int32) -> unit) = closure278(v115)
+    let v133 : (obj -> JS.Promise<int32>) = closure279(v114)
+    let struct (v134 : (unit -> unit), v135 : (unit -> unit)) = method74(v131, v114, v132, v133)
+    let v136 : (Mut3 -> JSX.Element) = closure14()
+    let v137 : US13 = US13_0
+    let v138 : US13 = US13_0
+    let v139 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure292(v114, v135, v134)
+    let v140 : US15 = US15_2
+    method26(v136, v137, v138, v139, v140)
 and closure275 () (v0 : Mut1) : JSX.Element =
     method73()
-and closure311 () () : (JSX.Element []) =
+and closure313 () () : (JSX.Element []) =
     [||]
-and closure313 (v0 : ((struct (int64 * obj) []) -> unit)) struct (v1 : (struct (int64 * obj) []), v2 : US2, v3 : int64, v4 : (struct (int64 * obj) [])) : unit =
+and closure315 (v0 : ((struct (int64 * obj) []) -> unit)) struct (v1 : (struct (int64 * obj) []), v2 : US2, v3 : int64, v4 : (struct (int64 * obj) [])) : unit =
     v0 v4
     ()
-and closure316 (v0 : (unit -> (struct (int64 * obj) [])), v1 : ((struct (int64 * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
+and closure318 (v0 : (unit -> (struct (int64 * obj) [])), v1 : ((struct (int64 * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (int64 * obj) []) = v0 ()
     v1 v3
     ()
-and closure315 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : ((struct (int64 * obj) []) -> unit)) : ((exn -> unit) -> unit) =
-    closure316(v0, v1)
-and closure314 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : obj) : JS.Promise<(struct (int64 * obj) [])> =
-    let v2 : (((struct (int64 * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure315(v0)
+and closure317 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : ((struct (int64 * obj) []) -> unit)) : ((exn -> unit) -> unit) =
+    closure318(v0, v1)
+and closure316 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : obj) : JS.Promise<(struct (int64 * obj) [])> =
+    let v2 : (((struct (int64 * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure317(v0)
     let v3 : JS.Promise<(struct (int64 * obj) [])> = Promise.create v2
     v3
 and method90 (v0 : US18) : struct ((unit -> US18) * (US18 -> unit)) =
@@ -5506,7 +5532,7 @@ and method90 (v0 : US18) : struct ((unit -> US18) * (US18 -> unit)) =
     let v5 : (unit -> US18) = v4.[0] |> unbox<unit -> US18>
     let v6 : (US18 -> unit) = v4.[1] |> unbox<US18 -> unit>
     struct (v5, v6)
-and closure317 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US18), v6 : (unit -> (struct (US2 * int64 * string) []))) () : (obj []) =
+and closure319 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US18), v6 : (unit -> (struct (US2 * int64 * string) []))) () : (obj []) =
     let v7 : string = "content_address:"
     let v8 : obj = struct (v7, v0)
     let v9 : (struct (int64 * obj) []) = v1 ()
@@ -5698,11 +5724,11 @@ and method91 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struc
     let v22 : (obj []) = [|v15; v17; v19; v21|]
     v13 v22
     method92(v0, v1, v2, v3, v4, v5, v6, v7, v11, v9)
-and closure320 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit)), v9 : (struct (int64 * obj) [])) (v10 : obj) : unit =
+and closure322 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit)), v9 : (struct (int64 * obj) [])) (v10 : obj) : unit =
     method91(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10)
-and closure319 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit))) (v9 : (struct (int64 * obj) [])) : (obj -> unit) =
-    closure320(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
-and closure318 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * string) []) -> unit), v3 : (unit -> (struct (US2 * int64 * string) [])), v4 : (US4 -> ((obj []) -> unit)), v5 : (unit -> (struct (int64 * obj) [])), v6 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v7 : (US18 -> unit), v8 : (unit -> US18)) (v9 : (struct (US2 * obj * string) [])) : unit =
+and closure321 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit))) (v9 : (struct (int64 * obj) [])) : (obj -> unit) =
+    closure322(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
+and closure320 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * string) []) -> unit), v3 : (unit -> (struct (US2 * int64 * string) [])), v4 : (US4 -> ((obj []) -> unit)), v5 : (unit -> (struct (int64 * obj) [])), v6 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v7 : (US18 -> unit), v8 : (unit -> US18)) (v9 : (struct (US2 * obj * string) [])) : unit =
     let v10 : (struct (US2 * int64 * string) []) = v3 ()
     let v11 : int32 = v9.Length
     let v12 : (struct (US2 * int64 * string) []) = Array.zeroCreate<struct (US2 * int64 * string)> (v11)
@@ -5753,7 +5779,7 @@ and closure318 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
         let struct (v74 : US2, v75 : int64, v76 : string) =
             match v42 with
             | US17_0 -> (* None *)
-                let v43 : (unit -> (obj [])) = closure282(v0, v16)
+                let v43 : (unit -> (obj [])) = closure284(v0, v16)
                 let v44 : string = "#666"
                 let v45 : (US4 -> ((obj []) -> unit)) = method17(v1, v43, v44)
                 let v46 : US4 = US4_0
@@ -5762,7 +5788,7 @@ and closure318 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
                 let v49 : obj = v48
                 let v50 : (obj []) = [|v49|]
                 v47 v50
-                let v51 : ((struct (int64 * obj) []) -> (obj -> unit)) = closure319(v0, v5, v6, v7, v8, v4, v16, v9, v45)
+                let v51 : ((struct (int64 * obj) []) -> (obj -> unit)) = closure321(v0, v5, v6, v7, v8, v4, v16, v9, v45)
                 let v52 : (struct (obj * int32) -> unit) = emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
                 let v53 : (string []) = v0.Split [| '/' |]
                 let v54 : (string -> obj) = v17?get
@@ -5861,18 +5887,18 @@ and closure318 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
         v105 v122
         v2 v12
         ()
-and closure322 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : int64) (v9 : (struct (int64 * obj) [])) : unit =
+and closure324 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : int64) (v9 : (struct (int64 * obj) [])) : unit =
     method92(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9)
-and closure321 (v0 : (obj -> JS.Promise<(struct (int64 * obj) [])>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (int64 * obj) [])), v4 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v5 : (US18 -> unit), v6 : (unit -> US18), v7 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure323 (v0 : (obj -> JS.Promise<(struct (int64 * obj) [])>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (int64 * obj) [])), v4 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v5 : (US18 -> unit), v6 : (unit -> US18), v7 : (US4 -> ((obj []) -> unit))) () : unit =
     let v8 : (struct (US2 * obj * string) []) = v1 ()
     let v9 : int64 = DateTime.UtcNow.Ticks / 1000L
     let v10 : obj = ()
     let v11 : JS.Promise<(struct (int64 * obj) [])> = v0 v10
     let v12 : US2 = US2_2
-    let v13 : ((struct (int64 * obj) []) -> unit) = closure322(v2, v3, v4, v5, v6, v7, v12, v8, v9)
+    let v13 : ((struct (int64 * obj) []) -> unit) = closure324(v2, v3, v4, v5, v6, v7, v12, v8, v9)
     v11 |> Promise.iter v13
     ()
-and closure323 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (int64 * obj) [])), v4 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v5 : (US18 -> unit), v6 : (unit -> US18)) () : unit =
+and closure325 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (int64 * obj) [])), v4 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit), v5 : (US18 -> unit), v6 : (unit -> US18)) () : unit =
     let v7 : US4 = US4_2
     let v8 : ((obj []) -> unit) = v1 v7
     let v9 : string = ">> use_fetch clear ()"
@@ -5916,7 +5942,7 @@ and method89 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struc
     let v263 : int32 = v254.l1
     let v264 : string = v263.ToString ()
     let v265 : string = $"#{v264}"
-    let v266 : (unit -> (obj [])) = closure317(v0, v1, v230, v242, v244, v247, v250)
+    let v266 : (unit -> (obj [])) = closure319(v0, v1, v230, v242, v244, v247, v250)
     let v267 : (US4 -> ((obj []) -> unit)) = method16(v266, v265)
     let v268 : US4 = US4_0
     let v269 : ((obj []) -> unit) = v267 v268
@@ -5927,20 +5953,20 @@ and method89 (v0 : string, v1 : (unit -> (struct (int64 * obj) [])), v2 : (struc
     let v273 : string = "debounce"
     let v274 : string = "@solid-primitives/scheduled"
     let v275 : JS.Function = import v273 v274
-    let v276 : ((struct (US2 * obj * string) []) -> unit) = closure318(v0, v120, v251, v250, v267, v1, v2, v248, v247)
+    let v276 : ((struct (US2 * obj * string) []) -> unit) = closure320(v0, v120, v251, v250, v267, v1, v2, v248, v247)
     let v277 : ((struct (US2 * obj * string) []) -> unit) = v275.Invoke (v276, 2500) |> unbox<(struct (US2 * obj * string) []) -> unit>
     let v278 : string = "createEffect"
     let v279 : JS.Function = import v278 v100
-    let v280 : (unit -> unit) = closure285(v230, v277)
+    let v280 : (unit -> unit) = closure287(v230, v277)
     v279.Invoke v280 |> ignore
     let v281 : string = "onCleanup"
     let v282 : JS.Function = import v281 v100
-    let v283 : (unit -> unit) = closure286(v277, v0, v267)
+    let v283 : (unit -> unit) = closure288(v277, v0, v267)
     v282.Invoke v283 |> ignore
-    let v284 : (unit -> unit) = closure321(v3, v230, v0, v1, v2, v248, v247, v267)
-    let v285 : (unit -> unit) = closure323(v230, v267, v0, v1, v2, v248, v247)
+    let v284 : (unit -> unit) = closure323(v3, v230, v0, v1, v2, v248, v247, v267)
+    let v285 : (unit -> unit) = closure325(v230, v267, v0, v1, v2, v248, v247)
     struct (v284, v285)
-and closure325 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure327 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : string = "center"
     let v71 : string = "baseline"
     let v72 : string = method13(v71, v70)
@@ -5958,62 +5984,62 @@ and closure325 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v84 : string = "7px"
     let v85 : US6 = US6_1(v84)
     struct (v79, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v80, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v81, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v83, v49, v50, v51, v52, v53, v54, v55, v56, v85, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure327 () () : (JSX.Element []) =
+and closure329 () () : (JSX.Element []) =
     let v0 : string = "Chain Status"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure329 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure331 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure328 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure330 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (Mut7 -> JSX.Element) = closure60()
-    let v72 : (unit -> JS.Function) = closure296()
+    let v72 : (unit -> JS.Function) = closure298()
     let v73 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure329()
+    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure331()
     let v75 : JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US11 = US11_1(v75)
     let v77 : US13 = US13_1(v0)
     let v78 : string = "10px"
     let v79 : US6 = US6_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure330 () () : (JSX.Element []) =
+and closure332 () () : (JSX.Element []) =
     let v0 : string = "Request"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure332 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure334 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure331 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure333 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (Mut7 -> JSX.Element) = closure60()
-    let v72 : (unit -> JS.Function) = closure300()
+    let v72 : (unit -> JS.Function) = closure302()
     let v73 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure332()
+    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure334()
     let v75 : JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US11 = US11_1(v75)
     let v77 : US13 = US13_1(v0)
     let v78 : string = "10px"
     let v79 : US6 = US6_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure333 () () : (JSX.Element []) =
+and closure335 () () : (JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure326 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
+and closure328 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/core"
     let v4 : JS.Function = import v2 v3
     let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v6 : (unit -> (JSX.Element [])) = closure327()
+    let v6 : (unit -> (JSX.Element [])) = closure329()
     let v7 : JSX.Element = method5(v4, v5, v6)
     let v8 : (Mut1 -> JSX.Element) = closure47()
-    let v9 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure328(v1)
-    let v10 : (unit -> (JSX.Element [])) = closure330()
+    let v9 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure330(v1)
+    let v10 : (unit -> (JSX.Element [])) = closure332()
     let v11 : JSX.Element = method22(v8, v9, v10)
-    let v12 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure331(v0)
-    let v13 : (unit -> (JSX.Element [])) = closure333()
+    let v12 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure333(v0)
+    let v13 : (unit -> (JSX.Element [])) = closure335()
     let v14 : JSX.Element = method22(v8, v12, v13)
     [|v7; v11; v14|]
 and method93 (v0 : int32, v1 : Mut29) : bool =
@@ -6049,47 +6075,47 @@ and method95 (v0 : UH2) : (struct (int64 * obj) []) =
     let v4 : int32 = 0
     let v5 : int32 = method97(v3, v0, v4)
     v3
-and closure340 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
+and closure342 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
     let struct (v1 : int64, v2 : obj) = v0 ()
     let v3 : string = emitJsExpr v2 "JSON.stringify($0, null, 2)"
     let v4 : JSX.Element = v3 |> unbox<JSX.Element>
     let v5 : JSX.Element = Html.fragment [ v4 ]
     [|v5|]
-and closure339 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
+and closure341 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/core"
     let v3 : JS.Function = import v1 v2
     let v4 : JS.Function = v3?pre
     let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v6 : (unit -> (JSX.Element [])) = closure340(v0)
+    let v6 : (unit -> (JSX.Element [])) = closure342(v0)
     let v7 : JSX.Element = method5(v4, v5, v6)
     [|v7|]
-and closure338 (v0 : (unit -> struct (int64 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure340 (v0 : (unit -> struct (int64 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let struct (v71 : int64, v72 : obj) = v0 ()
     let v73 : string = v71.ToString ()
     let v74 : JSX.Element = v73 |> unbox<JSX.Element>
     let v75 : JSX.Element = Html.fragment [ v74 ]
-    let v76 : (unit -> (JSX.Element [])) = closure339(v0)
+    let v76 : (unit -> (JSX.Element [])) = closure341(v0)
     let v77 : US9 = US9_1(v76)
     let v78 : string = "3px"
     let v79 : US6 = US6_1(v78)
     let v80 : US11 = US11_1(v75)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v77, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v79, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v80, v64, v65, v66, v67, v68, v69, v70)
-and closure337 (v0 : (unit -> struct (int64 * obj))) (v1 : int32) : (JSX.Element []) =
+and closure339 (v0 : (unit -> struct (int64 * obj))) (v1 : int32) : (JSX.Element []) =
     let v2 : (Mut3 -> JSX.Element) = closure14()
     let v3 : US13 = US13_0
     let v4 : US13 = US13_0
-    let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure338(v0)
+    let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure340(v0)
     let v6 : US15 = US15_2
     let v7 : JSX.Element = method26(v2, v3, v4, v5, v6)
     [|v7|]
-and closure336 () (v0 : (unit -> struct (int64 * obj))) : (int32 -> (JSX.Element [])) =
-    closure337(v0)
-and closure341 (v0 : (struct (int64 * obj) [])) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure338 () (v0 : (unit -> struct (int64 * obj))) : (int32 -> (JSX.Element [])) =
+    closure339(v0)
+and closure343 (v0 : (struct (int64 * obj) [])) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (obj []) = v0 |> unbox<(obj [])>
     let v72 : US10 = US10_1(v71)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v72, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure335 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
+and closure337 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
     let v1 : (struct (int64 * obj) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH2 = UH2_1
@@ -6110,28 +6136,28 @@ and closure335 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) 
     let v16 : UH2 = UH2_1
     let v17 : UH2 = method94(v15, v16)
     let v18 : (struct (int64 * obj) []) = method95(v17)
-    let v19 : ((unit -> struct (int64 * obj)) -> (int32 -> (JSX.Element []))) = closure336()
+    let v19 : ((unit -> struct (int64 * obj)) -> (int32 -> (JSX.Element []))) = closure338()
     let v20 : (unit -> (JSX.Element [])) = emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
     let v21 : string = "Index"
     let v22 : string = "solid-js"
     let v23 : JS.Function = import v21 v22
-    let v24 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure341(v18)
+    let v24 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure343(v18)
     let v25 : JSX.Element = method5(v23, v24, v20)
     [|v25|]
-and closure334 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
+and closure336 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
     let v1 : (Mut1 -> JSX.Element) = closure7()
     let v2 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v3 : (unit -> (JSX.Element [])) = closure335(v0)
+    let v3 : (unit -> (JSX.Element [])) = closure337(v0)
     let v4 : JSX.Element = method22(v1, v2, v3)
     [|v4|]
-and closure324 (v0 : (unit -> (struct (int64 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure326 (v0 : (unit -> (struct (int64 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/core"
     let v75 : JS.Function = import v73 v74
-    let v76 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure325()
-    let v77 : (unit -> (JSX.Element [])) = closure326(v1, v2)
+    let v76 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure327()
+    let v77 : (unit -> (JSX.Element [])) = closure328(v1, v2)
     let v78 : JSX.Element = method5(v75, v76, v77)
-    let v79 : (unit -> (JSX.Element [])) = closure334(v0)
+    let v79 : (unit -> (JSX.Element [])) = closure336(v0)
     let v80 : US9 = US9_1(v79)
     let v81 : string = "status"
     let v82 : US6 = US6_1(v81)
@@ -6144,33 +6170,33 @@ and method88 () : JSX.Element =
     let v97 : JS.Function = import v95 v96
     let struct (v98 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v99 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v100 : (unit -> int32), v101 : (int32 -> unit), v102 : (unit -> string), v103 : (string -> unit), v104 : (unit -> string), v105 : (string -> unit), v106 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v107 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v108 : (unit -> (struct (US2 * obj * string) [])), v109 : ((struct (US2 * obj * string) []) -> unit), v110 : (unit -> (struct (int64 * obj) [])), v111 : ((struct (int64 * obj) []) -> unit), v112 : (unit -> (struct (int64 * obj) [])), v113 : ((struct (int64 * obj) []) -> unit), v114 : (unit -> (struct (int64 * int32) [])), v115 : ((struct (int64 * int32) []) -> unit), v116 : (unit -> US4), v117 : (US4 -> unit), v118 : (unit -> US5), v119 : (US5 -> unit)) = v97.Invoke v94 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * int32) [])) * ((struct (int64 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let v120 : string = "profile/tmp/chain_status"
-    let v121 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit) = closure313(v113)
-    let v122 : (obj -> JS.Promise<(struct (int64 * obj) [])>) = closure314(v112)
+    let v121 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit) = closure315(v113)
+    let v122 : (obj -> JS.Promise<(struct (int64 * obj) [])>) = closure316(v112)
     let struct (v123 : (unit -> unit), v124 : (unit -> unit)) = method89(v120, v112, v121, v122)
     let v125 : (Mut3 -> JSX.Element) = closure14()
     let v126 : US13 = US13_0
     let v127 : US13 = US13_0
-    let v128 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure324(v112, v124, v123)
+    let v128 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure326(v112, v124, v123)
     let v129 : US15 = US15_2
     method26(v125, v126, v127, v128, v129)
-and closure312 () (v0 : Mut1) : JSX.Element =
+and closure314 () (v0 : Mut1) : JSX.Element =
     method88()
-and closure342 () () : (JSX.Element []) =
+and closure344 () () : (JSX.Element []) =
     [||]
-and closure344 (v0 : ((struct (int64 * obj) []) -> unit)) struct (v1 : (struct (int64 * obj) []), v2 : US2, v3 : int64, v4 : (struct (int64 * obj) [])) : unit =
+and closure346 (v0 : ((struct (int64 * obj) []) -> unit)) struct (v1 : (struct (int64 * obj) []), v2 : US2, v3 : int64, v4 : (struct (int64 * obj) [])) : unit =
     v0 v4
     ()
-and closure347 (v0 : (unit -> (struct (int64 * obj) [])), v1 : ((struct (int64 * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
+and closure349 (v0 : (unit -> (struct (int64 * obj) [])), v1 : ((struct (int64 * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (int64 * obj) []) = v0 ()
     v1 v3
     ()
-and closure346 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : ((struct (int64 * obj) []) -> unit)) : ((exn -> unit) -> unit) =
-    closure347(v0, v1)
-and closure345 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : obj) : JS.Promise<(struct (int64 * obj) [])> =
-    let v2 : (((struct (int64 * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure346(v0)
+and closure348 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : ((struct (int64 * obj) []) -> unit)) : ((exn -> unit) -> unit) =
+    closure349(v0, v1)
+and closure347 (v0 : (unit -> (struct (int64 * obj) []))) (v1 : obj) : JS.Promise<(struct (int64 * obj) [])> =
+    let v2 : (((struct (int64 * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure348(v0)
     let v3 : JS.Promise<(struct (int64 * obj) [])> = Promise.create v2
     v3
-and closure349 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure351 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : string = "center"
     let v71 : string = "baseline"
     let v72 : string = method13(v71, v70)
@@ -6188,101 +6214,101 @@ and closure349 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v84 : string = "7px"
     let v85 : US6 = US6_1(v84)
     struct (v79, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v80, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v81, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v83, v49, v50, v51, v52, v53, v54, v55, v56, v85, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure351 () () : (JSX.Element []) =
+and closure353 () () : (JSX.Element []) =
     let v0 : string = "Chain Deploy"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure353 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure355 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure352 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure354 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (Mut7 -> JSX.Element) = closure60()
-    let v72 : (unit -> JS.Function) = closure296()
+    let v72 : (unit -> JS.Function) = closure298()
     let v73 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure353()
+    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure355()
     let v75 : JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US11 = US11_1(v75)
     let v77 : US13 = US13_1(v0)
     let v78 : string = "10px"
     let v79 : US6 = US6_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure354 () () : (JSX.Element []) =
+and closure356 () () : (JSX.Element []) =
     let v0 : string = "Request"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure356 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure358 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : US6 = US6_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure355 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure357 (v0 : (unit -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (Mut7 -> JSX.Element) = closure60()
-    let v72 : (unit -> JS.Function) = closure300()
+    let v72 : (unit -> JS.Function) = closure302()
     let v73 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure356()
+    let v74 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure358()
     let v75 : JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US11 = US11_1(v75)
     let v77 : US13 = US13_1(v0)
     let v78 : string = "10px"
     let v79 : US6 = US6_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure357 () () : (JSX.Element []) =
+and closure359 () () : (JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : JSX.Element = v0 |> unbox<JSX.Element>
     let v2 : JSX.Element = Html.fragment [ v1 ]
     [|v2|]
-and closure350 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
+and closure352 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/core"
     let v4 : JS.Function = import v2 v3
     let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v6 : (unit -> (JSX.Element [])) = closure351()
+    let v6 : (unit -> (JSX.Element [])) = closure353()
     let v7 : JSX.Element = method5(v4, v5, v6)
     let v8 : (Mut1 -> JSX.Element) = closure47()
-    let v9 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure352(v1)
-    let v10 : (unit -> (JSX.Element [])) = closure354()
+    let v9 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure354(v1)
+    let v10 : (unit -> (JSX.Element [])) = closure356()
     let v11 : JSX.Element = method22(v8, v9, v10)
-    let v12 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure355(v0)
-    let v13 : (unit -> (JSX.Element [])) = closure357()
+    let v12 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure357(v0)
+    let v13 : (unit -> (JSX.Element [])) = closure359()
     let v14 : JSX.Element = method22(v8, v12, v13)
     [|v7; v11; v14|]
-and closure364 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
+and closure366 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
     let struct (v1 : int64, v2 : obj) = v0 ()
     let v3 : string = emitJsExpr v2 "JSON.stringify($0, null, 2)"
     let v4 : JSX.Element = v3 |> unbox<JSX.Element>
     let v5 : JSX.Element = Html.fragment [ v4 ]
     [|v5|]
-and closure363 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
+and closure365 (v0 : (unit -> struct (int64 * obj))) () : (JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/core"
     let v3 : JS.Function = import v1 v2
     let v4 : JS.Function = v3?pre
     let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v6 : (unit -> (JSX.Element [])) = closure364(v0)
+    let v6 : (unit -> (JSX.Element [])) = closure366(v0)
     let v7 : JSX.Element = method5(v4, v5, v6)
     [|v7|]
-and closure362 (v0 : (unit -> struct (int64 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure364 (v0 : (unit -> struct (int64 * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let struct (v71 : int64, v72 : obj) = v0 ()
     let v73 : string = v71.ToString ()
     let v74 : JSX.Element = v73 |> unbox<JSX.Element>
     let v75 : JSX.Element = Html.fragment [ v74 ]
-    let v76 : (unit -> (JSX.Element [])) = closure363(v0)
+    let v76 : (unit -> (JSX.Element [])) = closure365(v0)
     let v77 : US9 = US9_1(v76)
     let v78 : string = "3px"
     let v79 : US6 = US6_1(v78)
     let v80 : US11 = US11_1(v75)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v77, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v79, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v80, v64, v65, v66, v67, v68, v69, v70)
-and closure361 (v0 : (unit -> struct (int64 * obj))) (v1 : int32) : (JSX.Element []) =
+and closure363 (v0 : (unit -> struct (int64 * obj))) (v1 : int32) : (JSX.Element []) =
     let v2 : (Mut3 -> JSX.Element) = closure14()
     let v3 : US13 = US13_0
     let v4 : US13 = US13_0
-    let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure362(v0)
+    let v5 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure364(v0)
     let v6 : US15 = US15_2
     let v7 : JSX.Element = method26(v2, v3, v4, v5, v6)
     [|v7|]
-and closure360 () (v0 : (unit -> struct (int64 * obj))) : (int32 -> (JSX.Element [])) =
-    closure361(v0)
-and closure359 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
+and closure362 () (v0 : (unit -> struct (int64 * obj))) : (int32 -> (JSX.Element [])) =
+    closure363(v0)
+and closure361 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
     let v1 : (struct (int64 * obj) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH2 = UH2_1
@@ -6303,28 +6329,28 @@ and closure359 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) 
     let v16 : UH2 = UH2_1
     let v17 : UH2 = method94(v15, v16)
     let v18 : (struct (int64 * obj) []) = method95(v17)
-    let v19 : ((unit -> struct (int64 * obj)) -> (int32 -> (JSX.Element []))) = closure360()
+    let v19 : ((unit -> struct (int64 * obj)) -> (int32 -> (JSX.Element []))) = closure362()
     let v20 : (unit -> (JSX.Element [])) = emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
     let v21 : string = "Index"
     let v22 : string = "solid-js"
     let v23 : JS.Function = import v21 v22
-    let v24 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure341(v18)
+    let v24 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure343(v18)
     let v25 : JSX.Element = method5(v23, v24, v20)
     [|v25|]
-and closure358 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
+and closure360 (v0 : (unit -> (struct (int64 * obj) []))) () : (JSX.Element []) =
     let v1 : (Mut1 -> JSX.Element) = closure7()
     let v2 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v3 : (unit -> (JSX.Element [])) = closure359(v0)
+    let v3 : (unit -> (JSX.Element [])) = closure361(v0)
     let v4 : JSX.Element = method22(v1, v2, v3)
     [|v4|]
-and closure348 (v0 : (unit -> (struct (int64 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
+and closure350 (v0 : (unit -> (struct (int64 * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/core"
     let v75 : JS.Function = import v73 v74
-    let v76 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure349()
-    let v77 : (unit -> (JSX.Element [])) = closure350(v1, v2)
+    let v76 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure351()
+    let v77 : (unit -> (JSX.Element [])) = closure352(v1, v2)
     let v78 : JSX.Element = method5(v75, v76, v77)
-    let v79 : (unit -> (JSX.Element [])) = closure358(v0)
+    let v79 : (unit -> (JSX.Element [])) = closure360(v0)
     let v80 : US9 = US9_1(v79)
     let v81 : string = "deploy"
     let v82 : US6 = US6_1(v81)
@@ -6337,38 +6363,38 @@ and method98 () : JSX.Element =
     let v97 : JS.Function = import v95 v96
     let struct (v98 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v99 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v100 : (unit -> int32), v101 : (int32 -> unit), v102 : (unit -> string), v103 : (string -> unit), v104 : (unit -> string), v105 : (string -> unit), v106 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v107 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v108 : (unit -> (struct (US2 * obj * string) [])), v109 : ((struct (US2 * obj * string) []) -> unit), v110 : (unit -> (struct (int64 * obj) [])), v111 : ((struct (int64 * obj) []) -> unit), v112 : (unit -> (struct (int64 * obj) [])), v113 : ((struct (int64 * obj) []) -> unit), v114 : (unit -> (struct (int64 * int32) [])), v115 : ((struct (int64 * int32) []) -> unit), v116 : (unit -> US4), v117 : (US4 -> unit), v118 : (unit -> US5), v119 : (US5 -> unit)) = v97.Invoke v94 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * int32) [])) * ((struct (int64 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let v120 : string = "profile/tmp/chain_deploy"
-    let v121 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit) = closure344(v111)
-    let v122 : (obj -> JS.Promise<(struct (int64 * obj) [])>) = closure345(v110)
+    let v121 : (struct ((struct (int64 * obj) []) * US2 * int64 * (struct (int64 * obj) [])) -> unit) = closure346(v111)
+    let v122 : (obj -> JS.Promise<(struct (int64 * obj) [])>) = closure347(v110)
     let struct (v123 : (unit -> unit), v124 : (unit -> unit)) = method89(v120, v110, v121, v122)
     let v125 : (Mut3 -> JSX.Element) = closure14()
     let v126 : US13 = US13_0
     let v127 : US13 = US13_0
-    let v128 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure348(v110, v124, v123)
+    let v128 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure350(v110, v124, v123)
     let v129 : US15 = US15_2
     method26(v125, v126, v127, v128, v129)
-and closure343 () (v0 : Mut1) : JSX.Element =
+and closure345 () (v0 : Mut1) : JSX.Element =
     method98()
-and closure365 () () : (JSX.Element []) =
+and closure367 () () : (JSX.Element []) =
     [||]
 and closure274 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () : (JSX.Element []) =
     let v5 : (Mut1 -> JSX.Element) = closure275()
     let v6 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v7 : (unit -> (JSX.Element [])) = closure311()
+    let v7 : (unit -> (JSX.Element [])) = closure313()
     let v8 : JSX.Element = method22(v5, v6, v7)
     let v10 : bool = v2 = ""
     let v11 : bool = v10 <> true
     let v16 : JSX.Element =
         if v11 then
-            let v12 : (Mut1 -> JSX.Element) = closure312()
-            let v13 : (unit -> (JSX.Element [])) = closure342()
+            let v12 : (Mut1 -> JSX.Element) = closure314()
+            let v13 : (unit -> (JSX.Element [])) = closure344()
             method22(v12, v6, v13)
         else
             let v15 : JSX.Element = JS.undefined
             v15
     let v22 : JSX.Element =
         if v11 then
-            let v18 : (Mut1 -> JSX.Element) = closure343()
-            let v19 : (unit -> (JSX.Element [])) = closure365()
+            let v18 : (Mut1 -> JSX.Element) = closure345()
+            let v19 : (unit -> (JSX.Element [])) = closure367()
             method22(v18, v6, v19)
         else
             let v21 : JSX.Element = JS.undefined
@@ -6457,7 +6483,7 @@ and method1 () : JSX.Element =
     method5(v7, v8, v9)
 and closure1 () (v0 : Mut1) : JSX.Element =
     method1()
-and closure367 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : (obj []) =
+and closure369 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : (obj []) =
     let v2 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     let v3 : string = "db_connection_options':"
     let v4 : obj = struct (v3, v2)
@@ -6477,7 +6503,7 @@ and method102 (v0 : int32, v1 : Mut32) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure368 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((obj []) -> unit))) struct (v2 : (struct ((US2 []) * int32 * US3 * string * string) []), v3 : (struct (US2 * obj * string) [])) : unit =
+and closure370 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((obj []) -> unit))) struct (v2 : (struct ((US2 []) * int32 * US3 * string * string) []), v3 : (struct (US2 * obj * string) [])) : unit =
     let v4 : int32 = v2.Length
     let v5 : ((struct (US2 * obj * string) []) []) = Array.zeroCreate<(struct (US2 * obj * string) [])> (v4)
     let v6 : Mut6 = {l0 = 0} : Mut6
@@ -6689,12 +6715,12 @@ and closure368 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((
         v162 v167
         v0 v134
         ()
-and closure369 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
+and closure371 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     let v3 : (struct (US2 * obj * string) []) = v0 ()
     let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     v2 struct (v4, v3)
     ()
-and closure370 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
+and closure372 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     v0?clear ()
     ()
 and method99 () : JSX.Element =
@@ -6706,7 +6732,7 @@ and method99 () : JSX.Element =
     let v214 : obj = emitJsExpr () "components_spi.state_context"
     let v215 : JS.Function = import v95 v96
     let struct (v216 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v217 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v218 : (unit -> int32), v219 : (int32 -> unit), v220 : (unit -> string), v221 : (string -> unit), v222 : (unit -> string), v223 : (string -> unit), v224 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v225 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v226 : (unit -> (struct (US2 * obj * string) [])), v227 : ((struct (US2 * obj * string) []) -> unit), v228 : (unit -> (struct (int64 * obj) [])), v229 : ((struct (int64 * obj) []) -> unit), v230 : (unit -> (struct (int64 * obj) [])), v231 : ((struct (int64 * obj) []) -> unit), v232 : (unit -> (struct (int64 * int32) [])), v233 : ((struct (int64 * int32) []) -> unit), v234 : (unit -> US4), v235 : (US4 -> unit), v236 : (unit -> US5), v237 : (US5 -> unit)) = v215.Invoke v214 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * obj) [])) * ((struct (int64 * obj) []) -> unit) * (unit -> (struct (int64 * int32) [])) * ((struct (int64 * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v238 : (unit -> (obj [])) = closure367(v108, v224)
+    let v238 : (unit -> (obj [])) = closure369(v108, v224)
     let v239 : string = "#cf1100"
     let v240 : (US4 -> ((obj []) -> unit)) = method16(v238, v239)
     let v241 : US4 = US4_0
@@ -6718,19 +6744,19 @@ and method99 () : JSX.Element =
     let v246 : string = "debounce"
     let v247 : string = "@solid-primitives/scheduled"
     let v248 : JS.Function = import v246 v247
-    let v249 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = closure368(v109, v240)
+    let v249 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = closure370(v109, v240)
     let v250 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = v248.Invoke (v249, 300) |> unbox<struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit>
     let v251 : string = "createEffect"
     let v252 : JS.Function = import v251 v96
-    let v253 : (unit -> unit) = closure369(v108, v224, v250)
+    let v253 : (unit -> unit) = closure371(v108, v224, v250)
     v252.Invoke v253 |> ignore
     let v254 : string = "onCleanup"
     let v255 : JS.Function = import v254 v96
-    let v256 : (unit -> unit) = closure370(v250)
+    let v256 : (unit -> unit) = closure372(v250)
     v255.Invoke v256 |> ignore
     let v257 : JSX.Element = JS.undefined
     v257
-and closure366 () (v0 : Mut2) : JSX.Element =
+and closure368 () (v0 : Mut2) : JSX.Element =
     method99()
 and method103 () : (struct (US0 * string * string * string) []) =
     let v0 : US0 = US0_0
@@ -6837,7 +6863,7 @@ and method116 (v0 : (struct (int64 * obj) [])) : struct ((unit -> (struct (int64
     let v5 : (unit -> (struct (int64 * obj) [])) = v4.[0] |> unbox<unit -> (struct (int64 * obj) [])>
     let v6 : ((struct (int64 * obj) []) -> unit) = v4.[1] |> unbox<(struct (int64 * obj) []) -> unit>
     struct (v5, v6)
-and closure371 () () : obj =
+and closure373 () () : obj =
     let struct (v94 : string, v95 : obj, v96 : string, v97 : string, v98 : bool) = method2()
     let v99 : (struct (US0 * string * string * string) []) = method103()
     let v100 : int32 = v99.Length
@@ -6966,12 +6992,12 @@ let v173 : string = "content"
 let v174 : (Mut1 -> JSX.Element) = closure1()
 let v175 : (string * obj) = v173, v174
 let v176 : string = "db_listener"
-let v177 : (Mut2 -> JSX.Element) = closure366()
+let v177 : (Mut2 -> JSX.Element) = closure368()
 let v178 : (string * obj) = v176, v177
 let v179 : string = "run_id"
 let v180 : (string * obj) = v179, v77
 let v181 : string = "new_state_context_any"
-let v182 : (unit -> obj) = closure371()
+let v182 : (unit -> obj) = closure373()
 let v183 : (string * obj) = v181, v182
 let v184 : string = "state_context"
 let v185 : (string * obj) = v184, v172
