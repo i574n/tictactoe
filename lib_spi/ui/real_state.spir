@@ -85,7 +85,7 @@ inl new_state_context () =
                 create_signal `log_level_type
                     match env.github_run_id, env.is_test with
                     | "", _ =>  Debug
-                    | _, true => Info
+                    | _, true => Debug
                     | _ => Warn
             ui = {
                 modal = create_signal `(option i32) (none `i32 ())

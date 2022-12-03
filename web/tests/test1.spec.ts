@@ -158,7 +158,7 @@ const action = async (pages: Page[], title: string, selector: string, fn: (_: Pa
         }
 
         await Promise.all(pages.map(async (page, _index) => {
-            await page.waitForTimeout(2000)
+            await page.waitForTimeout(3000)
         }))
 
         if (i === 0) {

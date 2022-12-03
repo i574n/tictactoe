@@ -1,26 +1,17 @@
 beforeAll { retry: 1 }
 beforeEach { retry: 1 }
-***2 request *** GET https:3700/tictactoe_spiral
-***4 request *** GET https:3700/tictactoe_spiral
-***3 request *** GET https:3700/tictactoe_spiral
-***1 request *** GET https:3700/tictactoe_spiral
 ***0 request *** GET https:3700/tictactoe_spiral
-***2 response ** 200 https:3700/tictactoe_spiral
-***4 response ** 200 https:3700/tictactoe_spiral
-***3 response ** 200 https:3700/tictactoe_spiral
-***1 response ** 200 https:3700/tictactoe_spiral
+***2 request *** GET https:3700/tictactoe_spiral
+***1 request *** GET https:3700/tictactoe_spiral
 ***0 response ** 200 https:3700/tictactoe_spiral
 ***0 framenavigated ***
  { url: 'https:3700/tictactoe_spiral' }
-***4 framenavigated ***
- { url: 'https:3700/tictactoe_spiral' }
-***3 framenavigated ***
- { url: 'https:3700/tictactoe_spiral' }
-***1 framenavigated ***
- { url: 'https:3700/tictactoe_spiral' }
+***3 request *** GET https:3700/tictactoe_spiral
+***4 request *** GET https:3700/tictactoe_spiral
+***2 response ** 200 https:3700/tictactoe_spiral
 ***2 framenavigated ***
  { url: 'https:3700/tictactoe_spiral' }
-***0 request *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
 ***0 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***0 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
 ***0 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
@@ -28,41 +19,10 @@ beforeEach { retry: 1 }
 ***0 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***0 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***0 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***0 request *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
+***0 request *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
 ***0 requestfinished *** GET https:3700/tictactoe_spiral
-***3 request *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/main-93498aef.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***3 request *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***1 request *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
-***4 request *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral
-***2 request *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral
-***4 requestfinished *** GET https:3700/tictactoe_spiral
+***2 requestfinished *** GET https:3700/tictactoe_spiral
+***2 request *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
 ***2 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***2 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
 ***2 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
@@ -70,390 +30,506 @@ beforeEach { retry: 1 }
 ***2 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***2 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***2 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***2 request *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral
+***2 request *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***1 response ** 200 https:3700/tictactoe_spiral
+***0 response ** 200 https:3700/tictactoe_spiral/assets/main-4642dc5a.js
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***1 framenavigated ***
+ { url: 'https:3700/tictactoe_spiral' }
+***1 requestfinished *** GET https:3700/tictactoe_spiral
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/main-93498aef.js
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***0 response ** 200 https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***3 response ** 200 https:3700/tictactoe_spiral
+***2 response ** 200 https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***3 framenavigated ***
+ { url: 'https:3700/tictactoe_spiral' }
+***0 response ** 200 https:3700/tictactoe_spiral/assets/App-b31c9916.js
 ***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
 ***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***1 request *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
 ***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
 ***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/main-93498aef.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***1 response ** 200 https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/main-93498aef.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***3 response ** 200 https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/main-93498aef.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***4 response ** 200 https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-93498aef.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
 ***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***3 request *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral
+***4 response ** 200 https:3700/tictactoe_spiral
+***4 framenavigated ***
+ { url: 'https:3700/tictactoe_spiral' }
 ***2 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
 ***2 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
 ***2 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***2 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
-***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***2 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***2 response ** 200 https:3700/tictactoe_spiral/assets/App-e96e398d.js
+***2 response ** 200 https:3700/tictactoe_spiral/assets/App-b31c9916.js
 ***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
 ***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
 ***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***4 request *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***1 response ** 200 https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***3 response ** 200 https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
 ***0 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
 ***0 domcontentloaded *** https:3700/tictactoe_spiral
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
 ***0 load *** https:3700/tictactoe_spiral
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-e96e398d.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/main-4642dc5a.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-js-1a8af004.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-icons-85cfbb6b.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
+***4 response ** 200 https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty-gun-2f5b93cf.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/solid-devtools-transform-020bc104.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/gun-302442b1.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/stitches-967a12b4.js
+***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/hope-ui-core-ced3739c.js
 ***0 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***4 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***4 domcontentloaded *** https:3700/tictactoe_spiral
-***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***4 load *** https:3700/tictactoe_spiral
-***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
 ***2 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
 ***2 domcontentloaded *** https:3700/tictactoe_spiral
-***3 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***3 domcontentloaded *** https:3700/tictactoe_spiral
-***3 load *** https:3700/tictactoe_spiral
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/App-b31c9916.js
+***0 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***0> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 ***2 load *** https:3700/tictactoe_spiral
 ***2 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***0> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
-***4> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
+***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***2> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 ***1 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
 ***1 domcontentloaded *** https:3700/tictactoe_spiral
 ***1 load *** https:3700/tictactoe_spiral
-***3 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***2 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***2> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
+***3 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***3 domcontentloaded *** https:3700/tictactoe_spiral
 ***1 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
-***3> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 ***1 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***3 load *** https:3700/tictactoe_spiral
+***4 request *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***4 domcontentloaded *** https:3700/tictactoe_spiral
+***3 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***3 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
 ***1> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
+***3> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
+***4 load *** https:3700/tictactoe_spiral
+***4 response ** 200 https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***4 requestfinished *** GET https:3700/tictactoe_spiral/assets/rusty_gun_bg-3d309492.wasm
+***4> Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
+***2> ["> counter -> effect ()"] [["profile_tmp_counter:",[]]] [["timestamp:","000000"],["run_id:",1108585900]]
+***0> ["> counter -> effect ()"] [["profile_tmp_counter:",[]]] [["timestamp:","000000"],["run_id:",467955670]]
+***1> ["> counter -> effect ()"] [["profile_tmp_counter:",[]]] [["timestamp:","000010"],["run_id:",652009601]]
+***4> ["> counter -> effect ()"] [["profile_tmp_counter:",[]]] [["timestamp:","000010"],["run_id:",256466915]]
+***3> ["> counter -> effect ()"] [["profile_tmp_counter:",[]]] [["timestamp:","000000"],["run_id:",1881652580]]
 
 !### action() 0: load db
 
 !### action() 0: load db. before fn []
+***1> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1114784},"ws://localhost:14944/ws"]]]] [["db_connection_options':",[[["US2_1"],14944,"US3_1","ws://localhost","ws"],[[],18765,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","042300"],["run_id:",652009601]]
+***4> ["> db_listener > effect",["new_connections:",[["US2_0",null,"ws://localhost:14944/ws"]]]] [["db_connection_options':",[[["US2_0"],14944,"US3_1","ws://localhost","ws"],[[],18765,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","042110"],["run_id:",256466915]]
+***2> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1114784},"wss://localhost:18765/gun"]]]] [["db_connection_options':",[[[],14944,"US3_1","ws://localhost","ws"],[["US2_1"],18765,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","044340"],["run_id:",1108585900]]
 ***1 websocket *** { url: 'ws:14944/ws', tmpLog: '[["1",{"wsCount":1}]]' }
-***1 framesent *** ws:14944/ws {"#":"cy5B74PQ","dam":"hi","pid":"WDTkJaM2"}
-***1 framereceived *** ws:14944/ws {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
-***1> socket opened
-***1> received: {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
-***3> Warning: reusing same IndexedDB store and options as 1st.
+***1 framesent *** ws:14944/ws {"#":"Feo2ydDW","dam":"hi","pid":"wvuAtG3R"}
+***1 framereceived *** ws:14944/ws {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
+***0 websocket *** {
+  url: 'ws:14944/ws',
+  tmpLog: '[["0",{"wsCount":1}],["1",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}]]'
+}
+***0 framesent *** ws:14944/ws {"#":"TLp7w4ZN","dam":"hi","pid":"857sGaYb"}
+***0 framereceived *** ws:14944/ws {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
 ***2 websocket *** {
   url: 'wss:18765/gun',
-  tmpLog: '[["1",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}],["2",{"wsCount":1}]]'
+  tmpLog: '[["0",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}],["1",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}],["2",{"wsCount":1}]]'
 }
-***2 framesent *** wss:18765/gun {"#":"0RUYAE0g","dam":"hi","pid":"p2ituJJZ"}
+***2 framesent *** wss:18765/gun {"#":"xNQCSPtH","dam":"hi","pid":"XcMUpwmG"}
+***2 framereceived *** wss:18765/gun {"#":"wheyJp3Vd","dam":"?","pid":"viObA1n8e"}
+***1> socket opened
+***1> received: {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
+***3> ["> db_listener > effect",["new_connections:",[["US2_0",null,"wss://localhost:18765/gun"]]]] [["db_connection_options':",[[[],14944,"US3_1","ws://localhost","ws"],[["US2_0"],18765,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","042440"],["run_id:",1881652580]]
+***0> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1114784},"ws://localhost:14944/ws"]]]] [["db_connection_options':",[[["US2_1"],14944,"US3_1","ws://localhost","ws"],[[],18765,"US3_0","wss://localhost","gun"]]],["db_connections':",[]]] [["timestamp:","044880"],["run_id:",467955670]]
+***0> socket opened
+***0> received: {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
 ***2> socket opened
-***2 framereceived *** wss:18765/gun {"#":"A4yb52xkg","dam":"?","pid":"6AucRhGRv"}
-***2> received: {"#":"A4yb52xkg","dam":"?","pid":"6AucRhGRv"}
+***2> received: {"#":"wheyJp3Vd","dam":"?","pid":"viObA1n8e"}
 ***1 websocket *** {
   url: 'ws:14944/ws',
-  tmpLog: '[["1",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}],["2",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}]]'
+  tmpLog: '[["0",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}],["1",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}],["2",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}]]'
 }
-***1 framesent *** ws:14944/ws {"#":"5N41TaRH","dam":"hi","pid":"X8pIVxLN"}
+***1 framesent *** ws:14944/ws {"#":"gKKa33Nl","dam":"hi","pid":"2d3wNG2c"}
 ***4> Warning: reusing same IndexedDB store and options as 1st.
 ***1> socket opened
-***1 framereceived *** ws:14944/ws {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
-***1> received: {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
+***1 framereceived *** ws:14944/ws {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
+***1> received: {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
 ***2 websocket *** {
   url: 'wss:18765/gun',
-  tmpLog: '[["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}]]'
+  tmpLog: '[["0",{"wsCount":1,"wsFrameSent":1,"wsFrameReceived":1}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}]]'
 }
-***2 framesent *** wss:18765/gun {"#":"4ak3pQft","dam":"hi","pid":"lxLdanS1"}
-***2 framereceived *** wss:18765/gun {"#":"Po6v6FpSP","dam":"?","pid":"6AucRhGRv"}
+***2 framesent *** wss:18765/gun {"#":"8BUTZ0Ig","dam":"hi","pid":"DbezpLfz"}
+***2 framereceived *** wss:18765/gun {"#":"7CJynwHrP","dam":"?","pid":"viObA1n8e"}
+***3> Warning: reusing same IndexedDB store and options as 1st.
 ***2> socket opened
-***2> received: {"#":"Po6v6FpSP","dam":"?","pid":"6AucRhGRv"}
+***2> received: {"#":"7CJynwHrP","dam":"?","pid":"viObA1n8e"}
 
 !### action() 0: load db. after fn []
 ***0> Warning: reusing same IndexedDB store and options as 1st.
 ***0 websocket *** {
   url: 'ws:14944/ws',
-  tmpLog: '[["0",{"wsCount":1}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
-}
-***0> socket opened
-***0 framesent *** ws:14944/ws {"#":"ilXb5zuX","dam":"hi","pid":"6eWN2Orz"}
-***0 framereceived *** ws:14944/ws {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
-***0> received: {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
-***0 websocket *** {
-  url: 'wss:18765/gun',
   tmpLog: '[["0",{"wsCount":2,"wsFrameSent":1,"wsFrameReceived":1}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
 }
+***0> ["> db_listener > effect",["new_connections:",[["US2_1",{"ptr":1115928},"ws://localhost:14944/ws"],["US2_0",null,"ws://localhost:14944/ws"],["US2_1",{"ptr":1116608},"wss://localhost:18765/gun"],["US2_0",null,"wss://localhost:18765/gun"]]]] [["db_connection_options':",[[["US2_1","US2_0"],14944,"US3_1","ws://localhost","ws"],[["US2_1","US2_0"],18765,"US3_0","wss://localhost","gun"]]],["db_connections':",[["US2_1",{"ptr":1114784},"ws://localhost:14944/ws"]]]] [["timestamp:","053260"],["run_id:",467955670]]
+***0 framesent *** ws:14944/ws {"#":"7iEquBf0","dam":"hi","pid":"3vGiNTaP"}
 ***0> socket opened
-***0 framesent *** wss:18765/gun {"#":"jVnADRkc","dam":"hi","pid":"0YSPAROQ"}
-***0 framereceived *** wss:18765/gun {"#":"TtZxFniHB","dam":"?","pid":"6AucRhGRv"}
-***0> received: {"#":"TtZxFniHB","dam":"?","pid":"6AucRhGRv"}
+***0 framereceived *** ws:14944/ws {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
+***0 websocket *** {
+  url: 'wss:18765/gun',
+  tmpLog: '[["0",{"wsCount":3,"wsFrameSent":2,"wsFrameReceived":2}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
+}
+***0 framesent *** wss:18765/gun {"#":"1pCd85st","dam":"hi","pid":"EAeAvrec"}
+***0 framereceived *** wss:18765/gun {"#":"fIE7he1NS","dam":"?","pid":"viObA1n8e"}
+***0> received: {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
+***0> socket opened
+***0> received: {"#":"fIE7he1NS","dam":"?","pid":"viObA1n8e"}
+***0 framereceived *** ws:14944/ws {"#":"pi5Z8swI","##":118214511,"put":{"node_stats":{"CZSGZGuCR6bp7YAp":{"#":"node_stats/CZSGZGuCR6bp7YAp"},"_":{"#":"node_stats",">":{"CZSGZGuCR6bp7YAp":1670037973423.0}}},"node_stats/CZSGZGuCR6bp7YAp":{"_":{"#":"node_stats/CZSGZGuCR6bp7YAp",">":{"ws_server_connections":1670037973423.0}},"ws_server_connections":4.0}}}
+***1 framereceived *** ws:14944/ws {"#":"pi5Z8swI","##":118214511,"put":{"node_stats":{"CZSGZGuCR6bp7YAp":{"#":"node_stats/CZSGZGuCR6bp7YAp"},"_":{"#":"node_stats",">":{"CZSGZGuCR6bp7YAp":1670037973423.0}}},"node_stats/CZSGZGuCR6bp7YAp":{"_":{"#":"node_stats/CZSGZGuCR6bp7YAp",">":{"ws_server_connections":1670037973423.0}},"ws_server_connections":4.0}}}
+***0> received: {"#":"pi5Z8swI","##":118214511,"put":{"node_stats":{"CZSGZGuCR6bp7YAp":{"#":"node_stats/CZSGZGuCR6bp7YAp"},"_":{"#":"node_stats",">":{"CZSGZGuCR6bp7YAp":1670037973423.0}}},"node_stats/CZSGZGuCR6bp7YAp":{"_":{"#":"node_stats/CZSGZGuCR6bp7YAp",">":{"ws_server_connections":1670037973423.0}},"ws_server_connections":4.0}}}
+***1> received: {"#":"pi5Z8swI","##":118214511,"put":{"node_stats":{"CZSGZGuCR6bp7YAp":{"#":"node_stats/CZSGZGuCR6bp7YAp"},"_":{"#":"node_stats",">":{"CZSGZGuCR6bp7YAp":1670037973423.0}}},"node_stats/CZSGZGuCR6bp7YAp":{"_":{"#":"node_stats/CZSGZGuCR6bp7YAp",">":{"ws_server_connections":1670037973423.0}},"ws_server_connections":4.0}}}
+***0> Warning: reusing same IndexedDB store and options as 1st.
 ***0> Warning: reusing same IndexedDB store and options as 1st.
 ***0 websocket *** {
   url: 'ws:14944/ws',
-  tmpLog: '[["0",{"wsCount":3,"wsFrameSent":2,"wsFrameReceived":2}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
+  tmpLog: '[["0",{"wsCount":4,"wsFrameSent":3,"wsFrameReceived":4}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":3}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
 }
-***0 framesent *** ws:14944/ws {"#":"yjgfZeqp","dam":"hi","pid":"QEqoUWP2"}
-***0> Warning: reusing same IndexedDB store and options as 1st.
-***0 framereceived *** ws:14944/ws {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
 ***0> socket opened
-***0> received: {"#":"AsWdU9RWWv7DLsrL","dam":"hi"}
+***0 framesent *** ws:14944/ws {"#":"q1o9X9zX","dam":"hi","pid":"GpwXZVcp"}
+***0 framereceived *** ws:14944/ws {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
+***0> received: {"#":"CZSGZGuCR6bp7YAp","dam":"hi"}
 ***0 websocket *** {
   url: 'wss:18765/gun',
-  tmpLog: '[["0",{"wsCount":4,"wsFrameSent":3,"wsFrameReceived":3}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
+  tmpLog: '[["0",{"wsCount":5,"wsFrameSent":4,"wsFrameReceived":5}],["1",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":3}],["2",{"wsCount":2,"wsFrameSent":2,"wsFrameReceived":2}]]'
 }
-***0 framesent *** wss:18765/gun {"#":"OQEAkiAc","dam":"hi","pid":"T1ekiGMp"}
-***0 framereceived *** wss:18765/gun {"#":"o61RAmNir","dam":"?","pid":"6AucRhGRv"}
+***0 framesent *** wss:18765/gun {"#":"A3Pcdj71","dam":"hi","pid":"5CH6oot6"}
 ***0> socket opened
-***0> received: {"#":"o61RAmNir","dam":"?","pid":"6AucRhGRv"}
-***1 framesent *** ws:14944/ws {"#":"ZHutEe80","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***1> sent: {"#":"ZHutEe80","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***1 framesent *** ws:14944/ws {"#":"PxJlTWgm","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***1 framesent *** ws:14944/ws {"#":"oWhs579s","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***1> sent: {"#":"PxJlTWgm","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***1> sent: {"#":"oWhs579s","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2 framesent *** wss:18765/gun {"#":"zuwuM8oT","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2 framesent *** wss:18765/gun {"#":"sYxBDLkM","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***2 framesent *** wss:18765/gun {"#":"YfV261EK","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2> sent: {"#":"zuwuM8oT","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2> sent: {"#":"sYxBDLkM","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***2> sent: {"#":"YfV261EK","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2 framereceived *** wss:18765/gun {"#":"FA3wI79pj","##":1738665027,"@":"sYxBDLkM","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918422538}},"counter":"1"}}}
-***2> received: {"#":"FA3wI79pj","##":1738665027,"@":"sYxBDLkM","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918422538}},"counter":"1"}}}
-***2 framereceived *** wss:18765/gun {"#":"4bmQHn5zZ","@":"zuwuM8oT"}
-***2> received: {"#":"4bmQHn5zZ","@":"zuwuM8oT"}
-***2 framereceived *** wss:18765/gun [{"#":"01BJ1DFT0","@":"YfV261EK"}]
-***2> received: [{"#":"01BJ1DFT0","@":"YfV261EK"}]
-***2 framereceived *** wss:18765/gun {"#":"zuwuM8oT","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0 framereceived *** wss:18765/gun {"#":"zuwuM8oT","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2> received: {"#":"zuwuM8oT","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2 framereceived *** wss:18765/gun {"#":"YfV261EK","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***0 framereceived *** wss:18765/gun {"#":"YfV261EK","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***0> received: {"#":"zuwuM8oT","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"nS6AIG9Uy","dam":"?","pid":"viObA1n8e"}
+***0> received: {"#":"nS6AIG9Uy","dam":"?","pid":"viObA1n8e"}
+***0 framereceived *** ws:14944/ws {"#":"jzXUx0aR","##":1117820848,"put":{"node_stats":{"CZSGZGuCR6bp7YAp":{"#":"node_stats/CZSGZGuCR6bp7YAp"},"_":{"#":"node_stats",">":{"CZSGZGuCR6bp7YAp":1670037974424.0}}},"node_stats/CZSGZGuCR6bp7YAp":{"_":{"#":"node_stats/CZSGZGuCR6bp7YAp",">":{"ws_server_connections":1670037974424.0}},"ws_server_connections":5.0}}}
+***0> received: {"#":"jzXUx0aR","##":1117820848,"put":{"node_stats":{"CZSGZGuCR6bp7YAp":{"#":"node_stats/CZSGZGuCR6bp7YAp"},"_":{"#":"node_stats",">":{"CZSGZGuCR6bp7YAp":1670037974424.0}}},"node_stats/CZSGZGuCR6bp7YAp":{"_":{"#":"node_stats/CZSGZGuCR6bp7YAp",">":{"ws_server_connections":1670037974424.0}},"ws_server_connections":5.0}}}
+***1 framesent *** ws:14944/ws {"#":"Wr0t0WzA","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framesent *** wss:18765/gun {"#":"2GKlzsCq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framesent *** wss:18765/gun {"#":"dkV0YyPx","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***1 framesent *** ws:14944/ws {"#":"ZEt6iIs6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0 framereceived *** ws:14944/ws {"#":"Wr0t0WzA","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** ws:14944/ws {"#":"Wr0t0WzA","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** ws:14944/ws {"#":"ZEt6iIs6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2 framesent *** wss:18765/gun {"#":"QA21DVFf","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun {"#":"0F0JbLj9A","@":"2GKlzsCq"}
+***0 framereceived *** ws:14944/ws {"#":"8pAdDmYg","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1 framesent *** ws:14944/ws {"#":"8pAdDmYg","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun [{"#":"0Ddz7Edvj","##":-1143938692,"@":"dkV0YyPx","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037963645}},"counter":"1"}}}]
+***1> sent: {"#":"Wr0t0WzA","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***1> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",10]]]] [["content_address:","profile/tmp/chain_deploy"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","061440"],["run_id:",652009601]]
+***2> sent: {"#":"2GKlzsCq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",5]]]] [["content_address:","profile/tmp/chain_deploy"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","064160"],["run_id:",1108585900]]
+***2> sent: {"#":"dkV0YyPx","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",7]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","065630"],["run_id:",1108585900]]
+***1> sent: {"#":"ZEt6iIs6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0> received: {"#":"Wr0t0WzA","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
 ***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***2> received: {"#":"YfV261EK","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
-***0> received: {"#":"YfV261EK","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> received: {"#":"Wr0t0WzA","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"ZEt6iIs6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
+***2> sent: {"#":"QA21DVFf","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",12]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","063470"],["run_id:",652009601]]
+***2> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",9]]]] [["content_address:","profile/tmp/chain_status"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","064620"],["run_id:",1108585900]]
+***1 framereceived *** ws:14944/ws {"#":"ZEt6iIs6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2 framereceived *** wss:18765/gun {"#":"aL1mnmOqg","@":"QA21DVFf"}
+***0 framereceived *** wss:18765/gun {"#":"2GKlzsCq","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framereceived *** wss:18765/gun {"#":"2GKlzsCq","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"QA21DVFf","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun {"#":"QA21DVFf","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> received: {"#":"8pAdDmYg","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
 ***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
-***0 framereceived *** wss:18765/gun {"#":"zuwuM8oT","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0> received: {"#":"zuwuM8oT","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> received: {"#":"0F0JbLj9A","@":"2GKlzsCq"}
+***1> sent: {"#":"8pAdDmYg","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",14]]]] [["content_address:","profile/tmp/chain_status"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun Rust"]]] [["timestamp:","061890"],["run_id:",652009601]]
+***2> received: [{"#":"0Ddz7Edvj","##":-1143938692,"@":"dkV0YyPx","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037963645}},"counter":"1"}}}]
+***0 framereceived *** ws:14944/ws {"#":"8pAdDmYg","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framereceived *** wss:18765/gun {"#":"2GKlzsCq","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"QA21DVFf","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***3> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638056347749530"]]]] [["content_address:","profile/tmp/chain_deploy"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","060010"],["run_id:",1881652580]]
+***3> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638056347749540"]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","062180"],["run_id:",1881652580]]
+***3> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638056347749550"]]]] [["content_address:","profile/tmp/chain_status"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","060930"],["run_id:",1881652580]]
+***4> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638056347749460"]]]] [["content_address:","profile/tmp/chain_deploy"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","060400"],["run_id:",256466915]]
+***1> received: {"#":"ZEt6iIs6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
+***2> received: {"#":"aL1mnmOqg","@":"QA21DVFf"}
+***0> received: {"#":"2GKlzsCq","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
 ***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***0 framereceived *** wss:18765/gun [{"#":"YfV261EK","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}]
-***0> received: [{"#":"YfV261EK","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}]
+***2> received: {"#":"2GKlzsCq","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***4> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638056347749590"]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","062350"],["run_id:",256466915]]
+***4> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun JavaScript","638056347749690"]]]] [["content_address:","profile/tmp/chain_status"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","061010"],["run_id:",256466915]]
+***0> received: {"#":"QA21DVFf","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***2> received: {"#":"QA21DVFf","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0> received: {"#":"8pAdDmYg","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0> received: {"#":"2GKlzsCq","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"QA21DVFf","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
 ***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
 
 !### action() 1: wait db
 
 !### action() 1: wait db. before fn [ '', '', '', '', '' ]
-***0 framesent *** ws:14944/ws {"#":"TW9HhPTe","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***1 framereceived *** ws:14944/ws {"#":"TW9HhPTe","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0 framesent *** wss:18765/gun {"#":"rkTqR7e5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0 framesent *** ws:14944/ws {"#":"tNWBgaKV","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***0 framesent *** wss:18765/gun {"#":"TrZy0vUl","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***2 framereceived *** wss:18765/gun {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0 framesent *** ws:14944/ws {"#":"6JwUZx6V","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***0 framesent *** wss:18765/gun {"#":"jLyJNEpO","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2 framereceived *** wss:18765/gun [{"#":"TrZy0vUl","##":1738665027,"><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}]
-***0 framereceived *** wss:18765/gun {"#":"qsua9L6BS","@":"rkTqR7e5"}
-***0 framereceived *** wss:18765/gun [{"#":"DBsqsUf8G","##":1738665027,"@":"TrZy0vUl","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918422538}},"counter":"1"}}}]
-***2 framereceived *** wss:18765/gun {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***0> sent: {"#":"TW9HhPTe","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***1> received: {"#":"TW9HhPTe","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***0> sent: {"#":"rkTqR7e5","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0> sent: {"#":"tNWBgaKV","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***0> sent: {"#":"TrZy0vUl","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***2> received: {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***0> sent: {"#":"6JwUZx6V","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***0> sent: {"#":"jLyJNEpO","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2> received: [{"#":"TrZy0vUl","##":1738665027,"><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}]
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
-***0> received: {"#":"qsua9L6BS","@":"rkTqR7e5"}
-***0> received: [{"#":"DBsqsUf8G","##":1738665027,"@":"TrZy0vUl","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918422538}},"counter":"1"}}}]
-***2> received: {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
-***0 framereceived *** wss:18765/gun {"#":"Ua42lKpPF","@":"jLyJNEpO"}
-***0> received: {"#":"Ua42lKpPF","@":"jLyJNEpO"}
-***2 framereceived *** wss:18765/gun {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2 framereceived *** wss:18765/gun {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2> received: {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***2> received: {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***2 framereceived *** wss:18765/gun {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2 framereceived *** wss:18765/gun {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2> received: {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
-***2> received: {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
-***0 framereceived *** wss:18765/gun {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0 framereceived *** wss:18765/gun {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***0> received: {"#":"rkTqR7e5","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
-***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
-***0> received: {"#":"jLyJNEpO","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
-***1 framereceived *** ws:14944/ws {"#":"tNWBgaKV","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***1 framereceived *** ws:14944/ws {"#":"6JwUZx6V","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
-***1> received: {"#":"tNWBgaKV","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
-***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
-***1> received: {"#":"6JwUZx6V","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1 framereceived *** ws:14944/ws {"#":"6pQwyCWc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framesent *** ws:14944/ws {"#":"6pQwyCWc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framesent *** wss:18765/gun {"#":"IUef2JI7","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framesent *** ws:14944/ws {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framesent *** wss:18765/gun {"#":"26B92D5d","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framesent *** ws:14944/ws {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2 framereceived *** wss:18765/gun {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framesent *** wss:18765/gun {"#":"9enNWfO6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0 framereceived *** ws:14944/ws {"#":"6pQwyCWc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***1 framereceived *** ws:14944/ws {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***1 framereceived *** ws:14944/ws {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** wss:18765/gun {"#":"Bg41Fo8zZ","@":"IUef2JI7"}
+***0 framereceived *** ws:14944/ws {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0 framereceived *** ws:14944/ws {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***1 framereceived *** ws:14944/ws {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0 framereceived *** ws:14944/ws {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2 framereceived *** wss:18765/gun {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framereceived *** wss:18765/gun [{"#":"9enNWfO6","##":-1143938692,"><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}]
+***1> received: {"#":"6pQwyCWc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
 ***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0> sent: {"#":"6pQwyCWc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framereceived *** wss:18765/gun [{"#":"N0i9tyQRh","@":"26B92D5d"},{"#":"ILQvTJo6q","##":-1143938692,"@":"9enNWfO6","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037963645}},"counter":"1"}}}]
+***0> sent: {"#":"IUef2JI7","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",32],["Gun JavaScript","638056347757810"],["Gun Rust",35],["Gun JavaScript","638056347757810"]]]] [["content_address:","profile/tmp/chain_status"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","072810"],["run_id:",467955670]]
+***0> sent: {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> sent: {"#":"26B92D5d","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",37],["Gun JavaScript","638056347757830"],["Gun Rust",39],["Gun JavaScript","638056347757830"]]]] [["content_address:","profile/tmp/chain_deploy"],["getter:",[]],"events:","timers:",["value:","US18_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","072770"],["run_id:",467955670]]
+***0> sent: {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***2> received: {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0> sent: {"#":"9enNWfO6","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0> ["> use_fetch > connections_change",["new_subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","073770"],["run_id:",467955670]]
+***0> received: {"#":"6pQwyCWc","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***1> received: {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
+***1> received: {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"Bg41Fo8zZ","@":"IUef2JI7"}
+***0> received: {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> received: {"#":"7Ssl9wQq","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***1> received: {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***1> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
+***0> received: {"#":"d7DY7epK","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
+***2> received: {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***2> received: [{"#":"9enNWfO6","##":-1143938692,"><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"counter"}}]
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("counter")}
+***0 framereceived *** wss:18765/gun {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2 framereceived *** wss:18765/gun {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***0 framereceived *** wss:18765/gun {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framereceived *** wss:18765/gun {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2 framereceived *** wss:18765/gun {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***0> received: [{"#":"N0i9tyQRh","@":"26B92D5d"},{"#":"ILQvTJo6q","##":-1143938692,"@":"9enNWfO6","put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037963645}},"counter":"1"}}}]
+***0> received: {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> received: {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***2> received: {"#":"IUef2JI7","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_status"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_status")}
+***0> received: {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> received: {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***2> received: {"#":"26B92D5d","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","get":{"#":"tictactoe_spiral/profile/tmp",".":"chain_deploy"}}
+***2> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
+***0> incoming get {"#": String("tictactoe_spiral/profile/tmp"), ".": String("chain_deploy")}
 
 !### action() 1: wait db. after fn [ '', '', '', '', '' ]
 
 !### action() 2: clear click 1
 
 !### action() 2: clear click 1. before fn [ '', '', '', '', '' ]
-***1 framesent *** ws:14944/ws {"#":"eNn6xswm","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460158.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460158.0}},"counter":"null"}}}
-***1> sent: {"#":"eNn6xswm","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460158.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460158.0}},"counter":"null"}}}
-***0 framesent *** ws:14944/ws {"#":"zVgXOAUE","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460180.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460180.0}},"counter":"null"}}}
-***2 framesent *** wss:18765/gun {"#":"Qh7CLX2F","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460169.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460169.0}},"counter":"null"}}}
-***0> sent: {"#":"zVgXOAUE","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460180.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460180.0}},"counter":"null"}}}
-***0 framesent *** wss:18765/gun {"#":"SdesASLK","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460183.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460183.0}},"counter":"null"}}}
-***2> sent: {"#":"Qh7CLX2F","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460169.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460169.0}},"counter":"null"}}}
-***2 framereceived *** wss:18765/gun {"#":"giGxmEy06","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460169}},"counter":"null"}}}
-***0> sent: {"#":"SdesASLK","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918460183.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460183.0}},"counter":"null"}}}
-***2 framereceived *** wss:18765/gun {"#":"Zx7oP6vVI","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460183}},"counter":"null"}}}
-***0 framereceived *** wss:18765/gun {"#":"TE7pc3Qsa","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460169}},"counter":"null"}}}
-***0 framereceived *** wss:18765/gun {"#":"UFBFCZDfB","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460183}},"counter":"null"}}}
-***2> received: {"#":"giGxmEy06","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460169}},"counter":"null"}}}
-***2> received: {"#":"Zx7oP6vVI","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460183}},"counter":"null"}}}
-***0> received: {"#":"TE7pc3Qsa","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460169}},"counter":"null"}}}
-***0> received: {"#":"UFBFCZDfB","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918460183}},"counter":"null"}}}
+***2> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",7]]],["db_connections:",["Gun Rust"]]] [["timestamp:","164460"],["run_id:",1108585900]]
+***2> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347848210"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",7]]],["db_connections:",["Gun Rust"]]] [["timestamp:","164460"],["run_id:",1108585900]]
+***2 framesent *** wss:18765/gun {"#":"INM9E4qk","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984832.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984832.0}},"counter":"null"}}}
+***0 framereceived *** wss:18765/gun {"#":"yDChaOKue","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984832}},"counter":"null"}}}
+***2 framereceived *** wss:18765/gun {"#":"7wnRkO9e5","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984832}},"counter":"null"}}}
+***2> ["> counter -> effect ()"] [["profile_tmp_counter:",[["638056347848210",null]]]] [["timestamp:","164690"],["run_id:",1108585900]]
+***2> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347848210"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347848210",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347848210",null]],["subscriptions:",[["Gun Rust",7]]],["db_connections:",["Gun Rust"]]] [["timestamp:","164560"],["run_id:",1108585900]]
+***2> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347848320"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","098950"],["run_id:",1108585900]]
+***2> sent: {"#":"INM9E4qk","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984832.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984832.0}},"counter":"null"}}}
+***0> received: {"#":"yDChaOKue","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984832}},"counter":"null"}}}
+***2> received: {"#":"7wnRkO9e5","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984832}},"counter":"null"}}}
+***0> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","164950"],["run_id:",467955670]]
+***0> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849040"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","164960"],["run_id:",467955670]]
+***0 framesent *** ws:14944/ws {"#":"fMcVvN9R","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984926.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984926.0}},"counter":"null"}}}
+***1 framesent *** ws:14944/ws {"#":"QjfYTbw1","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984935.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984935.0}},"counter":"null"}}}
+***0 framesent *** wss:18765/gun {"#":"LbOsWCdD","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984945.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984945.0}},"counter":"null"}}}
+***1> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",12]]],["db_connections:",["Gun Rust"]]] [["timestamp:","163200"],["run_id:",652009601]]
+***1> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849090"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun Rust",12]]],["db_connections:",["Gun Rust"]]] [["timestamp:","163250"],["run_id:",652009601]]
+***3> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun JavaScript","638056347749540"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","161810"],["run_id:",1881652580]]
+***4> [">> use_fetch clear ()"] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun JavaScript","638056347749590"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","161920"],["run_id:",256466915]]
+***3> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849180"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun JavaScript","638056347749540"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","161820"],["run_id:",1881652580]]
+***3> ["> counter -> effect ()"] [["profile_tmp_counter:",[["638056347849180",null]]]] [["timestamp:","162220"],["run_id:",1881652580]]
+***4> ["> use_fetch > on_value > set ()",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849180"],["new_value_raw:",null]] [["content_address:","profile/tmp/counter"],["getter:",[]],"events:","timers:",["value:","US16_0"],["subscriptions:",[["Gun JavaScript","638056347749590"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","161940"],["run_id:",256466915]]
+***3> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849180"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849180",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849180",null]],["subscriptions:",[["Gun JavaScript","638056347749540"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","161850"],["run_id:",1881652580]]
+***2 framereceived *** wss:18765/gun {"#":"ePeSwrgOX","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984945}},"counter":"null"}}}
+***0 framereceived *** wss:18765/gun {"#":"06fbD1TyE","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984945}},"counter":"null"}}}
+***0> ["> counter -> effect ()"] [["profile_tmp_counter:",[["638056347849040",null]]]] [["timestamp:","165110"],["run_id:",467955670]]
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849040"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849040",null]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","165160"],["run_id:",467955670]]
+***1> ["> counter -> effect ()"] [["profile_tmp_counter:",[["638056347849090",null]]]] [["timestamp:","163580"],["run_id:",652009601]]
+***1> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849090"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849090",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849090",null]],["subscriptions:",[["Gun Rust",12]]],["db_connections:",["Gun Rust"]]] [["timestamp:","163420"],["run_id:",652009601]]
+***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347849260"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","091420"],["run_id:",467955670]]
+***0> sent: {"#":"fMcVvN9R","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984926.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984926.0}},"counter":"null"}}}
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849040"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849040",null]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","165290"],["run_id:",467955670]]
+***1> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347849350"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","100040"],["run_id:",652009601]]
+***1> sent: {"#":"QjfYTbw1","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984935.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984935.0}},"counter":"null"}}}
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849040"],["new_value_raw:",null],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849040",null]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","165320"],["run_id:",467955670]]
+***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347849450"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","091610"],["run_id:",467955670]]
+***0> sent: {"#":"LbOsWCdD","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037984945.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984945.0}},"counter":"null"}}}
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849040"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849040",null]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","165410"],["run_id:",467955670]]
+***2 framereceived *** wss:18765/gun {"#":"uE9zxECp9","@":"INM9E4qk","ok":true}
+***0 framereceived *** wss:18765/gun {"#":"PW5wRGFaE","@":"LbOsWCdD","ok":true}
+***2> received: {"#":"ePeSwrgOX","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984945}},"counter":"null"}}}
+***4> ["> counter -> effect ()"] [["profile_tmp_counter:",[["638056347849180",null]]]] [["timestamp:","162550"],["run_id:",256466915]]
+***4> ["> use_fetch > on_value > set () > db_put",["old_value:",[]],["client_type:","Memory"],["new_timestamp:","638056347849180"],["new_value_raw:",null],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849180",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849180",null]],["subscriptions:",[["Gun JavaScript","638056347749590"]]],["db_connections:",["Gun JavaScript"]]] [["timestamp:","162380"],["run_id:",256466915]]
+***0> received: {"#":"06fbD1TyE","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037984945}},"counter":"null"}}}
+***3> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347849650"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","100110"],["run_id:",1881652580]]
+***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347849720"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","091880"],["run_id:",467955670]]
+***0> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347849820"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","091970"],["run_id:",467955670]]
+***4> ["> db_on > on_value ()",["v:",null],["k:",null],["new_timestamp:","638056347849830"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","100240"],["run_id:",256466915]]
+***2> received: {"#":"uE9zxECp9","@":"INM9E4qk","ok":true}
+***0> received: {"#":"PW5wRGFaE","@":"LbOsWCdD","ok":true}
 
 !### action() 2: clear click 1. after fn [
-  '638055152601770[0=null]',
-  '638055152601550[0=null]',
-  '638055152601660[0=null]',
-  '638055152601790[0=null]',
-  '638055152602620[0=null]'
-]
-***2 framereceived *** wss:18765/gun {"#":"WcJ4MfyAQ","@":"Qh7CLX2F","ok":true}
-***0 framereceived *** wss:18765/gun {"#":"QTb3RWPGz","@":"SdesASLK","ok":true}
-***2> received: {"#":"WcJ4MfyAQ","@":"Qh7CLX2F","ok":true}
-***0> received: {"#":"QTb3RWPGz","@":"SdesASLK","ok":true}
-
-!### action() 3: wait empty 1
-
-!### action() 3: wait empty 1. before fn [
-  '638055152601770[0=null]',
-  '638055152601550[0=null]',
-  '638055152601660[0=null]',
-  '638055152601790[0=null]',
-  '638055152602620[0=null]'
+  '638056347849040[0=null]',
+  '638056347849090[0=null]',
+  '638056347848210[0=null]',
+  '638056347849180[0=null]',
+  '638056347849180[0=null]'
 ]
 
-!### action() 3: wait empty 1. after fn [
-  '638055152601770[0=null]',
-  '638055152601550[0=null]',
-  '638055152601660[0=null]',
-  '638055152601790[0=null]',
-  '638055152602620[0=null]'
+!### action() 3: request click p1
+
+!### action() 3: request click p1. before fn [
+  '638056347849040[0=null]',
+  '638056347849090[0=null]',
+  '638056347848210[0=null]',
+  '638056347849180[0=null]',
+  '638056347849180[0=null]'
 ]
+***0> ["> use_fetch > on_value > set ()",["old_value:",[["638056347849040",null]]],["client_type:","Memory"],["new_timestamp:","638056347893960"],["new_value_raw:",1]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null]]],"events:","timers:",["value:",["US16_1","US2_2","638056347849040",null]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","209890"],["run_id:",467955670]]
+***0> ["> counter -> effect ()"] [["profile_tmp_counter:",[["638056347849040",null],["638056347893960",1]]]] [["timestamp:","210040"],["run_id:",467955670]]
+***0 framesent *** ws:14944/ws {"#":"bmLhhKJP","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037989403.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989403.0}},"counter":"1"}}}
+***0 framesent *** wss:18765/gun {"#":"xu2RbU82","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037989405.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989405.0}},"counter":"1"}}}
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[["638056347849040",null]]],["client_type:","Memory"],["new_timestamp:","638056347893960"],["new_value_raw:",1],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null],["638056347893960",1]]],"events:","timers:",["value:",["US16_1","US2_2","638056347893960",1]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","209950"],["run_id:",467955670]]
+***0> ["> db_on > on_value ()",["v:",1],["k:",null],["new_timestamp:","638056347894030"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","136190"],["run_id:",467955670]]
+***0> sent: {"#":"bmLhhKJP","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037989403.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989403.0}},"counter":"1"}}}
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[["638056347849040",null]]],["client_type:","Memory"],["new_timestamp:","638056347893960"],["new_value_raw:",1],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null],["638056347893960",1]]],"events:","timers:",["value:",["US16_1","US2_2","638056347893960",1]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","209970"],["run_id:",467955670]]
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[["638056347849040",null]]],["client_type:","Memory"],["new_timestamp:","638056347893960"],["new_value_raw:",1],["connection_client_type:","Gun Rust"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null],["638056347893960",1]]],"events:","timers:",["value:",["US16_1","US2_2","638056347893960",1]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","209970"],["run_id:",467955670]]
+***0> ["> db_on > on_value ()",["v:",1],["k:",null],["new_timestamp:","638056347894060"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun Rust"]] [["timestamp:","136220"],["run_id:",467955670]]
+***0> sent: {"#":"xu2RbU82","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1670037989405.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989405.0}},"counter":"1"}}}
+***0> ["> use_fetch > on_value > set () > db_put",["old_value:",[["638056347849040",null]]],["client_type:","Memory"],["new_timestamp:","638056347893960"],["new_value_raw:",1],["connection_client_type:","Gun JavaScript"]] [["content_address:","profile/tmp/counter"],["getter:",[["638056347849040",null],["638056347893960",1]]],"events:","timers:",["value:",["US16_1","US2_2","638056347893960",1]],["subscriptions:",[["Gun Rust",41],["Gun JavaScript","638056347757840"],["Gun Rust",43],["Gun JavaScript","638056347757850"]]],["db_connections:",["Gun Rust","Gun JavaScript","Gun Rust","Gun JavaScript"]]] [["timestamp:","209990"],["run_id:",467955670]]
+***2 framereceived *** wss:18765/gun {"#":"Go6XC1EF8","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989405}},"counter":"1"}}}
+***0 framereceived *** wss:18765/gun {"#":"CK457JaPG","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989405}},"counter":"1"}}}
+***2> received: {"#":"Go6XC1EF8","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989405}},"counter":"1"}}}
+***0> ["> db_on > on_value ()",["v:",1],["k:",null],["new_timestamp:","638056347894310"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","136470"],["run_id:",467955670]]
+***0> received: {"#":"CK457JaPG","><":"llfPQVRQk,68M56IAmc,1Pyd0VGkt,u2fpaMF0p","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1670037989405}},"counter":"1"}}}
+***0> ["> db_on > on_value ()",["v:",1],["k:",null],["new_timestamp:","638056347894320"]] [["content_address:","profile/tmp/counter"],["client_type:","Gun JavaScript"]] [["timestamp:","136470"],["run_id:",467955670]]
 
-!### action() 4: request click p1
-
-!### action() 4: request click p1. before fn [
-  '638055152601770[0=null]',
-  '638055152601550[0=null]',
-  '638055152601660[0=null]',
-  '638055152601790[0=null]',
-  '638055152602620[0=null]'
+!### action() 3: request click p1. after fn [
+  '638056347893960[0=1]638056347849040[1=null]',
+  '638056347849090[0=null]',
+  '638056347848210[0=null]',
+  '638056347849180[0=null]',
+  '638056347849180[0=null]'
 ]
-***2 framereceived *** wss:18765/gun []
-***2> received: []
-***2 framereceived *** wss:18765/gun []
-***2> received: []
-***0 framesent *** ws:14944/ws {"#":"27o26AgN","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918468535.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468535.0}},"counter":"1"}}}
-***0 framesent *** wss:18765/gun {"#":"d2LwVqAn","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918468536.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468536.0}},"counter":"1"}}}
-***0> sent: {"#":"27o26AgN","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918468535.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468535.0}},"counter":"1"}}}
-***0> sent: {"#":"d2LwVqAn","put":{"tictactoe_spiral":{"_":{"#":"tictactoe_spiral",">":{"profile":1669918468536.0}},"profile":{"#":"tictactoe_spiral/profile"}},"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468536.0}},"counter":"1"}}}
-***0 framereceived *** wss:18765/gun {"#":"ybW7Fr0Cn","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468536}},"counter":"1"}}}
-***2 framereceived *** wss:18765/gun {"#":"f5y1bxcjU","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468536}},"counter":"1"}}}
-***0> received: {"#":"ybW7Fr0Cn","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468536}},"counter":"1"}}}
-***2> received: {"#":"f5y1bxcjU","><":"lAJoT92CD,Ur20RrS9H,TIIOEWMjx,1EA4gc0Ci","ok":{"/":4,"@":2},"put":{"tictactoe_spiral/profile/tmp":{"_":{"#":"tictactoe_spiral/profile/tmp",">":{"counter":1669918468536}},"counter":"1"}}}
-
-!### action() 4: request click p1. after fn [
-  '638055152685320[0=1]638055152601770[1=null]',
-  '638055152601550[0=null]',
-  '638055152601660[0=null]',
-  '638055152601790[0=null]',
-  '638055152602620[0=null]'
-]
-***0 framereceived *** wss:18765/gun []
-***0> received: []
-***0 framereceived *** wss:18765/gun {"#":"zj0vrZsjU","@":"d2LwVqAn","ok":true}
-***0> received: {"#":"zj0vrZsjU","@":"d2LwVqAn","ok":true}
-***0 framereceived *** wss:18765/gun []
-***0> received: []
-
-!### action() 5: wait i::1
-
-!### action() 5: wait i::1. before fn [
-  '638055152685320[0=1]638055152601770[1=null]',
-  '638055152601550[0=null]',
-  '638055152601660[0=null]',
-  '638055152601790[0=null]',
-  '638055152602620[0=null]'
-]
+***0 framereceived *** wss:18765/gun {"#":"9X6bd5CXn","@":"xu2RbU82","ok":true}
+***0> received: {"#":"9X6bd5CXn","@":"xu2RbU82","ok":true}
 afterEach { retry: 1 }
 afterAll { retry: 1 }
 beforeEach {
@@ -471,10 +547,10 @@ beforeEach {
       timeout: 0,
       annotations: [],
       retries: 2,
-      repeatEachIndex: 0,
+      repeatEachIndex: 1,
       _testType: [TestTypeImpl],
-      id: 'c0ae96d39d6136b2b726-e00fdbdc3c361b3b0bde',
-      _workerHash: 'runchromium-1c2efcf821db9501c8e7db1bca7361b44d5f3433-repeat0',
+      id: 'c0ae96d39d6136b2b726-e2917fa4a767ff323a96',
+      _workerHash: 'runchromium-1c2efcf821db9501c8e7db1bca7361b44d5f3433-repeat1',
       _pool: [FixturePool],
       _projectId: 'chromium',
       _alreadyInheritedAnnotations: false,
@@ -486,14 +562,14 @@ beforeEach {
       _fixture: undefined,
       _timeoutRunner: [TimeoutRunner]
     },
-    _startTime: 1049283.945,
-    _startWallTime: 1669918442232,
-    _hasHardError: false,
+    _startTime: 663530.332,
+    _startWallTime: 1670037966762,
+    _hasHardError: true,
     _onTestFailureImmediateCallbacks: Map(0) {},
-    _didTimeout: true,
-    repeatEachIndex: 0,
+    _didTimeout: false,
+    repeatEachIndex: 1,
     retry: 1,
-    workerIndex: 1,
+    workerIndex: 4,
     parallelIndex: 0,
     project: {
       _id: 'chromium',
@@ -514,7 +590,7 @@ beforeEach {
       snapshotPathTemplate: '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}{-projectName}{-snapshotSuffix}{ext}',
       testIgnore: [],
       testMatch: '**/?(*.)@(spec|test).*',
-      timeout: 45000,
+      timeout: 60000,
       use: [Object]
     },
     config: {
@@ -554,14 +630,14 @@ beforeEach {
     column: 16,
     fn: [AsyncFunction (anonymous)] { [Symbol(signature)]: [Array] },
     expectedStatus: 'passed',
-    duration: 45000,
+    duration: 24653,
     annotations: [],
     attachments: [],
-    status: 'timedOut',
+    status: 'failed',
     stdout: [],
     stderr: [],
     snapshotSuffix: 'linux',
-    outputDir: '/home/runner/work/tictactoe_spiral/tictactoe_spiral/web/test-results/test1-test1-chromium-retry1',
+    outputDir: '/home/runner/work/tictactoe_spiral/tictactoe_spiral/web/test-results/test1-test1-chromium-retry1-repeat1',
     snapshotDir: '/home/runner/work/tictactoe_spiral/tictactoe_spiral/web/tests/test1.spec.ts-snapshots',
     errors: [ [Object] ],
     currentStep: undefined,
