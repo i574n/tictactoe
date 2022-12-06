@@ -91,8 +91,6 @@ inl array_collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
     |> am.map fn
     |> am.fold (/@) (a ;[])
 
-inl get_locals () : a i32 any = a ;[]
-
 type guid = $"Guid"
 
 inl new_raw_guid () : guid =

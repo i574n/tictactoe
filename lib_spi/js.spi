@@ -9,6 +9,8 @@ nominal js_function = $"JS.Function"
 nominal js_obj_prop = $"(string * obj)"
 
 
+inl get_locals () : array any = ;[]
+
 inl to_any forall a. (obj : a) : any =
     $"!obj"
 
