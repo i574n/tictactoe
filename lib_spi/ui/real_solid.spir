@@ -230,7 +230,7 @@ inl prop_keys () =
     }
 
 
-let record_entries (props : solid_props) : a i32 js_obj_prop =
+let record_entries (props : solid_props) : a i32 (pair string any) =
     inl record_fold_item {state key value} =
         inl on_item (_k, v) =
             $"!v" : any
@@ -243,16 +243,16 @@ let record_entries (props : solid_props) : a i32 js_obj_prop =
             state
         else
             inl k = prop_keys () key
-            inl prop = new_js_obj_prop `any k v
-            (::) `js_obj_prop prop state
+            inl prop = new_pair `string `any k v
+            (::) `(pair string any) prop state
 
-    inl empty_list = empty_list `js_obj_prop ()
+    inl empty_list = empty_list `(pair string any) ()
 
     record_fold
         record_fold_item
         empty_list
         props
-    |> listm.toArray `a `i32 `js_obj_prop
+    |> listm.toArray `a `i32 `(pair string any)
 
 
 inl batch_ ()  = import "batch" "solid-js"
@@ -334,7 +334,7 @@ inl create_native_component
     : jsx_element
     =
     inl props : solid_props = props_fn |> real_init_props |> add_children_props children
-    inl new_props_entries : a i32 js_obj_prop = record_entries props
+    inl new_props_entries : a i32 (pair string any) = record_entries props
     inl new_props : any = create_obj new_props_entries
     $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
     inl new_cmp = real_unbox `js_function `(any -> jsx_element) cmp

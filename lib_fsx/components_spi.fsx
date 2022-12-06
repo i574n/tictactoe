@@ -97,16 +97,21 @@ and [<Struct>] US17 =
 and Mut26 = {mutable l0 : int32; mutable l1 : US17}
 and Mut27 = {mutable l0 : int32; mutable l1 : obj}
 and UH1 =
-    | UH1_0 of Guid * int32 * UH1
-    | UH1_1
-and Mut28 = {mutable l0 : int32; mutable l1 : UH1}
+    | UH1_0 of string
+    | UH1_1 of string * string
+    | UH1_2 of string * string
+    | UH1_3 of string * string * string
+and UH2 =
+    | UH2_0 of Guid * int32 * UH2
+    | UH2_1
+and Mut28 = {mutable l0 : int32; mutable l1 : UH2}
 and [<Struct>] US18 =
     | US18_0
     | US18_1 of f1_0 : US2 * f1_1 : Guid * f1_2 : (struct (Guid * obj) [])
-and UH2 =
-    | UH2_0 of Guid * obj * UH2
-    | UH2_1
-and Mut29 = {mutable l0 : int32; mutable l1 : UH2}
+and UH3 =
+    | UH3_0 of Guid * obj * UH3
+    | UH3_1
+and Mut29 = {mutable l0 : int32; mutable l1 : UH3}
 and [<Struct>] US19 =
     | US19_0
     | US19_1 of f1_0 : US2 * f1_1 : obj * f1_2 : string
@@ -5045,11 +5050,15 @@ and method80 (v0 : string, v1 : (unit -> (struct (Guid * int32) [])), v2 : (stru
                 | US2_2 -> (* Memory *)
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
-                    let v95 : obj = v8
-                    (v42?invoke : JS.Function).Invoke ($"{v0}", v95) |> ignore
+                    let v95 : string = v8.ToString ()
+                    let v96 : string = "alias"
+                    let v97 : UH1 = UH1_3(v96, v0, v95)
+                    let v98 : obj = v97
+                    let v99 : string = "send"
+                    (v42?invoke : JS.Function).Invoke ($"{v99}", v98) |> ignore
                     ()
-            let v96 : int32 = v40 + 1
-            v38.l0 <- v96
+            let v100 : int32 = v40 + 1
+            v38.l0 <- v100
             ()
         ()
 and method79 (v0 : string, v1 : (unit -> (struct (Guid * int32) [])), v2 : (struct ((struct (Guid * int32) []) * US2 * Guid * int32) -> unit), v3 : (US16 -> unit), v4 : (unit -> US16), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit)), v9 : Guid, v10 : int32, v11 : obj) : unit =
@@ -5159,7 +5168,7 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
             v21.l1 <- v40
             ()
         let v42 : US17 = v21.l1
-        let struct (v90 : US2, v91 : int64, v92 : string) =
+        let struct (v91 : US2, v92 : int64, v93 : string) =
             match v42 with
             | US17_0 -> (* None *)
                 let v43 : (unit -> (obj [])) = closure284(v0, v16)
@@ -5173,7 +5182,7 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
                 v47 v50
                 let v51 : (struct (Guid * int32) -> (obj -> unit)) = closure285(v0, v5, v6, v7, v8, v4, v16, v9, v45)
                 let v52 : (struct (obj * int32) -> unit) = emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
-                let v86 : int64 =
+                let v87 : int64 =
                     match v16 with
                     | US2_0 -> (* GunJsClient *)
                         let v53 : (string []) = v0.Split [| '/' |]
@@ -5219,80 +5228,81 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
                     | US2_2 -> (* Memory *)
                         failwith<int64> "db_on Memory"
                     | US2_3 -> (* SignalRClient *)
-                        let v84 : (obj -> unit) = closure288(v45)
-                        (v17?on : JS.Function).Invoke ($"{v0}", v84) |> ignore
-                        let v85 : int64 = DateTime.UtcNow.Ticks
-                        v85
-                struct (v16, v86, v18)
-            | US17_1(v87, v88, v89) -> (* Some *)
-                struct (v87, v88, v89)
-        v12.[int v15] <- struct (v90, v91, v92)
-        let v93 : int32 = v15 + 1
-        v13.l0 <- v93
+                        let v84 : string = "send"
+                        let v85 : (obj -> unit) = closure288(v45)
+                        (v17?on : JS.Function).Invoke ($"{v84}", v85) |> ignore
+                        let v86 : int64 = DateTime.UtcNow.Ticks
+                        v86
+                struct (v16, v87, v18)
+            | US17_1(v88, v89, v90) -> (* Some *)
+                struct (v88, v89, v90)
+        v12.[int v15] <- struct (v91, v92, v93)
+        let v94 : int32 = v15 + 1
+        v13.l0 <- v94
         ()
-    let v94 : int32 = v10.Length
-    let v95 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v94)
-    let v96 : Mut6 = {l0 = 0} : Mut6
-    while method21(v94, v96) do
-        let v98 : int32 = v96.l0
-        let struct (v99 : US2, v100 : int64, v101 : string) = v10.[int v98]
-        v95.[int v98] <- struct (v99, v101)
-        let v102 : int32 = v98 + 1
-        v96.l0 <- v102
+    let v95 : int32 = v10.Length
+    let v96 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v95)
+    let v97 : Mut6 = {l0 = 0} : Mut6
+    while method21(v95, v97) do
+        let v99 : int32 = v97.l0
+        let struct (v100 : US2, v101 : int64, v102 : string) = v10.[int v99]
+        v96.[int v99] <- struct (v100, v102)
+        let v103 : int32 = v99 + 1
+        v97.l0 <- v103
         ()
-    let v103 : int32 = v12.Length
-    let v104 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v103)
-    let v105 : Mut6 = {l0 = 0} : Mut6
-    while method21(v103, v105) do
-        let v107 : int32 = v105.l0
-        let struct (v108 : US2, v109 : int64, v110 : string) = v12.[int v107]
-        v104.[int v107] <- struct (v108, v110)
-        let v111 : int32 = v107 + 1
-        v105.l0 <- v111
+    let v104 : int32 = v12.Length
+    let v105 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v104)
+    let v106 : Mut6 = {l0 = 0} : Mut6
+    while method21(v104, v106) do
+        let v108 : int32 = v106.l0
+        let struct (v109 : US2, v110 : int64, v111 : string) = v12.[int v108]
+        v105.[int v108] <- struct (v109, v111)
+        let v112 : int32 = v108 + 1
+        v106.l0 <- v112
         ()
-    let v112 : int32 = v95.Length
-    let v113 : int32 = v104.Length
-    let v114 : bool = v112 = v113
-    let v115 : bool = v114 <> true
-    let v118 : bool =
-        if v115 then
+    let v113 : int32 = v96.Length
+    let v114 : int32 = v105.Length
+    let v115 : bool = v113 = v114
+    let v116 : bool = v115 <> true
+    let v119 : bool =
+        if v116 then
             false
         else
-            let v116 : int32 = 0
-            method82(v95, v104, v116)
-    let v119 : bool = v118 <> true
-    if v119 then
-        let v120 : US4 = US4_2
-        let v121 : ((obj []) -> unit) = v4 v120
-        let v122 : string = "> use_fetch > connections_change"
-        let v123 : obj = v122
-        let v124 : (struct (string * int64) []) = Array.zeroCreate<struct (string * int64)> (v103)
-        let v125 : Mut6 = {l0 = 0} : Mut6
-        while method21(v103, v125) do
-            let v127 : int32 = v125.l0
-            let struct (v128 : US2, v129 : int64, v130 : string) = v12.[int v127]
-            let v135 : string =
-                match v128 with
+            let v117 : int32 = 0
+            method82(v96, v105, v117)
+    let v120 : bool = v119 <> true
+    if v120 then
+        let v121 : US4 = US4_2
+        let v122 : ((obj []) -> unit) = v4 v121
+        let v123 : string = "> use_fetch > connections_change"
+        let v124 : obj = v123
+        let v125 : (struct (string * int64) []) = Array.zeroCreate<struct (string * int64)> (v104)
+        let v126 : Mut6 = {l0 = 0} : Mut6
+        while method21(v104, v126) do
+            let v128 : int32 = v126.l0
+            let struct (v129 : US2, v130 : int64, v131 : string) = v12.[int v128]
+            let v136 : string =
+                match v129 with
                 | US2_0 -> (* GunJsClient *)
-                    let v131 : string = "Gun JavaScript"
-                    v131
-                | US2_1 -> (* GunRsClient *)
-                    let v132 : string = "Gun Rust"
+                    let v132 : string = "Gun JavaScript"
                     v132
-                | US2_2 -> (* Memory *)
-                    let v133 : string = "Memory"
+                | US2_1 -> (* GunRsClient *)
+                    let v133 : string = "Gun Rust"
                     v133
-                | US2_3 -> (* SignalRClient *)
-                    let v134 : string = "SignalR"
+                | US2_2 -> (* Memory *)
+                    let v134 : string = "Memory"
                     v134
-            v124.[int v127] <- struct (v135, v129)
-            let v136 : int32 = v127 + 1
-            v125.l0 <- v136
+                | US2_3 -> (* SignalRClient *)
+                    let v135 : string = "SignalR"
+                    v135
+            v125.[int v128] <- struct (v136, v130)
+            let v137 : int32 = v128 + 1
+            v126.l0 <- v137
             ()
-        let v137 : string = "new_subscriptions:"
-        let v138 : obj = struct (v137, v124)
-        let v139 : (obj []) = [|v123; v138|]
-        v121 v139
+        let v138 : string = "new_subscriptions:"
+        let v139 : obj = struct (v138, v125)
+        let v140 : (obj []) = [|v124; v139|]
+        v122 v140
         v2 v12
         ()
 and closure289 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : ((struct (US2 * obj * string) []) -> unit)) () : unit =
@@ -5489,29 +5499,29 @@ and method83 (v0 : int32, v1 : Mut28) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method84 (v0 : UH1, v1 : UH1) : UH1 =
+and method84 (v0 : UH2, v1 : UH2) : UH2 =
     match v0 with
-    | UH1_0(v2, v3, v4) -> (* Cons *)
-        let v5 : UH1 = UH1_0(v2, v3, v1)
+    | UH2_0(v2, v3, v4) -> (* Cons *)
+        let v5 : UH2 = UH2_0(v2, v3, v1)
         method84(v4, v5)
-    | UH1_1 -> (* Nil *)
+    | UH2_1 -> (* Nil *)
         v1
-and method86 (v0 : UH1, v1 : int32) : int32 =
+and method86 (v0 : UH2, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3, v4) -> (* Cons *)
+    | UH2_0(v2, v3, v4) -> (* Cons *)
         let v5 : int32 = v1 + 1
         method86(v4, v5)
-    | UH1_1 -> (* Nil *)
+    | UH2_1 -> (* Nil *)
         v1
-and method87 (v0 : (struct (Guid * int32) []), v1 : UH1, v2 : int32) : int32 =
+and method87 (v0 : (struct (Guid * int32) []), v1 : UH2, v2 : int32) : int32 =
     match v1 with
-    | UH1_0(v3, v4, v5) -> (* Cons *)
+    | UH2_0(v3, v4, v5) -> (* Cons *)
         v0.[int v2] <- struct (v3, v4)
         let v6 : int32 = v2 + 1
         method87(v0, v5, v6)
-    | UH1_1 -> (* Nil *)
+    | UH2_1 -> (* Nil *)
         v2
-and method85 (v0 : UH1) : (struct (Guid * int32) []) =
+and method85 (v0 : UH2) : (struct (Guid * int32) []) =
     let v1 : int32 = 0
     let v2 : int32 = method86(v0, v1)
     let v3 : (struct (Guid * int32) []) = Array.zeroCreate<struct (Guid * int32)> (v2)
@@ -5561,23 +5571,23 @@ and closure314 (v0 : (struct (Guid * int32) [])) struct (v1 : US6, v2 : US6, v3 
 and closure308 (v0 : (unit -> (struct (Guid * int32) []))) () : (JSX.Element []) =
     let v1 : (struct (Guid * int32) []) = v0 ()
     let v2 : int32 = v1.Length
-    let v3 : UH1 = UH1_1
+    let v3 : UH2 = UH2_1
     let v4 : Mut28 = {l0 = 0; l1 = v3} : Mut28
     while method83(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : int32 =  -v6
         let v8 : int32 = v7 + v2
         let v9 : int32 = v8 - 1
-        let v10 : UH1 = v4.l1
+        let v10 : UH2 = v4.l1
         let struct (v11 : Guid, v12 : int32) = v1.[int v9]
         let v13 : int32 = v6 + 1
-        let v14 : UH1 = UH1_0(v11, v12, v10)
+        let v14 : UH2 = UH2_0(v11, v12, v10)
         v4.l0 <- v13
         v4.l1 <- v14
         ()
-    let v15 : UH1 = v4.l1
-    let v16 : UH1 = UH1_1
-    let v17 : UH1 = method84(v15, v16)
+    let v15 : UH2 = v4.l1
+    let v16 : UH2 = UH2_1
+    let v17 : UH2 = method84(v15, v16)
     let v18 : (struct (Guid * int32) []) = method85(v17)
     let v19 : ((unit -> struct (Guid * int32)) -> (int32 -> (JSX.Element []))) = closure309()
     let v20 : (unit -> (JSX.Element [])) = emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
@@ -5876,11 +5886,15 @@ and method92 (v0 : string, v1 : (unit -> (struct (Guid * obj) [])), v2 : (struct
                 | US2_2 -> (* Memory *)
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
-                    let v95 : obj = v8
-                    (v42?invoke : JS.Function).Invoke ($"{v0}", v95) |> ignore
+                    let v95 : string = v8.ToString ()
+                    let v96 : string = "alias"
+                    let v97 : UH1 = UH1_3(v96, v0, v95)
+                    let v98 : obj = v97
+                    let v99 : string = "send"
+                    (v42?invoke : JS.Function).Invoke ($"{v99}", v98) |> ignore
                     ()
-            let v96 : int32 = v40 + 1
-            v38.l0 <- v96
+            let v100 : int32 = v40 + 1
+            v38.l0 <- v100
             ()
         ()
 and method91 (v0 : string, v1 : (unit -> (struct (Guid * obj) [])), v2 : (struct ((struct (Guid * obj) []) * US2 * Guid * (struct (Guid * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : US2, v7 : (struct (US2 * obj * string) []), v8 : (US4 -> ((obj []) -> unit)), v9 : Guid, v10 : (struct (Guid * obj) []), v11 : obj) : unit =
@@ -5949,7 +5963,7 @@ and closure322 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
             v21.l1 <- v40
             ()
         let v42 : US17 = v21.l1
-        let struct (v90 : US2, v91 : int64, v92 : string) =
+        let struct (v91 : US2, v92 : int64, v93 : string) =
             match v42 with
             | US17_0 -> (* None *)
                 let v43 : (unit -> (obj [])) = closure284(v0, v16)
@@ -5963,7 +5977,7 @@ and closure322 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
                 v47 v50
                 let v51 : (struct (Guid * (struct (Guid * obj) [])) -> (obj -> unit)) = closure323(v0, v5, v6, v7, v8, v4, v16, v9, v45)
                 let v52 : (struct (obj * int32) -> unit) = emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
-                let v86 : int64 =
+                let v87 : int64 =
                     match v16 with
                     | US2_0 -> (* GunJsClient *)
                         let v53 : (string []) = v0.Split [| '/' |]
@@ -6009,80 +6023,81 @@ and closure322 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
                     | US2_2 -> (* Memory *)
                         failwith<int64> "db_on Memory"
                     | US2_3 -> (* SignalRClient *)
-                        let v84 : (obj -> unit) = closure288(v45)
-                        (v17?on : JS.Function).Invoke ($"{v0}", v84) |> ignore
-                        let v85 : int64 = DateTime.UtcNow.Ticks
-                        v85
-                struct (v16, v86, v18)
-            | US17_1(v87, v88, v89) -> (* Some *)
-                struct (v87, v88, v89)
-        v12.[int v15] <- struct (v90, v91, v92)
-        let v93 : int32 = v15 + 1
-        v13.l0 <- v93
+                        let v84 : string = "send"
+                        let v85 : (obj -> unit) = closure288(v45)
+                        (v17?on : JS.Function).Invoke ($"{v84}", v85) |> ignore
+                        let v86 : int64 = DateTime.UtcNow.Ticks
+                        v86
+                struct (v16, v87, v18)
+            | US17_1(v88, v89, v90) -> (* Some *)
+                struct (v88, v89, v90)
+        v12.[int v15] <- struct (v91, v92, v93)
+        let v94 : int32 = v15 + 1
+        v13.l0 <- v94
         ()
-    let v94 : int32 = v10.Length
-    let v95 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v94)
-    let v96 : Mut6 = {l0 = 0} : Mut6
-    while method21(v94, v96) do
-        let v98 : int32 = v96.l0
-        let struct (v99 : US2, v100 : int64, v101 : string) = v10.[int v98]
-        v95.[int v98] <- struct (v99, v101)
-        let v102 : int32 = v98 + 1
-        v96.l0 <- v102
+    let v95 : int32 = v10.Length
+    let v96 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v95)
+    let v97 : Mut6 = {l0 = 0} : Mut6
+    while method21(v95, v97) do
+        let v99 : int32 = v97.l0
+        let struct (v100 : US2, v101 : int64, v102 : string) = v10.[int v99]
+        v96.[int v99] <- struct (v100, v102)
+        let v103 : int32 = v99 + 1
+        v97.l0 <- v103
         ()
-    let v103 : int32 = v12.Length
-    let v104 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v103)
-    let v105 : Mut6 = {l0 = 0} : Mut6
-    while method21(v103, v105) do
-        let v107 : int32 = v105.l0
-        let struct (v108 : US2, v109 : int64, v110 : string) = v12.[int v107]
-        v104.[int v107] <- struct (v108, v110)
-        let v111 : int32 = v107 + 1
-        v105.l0 <- v111
+    let v104 : int32 = v12.Length
+    let v105 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v104)
+    let v106 : Mut6 = {l0 = 0} : Mut6
+    while method21(v104, v106) do
+        let v108 : int32 = v106.l0
+        let struct (v109 : US2, v110 : int64, v111 : string) = v12.[int v108]
+        v105.[int v108] <- struct (v109, v111)
+        let v112 : int32 = v108 + 1
+        v106.l0 <- v112
         ()
-    let v112 : int32 = v95.Length
-    let v113 : int32 = v104.Length
-    let v114 : bool = v112 = v113
-    let v115 : bool = v114 <> true
-    let v118 : bool =
-        if v115 then
+    let v113 : int32 = v96.Length
+    let v114 : int32 = v105.Length
+    let v115 : bool = v113 = v114
+    let v116 : bool = v115 <> true
+    let v119 : bool =
+        if v116 then
             false
         else
-            let v116 : int32 = 0
-            method82(v95, v104, v116)
-    let v119 : bool = v118 <> true
-    if v119 then
-        let v120 : US4 = US4_2
-        let v121 : ((obj []) -> unit) = v4 v120
-        let v122 : string = "> use_fetch > connections_change"
-        let v123 : obj = v122
-        let v124 : (struct (string * int64) []) = Array.zeroCreate<struct (string * int64)> (v103)
-        let v125 : Mut6 = {l0 = 0} : Mut6
-        while method21(v103, v125) do
-            let v127 : int32 = v125.l0
-            let struct (v128 : US2, v129 : int64, v130 : string) = v12.[int v127]
-            let v135 : string =
-                match v128 with
+            let v117 : int32 = 0
+            method82(v96, v105, v117)
+    let v120 : bool = v119 <> true
+    if v120 then
+        let v121 : US4 = US4_2
+        let v122 : ((obj []) -> unit) = v4 v121
+        let v123 : string = "> use_fetch > connections_change"
+        let v124 : obj = v123
+        let v125 : (struct (string * int64) []) = Array.zeroCreate<struct (string * int64)> (v104)
+        let v126 : Mut6 = {l0 = 0} : Mut6
+        while method21(v104, v126) do
+            let v128 : int32 = v126.l0
+            let struct (v129 : US2, v130 : int64, v131 : string) = v12.[int v128]
+            let v136 : string =
+                match v129 with
                 | US2_0 -> (* GunJsClient *)
-                    let v131 : string = "Gun JavaScript"
-                    v131
-                | US2_1 -> (* GunRsClient *)
-                    let v132 : string = "Gun Rust"
+                    let v132 : string = "Gun JavaScript"
                     v132
-                | US2_2 -> (* Memory *)
-                    let v133 : string = "Memory"
+                | US2_1 -> (* GunRsClient *)
+                    let v133 : string = "Gun Rust"
                     v133
-                | US2_3 -> (* SignalRClient *)
-                    let v134 : string = "SignalR"
+                | US2_2 -> (* Memory *)
+                    let v134 : string = "Memory"
                     v134
-            v124.[int v127] <- struct (v135, v129)
-            let v136 : int32 = v127 + 1
-            v125.l0 <- v136
+                | US2_3 -> (* SignalRClient *)
+                    let v135 : string = "SignalR"
+                    v135
+            v125.[int v128] <- struct (v136, v130)
+            let v137 : int32 = v128 + 1
+            v126.l0 <- v137
             ()
-        let v137 : string = "new_subscriptions:"
-        let v138 : obj = struct (v137, v124)
-        let v139 : (obj []) = [|v123; v138|]
-        v121 v139
+        let v138 : string = "new_subscriptions:"
+        let v139 : obj = struct (v138, v125)
+        let v140 : (obj []) = [|v124; v139|]
+        v122 v140
         v2 v12
         ()
 and closure326 (v0 : string, v1 : (unit -> (struct (Guid * obj) [])), v2 : (struct ((struct (Guid * obj) []) * US2 * Guid * (struct (Guid * obj) [])) -> unit), v3 : (US18 -> unit), v4 : (unit -> US18), v5 : (US4 -> ((obj []) -> unit)), v6 : (struct (US2 * obj * string) []), v7 : Guid) (v8 : (struct (Guid * obj) [])) : unit =
@@ -6252,29 +6267,29 @@ and method93 (v0 : int32, v1 : Mut29) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and method94 (v0 : UH2, v1 : UH2) : UH2 =
+and method94 (v0 : UH3, v1 : UH3) : UH3 =
     match v0 with
-    | UH2_0(v2, v3, v4) -> (* Cons *)
-        let v5 : UH2 = UH2_0(v2, v3, v1)
+    | UH3_0(v2, v3, v4) -> (* Cons *)
+        let v5 : UH3 = UH3_0(v2, v3, v1)
         method94(v4, v5)
-    | UH2_1 -> (* Nil *)
+    | UH3_1 -> (* Nil *)
         v1
-and method96 (v0 : UH2, v1 : int32) : int32 =
+and method96 (v0 : UH3, v1 : int32) : int32 =
     match v0 with
-    | UH2_0(v2, v3, v4) -> (* Cons *)
+    | UH3_0(v2, v3, v4) -> (* Cons *)
         let v5 : int32 = v1 + 1
         method96(v4, v5)
-    | UH2_1 -> (* Nil *)
+    | UH3_1 -> (* Nil *)
         v1
-and method97 (v0 : (struct (Guid * obj) []), v1 : UH2, v2 : int32) : int32 =
+and method97 (v0 : (struct (Guid * obj) []), v1 : UH3, v2 : int32) : int32 =
     match v1 with
-    | UH2_0(v3, v4, v5) -> (* Cons *)
+    | UH3_0(v3, v4, v5) -> (* Cons *)
         v0.[int v2] <- struct (v3, v4)
         let v6 : int32 = v2 + 1
         method97(v0, v5, v6)
-    | UH2_1 -> (* Nil *)
+    | UH3_1 -> (* Nil *)
         v2
-and method95 (v0 : UH2) : (struct (Guid * obj) []) =
+and method95 (v0 : UH3) : (struct (Guid * obj) []) =
     let v1 : int32 = 0
     let v2 : int32 = method96(v0, v1)
     let v3 : (struct (Guid * obj) []) = Array.zeroCreate<struct (Guid * obj)> (v2)
@@ -6324,23 +6339,23 @@ and closure345 (v0 : (struct (Guid * obj) [])) struct (v1 : US6, v2 : US6, v3 : 
 and closure339 (v0 : (unit -> (struct (Guid * obj) []))) () : (JSX.Element []) =
     let v1 : (struct (Guid * obj) []) = v0 ()
     let v2 : int32 = v1.Length
-    let v3 : UH2 = UH2_1
+    let v3 : UH3 = UH3_1
     let v4 : Mut29 = {l0 = 0; l1 = v3} : Mut29
     while method93(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : int32 =  -v6
         let v8 : int32 = v7 + v2
         let v9 : int32 = v8 - 1
-        let v10 : UH2 = v4.l1
+        let v10 : UH3 = v4.l1
         let struct (v11 : Guid, v12 : obj) = v1.[int v9]
         let v13 : int32 = v6 + 1
-        let v14 : UH2 = UH2_0(v11, v12, v10)
+        let v14 : UH3 = UH3_0(v11, v12, v10)
         v4.l0 <- v13
         v4.l1 <- v14
         ()
-    let v15 : UH2 = v4.l1
-    let v16 : UH2 = UH2_1
-    let v17 : UH2 = method94(v15, v16)
+    let v15 : UH3 = v4.l1
+    let v16 : UH3 = UH3_1
+    let v17 : UH3 = method94(v15, v16)
     let v18 : (struct (Guid * obj) []) = method95(v17)
     let v19 : ((unit -> struct (Guid * obj)) -> (int32 -> (JSX.Element []))) = closure340()
     let v20 : (unit -> (JSX.Element [])) = emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
@@ -6517,23 +6532,23 @@ and closure364 () (v0 : (unit -> struct (Guid * obj))) : (int32 -> (JSX.Element 
 and closure363 (v0 : (unit -> (struct (Guid * obj) []))) () : (JSX.Element []) =
     let v1 : (struct (Guid * obj) []) = v0 ()
     let v2 : int32 = v1.Length
-    let v3 : UH2 = UH2_1
+    let v3 : UH3 = UH3_1
     let v4 : Mut29 = {l0 = 0; l1 = v3} : Mut29
     while method93(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : int32 =  -v6
         let v8 : int32 = v7 + v2
         let v9 : int32 = v8 - 1
-        let v10 : UH2 = v4.l1
+        let v10 : UH3 = v4.l1
         let struct (v11 : Guid, v12 : obj) = v1.[int v9]
         let v13 : int32 = v6 + 1
-        let v14 : UH2 = UH2_0(v11, v12, v10)
+        let v14 : UH3 = UH3_0(v11, v12, v10)
         v4.l0 <- v13
         v4.l1 <- v14
         ()
-    let v15 : UH2 = v4.l1
-    let v16 : UH2 = UH2_1
-    let v17 : UH2 = method94(v15, v16)
+    let v15 : UH3 = v4.l1
+    let v16 : UH3 = UH3_1
+    let v17 : UH3 = method94(v15, v16)
     let v18 : (struct (Guid * obj) []) = method95(v17)
     let v19 : ((unit -> struct (Guid * obj)) -> (int32 -> (JSX.Element []))) = closure364()
     let v20 : (unit -> (JSX.Element [])) = emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
@@ -6705,6 +6720,11 @@ and method101 (v0 : int32, v1 : Mut31) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
+and closure373 () (v0 : obj) : obj =
+    let v1 : string = "signalr withAutomaticReconnect nextRetryDelayInMilliseconds 2k"
+    printfn $"%A{v1}"
+    let v2 : obj = Some 2000 |> unbox
+    v2
 and method102 (v0 : int32, v1 : Mut32) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
@@ -6764,7 +6784,7 @@ and closure372 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((
                 v22.l1 <- v41
                 ()
             let v43 : US19 = v22.l1
-            let struct (v109 : US2, v110 : obj, v111 : string) =
+            let struct (v115 : US2, v116 : obj, v117 : string) =
                 match v43 with
                 | US19_0 -> (* None *)
                     let v44 : US20 = US20_0
@@ -6808,7 +6828,7 @@ and closure372 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((
                         | US20_1(v70, v71, v72, v73, v74) -> (* Some *)
                             let v75 : string = $"{v73}:{v71}/{v74}"
                             v75
-                    let v105 : obj =
+                    let v111 : obj =
                         match v19 with
                         | US2_0 -> (* GunJsClient *)
                             let v77 : string = "gun/gun"
@@ -6846,101 +6866,107 @@ and closure372 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((
                             let v100 : JS.Function = import v98 v99
                             let v101 : obj = JS.undefined
                             let v102 : obj = createNew v100 v101
-                            let v103 : obj = v102?withUrl v76
-                            let v104 : obj = v103?build ()
-                            v104?start () |> ignore
-                            v104
-                    struct (v19, v105, v76)
-                | US19_1(v106, v107, v108) -> (* Some *)
-                    struct (v106, v107, v108)
-            v15.[int v18] <- struct (v109, v110, v111)
-            let v112 : int32 = v18 + 1
-            v16.l0 <- v112
+                            let v103 : string = "nextRetryDelayInMilliseconds"
+                            let v104 : (obj -> obj) = closure373()
+                            let v105 : (string * obj) = v103, v104
+                            let v106 : ((string * obj) []) = [|v105|]
+                            let v107 : obj = createObj v106
+                            let v108 : obj = v102?withUrl v76
+                            let v109 : obj = v108?withAutomaticReconnect v107
+                            let v110 : obj = v109?build ()
+                            v110?start () |> ignore
+                            v110
+                    struct (v19, v111, v76)
+                | US19_1(v112, v113, v114) -> (* Some *)
+                    struct (v112, v113, v114)
+            v15.[int v18] <- struct (v115, v116, v117)
+            let v118 : int32 = v18 + 1
+            v16.l0 <- v118
             ()
         v5.[int v8] <- v15
-        let v113 : int32 = v8 + 1
-        v6.l0 <- v113
+        let v119 : int32 = v8 + 1
+        v6.l0 <- v119
         ()
-    let v114 : (struct (US2 * obj * string) []) = [||]
-    let v115 : int32 = v5.Length
-    let v116 : Mut32 = {l0 = 0; l1 = v114} : Mut32
-    while method102(v115, v116) do
-        let v118 : int32 = v116.l0
-        let v119 : (struct (US2 * obj * string) []) = v116.l1
-        let v120 : (struct (US2 * obj * string) []) = v5.[int v118]
-        let v121 : int32 = v119.Length
-        let v122 : int32 = v120.Length
-        let v123 : int32 = v121 + v122
-        let v124 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v123)
-        let v125 : Mut6 = {l0 = 0} : Mut6
-        while method21(v123, v125) do
-            let v127 : int32 = v125.l0
-            let v128 : bool = v127 < v121
-            let struct (v136 : US2, v137 : obj, v138 : string) =
-                if v128 then
-                    let struct (v129 : US2, v130 : obj, v131 : string) = v119.[int v127]
-                    struct (v129, v130, v131)
+    let v120 : (struct (US2 * obj * string) []) = [||]
+    let v121 : int32 = v5.Length
+    let v122 : Mut32 = {l0 = 0; l1 = v120} : Mut32
+    while method102(v121, v122) do
+        let v124 : int32 = v122.l0
+        let v125 : (struct (US2 * obj * string) []) = v122.l1
+        let v126 : (struct (US2 * obj * string) []) = v5.[int v124]
+        let v127 : int32 = v125.Length
+        let v128 : int32 = v126.Length
+        let v129 : int32 = v127 + v128
+        let v130 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v129)
+        let v131 : Mut6 = {l0 = 0} : Mut6
+        while method21(v129, v131) do
+            let v133 : int32 = v131.l0
+            let v134 : bool = v133 < v127
+            let struct (v142 : US2, v143 : obj, v144 : string) =
+                if v134 then
+                    let struct (v135 : US2, v136 : obj, v137 : string) = v125.[int v133]
+                    struct (v135, v136, v137)
                 else
-                    let v132 : int32 = v127 - v121
-                    let struct (v133 : US2, v134 : obj, v135 : string) = v120.[int v132]
-                    struct (v133, v134, v135)
-            v124.[int v127] <- struct (v136, v137, v138)
-            let v139 : int32 = v127 + 1
-            v125.l0 <- v139
+                    let v138 : int32 = v133 - v127
+                    let struct (v139 : US2, v140 : obj, v141 : string) = v126.[int v138]
+                    struct (v139, v140, v141)
+            v130.[int v133] <- struct (v142, v143, v144)
+            let v145 : int32 = v133 + 1
+            v131.l0 <- v145
             ()
-        let v140 : int32 = v118 + 1
-        v116.l0 <- v140
-        v116.l1 <- v124
+        let v146 : int32 = v124 + 1
+        v122.l0 <- v146
+        v122.l1 <- v130
         ()
-    let v141 : (struct (US2 * obj * string) []) = v116.l1
-    let v142 : int32 = v3.Length
-    let v143 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v142)
-    let v144 : Mut6 = {l0 = 0} : Mut6
-    while method21(v142, v144) do
-        let v146 : int32 = v144.l0
-        let struct (v147 : US2, v148 : obj, v149 : string) = v3.[int v146]
-        v143.[int v146] <- struct (v147, v149)
-        let v150 : int32 = v146 + 1
-        v144.l0 <- v150
+    let v147 : (struct (US2 * obj * string) []) = v122.l1
+    let v148 : int32 = v3.Length
+    let v149 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v148)
+    let v150 : Mut6 = {l0 = 0} : Mut6
+    while method21(v148, v150) do
+        let v152 : int32 = v150.l0
+        let struct (v153 : US2, v154 : obj, v155 : string) = v3.[int v152]
+        v149.[int v152] <- struct (v153, v155)
+        let v156 : int32 = v152 + 1
+        v150.l0 <- v156
         ()
-    let v151 : int32 = v141.Length
-    let v152 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v151)
-    let v153 : Mut6 = {l0 = 0} : Mut6
-    while method21(v151, v153) do
-        let v155 : int32 = v153.l0
-        let struct (v156 : US2, v157 : obj, v158 : string) = v141.[int v155]
-        v152.[int v155] <- struct (v156, v158)
-        let v159 : int32 = v155 + 1
-        v153.l0 <- v159
+    let v157 : int32 = v147.Length
+    let v158 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v157)
+    let v159 : Mut6 = {l0 = 0} : Mut6
+    while method21(v157, v159) do
+        let v161 : int32 = v159.l0
+        let struct (v162 : US2, v163 : obj, v164 : string) = v147.[int v161]
+        v158.[int v161] <- struct (v162, v164)
+        let v165 : int32 = v161 + 1
+        v159.l0 <- v165
         ()
-    let v160 : int32 = v143.Length
-    let v161 : int32 = v152.Length
-    let v162 : bool = v160 = v161
-    let v163 : bool = v162 <> true
-    let v166 : bool =
-        if v163 then
+    let v166 : int32 = v149.Length
+    let v167 : int32 = v158.Length
+    let v168 : bool = v166 = v167
+    let v169 : bool = v168 <> true
+    let v172 : bool =
+        if v169 then
             false
         else
-            let v164 : int32 = 0
-            method82(v143, v152, v164)
-    let v167 : bool = v166 <> true
-    if v167 then
-        let v168 : US4 = US4_2
-        let v169 : ((obj []) -> unit) = v1 v168
-        let v170 : string = "> db_listener > effect"
-        let v171 : obj = v170
-        let v172 : string = "new_connections:"
-        let v173 : obj = struct (v172, v141)
-        let v174 : (obj []) = [|v171; v173|]
-        v169 v174
-        v0 v141
+            let v170 : int32 = 0
+            method82(v149, v158, v170)
+    let v173 : bool = v172 <> true
+    if v173 then
+        let v174 : US4 = US4_2
+        let v175 : ((obj []) -> unit) = v1 v174
+        let v176 : string = "> db_listener > effect"
+        let v177 : obj = v176
+        let v178 : string = "new_connections:"
+        let v179 : obj = struct (v178, v147)
+        let v180 : (obj []) = [|v177; v179|]
+        v175 v180
+        v0 v147
         ()
-and closure373 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
+and closure374 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     let v3 : (struct (US2 * obj * string) []) = v0 ()
     let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     v2 struct (v4, v3)
     ()
-and closure374 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
+and closure375 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     v0?clear ()
     ()
 and method99 () : JSX.Element =
@@ -6968,11 +6994,11 @@ and method99 () : JSX.Element =
     let v278 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = v276.Invoke (v277, 300) |> unbox<struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit>
     let v279 : string = "createEffect"
     let v280 : JS.Function = import v279 v110
-    let v281 : (unit -> unit) = closure373(v122, v252, v278)
+    let v281 : (unit -> unit) = closure374(v122, v252, v278)
     v280.Invoke v281 |> ignore
     let v282 : string = "onCleanup"
     let v283 : JS.Function = import v282 v110
-    let v284 : (unit -> unit) = closure374(v278)
+    let v284 : (unit -> unit) = closure375(v278)
     v283.Invoke v284 |> ignore
     let v285 : JSX.Element = JS.undefined
     v285
@@ -7083,7 +7109,7 @@ and method116 (v0 : (struct (Guid * obj) [])) : struct ((unit -> (struct (Guid *
     let v5 : (unit -> (struct (Guid * obj) [])) = v4.[0] |> unbox<unit -> (struct (Guid * obj) [])>
     let v6 : ((struct (Guid * obj) []) -> unit) = v4.[1] |> unbox<(struct (Guid * obj) []) -> unit>
     struct (v5, v6)
-and closure375 () () : obj =
+and closure376 () () : obj =
     let struct (v108 : string, v109 : obj, v110 : string, v111 : string, v112 : bool) = method2()
     let v113 : (struct (US0 * string * string * string) []) = method103()
     let v114 : int32 = v113.Length
@@ -7245,7 +7271,7 @@ let v192 : (string * obj) = v190, v191
 let v193 : string = "run_id"
 let v194 : (string * obj) = v193, v77
 let v195 : string = "new_state_context_any"
-let v196 : (unit -> obj) = closure375()
+let v196 : (unit -> obj) = closure376()
 let v197 : (string * obj) = v195, v196
 let v198 : string = "state_context"
 let v199 : (string * obj) = v198, v186

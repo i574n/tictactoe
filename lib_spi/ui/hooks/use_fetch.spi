@@ -556,5 +556,5 @@ let use_fetch forall state_type {append} value_type.
         inl db_connections' = db_connections ()
 
         inl new_guid' = new_guid ()
-        on_value Memory db_connections' (new_guid', (null ()))
+        on_value Memory db_connections' (new_guid', (js_null ()))
     request, clear

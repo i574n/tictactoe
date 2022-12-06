@@ -227,7 +227,7 @@ newTest("test1", async ({ browser }) => {
             // if (index == 0 || index == 4) {
             //     await page.locator('#db-gunjs-gunrs').nth(0).click()
             // }
-            await page.locator('#db-signalr').nth(0).click()
+            await page.locator('#db-signalr-signalr').nth(0).click()
         }))
     })
 

@@ -2,20 +2,8 @@ open real_js
 open real_util
 
 
-
-
-nominal any = $"obj"
 nominal js_function = $"JS.Function"
-nominal js_obj_prop = $"(string * obj)"
 
-
-inl get_locals () : array any = ;[]
-
-inl to_any forall a. (obj : a) : any =
-    $"!obj"
-
-inl new_js_obj_prop forall a. (k : string) (v : a) : js_obj_prop =
-    $"!k, !v"
 
 inl import (name : string) (module : string) : js_function =
     $"import !name !module"
@@ -26,7 +14,7 @@ inl import_default (module : string) : js_function =
 inl import_side_effects (module : string) : () =
     $"importSideEffects !module"
 
-inl create_obj (obj : a i32 js_obj_prop) : any =
+inl create_obj (obj : a i32 (pair string any)) : any =
     $"createObj !obj"
 
 inl json_parse forall a. (json : string) : a =
@@ -38,7 +26,7 @@ inl json_stringify forall a. (obj : a) : string =
 inl json_stringify_space forall a. (obj : a) : string =
     $"emitJsExpr !obj \"JSON.stringify($0, null, 2)\""
 
-inl null forall t. () : t =
+inl js_null forall t. () : t =
     $"emitJsExpr () \"null\""
 
 inl undefined forall t. () : t =

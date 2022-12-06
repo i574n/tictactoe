@@ -1,10 +1,10 @@
-import { Union, Record } from "./fable_modules/fable-library-ts/Types.js";
+import { seqToString, Union, Record } from "./fable_modules/fable-library-ts/Types.js";
 import { getUnionFields, int64_type, tuple_type, lambda_type, array_type, unit_type, bool_type, class_type, string_type, int32_type, union_type, record_type, obj_type, TypeInfo } from "./fable_modules/fable-library-ts/Reflection.js";
 import { uint8, op_UnaryNegation_Int32, int32 } from "./fable_modules/fable-library-ts/Int32.js";
 import { compare, parse, op_Subtraction, toString, int64 } from "./fable_modules/fable-library-ts/Long.js";
 import { Index, For, onCleanup, createEffect, useContext, createSignal, createComponent, children as children_1, createContext } from "solid-js";
 import { equalsWith, fill } from "./fable_modules/fable-library-ts/Array.js";
-import { equalArrays, int32ToString, partialApply, uncurry, createObj } from "./fable_modules/fable-library-ts/Util.js";
+import { equalArrays, partialApply, int32ToString, uncurry, createObj } from "./fable_modules/fable-library-ts/Util.js";
 import { Input, Anchor, Stack, IconButton, Icon, Button, Box, hope } from "@hope-ui/core";
 import { utcNow, getTicks } from "./fable_modules/fable-library-ts/Date.js";
 import { BiRegularMinus, BiRegularPlus, BiRegularLinkExternal, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow, BiRegularRefresh } from "solid-icons/bi";
@@ -1180,19 +1180,29 @@ export function Mut27$reflection(): TypeInfo {
 
 export const enum UH1_Tag {
     UH1_0 = 0,
-    UH1_1 = 1
+    UH1_1 = 1,
+    UH1_2 = 2,
+    UH1_3 = 3
 }
 
-export type UH1_Fields = [[string, int32, UH1], []];
+export type UH1_Fields = [[string], [string, string], [string, string], [string, string, string]];
 
-export type UH1 = UH1_Cons<UH1_Tag.UH1_0> | UH1_Cons<UH1_Tag.UH1_1>;
+export type UH1 = UH1_Cons<UH1_Tag.UH1_0> | UH1_Cons<UH1_Tag.UH1_1> | UH1_Cons<UH1_Tag.UH1_2> | UH1_Cons<UH1_Tag.UH1_3>;
 
-export function UH1_UH1_0(Item1: string, Item2: int32, Item3: UH1) {
-    return new UH1_Cons<UH1_Tag.UH1_0>(UH1_Tag.UH1_0, [Item1, Item2, Item3]);
+export function UH1_UH1_0(Item: string) {
+    return new UH1_Cons<UH1_Tag.UH1_0>(UH1_Tag.UH1_0, [Item]);
 }
 
-export function UH1_UH1_1() {
-    return new UH1_Cons<UH1_Tag.UH1_1>(UH1_Tag.UH1_1, []);
+export function UH1_UH1_1(Item1: string, Item2: string) {
+    return new UH1_Cons<UH1_Tag.UH1_1>(UH1_Tag.UH1_1, [Item1, Item2]);
+}
+
+export function UH1_UH1_2(Item1: string, Item2: string) {
+    return new UH1_Cons<UH1_Tag.UH1_2>(UH1_Tag.UH1_2, [Item1, Item2]);
+}
+
+export function UH1_UH1_3(Item1: string, Item2: string, Item3: string) {
+    return new UH1_Cons<UH1_Tag.UH1_3>(UH1_Tag.UH1_3, [Item1, Item2, Item3]);
 }
 
 export class UH1_Cons<Tag extends keyof UH1_Fields> extends Union {
@@ -1200,18 +1210,48 @@ export class UH1_Cons<Tag extends keyof UH1_Fields> extends Union {
         super();
     }
     cases() {
-        return ["UH1_0", "UH1_1"];
+        return ["UH1_0", "UH1_1", "UH1_2", "UH1_3"];
     }
 }
 
 export function UH1$reflection(): TypeInfo {
-    return union_type("Components_spi.UH1", [], UH1_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", int32_type], ["Item3", UH1$reflection()]], []]);
+    return union_type("Components_spi.UH1", [], UH1_Cons, () => [[["Item", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type], ["Item3", string_type]]]);
+}
+
+export const enum UH2_Tag {
+    UH2_0 = 0,
+    UH2_1 = 1
+}
+
+export type UH2_Fields = [[string, int32, UH2], []];
+
+export type UH2 = UH2_Cons<UH2_Tag.UH2_0> | UH2_Cons<UH2_Tag.UH2_1>;
+
+export function UH2_UH2_0(Item1: string, Item2: int32, Item3: UH2) {
+    return new UH2_Cons<UH2_Tag.UH2_0>(UH2_Tag.UH2_0, [Item1, Item2, Item3]);
+}
+
+export function UH2_UH2_1() {
+    return new UH2_Cons<UH2_Tag.UH2_1>(UH2_Tag.UH2_1, []);
+}
+
+export class UH2_Cons<Tag extends keyof UH2_Fields> extends Union {
+    constructor(readonly tag: Tag, readonly fields: UH2_Fields[Tag]) {
+        super();
+    }
+    cases() {
+        return ["UH2_0", "UH2_1"];
+    }
+}
+
+export function UH2$reflection(): TypeInfo {
+    return union_type("Components_spi.UH2", [], UH2_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", int32_type], ["Item3", UH2$reflection()]], []]);
 }
 
 export class Mut28 extends Record {
     l0: int32;
-    l1: UH1;
-    constructor(l0: int32, l1: UH1) {
+    l1: UH2;
+    constructor(l0: int32, l1: UH2) {
         super();
         this.l0 = (l0 | 0);
         this.l1 = l1;
@@ -1219,7 +1259,7 @@ export class Mut28 extends Record {
 }
 
 export function Mut28$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut28", [], Mut28, () => [["l0", int32_type], ["l1", UH1$reflection()]]);
+    return record_type("Components_spi.Mut28", [], Mut28, () => [["l0", int32_type], ["l1", UH2$reflection()]]);
 }
 
 export const enum US18_Tag {
@@ -1252,40 +1292,40 @@ export function US18$reflection(): TypeInfo {
     return union_type("Components_spi.US18", [], US18_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("System.Guid")], ["f1_2", array_type(tuple_type(class_type("System.Guid"), obj_type))]]]);
 }
 
-export const enum UH2_Tag {
-    UH2_0 = 0,
-    UH2_1 = 1
+export const enum UH3_Tag {
+    UH3_0 = 0,
+    UH3_1 = 1
 }
 
-export type UH2_Fields = [[string, any, UH2], []];
+export type UH3_Fields = [[string, any, UH3], []];
 
-export type UH2 = UH2_Cons<UH2_Tag.UH2_0> | UH2_Cons<UH2_Tag.UH2_1>;
+export type UH3 = UH3_Cons<UH3_Tag.UH3_0> | UH3_Cons<UH3_Tag.UH3_1>;
 
-export function UH2_UH2_0(Item1: string, Item2: any, Item3: UH2) {
-    return new UH2_Cons<UH2_Tag.UH2_0>(UH2_Tag.UH2_0, [Item1, Item2, Item3]);
+export function UH3_UH3_0(Item1: string, Item2: any, Item3: UH3) {
+    return new UH3_Cons<UH3_Tag.UH3_0>(UH3_Tag.UH3_0, [Item1, Item2, Item3]);
 }
 
-export function UH2_UH2_1() {
-    return new UH2_Cons<UH2_Tag.UH2_1>(UH2_Tag.UH2_1, []);
+export function UH3_UH3_1() {
+    return new UH3_Cons<UH3_Tag.UH3_1>(UH3_Tag.UH3_1, []);
 }
 
-export class UH2_Cons<Tag extends keyof UH2_Fields> extends Union {
-    constructor(readonly tag: Tag, readonly fields: UH2_Fields[Tag]) {
+export class UH3_Cons<Tag extends keyof UH3_Fields> extends Union {
+    constructor(readonly tag: Tag, readonly fields: UH3_Fields[Tag]) {
         super();
     }
     cases() {
-        return ["UH2_0", "UH2_1"];
+        return ["UH3_0", "UH3_1"];
     }
 }
 
-export function UH2$reflection(): TypeInfo {
-    return union_type("Components_spi.UH2", [], UH2_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", obj_type], ["Item3", UH2$reflection()]], []]);
+export function UH3$reflection(): TypeInfo {
+    return union_type("Components_spi.UH3", [], UH3_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", obj_type], ["Item3", UH3$reflection()]], []]);
 }
 
 export class Mut29 extends Record {
     l0: int32;
-    l1: UH2;
-    constructor(l0: int32, l1: UH2) {
+    l1: UH3;
+    constructor(l0: int32, l1: UH3) {
         super();
         this.l0 = (l0 | 0);
         this.l1 = l1;
@@ -1293,7 +1333,7 @@ export class Mut29 extends Record {
 }
 
 export function Mut29$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut29", [], Mut29, () => [["l0", int32_type], ["l1", UH2$reflection()]]);
+    return record_type("Components_spi.Mut29", [], Mut29, () => [["l0", int32_type], ["l1", UH3$reflection()]]);
 }
 
 export const enum US19_Tag {
@@ -4342,7 +4382,8 @@ export function method80(v0_1: string, v1_1: () => [string, int32][], v2: (arg0:
                         break;
                     }
                     case 3: {
-                        v42.invoke((`${v0_1}`), v8);
+                        const v95: string = int32ToString(v8);
+                        v42.invoke((`${"send"}`), UH1_UH1_3("alias", v0_1, v95));
                         break;
                     }
                     default: {
@@ -4364,8 +4405,8 @@ export function method80(v0_1: string, v1_1: () => [string, int32][], v2: (arg0:
                     }
                 }
             }
-            const v96: int32 = (v40 + 1) | 0;
-            v38.l0 = (v96 | 0);
+            const v100: int32 = (v40 + 1) | 0;
+            v38.l0 = (v100 | 0);
         }
     }
 }
@@ -4416,7 +4457,7 @@ export function method82(v0_1_mut: [US2, string][], v1_1_mut: [US2, string][], v
 }
 
 export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64, string][]) => void, v3: () => [US2, int64, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, int32][], v6: (arg0: [[string, int32][], US2, string, int32]) => void, v7: (arg0: US16) => void, v8: () => US16, v9: [US2, any, string][]): void {
-    let copyOfStruct: US2, v68: string[], v71: any, v72_1: int32, v73_1: Mut27, v81: any, v84: (arg0: any) => void, v53: string[], v56: any, v57: int32, v58: Mut27, v66: any;
+    let copyOfStruct: US2, v68: string[], v71: any, v72_1: int32, v73_1: Mut27, v81: any, v85: (arg0: any) => void, v53: string[], v56: any, v57: int32, v58: Mut27, v66: any;
     const v10: [US2, int64, string][] = v3();
     const v11: int32 = v9.length | 0;
     const v12: [US2, int64, string][] = fill(new Array(v11), 0, v11, null);
@@ -4468,9 +4509,9 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
                 }
             })(), (v81 = v73_1.l1, v81.on(v52)))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
                 throw new Error("db_on Memory");
-            })() : ((v16.tag === US2_Tag.US2_3) ? ((v84 = ((v: any): void => {
+            })() : ((v16.tag === US2_Tag.US2_3) ? ((v85 = ((v: any): void => {
                 closure288(uncurry(2, v45), v);
-            }), (void (v17.on((`${v0_1}`), v84)), getTicks(utcNow())))) : ((v53 = v0_1.split("/"), (v56 = v17.get("tictactoe_spiral"), (v57 = (v53.length | 0), (v58 = (new Mut27(0, v56)), ((() => {
+            }), (void (v17.on((`${"send"}`), v85)), getTicks(utcNow())))) : ((v53 = v0_1.split("/"), (v56 = v17.get("tictactoe_spiral"), (v57 = (v53.length | 0), (v58 = (new Mut27(0, v56)), ((() => {
                 while (method81(v57, v58)) {
                     const v60: int32 = v58.l0 | 0;
                     const v61: any = v58.l1;
@@ -4483,43 +4524,43 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
             })(), (v66 = v58.l1, (v66.on(v52), getTicks(utcNow()))))))))))), v18];
         }
         v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2]];
-        const v93: int32 = (v15 + 1) | 0;
-        v13.l0 = (v93 | 0);
+        const v94: int32 = (v15 + 1) | 0;
+        v13.l0 = (v94 | 0);
     }
-    const v94: int32 = v10.length | 0;
-    const v95: [US2, string][] = fill(new Array(v94), 0, v94, null);
-    const v96: Mut6 = new Mut6(0);
-    while (method21(v94, v96)) {
-        const v98: int32 = v96.l0 | 0;
-        const patternInput_3: [US2, int64, string] = v10[v98];
-        v95[v98] = [patternInput_3[0], patternInput_3[2]];
-        const v102: int32 = (v98 + 1) | 0;
-        v96.l0 = (v102 | 0);
+    const v95: int32 = v10.length | 0;
+    const v96: [US2, string][] = fill(new Array(v95), 0, v95, null);
+    const v97: Mut6 = new Mut6(0);
+    while (method21(v95, v97)) {
+        const v99: int32 = v97.l0 | 0;
+        const patternInput_3: [US2, int64, string] = v10[v99];
+        v96[v99] = [patternInput_3[0], patternInput_3[2]];
+        const v103: int32 = (v99 + 1) | 0;
+        v97.l0 = (v103 | 0);
     }
-    const v103: int32 = v12.length | 0;
-    const v104: [US2, string][] = fill(new Array(v103), 0, v103, null);
-    const v105: Mut6 = new Mut6(0);
-    while (method21(v103, v105)) {
-        const v107: int32 = v105.l0 | 0;
-        const patternInput_4: [US2, int64, string] = v12[v107];
-        v104[v107] = [patternInput_4[0], patternInput_4[2]];
-        const v111: int32 = (v107 + 1) | 0;
-        v105.l0 = (v111 | 0);
+    const v104: int32 = v12.length | 0;
+    const v105: [US2, string][] = fill(new Array(v104), 0, v104, null);
+    const v106: Mut6 = new Mut6(0);
+    while (method21(v104, v106)) {
+        const v108: int32 = v106.l0 | 0;
+        const patternInput_4: [US2, int64, string] = v12[v108];
+        v105[v108] = [patternInput_4[0], patternInput_4[2]];
+        const v112: int32 = (v108 + 1) | 0;
+        v106.l0 = (v112 | 0);
     }
-    if ((((v95.length === v104.length) !== true) ? false : method82(v95, v104, 0)) !== true) {
-        const v121: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
-        const v124: [string, int64][] = fill(new Array(v103), 0, v103, null);
-        const v125: Mut6 = new Mut6(0);
-        while (method21(v103, v125)) {
-            const v127: int32 = v125.l0 | 0;
-            const patternInput_5: [US2, int64, string] = v12[v127];
-            const v128: US2 = patternInput_5[0];
-            const v135: string = (v128.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v128.tag === US2_Tag.US2_2) ? "Memory" : ((v128.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
-            v124[v127] = [v135, patternInput_5[1]];
-            const v136: int32 = (v127 + 1) | 0;
-            v125.l0 = (v136 | 0);
+    if ((((v96.length === v105.length) !== true) ? false : method82(v96, v105, 0)) !== true) {
+        const v122: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
+        const v125: [string, int64][] = fill(new Array(v104), 0, v104, null);
+        const v126: Mut6 = new Mut6(0);
+        while (method21(v104, v126)) {
+            const v128: int32 = v126.l0 | 0;
+            const patternInput_5: [US2, int64, string] = v12[v128];
+            const v129: US2 = patternInput_5[0];
+            const v136: string = (v129.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v129.tag === US2_Tag.US2_2) ? "Memory" : ((v129.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
+            v125[v128] = [v136, patternInput_5[1]];
+            const v137: int32 = (v128 + 1) | 0;
+            v126.l0 = (v137 | 0);
         }
-        v121(["> use_fetch > connections_change", ["new_subscriptions:", v124]]);
+        v122(["> use_fetch > connections_change", ["new_subscriptions:", v125]]);
         v2(v12);
     }
 }
@@ -4688,27 +4729,27 @@ export function method83(v0_1: int32, v1_1: Mut28): boolean {
     return v1_1.l0 < v0_1;
 }
 
-export function method84(v0_1_mut: UH1, v1_1_mut: UH1): UH1 {
+export function method84(v0_1_mut: UH2, v1_1_mut: UH2): UH2 {
     method84:
     while (true) {
-        const v0_1: UH1 = v0_1_mut, v1_1: UH1 = v1_1_mut;
-        if (v0_1.tag === UH1_Tag.UH1_1) {
+        const v0_1: UH2 = v0_1_mut, v1_1: UH2 = v1_1_mut;
+        if (v0_1.tag === UH2_Tag.UH2_1) {
             return v1_1;
         }
         else {
             v0_1_mut = v0_1.fields[2];
-            v1_1_mut = UH1_UH1_0(v0_1.fields[0], v0_1.fields[1], v1_1);
+            v1_1_mut = UH2_UH2_0(v0_1.fields[0], v0_1.fields[1], v1_1);
             continue method84;
         }
         break;
     }
 }
 
-export function method86(v0_1_mut: UH1, v1_1_mut: int32): int32 {
+export function method86(v0_1_mut: UH2, v1_1_mut: int32): int32 {
     method86:
     while (true) {
-        const v0_1: UH1 = v0_1_mut, v1_1: int32 = v1_1_mut;
-        if (v0_1.tag === UH1_Tag.UH1_1) {
+        const v0_1: UH2 = v0_1_mut, v1_1: int32 = v1_1_mut;
+        if (v0_1.tag === UH2_Tag.UH2_1) {
             return v1_1 | 0;
         }
         else {
@@ -4720,11 +4761,11 @@ export function method86(v0_1_mut: UH1, v1_1_mut: int32): int32 {
     }
 }
 
-export function method87(v0_1_mut: [string, int32][], v1_1_mut: UH1, v2_mut: int32): int32 {
+export function method87(v0_1_mut: [string, int32][], v1_1_mut: UH2, v2_mut: int32): int32 {
     method87:
     while (true) {
-        const v0_1: [string, int32][] = v0_1_mut, v1_1: UH1 = v1_1_mut, v2: int32 = v2_mut;
-        if (v1_1.tag === UH1_Tag.UH1_1) {
+        const v0_1: [string, int32][] = v0_1_mut, v1_1: UH2 = v1_1_mut, v2: int32 = v2_mut;
+        if (v1_1.tag === UH2_Tag.UH2_1) {
             return v2 | 0;
         }
         else {
@@ -4738,7 +4779,7 @@ export function method87(v0_1_mut: [string, int32][], v1_1_mut: UH1, v2_mut: int
     }
 }
 
-export function method85(v0_1: UH1): [string, int32][] {
+export function method85(v0_1: UH2): [string, int32][] {
     const v2: int32 = method86(v0_1, 0) | 0;
     const v3: [string, int32][] = fill(new Array(v2), 0, v2, null);
     const v5: int32 = method87(v3, v0_1, 0) | 0;
@@ -4784,17 +4825,17 @@ export function closure308(v0_1: () => [string, int32][], unitVar: void): any[] 
     let clo: () => any[];
     const v1_1: [string, int32][] = v0_1();
     const v2: int32 = v1_1.length | 0;
-    const v4: Mut28 = new Mut28(0, UH1_UH1_1());
+    const v4: Mut28 = new Mut28(0, UH2_UH2_1());
     while (method83(v2, v4)) {
         const v6: int32 = v4.l0 | 0;
         const v9: int32 = ((op_UnaryNegation_Int32(v6) + v2) - 1) | 0;
-        const v10: UH1 = v4.l1;
+        const v10: UH2 = v4.l1;
         const patternInput: [string, int32] = v1_1[v9];
         const v13: int32 = (v6 + 1) | 0;
         v4.l0 = (v13 | 0);
-        v4.l1 = UH1_UH1_0(patternInput[0], patternInput[1], v10);
+        v4.l1 = UH2_UH2_0(patternInput[0], patternInput[1], v10);
     }
-    const v18: [string, int32][] = method85(method84(v4.l1, UH1_UH1_1()));
+    const v18: [string, int32][] = method85(method84(v4.l1, UH2_UH2_1()));
     const v19: (arg0: () => [string, int32], arg1: int32) => any[] = (v: () => [string, int32]): (arg0: int32) => any[] => closure309(void 0, v);
     const v23: any = Index;
     const v24: (arg0: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6]) => [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] = (arg10$0040: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6]): [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] => closure314(v18, arg10$0040);
@@ -4953,7 +4994,8 @@ export function method92(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [
                         break;
                     }
                     case 3: {
-                        v42.invoke((`${v0_1}`), v8);
+                        const v95: string = seqToString(v8);
+                        v42.invoke((`${"send"}`), UH1_UH1_3("alias", v0_1, v95));
                         break;
                     }
                     default: {
@@ -4975,8 +5017,8 @@ export function method92(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [
                     }
                 }
             }
-            const v96: int32 = (v40 + 1) | 0;
-            v38.l0 = (v96 | 0);
+            const v100: int32 = (v40 + 1) | 0;
+            v38.l0 = (v100 | 0);
         }
     }
 }
@@ -4997,7 +5039,7 @@ export function closure323(v0_1: string, v1_1: () => [string, any][], v2: (arg0:
 }
 
 export function closure322(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64, string][]) => void, v3: () => [US2, int64, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, any][], v6: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v7: (arg0: US18) => void, v8: () => US18, v9: [US2, any, string][]): void {
-    let copyOfStruct: US2, v68: string[], v71: any, v72_1: int32, v73_1: Mut27, v81: any, v84: (arg0: any) => void, v53: string[], v56: any, v57: int32, v58: Mut27, v66: any;
+    let copyOfStruct: US2, v68: string[], v71: any, v72_1: int32, v73_1: Mut27, v81: any, v85: (arg0: any) => void, v53: string[], v56: any, v57: int32, v58: Mut27, v66: any;
     const v10: [US2, int64, string][] = v3();
     const v11: int32 = v9.length | 0;
     const v12: [US2, int64, string][] = fill(new Array(v11), 0, v11, null);
@@ -5049,9 +5091,9 @@ export function closure322(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
                 }
             })(), (v81 = v73_1.l1, v81.on(v52)))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
                 throw new Error("db_on Memory");
-            })() : ((v16.tag === US2_Tag.US2_3) ? ((v84 = ((v: any): void => {
+            })() : ((v16.tag === US2_Tag.US2_3) ? ((v85 = ((v: any): void => {
                 closure288(uncurry(2, v45), v);
-            }), (void (v17.on((`${v0_1}`), v84)), getTicks(utcNow())))) : ((v53 = v0_1.split("/"), (v56 = v17.get("tictactoe_spiral"), (v57 = (v53.length | 0), (v58 = (new Mut27(0, v56)), ((() => {
+            }), (void (v17.on((`${"send"}`), v85)), getTicks(utcNow())))) : ((v53 = v0_1.split("/"), (v56 = v17.get("tictactoe_spiral"), (v57 = (v53.length | 0), (v58 = (new Mut27(0, v56)), ((() => {
                 while (method81(v57, v58)) {
                     const v60: int32 = v58.l0 | 0;
                     const v61: any = v58.l1;
@@ -5064,43 +5106,43 @@ export function closure322(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
             })(), (v66 = v58.l1, (v66.on(v52), getTicks(utcNow()))))))))))), v18];
         }
         v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2]];
-        const v93: int32 = (v15 + 1) | 0;
-        v13.l0 = (v93 | 0);
+        const v94: int32 = (v15 + 1) | 0;
+        v13.l0 = (v94 | 0);
     }
-    const v94: int32 = v10.length | 0;
-    const v95: [US2, string][] = fill(new Array(v94), 0, v94, null);
-    const v96: Mut6 = new Mut6(0);
-    while (method21(v94, v96)) {
-        const v98: int32 = v96.l0 | 0;
-        const patternInput_3: [US2, int64, string] = v10[v98];
-        v95[v98] = [patternInput_3[0], patternInput_3[2]];
-        const v102: int32 = (v98 + 1) | 0;
-        v96.l0 = (v102 | 0);
+    const v95: int32 = v10.length | 0;
+    const v96: [US2, string][] = fill(new Array(v95), 0, v95, null);
+    const v97: Mut6 = new Mut6(0);
+    while (method21(v95, v97)) {
+        const v99: int32 = v97.l0 | 0;
+        const patternInput_3: [US2, int64, string] = v10[v99];
+        v96[v99] = [patternInput_3[0], patternInput_3[2]];
+        const v103: int32 = (v99 + 1) | 0;
+        v97.l0 = (v103 | 0);
     }
-    const v103: int32 = v12.length | 0;
-    const v104: [US2, string][] = fill(new Array(v103), 0, v103, null);
-    const v105: Mut6 = new Mut6(0);
-    while (method21(v103, v105)) {
-        const v107: int32 = v105.l0 | 0;
-        const patternInput_4: [US2, int64, string] = v12[v107];
-        v104[v107] = [patternInput_4[0], patternInput_4[2]];
-        const v111: int32 = (v107 + 1) | 0;
-        v105.l0 = (v111 | 0);
+    const v104: int32 = v12.length | 0;
+    const v105: [US2, string][] = fill(new Array(v104), 0, v104, null);
+    const v106: Mut6 = new Mut6(0);
+    while (method21(v104, v106)) {
+        const v108: int32 = v106.l0 | 0;
+        const patternInput_4: [US2, int64, string] = v12[v108];
+        v105[v108] = [patternInput_4[0], patternInput_4[2]];
+        const v112: int32 = (v108 + 1) | 0;
+        v106.l0 = (v112 | 0);
     }
-    if ((((v95.length === v104.length) !== true) ? false : method82(v95, v104, 0)) !== true) {
-        const v121: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
-        const v124: [string, int64][] = fill(new Array(v103), 0, v103, null);
-        const v125: Mut6 = new Mut6(0);
-        while (method21(v103, v125)) {
-            const v127: int32 = v125.l0 | 0;
-            const patternInput_5: [US2, int64, string] = v12[v127];
-            const v128: US2 = patternInput_5[0];
-            const v135: string = (v128.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v128.tag === US2_Tag.US2_2) ? "Memory" : ((v128.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
-            v124[v127] = [v135, patternInput_5[1]];
-            const v136: int32 = (v127 + 1) | 0;
-            v125.l0 = (v136 | 0);
+    if ((((v96.length === v105.length) !== true) ? false : method82(v96, v105, 0)) !== true) {
+        const v122: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
+        const v125: [string, int64][] = fill(new Array(v104), 0, v104, null);
+        const v126: Mut6 = new Mut6(0);
+        while (method21(v104, v126)) {
+            const v128: int32 = v126.l0 | 0;
+            const patternInput_5: [US2, int64, string] = v12[v128];
+            const v129: US2 = patternInput_5[0];
+            const v136: string = (v129.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v129.tag === US2_Tag.US2_2) ? "Memory" : ((v129.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
+            v125[v128] = [v136, patternInput_5[1]];
+            const v137: int32 = (v128 + 1) | 0;
+            v126.l0 = (v137 | 0);
         }
-        v121(["> use_fetch > connections_change", ["new_subscriptions:", v124]]);
+        v122(["> use_fetch > connections_change", ["new_subscriptions:", v125]]);
         v2(v12);
     }
 }
@@ -5245,27 +5287,27 @@ export function method93(v0_1: int32, v1_1: Mut29): boolean {
     return v1_1.l0 < v0_1;
 }
 
-export function method94(v0_1_mut: UH2, v1_1_mut: UH2): UH2 {
+export function method94(v0_1_mut: UH3, v1_1_mut: UH3): UH3 {
     method94:
     while (true) {
-        const v0_1: UH2 = v0_1_mut, v1_1: UH2 = v1_1_mut;
-        if (v0_1.tag === UH2_Tag.UH2_1) {
+        const v0_1: UH3 = v0_1_mut, v1_1: UH3 = v1_1_mut;
+        if (v0_1.tag === UH3_Tag.UH3_1) {
             return v1_1;
         }
         else {
             v0_1_mut = v0_1.fields[2];
-            v1_1_mut = UH2_UH2_0(v0_1.fields[0], v0_1.fields[1], v1_1);
+            v1_1_mut = UH3_UH3_0(v0_1.fields[0], v0_1.fields[1], v1_1);
             continue method94;
         }
         break;
     }
 }
 
-export function method96(v0_1_mut: UH2, v1_1_mut: int32): int32 {
+export function method96(v0_1_mut: UH3, v1_1_mut: int32): int32 {
     method96:
     while (true) {
-        const v0_1: UH2 = v0_1_mut, v1_1: int32 = v1_1_mut;
-        if (v0_1.tag === UH2_Tag.UH2_1) {
+        const v0_1: UH3 = v0_1_mut, v1_1: int32 = v1_1_mut;
+        if (v0_1.tag === UH3_Tag.UH3_1) {
             return v1_1 | 0;
         }
         else {
@@ -5277,11 +5319,11 @@ export function method96(v0_1_mut: UH2, v1_1_mut: int32): int32 {
     }
 }
 
-export function method97(v0_1_mut: [string, any][], v1_1_mut: UH2, v2_mut: int32): int32 {
+export function method97(v0_1_mut: [string, any][], v1_1_mut: UH3, v2_mut: int32): int32 {
     method97:
     while (true) {
-        const v0_1: [string, any][] = v0_1_mut, v1_1: UH2 = v1_1_mut, v2: int32 = v2_mut;
-        if (v1_1.tag === UH2_Tag.UH2_1) {
+        const v0_1: [string, any][] = v0_1_mut, v1_1: UH3 = v1_1_mut, v2: int32 = v2_mut;
+        if (v1_1.tag === UH3_Tag.UH3_1) {
             return v2 | 0;
         }
         else {
@@ -5295,7 +5337,7 @@ export function method97(v0_1_mut: [string, any][], v1_1_mut: UH2, v2_mut: int32
     }
 }
 
-export function method95(v0_1: UH2): [string, any][] {
+export function method95(v0_1: UH3): [string, any][] {
     const v2: int32 = method96(v0_1, 0) | 0;
     const v3: [string, any][] = fill(new Array(v2), 0, v2, null);
     const v5: int32 = method97(v3, v0_1, 0) | 0;
@@ -5341,17 +5383,17 @@ export function closure339(v0_1: () => [string, any][], unitVar: void): any[] {
     let clo: () => any[];
     const v1_1: [string, any][] = v0_1();
     const v2: int32 = v1_1.length | 0;
-    const v4: Mut29 = new Mut29(0, UH2_UH2_1());
+    const v4: Mut29 = new Mut29(0, UH3_UH3_1());
     while (method93(v2, v4)) {
         const v6: int32 = v4.l0 | 0;
         const v9: int32 = ((op_UnaryNegation_Int32(v6) + v2) - 1) | 0;
-        const v10: UH2 = v4.l1;
+        const v10: UH3 = v4.l1;
         const patternInput: [string, any] = v1_1[v9];
         const v13: int32 = (v6 + 1) | 0;
         v4.l0 = (v13 | 0);
-        v4.l1 = UH2_UH2_0(patternInput[0], patternInput[1], v10);
+        v4.l1 = UH3_UH3_0(patternInput[0], patternInput[1], v10);
     }
-    const v18: [string, any][] = method95(method94(v4.l1, UH2_UH2_1()));
+    const v18: [string, any][] = method95(method94(v4.l1, UH3_UH3_1()));
     const v19: (arg0: () => [string, any], arg1: int32) => any[] = (v: () => [string, any]): (arg0: int32) => any[] => closure340(void 0, v);
     const v23: any = Index;
     const v24: (arg0: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6]) => [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] = (arg10$0040: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6]): [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] => closure345(v18, arg10$0040);
@@ -5508,17 +5550,17 @@ export function closure363(v0_1: () => [string, any][], unitVar: void): any[] {
     let clo: () => any[];
     const v1_1: [string, any][] = v0_1();
     const v2: int32 = v1_1.length | 0;
-    const v4: Mut29 = new Mut29(0, UH2_UH2_1());
+    const v4: Mut29 = new Mut29(0, UH3_UH3_1());
     while (method93(v2, v4)) {
         const v6: int32 = v4.l0 | 0;
         const v9: int32 = ((op_UnaryNegation_Int32(v6) + v2) - 1) | 0;
-        const v10: UH2 = v4.l1;
+        const v10: UH3 = v4.l1;
         const patternInput: [string, any] = v1_1[v9];
         const v13: int32 = (v6 + 1) | 0;
         v4.l0 = (v13 | 0);
-        v4.l1 = UH2_UH2_0(patternInput[0], patternInput[1], v10);
+        v4.l1 = UH3_UH3_0(patternInput[0], patternInput[1], v10);
     }
-    const v18: [string, any][] = method95(method94(v4.l1, UH2_UH2_1()));
+    const v18: [string, any][] = method95(method94(v4.l1, UH3_UH3_1()));
     const v19: (arg0: () => [string, any], arg1: int32) => any[] = (v: () => [string, any]): (arg0: int32) => any[] => closure364(void 0, v);
     const v23: any = Index;
     const v24: (arg0: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6]) => [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] = (arg10$0040: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6]): [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] => closure345(v18, arg10$0040);
@@ -5629,12 +5671,17 @@ export function method101(v0_1: int32, v1_1: Mut31): boolean {
     return v1_1.l0 < v0_1;
 }
 
+export function closure373(unitVar: void, v0_1: any): any {
+    toConsole(interpolate("%A%P()", ["signalr withAutomaticReconnect nextRetryDelayInMilliseconds 2k"]));
+    return 2000;
+}
+
 export function method102(v0_1: int32, v1_1: Mut32): boolean {
     return v1_1.l0 < v0_1;
 }
 
 export function closure372(v0_1: (arg0: [US2, any, string][]) => void, v1_1: (arg0: US4, arg1: any[]) => void, _arg: [[US2[], int32, US3, string, string][], [US2, any, string][]]): void {
-    let copyOfStruct: US2, copyOfStruct_5: US3, v94: any, v100: any, v101: any, v102: any, v103: any, v104: any, v78: any, v90: any;
+    let copyOfStruct: US2, copyOfStruct_5: US3, v94: any, v100: any, v101: any, v102: any, v104: (arg0: any) => any, v107: any, v108: any, v109: any, v110: any, v78: any, v90: any;
     const v3: [US2, any, string][] = _arg[1];
     const v2: [US2[], int32, US3, string, string][] = _arg[0];
     const v4: int32 = v2.length | 0;
@@ -5687,83 +5734,85 @@ export function closure372(v0_1: (arg0: [US2, any, string][]) => void, v1_1: (ar
                 const v76_1: string = (v68.tag === US20_Tag.US20_1) ? (`${v68.fields[3]}:${v68.fields[1]}/${v68.fields[4]}`) : "";
                 patternInput_3 = [v19, (v19.tag === US2_Tag.US2_1) ? ((v94 = Node$, new v94(v76_1))) : ((v19.tag === US2_Tag.US2_2) ? (() => {
                     throw new Error("new_db Memory");
-                })() : ((v19.tag === US2_Tag.US2_3) ? ((v100 = HubConnectionBuilder, (v101 = (void 0), (v102 = (new v100(v101)), (v103 = (v102.withUrl(v76_1)), (v104 = (v103.build()), (void (v104.start()), v104))))))) : ((v78 = gun, (v90 = {
+                })() : ((v19.tag === US2_Tag.US2_3) ? ((v100 = HubConnectionBuilder, (v101 = (void 0), (v102 = (new v100(v101)), (v104 = ((v: any): any => closure373(void 0, v)), (v107 = {
+                    nextRetryDelayInMilliseconds: v104,
+                }, (v108 = (v102.withUrl(v76_1)), (v109 = (v108.withAutomaticReconnect(v107)), (v110 = (v109.build()), (void (v110.start()), v110)))))))))) : ((v78 = gun, (v90 = {
                     url: v76_1,
                     localStorage: false,
                     radisk: true,
                 }, new v78(v90)))))), v76_1];
             }
             v15[v18] = [patternInput_3[0], patternInput_3[1], patternInput_3[2]];
-            const v112: int32 = (v18 + 1) | 0;
-            v16.l0 = (v112 | 0);
+            const v118: int32 = (v18 + 1) | 0;
+            v16.l0 = (v118 | 0);
         }
         v5[v8] = v15;
-        const v113: int32 = (v8 + 1) | 0;
-        v6.l0 = (v113 | 0);
+        const v119: int32 = (v8 + 1) | 0;
+        v6.l0 = (v119 | 0);
     }
-    const v115: int32 = v5.length | 0;
-    const v116: Mut32 = new Mut32(0, []);
-    while (method102(v115, v116)) {
-        const v118: int32 = v116.l0 | 0;
-        const v119: [US2, any, string][] = v116.l1;
-        const v120: [US2, any, string][] = v5[v118];
-        const v121: int32 = v119.length | 0;
-        const v123: int32 = (v121 + v120.length) | 0;
-        const v124: [US2, any, string][] = fill(new Array(v123), 0, v123, null);
-        const v125: Mut6 = new Mut6(0);
-        while (method21(v123, v125)) {
-            const v127: int32 = v125.l0 | 0;
+    const v121: int32 = v5.length | 0;
+    const v122: Mut32 = new Mut32(0, []);
+    while (method102(v121, v122)) {
+        const v124: int32 = v122.l0 | 0;
+        const v125: [US2, any, string][] = v122.l1;
+        const v126: [US2, any, string][] = v5[v124];
+        const v127: int32 = v125.length | 0;
+        const v129: int32 = (v127 + v126.length) | 0;
+        const v130: [US2, any, string][] = fill(new Array(v129), 0, v129, null);
+        const v131: Mut6 = new Mut6(0);
+        while (method21(v129, v131)) {
+            const v133: int32 = v131.l0 | 0;
             let patternInput_6: [US2, any, string];
-            if (v127 < v121) {
-                const patternInput_4: [US2, any, string] = v119[v127];
+            if (v133 < v127) {
+                const patternInput_4: [US2, any, string] = v125[v133];
                 patternInput_6 = [patternInput_4[0], patternInput_4[1], patternInput_4[2]];
             }
             else {
-                const v132: int32 = (v127 - v121) | 0;
-                const patternInput_5: [US2, any, string] = v120[v132];
+                const v138: int32 = (v133 - v127) | 0;
+                const patternInput_5: [US2, any, string] = v126[v138];
                 patternInput_6 = [patternInput_5[0], patternInput_5[1], patternInput_5[2]];
             }
-            v124[v127] = [patternInput_6[0], patternInput_6[1], patternInput_6[2]];
-            const v139: int32 = (v127 + 1) | 0;
-            v125.l0 = (v139 | 0);
+            v130[v133] = [patternInput_6[0], patternInput_6[1], patternInput_6[2]];
+            const v145: int32 = (v133 + 1) | 0;
+            v131.l0 = (v145 | 0);
         }
-        const v140: int32 = (v118 + 1) | 0;
-        v116.l0 = (v140 | 0);
-        v116.l1 = v124;
+        const v146: int32 = (v124 + 1) | 0;
+        v122.l0 = (v146 | 0);
+        v122.l1 = v130;
     }
-    const v141: [US2, any, string][] = v116.l1;
-    const v142: int32 = v3.length | 0;
-    const v143: [US2, string][] = fill(new Array(v142), 0, v142, null);
-    const v144: Mut6 = new Mut6(0);
-    while (method21(v142, v144)) {
-        const v146: int32 = v144.l0 | 0;
-        const patternInput_7: [US2, any, string] = v3[v146];
-        v143[v146] = [patternInput_7[0], patternInput_7[2]];
-        const v150: int32 = (v146 + 1) | 0;
-        v144.l0 = (v150 | 0);
+    const v147: [US2, any, string][] = v122.l1;
+    const v148: int32 = v3.length | 0;
+    const v149: [US2, string][] = fill(new Array(v148), 0, v148, null);
+    const v150: Mut6 = new Mut6(0);
+    while (method21(v148, v150)) {
+        const v152: int32 = v150.l0 | 0;
+        const patternInput_7: [US2, any, string] = v3[v152];
+        v149[v152] = [patternInput_7[0], patternInput_7[2]];
+        const v156: int32 = (v152 + 1) | 0;
+        v150.l0 = (v156 | 0);
     }
-    const v151: int32 = v141.length | 0;
-    const v152: [US2, string][] = fill(new Array(v151), 0, v151, null);
-    const v153: Mut6 = new Mut6(0);
-    while (method21(v151, v153)) {
-        const v155: int32 = v153.l0 | 0;
-        const patternInput_8: [US2, any, string] = v141[v155];
-        v152[v155] = [patternInput_8[0], patternInput_8[2]];
-        const v159: int32 = (v155 + 1) | 0;
-        v153.l0 = (v159 | 0);
+    const v157: int32 = v147.length | 0;
+    const v158: [US2, string][] = fill(new Array(v157), 0, v157, null);
+    const v159: Mut6 = new Mut6(0);
+    while (method21(v157, v159)) {
+        const v161: int32 = v159.l0 | 0;
+        const patternInput_8: [US2, any, string] = v147[v161];
+        v158[v161] = [patternInput_8[0], patternInput_8[2]];
+        const v165: int32 = (v161 + 1) | 0;
+        v159.l0 = (v165 | 0);
     }
-    if ((((v143.length === v152.length) !== true) ? false : method82(v143, v152, 0)) !== true) {
-        v1_1(US4_US4_2(), ["> db_listener > effect", ["new_connections:", v141]]);
-        v0_1(v141);
+    if ((((v149.length === v158.length) !== true) ? false : method82(v149, v158, 0)) !== true) {
+        v1_1(US4_US4_2(), ["> db_listener > effect", ["new_connections:", v147]]);
+        v0_1(v147);
     }
 }
 
-export function closure373(v0_1: () => [US2, any, string][], v1_1: () => [US2[], int32, US3, string, string][], v2: (arg0: [[US2[], int32, US3, string, string][], [US2, any, string][]]) => void, unitVar: void): void {
+export function closure374(v0_1: () => [US2, any, string][], v1_1: () => [US2[], int32, US3, string, string][], v2: (arg0: [[US2[], int32, US3, string, string][], [US2, any, string][]]) => void, unitVar: void): void {
     const v3: [US2, any, string][] = v0_1();
     v2([v1_1(), v3]);
 }
 
-export function closure374(v0_1: (arg0: [[US2[], int32, US3, string, string][], [US2, any, string][]]) => void, unitVar: void): void {
+export function closure375(v0_1: (arg0: [[US2[], int32, US3, string, string][], [US2, any, string][]]) => void, unitVar: void): void {
     v0_1.clear();
 }
 
@@ -5785,12 +5834,12 @@ export function method99(): any {
     const v278: (arg0: [[US2[], int32, US3, string, string][], [US2, any, string][]]) => void = v276(v277, 300);
     const v280: any = createEffect;
     const v281: () => void = (): void => {
-        closure373(v122, v252, v278, void 0);
+        closure374(v122, v252, v278, void 0);
     };
     v280(v281);
     const v283: any = onCleanup;
     const v284: () => void = (): void => {
-        closure374(v278, void 0);
+        closure375(v278, void 0);
     };
     v283(v284);
     return void 0;
@@ -5906,7 +5955,7 @@ export function method116(v0_1: [string, any][]): [() => [string, any][], (arg0:
     })];
 }
 
-export function closure375(unitVar: void, unitVar_1: void): any {
+export function closure376(unitVar: void, unitVar_1: void): any {
     const patternInput: [string, any, string, string, boolean] = method2();
     const v112: boolean = patternInput[4];
     const v108: string = patternInput[0];
@@ -5984,7 +6033,7 @@ export const v194 = [v193, v77];
 
 export const v195 = "new_state_context_any";
 
-export const v196 = (): any => closure375(void 0, void 0);
+export const v196 = (): any => closure376(void 0, void 0);
 
 export const v197 = [v195, v196];
 

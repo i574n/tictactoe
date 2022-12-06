@@ -139,21 +139,32 @@ instance to_string server_type = function
 // $"!connection?startNow ()" : ()
 
 inl hub_with_url (url : string) (hub : any) : any = $"!hub?withUrl !url"
+inl hub_with_automatic_reconnect (obj : any) (hub : any) : any = $"!hub?withAutomaticReconnect !obj"
 inl hub_build (hub : any) : any = $"!hub?build ()"
-inl connection_on_send (content_address : string) (send_fn : any -> ()) (connection : any) : () =
-    $"(!connection?on : `js_function).Invoke ($\"{!content_address}\", !send_fn) |> ignore"
+
+inl connection_on (method : string) (send_fn : any -> ()) (connection : any) : () =
+    $"(!connection?on : `js_function).Invoke ($\"{!method}\", !send_fn) |> ignore"
 inl connection_start (connection : any) : () = $"!connection?start () |> ignore"
-inl connection_invoke (content_address : string) (value : any) (connection : any) : () =
-    $"(!connection?invoke : `js_function).Invoke ($\"{!content_address}\", !value) |> ignore"
+inl connection_invoke (method : string) (value : any) (connection : any) : () =
+    $"(!connection?invoke : `js_function).Invoke ($\"{!method}\", !value) |> ignore"
 
 inl new_db (client_type : client_type) (url : string) : any =
     match client_type with
     | SignalRClient =>
         inl hub_connection_builder' = hub_connection_builder_ ()
         inl hub : any = create_new hub_connection_builder' (undefined ())
+        inl automatic_reconnect = create_obj (a ;[
+            new_pair
+                "nextRetryDelayInMilliseconds"
+                !!(fun (_context : any) =>
+                    console_fsx.inspect "signalr withAutomaticReconnect nextRetryDelayInMilliseconds 2k"
+                    ($"Some 2000 |> unbox" : any)
+                )
+        ])
         inl connection =
             hub
             |> hub_with_url url
+            |> hub_with_automatic_reconnect automatic_reconnect
             |> hub_build
 
         connection |> connection_start
@@ -172,9 +183,9 @@ inl new_db (client_type : client_type) (url : string) : any =
         gun_rindexed_ ()
 
         inl args = create_obj (a ;[
-            new_js_obj_prop "url" url
-            new_js_obj_prop "localStorage" false
-            new_js_obj_prop "radisk" true
+            new_pair "url" !!url
+            new_pair "localStorage" !!false
+            new_pair "radisk" !!true
         ])
         create_new gun_js args
     | Memory => failwith "new_db Memory"
@@ -354,6 +365,27 @@ inl get_db_init_timeout () : i32 = 2500
 inl get_db_resub_timeout () : i32 = 10000
 
 
+union rec request =
+    | Connect : { alias : string }
+    | Set : { alias : string; content_address : string; value : string }
+    | Get : { alias : string; content_address : string }
+    | Keys : { alias : string; collection_path : string }
+
+
+union rec response =
+    | ConnectResult
+    | SetResult : { ok : bool }
+    | GetResult : { value : option string }
+    | GetStream : { alias : string; content_address : string; value : option string }
+    | KeysResult : { keys : a i32 string }
+    | KeysStream : {
+        alias : string
+        collection_path : string
+        updated_keys : a i32 string
+        removed_keys : a i32 string
+    }
+
+
 // export const dbPut = <TState extends DbState, TProxy extends Proxy>(
 //     state: TState,
 //     id: Id,
@@ -400,7 +432,7 @@ inl db_put forall t.
     | SignalRClient =>
         inl connection = db
         connection
-        |> connection_invoke content_address !!new_value
+        |> connection_invoke "send" !!(Set { alias = "alias"; content_address; value = new_value |> to_string' })
     | GunRsClient
     | GunJsClient =>
         let node = get_db_node db content_address
@@ -472,7 +504,7 @@ inl db_on forall value_type.
     | SignalRClient =>
         inl connection = db
         connection
-        |> connection_on_send content_address fun _msg =>
+        |> connection_on "send" fun _msg =>
             log Info ;[
                 !!"> db_on > signalr on_value ()"
                 !!("_msg:", _msg)

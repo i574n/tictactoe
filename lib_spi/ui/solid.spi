@@ -85,10 +85,10 @@ inl typecheck_props () =
 inl init_props (props_fn : solid_props -> solid_props) : solid_props =
     real real_init_props props_fn
 
-inl props_entries (props : solid_props) : a i32 js_obj_prop =
+inl props_entries (props : solid_props) : a i32 (pair string any) =
     real record_entries props
 
-inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
+inl create_props (entries : a i32 (pair string any)) : any = real create_obj entries
 
 inl solid_children (children : () -> array jsx_element) : () -> array jsx_element = real real_children children
 
