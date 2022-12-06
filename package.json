@@ -12,6 +12,8 @@
     "rusty-gun": "~0.1.2",
     "gun": "~0.2020.1238",
 
+    "@microsoft/signalr": "~7.0",
+
     "solid-js": "~1.6.2",
     "@solid-primitives/scheduled": "~1.2",
     "solid-icons": "~1.0",
@@ -24,7 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "~18.11",
-    "typescript": "~4.9.1-beta",
+    "typescript": "next",
     "ts-node": "~10.9",
     "npm-check-updates": "~16.4",
     "path-browserify": "~1.0"

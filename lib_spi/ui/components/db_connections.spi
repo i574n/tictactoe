@@ -5,13 +5,16 @@ open db
 
 
 let db_connections (props : mut solid_props) =
-    /!!!base_table
+    /<<base_table
         id
         fun () => ;[
-            /!!db_connection {
-                ServerType = GunRsServer
+            /<db_connection {
+                ServerType = SignalRServer
             }
-            /!!db_connection {
-                ServerType = GunJsServer
-            }
+            // /<db_connection {
+            //     ServerType = GunRsServer
+            // }
+            // /<db_connection {
+            //     ServerType = GunJsServer
+            // }
         ]

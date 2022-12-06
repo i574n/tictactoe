@@ -69,7 +69,7 @@ let row (props : mut row_props) =
                                 match custom_props.Status with
                                 | CheckHidden => title
                                 | _ =>
-                                    /!!base_checkbox {
+                                    /<base_checkbox {
                                         Checked = checked
                                         OnChange = set_checked
                                         Props = fun props' => { props' with
@@ -107,7 +107,7 @@ let row (props : mut row_props) =
                         | CheckHidden => children_fragment children
                         | _ =>
                             if checked () then
-                                /!!loader {
+                                /<loader {
                                     Loaded = true
                                     Modal = false
                                     OnLoad = custom_props.OnLoad

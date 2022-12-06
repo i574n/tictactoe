@@ -8,14 +8,14 @@ open js
 
 let links (props : mut solid_props) =
     inl link href =
-        /!!row {
+        /<row {
             Status = CheckHidden
             OnLoad = None
             OnUnload = None
             Props = fun props' => { props' with
                 Padding = Some "1px 6px"
                 Children = Some fun () => ;[
-                    /!!!external_link
+                    /<<external_link
                         fun props' => { props' with
                             Href = Some href
                         }
@@ -28,7 +28,7 @@ let links (props : mut solid_props) =
         inl env : env = real get_env ()
         env.github_sha
 
-    /!!!base_table
+    /<<base_table
         id
         fun () => ;[
             match github_sha with

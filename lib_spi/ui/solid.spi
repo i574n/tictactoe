@@ -92,11 +92,11 @@ inl create_props (entries : a i32 js_obj_prop) : any = real create_obj entries
 
 inl solid_children (children : () -> array jsx_element) : () -> array jsx_element = real real_children children
 
-prototype (~/!!) r : forall p. (mut p -> r) -> p -> r
-prototype (~/!!!) r : forall p. (mut p -> r) -> (p -> p) -> (() -> array r) -> r
+prototype (~/<) r : forall p. (mut p -> r) -> p -> r
+prototype (~/<<) r : forall p. (mut p -> r) -> (p -> p) -> (() -> array r) -> r
 
-instance (~/!!) jsx_element = real create_custom_component `p
-instance (~/!!!) jsx_element = real create_component `solid_props
+instance (~/<) jsx_element = real create_custom_component `p
+instance (~/<<) jsx_element = real create_component `solid_props
 
 let create_native_component
     (cmp : js_function)

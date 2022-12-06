@@ -74,13 +74,13 @@ let chain_deploy (props : mut solid_props) =
         use_fetch
             "profile/tmp/chain_deploy"
             profile_tmp_chain_deploy
-            fun (proxy, { timestamp value }) => set_profile_tmp_chain_deploy value
+            fun (proxy, { value }) => set_profile_tmp_chain_deploy value
             fun client =>
                 promise_create fun res err =>
                     profile_tmp_chain_deploy ()
                     |> res
 
-    /!!row {
+    /<row {
         OnLoad = None
         OnUnload = None
         Status = CheckHidden
@@ -101,10 +101,10 @@ let chain_deploy (props : mut solid_props) =
                             fun () => ;[
                                 str "Chain Deploy"
                             ]
-                        /!!!base_button
+                        /<<base_button
                             fun props' => { props' with
                                 LeftIcon = Some <|
-                                    /!!base_icon {
+                                    /<base_icon {
                                         Sx = fun props' => { props' with
                                             MarginLeft = None
                                         }
@@ -117,10 +117,10 @@ let chain_deploy (props : mut solid_props) =
                             fun () => ;[
                                 str "Request"
                             ]
-                        /!!!base_button
+                        /<<base_button
                             fun props' => { props' with
                                 LeftIcon = Some <|
-                                    /!!base_icon {
+                                    /<base_icon {
                                         Sx = fun props' => { props' with
                                             MarginLeft = None
                                         }
@@ -135,13 +135,13 @@ let chain_deploy (props : mut solid_props) =
                             ]
                     ]
             Children = Some fun () => ;[
-                /!!!base_table
+                /<<base_table
                     id
                     fun () => ;[
                         index' {
                             Each' = profile_tmp_chain_deploy () |> am.toList |> listm.rev |> listm.toArray
                         } fun item _index => ;[
-                            /!!row {
+                            /<row {
                                 Status = CheckHidden
                                 OnLoad = None
                                 OnUnload = None

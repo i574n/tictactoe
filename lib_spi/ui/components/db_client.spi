@@ -21,7 +21,7 @@ let db_client (props : mut db_client_props) =
     inl log = use_log get_locals "#666"
     log Debug ;[!!"> db_client ()"]
 
-    /!!base_checkbox {
+    /<base_checkbox {
         Checked = fun () =>
             db_connection_options ()
             |> am.exists fun connection =>
@@ -43,11 +43,13 @@ let db_client (props : mut db_client_props) =
             Id =
                 inl client =
                     match props.ClientType with
+                    | SignalRClient => "signalr"
                     | GunRsClient => "gunrs"
                     | GunJsClient => "gunjs"
                     | Memory => "mem"
                 inl server =
                     match props.ServerType with
+                    | SignalRServer => "signalr"
                     | GunRsServer => "gunrs"
                     | GunJsServer => "gunjs"
                 Some $"$\"db-{!client}-{!server}\""

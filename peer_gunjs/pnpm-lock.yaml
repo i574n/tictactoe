@@ -13,7 +13,7 @@ specifiers:
   npm-check-updates: ~16.4
   request: ~2.88
   ts-node: ~10.9
-  typescript: ~4.9.1-beta
+  typescript: next
 
 dependencies:
   gun: 0.2020.1238
@@ -24,8 +24,8 @@ devDependencies:
   mkcert: 1.5.1_bnpitwqbxa3scp5pgtmh7hh6om
   npm-check-updates: 16.4.3
   request: 2.88.2
-  ts-node: 10.9.1_ti6rr25iuqquvgna567qqf4khm
-  typescript: 4.9.1-beta
+  ts-node: 10.9.1_4mdaypdyhvm2ggwck7rw5ypszu
+  typescript: 5.0.0-dev.20221205
 
 packages:
 
@@ -2189,7 +2189,7 @@ packages:
       punycode: 2.1.1
     dev: true
 
-  /ts-node/10.9.1_ti6rr25iuqquvgna567qqf4khm:
+  /ts-node/10.9.1_4mdaypdyhvm2ggwck7rw5ypszu:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -2215,7 +2215,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 4.9.1-beta
+      typescript: 5.0.0-dev.20221205
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
@@ -2251,8 +2251,8 @@ packages:
       is-typedarray: 1.0.0
     dev: true
 
-  /typescript/4.9.1-beta:
-    resolution: {integrity: sha512-D4c0t1+sMOS5Hy8DQsGFfEYUuKzolXhf+7e/N0Td5etBPflEYzVwWLBrbVgHpLpLC53OJQCtxk31+NWO2SBPaA==}
+  /typescript/5.0.0-dev.20221205:
+    resolution: {integrity: sha512-afHkcfhaQqUk+Hjn+lUKtMqMttizIy5K2r75cz8l7/K+m0k6Yx9IoHRC5v8cjxB77ub2COdbr+0xsNodB7q6dg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true

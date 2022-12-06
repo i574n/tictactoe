@@ -21,7 +21,7 @@ type atom_value_props value_type =
 let atom_value forall value_type. (props : mut (atom_value_props value_type)) =
     inl value, set_value = props.Hook ()
 
-    /!!row {
+    /<row {
         OnLoad = None
         OnUnload = None
         Status = CheckHidden
@@ -58,10 +58,10 @@ let debug (props : mut ()) =
             ZIndex = Some 2
         }
         fun () => ;[
-            /!!!base_table
+            /<<base_table
                 id
                 fun () => ;[
-                    /!!row {
+                    /<row {
                         OnLoad = None
                         OnUnload = None
                         Status = CheckDisabled
@@ -70,10 +70,10 @@ let debug (props : mut ()) =
                             PaddingRight = Some "15px"
                             Title = Some <| str "Debug"
                             Children = Some fun () => ;[
-                                /!!!base_table
+                                /<<base_table
                                     id
                                     fun () => ;[
-                                        /!!row {
+                                        /<row {
                                             OnLoad = None
                                             OnUnload = None
                                             Status = CheckHidden
@@ -83,7 +83,7 @@ let debug (props : mut ()) =
                                                     log_level ()
                                                     |> to_string
                                                     |> str
-                                                    // /!!!base_simple_select
+                                                    // /<<base_simple_select
                                                     //     fun props' => { props' with
                                                     //         Each = Some <|
                                                     //             a ;[Debug; Info; Warn; Error]
@@ -105,7 +105,7 @@ let debug (props : mut ()) =
                                                 ]
                                             }
                                         }
-                                        /!!row {
+                                        /<row {
                                             Status = CheckHidden
                                             OnLoad = None
                                             OnUnload = None
@@ -118,22 +118,22 @@ let debug (props : mut ()) =
                                                             FontSize = Some "8px"
                                                         }
                                                         fun () => ;[
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_chain_token
                                                                 Title = "chain.token"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_chain_url
                                                                 Title = "chain.url"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_chain_port
                                                                 Title = "chain.port"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Hook = use_chain_accounts
                                                                 Get = fun value =>
                                                                     value
@@ -146,37 +146,37 @@ let debug (props : mut ()) =
                                                                     |> to_any
                                                                 Title = "chain.accounts"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_db_connections
                                                                 Title = "db.connections"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_db_connection_options
                                                                 Title = "db.connection_options"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_string >> to_any
                                                                 Hook = use_settings_log_level
                                                                 Title = "settings.log_level"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_settings_ui_modal
                                                                 Title = "settings.ui.modal"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_profile_tmp_counter
                                                                 Title = "profile.tmp.counter"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_profile_tmp_chain_status
                                                                 Title = "profile.tmp.chain_status"
                                                             }
-                                                            /!!atom_value {
+                                                            /<atom_value {
                                                                 Get = to_any
                                                                 Hook = use_profile_tmp_chain_deploy
                                                                 Title = "profile.tmp.chain_deploy"

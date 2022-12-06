@@ -29,10 +29,10 @@ let content (props : mut solid_props) =
         }
         fun () => ;[
             if env.github_run_id = ""
-            then /!!debug ()
+            then /<debug ()
             else empty_fragment ()
 
-            /!!!base_table
+            /<<base_table
                 fun props' => { props' with
                     Display = Some "flex"
                     Flex = Some "1"
@@ -41,47 +41,47 @@ let content (props : mut solid_props) =
                     OverflowY = Some "auto"
                 }
                 fun () => ;[
-                    /!!row {
+                    /<row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = fun props' => { props' with
                             Title = Some <| str "Links"
                             Children = Some fun () => ;[
-                                /!!!links
+                                /<<links
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
-                    /!!row {
+                    /<row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    /!!row {
+                    /<row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = fun props' => { props' with
                             Title = Some <| str "Settings"
                             Children = Some fun () => ;[
-                                /!!!settings
+                                /<<settings
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
-                    /!!row {
+                    /<row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    /!!row {
+                    /<row {
                         Status = CheckDisabled
                         OnLoad = None
                         OnUnload = None
@@ -89,21 +89,21 @@ let content (props : mut solid_props) =
                             Id = Some "db"
                             Title = Some <| str "Chain"
                             Children = Some fun () => ;[
-                                /!!!chain
+                                /<<chain
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
 
-                    /!!row {
+                    /<row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    /!!row {
+                    /<row {
                         Status = CheckDisabled
                         OnLoad = None
                         OnUnload = None
@@ -111,47 +111,47 @@ let content (props : mut solid_props) =
                             Id = Some "db-connections"
                             Title = Some <| str "Database"
                             Children = Some fun () => ;[
-                                /!!!db_connections
+                                /<<db_connections
                                     id
                                     fun () => ;[]
                             ]
                         }
                     }
 
-                    /!!row {
+                    /<row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = id
                     }
 
-                    /!!row {
+                    /<row {
                         Status = CheckHidden
                         OnLoad = None
                         OnUnload = None
                         Props = fun props' => { props' with
                             Title = Some <| str "Profile"
                             Children = Some fun () => ;[
-                                /!!!base_table
+                                /<<base_table
                                     id
                                     fun () => ;[
-                                        /!!!counter
+                                        /<<counter
                                             id
                                             fun () => ;[]
 
                                         if env.github_run_id <> "" then
-                                            /!!!chain_status
+                                            /<<chain_status
                                                 id
                                                 fun () => ;[]
                                         else empty_fragment ()
 
                                         if env.github_run_id <> "" then
-                                            /!!!chain_deploy
+                                            /<<chain_deploy
                                                 id
                                                 fun () => ;[]
                                         else empty_fragment ()
 
-                                        // /!!!diff
+                                        // /<<diff
                                         //     fun props => ()
                                         //     fun () => ;[]
                                         // |> show_when (env.github_run_id = "" && not env.is_test)

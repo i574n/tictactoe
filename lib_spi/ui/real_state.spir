@@ -48,6 +48,21 @@ inl new_state_context () =
                 a `i32 `db_connection_options
                     (;[
                         {
+                            server_type = SignalRServer
+                            url = // create_signal `string <|
+                                match env.codespace_name, env.is_test with
+                                | "", _ => "http://localhost"
+                                | _, true => "http://localhost"
+                                | codespace_name, _ => $"$\"http://{!codespace_name}-9761.githubpreview.dev\"" : string
+                            port = // create_signal `i32 <|
+                                match env.codespace_name, env.is_test with
+                                | "", true => 19761
+                                | "", false => 9761
+                                | _, _ => 80
+                            ws = "peer"
+                            clients = am.empty `a `i32 `client_type
+                        }
+                        {
                             server_type = GunRsServer
                             url = // create_signal `string <|
                                 match env.codespace_name, env.is_test with
@@ -93,9 +108,9 @@ inl new_state_context () =
         }
         profile = {
             tmp = {
-                counter = create_signal `(a i32 (i64 * i32)) (am.empty `a `i32 `(i64 * i32))
-                chain_status = create_signal `(a i32 (i64 * any)) (am.empty `a `i32 `(i64 * any))
-                chain_deploy = create_signal `(a i32 (i64 * any)) (am.empty `a `i32 `(i64 * any))
+                counter = create_signal `(a i32 (guid * i32)) (am.empty `a `i32 `(guid * i32))
+                chain_status = create_signal `(a i32 (guid * any)) (am.empty `a `i32 `(guid * any))
+                chain_deploy = create_signal `(a i32 (guid * any)) (am.empty `a `i32 `(guid * any))
             }
         }
     }

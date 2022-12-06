@@ -27,15 +27,13 @@ var spiprojOpenReq = async (uri: string, spiprojText: string): Promise<void> => 
 // cell
 export var spiToFsx = async (mainSpiPath = '', newFsxPath = '', log = false) => {
     const isTemp = !mainSpiPath
-    const srcPath = path.join(process.cwd(), '..')
+    const srcPath = path.join(process.cwd(), '..', 'lib_spi')
     const destPath = isTemp ? fs.mkdtempSync(path.join('/tmp', 'spiToFsx-')) : srcPath
     
     const spiprojPath = path.join(destPath, 'package.spiproj')
     if (!mainSpiPath) {
         mainSpiPath = path.join(destPath, 'main.spi')
-        fs.cpSync(path.join(srcPath, 'main.spi'), mainSpiPath)
-        fs.cpSync(path.join(srcPath, 'package.spiproj'), spiprojPath)
-        fs.cpSync(path.join(srcPath, 'lib_spi'), path.join(destPath, 'lib_spi'), { recursive: true })   
+        fs.cpSync(srcPath, destPath, { recursive: true })   
     }
 
     const fsxPath = mainSpiPath.replace('.spi', '.fsx')

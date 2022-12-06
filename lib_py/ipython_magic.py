@@ -100,13 +100,13 @@ def spiral(arg, cell, test=False):
 
     inplace = cell.strip() == '' and arg == ''
     if inplace:
-        cell = util.read_file(cwpath('main.spi'))
+        cell = util.read_file(cwpath('lib_spi', 'main.spi'))
 
     cell_imports, cell_exports = split_imports(cell)
     cell_exports = '\n'.join(cell_exports).strip('\n').split('\n')
 
     if arg == 'run':
-        cell_imports = ['open lib_spi.util', 'open lib_spi.console_fsx'] + cell_imports
+        cell_imports = ['open console_fsx'] + cell_imports
         cell_exports = ['inl main () : () = '] + list(map(lambda l: f'    {l}', cell_exports))
 
     spi_imports = cache_imports + cell_imports
@@ -123,10 +123,7 @@ def spiral(arg, cell, test=False):
     if _notebook_name is None:
         _notebook_name = util.get_notebook_name()
 
-    if arg in ['spi', 'spir']:
-        spi_path = cwpath('lib_spi', f'{_notebook_name}.{arg}')
-    else:
-        spi_path = cwpath('main.spi')
+    spi_path = cwpath('lib_spi', f'{_notebook_name}.{arg}' if arg in ['spi', 'spir'] else 'main.spi')
 
     _spiral_cache[arg] = new_code_spi
 
@@ -137,8 +134,8 @@ def spiral(arg, cell, test=False):
         if new_code_spi != old_code_spi:
             if arg in ['run', '']:
                 if not inplace:
-                    shutil.copyfile(cwpath('main.spi'), cwpath('main.spi.tmp'))
-                shutil.copyfile(cwpath('main.fsx'), cwpath('main.fsx.tmp'))
+                    shutil.copyfile(cwpath('lib_spi', 'main.spi'), cwpath('lib_spi', 'main.spi.tmp'))
+                shutil.copyfile(cwpath('lib_spi', 'main.fsx'), cwpath('lib_spi', 'main.fsx.tmp'))
 
             try:
                 if not inplace:
@@ -162,11 +159,11 @@ def spiral(arg, cell, test=False):
 
                     def read_fsx():
                         time.sleep(0.5)
-                        new_code_fsx = util.read_file(fsx_path).strip(" \n")
+                        return util.read_file(fsx_path).strip(" \n")
 
                     while new_code_fsx == '' and time.time() - start < timeout_seconds:
-                        read_fsx()
-                    read_fsx()
+                        new_code_fsx = read_fsx()
+                    new_code_fsx = read_fsx()
 
                     if arg == 'run':
                         util.write_file(fsx_path, '')
@@ -185,8 +182,8 @@ def spiral(arg, cell, test=False):
             finally:
                 if arg in ['run', '']:
                     if not inplace:
-                        os.rename(cwpath('main.spi.tmp'), cwpath('main.spi'))
-                    os.rename(cwpath('main.fsx.tmp'), cwpath('main.fsx'))
+                        os.rename(cwpath('lib_spi', 'main.spi.tmp'), cwpath('lib_spi', 'main.spi'))
+                    os.rename(cwpath('lib_spi', 'main.fsx.tmp'), cwpath('lib_spi', 'main.fsx'))
 
         return spi_path
 

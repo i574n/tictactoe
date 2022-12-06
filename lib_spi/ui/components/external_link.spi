@@ -16,7 +16,7 @@ let external_link (props : mut solid_props) =
                     str <| props.Href /?? ""
                 ]
             str "&nbsp;"
-            /!!base_icon {
+            /<base_icon {
                 Sx = fun props' => { props' with
                     MarginTop = Some "-13px"
                     MarginLeft = None

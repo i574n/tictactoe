@@ -14,6 +14,8 @@ open js
 inl gun_rs_ () = import "Node" "rusty-gun"
 inl gun_js_ () = import_default "gun/gun"
 
+inl hub_connection_builder_ () = import "HubConnectionBuilder" "@microsoft/signalr"
+
 inl gun_radix_ () = import_side_effects "gun/lib/radix"
 inl gun_radisk_ () = import_side_effects "gun/lib/radisk"
 inl gun_store_ () = import_side_effects "gun/lib/store"
@@ -23,21 +25,25 @@ inl gun_rindexed_ () = import_side_effects "gun/lib/rindexed"
 // const DB_TYPE = ['gun_rs', 'gun_js'] as const
 
 union client_type =
+    | SignalRClient
     | GunRsClient
     | GunJsClient
     | Memory
 
 union server_type =
+    | SignalRServer
     | GunRsServer
     | GunJsServer
 
 
 instance to_string client_type = function
+    | SignalRClient => "SignalR"
     | GunRsClient => "Gun Rust"
     | GunJsClient => "Gun JavaScript"
     | Memory => "Memory"
 
 instance to_string server_type = function
+    | SignalRServer => "SignalR"
     | GunRsServer => "Gun Rust"
     | GunJsServer => "Gun JavaScript"
 
@@ -102,8 +108,57 @@ instance to_string server_type = function
 //     }
 //     return null
 // }
+// inl connection_with_automatic_reconnect (obj : any) (connection : any) = $"!connection?withAutomaticReconnect !obj"
+// inl connection_on_reconnecting (ex_fn : any -> ()) (connection : any) = $"!connection?onReconnecting !ex_fn"
+// inl connection_on_reconnected (ex_fn : any -> ()) (connection : any) = $"!connection?onReconnected !ex_fn"
+// inl connection_on_close (ex_fn : any -> ()) (connection : any) = $"!connection?onClose !ex_fn"
+// inl connection_configure_logging (logging : any) (connection : any) = $"!connection?configureLogging !logging"
+// inl connection_on_message (msg_fn : any -> ()) (connection : any) = $"!connection?onMessage !msg_fn"
+// inl connect (connection : any) : any =
+//     console_fsx.inspect "signalr connect"
+
+//     inl automatic_reconnect = create_obj (a ;[
+//         new_js_obj_prop
+//             "nextRetryDelayInMilliseconds"
+//             (fun (_context : any) =>
+//                 console_fsx.inspect "signalr withAutomaticReconnect"
+//                 ($"Some 2000 |> unbox" : any)
+//             )
+//     ])
+
+//     connection
+//     |> connection_with_url url
+//     |> connection_with_automatic_reconnect automatic_reconnect
+//     |> connection_on_reconnecting (fun _ex => console_fsx.inspect "signalr onReconnecting")
+//     |> connection_on_reconnected (fun _ex => console_fsx.inspect "signalr onReconnected")
+//     |> connection_on_close (fun _ex => console_fsx.inspect "signalr onClose")
+//     |> connection_configure_logging $"Fable.SignalR.LogLevel.Debug"
+//     |> connection_on_message (fun _msg => console_fsx.inspect "signalr onMessage")
+
+// inl connection : any = $"Fable.SignalR.SignalR.connect (!connect |> unbox) |> unbox"
+// $"!connection?startNow ()" : ()
+
+inl hub_with_url (url : string) (hub : any) : any = $"!hub?withUrl !url"
+inl hub_build (hub : any) : any = $"!hub?build ()"
+inl connection_on_send (content_address : string) (send_fn : any -> ()) (connection : any) : () =
+    $"(!connection?on : `js_function).Invoke ($\"{!content_address}\", !send_fn) |> ignore"
+inl connection_start (connection : any) : () = $"!connection?start () |> ignore"
+inl connection_invoke (content_address : string) (value : any) (connection : any) : () =
+    $"(!connection?invoke : `js_function).Invoke ($\"{!content_address}\", !value) |> ignore"
+
 inl new_db (client_type : client_type) (url : string) : any =
     match client_type with
+    | SignalRClient =>
+        inl hub_connection_builder' = hub_connection_builder_ ()
+        inl hub : any = create_new hub_connection_builder' (undefined ())
+        inl connection =
+            hub
+            |> hub_with_url url
+            |> hub_build
+
+        connection |> connection_start
+
+        connection
     | GunRsClient =>
         inl gun_rs = gun_rs_ ()
         inl args = !!url
@@ -153,7 +208,7 @@ inl new_url (db_connection_options : a i32 db_connection_options) (server_type :
         then Some db_connection
         else None
     |> function
-    | Some {url port ws} => $"$\"{!url}:{!port}/{!ws}\""
+    | Some { url port ws } => $"$\"{!url}:{!port}/{!ws}\""
     | None => ""
 
 
@@ -336,14 +391,21 @@ inl get_db_resub_timeout () : i32 = 10000
 // }
 inl db_put forall t.
     (db : any)
-    // (client_type : client_type)
+    (client_type : client_type)
     // (server_type : server_type)
     (content_address : string)
-    (timestamp : i64)
     (new_value : t)
     : () =
-    let node = get_db_node db content_address
-    $"!node?put !new_value" : ()
+    match client_type with
+    | SignalRClient =>
+        inl connection = db
+        connection
+        |> connection_invoke content_address !!new_value
+    | GunRsClient
+    | GunJsClient =>
+        let node = get_db_node db content_address
+        $"!node?put !new_value" : ()
+    | Memory => failwith "db_on Memory"
     // if client_type = GunJsClient && server_type = GunRsServer then
     //     let db = new_db GunRsServer ("http://localhost:8765/gun")
     //     if db then
@@ -387,7 +449,7 @@ inl db_on forall value_type.
     (db : any)
     (content_address : string)
     (client_type : client_type)
-    (on_value : i64 -> value_type -> ())
+    (on_value : guid * value_type -> ())
     : i64
     =
     inl get_locals () = ;[
@@ -397,21 +459,30 @@ inl db_on forall value_type.
     inl log = new_log get_log_level get_locals "#666"
     log Debug ;[!!"> db_on ()"]
 
-    let on_value (v : value_type) (k : any) =
-        inl new_timestamp = ticks ()
-
+    let on_value (v : guid * value_type) (k : any) =
         log Info ;[
             !!"> db_on > on_value ()"
             !!("v:", v)
             !!("k:", k)
-            !!("new_timestamp:", new_timestamp)
         ]
-        on_value new_timestamp v
+        on_value v
+
     inl handler : any * i32 -> () = $"emitJsExpr () $\"(v: any, k: any) => {!on_value}(v)(k)\""
-    inl node = get_db_node db content_address
     match client_type with
-    | GunRsClient => $"!node?on !handler" : i64
+    | SignalRClient =>
+        inl connection = db
+        connection
+        |> connection_on_send content_address fun _msg =>
+            log Info ;[
+                !!"> db_on > signalr on_value ()"
+                !!("_msg:", _msg)
+            ]
+        ticks ()
+    | GunRsClient =>
+        inl node = get_db_node db content_address
+        $"!node?on !handler" : i64
     | GunJsClient =>
+        inl node = get_db_node db content_address
         $"!node?on !handler" : ()
         ticks ()
     | Memory => failwith "db_on Memory"

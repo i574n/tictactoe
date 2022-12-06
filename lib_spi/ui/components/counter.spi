@@ -25,15 +25,15 @@ let counter (props : mut solid_props) =
         use_fetch
             "profile/tmp/counter"
             profile_tmp_counter
-            fun (proxy, { timestamp value }) =>
-                set_profile_tmp_counter (proxy /@ a ;[timestamp, value])
+            fun (proxy, { guid value }) =>
+                set_profile_tmp_counter (proxy /@ a ;[guid, value])
             fun client =>
                 promise_create fun res err =>
                     profile_tmp_counter ()
                     |> length
                     |> res
 
-    /!!row {
+    /<row {
         Status = CheckHidden
         OnLoad = None
         OnUnload = None
@@ -54,10 +54,10 @@ let counter (props : mut solid_props) =
                             fun () => ;[
                                 str "Counter"
                             ]
-                        /!!!base_button
+                        /<<base_button
                             fun props' => { props' with
                                 LeftIcon = Some <|
-                                    /!!base_icon {
+                                    /<base_icon {
                                         Icon = biRegularPlus_
                                         Props = id
                                         Sx = fun props' => { props' with
@@ -70,10 +70,10 @@ let counter (props : mut solid_props) =
                             fun () => ;[
                                 str "Request"
                             ]
-                        /!!!base_button
+                        /<<base_button
                             fun props' => { props' with
                                 LeftIcon = Some <|
-                                    /!!base_icon {
+                                    /<base_icon {
                                         Icon = biRegularMinus_
                                         Props = id
                                         Sx = fun props' => { props' with
@@ -88,18 +88,18 @@ let counter (props : mut solid_props) =
                             ]
                     ]
             Children = Some fun () => ;[
-                /!!!base_table
+                /<<base_table
                     id
                     fun () => ;[
                         index' {
                             Each' = profile_tmp_counter () |> am.toList |> listm.rev |> listm.toArray
-                        } fun item index => inl timestamp, value = item () in ;[
-                            /!!row {
+                        } fun item index => inl guid, value = item () in ;[
+                            /<row {
                                 Status = CheckHidden
                                 OnLoad = None
                                 OnUnload = None
                                 Props = fun props' => { props' with
-                                    Title = Some <| str (timestamp |> to_string')
+                                    Title = Some <| str (guid |> to_string')
                                     Padding = Some "3px"
                                     Children = Some fun () => ;[
                                         pre

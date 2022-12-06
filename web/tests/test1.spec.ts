@@ -202,7 +202,8 @@ test.afterAll(async ({ }, testInfo) => {
 newTest("test1", async ({ browser }) => {
     const context = await newContext(browser)
 
-    const pageCount = 5
+    // const pageCount = 5
+    const pageCount = 2
     const pages = await Promise.all(util.range(pageCount).map((i) => newPage(i, context)))
 
     await Promise.all(pages.map(async page => {
@@ -214,18 +215,19 @@ newTest("test1", async ({ browser }) => {
         await Promise.all(pages.map(async (page, index) => {
             await page.locator('#db-connections input[type=checkbox]').nth(0).click()
 
-            if (index == 0 || index == 1) {
-                await page.locator('#db-gunrs-gunrs').nth(0).click()
-            }
-            if (index == 0 || index == 2) {
-                await page.locator('#db-gunrs-gunjs').nth(0).click()
-            }
-            if (index == 0 || index == 3) {
-                await page.locator('#db-gunjs-gunjs').nth(0).click()
-            }
-            if (index == 0 || index == 4) {
-                await page.locator('#db-gunjs-gunrs').nth(0).click()
-            }
+            // if (index == 0 || index == 1) {
+            //     await page.locator('#db-gunrs-gunrs').nth(0).click()
+            // }
+            // if (index == 0 || index == 2) {
+            //     await page.locator('#db-gunrs-gunjs').nth(0).click()
+            // }
+            // if (index == 0 || index == 3) {
+            //     await page.locator('#db-gunjs-gunjs').nth(0).click()
+            // }
+            // if (index == 0 || index == 4) {
+            //     await page.locator('#db-gunjs-gunrs').nth(0).click()
+            // }
+            await page.locator('#db-signalr').nth(0).click()
         }))
     })
 

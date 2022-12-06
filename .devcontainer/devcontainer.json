@@ -5,7 +5,9 @@
         4944,
         14944,
         8765,
-        18765
+        18765,
+        9761,
+        19761
     ],
     "portsAttributes": {
         "3700": {
@@ -18,21 +20,37 @@
             "onAutoForward": "silent"
         },
         "4944": {
-            "label": "gun rs",
+            "label": "peer gun rs",
             "onAutoForward": "silent"
         },
         "8765": {
-            "label": "gun js",
+            "label": "peer gun js",
             "protocol": "https",
             "onAutoForward": "silent"
         },
+        "9761": {
+            "label": "peer signalr",
+            "protocol": "http",
+            "onAutoForward": "silent"
+        },
+        "13805": {
+            "label": "spiral 1"
+        },
+        "13806": {
+            "label": "spiral 2"
+        },
         "14944": {
-            "label": "gun rs test",
+            "label": "peer gun rs test",
             "onAutoForward": "silent"
         },
         "18765": {
-            "label": "gun js test",
+            "label": "peer gun js test",
             "protocol": "https",
+            "onAutoForward": "silent"
+        },
+        "19761": {
+            "label": "peer signalr test",
+            "protocol": "http",
             "onAutoForward": "silent"
         }
     },

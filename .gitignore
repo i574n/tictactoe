@@ -11,6 +11,8 @@ bin/
 obj/
 dist_extension/
 tmp/
+paket-files/
+.paket/
 
 _ipython_node.ts
 _ipython_spi.fsx
