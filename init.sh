@@ -3,7 +3,6 @@ curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 3.1.1
 
 pip install -r requirements.txt
 
-
 curl https://get.volta.sh | bash
 export VOLTA_HOME="$HOME/.volta"
 echo "export VOLTA_HOME=\"\$HOME/.volta\"" >> ~/.bashrc
@@ -26,9 +25,7 @@ cargo install rod
 
 dotnet paket install
 
-npm install -g pnpm
-
-pnpm install
-cd peer_gunjs && pnpm install && cd ..
-cd web && pnpm install && cd ..
+bun install
+cd peer_gunjs && bun install && cd ..
+cd web && bun install && cd ..
 cd web && bun run playwright-install && cd ..

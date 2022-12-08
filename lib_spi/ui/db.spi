@@ -112,7 +112,7 @@ instance to_string server_type = function
 
 union rec request =
     | Connect : { alias : string }
-    | Set : { alias : string; content_address : string; value : any }
+    | Set : { alias : string; content_address : string; value : string }
     | Get : { alias : string; content_address : string }
     | Keys : { alias : string; collection_path : string }
 
@@ -120,8 +120,8 @@ union rec request =
 union rec response =
     | ConnectResult
     | SetResult : { ok : bool }
-    | GetResult : { value : option any }
-    | GetStream : { alias : string; content_address : string; value : option any }
+    | GetResult : { value : option string }
+    | GetStream : { alias : string; content_address : string; value : option string }
     | KeysResult : { keys : a i32 string }
     | KeysStream : {
         alias : string
@@ -549,7 +549,7 @@ inl db_put forall t.
     log Debug ;[!!"> db_put ()"]
     match client_type with
     | SignalRClient =>
-        inl request' = Set { alias = "alias"; content_address; value = !!new_value }
+        inl request' = Set { alias = "alias"; content_address; value = real real_unbox `t `string new_value }
         inl db : hub_connection request response = db |> real real_unbox `any `(hub_connection request response)
         $"!db.invokeAsPromise !request'"
         |> promise_iter fun (response' : response) =>

@@ -7,9 +7,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start-ci": "cross-env-shell \"pwsh start.ps1\"",
-    "start-dev": "cross-env-shell PEER_DOMAIN=localhost \"pnpm start-ci\"",
-    "start-dev-local": "cross-env-shell HTTPS=true ROOT_PATH=./radata_8765 \"pnpm start-dev\"",
+    "start-ci": "cross-env-shell pwsh start.ps1",
+    "start-dev": "cross-env-shell PEER_DOMAIN=localhost bun run start-ci",
+    "start-dev-local": "cross-env-shell HTTPS=true ROOT_PATH=./radata_8765 bun run start-dev",
     "outdated-pre": "ncu --pre 1 -t greatest"
   },
   "dependencies": {
@@ -19,7 +19,7 @@
     "@types/node": "~18.11",
     "cross-env": "~7.0",
     "mkcert": "~1.5",
-    "npm-check-updates": "~16.4",
+    "npm-check-updates": "~16.5",
     "request": "~2.88",
     "ts-node": "~10.9",
     "typescript": "next"
