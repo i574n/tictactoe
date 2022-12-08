@@ -5,6 +5,7 @@ nominal any = $"obj"
 nominal exn = $"exn"
 nominal guid = $"System.Guid"
 nominal date_time = $"System.DateTime"
+nominal async t = $"Async<`t>"
 
 union log_level_type =
     | Debug

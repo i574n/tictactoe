@@ -98,9 +98,9 @@ inl promise_all forall t. (p : a i32 (promise t)) : promise (a i32 t) =
 
 inl async_start_as_promise_ () = import "startAsPromise" "../lib_ts/fable_modules/fable-library-ts/Async.ts"
 
-inl async_start_as_promise (obj : any) : promise any =
+inl async_start_as_promise forall t. (obj : async t) : promise t =
     inl async_start_as_promise' = async_start_as_promise_ ()
-    ($"!async_start_as_promise'.Invoke !obj" : any) |> real real_unbox `any `(promise any)
+    ($"!async_start_as_promise'.Invoke !obj" : any) |> real real_unbox `any `(promise t)
 
 
 inl object_keys forall t. (obj : t) : a i32 string = $"Fable.Core.JS.Constructors.Object.keys !obj |> unbox<`string[]>"
