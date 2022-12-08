@@ -5213,15 +5213,13 @@ and closure291 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
     ()
-and closure292 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
-    let v2 : US4 = US4_2
-    let v3 : ((obj []) -> unit) = v0 v2
-    let v4 : string = "> db_on > stream complete ()"
-    let v5 : obj = v4
-    let v6 : string = "msg:"
-    let v7 : obj = struct (v6, v1)
-    let v8 : (obj []) = [|v5; v7|]
-    v3 v8
+and closure292 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
+    let v1 : US4 = US4_2
+    let v2 : ((obj []) -> unit) = v0 v1
+    let v3 : string = "> db_on > stream complete ()"
+    let v4 : obj = v3
+    let v5 : (obj []) = [|v4|]
+    v2 v5
     ()
 and closure293 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
     let v2 : US4 = US4_2
@@ -5239,7 +5237,7 @@ and closure290 (v0 : (US4 -> ((obj []) -> unit))) (v1 : Fable.SignalR.StreamResu
     let v3 : obj = v2
     let v4 : string = "next"
     let v5 : (string * obj) = v4, v3
-    let v6 : (obj -> unit) = closure292(v0)
+    let v6 : (unit -> unit) = closure292(v0)
     let v7 : obj = v6
     let v8 : string = "complete"
     let v9 : (string * obj) = v8, v7
@@ -5505,25 +5503,36 @@ and closure294 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : ((struct (
     let v2 : (struct (US2 * obj * string) []) = v0 ()
     v1 v2
     ()
-and closure295 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : string, v2 : (US4 -> ((obj []) -> unit))) () : unit =
-    let v3 : obj = v0
-    let v4 : string = "clear"
-    let v5 : obj = (Fable.Core.JsInterop.(?)) v3 v4
-    let v6 : (unit -> unit) = v5 |> unbox<(unit -> unit)>
-    v6 ()
-    let v7 : US4 = US4_0
-    let v8 : ((obj []) -> unit) = v2 v7
-    let v9 : string = "> use_fetch > unsubscribe () [1]"
-    let v10 : obj = v9
-    let v11 : (obj []) = [|v10|]
-    v8 v11
-    let v12 : string = "db_off"
-    printfn $"%A{struct (v12, v1)}"
+and closure296 (v0 : string) () : (obj []) =
+    let v1 : string = "content_address:"
+    let v2 : obj = struct (v1, v0)
+    [|v2|]
+and closure295 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : string, v2 : (unit -> US4), v3 : (US4 -> ((obj []) -> unit))) () : unit =
+    let v4 : obj = v0
+    let v5 : string = "clear"
+    let v6 : obj = (Fable.Core.JsInterop.(?)) v4 v5
+    let v7 : (unit -> unit) = v6 |> unbox<(unit -> unit)>
+    v7 ()
+    let v8 : US4 = US4_0
+    let v9 : ((obj []) -> unit) = v3 v8
+    let v10 : string = "> use_fetch > unsubscribe () [1]"
+    let v11 : obj = v10
+    let v12 : (obj []) = [|v11|]
+    v9 v12
+    let v13 : (unit -> (obj [])) = closure296(v1)
+    let v14 : string = "#666"
+    let v15 : (US4 -> ((obj []) -> unit)) = method17(v2, v13, v14)
+    let v16 : US4 = US4_0
+    let v17 : ((obj []) -> unit) = v15 v16
+    let v18 : string = "> db_off ()"
+    let v19 : obj = v18
+    let v20 : (obj []) = [|v19|]
+    v17 v20
     ()
-and closure297 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v3 : (unit -> US4), v4 : (US16 -> unit), v5 : (unit -> US16), v6 : (US4 -> ((obj []) -> unit)), v7 : (struct (US2 * obj * string) []), v8 : System.Guid) (v9 : int32) : unit =
+and closure298 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v3 : (unit -> US4), v4 : (US16 -> unit), v5 : (unit -> US16), v6 : (US4 -> ((obj []) -> unit)), v7 : (struct (US2 * obj * string) []), v8 : System.Guid) (v9 : int32) : unit =
     let v10 : US2 = US2_2
     method79(v0, v1, v2, v3, v4, v5, v6, v10, v7, v9, v8)
-and closure296 (v0 : (obj -> Fable.Core.JS.Promise<int32>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (System.Guid * int32) [])), v4 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v5 : (unit -> US4), v6 : (US16 -> unit), v7 : (unit -> US16), v8 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure297 (v0 : (obj -> Fable.Core.JS.Promise<int32>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (System.Guid * int32) [])), v4 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v5 : (unit -> US4), v6 : (US16 -> unit), v7 : (unit -> US16), v8 : (US4 -> ((obj []) -> unit))) () : unit =
     let v9 : (struct (US2 * obj * string) []) = v1 ()
     let v10 : int64 = System.DateTime.UtcNow.Ticks
     let v11 : System.Guid = System.Guid.NewGuid ()
@@ -5532,10 +5541,10 @@ and closure296 (v0 : (obj -> Fable.Core.JS.Promise<int32>), v1 : (unit -> (struc
     let v14 : System.Guid = System.Guid $"{v13.[0..7]}-{v13.[8..11]}-{v13.[12..15]}-{v13.[16..17]}{v12.[21..]}"
     let v15 : obj = ()
     let v16 : Fable.Core.JS.Promise<int32> = v0 v15
-    let v17 : (int32 -> unit) = closure297(v2, v3, v4, v5, v6, v7, v8, v9, v14)
+    let v17 : (int32 -> unit) = closure298(v2, v3, v4, v5, v6, v7, v8, v9, v14)
     v16 |> Promise.iter v17
     ()
-and closure298 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (System.Guid * int32) [])), v4 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v5 : (unit -> US4), v6 : (US16 -> unit), v7 : (unit -> US16)) () : unit =
+and closure299 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (System.Guid * int32) [])), v4 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v5 : (unit -> US4), v6 : (US16 -> unit), v7 : (unit -> US16)) () : unit =
     let v8 : US4 = US4_2
     let v9 : ((obj []) -> unit) = v1 v8
     let v10 : string = ">> use_fetch clear ()"
@@ -5602,12 +5611,12 @@ and method74 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 
     v307.Invoke v308 |> ignore
     let v309 : string = "onCleanup"
     let v310 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v309 v114
-    let v311 : (unit -> unit) = closure295(v305, v0, v295)
+    let v311 : (unit -> unit) = closure295(v305, v0, v134, v295)
     v310.Invoke v311 |> ignore
-    let v312 : (unit -> unit) = closure296(v3, v258, v0, v1, v2, v134, v276, v275, v295)
-    let v313 : (unit -> unit) = closure298(v258, v295, v0, v1, v2, v134, v276, v275)
+    let v312 : (unit -> unit) = closure297(v3, v258, v0, v1, v2, v134, v276, v275, v295)
+    let v313 : (unit -> unit) = closure299(v258, v295, v0, v1, v2, v134, v276, v275)
     struct (v312, v313)
-and closure300 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure301 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : string = "center"
     let v71 : string = "baseline"
     let v72 : string = method13(v71, v70)
@@ -5625,74 +5634,74 @@ and closure300 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 :
     let v84 : string = "7px"
     let v85 : US7 = US7_1(v84)
     struct (v79, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v80, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v81, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v83, v49, v50, v51, v52, v53, v54, v55, v56, v85, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure302 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure303 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure303 () () : (Fable.Core.JSX.Element []) =
+and closure304 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Counter"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure305 () () : Fable.Core.JS.Function =
+and closure306 () () : Fable.Core.JS.Function =
     let v0 : string = "BiRegularPlus"
     let v1 : string = "solid-icons/bi"
     let v2 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v0 v1
     v2
-and closure306 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure307 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : US7 = US7_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure304 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure305 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
-    let v72 : (unit -> Fable.Core.JS.Function) = closure305()
+    let v72 : (unit -> Fable.Core.JS.Function) = closure306()
     let v73 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure306()
+    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure307()
     let v75 : Fable.Core.JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US12 = US12_1(v75)
     let v77 : US14 = US14_1(v0)
     let v78 : string = "10px"
     let v79 : US7 = US7_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure307 () () : (Fable.Core.JSX.Element []) =
+and closure308 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Request"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure309 () () : Fable.Core.JS.Function =
+and closure310 () () : Fable.Core.JS.Function =
     let v0 : string = "BiRegularMinus"
     let v1 : string = "solid-icons/bi"
     let v2 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v0 v1
     v2
-and closure310 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure311 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : US7 = US7_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure308 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure309 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
-    let v72 : (unit -> Fable.Core.JS.Function) = closure309()
+    let v72 : (unit -> Fable.Core.JS.Function) = closure310()
     let v73 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure310()
+    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure311()
     let v75 : Fable.Core.JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US12 = US12_1(v75)
     let v77 : US14 = US14_1(v0)
     let v78 : string = "10px"
     let v79 : US7 = US7_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure311 () () : (Fable.Core.JSX.Element []) =
+and closure312 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure301 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (Fable.Core.JSX.Element []) =
+and closure302 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (Fable.Core.JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/core"
     let v4 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v2 v3
-    let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure302()
-    let v6 : (unit -> (Fable.Core.JSX.Element [])) = closure303()
+    let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure303()
+    let v6 : (unit -> (Fable.Core.JSX.Element [])) = closure304()
     let v7 : Fable.Core.JSX.Element = method5(v4, v5, v6)
     let v8 : (Mut1 -> Fable.Core.JSX.Element) = closure47()
-    let v9 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure304(v1)
-    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure307()
+    let v9 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure305(v1)
+    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure308()
     let v11 : Fable.Core.JSX.Element = method22(v8, v9, v10)
-    let v12 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure308(v0)
-    let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure311()
+    let v12 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure309(v0)
+    let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure312()
     let v14 : Fable.Core.JSX.Element = method22(v8, v12, v13)
     [|v7; v11; v14|]
 and method82 (v0 : int32, v1 : Mut28) : bool =
@@ -5728,13 +5737,13 @@ and method84 (v0 : UH3) : (struct (System.Guid * int32) []) =
     let v4 : int32 = 0
     let v5 : int32 = method86(v3, v0, v4)
     v3
-and closure318 (v0 : int32, v1 : int32) () : (Fable.Core.JSX.Element []) =
+and closure319 (v0 : int32, v1 : int32) () : (Fable.Core.JSX.Element []) =
     let v2 : string = Fable.Core.JsInterop.emitJsExpr v1 "JSON.stringify($0, null, 2)"
     let v3 : string = $"[{v0}={v2}]"
     let v4 : Fable.Core.JSX.Element = v3 |> unbox<Fable.Core.JSX.Element>
     let v5 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v4 ]
     [|v5|]
-and closure317 (v0 : int32, v1 : int32) () : (Fable.Core.JSX.Element []) =
+and closure318 (v0 : int32, v1 : int32) () : (Fable.Core.JSX.Element []) =
     let v2 : string = "hope"
     let v3 : string = "@hope-ui/core"
     let v4 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v2 v3
@@ -5743,35 +5752,35 @@ and closure317 (v0 : int32, v1 : int32) () : (Fable.Core.JSX.Element []) =
     let v7 : obj = (Fable.Core.JsInterop.(?)) v5 v6
     let v8 : Fable.Core.JS.Function = v7 |> unbox<Fable.Core.JS.Function>
     let v9 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure318(v0, v1)
+    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure319(v0, v1)
     let v11 : Fable.Core.JSX.Element = method5(v8, v9, v10)
     [|v11|]
-and closure316 (v0 : int32, v1 : int32, v2 : System.Guid) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure317 (v0 : int32, v1 : int32, v2 : System.Guid) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v73 : string = v2.ToString ()
     let v74 : Fable.Core.JSX.Element = v73 |> unbox<Fable.Core.JSX.Element>
     let v75 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v74 ]
-    let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure317(v0, v1)
+    let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure318(v0, v1)
     let v77 : US10 = US10_1(v76)
     let v78 : string = "3px"
     let v79 : US7 = US7_1(v78)
     let v80 : US12 = US12_1(v75)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v77, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v79, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v80, v66, v67, v68, v69, v70, v71, v72)
-and closure315 (v0 : (unit -> struct (System.Guid * int32))) (v1 : int32) : (Fable.Core.JSX.Element []) =
+and closure316 (v0 : (unit -> struct (System.Guid * int32))) (v1 : int32) : (Fable.Core.JSX.Element []) =
     let struct (v2 : System.Guid, v3 : int32) = v0 ()
     let v4 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
     let v5 : US14 = US14_0
     let v6 : US14 = US14_0
-    let v7 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure316(v1, v3, v2)
+    let v7 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure317(v1, v3, v2)
     let v8 : US15 = US15_2
     let v9 : Fable.Core.JSX.Element = method26(v4, v5, v6, v7, v8)
     [|v9|]
-and closure314 () (v0 : (unit -> struct (System.Guid * int32))) : (int32 -> (Fable.Core.JSX.Element [])) =
-    closure315(v0)
-and closure319 (v0 : (struct (System.Guid * int32) [])) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure315 () (v0 : (unit -> struct (System.Guid * int32))) : (int32 -> (Fable.Core.JSX.Element [])) =
+    closure316(v0)
+and closure320 (v0 : (struct (System.Guid * int32) [])) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (obj []) = v0 |> unbox<(obj [])>
     let v72 : US11 = US11_1(v71)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v72, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure313 (v0 : (unit -> (struct (System.Guid * int32) []))) () : (Fable.Core.JSX.Element []) =
+and closure314 (v0 : (unit -> (struct (System.Guid * int32) []))) () : (Fable.Core.JSX.Element []) =
     let v1 : (struct (System.Guid * int32) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH3 = UH3_1
@@ -5792,28 +5801,28 @@ and closure313 (v0 : (unit -> (struct (System.Guid * int32) []))) () : (Fable.Co
     let v16 : UH3 = UH3_1
     let v17 : UH3 = method83(v15, v16)
     let v18 : (struct (System.Guid * int32) []) = method84(v17)
-    let v19 : ((unit -> struct (System.Guid * int32)) -> (int32 -> (Fable.Core.JSX.Element []))) = closure314()
+    let v19 : ((unit -> struct (System.Guid * int32)) -> (int32 -> (Fable.Core.JSX.Element []))) = closure315()
     let v20 : (unit -> (Fable.Core.JSX.Element [])) = Fable.Core.JsInterop.emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
     let v21 : string = "Index"
     let v22 : string = "solid-js"
     let v23 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v21 v22
-    let v24 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure319(v18)
+    let v24 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure320(v18)
     let v25 : Fable.Core.JSX.Element = method5(v23, v24, v20)
     [|v25|]
-and closure312 (v0 : (unit -> (struct (System.Guid * int32) []))) () : (Fable.Core.JSX.Element []) =
+and closure313 (v0 : (unit -> (struct (System.Guid * int32) []))) () : (Fable.Core.JSX.Element []) =
     let v1 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
     let v2 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v3 : (unit -> (Fable.Core.JSX.Element [])) = closure313(v0)
+    let v3 : (unit -> (Fable.Core.JSX.Element [])) = closure314(v0)
     let v4 : Fable.Core.JSX.Element = method22(v1, v2, v3)
     [|v4|]
-and closure299 (v0 : (unit -> (struct (System.Guid * int32) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure300 (v0 : (unit -> (struct (System.Guid * int32) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/core"
     let v75 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v73 v74
-    let v76 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure300()
-    let v77 : (unit -> (Fable.Core.JSX.Element [])) = closure301(v1, v2)
+    let v76 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure301()
+    let v77 : (unit -> (Fable.Core.JSX.Element [])) = closure302(v1, v2)
     let v78 : Fable.Core.JSX.Element = method5(v75, v76, v77)
-    let v79 : (unit -> (Fable.Core.JSX.Element [])) = closure312(v0)
+    let v79 : (unit -> (Fable.Core.JSX.Element [])) = closure313(v0)
     let v80 : US10 = US10_1(v79)
     let v81 : string = "counter"
     let v82 : US7 = US7_1(v81)
@@ -5845,24 +5854,24 @@ and method73 () : Fable.Core.JSX.Element =
     let v150 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
     let v151 : US14 = US14_0
     let v152 : US14 = US14_0
-    let v153 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure299(v128, v149, v148)
+    let v153 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure300(v128, v149, v148)
     let v154 : US15 = US15_2
     method26(v150, v151, v152, v153, v154)
 and closure275 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method73()
-and closure320 () () : (Fable.Core.JSX.Element []) =
+and closure321 () () : (Fable.Core.JSX.Element []) =
     [||]
-and closure322 (v0 : ((struct (System.Guid * obj) []) -> unit)) struct (v1 : (struct (System.Guid * obj) []), v2 : US2, v3 : System.Guid, v4 : (struct (System.Guid * obj) [])) : unit =
+and closure323 (v0 : ((struct (System.Guid * obj) []) -> unit)) struct (v1 : (struct (System.Guid * obj) []), v2 : US2, v3 : System.Guid, v4 : (struct (System.Guid * obj) [])) : unit =
     v0 v4
     ()
-and closure325 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : ((struct (System.Guid * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
+and closure326 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : ((struct (System.Guid * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (System.Guid * obj) []) = v0 ()
     v1 v3
     ()
-and closure324 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : ((struct (System.Guid * obj) []) -> unit)) : ((exn -> unit) -> unit) =
-    closure325(v0, v1)
-and closure323 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : obj) : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> =
-    let v2 : (((struct (System.Guid * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure324(v0)
+and closure325 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : ((struct (System.Guid * obj) []) -> unit)) : ((exn -> unit) -> unit) =
+    closure326(v0, v1)
+and closure324 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : obj) : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> =
+    let v2 : (((struct (System.Guid * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure325(v0)
     let v3 : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> = Promise.create v2
     v3
 and method89 (v0 : US18) : struct ((unit -> US18) * (US18 -> unit)) =
@@ -5873,7 +5882,7 @@ and method89 (v0 : US18) : struct ((unit -> US18) * (US18 -> unit)) =
     let v5 : (unit -> US18) = v4.[0] |> unbox<unit -> US18>
     let v6 : (US18 -> unit) = v4.[1] |> unbox<US18 -> unit>
     struct (v5, v6)
-and closure326 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US18), v6 : (unit -> (struct (US2 * int64 * string) []))) () : (obj []) =
+and closure327 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US18), v6 : (unit -> (struct (US2 * int64 * string) []))) () : (obj []) =
     let v7 : string = "content_address:"
     let v8 : obj = struct (v7, v0)
     let v9 : (struct (System.Guid * obj) []) = v1 ()
@@ -5943,7 +5952,7 @@ and closure326 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 
     let v51 : string = "db_connections:"
     let v52 : obj = struct (v51, v38)
     [|v8; v11; v13; v15; v18; v35; v52|]
-and closure330 (v0 : US2, v1 : string, v2 : (struct (System.Guid * obj) [])) () : (obj []) =
+and closure331 (v0 : US2, v1 : string, v2 : (struct (System.Guid * obj) [])) () : (obj []) =
     let v3 : string = "content_address:"
     let v4 : obj = struct (v3, v1)
     let v9 : string =
@@ -6067,7 +6076,7 @@ and method90 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
                 let v66 : obj = struct (v65, v64)
                 let v67 : (obj []) = [|v50; v51; v57; v58; v59; v66|]
                 v48 v67
-                let v68 : (unit -> (obj [])) = closure330(v42, v0, v9)
+                let v68 : (unit -> (obj [])) = closure331(v42, v0, v9)
                 let v69 : string = "#666"
                 let v70 : (US4 -> ((obj []) -> unit)) = method17(v3, v68, v69)
                 let v71 : US4 = US4_0
@@ -6144,7 +6153,7 @@ and method90 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
             v39.l0 <- v122
             ()
         ()
-and closure329 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US18 -> unit), v5 : (unit -> US18), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : (US4 -> ((obj []) -> unit)), v10 : System.Guid, v11 : (struct (System.Guid * obj) [])) (v12 : obj) : unit =
+and closure330 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US18 -> unit), v5 : (unit -> US18), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : (US4 -> ((obj []) -> unit)), v10 : System.Guid, v11 : (struct (System.Guid * obj) [])) (v12 : obj) : unit =
     let v13 : US4 = US4_2
     let v14 : ((obj []) -> unit) = v9 v13
     let v15 : string = "> db_on > on_value ()"
@@ -6156,9 +6165,9 @@ and closure329 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 
     let v21 : (obj []) = [|v16; v18; v20|]
     v14 v21
     method90(v0, v1, v2, v3, v4, v5, v6, v7, v8, v11, v10)
-and closure328 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US18 -> unit), v5 : (unit -> US18), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : (US4 -> ((obj []) -> unit))) struct (v10 : System.Guid, v11 : (struct (System.Guid * obj) [])) : (obj -> unit) =
-    closure329(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11)
-and closure327 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * string) []) -> unit), v3 : (unit -> (struct (US2 * int64 * string) [])), v4 : (US4 -> ((obj []) -> unit)), v5 : (unit -> (struct (System.Guid * obj) [])), v6 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v7 : (US18 -> unit), v8 : (unit -> US18)) (v9 : (struct (US2 * obj * string) [])) : unit =
+and closure329 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US18 -> unit), v5 : (unit -> US18), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : (US4 -> ((obj []) -> unit))) struct (v10 : System.Guid, v11 : (struct (System.Guid * obj) [])) : (obj -> unit) =
+    closure330(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11)
+and closure328 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * string) []) -> unit), v3 : (unit -> (struct (US2 * int64 * string) [])), v4 : (US4 -> ((obj []) -> unit)), v5 : (unit -> (struct (System.Guid * obj) [])), v6 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v7 : (US18 -> unit), v8 : (unit -> US18)) (v9 : (struct (US2 * obj * string) [])) : unit =
     let v10 : (struct (US2 * int64 * string) []) = v3 ()
     let v11 : int32 = v9.Length
     let v12 : (struct (US2 * int64 * string) []) = Array.zeroCreate<struct (US2 * int64 * string)> (v11)
@@ -6220,7 +6229,7 @@ and closure327 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
                 let v49 : obj = v48
                 let v50 : (obj []) = [|v49|]
                 v47 v50
-                let v51 : (struct (System.Guid * (struct (System.Guid * obj) [])) -> (obj -> unit)) = closure328(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
+                let v51 : (struct (System.Guid * (struct (System.Guid * obj) [])) -> (obj -> unit)) = closure329(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
                 let v52 : (struct (obj * int32) -> unit) = Fable.Core.JsInterop.emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
                 let v107 : int64 =
                     match v16 with
@@ -6365,10 +6374,10 @@ and closure327 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * int64 * st
         v142 v160
         v2 v12
         ()
-and closure332 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US18 -> unit), v5 : (unit -> US18), v6 : (US4 -> ((obj []) -> unit)), v7 : (struct (US2 * obj * string) []), v8 : System.Guid) (v9 : (struct (System.Guid * obj) [])) : unit =
+and closure333 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US18 -> unit), v5 : (unit -> US18), v6 : (US4 -> ((obj []) -> unit)), v7 : (struct (US2 * obj * string) []), v8 : System.Guid) (v9 : (struct (System.Guid * obj) [])) : unit =
     let v10 : US2 = US2_2
     method90(v0, v1, v2, v3, v4, v5, v6, v10, v7, v9, v8)
-and closure331 (v0 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (System.Guid * obj) [])), v4 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v5 : (unit -> US4), v6 : (US18 -> unit), v7 : (unit -> US18), v8 : (US4 -> ((obj []) -> unit))) () : unit =
+and closure332 (v0 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>), v1 : (unit -> (struct (US2 * obj * string) [])), v2 : string, v3 : (unit -> (struct (System.Guid * obj) [])), v4 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v5 : (unit -> US4), v6 : (US18 -> unit), v7 : (unit -> US18), v8 : (US4 -> ((obj []) -> unit))) () : unit =
     let v9 : (struct (US2 * obj * string) []) = v1 ()
     let v10 : int64 = System.DateTime.UtcNow.Ticks
     let v11 : System.Guid = System.Guid.NewGuid ()
@@ -6377,10 +6386,10 @@ and closure331 (v0 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [
     let v14 : System.Guid = System.Guid $"{v13.[0..7]}-{v13.[8..11]}-{v13.[12..15]}-{v13.[16..17]}{v12.[21..]}"
     let v15 : obj = ()
     let v16 : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> = v0 v15
-    let v17 : ((struct (System.Guid * obj) []) -> unit) = closure332(v2, v3, v4, v5, v6, v7, v8, v9, v14)
+    let v17 : ((struct (System.Guid * obj) []) -> unit) = closure333(v2, v3, v4, v5, v6, v7, v8, v9, v14)
     v16 |> Promise.iter v17
     ()
-and closure333 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (System.Guid * obj) [])), v4 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v5 : (unit -> US4), v6 : (US18 -> unit), v7 : (unit -> US18)) () : unit =
+and closure334 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((obj []) -> unit)), v2 : string, v3 : (unit -> (struct (System.Guid * obj) [])), v4 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v5 : (unit -> US4), v6 : (US18 -> unit), v7 : (unit -> US18)) () : unit =
     let v8 : US4 = US4_2
     let v9 : ((obj []) -> unit) = v1 v8
     let v10 : string = ">> use_fetch clear ()"
@@ -6428,7 +6437,7 @@ and method88 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
     let v291 : int32 = v282.l1
     let v292 : string = v291.ToString ()
     let v293 : string = $"#{v292}"
-    let v294 : (unit -> (obj [])) = closure326(v0, v1, v258, v270, v272, v275, v278)
+    let v294 : (unit -> (obj [])) = closure327(v0, v1, v258, v270, v272, v275, v278)
     let v295 : (US4 -> ((obj []) -> unit)) = method16(v294, v293)
     let v296 : US4 = US4_0
     let v297 : ((obj []) -> unit) = v295 v296
@@ -6439,7 +6448,7 @@ and method88 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
     let v301 : string = "debounce"
     let v302 : string = "@solid-primitives/scheduled"
     let v303 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v301 v302
-    let v304 : ((struct (US2 * obj * string) []) -> unit) = closure327(v0, v134, v279, v278, v295, v1, v2, v276, v275)
+    let v304 : ((struct (US2 * obj * string) []) -> unit) = closure328(v0, v134, v279, v278, v295, v1, v2, v276, v275)
     let v305 : ((struct (US2 * obj * string) []) -> unit) = v303.Invoke (v304, 2500) |> unbox<(struct (US2 * obj * string) []) -> unit>
     let v306 : string = "createEffect"
     let v307 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v306 v114
@@ -6447,12 +6456,12 @@ and method88 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
     v307.Invoke v308 |> ignore
     let v309 : string = "onCleanup"
     let v310 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v309 v114
-    let v311 : (unit -> unit) = closure295(v305, v0, v295)
+    let v311 : (unit -> unit) = closure295(v305, v0, v134, v295)
     v310.Invoke v311 |> ignore
-    let v312 : (unit -> unit) = closure331(v3, v258, v0, v1, v2, v134, v276, v275, v295)
-    let v313 : (unit -> unit) = closure333(v258, v295, v0, v1, v2, v134, v276, v275)
+    let v312 : (unit -> unit) = closure332(v3, v258, v0, v1, v2, v134, v276, v275, v295)
+    let v313 : (unit -> unit) = closure334(v258, v295, v0, v1, v2, v134, v276, v275)
     struct (v312, v313)
-and closure335 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure336 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : string = "center"
     let v71 : string = "baseline"
     let v72 : string = method13(v71, v70)
@@ -6470,62 +6479,62 @@ and closure335 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 :
     let v84 : string = "7px"
     let v85 : US7 = US7_1(v84)
     struct (v79, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v80, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v81, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v83, v49, v50, v51, v52, v53, v54, v55, v56, v85, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure337 () () : (Fable.Core.JSX.Element []) =
+and closure338 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Chain Status"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure339 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure340 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : US7 = US7_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure338 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure339 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
-    let v72 : (unit -> Fable.Core.JS.Function) = closure305()
+    let v72 : (unit -> Fable.Core.JS.Function) = closure306()
     let v73 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure339()
+    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure340()
     let v75 : Fable.Core.JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US12 = US12_1(v75)
     let v77 : US14 = US14_1(v0)
     let v78 : string = "10px"
     let v79 : US7 = US7_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure340 () () : (Fable.Core.JSX.Element []) =
+and closure341 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Request"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure342 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure343 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : US7 = US7_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure341 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure342 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
-    let v72 : (unit -> Fable.Core.JS.Function) = closure309()
+    let v72 : (unit -> Fable.Core.JS.Function) = closure310()
     let v73 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure342()
+    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure343()
     let v75 : Fable.Core.JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US12 = US12_1(v75)
     let v77 : US14 = US14_1(v0)
     let v78 : string = "10px"
     let v79 : US7 = US7_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure343 () () : (Fable.Core.JSX.Element []) =
+and closure344 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure336 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (Fable.Core.JSX.Element []) =
+and closure337 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (Fable.Core.JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/core"
     let v4 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v2 v3
     let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v6 : (unit -> (Fable.Core.JSX.Element [])) = closure337()
+    let v6 : (unit -> (Fable.Core.JSX.Element [])) = closure338()
     let v7 : Fable.Core.JSX.Element = method5(v4, v5, v6)
     let v8 : (Mut1 -> Fable.Core.JSX.Element) = closure47()
-    let v9 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure338(v1)
-    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure340()
+    let v9 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure339(v1)
+    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure341()
     let v11 : Fable.Core.JSX.Element = method22(v8, v9, v10)
-    let v12 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure341(v0)
-    let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure343()
+    let v12 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure342(v0)
+    let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure344()
     let v14 : Fable.Core.JSX.Element = method22(v8, v12, v13)
     [|v7; v11; v14|]
 and method91 (v0 : int32, v1 : Mut29) : bool =
@@ -6561,13 +6570,13 @@ and method93 (v0 : UH4) : (struct (System.Guid * obj) []) =
     let v4 : int32 = 0
     let v5 : int32 = method95(v3, v0, v4)
     v3
-and closure350 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
+and closure351 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
     let struct (v1 : System.Guid, v2 : obj) = v0 ()
     let v3 : string = Fable.Core.JsInterop.emitJsExpr v2 "JSON.stringify($0, null, 2)"
     let v4 : Fable.Core.JSX.Element = v3 |> unbox<Fable.Core.JSX.Element>
     let v5 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v4 ]
     [|v5|]
-and closure349 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
+and closure350 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/core"
     let v3 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v1 v2
@@ -6576,35 +6585,35 @@ and closure349 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.
     let v6 : obj = (Fable.Core.JsInterop.(?)) v4 v5
     let v7 : Fable.Core.JS.Function = v6 |> unbox<Fable.Core.JS.Function>
     let v8 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v9 : (unit -> (Fable.Core.JSX.Element [])) = closure350(v0)
+    let v9 : (unit -> (Fable.Core.JSX.Element [])) = closure351(v0)
     let v10 : Fable.Core.JSX.Element = method5(v7, v8, v9)
     [|v10|]
-and closure348 (v0 : (unit -> struct (System.Guid * obj))) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure349 (v0 : (unit -> struct (System.Guid * obj))) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let struct (v71 : System.Guid, v72 : obj) = v0 ()
     let v73 : string = v71.ToString ()
     let v74 : Fable.Core.JSX.Element = v73 |> unbox<Fable.Core.JSX.Element>
     let v75 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v74 ]
-    let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure349(v0)
+    let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure350(v0)
     let v77 : US10 = US10_1(v76)
     let v78 : string = "3px"
     let v79 : US7 = US7_1(v78)
     let v80 : US12 = US12_1(v75)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v77, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v79, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v80, v64, v65, v66, v67, v68, v69, v70)
-and closure347 (v0 : (unit -> struct (System.Guid * obj))) (v1 : int32) : (Fable.Core.JSX.Element []) =
+and closure348 (v0 : (unit -> struct (System.Guid * obj))) (v1 : int32) : (Fable.Core.JSX.Element []) =
     let v2 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
     let v3 : US14 = US14_0
     let v4 : US14 = US14_0
-    let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure348(v0)
+    let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure349(v0)
     let v6 : US15 = US15_2
     let v7 : Fable.Core.JSX.Element = method26(v2, v3, v4, v5, v6)
     [|v7|]
-and closure346 () (v0 : (unit -> struct (System.Guid * obj))) : (int32 -> (Fable.Core.JSX.Element [])) =
-    closure347(v0)
-and closure351 (v0 : (struct (System.Guid * obj) [])) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure347 () (v0 : (unit -> struct (System.Guid * obj))) : (int32 -> (Fable.Core.JSX.Element [])) =
+    closure348(v0)
+and closure352 (v0 : (struct (System.Guid * obj) [])) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (obj []) = v0 |> unbox<(obj [])>
     let v72 : US11 = US11_1(v71)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v72, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure345 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
+and closure346 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
     let v1 : (struct (System.Guid * obj) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH4 = UH4_1
@@ -6625,28 +6634,28 @@ and closure345 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core
     let v16 : UH4 = UH4_1
     let v17 : UH4 = method92(v15, v16)
     let v18 : (struct (System.Guid * obj) []) = method93(v17)
-    let v19 : ((unit -> struct (System.Guid * obj)) -> (int32 -> (Fable.Core.JSX.Element []))) = closure346()
+    let v19 : ((unit -> struct (System.Guid * obj)) -> (int32 -> (Fable.Core.JSX.Element []))) = closure347()
     let v20 : (unit -> (Fable.Core.JSX.Element [])) = Fable.Core.JsInterop.emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
     let v21 : string = "Index"
     let v22 : string = "solid-js"
     let v23 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v21 v22
-    let v24 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure351(v18)
+    let v24 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure352(v18)
     let v25 : Fable.Core.JSX.Element = method5(v23, v24, v20)
     [|v25|]
-and closure344 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
+and closure345 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
     let v1 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
     let v2 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v3 : (unit -> (Fable.Core.JSX.Element [])) = closure345(v0)
+    let v3 : (unit -> (Fable.Core.JSX.Element [])) = closure346(v0)
     let v4 : Fable.Core.JSX.Element = method22(v1, v2, v3)
     [|v4|]
-and closure334 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure335 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/core"
     let v75 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v73 v74
-    let v76 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure335()
-    let v77 : (unit -> (Fable.Core.JSX.Element [])) = closure336(v1, v2)
+    let v76 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure336()
+    let v77 : (unit -> (Fable.Core.JSX.Element [])) = closure337(v1, v2)
     let v78 : Fable.Core.JSX.Element = method5(v75, v76, v77)
-    let v79 : (unit -> (Fable.Core.JSX.Element [])) = closure344(v0)
+    let v79 : (unit -> (Fable.Core.JSX.Element [])) = closure345(v0)
     let v80 : US10 = US10_1(v79)
     let v81 : string = "status"
     let v82 : US7 = US7_1(v81)
@@ -6659,33 +6668,33 @@ and method87 () : Fable.Core.JSX.Element =
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let v134 : string = "profile/tmp/chain_status"
-    let v135 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure322(v127)
-    let v136 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure323(v126)
+    let v135 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure323(v127)
+    let v136 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure324(v126)
     let struct (v137 : (unit -> unit), v138 : (unit -> unit)) = method88(v134, v126, v135, v136)
     let v139 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
     let v140 : US14 = US14_0
     let v141 : US14 = US14_0
-    let v142 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure334(v126, v138, v137)
+    let v142 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure335(v126, v138, v137)
     let v143 : US15 = US15_2
     method26(v139, v140, v141, v142, v143)
-and closure321 () (v0 : Mut1) : Fable.Core.JSX.Element =
+and closure322 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method87()
-and closure352 () () : (Fable.Core.JSX.Element []) =
+and closure353 () () : (Fable.Core.JSX.Element []) =
     [||]
-and closure354 (v0 : ((struct (System.Guid * obj) []) -> unit)) struct (v1 : (struct (System.Guid * obj) []), v2 : US2, v3 : System.Guid, v4 : (struct (System.Guid * obj) [])) : unit =
+and closure355 (v0 : ((struct (System.Guid * obj) []) -> unit)) struct (v1 : (struct (System.Guid * obj) []), v2 : US2, v3 : System.Guid, v4 : (struct (System.Guid * obj) [])) : unit =
     v0 v4
     ()
-and closure357 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : ((struct (System.Guid * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
+and closure358 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : ((struct (System.Guid * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (System.Guid * obj) []) = v0 ()
     v1 v3
     ()
-and closure356 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : ((struct (System.Guid * obj) []) -> unit)) : ((exn -> unit) -> unit) =
-    closure357(v0, v1)
-and closure355 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : obj) : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> =
-    let v2 : (((struct (System.Guid * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure356(v0)
+and closure357 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : ((struct (System.Guid * obj) []) -> unit)) : ((exn -> unit) -> unit) =
+    closure358(v0, v1)
+and closure356 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : obj) : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> =
+    let v2 : (((struct (System.Guid * obj) []) -> unit) -> ((exn -> unit) -> unit)) = closure357(v0)
     let v3 : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> = Promise.create v2
     v3
-and closure359 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure360 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : string = "center"
     let v71 : string = "baseline"
     let v72 : string = method13(v71, v70)
@@ -6703,71 +6712,71 @@ and closure359 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 :
     let v84 : string = "7px"
     let v85 : US7 = US7_1(v84)
     struct (v79, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v80, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v81, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v83, v49, v50, v51, v52, v53, v54, v55, v56, v85, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure361 () () : (Fable.Core.JSX.Element []) =
+and closure362 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Chain Deploy"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure363 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure364 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : US7 = US7_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure362 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure363 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
-    let v72 : (unit -> Fable.Core.JS.Function) = closure305()
+    let v72 : (unit -> Fable.Core.JS.Function) = closure306()
     let v73 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure363()
+    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure364()
     let v75 : Fable.Core.JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US12 = US12_1(v75)
     let v77 : US14 = US14_1(v0)
     let v78 : string = "10px"
     let v79 : US7 = US7_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure364 () () : (Fable.Core.JSX.Element []) =
+and closure365 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Request"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure366 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure367 () struct (v0 : US7, v1 : US7, v2 : US7, v3 : US8, v4 : US7, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US9, v11 : US10, v12 : US7, v13 : US7, v14 : US9, v15 : US7, v16 : US7, v17 : US7, v18 : US11, v19 : US9, v20 : US7, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US12, v27 : US7, v28 : US7, v29 : US7, v30 : US12, v31 : US7, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US13, v42 : US14, v43 : US13, v44 : US7, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US6, v61 : US7, v62 : US12, v63 : US7, v64 : US7, v65 : US6, v66 : US6, v67 : US7, v68 : US5, v69 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v70 : US7 = US7_0
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v70, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
-and closure365 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure366 (v0 : (unit -> unit)) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v71 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
-    let v72 : (unit -> Fable.Core.JS.Function) = closure309()
+    let v72 : (unit -> Fable.Core.JS.Function) = closure310()
     let v73 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure366()
+    let v74 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure367()
     let v75 : Fable.Core.JSX.Element = method48(v71, v72, v73, v74)
     let v76 : US12 = US12_1(v75)
     let v77 : US14 = US14_1(v0)
     let v78 : string = "10px"
     let v79 : US7 = US7_1(v78)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v76, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v77, v44, v45, v46, v47, v48, v49, v50, v51, v79, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-and closure367 () () : (Fable.Core.JSX.Element []) =
+and closure368 () () : (Fable.Core.JSX.Element []) =
     let v0 : string = "Clear"
     let v1 : Fable.Core.JSX.Element = v0 |> unbox<Fable.Core.JSX.Element>
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
-and closure360 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (Fable.Core.JSX.Element []) =
+and closure361 (v0 : (unit -> unit), v1 : (unit -> unit)) () : (Fable.Core.JSX.Element []) =
     let v2 : string = "Box"
     let v3 : string = "@hope-ui/core"
     let v4 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v2 v3
     let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v6 : (unit -> (Fable.Core.JSX.Element [])) = closure361()
+    let v6 : (unit -> (Fable.Core.JSX.Element [])) = closure362()
     let v7 : Fable.Core.JSX.Element = method5(v4, v5, v6)
     let v8 : (Mut1 -> Fable.Core.JSX.Element) = closure47()
-    let v9 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure362(v1)
-    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure364()
+    let v9 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure363(v1)
+    let v10 : (unit -> (Fable.Core.JSX.Element [])) = closure365()
     let v11 : Fable.Core.JSX.Element = method22(v8, v9, v10)
-    let v12 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure365(v0)
-    let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure367()
+    let v12 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure366(v0)
+    let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure368()
     let v14 : Fable.Core.JSX.Element = method22(v8, v12, v13)
     [|v7; v11; v14|]
-and closure374 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
+and closure375 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
     let struct (v1 : System.Guid, v2 : obj) = v0 ()
     let v3 : string = Fable.Core.JsInterop.emitJsExpr v2 "JSON.stringify($0, null, 2)"
     let v4 : Fable.Core.JSX.Element = v3 |> unbox<Fable.Core.JSX.Element>
     let v5 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v4 ]
     [|v5|]
-and closure373 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
+and closure374 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/core"
     let v3 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v1 v2
@@ -6776,31 +6785,31 @@ and closure373 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.
     let v6 : obj = (Fable.Core.JsInterop.(?)) v4 v5
     let v7 : Fable.Core.JS.Function = v6 |> unbox<Fable.Core.JS.Function>
     let v8 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v9 : (unit -> (Fable.Core.JSX.Element [])) = closure374(v0)
+    let v9 : (unit -> (Fable.Core.JSX.Element [])) = closure375(v0)
     let v10 : Fable.Core.JSX.Element = method5(v7, v8, v9)
     [|v10|]
-and closure372 (v0 : (unit -> struct (System.Guid * obj))) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure373 (v0 : (unit -> struct (System.Guid * obj))) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 : US7, v6 : US7, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US9, v12 : US10, v13 : US7, v14 : US7, v15 : US9, v16 : US7, v17 : US7, v18 : US7, v19 : US11, v20 : US9, v21 : US7, v22 : US7, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US12, v28 : US7, v29 : US7, v30 : US7, v31 : US12, v32 : US7, v33 : US7, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US13, v43 : US14, v44 : US13, v45 : US7, v46 : US7, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US6, v62 : US7, v63 : US12, v64 : US7, v65 : US7, v66 : US6, v67 : US6, v68 : US7, v69 : US5, v70 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let struct (v71 : System.Guid, v72 : obj) = v0 ()
     let v73 : string = v71.ToString ()
     let v74 : Fable.Core.JSX.Element = v73 |> unbox<Fable.Core.JSX.Element>
     let v75 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v74 ]
-    let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure373(v0)
+    let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure374(v0)
     let v77 : US10 = US10_1(v76)
     let v78 : string = "3px"
     let v79 : US7 = US7_1(v78)
     let v80 : US12 = US12_1(v75)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v77, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v79, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v80, v64, v65, v66, v67, v68, v69, v70)
-and closure371 (v0 : (unit -> struct (System.Guid * obj))) (v1 : int32) : (Fable.Core.JSX.Element []) =
+and closure372 (v0 : (unit -> struct (System.Guid * obj))) (v1 : int32) : (Fable.Core.JSX.Element []) =
     let v2 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
     let v3 : US14 = US14_0
     let v4 : US14 = US14_0
-    let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure372(v0)
+    let v5 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure373(v0)
     let v6 : US15 = US15_2
     let v7 : Fable.Core.JSX.Element = method26(v2, v3, v4, v5, v6)
     [|v7|]
-and closure370 () (v0 : (unit -> struct (System.Guid * obj))) : (int32 -> (Fable.Core.JSX.Element [])) =
-    closure371(v0)
-and closure369 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
+and closure371 () (v0 : (unit -> struct (System.Guid * obj))) : (int32 -> (Fable.Core.JSX.Element [])) =
+    closure372(v0)
+and closure370 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
     let v1 : (struct (System.Guid * obj) []) = v0 ()
     let v2 : int32 = v1.Length
     let v3 : UH4 = UH4_1
@@ -6821,28 +6830,28 @@ and closure369 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core
     let v16 : UH4 = UH4_1
     let v17 : UH4 = method92(v15, v16)
     let v18 : (struct (System.Guid * obj) []) = method93(v17)
-    let v19 : ((unit -> struct (System.Guid * obj)) -> (int32 -> (Fable.Core.JSX.Element []))) = closure370()
+    let v19 : ((unit -> struct (System.Guid * obj)) -> (int32 -> (Fable.Core.JSX.Element []))) = closure371()
     let v20 : (unit -> (Fable.Core.JSX.Element [])) = Fable.Core.JsInterop.emitJsExpr () $"(item: any, index: () => number) => {v19}(item)(index)"
     let v21 : string = "Index"
     let v22 : string = "solid-js"
     let v23 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v21 v22
-    let v24 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure351(v18)
+    let v24 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure352(v18)
     let v25 : Fable.Core.JSX.Element = method5(v23, v24, v20)
     [|v25|]
-and closure368 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
+and closure369 (v0 : (unit -> (struct (System.Guid * obj) []))) () : (Fable.Core.JSX.Element []) =
     let v1 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
     let v2 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v3 : (unit -> (Fable.Core.JSX.Element [])) = closure369(v0)
+    let v3 : (unit -> (Fable.Core.JSX.Element [])) = closure370(v0)
     let v4 : Fable.Core.JSX.Element = method22(v1, v2, v3)
     [|v4|]
-and closure358 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
+and closure359 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> unit), v2 : (unit -> unit)) struct (v3 : US7, v4 : US7, v5 : US7, v6 : US8, v7 : US7, v8 : US7, v9 : US7, v10 : US7, v11 : US7, v12 : US7, v13 : US9, v14 : US10, v15 : US7, v16 : US7, v17 : US9, v18 : US7, v19 : US7, v20 : US7, v21 : US11, v22 : US9, v23 : US7, v24 : US7, v25 : US7, v26 : US7, v27 : US7, v28 : US7, v29 : US12, v30 : US7, v31 : US7, v32 : US7, v33 : US12, v34 : US7, v35 : US7, v36 : US7, v37 : US7, v38 : US7, v39 : US7, v40 : US7, v41 : US7, v42 : US7, v43 : US7, v44 : US13, v45 : US14, v46 : US13, v47 : US7, v48 : US7, v49 : US7, v50 : US7, v51 : US7, v52 : US7, v53 : US7, v54 : US7, v55 : US7, v56 : US7, v57 : US7, v58 : US7, v59 : US7, v60 : US7, v61 : US7, v62 : US7, v63 : US6, v64 : US7, v65 : US12, v66 : US7, v67 : US7, v68 : US6, v69 : US6, v70 : US7, v71 : US5, v72 : US7) : struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) =
     let v73 : string = "Stack"
     let v74 : string = "@hope-ui/core"
     let v75 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v73 v74
-    let v76 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure359()
-    let v77 : (unit -> (Fable.Core.JSX.Element [])) = closure360(v1, v2)
+    let v76 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure360()
+    let v77 : (unit -> (Fable.Core.JSX.Element [])) = closure361(v1, v2)
     let v78 : Fable.Core.JSX.Element = method5(v75, v76, v77)
-    let v79 : (unit -> (Fable.Core.JSX.Element [])) = closure368(v0)
+    let v79 : (unit -> (Fable.Core.JSX.Element [])) = closure369(v0)
     let v80 : US10 = US10_1(v79)
     let v81 : string = "deploy"
     let v82 : US7 = US7_1(v81)
@@ -6855,38 +6864,38 @@ and method96 () : Fable.Core.JSX.Element =
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let v134 : string = "profile/tmp/chain_deploy"
-    let v135 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure354(v125)
-    let v136 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure355(v124)
+    let v135 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure355(v125)
+    let v136 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure356(v124)
     let struct (v137 : (unit -> unit), v138 : (unit -> unit)) = method88(v134, v124, v135, v136)
     let v139 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
     let v140 : US14 = US14_0
     let v141 : US14 = US14_0
-    let v142 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure358(v124, v138, v137)
+    let v142 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure359(v124, v138, v137)
     let v143 : US15 = US15_2
     method26(v139, v140, v141, v142, v143)
-and closure353 () (v0 : Mut1) : Fable.Core.JSX.Element =
+and closure354 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method96()
-and closure375 () () : (Fable.Core.JSX.Element []) =
+and closure376 () () : (Fable.Core.JSX.Element []) =
     [||]
 and closure274 (v0 : string, v1 : obj, v2 : string, v3 : string, v4 : bool) () : (Fable.Core.JSX.Element []) =
     let v5 : (Mut1 -> Fable.Core.JSX.Element) = closure275()
     let v6 : (struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7) -> struct (US7 * US7 * US7 * US8 * US7 * US7 * US7 * US7 * US7 * US7 * US9 * US10 * US7 * US7 * US9 * US7 * US7 * US7 * US11 * US9 * US7 * US7 * US7 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US12 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US13 * US14 * US13 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US7 * US6 * US7 * US12 * US7 * US7 * US6 * US6 * US7 * US5 * US7)) = closure12()
-    let v7 : (unit -> (Fable.Core.JSX.Element [])) = closure320()
+    let v7 : (unit -> (Fable.Core.JSX.Element [])) = closure321()
     let v8 : Fable.Core.JSX.Element = method22(v5, v6, v7)
     let v10 : bool = v2 = ""
     let v11 : bool = v10 <> true
     let v16 : Fable.Core.JSX.Element =
         if v11 then
-            let v12 : (Mut1 -> Fable.Core.JSX.Element) = closure321()
-            let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure352()
+            let v12 : (Mut1 -> Fable.Core.JSX.Element) = closure322()
+            let v13 : (unit -> (Fable.Core.JSX.Element [])) = closure353()
             method22(v12, v6, v13)
         else
             let v15 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
             v15
     let v22 : Fable.Core.JSX.Element =
         if v11 then
-            let v18 : (Mut1 -> Fable.Core.JSX.Element) = closure353()
-            let v19 : (unit -> (Fable.Core.JSX.Element [])) = closure375()
+            let v18 : (Mut1 -> Fable.Core.JSX.Element) = closure354()
+            let v19 : (unit -> (Fable.Core.JSX.Element [])) = closure376()
             method22(v18, v6, v19)
         else
             let v21 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
@@ -6975,7 +6984,7 @@ and method1 () : Fable.Core.JSX.Element =
     method5(v7, v8, v9)
 and closure1 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method1()
-and closure377 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : (obj []) =
+and closure378 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : (obj []) =
     let v2 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     let v3 : string = "db_connection_options':"
     let v4 : obj = struct (v3, v2)
@@ -6991,84 +7000,125 @@ and method99 (v0 : int32, v1 : Mut31) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure381 () (v0 : obj) : obj =
-    let v1 : string = "signalr withAutomaticReconnect nextRetryDelayInMilliseconds 2k"
-    printfn $"%A{v1}"
-    let v2 : obj = Some 2000 |> unbox
-    v2
-and closure382 () (v0 : obj) : unit =
-    let v1 : string = "signalr onReconnecting"
-    printfn $"%A{v1}"
+and closure383 () () : (obj []) =
+    [||]
+and closure384 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : obj =
+    let v2 : US4 = US4_2
+    let v3 : ((obj []) -> unit) = v0 v2
+    let v4 : string = "> hub_on_connect -> automatic reconnect ()"
+    let v5 : obj = v4
+    let v6 : string = "delay"
+    let v7 : obj = struct (v6, 2000)
+    let v8 : (obj []) = [|v5; v7|]
+    v3 v8
+    let v9 : obj = Some 2000 |> unbox
+    v9
+and closure385 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
+    let v2 : US4 = US4_2
+    let v3 : ((obj []) -> unit) = v0 v2
+    let v4 : string = "> hub_on_connect -> on_reconnecting ()"
+    let v5 : obj = v4
+    let v6 : string = "ex"
+    let v7 : obj = struct (v6, v1)
+    let v8 : (obj []) = [|v5; v7|]
+    v3 v8
     ()
-and closure383 () (v0 : obj) : unit =
-    let v1 : string = "signalr onReconnected"
-    printfn $"%A{v1}"
+and closure386 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
+    let v2 : US4 = US4_2
+    let v3 : ((obj []) -> unit) = v0 v2
+    let v4 : string = "> hub_on_connect -> on_reconnected ()"
+    let v5 : obj = v4
+    let v6 : string = "ex"
+    let v7 : obj = struct (v6, v1)
+    let v8 : (obj []) = [|v5; v7|]
+    v3 v8
     ()
-and closure384 () (v0 : obj) : unit =
-    let v1 : string = "signalr onClose"
-    printfn $"%A{v1}"
+and closure387 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
+    let v2 : US4 = US4_2
+    let v3 : ((obj []) -> unit) = v0 v2
+    let v4 : string = "> hub_on_connect -> on_close ()"
+    let v5 : obj = v4
+    let v6 : string = "ex"
+    let v7 : obj = struct (v6, v1)
+    let v8 : (obj []) = [|v5; v7|]
+    v3 v8
     ()
-and closure385 () (v0 : obj) : unit =
-    let v1 : string = "signalr onMessage"
-    printfn $"%A{v1}"
+and closure388 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
+    let v2 : US4 = US4_2
+    let v3 : ((obj []) -> unit) = v0 v2
+    let v4 : string = "> hub_on_connect -> on_message ()"
+    let v5 : obj = v4
+    let v6 : string = "msg"
+    let v7 : obj = struct (v6, v1)
+    let v8 : (obj []) = [|v5; v7|]
+    v3 v8
     ()
-and closure380 (v0 : string) (v1 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>) : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> =
-    let v2 : string = "signalr connect"
-    printfn $"%A{v2}"
-    let v3 : (obj -> obj) = closure381()
-    let v4 : obj = v3
-    let v5 : string = "nextRetryDelayInMilliseconds"
-    let v6 : (string * obj) = v5, v4
-    let v7 : ((string * obj) []) = [|v6|]
-    let v8 : obj = Fable.Core.JsInterop.createObj v7
-    let v9 : Fable.SignalR.RetryPolicy = v8 |> unbox<Fable.SignalR.RetryPolicy>
-    let v10 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v1.withUrl v0
-    let v11 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v10.withAutomaticReconnect v9
-    let v12 : (obj -> unit) = closure382()
-    let v13 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v11.onReconnecting v12
-    let v14 : (obj -> unit) = closure383()
-    let v15 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v13.onReconnected v14
-    let v16 : (obj -> unit) = closure384()
-    let v17 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v15.onClose v16
-    let v18 : Fable.SignalR.LogLevel = Fable.SignalR.LogLevel.Debug
-    let v19 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v17.configureLogging v18
-    let v20 : (obj -> unit) = closure385()
-    let v21 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v19.onMessage v20
-    v21
-and closure379 () (v0 : string) : (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>) =
-    closure380(v0)
+and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>) : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> =
+    let v3 : (unit -> (obj [])) = closure383()
+    let v4 : string = "#666"
+    let v5 : (US4 -> ((obj []) -> unit)) = method17(v0, v3, v4)
+    let v6 : US4 = US4_0
+    let v7 : ((obj []) -> unit) = v5 v6
+    let v8 : string = "> hub_on_connect ()"
+    let v9 : obj = v8
+    let v10 : (obj []) = [|v9|]
+    v7 v10
+    let v11 : (obj -> obj) = closure384(v5)
+    let v12 : obj = v11
+    let v13 : string = "nextRetryDelayInMilliseconds"
+    let v14 : (string * obj) = v13, v12
+    let v15 : ((string * obj) []) = [|v14|]
+    let v16 : obj = Fable.Core.JsInterop.createObj v15
+    let v17 : Fable.SignalR.RetryPolicy = v16 |> unbox<Fable.SignalR.RetryPolicy>
+    let v18 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v2.withUrl v1
+    let v19 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v18.withAutomaticReconnect v17
+    let v20 : (obj -> unit) = closure385(v5)
+    let v21 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v19.onReconnecting v20
+    let v22 : (obj -> unit) = closure386(v5)
+    let v23 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v21.onReconnected v22
+    let v24 : (obj -> unit) = closure387(v5)
+    let v25 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v23.onClose v24
+    let v26 : Fable.SignalR.LogLevel = Fable.SignalR.LogLevel.Debug
+    let v27 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v25.configureLogging v26
+    let v28 : (UH1 -> unit) = closure388(v5)
+    let v29 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v27.onMessage v28
+    v29
+and closure381 (v0 : (unit -> US4)) (v1 : string) : (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>) =
+    closure382(v0, v1)
+and closure380 () (v0 : (unit -> US4)) : (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>)) =
+    closure381(v0)
 and method100 (v0 : int32, v1 : Mut32) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
-and closure378 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((obj []) -> unit))) struct (v2 : (struct ((US2 []) * int32 * US3 * string * string) []), v3 : (struct (US2 * obj * string) [])) : unit =
-    let v4 : int32 = v2.Length
-    let v5 : ((struct (US2 * obj * string) []) []) = Array.zeroCreate<(struct (US2 * obj * string) [])> (v4)
-    let v6 : Mut6 = {l0 = 0} : Mut6
-    while method21(v4, v6) do
-        let v8 : int32 = v6.l0
-        let struct (v9 : (US2 []), v10 : int32, v11 : US3, v12 : string, v13 : string) = v2.[int v8]
-        let v14 : int32 = v9.Length
-        let v15 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v14)
-        let v16 : Mut6 = {l0 = 0} : Mut6
-        while method21(v14, v16) do
-            let v18 : int32 = v16.l0
-            let v19 : US2 = v9.[int v18]
-            let v20 : int32 = v3.Length
-            let v21 : US19 = US19_0
-            let v22 : Mut30 = {l0 = 0; l1 = v21} : Mut30
-            while method98(v20, v22) do
-                let v24 : int32 = v22.l0
-                let v25 : int32 =  -v24
-                let v26 : int32 = v25 + v20
-                let v27 : int32 = v26 - 1
-                let v28 : US19 = v22.l1
-                let struct (v29 : US2, v30 : obj, v31 : string) = v3.[int v27]
-                let v41 : US19 =
-                    match v28 with
+and closure379 (v0 : (unit -> US4), v1 : ((struct (US2 * obj * string) []) -> unit), v2 : (US4 -> ((obj []) -> unit))) struct (v3 : (struct ((US2 []) * int32 * US3 * string * string) []), v4 : (struct (US2 * obj * string) [])) : unit =
+    let v5 : int32 = v3.Length
+    let v6 : ((struct (US2 * obj * string) []) []) = Array.zeroCreate<(struct (US2 * obj * string) [])> (v5)
+    let v7 : Mut6 = {l0 = 0} : Mut6
+    while method21(v5, v7) do
+        let v9 : int32 = v7.l0
+        let struct (v10 : (US2 []), v11 : int32, v12 : US3, v13 : string, v14 : string) = v3.[int v9]
+        let v15 : int32 = v10.Length
+        let v16 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v15)
+        let v17 : Mut6 = {l0 = 0} : Mut6
+        while method21(v15, v17) do
+            let v19 : int32 = v17.l0
+            let v20 : US2 = v10.[int v19]
+            let v21 : int32 = v4.Length
+            let v22 : US19 = US19_0
+            let v23 : Mut30 = {l0 = 0; l1 = v22} : Mut30
+            while method98(v21, v23) do
+                let v25 : int32 = v23.l0
+                let v26 : int32 =  -v25
+                let v27 : int32 = v26 + v21
+                let v28 : int32 = v27 - 1
+                let v29 : US19 = v23.l1
+                let struct (v30 : US2, v31 : obj, v32 : string) = v4.[int v28]
+                let v42 : US19 =
+                    match v29 with
                     | US19_0 -> (* None *)
-                        let v32 : bool =
-                            match v29, v19 with
+                        let v33 : bool =
+                            match v30, v20 with
                             | US2_0, US2_0 -> (* GunJsClient *)
                                 true
                             | US2_1, US2_1 -> (* GunRsClient *)
@@ -7079,40 +7129,40 @@ and closure378 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((
                                 true
                             | _ ->
                                 false
-                        let v34 : bool =
-                            if v32 then
-                                let v33 : bool = v31 = v12
-                                v33
+                        let v35 : bool =
+                            if v33 then
+                                let v34 : bool = v32 = v13
+                                v34
                             else
                                 false
-                        if v34 then
-                            US19_1(v29, v30, v31)
+                        if v35 then
+                            US19_1(v30, v31, v32)
                         else
                             US19_0
-                    | US19_1(v38, v39, v40) -> (* Some *)
-                        v28
-                let v42 : int32 = v24 + 1
-                v22.l0 <- v42
-                v22.l1 <- v41
+                    | US19_1(v39, v40, v41) -> (* Some *)
+                        v29
+                let v43 : int32 = v25 + 1
+                v23.l0 <- v43
+                v23.l1 <- v42
                 ()
-            let v43 : US19 = v22.l1
-            let struct (v108 : US2, v109 : obj, v110 : string) =
-                match v43 with
+            let v44 : US19 = v23.l1
+            let struct (v109 : US2, v110 : obj, v111 : string) =
+                match v44 with
                 | US19_0 -> (* None *)
-                    let v44 : US20 = US20_0
-                    let v45 : Mut31 = {l0 = 0; l1 = v44} : Mut31
-                    while method99(v4, v45) do
-                        let v47 : int32 = v45.l0
-                        let v48 : int32 =  -v47
-                        let v49 : int32 = v48 + v4
-                        let v50 : int32 = v49 - 1
-                        let v51 : US20 = v45.l1
-                        let struct (v52 : (US2 []), v53 : int32, v54 : US3, v55 : string, v56 : string) = v2.[int v50]
-                        let v66 : US20 =
-                            match v51 with
+                    let v45 : US20 = US20_0
+                    let v46 : Mut31 = {l0 = 0; l1 = v45} : Mut31
+                    while method99(v5, v46) do
+                        let v48 : int32 = v46.l0
+                        let v49 : int32 =  -v48
+                        let v50 : int32 = v49 + v5
+                        let v51 : int32 = v50 - 1
+                        let v52 : US20 = v46.l1
+                        let struct (v53 : (US2 []), v54 : int32, v55 : US3, v56 : string, v57 : string) = v3.[int v51]
+                        let v67 : US20 =
+                            match v52 with
                             | US20_0 -> (* None *)
-                                let v57 : bool =
-                                    match v54, v11 with
+                                let v58 : bool =
+                                    match v55, v12 with
                                     | US3_0, US3_0 -> (* GunJsServer *)
                                         true
                                     | US3_1, US3_1 -> (* GunRsServer *)
@@ -7121,157 +7171,157 @@ and closure378 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : (US4 -> ((
                                         true
                                     | _ ->
                                         false
-                                if v57 then
-                                    US20_1(v52, v53, v54, v55, v56)
+                                if v58 then
+                                    US20_1(v53, v54, v55, v56, v57)
                                 else
                                     US20_0
-                            | US20_1(v61, v62, v63, v64, v65) -> (* Some *)
-                                v51
-                        let v67 : int32 = v47 + 1
-                        v45.l0 <- v67
-                        v45.l1 <- v66
+                            | US20_1(v62, v63, v64, v65, v66) -> (* Some *)
+                                v52
+                        let v68 : int32 = v48 + 1
+                        v46.l0 <- v68
+                        v46.l1 <- v67
                         ()
-                    let v68 : US20 = v45.l1
-                    let v76 : string =
-                        match v68 with
+                    let v69 : US20 = v46.l1
+                    let v77 : string =
+                        match v69 with
                         | US20_0 -> (* None *)
-                            let v69 : string = ""
-                            v69
-                        | US20_1(v70, v71, v72, v73, v74) -> (* Some *)
-                            let v75 : string = $"{v73}:{v71}/{v74}"
-                            v75
-                    let v104 : obj =
-                        match v19 with
+                            let v70 : string = ""
+                            v70
+                        | US20_1(v71, v72, v73, v74, v75) -> (* Some *)
+                            let v76 : string = $"{v74}:{v72}/{v75}"
+                            v76
+                    let v105 : obj =
+                        match v20 with
                         | US2_0 -> (* GunJsClient *)
-                            let v77 : string = "gun/gun"
-                            let v78 : Fable.Core.JS.Function = Fable.Core.JsInterop.importDefault v77
-                            let v79 : string = "gun/lib/radix"
-                            Fable.Core.JsInterop.importSideEffects v79
-                            let v80 : string = "gun/lib/radisk"
+                            let v78 : string = "gun/gun"
+                            let v79 : Fable.Core.JS.Function = Fable.Core.JsInterop.importDefault v78
+                            let v80 : string = "gun/lib/radix"
                             Fable.Core.JsInterop.importSideEffects v80
-                            let v81 : string = "gun/lib/store"
+                            let v81 : string = "gun/lib/radisk"
                             Fable.Core.JsInterop.importSideEffects v81
-                            let v82 : string = "gun/lib/rindexed"
+                            let v82 : string = "gun/lib/store"
                             Fable.Core.JsInterop.importSideEffects v82
-                            let v83 : obj = v76
-                            let v84 : string = "url"
-                            let v85 : (string * obj) = v84, v83
-                            let v86 : obj = false
-                            let v87 : string = "localStorage"
-                            let v88 : (string * obj) = v87, v86
-                            let v89 : obj = true
-                            let v90 : string = "radisk"
-                            let v91 : (string * obj) = v90, v89
-                            let v92 : ((string * obj) []) = [|v85; v88; v91|]
-                            let v93 : obj = Fable.Core.JsInterop.createObj v92
-                            let v94 : obj = Fable.Core.JsInterop.createNew v78 v93
-                            v94
+                            let v83 : string = "gun/lib/rindexed"
+                            Fable.Core.JsInterop.importSideEffects v83
+                            let v84 : obj = v77
+                            let v85 : string = "url"
+                            let v86 : (string * obj) = v85, v84
+                            let v87 : obj = false
+                            let v88 : string = "localStorage"
+                            let v89 : (string * obj) = v88, v87
+                            let v90 : obj = true
+                            let v91 : string = "radisk"
+                            let v92 : (string * obj) = v91, v90
+                            let v93 : ((string * obj) []) = [|v86; v89; v92|]
+                            let v94 : obj = Fable.Core.JsInterop.createObj v93
+                            let v95 : obj = Fable.Core.JsInterop.createNew v79 v94
+                            v95
                         | US2_1 -> (* GunRsClient *)
-                            let v95 : string = "Node"
-                            let v96 : string = "rusty-gun"
-                            let v97 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v95 v96
-                            let v98 : obj = v76
-                            let v99 : obj = Fable.Core.JsInterop.createNew v97 v98
-                            v99
+                            let v96 : string = "Node"
+                            let v97 : string = "rusty-gun"
+                            let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+                            let v99 : obj = v77
+                            let v100 : obj = Fable.Core.JsInterop.createNew v98 v99
+                            v100
                         | US2_2 -> (* Memory *)
                             failwith<obj> "new_db Memory"
                         | US2_3 -> (* SignalRClient *)
-                            let v101 : (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>)) = closure379()
-                            let v102 : Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, obj, UH1, UH1> ((v101 v76) |> unbox) |> unbox
-                            v102.startNow ()
-                            let v103 : obj = v102
-                            v103
-                    struct (v19, v104, v76)
-                | US19_1(v105, v106, v107) -> (* Some *)
-                    struct (v105, v106, v107)
-            v15.[int v18] <- struct (v108, v109, v110)
-            let v111 : int32 = v18 + 1
-            v16.l0 <- v111
+                            let v102 : ((unit -> US4) -> (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>))) = closure380()
+                            let v103 : Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, obj, UH1, UH1> ((v102 v0 v77) |> unbox) |> unbox
+                            v103.startNow ()
+                            let v104 : obj = v103
+                            v104
+                    struct (v20, v105, v77)
+                | US19_1(v106, v107, v108) -> (* Some *)
+                    struct (v106, v107, v108)
+            v16.[int v19] <- struct (v109, v110, v111)
+            let v112 : int32 = v19 + 1
+            v17.l0 <- v112
             ()
-        v5.[int v8] <- v15
-        let v112 : int32 = v8 + 1
-        v6.l0 <- v112
+        v6.[int v9] <- v16
+        let v113 : int32 = v9 + 1
+        v7.l0 <- v113
         ()
-    let v113 : (struct (US2 * obj * string) []) = [||]
-    let v114 : int32 = v5.Length
-    let v115 : Mut32 = {l0 = 0; l1 = v113} : Mut32
-    while method100(v114, v115) do
-        let v117 : int32 = v115.l0
-        let v118 : (struct (US2 * obj * string) []) = v115.l1
-        let v119 : (struct (US2 * obj * string) []) = v5.[int v117]
-        let v120 : int32 = v118.Length
+    let v114 : (struct (US2 * obj * string) []) = [||]
+    let v115 : int32 = v6.Length
+    let v116 : Mut32 = {l0 = 0; l1 = v114} : Mut32
+    while method100(v115, v116) do
+        let v118 : int32 = v116.l0
+        let v119 : (struct (US2 * obj * string) []) = v116.l1
+        let v120 : (struct (US2 * obj * string) []) = v6.[int v118]
         let v121 : int32 = v119.Length
-        let v122 : int32 = v120 + v121
-        let v123 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v122)
-        let v124 : Mut6 = {l0 = 0} : Mut6
-        while method21(v122, v124) do
-            let v126 : int32 = v124.l0
-            let v127 : bool = v126 < v120
-            let struct (v135 : US2, v136 : obj, v137 : string) =
-                if v127 then
-                    let struct (v128 : US2, v129 : obj, v130 : string) = v118.[int v126]
-                    struct (v128, v129, v130)
+        let v122 : int32 = v120.Length
+        let v123 : int32 = v121 + v122
+        let v124 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v123)
+        let v125 : Mut6 = {l0 = 0} : Mut6
+        while method21(v123, v125) do
+            let v127 : int32 = v125.l0
+            let v128 : bool = v127 < v121
+            let struct (v136 : US2, v137 : obj, v138 : string) =
+                if v128 then
+                    let struct (v129 : US2, v130 : obj, v131 : string) = v119.[int v127]
+                    struct (v129, v130, v131)
                 else
-                    let v131 : int32 = v126 - v120
-                    let struct (v132 : US2, v133 : obj, v134 : string) = v119.[int v131]
-                    struct (v132, v133, v134)
-            v123.[int v126] <- struct (v135, v136, v137)
-            let v138 : int32 = v126 + 1
-            v124.l0 <- v138
+                    let v132 : int32 = v127 - v121
+                    let struct (v133 : US2, v134 : obj, v135 : string) = v120.[int v132]
+                    struct (v133, v134, v135)
+            v124.[int v127] <- struct (v136, v137, v138)
+            let v139 : int32 = v127 + 1
+            v125.l0 <- v139
             ()
-        let v139 : int32 = v117 + 1
-        v115.l0 <- v139
-        v115.l1 <- v123
+        let v140 : int32 = v118 + 1
+        v116.l0 <- v140
+        v116.l1 <- v124
         ()
-    let v140 : (struct (US2 * obj * string) []) = v115.l1
-    let v141 : int32 = v3.Length
-    let v142 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v141)
-    let v143 : Mut6 = {l0 = 0} : Mut6
-    while method21(v141, v143) do
-        let v145 : int32 = v143.l0
-        let struct (v146 : US2, v147 : obj, v148 : string) = v3.[int v145]
-        v142.[int v145] <- struct (v146, v148)
-        let v149 : int32 = v145 + 1
-        v143.l0 <- v149
+    let v141 : (struct (US2 * obj * string) []) = v116.l1
+    let v142 : int32 = v4.Length
+    let v143 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v142)
+    let v144 : Mut6 = {l0 = 0} : Mut6
+    while method21(v142, v144) do
+        let v146 : int32 = v144.l0
+        let struct (v147 : US2, v148 : obj, v149 : string) = v4.[int v146]
+        v143.[int v146] <- struct (v147, v149)
+        let v150 : int32 = v146 + 1
+        v144.l0 <- v150
         ()
-    let v150 : int32 = v140.Length
-    let v151 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v150)
-    let v152 : Mut6 = {l0 = 0} : Mut6
-    while method21(v150, v152) do
-        let v154 : int32 = v152.l0
-        let struct (v155 : US2, v156 : obj, v157 : string) = v140.[int v154]
-        v151.[int v154] <- struct (v155, v157)
-        let v158 : int32 = v154 + 1
-        v152.l0 <- v158
+    let v151 : int32 = v141.Length
+    let v152 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v151)
+    let v153 : Mut6 = {l0 = 0} : Mut6
+    while method21(v151, v153) do
+        let v155 : int32 = v153.l0
+        let struct (v156 : US2, v157 : obj, v158 : string) = v141.[int v155]
+        v152.[int v155] <- struct (v156, v158)
+        let v159 : int32 = v155 + 1
+        v153.l0 <- v159
         ()
-    let v159 : int32 = v142.Length
-    let v160 : int32 = v151.Length
-    let v161 : bool = v159 = v160
-    let v162 : bool = v161 <> true
-    let v165 : bool =
-        if v162 then
+    let v160 : int32 = v143.Length
+    let v161 : int32 = v152.Length
+    let v162 : bool = v160 = v161
+    let v163 : bool = v162 <> true
+    let v166 : bool =
+        if v163 then
             false
         else
-            let v163 : int32 = 0
-            method81(v142, v151, v163)
-    let v166 : bool = v165 <> true
-    if v166 then
-        let v167 : US4 = US4_2
-        let v168 : ((obj []) -> unit) = v1 v167
-        let v169 : string = "> db_listener > effect"
-        let v170 : obj = v169
-        let v171 : string = "new_connections:"
-        let v172 : obj = struct (v171, v140)
-        let v173 : (obj []) = [|v170; v172|]
-        v168 v173
-        v0 v140
+            let v164 : int32 = 0
+            method81(v143, v152, v164)
+    let v167 : bool = v166 <> true
+    if v167 then
+        let v168 : US4 = US4_2
+        let v169 : ((obj []) -> unit) = v2 v168
+        let v170 : string = "> db_listener > effect"
+        let v171 : obj = v170
+        let v172 : string = "new_connections:"
+        let v173 : obj = struct (v172, v141)
+        let v174 : (obj []) = [|v171; v173|]
+        v169 v174
+        v1 v141
         ()
-and closure386 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
+and closure389 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     let v3 : (struct (US2 * obj * string) []) = v0 ()
     let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     v2 struct (v4, v3)
     ()
-and closure387 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
+and closure390 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     let v1 : obj = v0
     let v2 : string = "clear"
     let v3 : obj = (Fable.Core.JsInterop.(?)) v1 v2
@@ -7287,31 +7337,34 @@ and method97 () : Fable.Core.JSX.Element =
     let v242 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
     let v243 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v244 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v245 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v246 : (unit -> int32), v247 : (int32 -> unit), v248 : (unit -> string), v249 : (string -> unit), v250 : (unit -> string), v251 : (string -> unit), v252 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v253 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v254 : (unit -> (struct (US2 * obj * string) [])), v255 : ((struct (US2 * obj * string) []) -> unit), v256 : (unit -> (struct (System.Guid * obj) [])), v257 : ((struct (System.Guid * obj) []) -> unit), v258 : (unit -> (struct (System.Guid * obj) [])), v259 : ((struct (System.Guid * obj) []) -> unit), v260 : (unit -> (struct (System.Guid * int32) [])), v261 : ((struct (System.Guid * int32) []) -> unit), v262 : (unit -> US4), v263 : (US4 -> unit), v264 : (unit -> US5), v265 : (US5 -> unit)) = v243.Invoke v242 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v266 : (unit -> (obj [])) = closure377(v122, v252)
-    let v267 : string = "#cf1100"
-    let v268 : (US4 -> ((obj []) -> unit)) = method16(v266, v267)
-    let v269 : US4 = US4_0
-    let v270 : ((obj []) -> unit) = v268 v269
-    let v271 : string = "> db_listener ()"
-    let v272 : obj = v271
-    let v273 : (obj []) = [|v272|]
-    v270 v273
-    let v274 : string = "debounce"
-    let v275 : string = "@solid-primitives/scheduled"
-    let v276 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v274 v275
-    let v277 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = closure378(v123, v268)
-    let v278 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = v276.Invoke (v277, 300) |> unbox<struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit>
-    let v279 : string = "createEffect"
-    let v280 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v279 v110
-    let v281 : (unit -> unit) = closure386(v122, v252, v278)
-    v280.Invoke v281 |> ignore
-    let v282 : string = "onCleanup"
-    let v283 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v282 v110
-    let v284 : (unit -> unit) = closure387(v278)
-    v283.Invoke v284 |> ignore
-    let v285 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
-    v285
-and closure376 () (v0 : Mut2) : Fable.Core.JSX.Element =
+    let v374 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v375 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
+    let struct (v376 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v377 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v378 : (unit -> int32), v379 : (int32 -> unit), v380 : (unit -> string), v381 : (string -> unit), v382 : (unit -> string), v383 : (string -> unit), v384 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v385 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v386 : (unit -> (struct (US2 * obj * string) [])), v387 : ((struct (US2 * obj * string) []) -> unit), v388 : (unit -> (struct (System.Guid * obj) [])), v389 : ((struct (System.Guid * obj) []) -> unit), v390 : (unit -> (struct (System.Guid * obj) [])), v391 : ((struct (System.Guid * obj) []) -> unit), v392 : (unit -> (struct (System.Guid * int32) [])), v393 : ((struct (System.Guid * int32) []) -> unit), v394 : (unit -> US4), v395 : (US4 -> unit), v396 : (unit -> US5), v397 : (US5 -> unit)) = v375.Invoke v374 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v398 : (unit -> (obj [])) = closure378(v254, v384)
+    let v399 : string = "#cf1100"
+    let v400 : (US4 -> ((obj []) -> unit)) = method16(v398, v399)
+    let v401 : US4 = US4_0
+    let v402 : ((obj []) -> unit) = v400 v401
+    let v403 : string = "> db_listener ()"
+    let v404 : obj = v403
+    let v405 : (obj []) = [|v404|]
+    v402 v405
+    let v406 : string = "debounce"
+    let v407 : string = "@solid-primitives/scheduled"
+    let v408 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v406 v407
+    let v409 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = closure379(v130, v255, v400)
+    let v410 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = v408.Invoke (v409, 300) |> unbox<struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit>
+    let v411 : string = "createEffect"
+    let v412 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v411 v110
+    let v413 : (unit -> unit) = closure389(v254, v384, v410)
+    v412.Invoke v413 |> ignore
+    let v414 : string = "onCleanup"
+    let v415 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v414 v110
+    let v416 : (unit -> unit) = closure390(v410)
+    v415.Invoke v416 |> ignore
+    let v417 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
+    v417
+and closure377 () (v0 : Mut2) : Fable.Core.JSX.Element =
     method97()
 and method101 () : (struct (US0 * string * string * string) []) =
     let v0 : US0 = US0_0
@@ -7418,7 +7471,7 @@ and method114 (v0 : (struct (System.Guid * obj) [])) : struct ((unit -> (struct 
     let v5 : (unit -> (struct (System.Guid * obj) [])) = v4.[0] |> unbox<unit -> (struct (System.Guid * obj) [])>
     let v6 : ((struct (System.Guid * obj) []) -> unit) = v4.[1] |> unbox<(struct (System.Guid * obj) []) -> unit>
     struct (v5, v6)
-and closure388 () () : obj =
+and closure391 () () : obj =
     let struct (v108 : string, v109 : obj, v110 : string, v111 : string, v112 : bool) = method2()
     let v113 : (struct (US0 * string * string * string) []) = method101()
     let v114 : int32 = v113.Length
@@ -7578,14 +7631,14 @@ let v189 : (Mut1 -> Fable.Core.JSX.Element) = closure1()
 let v190 : obj = v189
 let v191 : string = "content"
 let v192 : (string * obj) = v191, v190
-let v193 : (Mut2 -> Fable.Core.JSX.Element) = closure376()
+let v193 : (Mut2 -> Fable.Core.JSX.Element) = closure377()
 let v194 : obj = v193
 let v195 : string = "db_listener"
 let v196 : (string * obj) = v195, v194
 let v197 : obj = v77
 let v198 : string = "run_id"
 let v199 : (string * obj) = v198, v197
-let v200 : (unit -> obj) = closure388()
+let v200 : (unit -> obj) = closure391()
 let v201 : obj = v200
 let v202 : string = "new_state_context_any"
 let v203 : (string * obj) = v202, v201

@@ -177,26 +177,32 @@ inl hub_configure_logging forall request response.
     $"!hub.configureLogging !logging"
 
 inl hub_on_message forall request response.
-    (msg_fn : any -> ())
+    (msg_fn : response -> ())
     (hub : hub_connection_builder request response)
     : hub_connection_builder request response
     =
     $"!hub.onMessage !msg_fn"
 
 inl hub_on_connect
+    (get_log_level : () -> log_level_type)
     (url : string)
     (hub : hub_connection_builder request response)
     : hub_connection_builder request response
     =
-    console_fsx.inspect "signalr connect"
+    inl log = new_log get_log_level get_locals "#666"
+    log Debug ;[!!"> hub_on_connect ()"]
 
     inl automatic_reconnect =
         a ;[
             new_pair
                 "nextRetryDelayInMilliseconds"
                 !!(fun (_context : any) =>
-                    console_fsx.inspect "signalr withAutomaticReconnect nextRetryDelayInMilliseconds 2k"
-                    ($"Some 2000 |> unbox" : any)
+                    inl delay = 2000i32
+                    log Info ;[
+                        !!"> hub_on_connect -> automatic reconnect ()"
+                        !!("delay", delay)
+                    ]
+                    ($"Some !delay |> unbox" : any)
                 )
         ]
         |> create_obj
@@ -205,11 +211,27 @@ inl hub_on_connect
     hub
     |> hub_with_url url
     |> hub_with_automatic_reconnect automatic_reconnect
-    |> hub_on_reconnecting (fun _ex => console_fsx.inspect "signalr onReconnecting")
-    |> hub_on_reconnected (fun _ex => console_fsx.inspect "signalr onReconnected")
-    |> hub_on_close (fun _ex => console_fsx.inspect "signalr onClose")
+    |> hub_on_reconnecting fun ex =>
+        log Info ;[
+            !!"> hub_on_connect -> on_reconnecting ()"
+            !!("ex", ex)
+        ]
+    |> hub_on_reconnected fun ex =>
+        log Info ;[
+            !!"> hub_on_connect -> on_reconnected ()"
+            !!("ex", ex)
+        ]
+    |> hub_on_close fun ex =>
+        log Info ;[
+            !!"> hub_on_connect -> on_close ()"
+            !!("ex", ex)
+        ]
     |> hub_configure_logging $"Fable.SignalR.LogLevel.Debug"
-    |> hub_on_message (fun _msg => console_fsx.inspect "signalr onMessage")
+    |> hub_on_message fun msg =>
+        log Info ;[
+            !!"> hub_on_connect -> on_message ()"
+            !!("msg", msg)
+        ]
 
 
 // inl hub_with_url (url : string) (hub : any) : any = $"!hub?withUrl !url"
@@ -241,7 +263,12 @@ inl hub_on_connect
 //     | KeysResult of keys: string []
 //     | KeysStream of alias: string * collectionPath: string * updatedKeys: string [] * removedKeys: string []
 
-inl new_db (client_type : client_type) (url : string) : any =
+inl new_db
+    (get_log_level : () -> log_level_type)
+    (client_type : client_type)
+    (url : string)
+    : any
+    =
     match client_type with
     | SignalRClient =>
         // inl hub_connection_builder' = hub_connection_builder_ ()
@@ -263,7 +290,7 @@ inl new_db (client_type : client_type) (url : string) : any =
         // connection |> connection_start
 
         inl connection : hub_connection request response =
-            $"Fable.SignalR.SignalR.connect<`request, `request, `any, `response, `response> ((!hub_on_connect !url) |> unbox) |> unbox"
+            $"Fable.SignalR.SignalR.connect<`request, `request, `any, `response, `response> ((!hub_on_connect !get_log_level !url) |> unbox) |> unbox"
         $"!connection.startNow ()" : ()
         !!connection
     | GunRsClient =>
@@ -622,10 +649,9 @@ inl db_on forall value_type.
                             !!("msg:", msg)
                         ]
                     )
-                    new_pair "complete" !!(fun (arg1 : any) =>
+                    new_pair "complete" !!(fun () =>
                         log Info ;[
                             !!"> db_on > stream complete ()"
-                            !!("msg:", arg1)
                         ]
                     )
                     new_pair "error" !!(fun (err : any) =>
@@ -693,5 +719,12 @@ inl db_on forall value_type.
 //         node.off(subscription)
 //     }
 // }
-inl db_off (content_address : string) =
-    console_fsx.inspect ("db_off", content_address)
+inl db_off
+    (get_log_level : () -> log_level_type)
+    (content_address : string)
+    =
+    inl get_locals () = ;[
+        !!("content_address:", content_address)
+    ]
+    inl log = new_log get_log_level get_locals "#666"
+    log Debug ;[!!"> db_off ()"]

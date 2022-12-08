@@ -533,7 +533,7 @@ let use_fetch forall state_type {append} value_type.
     inl unsubscribe () =
         log Debug ;[!!"> use_fetch > unsubscribe () [1]"]
 
-        db.db_off content_address
+        db.db_off log_level content_address
 
     inl on_unload' () =
         ((js_get !!debounced_connections_change "clear" |> real real_unbox `any `(() -> ())) : () -> ()) ()
