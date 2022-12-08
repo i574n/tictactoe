@@ -7,6 +7,7 @@ playwright-videos/
 test-results/
 node_modules/
 dist/
+deps/
 bin/
 obj/
 dist_extension/

@@ -2,47 +2,47 @@ open real_js
 open real_util
 
 
-nominal js_function = $"JS.Function"
+nominal js_function = $"Fable.Core.JS.Function"
 
 
 inl import (name : string) (module : string) : js_function =
-    $"import !name !module"
+    $"Fable.Core.JsInterop.import !name !module"
 
 inl import_default (module : string) : js_function =
-    $"importDefault !module"
+    $"Fable.Core.JsInterop.importDefault !module"
 
 inl import_side_effects (module : string) : () =
-    $"importSideEffects !module"
+    $"Fable.Core.JsInterop.importSideEffects !module"
 
 inl create_obj (obj : a i32 (pair string any)) : any =
-    $"createObj !obj"
+    $"Fable.Core.JsInterop.createObj !obj"
 
 inl json_parse forall a. (json : string) : a =
-    $"JS.JSON.parse !json"
+    $"Fable.Core.JS.JSON.parse !json"
 
 inl json_stringify forall a. (obj : a) : string =
-    $"JS.JSON.stringify !obj"
+    $"Fable.Core.JS.JSON.stringify !obj"
 
 inl json_stringify_space forall a. (obj : a) : string =
-    $"emitJsExpr !obj \"JSON.stringify($0, null, 2)\""
+    $"Fable.Core.JsInterop.emitJsExpr !obj \"JSON.stringify($0, null, 2)\""
 
 inl js_null forall t. () : t =
-    $"emitJsExpr () \"null\""
+    $"Fable.Core.JsInterop.emitJsExpr () \"null\""
 
 inl undefined forall t. () : t =
-    $"JS.undefined"
+    $"Fable.Core.JS.undefined"
 
 inl is_empty forall a. (obj : a) : bool =
-    $"emitJsExpr !obj \"\!$0\""
+    $"Fable.Core.JsInterop.emitJsExpr !obj \"\!$0\""
 
 inl create_new (o : js_function) (args : any) : any =
-    $"createNew !o !args"
+    $"Fable.Core.JsInterop.createNew !o !args"
 
 instance to_string any = to_string'
 
 instance (~!!) any = to_any
 
-nominal promise t = $"JS.Promise<`t>"
+nominal promise t = $"Fable.Core.JS.Promise<`t>"
 
 inl promise_create forall t. (fn : ((t -> ()) -> (exn -> ()) -> ())) : promise t =
     $"Promise.create !fn"
@@ -96,17 +96,25 @@ inl promise_parallel forall t. (p : a i32 (promise t)) : promise (a i32 t) =
 inl promise_all forall t. (p : a i32 (promise t)) : promise (a i32 t) =
     $"!p |> Promise.all"
 
+inl async_start_as_promise_ () = import "startAsPromise" "../lib_ts/fable_modules/fable-library-ts/Async.ts"
 
-inl object_keys forall t. (obj : t) : a i32 string = $"JS.Constructors.Object.keys !obj |> unbox<string[]>"
-inl object_values obj : a i32 string = $"JS.Constructors.Object.values !obj"
-inl object_entries obj : a i32 string = $"JS.Constructors.Object.entries !obj"
-inl object_assign forall a. (target : a) source : a = $"JS.Constructors.Object.assign (!target, [| !target |])"
+inl async_start_as_promise (obj : any) : promise any =
+    inl async_start_as_promise' = async_start_as_promise_ ()
+    ($"!async_start_as_promise'.Invoke !obj" : any) |> real real_unbox `any `(promise any)
 
-inl set_timeout (callback : () -> ()) (ms : i32) : i32 = $"JS.setTimeout !callback !ms"
-inl clear_timeout (token : i32) : () = $"JS.clearTimeout !token"
-inl set_interval (callback : () -> ()) (ms : i32) : i32 = $"JS.setInterval !callback !ms"
-inl clear_interval (token : i32) : () = $"JS.clearInterval !token"
 
+inl object_keys forall t. (obj : t) : a i32 string = $"Fable.Core.JS.Constructors.Object.keys !obj |> unbox<`string[]>"
+inl object_values obj : a i32 string = $"Fable.Core.JS.Constructors.Object.values !obj"
+inl object_entries obj : a i32 string = $"Fable.Core.JS.Constructors.Object.entries !obj"
+inl object_assign forall a. (target : a) source : a = $"Fable.Core.JS.Constructors.Object.assign (!target, [| !target |])"
+
+inl set_timeout (callback : () -> ()) (ms : i32) : i32 = $"Fable.Core.JS.setTimeout !callback !ms"
+inl clear_timeout (token : i32) : () = $"Fable.Core.JS.clearTimeout !token"
+inl set_interval (callback : () -> ()) (ms : i32) : i32 = $"Fable.Core.JS.setInterval !callback !ms"
+inl clear_interval (token : i32) : () = $"Fable.Core.JS.clearInterval !token"
+
+inl js_get (obj : any) (key : string) : any =
+    $"(Fable.Core.JsInterop.(?)) !obj !key"
 
 type env =
     {
@@ -117,13 +125,13 @@ type env =
         is_test : bool
     }
 let get_env () : env =
-    inl env : any = ($"emitJsExpr () \"components_spi.env\"" : any)
+    inl env : any = ($"Fable.Core.JsInterop.emitJsExpr () \"components_spi.env\"" : any)
 
-    inl codespace_name = $"emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
-    inl github_run_id = $"emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
-    inl github_sha = $"emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
+    inl codespace_name = $"Fable.Core.JsInterop.emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
+    inl github_run_id = $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
+    inl github_sha = $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
     inl is_test =
-        inl is_test' : any = $"!env?IS_TEST"
+        inl is_test' : any = js_get env "IS_TEST"
         inl is_test' : bool = is_empty is_test'
         not is_test'
 
@@ -136,7 +144,7 @@ let get_env () : env =
     } : env
 
 inl track_time forall a. (name : string) (n : i32) (fn : () -> a) : a =
-    $"JS.console.time !name" : ()
+    $"Fable.Core.JS.console.time !name" : ()
 
     inl result =
         loop.for
@@ -144,7 +152,7 @@ inl track_time forall a. (name : string) (n : i32) (fn : () -> a) : a =
             fun _ _ => fn ()
             (undefined ())
 
-    $"JS.console.timeEnd !name" : ()
+    $"Fable.Core.JS.console.timeEnd !name" : ()
 
     result
 
@@ -161,7 +169,7 @@ let new_log
             inl new_timestamp () : i64 = ticks () - start_timestamp
             inl timestamp : string = new_timestamp () |> to_string'
             inl timestamp : string = pad 6 timestamp
-            inl run_id : i32 = $"emitJsExpr () \"components_spi.run_id\""
+            inl run_id : i32 = $"Fable.Core.JsInterop.emitJsExpr () \"components_spi.run_id\""
             inl locals : array any = ;[
                 !!("timestamp:", timestamp)
                 !!("run_id:", run_id)
@@ -182,4 +190,4 @@ let new_log
                     args_json,
                     "font-weight: bold; color: #444",
                     $"$\"{!obj_json} {!locals_json}\""
-            $"emitJsExpr () $\"console.log.apply(console, {!new_args})\"" : ()
+            $"Fable.Core.JsInterop.emitJsExpr () $\"console.log.apply(console, {!new_args})\"" : ()

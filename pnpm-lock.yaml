@@ -7,42 +7,42 @@ specifiers:
   '@solid-primitives/scheduled': ~1.2
   '@stitches/core': ~1.3.1-1
   '@types/node': ~18.11
-  algosdk: ~1.23
+  algosdk: ~1.24
   buffer: ~6.0
   clsx: ~1.2
   gun: ~0.2020.1238
-  npm-check-updates: ~16.4
+  npm-check-updates: ~16.5
   path-browserify: ~1.0
   rusty-gun: ~0.1.2
   solid-icons: ~1.0
-  solid-js: ~1.6.2
+  solid-js: ~1.6.3
   solid-transition-group: 0.0.12
   ts-node: ~10.9
   typescript: next
   zeromq: 6.0.0-beta.6
 
 dependencies:
-  '@hope-ui/core': 1.0.0-next.11_k6sd3zeqfnqpamqwrjxkllodum
-  '@hope-ui/solid': 0.6.7_pewywmew6a2oxjq75dej4scghi
+  '@hope-ui/core': 1.0.0-next.11_p5ll2gmvx6i5jenqugduywpuuy
+  '@hope-ui/solid': 0.6.7_azlg6hetmokoq76qupkg3n3iuu
   '@microsoft/signalr': 7.0.0
-  '@solid-primitives/scheduled': 1.2.0_solid-js@1.6.2
+  '@solid-primitives/scheduled': 1.2.0_solid-js@1.6.3
   '@stitches/core': 1.3.1-1
-  algosdk: 1.23.2
+  algosdk: 1.24.0
   buffer: 6.0.3
   clsx: 1.2.1
   gun: 0.2020.1238
   rusty-gun: 0.1.2
-  solid-icons: 1.0.1_solid-js@1.6.2
-  solid-js: 1.6.2
-  solid-transition-group: 0.0.12_solid-js@1.6.2
+  solid-icons: 1.0.1_solid-js@1.6.3
+  solid-js: 1.6.3
+  solid-transition-group: 0.0.12_solid-js@1.6.3
   zeromq: 6.0.0-beta.6
 
 devDependencies:
   '@types/node': 18.11.0
-  npm-check-updates: 16.4.1
+  npm-check-updates: 16.5.1
   path-browserify: 1.0.1
-  ts-node: 10.9.1_4mdaypdyhvm2ggwck7rw5ypszu
-  typescript: 5.0.0-dev.20221205
+  ts-node: 10.9.1_pvsm35bmhovawvo5micv5fqhde
+  typescript: 5.0.0-dev.20221207
 
 packages:
 
@@ -77,32 +77,32 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@hope-ui/core/1.0.0-next.11_k6sd3zeqfnqpamqwrjxkllodum:
+  /@hope-ui/core/1.0.0-next.11_p5ll2gmvx6i5jenqugduywpuuy:
     resolution: {integrity: sha512-IkMbZc6gSHKSp8jZEfqigEg8GP81TCG8CdRNOX+M+zERDBWX5aGSqn9ZllLqCjKtxplGGyFvO3w+ixUqbvrJcg==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
       '@floating-ui/dom': 1.0.7
-      '@hope-ui/primitives': 1.0.0-next.11_solid-js@1.6.2
-      '@hope-ui/styles': 1.0.0-next.11_k6sd3zeqfnqpamqwrjxkllodum
-      '@hope-ui/utils': 1.0.0-next.11_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@hope-ui/primitives': 1.0.0-next.11_solid-js@1.6.3
+      '@hope-ui/styles': 1.0.0-next.11_p5ll2gmvx6i5jenqugduywpuuy
+      '@hope-ui/utils': 1.0.0-next.11_solid-js@1.6.3
+      solid-js: 1.6.3
     transitivePeerDependencies:
       - '@stitches/core'
       - clsx
     dev: false
 
-  /@hope-ui/primitives/1.0.0-next.11_solid-js@1.6.2:
+  /@hope-ui/primitives/1.0.0-next.11_solid-js@1.6.3:
     resolution: {integrity: sha512-72nN44BWVgD84YfQUfEjThEzp6rZ0fMllyXdMG1yOrZO4UCxmfDOr0R4QORtzL77kAcKkGSjlNi2/Kfwvl95xw==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
-      '@hope-ui/utils': 1.0.0-next.11_solid-js@1.6.2
-      '@solid-primitives/media': 2.0.4_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@hope-ui/utils': 1.0.0-next.11_solid-js@1.6.3
+      '@solid-primitives/media': 2.0.4_solid-js@1.6.3
+      solid-js: 1.6.3
     dev: false
 
-  /@hope-ui/solid/0.6.7_pewywmew6a2oxjq75dej4scghi:
+  /@hope-ui/solid/0.6.7_azlg6hetmokoq76qupkg3n3iuu:
     resolution: {integrity: sha512-7zGGy4QbGUC7QhwRnNH8HO0MZFg4jFISlC2cnAMBfFBy272uqQN3PYdTjiIbnpR/4JilUfxCWpFQY+4qslqcIw==}
     peerDependencies:
       '@stitches/core': ^1.2.8
@@ -115,32 +115,32 @@ packages:
       focus-trap: 6.7.3
       lodash.merge: 4.6.2
       scroll-lock: 2.1.5
-      solid-js: 1.6.2
-      solid-transition-group: 0.0.12_solid-js@1.6.2
+      solid-js: 1.6.3
+      solid-transition-group: 0.0.12_solid-js@1.6.3
     dev: false
 
-  /@hope-ui/styles/1.0.0-next.11_k6sd3zeqfnqpamqwrjxkllodum:
+  /@hope-ui/styles/1.0.0-next.11_p5ll2gmvx6i5jenqugduywpuuy:
     resolution: {integrity: sha512-DbSHUFjtoM9hFR86jUG5E9YUOr3fnqT3wyvxx75mespv1AA8h8xp0qjv4hcq7s6gdRtAix6nHInhZG23ng5dCg==}
     peerDependencies:
       '@stitches/core': ^1.2.8
       clsx: ^1.2.1
       solid-js: ^1.6.1
     dependencies:
-      '@hope-ui/utils': 1.0.0-next.11_solid-js@1.6.2
+      '@hope-ui/utils': 1.0.0-next.11_solid-js@1.6.3
       '@stitches/core': 1.3.1-1
       clsx: 1.2.1
       dset: 3.1.2
-      solid-js: 1.6.2
+      solid-js: 1.6.3
     dev: false
 
-  /@hope-ui/utils/1.0.0-next.11_solid-js@1.6.2:
+  /@hope-ui/utils/1.0.0-next.11_solid-js@1.6.3:
     resolution: {integrity: sha512-uNa2D6QIFfKw0mzBakKtWl659omRTjPrP2+Yt4e2ckr/8t11a8R5S8CNTPRQ34aH9r7L9vTJNAIaZ5awKuw/zA==}
     peerDependencies:
       solid-js: ^1.6.1
     dependencies:
-      '@solid-primitives/refs': 0.3.4_solid-js@1.6.2
-      '@solid-primitives/utils': 4.0.0_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@solid-primitives/refs': 0.3.4_solid-js@1.6.3
+      '@solid-primitives/utils': 4.0.0_solid-js@1.6.3
+      solid-js: 1.6.3
     dev: false
 
   /@jridgewell/resolve-uri/3.1.0:
@@ -320,69 +320,69 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /@solid-primitives/event-listener/2.2.4_solid-js@1.6.2:
+  /@solid-primitives/event-listener/2.2.4_solid-js@1.6.3:
     resolution: {integrity: sha512-O/ppM0SpXWtNC7AHv1bQA9Dy6pj3NUM06MhSV9xwVv4N06PmlNYhGLDSPT1Esesm6b0fDgCXB5V+AgCSEzQd/w==}
     peerDependencies:
       solid-js: ^1.6.0
     dependencies:
-      '@solid-primitives/utils': 4.0.0_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@solid-primitives/utils': 4.0.0_solid-js@1.6.3
+      solid-js: 1.6.3
     dev: false
 
-  /@solid-primitives/immutable/0.1.4_solid-js@1.6.2:
+  /@solid-primitives/immutable/0.1.4_solid-js@1.6.3:
     resolution: {integrity: sha512-9oLK8ihIjG5FZv74KoXXyKErxgGxGZsdevsIKB0ugTreBBmozHPcYTjoYFL/sHoqs2ZNMlmfNQ3kduvrvKG2RQ==}
     peerDependencies:
       solid-js: ^1.6.0
     dependencies:
-      '@solid-primitives/utils': 4.0.0_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@solid-primitives/utils': 4.0.0_solid-js@1.6.3
+      solid-js: 1.6.3
     dev: false
 
-  /@solid-primitives/media/2.0.4_solid-js@1.6.2:
+  /@solid-primitives/media/2.0.4_solid-js@1.6.3:
     resolution: {integrity: sha512-MZkdUlV3qJQts4b7ZfAldbFGB1neH64rwHsnTmIeF2Zj8gWjYcYtJ36SwkRs3NjHQ53uQliZ+DtMXiCeapNw/g==}
     peerDependencies:
       solid-js: ^1.6.0
     dependencies:
-      '@solid-primitives/event-listener': 2.2.4_solid-js@1.6.2
-      '@solid-primitives/rootless': 1.2.1_solid-js@1.6.2
-      '@solid-primitives/utils': 4.0.0_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@solid-primitives/event-listener': 2.2.4_solid-js@1.6.3
+      '@solid-primitives/rootless': 1.2.1_solid-js@1.6.3
+      '@solid-primitives/utils': 4.0.0_solid-js@1.6.3
+      solid-js: 1.6.3
     dev: false
 
-  /@solid-primitives/refs/0.3.4_solid-js@1.6.2:
+  /@solid-primitives/refs/0.3.4_solid-js@1.6.3:
     resolution: {integrity: sha512-XqX5PRCMnCOuLQqTsx3tRYs/oAyQsTXtmkB+tBlYoaqxLrJFBebPRVT/kFWN2Jxb6eZYAXDB5zZejS8nizsd8Q==}
     peerDependencies:
       solid-js: ^1.6.0
     dependencies:
-      '@solid-primitives/immutable': 0.1.4_solid-js@1.6.2
-      '@solid-primitives/rootless': 1.2.1_solid-js@1.6.2
-      '@solid-primitives/utils': 4.0.0_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@solid-primitives/immutable': 0.1.4_solid-js@1.6.3
+      '@solid-primitives/rootless': 1.2.1_solid-js@1.6.3
+      '@solid-primitives/utils': 4.0.0_solid-js@1.6.3
+      solid-js: 1.6.3
     dev: false
 
-  /@solid-primitives/rootless/1.2.1_solid-js@1.6.2:
+  /@solid-primitives/rootless/1.2.1_solid-js@1.6.3:
     resolution: {integrity: sha512-8RpdyS1e58PQbDjgjpyCh+IGoX3QEs/2LauMfl94eXJ5d/o1y/c6P61z9XqQm+Bx1Otdgx4nbFCoF7HPqa0mwg==}
     peerDependencies:
       solid-js: ^1.6.0
     dependencies:
-      '@solid-primitives/utils': 4.0.0_solid-js@1.6.2
-      solid-js: 1.6.2
+      '@solid-primitives/utils': 4.0.0_solid-js@1.6.3
+      solid-js: 1.6.3
     dev: false
 
-  /@solid-primitives/scheduled/1.2.0_solid-js@1.6.2:
+  /@solid-primitives/scheduled/1.2.0_solid-js@1.6.3:
     resolution: {integrity: sha512-59QbtGACZD8RIkD0jNQVUHRBF6uW7dKzDVFYSgogRdfxRO9kgXc6aGkLrCjd4k4g3kYe+XiBLcvYKyut4F7BHg==}
     peerDependencies:
       solid-js: ^1.6.0
     dependencies:
-      solid-js: 1.6.2
+      solid-js: 1.6.3
     dev: false
 
-  /@solid-primitives/utils/4.0.0_solid-js@1.6.2:
+  /@solid-primitives/utils/4.0.0_solid-js@1.6.3:
     resolution: {integrity: sha512-fGsJy8Z8YiwogpiezD7TWjI62UCb0JAHJWdoXWGrggrn4bfToZotKkabiB0IVFMkWVE1ZcrkvZT3bkmqGnK0ng==}
     peerDependencies:
       solid-js: ^1.6.0
     dependencies:
-      solid-js: 1.6.2
+      solid-js: 1.6.3
     dev: false
 
   /@stitches/core/1.3.1-1:
@@ -476,8 +476,8 @@ packages:
     engines: {node: '>= 10'}
     dev: false
 
-  /algosdk/1.23.2:
-    resolution: {integrity: sha512-ZDq71Kq+e3bvHxnTi/hWqom2/YHeTrbkxenOOCvPidRQuwkaOQAs92c4fqImdn7+Y+MfLhdtQspBLFR1hQTE4A==}
+  /algosdk/1.24.0:
+    resolution: {integrity: sha512-Q+rOpHTyn92OaL1ta0jEGz8fUQnfGiH2u5wkHj4phy5YKC9mkUrXc1+3Qk3v5fsttTV6pZlYPpzvBTNAlgIAyQ==}
     engines: {node: '>=14.0.0'}
     dependencies:
       algo-msgpack-with-bigint: 2.1.1
@@ -1661,8 +1661,8 @@ packages:
       npm-normalize-package-bin: 3.0.0
     dev: true
 
-  /npm-check-updates/16.4.1:
-    resolution: {integrity: sha512-g0Uf1kCw0p5boutvu5E4htsjYEDuFT9LxYHYFLldAzWs5012jVikEH1Wdae68xedu4twF4EVbKcs83+G2nGnQg==}
+  /npm-check-updates/16.5.1:
+    resolution: {integrity: sha512-LSDcPpnK41GnsIw1JO+sUe1QJPA8+pzLOW5Ahep2zOBaZk+Dkg/stow3FAT19scfYZRx3YyKoehrJQOSXN3t6g==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:
@@ -2153,27 +2153,27 @@ packages:
       smart-buffer: 4.2.0
     dev: true
 
-  /solid-icons/1.0.1_solid-js@1.6.2:
+  /solid-icons/1.0.1_solid-js@1.6.3:
     resolution: {integrity: sha512-9rxPeJ1UDGzWGlksjuXuyK2CdL1vg89inDyOl43koL3zoMgXLzY6LVLuMeuhslHbjq7Fp2h6fSSImj9ygfvleA==}
     engines: {node: '>= 16'}
     peerDependencies:
       solid-js: '*'
     dependencies:
-      solid-js: 1.6.2
+      solid-js: 1.6.3
     dev: false
 
-  /solid-js/1.6.2:
-    resolution: {integrity: sha512-AZBsj+Yn1xliniTTeuQKG9V7VQVkQ8lZmSKvBjpcVSoZeF7nvt/N5f7Kcsx6QSufioa2YgvBjkIiA0cM0qhotw==}
+  /solid-js/1.6.3:
+    resolution: {integrity: sha512-YoieThdhAKt83O86+DjpKXNlVSU5JYdi21RdYqiEIsWxahOphiAfao8e/zRTLyZEM5ZgyZ3ZHPPgW1HO5537Rw==}
     dependencies:
       csstype: 3.1.1
     dev: false
 
-  /solid-transition-group/0.0.12_solid-js@1.6.2:
+  /solid-transition-group/0.0.12_solid-js@1.6.3:
     resolution: {integrity: sha512-Eu4MfNZSSxM67C+4EXaoDiWr4BFbDLg3j30JQJgQEIH9UDOfgNPfZlsFDhT/PxwJqhe6sn85W+dbmYJzBmjpAA==}
     peerDependencies:
       solid-js: ^1.0.0
     dependencies:
-      solid-js: 1.6.2
+      solid-js: 1.6.3
     dev: false
 
   /source-map-support/0.5.21:
@@ -2311,7 +2311,7 @@ packages:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
     dev: false
 
-  /ts-node/10.9.1_4mdaypdyhvm2ggwck7rw5ypszu:
+  /ts-node/10.9.1_pvsm35bmhovawvo5micv5fqhde:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -2337,7 +2337,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.0.0-dev.20221205
+      typescript: 5.0.0-dev.20221207
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
@@ -2367,8 +2367,8 @@ packages:
       is-typedarray: 1.0.0
     dev: true
 
-  /typescript/5.0.0-dev.20221205:
-    resolution: {integrity: sha512-afHkcfhaQqUk+Hjn+lUKtMqMttizIy5K2r75cz8l7/K+m0k6Yx9IoHRC5v8cjxB77ub2COdbr+0xsNodB7q6dg==}
+  /typescript/5.0.0-dev.20221207:
+    resolution: {integrity: sha512-xPWWjASgLapa35nseHVRmQK6L0k3E1hb8OcN3I7XZHqYGUxk3n+RcncQSb4gGVromTEy7OHaoNSWLrkDO0+T1Q==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true

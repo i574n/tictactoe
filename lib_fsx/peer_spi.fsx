@@ -18,18 +18,23 @@ let rec closure0 () (v0 : UH0) : UH1 =
     let v1 : string = "request:"
     printfn $"%A{v1}"
     printfn $"%A{v0}"
-    let v2 : obj = null
-    let v3 : UH1 = v2 |> unbox<UH1>
-    v3
-let v0 : obj = null
-let v1 : obj = v0 |> unbox<obj>
-let v2 : Mut0 = {l0 = v1} : Mut0
-let v3 : (UH0 -> UH1) = closure0()
-let v4 : obj = v3
-let v5 : string = "update"
-let v6 : (string * obj) = v5, v4
-let v7 : ((string * obj) []) = [|v6|]
-let v8 : Map<string, obj> = Map v7
-let v9 : obj = v8
-v2.l0 <- v9
+    let v2 : UH1 = null |> unbox<UH1>
+    v2
+and method0 () : string =
+    let v0 : string = "/peer"
+    v0
+let v0 : obj = null |> unbox<obj>
+let v1 : Mut0 = {l0 = v0} : Mut0
+let v2 : (UH0 -> UH1) = closure0()
+let v3 : obj = v2
+let v4 : string = "update"
+let v5 : (string * obj) = v4, v3
+let v6 : string = method0()
+let v7 : obj = v6
+let v8 : string = "endpoint"
+let v9 : (string * obj) = v8, v7
+let v10 : ((string * obj) []) = [|v5; v9|]
+let v11 : Map<string, obj> = Map v10
+let v12 : obj = v11
+v1.l0 <- v12
 ()

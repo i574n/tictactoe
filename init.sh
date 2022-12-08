@@ -13,18 +13,20 @@ echo "export PATH=\"\$VOLTA_HOME/bin:\$PATH\"" >> ~/.bashrc
 volta install node@18
 sudo rm -rf /usr/local/share/nvm
 
-npm install -g pnpm
-
 curl https://bun.sh/install | bash
 export BUN_INSTALL="$HOME/.bun"
 echo "export BUN_INSTALL=\"\$HOME/.bun\"" >> ~/.bashrc
 export PATH="$BUN_INSTALL/bin:$PATH"
 echo "export PATH=\"\$BUN_INSTALL/bin:\$PATH\"" >> ~/.bashrc
 
-curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh -s -- -y
 export PATH="$HOME/.cargo/bin:$PATH"
 echo "export PATH=\"\$HOME/.cargo/bin:\$PATH\"" >> ~/.bashrc
 cargo install rod
+
+dotnet paket install
+
+npm install -g pnpm
 
 pnpm install
 cd peer_gunjs && pnpm install && cd ..

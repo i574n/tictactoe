@@ -1,6 +1,7 @@
 open js
 open solid
 open state
+open real_util
 
 
 type state_input_props value_type =
@@ -23,7 +24,8 @@ let state_input forall value_type. (props : mut (state_input_props value_type)) 
                 |> Some
             OnInput =
                 Some fun e =>
-                    inl new_value : value_type = $"!e?currentTarget?value"
+                    inl new_value : value_type =
+                        js_get (js_get e "currentTarget") "value" |> real real_unbox `any `value_type
                     props.StateSet (Some new_value)
         }
         fun () => ;[]

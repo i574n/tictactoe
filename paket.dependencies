@@ -7,7 +7,7 @@ nuget FSharp.Core >= 7.0 prerelease
 
 // Web
 nuget Feliz.JSX.Solid ~> 1.0.0-beta-002
-nuget Fable.Promise > 2.2
+nuget Fable.Promise ~> 3.2
 
 // Peer
 nuget FSharp.Control.AsyncSeq ~> 3.2
@@ -20,3 +20,7 @@ nuget Serilog.Sinks.SpectreConsole ~> 0.3
 nuget Serilog.Sinks.Console ~> 4.1.1-dev-00896
 nuget System.Text.Encodings.Web >= 5.0
 nuget Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson >= 5.0
+
+// Fable.SignalR
+nuget Fable.Remoting.MsgPack ~> 1.18
+nuget Fable.SimpleJson ~> 3.24

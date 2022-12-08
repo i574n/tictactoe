@@ -10,5 +10,8 @@
         <Compile Include="$(MSBuildThisFileDirectory)components_spi.fsx" />
         <Compile Include="$(MSBuildThisFileDirectory)peer_spi.fsx" />
     </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\deps\Fable.SignalR\Fable.SignalR.fsproj" />
+    </ItemGroup>
     <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>

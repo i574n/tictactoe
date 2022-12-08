@@ -1,7 +1,7 @@
 dotnet fable `
-    "$PSScriptRoot/lib_fsx" `
+    "$PSScriptRoot" `
     --optimize `
     --lang typescript `
     --typedArrays false `
     --extension .tsx `
-    --outDir "$PSScriptRoot/lib_ts"
+    --outDir "$PSScriptRoot/../lib_ts"

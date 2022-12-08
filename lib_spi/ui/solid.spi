@@ -171,7 +171,7 @@ inl loop forall item_type.
     (children : _ -> _ -> array jsx_element)
     =
     inl children : () -> array jsx_element =
-        $"emitJsExpr () $\"(item: any, index: () => number) => {!children}(item)(index)\""
+        $"Fable.Core.JsInterop.emitJsExpr () $\"(item: any, index: () => number) => {!children}(item)(index)\""
     create_native_component
         (fn ())
         (loop_props props)
@@ -195,11 +195,11 @@ inl index' forall item_type.
 inl hope_ () : js_function = real import "hope" "@hope-ui/core"
 inl iframe props =
     inl hope : js_function = real hope_ ()
-    create_native_component $"!hope?iframe" props fun () => ;[]
+    create_native_component (js_get !!hope "iframe" |> real real_unbox `any `js_function) props fun () => ;[]
 
 inl pre props =
     inl hope : js_function = real hope_ ()
-    create_native_component $"!hope?pre" props
+    create_native_component (js_get !!hope "pre" |> real real_unbox `any `js_function) props
 
 inl anchor_ () = real import "Anchor" "@hope-ui/core"
 inl anchor props = create_native_component (anchor_ ()) props
@@ -217,7 +217,7 @@ inl icon_button props = create_native_component (icon_button_ ()) props
 inl _input type' props_fn children =
     inl _input props_fn =
         inl hope : js_function = real hope_ ()
-        create_native_component $"!hope?input" (fun props' => {props' with Type = Some type'} |> props_fn)
+        create_native_component (js_get !!hope "input" |> real real_unbox `any `js_function) (fun props' => {props' with Type = Some type'} |> props_fn)
     box
         fun props' => { props' with
             Display = Some "flex"
@@ -300,22 +300,22 @@ inl stack props = create_native_component (stack_ ()) props
 // inl table props = create_native_component (table_ ()) props
 inl table props =
     inl hope : js_function = real hope_ ()
-    create_native_component $"!hope?table" props
+    create_native_component (js_get !!hope "table" |> real real_unbox `any `js_function) props
 
 // inl tbody_ () = real import "Tbody" "@hope-ui/core"
 // inl tbody props = create_native_component (tbody_ ()) props
 inl tbody props =
     inl hope : js_function = real hope_ ()
-    create_native_component $"!hope?tbody" props
+    create_native_component (js_get !!hope "tbody" |> real real_unbox `any `js_function) props
 
 // inl td_ () = real import "Td" "@hope-ui/core"
 // inl td props = create_native_component (td_ ()) props
 inl td props =
     inl hope : js_function = real hope_ ()
-    create_native_component $"!hope?td" props
+    create_native_component (js_get !!hope "td" |> real real_unbox `any `js_function) props
 
 // inl tr_ () = real import "Tr" "@hope-ui/core"
 // inl tr props = create_native_component (tr_ ()) props
 inl tr props =
     inl hope : js_function = real hope_ ()
-    create_native_component $"!hope?tr" props
+    create_native_component (js_get !!hope "tr" |> real real_unbox `any `js_function) props

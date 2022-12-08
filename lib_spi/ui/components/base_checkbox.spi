@@ -1,4 +1,6 @@
 open solid
+open real_util
+open js
 
 
 type base_checkbox_props =
@@ -17,7 +19,8 @@ inl base_checkbox (custom_props : mut base_checkbox_props) =
             ColorScheme = Some "neutral"
             Id = props.Id
             OnChange = Some fun e =>
-                inl checked : bool = $"!e?target?checked"
+                inl checked : bool =
+                    js_get (js_get e "target") "checked" |> real real_unbox `any `bool
                 custom_props.OnChange checked
             PaddingTop = Some "1px"
             PaddingBottom = Some "2px"

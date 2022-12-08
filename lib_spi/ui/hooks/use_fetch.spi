@@ -483,7 +483,7 @@ let use_fetch forall state_type {append} value_type.
                         !!("new_value_raw:", new_value_raw)
                         !!("connection_client_type:", connection_client_type |> to_string)
                     ]
-                    db_put db connection_client_type content_address new_value_raw
+                    db_put log_level db connection_client_type content_address new_value_raw
 
     inl connections_change (db_connections' : a i32 db_connection) =
         inl subscriptions' = subscriptions ()
@@ -536,7 +536,7 @@ let use_fetch forall state_type {append} value_type.
         db.db_off content_address
 
     inl on_unload' () =
-        $"!debounced_connections_change?clear ()" : ()
+        ((js_get !!debounced_connections_change "clear" |> real real_unbox `any `(() -> ())) : () -> ()) ()
         unsubscribe ()
     real on_cleanup on_unload'
 

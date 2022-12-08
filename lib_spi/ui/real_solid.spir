@@ -4,7 +4,7 @@ open real_core
 open real_util
 
 
-nominal jsx_element = $"JSX.Element"
+nominal jsx_element = $"Fable.Core.JSX.Element"
 
 type solid_props =
     {
@@ -275,8 +275,10 @@ inl useColorMode_ ()  = import "useColorMode" "@hope-ui/core"
 inl use_color_mode () =
     inl useColorMode' = useColorMode_ ()
     inl obj : any = $"!useColorMode'.Invoke () |> unbox<`any>"
-    inl color_mode : () -> string = $"!obj?colorMode |> unbox<unit -> `string>"
-    inl toggle_color_mode : () -> () = $"!obj?toggleColorMode |> unbox<unit -> unit>"
+    inl color_mode : () -> string =
+        (js_get obj "colorMode" |> real real_unbox `any `(() -> string))
+    inl toggle_color_mode : () -> () =
+        (js_get obj "toggleColorMode" |> real real_unbox `any `(() -> ()))
     color_mode, toggle_color_mode
 
 inl use_context (context : any) =
@@ -290,11 +292,11 @@ inl real_create_memo forall a. (fn : () -> a) : () -> a =
     real create_memo fn
 
 inl fragment (element : jsx_element) : jsx_element =
-    $"Html.fragment [ !element ]"
+    $"Feliz.JSX.Solid.Html.fragment [ !element ]"
 
 inl real_children children : () -> array jsx_element =
     inl children' = real children_ ()
-    $"!children'.Invoke !children |> unbox<unit -> JSX.Element[]>" : () -> array jsx_element
+    $"!children'.Invoke !children |> unbox<unit -> `jsx_element[]>" : () -> array jsx_element
 
 inl create_component' forall props_type.
     (cmp : props_type -> jsx_element)
@@ -336,7 +338,7 @@ inl create_native_component
     inl props : solid_props = props_fn |> real_init_props |> add_children_props children
     inl new_props_entries : a i32 (pair string any) = record_entries props
     inl new_props : any = create_obj new_props_entries
-    $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
+    $"Fable.Core.JsInterop.emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
     inl new_cmp = real_unbox `js_function `(any -> jsx_element) cmp
     create_component' `any new_cmp new_props
 
@@ -356,7 +358,7 @@ let create_component forall solid_props.
     =
     inl props : solid_props = props_fn |> real_init_props |> add_children_props children
     inl new_props : mut solid_props = mut `solid_props props
-    $"emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
+    $"Fable.Core.JsInterop.emitJsExpr (!new_props, !children) \"$0.children = $1\"" : ()
     create_component' `(mut solid_props) cmp new_props
 
 
@@ -366,7 +368,7 @@ type atom a = getter a * setter a
 
 let real_create_signal forall a. (default_value : a) : atom a =
     inl createSignal' = createSignal_ ()
-    inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<JS.Function[]>"
+    inl fns : array js_function = $"!createSignal'.Invoke !default_value |> unbox<`js_function[]>"
     inl get = $"!fns.[0] |> unbox<unit -> `a>" : getter a
     inl set = $"!fns.[1] |> unbox<`a -> unit>" : setter a
     get, set
@@ -375,7 +377,7 @@ inl real_create_context forall context_type. : any =
     join
         inl createContext' = createContext_ ()
         inl context_fn : () -> context_type = undefined `context_type
-        $"emitJsExpr () $\"{!createContext'}<ReturnType<typeof {!context_fn}>>()\"" : any
+        $"Fable.Core.JsInterop.emitJsExpr () $\"{!createContext'}<ReturnType<typeof {!context_fn}>>()\"" : any
 
 inl real_create_effect (on : () -> ()) : () =
     inl create_effect' = createEffect_ ()
@@ -392,7 +394,7 @@ inl on_cleanup (fn : () -> ()) =
 inl real_merge_props forall props_type. (target : mut props_type) (source : mut props_type) : () =
     join
         inl on_item (key : string) : () =
-            if $"emitJsExpr (!source, !key) \"!!!!$0[$1].tag\"" : bool then
-                $"emitJsExpr (!target, !key, !source) \"$0[$1] = $2[$1]\"" : ()
+            if $"Fable.Core.JsInterop.emitJsExpr (!source, !key) \"!!!!$0[$1].tag\"" : bool then
+                $"Fable.Core.JsInterop.emitJsExpr (!target, !key, !source) \"$0[$1] = $2[$1]\"" : ()
         inl keys = object_keys `(mut props_type) target
         am.iter `a `i32 `string on_item keys

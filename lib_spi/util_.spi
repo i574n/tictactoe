@@ -3,7 +3,8 @@ open real_util
 
 nominal any = $"obj"
 nominal exn = $"exn"
-nominal guid = $"Guid"
+nominal guid = $"System.Guid"
+nominal date_time = $"System.DateTime"
 
 union log_level_type =
     | Debug
@@ -24,9 +25,15 @@ instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>
     failwith "util_.array'.append"
     y |> array'
 
+type pair a b = $"(`a * `b)"
 
+inl empty_list forall a. () : list a = Nil
 inl none forall a. () : option a = None
 inl some forall a. (x : a) : option a = Some x
+inl new_pair forall a b. (a : a) (b : b) : pair a b = $"!a, !b"
+inl get_locals () : array any = ;[]
+inl null forall t. () : t = $"null |> unbox<`t>"
+inl to_any forall a. (obj : a) : any = $"!obj"
 
 inl find_last forall item result. fold_fn fn target : option result =
     fold_fn (fun (item : item) (result : option result) =>
@@ -53,7 +60,6 @@ inl union_list_get forall union_type union_key_type value_type.
             `(`({ $union_key = record_typecheck_value }))
             { check_length = false; check_type = CheckOption }
 
-
     union_list |> list_find_last fun union_item =>
         real
             real_core.unbox
@@ -68,30 +74,15 @@ inl (/??) a b = a |> optionm.defaultWith b
 inl (/.) props key = union_list_get key props
 
 
-type pair a b = $"(`a * `b)"
-
-inl new_pair forall a b. (a : a) (b : b) : pair a b =
-    $"!a, !b"
-
-inl get_locals () : array any = ;[]
-
-inl to_any forall a. (obj : a) : any =
-    $"!obj"
-
-inl empty_list forall a. () : list a = Nil
-
-inl null forall t. () : t =
-    inl result : any = $"null"
-    $"!result |> unbox<`t>"
-
 let rec pad (count : i32) (n : string) : string =
     inl n_length : i32 = $"String.length !n"
     if n_length < count then pad count ($"$\"0{!n}\"" : string) else n
 
 inl string_get_bytes (s : string) : a i32 u8 = $"System.Text.Encoding.UTF8.GetBytes !s"
 inl to_string' forall a. (obj : a) : string = $"!obj.ToString ()"
-inl ticks () : i64 = $"DateTime.UtcNow.Ticks"
-inl random () : i32 = $"Random().Next ()"
+inl ticks () : i64 = $"`date_time.UtcNow.Ticks"
+inl random () : i32 = $"System.Random().Next ()"
+inl new_raw_guid () : guid = $"`guid.NewGuid ()"
 
 inl array_last forall t. (items : a i32 t) : t = $"Array.last !items"
 
@@ -109,9 +100,6 @@ inl array_collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
     items
     |> am.map fn
     |> am.fold (/@) (a ;[])
-
-inl new_raw_guid () : guid =
-    $"Guid.NewGuid ()"
 
 inl new_guid_from_ticks (ticks : i64) : guid =
     inl guid = new_raw_guid () |> to_string'

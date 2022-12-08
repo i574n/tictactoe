@@ -47,7 +47,8 @@ export default defineConfig({
           'solid-devtools': ['solid-devtools'],
           'solid-devtools-transform': ['@solid-devtools/transform'],
 
-          'hope-ui-solid': ['@hope-ui/solid'],
+          'signalr': ['@microsoft/signalr'],
+
           'hope-ui-core': ['@hope-ui/core'],
           'clsx': ['clsx'],
           'stitches': ['@stitches/core'],

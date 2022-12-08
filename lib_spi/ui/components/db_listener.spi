@@ -38,6 +38,7 @@
 
 open solid
 open real_solid
+open real_util
 open real_state
 open state
 open js
@@ -95,7 +96,7 @@ let db_listener (props : mut ()) =
         debounced_connections_change { db_connections' db_connection_options' }
 
     inl on_unload' () =
-        $"!debounced_connections_change?clear ()" : ()
+        ((js_get !!debounced_connections_change "clear" |> real real_unbox `any `(() -> ())) : () -> ()) ()
     real on_cleanup on_unload'
 
     empty_fragment ()
