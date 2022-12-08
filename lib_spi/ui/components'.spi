@@ -1,0 +1,73 @@
+open real_util
+open console_fsx
+open js
+open real_js
+open solid
+open real_solid
+open real_state
+open state
+open db
+open components.content
+open components.db_listener
+open components.loader
+
+
+inl imports () =
+    // $"#r \"nuget: Feliz.JSX.Solid, 1.0.0-beta-002\""
+    // $"#r \"nuget: Fable.Promise, 3.2.0\""
+    // $"open System"
+    // $"open Fable.Core"
+    // $"open Fable.Core.JsInterop"
+    // $"open Feliz.JSX.Solid"
+    ()
+
+inl tests () =
+    typecheck_props ()
+
+    inl a = 1i32
+    inl b = 1i32
+    test (a = b)
+
+inl main () =
+    print_static "<components'>"
+
+    $"let (?), (?<-) = Fable.Core.JsInterop.(?), Fable.Core.JsInterop.(?<-)" : ()
+    inl result = mut { obj = undefined () }
+
+    imports ()
+    tests ()
+
+    inl env_prop = new_pair "env" ($"Fable.Core.JsInterop.emitJsExpr () \"process.env\"" : any)
+    inl result_obj =
+        create_obj (a ;[
+            env_prop
+        ])
+
+    inl set_components obj =
+        $"Browser.Dom.window?components <- !obj"
+
+    set_components result_obj
+
+    inl run_id : i32 = real random ()
+
+    inl state_context : any = real real_create_context `(`(new_state_context ()))
+
+    inl new_state_context_any () : any =
+        real new_state_context_any ()
+
+    inl request' : request = null ()
+    inl response' : response = null ()
+
+    inl result_obj =
+        create_obj (a ;[
+            new_pair "content" !!content
+            new_pair "db_listener" !!db_listener
+            new_pair "run_id" !!run_id
+            new_pair "new_state_context_any" !!new_state_context_any
+            new_pair "state_context" state_context
+            env_prop
+        ])
+    set_components result_obj
+    result.obj <- result_obj
+
+    print_static "<components'/>"

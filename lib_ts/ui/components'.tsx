@@ -1,38 +1,38 @@
-import { Union, Record } from "./fable_modules/fable-library-ts/Types.js";
-import { enum_type, uint64_type, getUnionFields, int64_type, tuple_type, lambda_type, unit_type, class_type, bool_type, array_type, string_type, int32_type, union_type, record_type, obj_type, TypeInfo } from "./fable_modules/fable-library-ts/Reflection.js";
-import { uint8, op_UnaryNegation_Int32, int32 } from "./fable_modules/fable-library-ts/Int32.js";
-import { fromInteger, uint64, fromBits, op_Addition, compare, parse, op_Subtraction, toString, int64 } from "./fable_modules/fable-library-ts/Long.js";
+import { Union, Record } from "../fable_modules/fable-library-ts/Types.js";
+import { enum_type, uint64_type, getUnionFields, int64_type, tuple_type, lambda_type, unit_type, class_type, bool_type, array_type, string_type, int32_type, union_type, record_type, obj_type, TypeInfo } from "../fable_modules/fable-library-ts/Reflection.js";
+import { uint8, op_UnaryNegation_Int32, int32 } from "../fable_modules/fable-library-ts/Int32.js";
+import { fromInteger, uint64, fromBits, op_Addition, compare, parse, op_Subtraction, toString, int64 } from "../fable_modules/fable-library-ts/Long.js";
 import { Index, For, onCleanup, createEffect, useContext, createSignal, createComponent, children as children_1, createContext } from "solid-js";
-import { choose, addRangeInPlace, equalsWith, fill } from "./fable_modules/fable-library-ts/Array.js";
-import { defaultOf, equals, equalArrays, int32ToString, partialApply, IDisposable, uncurry, createObj } from "./fable_modules/fable-library-ts/Util.js";
+import { choose, addRangeInPlace, equalsWith, fill } from "../fable_modules/fable-library-ts/Array.js";
+import { defaultOf, equals, equalArrays, int32ToString, partialApply, IDisposable, uncurry, createObj } from "../fable_modules/fable-library-ts/Util.js";
 import { Input, Anchor, Stack, IconButton, Icon, Button, Box, hope } from "@hope-ui/core";
-import { utcNow, getTicks } from "./fable_modules/fable-library-ts/Date.js";
+import { utcNow, getTicks } from "../fable_modules/fable-library-ts/Date.js";
 import { BiRegularMinus, BiRegularPlus, BiRegularLinkExternal, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow, BiRegularRefresh } from "solid-icons/bi";
-import { nonSeeded } from "./fable_modules/fable-library-ts/Random.js";
-import { HubConnection$5, HubConnection$5__startNow, HubConnection$5__streamFrom_2B594, HubConnection$5__invokeAsPromise_2B595 } from "./deps/Fable.SignalR/HubConnection.tsx";
-import { startAsPromise } from "./fable_modules/fable-library-ts/Async.ts";
-import { parse as parse_1, newGuid } from "./fable_modules/fable-library-ts/Guid.js";
-import { get_UTF8 } from "./fable_modules/fable-library-ts/Encoding.js";
+import { nonSeeded } from "../fable_modules/fable-library-ts/Random.js";
+import { HubConnection$5, HubConnection$5__startNow, HubConnection$5__streamFrom_2B594, HubConnection$5__invokeAsPromise_2B595 } from "../deps/Fable.SignalR/HubConnection.tsx";
+import { startAsPromise } from "../../lib_ts/fable_modules/fable-library-ts/Async.ts";
+import { parse as parse_1, newGuid } from "../fable_modules/fable-library-ts/Guid.js";
+import { get_UTF8 } from "../fable_modules/fable-library-ts/Encoding.js";
 import { debounce } from "@solid-primitives/scheduled";
-import { RetryPolicy } from "./deps/Fable.SignalR/Types.tsx";
-import { HubConnectionBuilder$5, HubConnectionBuilder$5__withUrl_Z721C83C5, HubConnectionBuilder$5__withAutomaticReconnect_3C7EFEAD, HubConnectionBuilder$5__onReconnecting_Z5D4DDAB0, HubConnectionBuilder$5__onReconnected_20659392, HubConnectionBuilder$5__onClose_Z5D4DDAB0, HubConnectionBuilder$5__configureLogging_2D37BB17, HubConnectionBuilder$5__onMessage_2163CAFC } from "./deps/Fable.SignalR/SignalR.tsx";
-import { some, map, value as value_10, Option } from "./fable_modules/fable-library-ts/Option.js";
+import { RetryPolicy } from "../deps/Fable.SignalR/Types.tsx";
+import { HubConnectionBuilder$5, HubConnectionBuilder$5__withUrl_Z721C83C5, HubConnectionBuilder$5__withAutomaticReconnect_3C7EFEAD, HubConnectionBuilder$5__onReconnecting_Z5D4DDAB0, HubConnectionBuilder$5__onReconnected_20659392, HubConnectionBuilder$5__onClose_Z5D4DDAB0, HubConnectionBuilder$5__configureLogging_2D37BB17, HubConnectionBuilder$5__onMessage_2163CAFC } from "../deps/Fable.SignalR/SignalR.tsx";
+import { some, map, value as value_10, Option } from "../fable_modules/fable-library-ts/Option.js";
 import { Node as Node$ } from "rusty-gun";
-import { HubConnectionBuilder$5_$ctor_Z66CB2AA1 } from "./deps/Fable.SignalR/SignalR.tsx";
-import { HubConnection$5_$ctor_Z78FDE58B, Bindings_signalR } from "./deps/Fable.SignalR/HubConnection.tsx";
-import { Json_TextMessageFormat_write, Json_TextMessageFormat_parse, Json_JsonProtocol_$ctor, MsgPack_parseMsg, MsgPack_MsgPackProtocol_$ctor } from "./deps/Fable.SignalR/Protocols.tsx";
-import { singleton, reverse, cons, empty, FSharpList } from "./fable_modules/fable-library-ts/List.js";
-import { toFail, printf, toText } from "./fable_modules/fable-library-ts/String.js";
-import { Reader__Read_24524716, Reader_$ctor_Z3F6BC7B1 } from "./fable_modules/Fable.Remoting.MsgPack.1.18.0/Read.tsx";
-import { Reader } from "./fable_modules/Fable.Remoting.MsgPack.1.18.0/Read.tsx";
-import { InvokeArg$1$reflection, InvokeArg$1, MsgPack_Msg$4_Close, MsgPack_Msg$4_Ping, MsgPack_Msg$4_CancelInvocation, MsgPack_Msg$4_StreamInvocation, MsgPack_Msg$4_Completion, MsgPack_Msg$4_StreamItem, MsgPack_Msg$4_Invocation, MsgPack_Msg$4_InvocationExplicit, MsgPack_Msg$4_InvokeInvocation, MsgPack_Msg$4$reflection } from "./deps/Fable.SignalR/Shared.tsx";
-import { writeObject } from "./fable_modules/Fable.Remoting.MsgPack.1.18.0/Write.tsx";
-import { SimpleJson_readPath, SimpleJson_parse } from "./fable_modules/Fable.SimpleJson.3.24.0/SimpleJson.tsx";
-import { Json } from "./fable_modules/Fable.SimpleJson.3.24.0/Json.tsx";
-import { Result_Map, FSharpResult$2_Tag, FSharpResult$2_Ok, FSharpResult$2_Error, FSharpResult$2 } from "./fable_modules/fable-library-ts/Choice.js";
-import { Convert_serialize, Convert_fromJson } from "./fable_modules/Fable.SimpleJson.3.24.0/Json.Converter.tsx";
-import { createTypeInfo } from "./fable_modules/Fable.SimpleJson.3.24.0/TypeInfo.Converter.tsx";
-import { Json_JsonProtocol, MsgPack_MsgPackProtocol, HubRecords_CloseMessage$reflection, HubRecords_CloseMessage, HubRecords_PingMessage$reflection, HubRecords_PingMessage, HubRecords_CancelInvocationMessage$reflection, HubRecords_CancelInvocationMessage, HubRecords_StreamInvocationMessage$1$reflection, HubRecords_StreamInvocationMessage$1, HubRecords_CompletionMessage$1$reflection, HubRecords_CompletionMessage$1, HubRecords_StreamItemMessage$1$reflection, HubRecords_StreamItemMessage$1, HubRecords_InvocationMessage$1$reflection, HubRecords_InvocationMessage$1 } from "./deps/Fable.SignalR/Protocols.tsx";
+import { HubConnectionBuilder$5_$ctor_Z66CB2AA1 } from "../deps/Fable.SignalR/SignalR.tsx";
+import { HubConnection$5_$ctor_Z78FDE58B, Bindings_signalR } from "../deps/Fable.SignalR/HubConnection.tsx";
+import { Json_TextMessageFormat_write, Json_TextMessageFormat_parse, Json_JsonProtocol_$ctor, MsgPack_parseMsg, MsgPack_MsgPackProtocol_$ctor } from "../deps/Fable.SignalR/Protocols.tsx";
+import { singleton, reverse, cons, empty, FSharpList } from "../fable_modules/fable-library-ts/List.js";
+import { toFail, printf, toText } from "../fable_modules/fable-library-ts/String.js";
+import { Reader__Read_24524716, Reader_$ctor_Z3F6BC7B1 } from "../fable_modules/Fable.Remoting.MsgPack.1.18.0/Read.tsx";
+import { Reader } from "../fable_modules/Fable.Remoting.MsgPack.1.18.0/Read.tsx";
+import { InvokeArg$1$reflection, InvokeArg$1, MsgPack_Msg$4_Close, MsgPack_Msg$4_Ping, MsgPack_Msg$4_CancelInvocation, MsgPack_Msg$4_StreamInvocation, MsgPack_Msg$4_Completion, MsgPack_Msg$4_StreamItem, MsgPack_Msg$4_Invocation, MsgPack_Msg$4_InvocationExplicit, MsgPack_Msg$4_InvokeInvocation, MsgPack_Msg$4$reflection } from "../deps/Fable.SignalR/Shared.tsx";
+import { writeObject } from "../fable_modules/Fable.Remoting.MsgPack.1.18.0/Write.tsx";
+import { SimpleJson_readPath, SimpleJson_parse } from "../fable_modules/Fable.SimpleJson.3.24.0/SimpleJson.tsx";
+import { Json } from "../fable_modules/Fable.SimpleJson.3.24.0/Json.tsx";
+import { Result_Map, FSharpResult$2_Tag, FSharpResult$2_Ok, FSharpResult$2_Error, FSharpResult$2 } from "../fable_modules/fable-library-ts/Choice.js";
+import { Convert_serialize, Convert_fromJson } from "../fable_modules/Fable.SimpleJson.3.24.0/Json.Converter.tsx";
+import { createTypeInfo } from "../fable_modules/Fable.SimpleJson.3.24.0/TypeInfo.Converter.tsx";
+import { Json_JsonProtocol, MsgPack_MsgPackProtocol, HubRecords_CloseMessage$reflection, HubRecords_CloseMessage, HubRecords_PingMessage$reflection, HubRecords_PingMessage, HubRecords_CancelInvocationMessage$reflection, HubRecords_CancelInvocationMessage, HubRecords_StreamInvocationMessage$1$reflection, HubRecords_StreamInvocationMessage$1, HubRecords_CompletionMessage$1$reflection, HubRecords_CompletionMessage$1, HubRecords_StreamItemMessage$1$reflection, HubRecords_StreamItemMessage$1, HubRecords_InvocationMessage$1$reflection, HubRecords_InvocationMessage$1 } from "../deps/Fable.SignalR/Protocols.tsx";
 import gun from "gun/gun";
 import "gun/lib/radix";
 import "gun/lib/radisk";
@@ -48,7 +48,7 @@ export class Mut0 extends Record {
 }
 
 export function Mut0$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut0", [], Mut0, () => [["l0", obj_type]]);
+    return record_type("Components\'.Mut0", [], Mut0, () => [["l0", obj_type]]);
 }
 
 export const enum US1_Tag {
@@ -78,7 +78,7 @@ export class US1_Cons<Tag extends keyof US1_Fields> extends Union {
 }
 
 export function US1$reflection(): TypeInfo {
-    return union_type("Components_spi.US1", [], US1_Cons, () => [[], []]);
+    return union_type("Components\'.US1", [], US1_Cons, () => [[], []]);
 }
 
 export const enum US0_Tag {
@@ -108,7 +108,7 @@ export class US0_Cons<Tag extends keyof US0_Fields> extends Union {
 }
 
 export function US0$reflection(): TypeInfo {
-    return union_type("Components_spi.US0", [], US0_Cons, () => [[], [["f1_0", US1$reflection()]]]);
+    return union_type("Components\'.US0", [], US0_Cons, () => [[], [["f1_0", US1$reflection()]]]);
 }
 
 export const enum US2_Tag {
@@ -148,7 +148,7 @@ export class US2_Cons<Tag extends keyof US2_Fields> extends Union {
 }
 
 export function US2$reflection(): TypeInfo {
-    return union_type("Components_spi.US2", [], US2_Cons, () => [[], [], [], []]);
+    return union_type("Components\'.US2", [], US2_Cons, () => [[], [], [], []]);
 }
 
 export const enum US3_Tag {
@@ -183,7 +183,7 @@ export class US3_Cons<Tag extends keyof US3_Fields> extends Union {
 }
 
 export function US3$reflection(): TypeInfo {
-    return union_type("Components_spi.US3", [], US3_Cons, () => [[], [], []]);
+    return union_type("Components\'.US3", [], US3_Cons, () => [[], [], []]);
 }
 
 export const enum US4_Tag {
@@ -223,7 +223,7 @@ export class US4_Cons<Tag extends keyof US4_Fields> extends Union {
 }
 
 export function US4$reflection(): TypeInfo {
-    return union_type("Components_spi.US4", [], US4_Cons, () => [[], [], [], []]);
+    return union_type("Components\'.US4", [], US4_Cons, () => [[], [], [], []]);
 }
 
 export const enum US5_Tag {
@@ -253,7 +253,7 @@ export class US5_Cons<Tag extends keyof US5_Fields> extends Union {
 }
 
 export function US5$reflection(): TypeInfo {
-    return union_type("Components_spi.US5", [], US5_Cons, () => [[], [["f1_0", int32_type]]]);
+    return union_type("Components\'.US5", [], US5_Cons, () => [[], [["f1_0", int32_type]]]);
 }
 
 export const enum UH0_Tag {
@@ -293,7 +293,7 @@ export class UH0_Cons<Tag extends keyof UH0_Fields> extends Union {
 }
 
 export function UH0$reflection(): TypeInfo {
-    return union_type("Components_spi.UH0", [], UH0_Cons, () => [[["Item", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type], ["Item3", obj_type]]]);
+    return union_type("Components\'.UH0", [], UH0_Cons, () => [[["Item", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type], ["Item3", obj_type]]]);
 }
 
 export const enum US6_Tag {
@@ -323,7 +323,7 @@ export class US6_Cons<Tag extends keyof US6_Fields> extends Union {
 }
 
 export function US6$reflection(): TypeInfo {
-    return union_type("Components_spi.US6", [], US6_Cons, () => [[], [["f1_0", obj_type]]]);
+    return union_type("Components\'.US6", [], US6_Cons, () => [[], [["f1_0", obj_type]]]);
 }
 
 export const enum UH1_Tag {
@@ -373,7 +373,7 @@ export class UH1_Cons<Tag extends keyof UH1_Fields> extends Union {
 }
 
 export function UH1$reflection(): TypeInfo {
-    return union_type("Components_spi.UH1", [], UH1_Cons, () => [[], [["Item", US6$reflection()]], [["Item1", string_type], ["Item2", string_type], ["Item3", US6$reflection()]], [["Item", array_type(string_type)]], [["Item1", string_type], ["Item2", string_type], ["Item3", array_type(string_type)], ["Item4", array_type(string_type)]], [["Item", bool_type]]]);
+    return union_type("Components\'.UH1", [], UH1_Cons, () => [[], [["Item", US6$reflection()]], [["Item1", string_type], ["Item2", string_type], ["Item3", US6$reflection()]], [["Item", array_type(string_type)]], [["Item1", string_type], ["Item2", string_type], ["Item3", array_type(string_type)], ["Item4", array_type(string_type)]], [["Item", bool_type]]]);
 }
 
 export const enum US7_Tag {
@@ -403,7 +403,7 @@ export class US7_Cons<Tag extends keyof US7_Fields> extends Union {
 }
 
 export function US7$reflection(): TypeInfo {
-    return union_type("Components_spi.US7", [], US7_Cons, () => [[], [["f1_0", string_type]]]);
+    return union_type("Components\'.US7", [], US7_Cons, () => [[], [["f1_0", string_type]]]);
 }
 
 export const enum US8_Tag {
@@ -433,7 +433,7 @@ export class US8_Cons<Tag extends keyof US8_Fields> extends Union {
 }
 
 export function US8$reflection(): TypeInfo {
-    return union_type("Components_spi.US8", [], US8_Cons, () => [[], [["f1_0", class_type("Fable.Core.JS.Function")]]]);
+    return union_type("Components\'.US8", [], US8_Cons, () => [[], [["f1_0", class_type("Fable.Core.JS.Function")]]]);
 }
 
 export const enum US9_Tag {
@@ -463,7 +463,7 @@ export class US9_Cons<Tag extends keyof US9_Fields> extends Union {
 }
 
 export function US9$reflection(): TypeInfo {
-    return union_type("Components_spi.US9", [], US9_Cons, () => [[], [["f1_0", bool_type]]]);
+    return union_type("Components\'.US9", [], US9_Cons, () => [[], [["f1_0", bool_type]]]);
 }
 
 export const enum US10_Tag {
@@ -493,7 +493,7 @@ export class US10_Cons<Tag extends keyof US10_Fields> extends Union {
 }
 
 export function US10$reflection(): TypeInfo {
-    return union_type("Components_spi.US10", [], US10_Cons, () => [[], [["f1_0", lambda_type(unit_type, array_type(class_type("Fable.Core.JSX.Element")))]]]);
+    return union_type("Components\'.US10", [], US10_Cons, () => [[], [["f1_0", lambda_type(unit_type, array_type(class_type("Fable.Core.JSX.Element")))]]]);
 }
 
 export const enum US11_Tag {
@@ -523,7 +523,7 @@ export class US11_Cons<Tag extends keyof US11_Fields> extends Union {
 }
 
 export function US11$reflection(): TypeInfo {
-    return union_type("Components_spi.US11", [], US11_Cons, () => [[], [["f1_0", array_type(obj_type)]]]);
+    return union_type("Components\'.US11", [], US11_Cons, () => [[], [["f1_0", array_type(obj_type)]]]);
 }
 
 export const enum US12_Tag {
@@ -553,7 +553,7 @@ export class US12_Cons<Tag extends keyof US12_Fields> extends Union {
 }
 
 export function US12$reflection(): TypeInfo {
-    return union_type("Components_spi.US12", [], US12_Cons, () => [[], [["f1_0", class_type("Fable.Core.JSX.Element")]]]);
+    return union_type("Components\'.US12", [], US12_Cons, () => [[], [["f1_0", class_type("Fable.Core.JSX.Element")]]]);
 }
 
 export const enum US13_Tag {
@@ -583,7 +583,7 @@ export class US13_Cons<Tag extends keyof US13_Fields> extends Union {
 }
 
 export function US13$reflection(): TypeInfo {
-    return union_type("Components_spi.US13", [], US13_Cons, () => [[], [["f1_0", lambda_type(obj_type, unit_type)]]]);
+    return union_type("Components\'.US13", [], US13_Cons, () => [[], [["f1_0", lambda_type(obj_type, unit_type)]]]);
 }
 
 export const enum US14_Tag {
@@ -613,7 +613,7 @@ export class US14_Cons<Tag extends keyof US14_Fields> extends Union {
 }
 
 export function US14$reflection(): TypeInfo {
-    return union_type("Components_spi.US14", [], US14_Cons, () => [[], [["f1_0", lambda_type(unit_type, unit_type)]]]);
+    return union_type("Components\'.US14", [], US14_Cons, () => [[], [["f1_0", lambda_type(unit_type, unit_type)]]]);
 }
 
 export class Mut1 extends Record {
@@ -763,7 +763,7 @@ export class Mut1 extends Record {
 }
 
 export function Mut1$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut1", [], Mut1, () => [["l0", US7$reflection()], ["l1", US7$reflection()], ["l2", US7$reflection()], ["l3", US8$reflection()], ["l4", US7$reflection()], ["l5", US7$reflection()], ["l6", US7$reflection()], ["l7", US7$reflection()], ["l8", US7$reflection()], ["l9", US7$reflection()], ["l10", US9$reflection()], ["l11", US10$reflection()], ["l12", US7$reflection()], ["l13", US7$reflection()], ["l14", US9$reflection()], ["l15", US7$reflection()], ["l16", US7$reflection()], ["l17", US7$reflection()], ["l18", US11$reflection()], ["l19", US9$reflection()], ["l20", US7$reflection()], ["l21", US7$reflection()], ["l22", US7$reflection()], ["l23", US7$reflection()], ["l24", US7$reflection()], ["l25", US7$reflection()], ["l26", US12$reflection()], ["l27", US7$reflection()], ["l28", US7$reflection()], ["l29", US7$reflection()], ["l30", US12$reflection()], ["l31", US7$reflection()], ["l32", US7$reflection()], ["l33", US7$reflection()], ["l34", US7$reflection()], ["l35", US7$reflection()], ["l36", US7$reflection()], ["l37", US7$reflection()], ["l38", US7$reflection()], ["l39", US7$reflection()], ["l40", US7$reflection()], ["l41", US13$reflection()], ["l42", US14$reflection()], ["l43", US13$reflection()], ["l44", US7$reflection()], ["l45", US7$reflection()], ["l46", US7$reflection()], ["l47", US7$reflection()], ["l48", US7$reflection()], ["l49", US7$reflection()], ["l50", US7$reflection()], ["l51", US7$reflection()], ["l52", US7$reflection()], ["l53", US7$reflection()], ["l54", US7$reflection()], ["l55", US7$reflection()], ["l56", US7$reflection()], ["l57", US7$reflection()], ["l58", US7$reflection()], ["l59", US7$reflection()], ["l60", US6$reflection()], ["l61", US7$reflection()], ["l62", US12$reflection()], ["l63", US7$reflection()], ["l64", US7$reflection()], ["l65", US6$reflection()], ["l66", US6$reflection()], ["l67", US7$reflection()], ["l68", US5$reflection()], ["l69", US7$reflection()]]);
+    return record_type("Components\'.Mut1", [], Mut1, () => [["l0", US7$reflection()], ["l1", US7$reflection()], ["l2", US7$reflection()], ["l3", US8$reflection()], ["l4", US7$reflection()], ["l5", US7$reflection()], ["l6", US7$reflection()], ["l7", US7$reflection()], ["l8", US7$reflection()], ["l9", US7$reflection()], ["l10", US9$reflection()], ["l11", US10$reflection()], ["l12", US7$reflection()], ["l13", US7$reflection()], ["l14", US9$reflection()], ["l15", US7$reflection()], ["l16", US7$reflection()], ["l17", US7$reflection()], ["l18", US11$reflection()], ["l19", US9$reflection()], ["l20", US7$reflection()], ["l21", US7$reflection()], ["l22", US7$reflection()], ["l23", US7$reflection()], ["l24", US7$reflection()], ["l25", US7$reflection()], ["l26", US12$reflection()], ["l27", US7$reflection()], ["l28", US7$reflection()], ["l29", US7$reflection()], ["l30", US12$reflection()], ["l31", US7$reflection()], ["l32", US7$reflection()], ["l33", US7$reflection()], ["l34", US7$reflection()], ["l35", US7$reflection()], ["l36", US7$reflection()], ["l37", US7$reflection()], ["l38", US7$reflection()], ["l39", US7$reflection()], ["l40", US7$reflection()], ["l41", US13$reflection()], ["l42", US14$reflection()], ["l43", US13$reflection()], ["l44", US7$reflection()], ["l45", US7$reflection()], ["l46", US7$reflection()], ["l47", US7$reflection()], ["l48", US7$reflection()], ["l49", US7$reflection()], ["l50", US7$reflection()], ["l51", US7$reflection()], ["l52", US7$reflection()], ["l53", US7$reflection()], ["l54", US7$reflection()], ["l55", US7$reflection()], ["l56", US7$reflection()], ["l57", US7$reflection()], ["l58", US7$reflection()], ["l59", US7$reflection()], ["l60", US6$reflection()], ["l61", US7$reflection()], ["l62", US12$reflection()], ["l63", US7$reflection()], ["l64", US7$reflection()], ["l65", US6$reflection()], ["l66", US6$reflection()], ["l67", US7$reflection()], ["l68", US5$reflection()], ["l69", US7$reflection()]]);
 }
 
 export class Mut2 {
@@ -772,7 +772,7 @@ export class Mut2 {
 }
 
 export function Mut2$reflection(): TypeInfo {
-    return class_type("Components_spi.Mut2", void 0, Mut2);
+    return class_type("Components\'.Mut2", void 0, Mut2);
 }
 
 export function Mut2_$ctor(): Mut2 {
@@ -806,7 +806,7 @@ export class UH2_Cons<Tag extends keyof UH2_Fields> extends Union {
 }
 
 export function UH2$reflection(): TypeInfo {
-    return union_type("Components_spi.UH2", [], UH2_Cons, () => [[["Item1", tuple_type(string_type, obj_type)], ["Item2", UH2$reflection()]], []]);
+    return union_type("Components\'.UH2", [], UH2_Cons, () => [[["Item1", tuple_type(string_type, obj_type)], ["Item2", UH2$reflection()]], []]);
 }
 
 export const enum US15_Tag {
@@ -841,7 +841,7 @@ export class US15_Cons<Tag extends keyof US15_Fields> extends Union {
 }
 
 export function US15$reflection(): TypeInfo {
-    return union_type("Components_spi.US15", [], US15_Cons, () => [[], [], []]);
+    return union_type("Components\'.US15", [], US15_Cons, () => [[], [], []]);
 }
 
 export class Mut3 extends Record {
@@ -859,7 +859,7 @@ export class Mut3 extends Record {
 }
 
 export function Mut3$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut3", [], Mut3, () => [["l0", US14$reflection()], ["l1", US14$reflection()], ["l2", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))], ["l3", US15$reflection()]]);
+    return record_type("Components\'.Mut3", [], Mut3, () => [["l0", US14$reflection()], ["l1", US14$reflection()], ["l2", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))], ["l3", US15$reflection()]]);
 }
 
 export class Mut4 extends Record {
@@ -875,7 +875,7 @@ export class Mut4 extends Record {
 }
 
 export function Mut4$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut4", [], Mut4, () => [["l0", lambda_type(unit_type, bool_type)], ["l1", lambda_type(bool_type, unit_type)], ["l2", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))]]);
+    return record_type("Components\'.Mut4", [], Mut4, () => [["l0", lambda_type(unit_type, bool_type)], ["l1", lambda_type(bool_type, unit_type)], ["l2", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))]]);
 }
 
 export class Mut5 extends Record {
@@ -895,7 +895,7 @@ export class Mut5 extends Record {
 }
 
 export function Mut5$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut5", [], Mut5, () => [["l0", bool_type], ["l1", bool_type], ["l2", US14$reflection()], ["l3", US14$reflection()], ["l4", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))]]);
+    return record_type("Components\'.Mut5", [], Mut5, () => [["l0", bool_type], ["l1", bool_type], ["l2", US14$reflection()], ["l3", US14$reflection()], ["l4", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))]]);
 }
 
 export class Mut6 extends Record {
@@ -907,7 +907,7 @@ export class Mut6 extends Record {
 }
 
 export function Mut6$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut6", [], Mut6, () => [["l0", int32_type]]);
+    return record_type("Components\'.Mut6", [], Mut6, () => [["l0", int32_type]]);
 }
 
 export class Mut7 extends Record {
@@ -923,7 +923,7 @@ export class Mut7 extends Record {
 }
 
 export function Mut7$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut7", [], Mut7, () => [["l0", lambda_type(unit_type, class_type("Fable.Core.JS.Function"))], ["l1", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))], ["l2", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))]]);
+    return record_type("Components\'.Mut7", [], Mut7, () => [["l0", lambda_type(unit_type, class_type("Fable.Core.JS.Function"))], ["l1", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))], ["l2", lambda_type(tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()), tuple_type(US7$reflection(), US7$reflection(), US7$reflection(), US8$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US10$reflection(), US7$reflection(), US7$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US11$reflection(), US9$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US13$reflection(), US14$reflection(), US13$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US7$reflection(), US12$reflection(), US7$reflection(), US7$reflection(), US6$reflection(), US6$reflection(), US7$reflection(), US5$reflection(), US7$reflection()))]]);
 }
 
 export class Mut8 extends Record {
@@ -939,7 +939,7 @@ export class Mut8 extends Record {
 }
 
 export function Mut8$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut8", [], Mut8, () => [["l0", lambda_type(string_type, obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, string_type), lambda_type(string_type, unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut8", [], Mut8, () => [["l0", lambda_type(string_type, obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, string_type), lambda_type(string_type, unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut9 extends Record {
@@ -955,7 +955,7 @@ export class Mut9 extends Record {
 }
 
 export function Mut9$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut9", [], Mut9, () => [["l0", lambda_type(int32_type, obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, int32_type), lambda_type(int32_type, unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut9", [], Mut9, () => [["l0", lambda_type(int32_type, obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, int32_type), lambda_type(int32_type, unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut10 extends Record {
@@ -971,7 +971,7 @@ export class Mut10 extends Record {
 }
 
 export function Mut10$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut10", [], Mut10, () => [["l0", lambda_type(array_type(tuple_type(lambda_type(unit_type, US0$reflection()), lambda_type(US0$reflection(), unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type))), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(lambda_type(unit_type, US0$reflection()), lambda_type(US0$reflection(), unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type)))), lambda_type(array_type(tuple_type(lambda_type(unit_type, US0$reflection()), lambda_type(US0$reflection(), unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type))), unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut10", [], Mut10, () => [["l0", lambda_type(array_type(tuple_type(lambda_type(unit_type, US0$reflection()), lambda_type(US0$reflection(), unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type))), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(lambda_type(unit_type, US0$reflection()), lambda_type(US0$reflection(), unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type)))), lambda_type(array_type(tuple_type(lambda_type(unit_type, US0$reflection()), lambda_type(US0$reflection(), unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type), lambda_type(unit_type, string_type), lambda_type(string_type, unit_type))), unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut11 extends Record {
@@ -987,7 +987,7 @@ export class Mut11 extends Record {
 }
 
 export function Mut11$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut11", [], Mut11, () => [["l0", lambda_type(array_type(tuple_type(US2$reflection(), obj_type, string_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(US2$reflection(), obj_type, string_type))), lambda_type(array_type(tuple_type(US2$reflection(), obj_type, string_type)), unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut11", [], Mut11, () => [["l0", lambda_type(array_type(tuple_type(US2$reflection(), obj_type, string_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(US2$reflection(), obj_type, string_type))), lambda_type(array_type(tuple_type(US2$reflection(), obj_type, string_type)), unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut12 extends Record {
@@ -1003,7 +1003,7 @@ export class Mut12 extends Record {
 }
 
 export function Mut12$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut12", [], Mut12, () => [["l0", lambda_type(array_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type))), lambda_type(array_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)), unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut12", [], Mut12, () => [["l0", lambda_type(array_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type))), lambda_type(array_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)), unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut13 extends Record {
@@ -1019,7 +1019,7 @@ export class Mut13 extends Record {
 }
 
 export function Mut13$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut13", [], Mut13, () => [["l0", lambda_type(US4$reflection(), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, US4$reflection()), lambda_type(US4$reflection(), unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut13", [], Mut13, () => [["l0", lambda_type(US4$reflection(), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, US4$reflection()), lambda_type(US4$reflection(), unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut14 extends Record {
@@ -1035,7 +1035,7 @@ export class Mut14 extends Record {
 }
 
 export function Mut14$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut14", [], Mut14, () => [["l0", lambda_type(US5$reflection(), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, US5$reflection()), lambda_type(US5$reflection(), unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut14", [], Mut14, () => [["l0", lambda_type(US5$reflection(), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, US5$reflection()), lambda_type(US5$reflection(), unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut15 extends Record {
@@ -1051,7 +1051,7 @@ export class Mut15 extends Record {
 }
 
 export function Mut15$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut15", [], Mut15, () => [["l0", lambda_type(array_type(tuple_type(class_type("System.Guid"), int32_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(class_type("System.Guid"), int32_type))), lambda_type(array_type(tuple_type(class_type("System.Guid"), int32_type)), unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut15", [], Mut15, () => [["l0", lambda_type(array_type(tuple_type(class_type("System.Guid"), int32_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(class_type("System.Guid"), int32_type))), lambda_type(array_type(tuple_type(class_type("System.Guid"), int32_type)), unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut16 extends Record {
@@ -1067,7 +1067,7 @@ export class Mut16 extends Record {
 }
 
 export function Mut16$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut16", [], Mut16, () => [["l0", lambda_type(array_type(tuple_type(class_type("System.Guid"), obj_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(class_type("System.Guid"), obj_type))), lambda_type(array_type(tuple_type(class_type("System.Guid"), obj_type)), unit_type)))], ["l2", string_type]]);
+    return record_type("Components\'.Mut16", [], Mut16, () => [["l0", lambda_type(array_type(tuple_type(class_type("System.Guid"), obj_type)), obj_type)], ["l1", lambda_type(unit_type, tuple_type(lambda_type(unit_type, array_type(tuple_type(class_type("System.Guid"), obj_type))), lambda_type(array_type(tuple_type(class_type("System.Guid"), obj_type)), unit_type)))], ["l2", string_type]]);
 }
 
 export class Mut17 extends Record {
@@ -1081,7 +1081,7 @@ export class Mut17 extends Record {
 }
 
 export function Mut17$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut17", [], Mut17, () => [["l0", lambda_type(unit_type, US7$reflection())], ["l1", lambda_type(US7$reflection(), unit_type)]]);
+    return record_type("Components\'.Mut17", [], Mut17, () => [["l0", lambda_type(unit_type, US7$reflection())], ["l1", lambda_type(US7$reflection(), unit_type)]]);
 }
 
 export class Mut18 extends Record {
@@ -1095,7 +1095,7 @@ export class Mut18 extends Record {
 }
 
 export function Mut18$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut18", [], Mut18, () => [["l0", lambda_type(unit_type, US5$reflection())], ["l1", lambda_type(US5$reflection(), unit_type)]]);
+    return record_type("Components\'.Mut18", [], Mut18, () => [["l0", lambda_type(unit_type, US5$reflection())], ["l1", lambda_type(US5$reflection(), unit_type)]]);
 }
 
 export class Mut19 extends Record {
@@ -1107,7 +1107,7 @@ export class Mut19 extends Record {
 }
 
 export function Mut19$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut19", [], Mut19, () => [["l0", US3$reflection()]]);
+    return record_type("Components\'.Mut19", [], Mut19, () => [["l0", US3$reflection()]]);
 }
 
 export class Mut20 extends Record {
@@ -1123,7 +1123,7 @@ export class Mut20 extends Record {
 }
 
 export function Mut20$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut20", [], Mut20, () => [["l0", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), US7$reflection())], ["l1", US3$reflection()], ["l2", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), lambda_type(US7$reflection(), tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)))]]);
+    return record_type("Components\'.Mut20", [], Mut20, () => [["l0", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), US7$reflection())], ["l1", US3$reflection()], ["l2", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), lambda_type(US7$reflection(), tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)))]]);
 }
 
 export class Mut21 extends Record {
@@ -1137,7 +1137,7 @@ export class Mut21 extends Record {
 }
 
 export function Mut21$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut21", [], Mut21, () => [["l0", int32_type], ["l1", US7$reflection()]]);
+    return record_type("Components\'.Mut21", [], Mut21, () => [["l0", int32_type], ["l1", US7$reflection()]]);
 }
 
 export class Mut22 extends Record {
@@ -1153,7 +1153,7 @@ export class Mut22 extends Record {
 }
 
 export function Mut22$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut22", [], Mut22, () => [["l0", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), US5$reflection())], ["l1", US3$reflection()], ["l2", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), lambda_type(US5$reflection(), tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)))]]);
+    return record_type("Components\'.Mut22", [], Mut22, () => [["l0", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), US5$reflection())], ["l1", US3$reflection()], ["l2", lambda_type(tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type), lambda_type(US5$reflection(), tuple_type(array_type(US2$reflection()), int32_type, US3$reflection(), string_type, string_type)))]]);
 }
 
 export class Mut23 extends Record {
@@ -1167,7 +1167,7 @@ export class Mut23 extends Record {
 }
 
 export function Mut23$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut23", [], Mut23, () => [["l0", int32_type], ["l1", US5$reflection()]]);
+    return record_type("Components\'.Mut23", [], Mut23, () => [["l0", int32_type], ["l1", US5$reflection()]]);
 }
 
 export class Mut24 extends Record {
@@ -1181,7 +1181,7 @@ export class Mut24 extends Record {
 }
 
 export function Mut24$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut24", [], Mut24, () => [["l0", US2$reflection()], ["l1", US3$reflection()]]);
+    return record_type("Components\'.Mut24", [], Mut24, () => [["l0", US2$reflection()], ["l1", US3$reflection()]]);
 }
 
 export class Mut25 extends Record {
@@ -1195,7 +1195,7 @@ export class Mut25 extends Record {
 }
 
 export function Mut25$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut25", [], Mut25, () => [["l0", int32_type], ["l1", int32_type]]);
+    return record_type("Components\'.Mut25", [], Mut25, () => [["l0", int32_type], ["l1", int32_type]]);
 }
 
 export const enum US16_Tag {
@@ -1225,7 +1225,7 @@ export class US16_Cons<Tag extends keyof US16_Fields> extends Union {
 }
 
 export function US16$reflection(): TypeInfo {
-    return union_type("Components_spi.US16", [], US16_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("System.Guid")], ["f1_2", int32_type]]]);
+    return union_type("Components\'.US16", [], US16_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("System.Guid")], ["f1_2", int32_type]]]);
 }
 
 export const enum US17_Tag {
@@ -1255,7 +1255,7 @@ export class US17_Cons<Tag extends keyof US17_Fields> extends Union {
 }
 
 export function US17$reflection(): TypeInfo {
-    return union_type("Components_spi.US17", [], US17_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", int64_type], ["f1_2", string_type]]]);
+    return union_type("Components\'.US17", [], US17_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", int64_type], ["f1_2", string_type]]]);
 }
 
 export class Mut26 extends Record {
@@ -1269,7 +1269,7 @@ export class Mut26 extends Record {
 }
 
 export function Mut26$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut26", [], Mut26, () => [["l0", int32_type], ["l1", US17$reflection()]]);
+    return record_type("Components\'.Mut26", [], Mut26, () => [["l0", int32_type], ["l1", US17$reflection()]]);
 }
 
 export class Mut27 extends Record {
@@ -1283,7 +1283,7 @@ export class Mut27 extends Record {
 }
 
 export function Mut27$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut27", [], Mut27, () => [["l0", int32_type], ["l1", obj_type]]);
+    return record_type("Components\'.Mut27", [], Mut27, () => [["l0", int32_type], ["l1", obj_type]]);
 }
 
 export const enum UH3_Tag {
@@ -1313,7 +1313,7 @@ export class UH3_Cons<Tag extends keyof UH3_Fields> extends Union {
 }
 
 export function UH3$reflection(): TypeInfo {
-    return union_type("Components_spi.UH3", [], UH3_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", int32_type], ["Item3", UH3$reflection()]], []]);
+    return union_type("Components\'.UH3", [], UH3_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", int32_type], ["Item3", UH3$reflection()]], []]);
 }
 
 export class Mut28 extends Record {
@@ -1327,7 +1327,7 @@ export class Mut28 extends Record {
 }
 
 export function Mut28$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut28", [], Mut28, () => [["l0", int32_type], ["l1", UH3$reflection()]]);
+    return record_type("Components\'.Mut28", [], Mut28, () => [["l0", int32_type], ["l1", UH3$reflection()]]);
 }
 
 export const enum US18_Tag {
@@ -1357,7 +1357,7 @@ export class US18_Cons<Tag extends keyof US18_Fields> extends Union {
 }
 
 export function US18$reflection(): TypeInfo {
-    return union_type("Components_spi.US18", [], US18_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("System.Guid")], ["f1_2", array_type(tuple_type(class_type("System.Guid"), obj_type))]]]);
+    return union_type("Components\'.US18", [], US18_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("System.Guid")], ["f1_2", array_type(tuple_type(class_type("System.Guid"), obj_type))]]]);
 }
 
 export const enum UH4_Tag {
@@ -1387,7 +1387,7 @@ export class UH4_Cons<Tag extends keyof UH4_Fields> extends Union {
 }
 
 export function UH4$reflection(): TypeInfo {
-    return union_type("Components_spi.UH4", [], UH4_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", obj_type], ["Item3", UH4$reflection()]], []]);
+    return union_type("Components\'.UH4", [], UH4_Cons, () => [[["Item1", class_type("System.Guid")], ["Item2", obj_type], ["Item3", UH4$reflection()]], []]);
 }
 
 export class Mut29 extends Record {
@@ -1401,7 +1401,7 @@ export class Mut29 extends Record {
 }
 
 export function Mut29$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut29", [], Mut29, () => [["l0", int32_type], ["l1", UH4$reflection()]]);
+    return record_type("Components\'.Mut29", [], Mut29, () => [["l0", int32_type], ["l1", UH4$reflection()]]);
 }
 
 export const enum US19_Tag {
@@ -1431,7 +1431,7 @@ export class US19_Cons<Tag extends keyof US19_Fields> extends Union {
 }
 
 export function US19$reflection(): TypeInfo {
-    return union_type("Components_spi.US19", [], US19_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", obj_type], ["f1_2", string_type]]]);
+    return union_type("Components\'.US19", [], US19_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", obj_type], ["f1_2", string_type]]]);
 }
 
 export class Mut30 extends Record {
@@ -1445,7 +1445,7 @@ export class Mut30 extends Record {
 }
 
 export function Mut30$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut30", [], Mut30, () => [["l0", int32_type], ["l1", US19$reflection()]]);
+    return record_type("Components\'.Mut30", [], Mut30, () => [["l0", int32_type], ["l1", US19$reflection()]]);
 }
 
 export const enum US20_Tag {
@@ -1475,7 +1475,7 @@ export class US20_Cons<Tag extends keyof US20_Fields> extends Union {
 }
 
 export function US20$reflection(): TypeInfo {
-    return union_type("Components_spi.US20", [], US20_Cons, () => [[], [["f1_0", array_type(US2$reflection())], ["f1_1", int32_type], ["f1_2", US3$reflection()], ["f1_3", string_type], ["f1_4", string_type]]]);
+    return union_type("Components\'.US20", [], US20_Cons, () => [[], [["f1_0", array_type(US2$reflection())], ["f1_1", int32_type], ["f1_2", US3$reflection()], ["f1_3", string_type], ["f1_4", string_type]]]);
 }
 
 export class Mut31 extends Record {
@@ -1489,7 +1489,7 @@ export class Mut31 extends Record {
 }
 
 export function Mut31$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut31", [], Mut31, () => [["l0", int32_type], ["l1", US20$reflection()]]);
+    return record_type("Components\'.Mut31", [], Mut31, () => [["l0", int32_type], ["l1", US20$reflection()]]);
 }
 
 export class Mut32 extends Record {
@@ -1503,7 +1503,7 @@ export class Mut32 extends Record {
 }
 
 export function Mut32$reflection(): TypeInfo {
-    return record_type("Components_spi.Mut32", [], Mut32, () => [["l0", int32_type], ["l1", array_type(tuple_type(US2$reflection(), obj_type, string_type))]]);
+    return record_type("Components\'.Mut32", [], Mut32, () => [["l0", int32_type], ["l1", array_type(tuple_type(US2$reflection(), obj_type, string_type))]]);
 }
 
 export function closure0(unitVar: void, unitVar_1: void): [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] {
@@ -1518,7 +1518,7 @@ export function method0(): any {
 }
 
 export function method2(): [string, any, string, string, boolean] {
-    const v0_1: any = components_spi.env;
+    const v0_1: any = components.env;
     const v1_1: string = v0_1.CODESPACE_NAME || "";
     const v2: string = v0_1.GITHUB_RUN_ID || "";
     const v3: string = v0_1.GITHUB_SHA || "";
@@ -1949,7 +1949,7 @@ export function method18(v0_1_mut: int32, v1_1_mut: string): string {
 export function closure39(v0_1: () => US4, v1_1: () => any[], v2: string, v3: string, v4: any, v5: string, v6: string, v7: boolean, v8: int64, v9: US4, v10: any[]): void {
     const v11: US4 = v0_1();
     if (getUnionFields(v11, US4$reflection())[0].tag <= getUnionFields(v9, US4$reflection())[0].tag) {
-        const v25: any[] = [["timestamp:", method18(6, toString(op_Subtraction(getTicks(utcNow()), v8)))], ["run_id:", components_spi.run_id]];
+        const v25: any[] = [["timestamp:", method18(6, toString(op_Subtraction(getTicks(utcNow()), v8)))], ["run_id:", components.run_id]];
         const v26: any[] = v1_1();
         const v27: string = JSON.stringify(v26);
         const v28: string = JSON.stringify(v10);
@@ -1979,7 +1979,7 @@ export function method17(v0_1: () => US4, v1_1: () => any[], v2: string): (arg0:
 }
 
 export function method16(v0_1: () => any[], v1_1: string): (arg0: US4, arg1: any[]) => void {
-    const v110: any = components_spi.state_context;
+    const v110: any = components.state_context;
     const v113: any = useContext;
     return method17((v113(v110))[18], v0_1, v1_1);
 }
@@ -2360,13 +2360,13 @@ export function method15(v0_1: Mut5): any {
         v149 = US10_US10_0();
     }
     const v150: int32 = nonSeeded().Next0() | 0;
-    const v259: any = components_spi.state_context;
+    const v259: any = components.state_context;
     const v262: any = useContext;
     const patternInput_2: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v262(v259);
-    const v393: any = components_spi.state_context;
+    const v393: any = components.state_context;
     const v394: any = useContext;
     const patternInput_3: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v394(v393);
-    const v525: any = components_spi.state_context;
+    const v525: any = components.state_context;
     const v526: any = useContext;
     const patternInput_4: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v526(v525);
     const v548: (arg0: US5) => void = patternInput_4[21];
@@ -2584,7 +2584,7 @@ export function closure89(unitVar: void, v0_1: string): any {
 }
 
 export function closure90(unitVar: void, unitVar_1: void): [() => string, (arg0: string) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[4], patternInput[5]];
@@ -2597,7 +2597,7 @@ export function method28(v0_1: (arg0: Mut8) => any, v1_1: (arg0: string) => any,
 }
 
 export function closure91(unitVar: void, unitVar_1: void): [() => string, (arg0: string) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[6], patternInput[7]];
@@ -2641,7 +2641,7 @@ export function closure96(unitVar: void, v0_1: int32): any {
 }
 
 export function closure97(unitVar: void, unitVar_1: void): [() => int32, (arg0: int32) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[2], patternInput[3]];
@@ -2705,7 +2705,7 @@ export function closure102(unitVar: void, v0_1: [() => US0, (arg0: US0) => void,
 }
 
 export function closure103(unitVar: void, unitVar_1: void): [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[0], patternInput[1]];
@@ -2755,7 +2755,7 @@ export function closure108(unitVar: void, v0_1: [US2, any, string][]): any {
 }
 
 export function closure109(unitVar: void, unitVar_1: void): [() => [US2, any, string][], (arg0: [US2, any, string][]) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[10], patternInput[11]];
@@ -2805,7 +2805,7 @@ export function closure114(unitVar: void, v0_1: [US2[], int32, US3, string, stri
 }
 
 export function closure115(unitVar: void, unitVar_1: void): [() => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[8], patternInput[9]];
@@ -2855,7 +2855,7 @@ export function closure120(unitVar: void, v0_1: US4): any {
 }
 
 export function closure121(unitVar: void, unitVar_1: void): [() => US4, (arg0: US4) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[18], patternInput[19]];
@@ -2905,7 +2905,7 @@ export function closure126(unitVar: void, v0_1: US5): any {
 }
 
 export function closure127(unitVar: void, unitVar_1: void): [() => US5, (arg0: US5) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[20], patternInput[21]];
@@ -2955,7 +2955,7 @@ export function closure132(unitVar: void, v0_1: [string, int32][]): any {
 }
 
 export function closure133(unitVar: void, unitVar_1: void): [() => [string, int32][], (arg0: [string, int32][]) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[16], patternInput[17]];
@@ -3005,7 +3005,7 @@ export function closure138(unitVar: void, v0_1: [string, any][]): any {
 }
 
 export function closure139(unitVar: void, unitVar_1: void): [() => [string, any][], (arg0: [string, any][]) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[14], patternInput[15]];
@@ -3018,7 +3018,7 @@ export function method44(v0_1: (arg0: Mut16) => any, v1_1: (arg0: [string, any][
 }
 
 export function closure140(unitVar: void, unitVar_1: void): [() => [string, any][], (arg0: [string, any][]) => void] {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     return [patternInput[12], patternInput[13]];
@@ -3106,7 +3106,7 @@ export function closure6(v0_1: () => US4, unitVar: void): any[] {
 }
 
 export function method3(): any {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     const v136: any = Box;
@@ -3552,13 +3552,13 @@ export function closure192(v0_1: (arg0: string) => void, v1_1: () => string, v2:
 }
 
 export function method51(): any {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
-    const v242: any = components_spi.state_context;
+    const v242: any = components.state_context;
     const v243: any = useContext;
     const patternInput_1: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v243(v242);
-    const v374: any = components_spi.state_context;
+    const v374: any = components.state_context;
     const v375: any = useContext;
     const patternInput_2: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v375(v374);
     const v398: (arg0: Mut1) => any = (v: Mut1): any => closure7(void 0, v);
@@ -3683,7 +3683,7 @@ export function closure214(v0_1: () => [() => US0, (arg0: US0) => void, () => st
 }
 
 export function method56(): any {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     const v134: (arg0: Mut1) => any = (v: Mut1): any => closure7(void 0, v);
@@ -3836,7 +3836,7 @@ export function closure249(v0_1: Mut20, v1_1: (arg0: [US2[], int32, US3, string,
 }
 
 export function method60(v0_1: Mut20): any {
-    const v109: any = components_spi.state_context;
+    const v109: any = components.state_context;
     const v112: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v112(v109);
     const v121: () => [US2[], int32, US3, string, string][] = patternInput[8];
@@ -3945,7 +3945,7 @@ export function closure257(v0_1: Mut22, v1_1: (arg0: [US2[], int32, US3, string,
 }
 
 export function method63(v0_1: Mut22): any {
-    const v109: any = components_spi.state_context;
+    const v109: any = components.state_context;
     const v112: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v112(v109);
     const v121: () => [US2[], int32, US3, string, string][] = patternInput[8];
@@ -4175,7 +4175,7 @@ export function closure269(v0_1: Mut24, _arg: [US7, US7, US7, US8, US7, US7, US7
 }
 
 export function method68(v0_1: Mut24): any {
-    const v109: any = components_spi.state_context;
+    const v109: any = components.state_context;
     const v112: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v112(v109);
     const v121: () => [US2[], int32, US3, string, string][] = patternInput[8];
@@ -4724,10 +4724,10 @@ export function closure299(v0_1: () => [US2, any, string][], v1_1: (arg0: US4, a
 }
 
 export function method74(v0_1: string, v1_1: () => [string, int32][], v2: (arg0: [[string, int32][], US2, string, int32]) => void, v3: (arg0: any) => any): [() => void, () => void] {
-    const v112: any = components_spi.state_context;
+    const v112: any = components.state_context;
     const v115: any = useContext;
     const v134: () => US4 = (v115(v112))[18];
-    const v246: any = components_spi.state_context;
+    const v246: any = components.state_context;
     const v247: any = useContext;
     const v258: () => [US2, any, string][] = (v247(v246))[10];
     const patternInput_2: [() => void, () => void] = method75();
@@ -4979,7 +4979,7 @@ export function closure300(v0_1: () => [string, int32][], v1_1: () => void, v2: 
 }
 
 export function method73(): any {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     const v128: () => [string, int32][] = patternInput[16];
@@ -5304,10 +5304,10 @@ export function closure334(v0_1: () => [US2, any, string][], v1_1: (arg0: US4, a
 }
 
 export function method88(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: (arg0: any) => any): [() => void, () => void] {
-    const v112: any = components_spi.state_context;
+    const v112: any = components.state_context;
     const v115: any = useContext;
     const v134: () => US4 = (v115(v112))[18];
-    const v246: any = components_spi.state_context;
+    const v246: any = components.state_context;
     const v247: any = useContext;
     const v258: () => [US2, any, string][] = (v247(v246))[10];
     const patternInput_2: [() => void, () => void] = method75();
@@ -5545,7 +5545,7 @@ export function closure335(v0_1: () => [string, any][], v1_1: () => void, v2: ()
 }
 
 export function method87(): any {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     const v126: () => [string, any][] = patternInput[14];
@@ -5712,7 +5712,7 @@ export function closure359(v0_1: () => [string, any][], v1_1: () => void, v2: ()
 }
 
 export function method96(): any {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
     const v124: () => [string, any][] = patternInput[12];
@@ -6185,14 +6185,14 @@ export function closure390(v0_1: (arg0: [[US2[], int32, US3, string, string][], 
 }
 
 export function method97(): any {
-    const v108: any = components_spi.state_context;
+    const v108: any = components.state_context;
     const v111: any = useContext;
     const patternInput: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v111(v108);
-    const v242: any = components_spi.state_context;
+    const v242: any = components.state_context;
     const v243: any = useContext;
     const patternInput_1: [() => [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][], (arg0: [() => US0, (arg0: US0) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void][]) => void, () => int32, (arg0: int32) => void, () => string, (arg0: string) => void, () => string, (arg0: string) => void, () => [US2[], int32, US3, string, string][], (arg0: [US2[], int32, US3, string, string][]) => void, () => [US2, any, string][], (arg0: [US2, any, string][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, any][], (arg0: [string, any][]) => void, () => [string, int32][], (arg0: [string, int32][]) => void, () => US4, (arg0: US4) => void, () => US5, (arg0: US5) => void] = v243(v242);
     const v254: () => [US2, any, string][] = patternInput_1[10];
-    const v374: any = components_spi.state_context;
+    const v374: any = components.state_context;
     const v375: any = useContext;
     const v384: () => [US2[], int32, US3, string, string][] = (v375(v374))[8];
     const v398: () => any[] = (): any[] => closure378(v254, v384, void 0);
@@ -6394,7 +6394,7 @@ export const v75 = [v74];
 
 export const v76 = createObj(v75);
 
-op_DynamicAssignment<any, string, any>()(window)("components_spi")(v76);
+op_DynamicAssignment<any, string, any>()(window)("components")(v76);
 
 export const v77 = nonSeeded().Next0();
 
@@ -6442,8 +6442,6 @@ export const v206 = [v192, v196, v199, v203, v205, v74];
 
 export const v207 = createObj(v206);
 
-op_DynamicAssignment<any, string, any>()(window)("components_spi")(v207);
+op_DynamicAssignment<any, string, any>()(window)("components")(v207);
 
 v1.l0 = v207;
-
-

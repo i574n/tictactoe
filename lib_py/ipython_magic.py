@@ -94,36 +94,53 @@ def spiral(arg, cell, test=False):
     arg = args[0]
 
     def split_imports(code): return util.list_partition(code.splitlines(), lambda line: line.startswith('open '))
-    cache_imports, cache_exports = split_imports(_spiral_cache[arg])
+    cache_imports, cache_exports = split_imports(_spiral_cache.get(arg, ''))
 
     def cwpath(*arg): return os.path.abspath(os.path.join(os.getcwd(), '..', *arg))
 
     inplace = cell.strip() == '' and arg == ''
     if inplace:
-        cell = util.read_file(cwpath('lib_spi', 'main.spi'))
+        # cell = util.read_file(cwpath('lib_spi', 'main.spi'))
+        raise Exception('spiral inplace')
 
-    cell_imports, cell_exports = split_imports(cell)
-    cell_exports = '\n'.join(cell_exports).strip('\n').split('\n')
+    if arg not in ['spi', 'spir', 'run'] and not arg.startswith('.'):
+        raise Exception('invalid arg: ' + arg)
 
-    if arg == 'run':
-        cell_imports = ['open console_fsx'] + cell_imports
-        cell_exports = ['inl main () : () = '] + list(map(lambda l: f'    {l}', cell_exports))
+    file_arg = ''
+    if arg.startswith('.'):
+        file_arg = arg
 
-    spi_imports = cache_imports + cell_imports
-    spi_exports = cache_exports + ([] if cell_exports == [''] else (['', '// cell'] + cell_exports))
+    if arg.startswith('.'):
+        new_code_spi = util.read_file(arg)
+    else:
+        cell_imports, cell_exports = split_imports(cell)
+        cell_exports = '\n'.join(cell_exports).strip('\n').split('\n')
 
-    def join_imports(imports, exports):
-        return ''.join([
-            '\n'.join(list(dict.fromkeys(imports))),
-            '' if len(imports) == 0 or len(exports) == 0 else '\n\n\n',
-            '\n'.join(exports).strip('\n') + '\n'
-        ])
-    new_code_spi = join_imports(spi_imports, spi_exports)
+        if arg == 'run':
+            cell_imports = ['open console_fsx'] + cell_imports
+            cell_exports = ['inl main () : () = '] + list(map(lambda l: f'    {l}', cell_exports))
+
+        spi_imports = cache_imports + cell_imports
+        spi_exports = cache_exports + ([] if cell_exports == [''] else (['', '// cell'] + cell_exports))
+
+        def join_imports(imports, exports):
+            return ''.join([
+                '\n'.join(list(dict.fromkeys(imports))),
+                '' if len(imports) == 0 or len(exports) == 0 else '\n\n\n',
+                '\n'.join(exports).strip('\n') + '\n'
+            ])
+        new_code_spi = join_imports(spi_imports, spi_exports)
 
     if _notebook_name is None:
         _notebook_name = util.get_notebook_name()
 
-    spi_path = cwpath('lib_spi', f'{_notebook_name}.{arg}' if arg in ['spi', 'spir'] else 'main.spi')
+    spi_path = cwpath(
+        'lib_spi',
+        'ipython.spi' if arg == 'run' else f'{_notebook_name}.{arg}'
+    ) if arg in ['spi', 'spir', 'run'] else arg
+
+    if not os.path.exists(spi_path):
+        util.write_file(spi_path, '')
 
     _spiral_cache[arg] = new_code_spi
 
@@ -132,24 +149,19 @@ def spiral(arg, cell, test=False):
     else:
         old_code_spi = util.read_file(spi_path)
         if new_code_spi != old_code_spi:
-            if arg in ['run', '']:
-                if not inplace:
-                    shutil.copyfile(cwpath('lib_spi', 'main.spi'), cwpath('lib_spi', 'main.spi.tmp'))
-                shutil.copyfile(cwpath('lib_spi', 'main.fsx'), cwpath('lib_spi', 'main.fsx.tmp'))
-
             try:
                 if not inplace:
                     util.write_file(spi_path, new_code_spi)
 
-                if arg in ['run', '']:
-                    fsx_path = cwpath("lib_fsx", "_ipython_spi.fsx" if arg == 'run' else f'{_notebook_name}_spi.fsx')
+                if arg in ['run', file_arg]:
+                    fsx_path = cwpath("lib_spi", "ipython.fsx" if arg == 'run' else f'{_notebook_name}_spi.fsx')
                     util.write_file(fsx_path, '')
 
                     timeout_seconds = 20
                     run_node_output = util.run_node(
                         '\n'.join([
                             f'import * as spiral_api from "../lib_ts/spiral_api"',
-                            f'await spiral_api.spiToFsx("", "{fsx_path}")'
+                            f'await spiral_api.spiToFsx("{spi_path}", "{fsx_path}")'
                         ]),
                         timeout=int(get_arg(1, timeout_seconds))
                     ).splitlines()
@@ -166,6 +178,7 @@ def spiral(arg, cell, test=False):
                     new_code_fsx = read_fsx()
 
                     if arg == 'run':
+                        util.write_file(spi_path, '')
                         util.write_file(fsx_path, '')
 
                     print({
@@ -179,11 +192,6 @@ def spiral(arg, cell, test=False):
                 print(f'ipython_magic.spiral() error. new_code_spi={new_code_spi}')
                 _spiral_cache = last_spiral_cache
                 raise e
-            finally:
-                if arg in ['run', '']:
-                    if not inplace:
-                        os.rename(cwpath('lib_spi', 'main.spi.tmp'), cwpath('lib_spi', 'main.spi'))
-                    os.rename(cwpath('lib_spi', 'main.fsx.tmp'), cwpath('lib_spi', 'main.fsx'))
 
         return spi_path
 

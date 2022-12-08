@@ -12,7 +12,7 @@ inl use_atom forall context_type value_type.
     (signal_fn : context_type -> atom value_type)
     : atom value_type
     =
-    inl state_context : any = $"Fable.Core.JsInterop.emitJsExpr () \"components_spi.state_context\""
+    inl state_context : any = $"Fable.Core.JsInterop.emitJsExpr () \"components.state_context\""
     inl useContext' = real useContext_ ()
     inl context : context_type = $"!useContext'.Invoke !state_context |> unbox<`context_type>"
     inl result : atom value_type = signal_fn context

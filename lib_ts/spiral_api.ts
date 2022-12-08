@@ -25,32 +25,39 @@ var spiBuildFileReq = async (uri: string, backend: string): Promise<void> => req
 var spiprojOpenReq = async (uri: string, spiprojText: string): Promise<void> => requestJSON({ ProjectFileOpen: { uri, spiprojText } })
 
 // cell
-export var spiToFsx = async (mainSpiPath = '', newFsxPath = '', log = false) => {
-    const isTemp = !mainSpiPath
-    const srcPath = path.join(process.cwd(), '..', 'lib_spi')
-    const destPath = isTemp ? fs.mkdtempSync(path.join('/tmp', 'spiToFsx-')) : srcPath
+export var spiToFsx = async (spiPath: string, newFsxPath = '', log = false) => {
+    const srcPath = path.dirname(spiPath)
     
-    const spiprojPath = path.join(destPath, 'package.spiproj')
-    if (!mainSpiPath) {
-        mainSpiPath = path.join(destPath, 'main.spi')
-        fs.cpSync(srcPath, destPath, { recursive: true })   
+    const spiprojPath : string | undefined = 
+        util
+            .range(10)
+            .map(i => 
+                path.join(srcPath, '../'.repeat(i), 'package.spiproj')
+            )
+            .find(fs.existsSync)
+            
+    if (!spiprojPath) {
+        util_node.logStep('spiral_api.spiToFsx() invalid spiprojPath')
+        return ""
     }
 
-    const fsxPath = mainSpiPath.replace('.spi', '.fsx')
+    const fsxPath = spiPath.replace('.spir', '.spi').replace('.spi', '.fsx')
     fs.writeFileSync(fsxPath, '')
     
     await util.timeout(spiprojOpenReq(spiprojPath, fs.readFileSync(spiprojPath).toString()), 5000)
-    await util.timeout(spiBuildFileReq(mainSpiPath, 'Fsharp'), 5000)
+    await util.timeout(spiBuildFileReq(spiPath, 'Fsharp'), 5000)
 
-    const lines = (await util_node.waitFileChange(fsxPath)).split('\n')
-    const [imports, code] = lines.reduce(
-        ([imports, code]: string[][], line) =>
-            /^(open|\#r) .*?$/.test(line)
-                ? [[...imports, line], code]
-                : [imports, [...code, line]],
-            [[], []]
-    )
-    const newFsx = [...imports, '', ...code].join('\n').trim() + "\n"
+    const lines = (await util_node.waitFileChange(fsxPath))//.split('\n')
+    // const [imports, code] = lines.reduce(
+    //     ([imports, code]: string[][], line) =>
+    //         /^(open|\#r) .*?$/.test(line)
+    //             ? [[...imports, line], code]
+    //             : [imports, [...code, line]],
+    //         [[], []]
+    // )
+    // const newFsx = [...imports, '', ...code].join('\n').trim() + "\n"
+    const newFsx = lines
+
     fs.writeFileSync(newFsxPath || fsxPath, newFsx)
     if(log) {
         util_node.logStep('spiral_api.spiToFsx() end')

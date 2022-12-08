@@ -1,0 +1,37 @@
+open ui.db
+
+
+inl imports () =
+    ()
+
+inl tests () =
+    inl a = 1i32
+    inl b = 1i32
+    test (a = b)
+
+inl update (request : request) : response =
+    console_fsx.inspect "request:"
+    console_fsx.inspect request
+    null ()
+
+type map k v = $"Map<`k, `v>"
+inl new_map forall k v. (items : a i32 (pair k v)) : map k v =
+    $"Map !items"
+
+
+inl main () =
+    print_static "<peer>"
+
+    inl result = mut { obj = null () : any }
+
+    imports ()
+    tests ()
+
+    inl result_obj : map string any =
+        new_map (a ;[
+            new_pair "update" !!update
+            new_pair "endpoint" !!(sync_endpoint ())
+        ])
+    result.obj <- !!result_obj
+
+    print_static "</peer>"

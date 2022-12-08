@@ -16,4 +16,3 @@ paket-files/
 .paket/
 
 _ipython_node.ts
-_ipython_spi.fsx

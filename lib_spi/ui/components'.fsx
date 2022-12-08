@@ -132,7 +132,7 @@ and method0 () : obj =
     let v4 : obj = Fable.Core.JsInterop.emitJsExpr () $"{v2}<ReturnType<typeof {v3}>>()"
     v4
 and method2 () : struct (string * obj * string * string * bool) =
-    let v0 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.env"
+    let v0 : obj = Fable.Core.JsInterop.emitJsExpr () "components.env"
     let v1 : string = Fable.Core.JsInterop.emitJsExpr v0 "$0.CODESPACE_NAME || \"\""
     let v2 : string = Fable.Core.JsInterop.emitJsExpr v0 "$0.GITHUB_RUN_ID || \"\""
     let v3 : string = Fable.Core.JsInterop.emitJsExpr v0 "$0.GITHUB_SHA || \"\""
@@ -1858,7 +1858,7 @@ and closure39 (v0 : (unit -> US4), v1 : (unit -> (obj [])), v2 : string, v3 : st
         let v17 : string = v16.ToString ()
         let v18 : int32 = 6
         let v19 : string = method18(v18, v17)
-        let v20 : int32 = Fable.Core.JsInterop.emitJsExpr () "components_spi.run_id"
+        let v20 : int32 = Fable.Core.JsInterop.emitJsExpr () "components.run_id"
         let v21 : string = "timestamp:"
         let v22 : obj = struct (v21, v19)
         let v23 : string = "run_id:"
@@ -1887,7 +1887,7 @@ and method17 (v0 : (unit -> US4), v1 : (unit -> (obj [])), v2 : string) : (US4 -
     let v8 : int64 = System.DateTime.UtcNow.Ticks
     closure38(v0, v1, v2, v3, v4, v5, v6, v7, v8)
 and method16 (v0 : (unit -> (obj [])), v1 : string) : (US4 -> ((obj []) -> unit)) =
-    let v110 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v110 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v111 : string = "useContext"
     let v112 : string = "solid-js"
     let v113 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v111 v112
@@ -2432,15 +2432,15 @@ and method15 (v0 : Mut5) : Fable.Core.JSX.Element =
             let v147 : (unit -> (Fable.Core.JSX.Element [])) = v146.Invoke v143 |> unbox<unit -> Fable.Core.JSX.Element[]>
             US10_1(v147)
     let v150 : int32 = System.Random().Next ()
-    let v259 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v259 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v260 : string = "useContext"
     let v261 : string = "solid-js"
     let v262 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v260 v261
     let struct (v263 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v264 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v265 : (unit -> int32), v266 : (int32 -> unit), v267 : (unit -> string), v268 : (string -> unit), v269 : (unit -> string), v270 : (string -> unit), v271 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v272 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v273 : (unit -> (struct (US2 * obj * string) [])), v274 : ((struct (US2 * obj * string) []) -> unit), v275 : (unit -> (struct (System.Guid * obj) [])), v276 : ((struct (System.Guid * obj) []) -> unit), v277 : (unit -> (struct (System.Guid * obj) [])), v278 : ((struct (System.Guid * obj) []) -> unit), v279 : (unit -> (struct (System.Guid * int32) [])), v280 : ((struct (System.Guid * int32) []) -> unit), v281 : (unit -> US4), v282 : (US4 -> unit), v283 : (unit -> US5), v284 : (US5 -> unit)) = v262.Invoke v259 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v393 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v393 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v394 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v260 v261
     let struct (v395 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v396 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v397 : (unit -> int32), v398 : (int32 -> unit), v399 : (unit -> string), v400 : (string -> unit), v401 : (unit -> string), v402 : (string -> unit), v403 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v404 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v405 : (unit -> (struct (US2 * obj * string) [])), v406 : ((struct (US2 * obj * string) []) -> unit), v407 : (unit -> (struct (System.Guid * obj) [])), v408 : ((struct (System.Guid * obj) []) -> unit), v409 : (unit -> (struct (System.Guid * obj) [])), v410 : ((struct (System.Guid * obj) []) -> unit), v411 : (unit -> (struct (System.Guid * int32) [])), v412 : ((struct (System.Guid * int32) []) -> unit), v413 : (unit -> US4), v414 : (US4 -> unit), v415 : (unit -> US5), v416 : (US5 -> unit)) = v394.Invoke v393 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v525 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v525 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v526 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v260 v261
     let struct (v527 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v528 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v529 : (unit -> int32), v530 : (int32 -> unit), v531 : (unit -> string), v532 : (string -> unit), v533 : (unit -> string), v534 : (string -> unit), v535 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v536 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v537 : (unit -> (struct (US2 * obj * string) [])), v538 : ((struct (US2 * obj * string) []) -> unit), v539 : (unit -> (struct (System.Guid * obj) [])), v540 : ((struct (System.Guid * obj) []) -> unit), v541 : (unit -> (struct (System.Guid * obj) [])), v542 : ((struct (System.Guid * obj) []) -> unit), v543 : (unit -> (struct (System.Guid * int32) [])), v544 : ((struct (System.Guid * int32) []) -> unit), v545 : (unit -> US4), v546 : (US4 -> unit), v547 : (unit -> US5), v548 : (US5 -> unit)) = v526.Invoke v525 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let v549 : (unit -> (obj [])) = closure37(v150, v267, v413, v547)
@@ -2689,7 +2689,7 @@ and closure89 () (v0 : string) : obj =
     let v1 : obj = v0
     v1
 and closure90 () () : struct ((unit -> string) * (string -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -2703,7 +2703,7 @@ and method28 (v0 : (Mut8 -> Fable.Core.JSX.Element), v1 : (string -> obj), v2 : 
     let v8 : Fable.Core.JSX.Element = v7.Invoke (v0, v4) |> unbox<Fable.Core.JSX.Element>
     v8
 and closure91 () () : struct ((unit -> string) * (string -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -2754,7 +2754,7 @@ and closure96 () (v0 : int32) : obj =
     let v1 : obj = v0
     v1
 and closure97 () () : struct ((unit -> int32) * (int32 -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -2826,7 +2826,7 @@ and closure102 () (v0 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string
     let v19 : obj = v2
     v19
 and closure103 () () : struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -2884,7 +2884,7 @@ and closure108 () (v0 : (struct (US2 * obj * string) [])) : obj =
     let v1 : obj = v0
     v1
 and closure109 () () : struct ((unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -2942,7 +2942,7 @@ and closure114 () (v0 : (struct ((US2 []) * int32 * US3 * string * string) [])) 
     let v1 : obj = v0
     v1
 and closure115 () () : struct ((unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -3014,7 +3014,7 @@ and closure120 () (v0 : US4) : obj =
     let v6 : obj = v5
     v6
 and closure121 () () : struct ((unit -> US4) * (US4 -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -3072,7 +3072,7 @@ and closure126 () (v0 : US5) : obj =
     let v1 : obj = v0
     v1
 and closure127 () () : struct ((unit -> US5) * (US5 -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -3130,7 +3130,7 @@ and closure132 () (v0 : (struct (System.Guid * int32) [])) : obj =
     let v1 : obj = v0
     v1
 and closure133 () () : struct ((unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -3188,7 +3188,7 @@ and closure138 () (v0 : (struct (System.Guid * obj) [])) : obj =
     let v1 : obj = v0
     v1
 and closure139 () () : struct ((unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -3202,7 +3202,7 @@ and method44 (v0 : (Mut16 -> Fable.Core.JSX.Element), v1 : ((struct (System.Guid
     let v8 : Fable.Core.JSX.Element = v7.Invoke (v0, v4) |> unbox<Fable.Core.JSX.Element>
     v8
 and closure140 () () : struct ((unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -3329,7 +3329,7 @@ and closure6 (v0 : (unit -> US4)) () : (Fable.Core.JSX.Element []) =
     let v4 : Fable.Core.JSX.Element = method22(v1, v2, v3)
     [|v4|]
 and method3 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -3875,15 +3875,15 @@ and closure192 (v0 : (string -> unit), v1 : (unit -> string), v2 : (string -> un
     let v21 : Fable.Core.JSX.Element = method26(v6, v17, v18, v19, v20)
     [|v11; v16; v21|]
 and method51 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v242 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v242 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v243 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v244 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v245 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v246 : (unit -> int32), v247 : (int32 -> unit), v248 : (unit -> string), v249 : (string -> unit), v250 : (unit -> string), v251 : (string -> unit), v252 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v253 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v254 : (unit -> (struct (US2 * obj * string) [])), v255 : ((struct (US2 * obj * string) []) -> unit), v256 : (unit -> (struct (System.Guid * obj) [])), v257 : ((struct (System.Guid * obj) []) -> unit), v258 : (unit -> (struct (System.Guid * obj) [])), v259 : ((struct (System.Guid * obj) []) -> unit), v260 : (unit -> (struct (System.Guid * int32) [])), v261 : ((struct (System.Guid * int32) []) -> unit), v262 : (unit -> US4), v263 : (US4 -> unit), v264 : (unit -> US5), v265 : (US5 -> unit)) = v243.Invoke v242 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v374 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v374 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v375 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v376 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v377 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v378 : (unit -> int32), v379 : (int32 -> unit), v380 : (unit -> string), v381 : (string -> unit), v382 : (unit -> string), v383 : (string -> unit), v384 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v385 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v386 : (unit -> (struct (US2 * obj * string) [])), v387 : ((struct (US2 * obj * string) []) -> unit), v388 : (unit -> (struct (System.Guid * obj) [])), v389 : ((struct (System.Guid * obj) []) -> unit), v390 : (unit -> (struct (System.Guid * obj) [])), v391 : ((struct (System.Guid * obj) []) -> unit), v392 : (unit -> (struct (System.Guid * int32) [])), v393 : ((struct (System.Guid * int32) []) -> unit), v394 : (unit -> US4), v395 : (US4 -> unit), v396 : (unit -> US5), v397 : (US5 -> unit)) = v375.Invoke v374 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let v398 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
@@ -4031,7 +4031,7 @@ and closure214 (v0 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> 
     let v8 : Fable.Core.JSX.Element = method5(v6, v7, v3)
     [|v8|]
 and method56 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -4215,7 +4215,7 @@ and closure249 (v0 : Mut20, v1 : ((struct ((US2 []) * int32 * US3 * string * str
     v1 v6
     ()
 and method60 (v0 : Mut20) : Fable.Core.JSX.Element =
-    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v110 : string = "useContext"
     let v111 : string = "solid-js"
     let v112 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v110 v111
@@ -4342,7 +4342,7 @@ and closure257 (v0 : Mut22, v1 : ((struct ((US2 []) * int32 * US3 * string * str
     v1 v6
     ()
 and method63 (v0 : Mut22) : Fable.Core.JSX.Element =
-    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v110 : string = "useContext"
     let v111 : string = "solid-js"
     let v112 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v110 v111
@@ -4689,7 +4689,7 @@ and closure269 (v0 : Mut24) struct (v1 : US7, v2 : US7, v3 : US7, v4 : US8, v5 :
     let v85 : US7 = US7_1(v82)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v84, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v85, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
 and method68 (v0 : Mut24) : Fable.Core.JSX.Element =
-    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v110 : string = "useContext"
     let v111 : string = "solid-js"
     let v112 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v110 v111
@@ -5561,12 +5561,12 @@ and closure299 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((
     let v20 : int32 = Fable.Core.JsInterop.emitJsExpr () "null"
     method79(v2, v3, v4, v5, v6, v7, v1, v19, v13, v20, v18)
 and method74 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v3 : (obj -> Fable.Core.JS.Promise<int32>)) : struct ((unit -> unit) * (unit -> unit)) =
-    let v112 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v112 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v113 : string = "useContext"
     let v114 : string = "solid-js"
     let v115 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
     let struct (v116 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v117 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v118 : (unit -> int32), v119 : (int32 -> unit), v120 : (unit -> string), v121 : (string -> unit), v122 : (unit -> string), v123 : (string -> unit), v124 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v125 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v126 : (unit -> (struct (US2 * obj * string) [])), v127 : ((struct (US2 * obj * string) []) -> unit), v128 : (unit -> (struct (System.Guid * obj) [])), v129 : ((struct (System.Guid * obj) []) -> unit), v130 : (unit -> (struct (System.Guid * obj) [])), v131 : ((struct (System.Guid * obj) []) -> unit), v132 : (unit -> (struct (System.Guid * int32) [])), v133 : ((struct (System.Guid * int32) []) -> unit), v134 : (unit -> US4), v135 : (US4 -> unit), v136 : (unit -> US5), v137 : (US5 -> unit)) = v115.Invoke v112 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v246 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v246 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v247 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
     let struct (v248 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v249 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v250 : (unit -> int32), v251 : (int32 -> unit), v252 : (unit -> string), v253 : (string -> unit), v254 : (unit -> string), v255 : (string -> unit), v256 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v257 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v258 : (unit -> (struct (US2 * obj * string) [])), v259 : ((struct (US2 * obj * string) []) -> unit), v260 : (unit -> (struct (System.Guid * obj) [])), v261 : ((struct (System.Guid * obj) []) -> unit), v262 : (unit -> (struct (System.Guid * obj) [])), v263 : ((struct (System.Guid * obj) []) -> unit), v264 : (unit -> (struct (System.Guid * int32) [])), v265 : ((struct (System.Guid * int32) []) -> unit), v266 : (unit -> US4), v267 : (US4 -> unit), v268 : (unit -> US5), v269 : (US5 -> unit)) = v247.Invoke v246 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let struct (v270 : (unit -> unit), v271 : (unit -> unit)) = method75()
@@ -5829,7 +5829,7 @@ and closure300 (v0 : (unit -> (struct (System.Guid * int32) [])), v1 : (unit -> 
     let v83 : US12 = US12_1(v78)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v80, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v82, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v83, v66, v67, v68, v69, v70, v71, v72)
 and method73 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -6406,12 +6406,12 @@ and closure334 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((
     let v20 : (struct (System.Guid * obj) []) = Fable.Core.JsInterop.emitJsExpr () "null"
     method90(v2, v3, v4, v5, v6, v7, v1, v19, v13, v20, v18)
 and method88 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>)) : struct ((unit -> unit) * (unit -> unit)) =
-    let v112 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v112 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v113 : string = "useContext"
     let v114 : string = "solid-js"
     let v115 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
     let struct (v116 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v117 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v118 : (unit -> int32), v119 : (int32 -> unit), v120 : (unit -> string), v121 : (string -> unit), v122 : (unit -> string), v123 : (string -> unit), v124 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v125 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v126 : (unit -> (struct (US2 * obj * string) [])), v127 : ((struct (US2 * obj * string) []) -> unit), v128 : (unit -> (struct (System.Guid * obj) [])), v129 : ((struct (System.Guid * obj) []) -> unit), v130 : (unit -> (struct (System.Guid * obj) [])), v131 : ((struct (System.Guid * obj) []) -> unit), v132 : (unit -> (struct (System.Guid * int32) [])), v133 : ((struct (System.Guid * int32) []) -> unit), v134 : (unit -> US4), v135 : (US4 -> unit), v136 : (unit -> US5), v137 : (US5 -> unit)) = v115.Invoke v112 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v246 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v246 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v247 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
     let struct (v248 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v249 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v250 : (unit -> int32), v251 : (int32 -> unit), v252 : (unit -> string), v253 : (string -> unit), v254 : (unit -> string), v255 : (string -> unit), v256 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v257 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v258 : (unit -> (struct (US2 * obj * string) [])), v259 : ((struct (US2 * obj * string) []) -> unit), v260 : (unit -> (struct (System.Guid * obj) [])), v261 : ((struct (System.Guid * obj) []) -> unit), v262 : (unit -> (struct (System.Guid * obj) [])), v263 : ((struct (System.Guid * obj) []) -> unit), v264 : (unit -> (struct (System.Guid * int32) [])), v265 : ((struct (System.Guid * int32) []) -> unit), v266 : (unit -> US4), v267 : (US4 -> unit), v268 : (unit -> US5), v269 : (US5 -> unit)) = v247.Invoke v246 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let struct (v270 : (unit -> unit), v271 : (unit -> unit)) = method75()
@@ -6662,7 +6662,7 @@ and closure335 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> un
     let v83 : US12 = US12_1(v78)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v80, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v82, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v83, v66, v67, v68, v69, v70, v71, v72)
 and method87 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -6858,7 +6858,7 @@ and closure359 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> un
     let v83 : US12 = US12_1(v78)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v80, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v82, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v83, v66, v67, v68, v69, v70, v71, v72)
 and method96 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
@@ -7329,15 +7329,15 @@ and closure390 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string)
     v4 ()
     ()
 and method97 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v109 : string = "useContext"
     let v110 : string = "solid-js"
     let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v242 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v242 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v243 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v244 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v245 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v246 : (unit -> int32), v247 : (int32 -> unit), v248 : (unit -> string), v249 : (string -> unit), v250 : (unit -> string), v251 : (string -> unit), v252 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v253 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v254 : (unit -> (struct (US2 * obj * string) [])), v255 : ((struct (US2 * obj * string) []) -> unit), v256 : (unit -> (struct (System.Guid * obj) [])), v257 : ((struct (System.Guid * obj) []) -> unit), v258 : (unit -> (struct (System.Guid * obj) [])), v259 : ((struct (System.Guid * obj) []) -> unit), v260 : (unit -> (struct (System.Guid * int32) [])), v261 : ((struct (System.Guid * int32) []) -> unit), v262 : (unit -> US4), v263 : (US4 -> unit), v264 : (unit -> US5), v265 : (US5 -> unit)) = v243.Invoke v242 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v374 : obj = Fable.Core.JsInterop.emitJsExpr () "components_spi.state_context"
+    let v374 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
     let v375 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
     let struct (v376 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v377 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v378 : (unit -> int32), v379 : (int32 -> unit), v380 : (unit -> string), v381 : (string -> unit), v382 : (unit -> string), v383 : (string -> unit), v384 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v385 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v386 : (unit -> (struct (US2 * obj * string) [])), v387 : ((struct (US2 * obj * string) []) -> unit), v388 : (unit -> (struct (System.Guid * obj) [])), v389 : ((struct (System.Guid * obj) []) -> unit), v390 : (unit -> (struct (System.Guid * obj) [])), v391 : ((struct (System.Guid * obj) []) -> unit), v392 : (unit -> (struct (System.Guid * int32) [])), v393 : ((struct (System.Guid * int32) []) -> unit), v394 : (unit -> US4), v395 : (US4 -> unit), v396 : (unit -> US5), v397 : (US5 -> unit)) = v375.Invoke v374 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
     let v398 : (unit -> (obj [])) = closure378(v254, v384)
@@ -7622,7 +7622,7 @@ let v73 : string = "env"
 let v74 : (string * obj) = v73, v72
 let v75 : ((string * obj) []) = [|v74|]
 let v76 : obj = Fable.Core.JsInterop.createObj v75
-Browser.Dom.window?components_spi <- v76
+Browser.Dom.window?components <- v76
 let v77 : int32 = System.Random().Next ()
 let v186 : obj = method0()
 let v187 : UH0 = null |> unbox<UH0>
@@ -7646,6 +7646,6 @@ let v204 : string = "state_context"
 let v205 : (string * obj) = v204, v186
 let v206 : ((string * obj) []) = [|v192; v196; v199; v203; v205; v74|]
 let v207 : obj = Fable.Core.JsInterop.createObj v206
-Browser.Dom.window?components_spi <- v207
+Browser.Dom.window?components <- v207
 v1.l0 <- v207
 ()

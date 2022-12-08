@@ -96,7 +96,7 @@ inl promise_parallel forall t. (p : a i32 (promise t)) : promise (a i32 t) =
 inl promise_all forall t. (p : a i32 (promise t)) : promise (a i32 t) =
     $"!p |> Promise.all"
 
-inl async_start_as_promise_ () = import "startAsPromise" "../lib_ts/fable_modules/fable-library-ts/Async.ts"
+inl async_start_as_promise_ () = import "startAsPromise" "../../lib_ts/fable_modules/fable-library-ts/Async.ts"
 
 inl async_start_as_promise forall t. (obj : async t) : promise t =
     inl async_start_as_promise' = async_start_as_promise_ ()
@@ -125,7 +125,7 @@ type env =
         is_test : bool
     }
 let get_env () : env =
-    inl env : any = ($"Fable.Core.JsInterop.emitJsExpr () \"components_spi.env\"" : any)
+    inl env : any = ($"Fable.Core.JsInterop.emitJsExpr () \"components.env\"" : any)
 
     inl codespace_name = $"Fable.Core.JsInterop.emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
     inl github_run_id = $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
@@ -169,7 +169,7 @@ let new_log
             inl new_timestamp () : i64 = ticks () - start_timestamp
             inl timestamp : string = new_timestamp () |> to_string'
             inl timestamp : string = pad 6 timestamp
-            inl run_id : i32 = $"Fable.Core.JsInterop.emitJsExpr () \"components_spi.run_id\""
+            inl run_id : i32 = $"Fable.Core.JsInterop.emitJsExpr () \"components.run_id\""
             inl locals : array any = ;[
                 !!("timestamp:", timestamp)
                 !!("run_id:", run_id)

@@ -1,7 +1,7 @@
 import './buffer-shim'
 import { ColorModeScript, createGlobalStyles, extendTheme, HopeProvider } from '@hope-ui/core'
 import * as ui from "./ui"
-import * as components_spi from "../../lib_ts/components_spi"
+import * as components from "../../lib_ts/ui/components'"
 import { Diff } from './diff/Diff'
 
 
@@ -22,8 +22,8 @@ function App() {
     useGlobalStyles()
     return (
         <Render
-            Component={components_spi.v1.l0["state_context"].Provider}
-            value={components_spi.v1.l0["new_state_context_any"]()}
+            Component={components.v1.l0["state_context"].Provider}
+            value={components.v1.l0["new_state_context_any"]()}
         >
             <ColorModeScript
                 initialColorMode='system'
@@ -33,10 +33,10 @@ function App() {
                 theme={theme}
             >
                 <Render
-                    Component={components_spi.v1.l0["db_listener"]}
+                    Component={components.v1.l0["db_listener"]}
                 />
                 <Render
-                    Component={components_spi.v1.l0["content"]}
+                    Component={components.v1.l0["content"]}
                 />
                 {/* <Diff /> */}
             </HopeProvider>

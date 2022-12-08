@@ -46,6 +46,8 @@ modules:
             db_listener
             settings
             content
+        components'
     pyteal
     tictactoe_pyteal
-    main
+    peer
+    ipython
