@@ -30,7 +30,7 @@ jobs:
 
       - run: dotnet tool restore
       - run: dotnet paket restore
-      - run: pwsh build-fsx-ts.ps1
+      - run: cd lib_spi && pwsh build-ts.ps1
 
       - run: bun install
       - run: cd ./web && bun install
