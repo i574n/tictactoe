@@ -353,7 +353,7 @@ inl generate_color (text : string) : string =
 type subscription =
     {
         client_type : client_type
-        subscription : i64
+        subscription : promise subscription_handle
         url : string
     }
 
@@ -500,20 +500,17 @@ let use_fetch forall state_type {append} value_type.
                     if subscription.client_type = client_type && subscription.url = url
                     then Some subscription
                     else None
-                |> function
-                | Some subscription => subscription
-                | None =>
-                    {
-                        client_type
-                        url
-                        subscription =
-                            db_on
-                                log_level
-                                db
-                                content_address
-                                client_type
-                                (on_value client_type db_connections')
-                    }
+                |> optionm.defaultWith {
+                    client_type
+                    url
+                    subscription =
+                        db_on
+                            log_level
+                            db
+                            content_address
+                            client_type
+                            (on_value client_type db_connections')
+                }
 
         inl subscriptions_hash (subscriptions : a i32 subscription) =
             subscriptions |> am.map fun { client_type url } => client_type, url

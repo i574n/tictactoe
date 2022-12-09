@@ -1,10 +1,10 @@
 import { Union, Record } from "../fable_modules/fable-library-ts/Types.js";
 import { enum_type, uint64_type, getUnionFields, int64_type, tuple_type, lambda_type, unit_type, class_type, bool_type, array_type, string_type, int32_type, union_type, record_type, obj_type, TypeInfo } from "../fable_modules/fable-library-ts/Reflection.js";
 import { uint8, op_UnaryNegation_Int32, int32 } from "../fable_modules/fable-library-ts/Int32.js";
+import { defaultOf, equals, equalArrays, int32ToString, partialApply, uncurry, createObj, IDisposable } from "../fable_modules/fable-library-ts/Util.js";
 import { fromInteger, uint64, fromBits, op_Addition, compare, parse, op_Subtraction, toString, int64 } from "../fable_modules/fable-library-ts/Long.js";
 import { Index, For, onCleanup, createEffect, useContext, createSignal, createComponent, children as children_1, createContext } from "solid-js";
 import { choose, addRangeInPlace, equalsWith, fill } from "../fable_modules/fable-library-ts/Array.js";
-import { defaultOf, equals, equalArrays, int32ToString, partialApply, IDisposable, uncurry, createObj } from "../fable_modules/fable-library-ts/Util.js";
 import { Input, Anchor, Stack, IconButton, Icon, Button, Box, hope } from "@hope-ui/core";
 import { utcNow, getTicks } from "../fable_modules/fable-library-ts/Date.js";
 import { BiRegularMinus, BiRegularPlus, BiRegularLinkExternal, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow, BiRegularRefresh } from "solid-icons/bi";
@@ -1233,16 +1233,16 @@ export const enum US17_Tag {
     US17_1 = 1
 }
 
-export type US17_Fields = [[], [US2, int64, string]];
+export type US17_Fields = [[IDisposable], [int64]];
 
 export type US17 = US17_Cons<US17_Tag.US17_0> | US17_Cons<US17_Tag.US17_1>;
 
-export function US17_US17_0() {
-    return new US17_Cons<US17_Tag.US17_0>(US17_Tag.US17_0, []);
+export function US17_US17_0(f0_0: IDisposable) {
+    return new US17_Cons<US17_Tag.US17_0>(US17_Tag.US17_0, [f0_0]);
 }
 
-export function US17_US17_1(f1_0: US2, f1_1: int64, f1_2: string) {
-    return new US17_Cons<US17_Tag.US17_1>(US17_Tag.US17_1, [f1_0, f1_1, f1_2]);
+export function US17_US17_1(f1_0: int64) {
+    return new US17_Cons<US17_Tag.US17_1>(US17_Tag.US17_1, [f1_0]);
 }
 
 export class US17_Cons<Tag extends keyof US17_Fields> extends Union {
@@ -1255,13 +1255,43 @@ export class US17_Cons<Tag extends keyof US17_Fields> extends Union {
 }
 
 export function US17$reflection(): TypeInfo {
-    return union_type("Components\'.US17", [], US17_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", int64_type], ["f1_2", string_type]]]);
+    return union_type("Components\'.US17", [], US17_Cons, () => [[["f0_0", class_type("System.IDisposable")]], [["f1_0", int64_type]]]);
+}
+
+export const enum US18_Tag {
+    US18_0 = 0,
+    US18_1 = 1
+}
+
+export type US18_Fields = [[], [US2, any, string]];
+
+export type US18 = US18_Cons<US18_Tag.US18_0> | US18_Cons<US18_Tag.US18_1>;
+
+export function US18_US18_0() {
+    return new US18_Cons<US18_Tag.US18_0>(US18_Tag.US18_0, []);
+}
+
+export function US18_US18_1(f1_0: US2, f1_1: any, f1_2: string) {
+    return new US18_Cons<US18_Tag.US18_1>(US18_Tag.US18_1, [f1_0, f1_1, f1_2]);
+}
+
+export class US18_Cons<Tag extends keyof US18_Fields> extends Union {
+    constructor(readonly tag: Tag, readonly fields: US18_Fields[Tag]) {
+        super();
+    }
+    cases() {
+        return ["US18_0", "US18_1"];
+    }
+}
+
+export function US18$reflection(): TypeInfo {
+    return union_type("Components\'.US18", [], US18_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("Fable.Core.JS.Promise`1", [US17$reflection()])], ["f1_2", string_type]]]);
 }
 
 export class Mut26 extends Record {
     l0: int32;
-    l1: US17;
-    constructor(l0: int32, l1: US17) {
+    l1: US18;
+    constructor(l0: int32, l1: US18) {
         super();
         this.l0 = (l0 | 0);
         this.l1 = l1;
@@ -1269,7 +1299,7 @@ export class Mut26 extends Record {
 }
 
 export function Mut26$reflection(): TypeInfo {
-    return record_type("Components\'.Mut26", [], Mut26, () => [["l0", int32_type], ["l1", US17$reflection()]]);
+    return record_type("Components\'.Mut26", [], Mut26, () => [["l0", int32_type], ["l1", US18$reflection()]]);
 }
 
 export class Mut27 extends Record {
@@ -1330,34 +1360,34 @@ export function Mut28$reflection(): TypeInfo {
     return record_type("Components\'.Mut28", [], Mut28, () => [["l0", int32_type], ["l1", UH3$reflection()]]);
 }
 
-export const enum US18_Tag {
-    US18_0 = 0,
-    US18_1 = 1
+export const enum US19_Tag {
+    US19_0 = 0,
+    US19_1 = 1
 }
 
-export type US18_Fields = [[], [US2, string, [string, any][]]];
+export type US19_Fields = [[], [US2, string, [string, any][]]];
 
-export type US18 = US18_Cons<US18_Tag.US18_0> | US18_Cons<US18_Tag.US18_1>;
+export type US19 = US19_Cons<US19_Tag.US19_0> | US19_Cons<US19_Tag.US19_1>;
 
-export function US18_US18_0() {
-    return new US18_Cons<US18_Tag.US18_0>(US18_Tag.US18_0, []);
+export function US19_US19_0() {
+    return new US19_Cons<US19_Tag.US19_0>(US19_Tag.US19_0, []);
 }
 
-export function US18_US18_1(f1_0: US2, f1_1: string, f1_2: [string, any][]) {
-    return new US18_Cons<US18_Tag.US18_1>(US18_Tag.US18_1, [f1_0, f1_1, f1_2]);
+export function US19_US19_1(f1_0: US2, f1_1: string, f1_2: [string, any][]) {
+    return new US19_Cons<US19_Tag.US19_1>(US19_Tag.US19_1, [f1_0, f1_1, f1_2]);
 }
 
-export class US18_Cons<Tag extends keyof US18_Fields> extends Union {
-    constructor(readonly tag: Tag, readonly fields: US18_Fields[Tag]) {
+export class US19_Cons<Tag extends keyof US19_Fields> extends Union {
+    constructor(readonly tag: Tag, readonly fields: US19_Fields[Tag]) {
         super();
     }
     cases() {
-        return ["US18_0", "US18_1"];
+        return ["US19_0", "US19_1"];
     }
 }
 
-export function US18$reflection(): TypeInfo {
-    return union_type("Components\'.US18", [], US18_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("System.Guid")], ["f1_2", array_type(tuple_type(class_type("System.Guid"), obj_type))]]]);
+export function US19$reflection(): TypeInfo {
+    return union_type("Components\'.US19", [], US19_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", class_type("System.Guid")], ["f1_2", array_type(tuple_type(class_type("System.Guid"), obj_type))]]]);
 }
 
 export const enum UH4_Tag {
@@ -1404,56 +1434,12 @@ export function Mut29$reflection(): TypeInfo {
     return record_type("Components\'.Mut29", [], Mut29, () => [["l0", int32_type], ["l1", UH4$reflection()]]);
 }
 
-export const enum US19_Tag {
-    US19_0 = 0,
-    US19_1 = 1
-}
-
-export type US19_Fields = [[], [US2, any, string]];
-
-export type US19 = US19_Cons<US19_Tag.US19_0> | US19_Cons<US19_Tag.US19_1>;
-
-export function US19_US19_0() {
-    return new US19_Cons<US19_Tag.US19_0>(US19_Tag.US19_0, []);
-}
-
-export function US19_US19_1(f1_0: US2, f1_1: any, f1_2: string) {
-    return new US19_Cons<US19_Tag.US19_1>(US19_Tag.US19_1, [f1_0, f1_1, f1_2]);
-}
-
-export class US19_Cons<Tag extends keyof US19_Fields> extends Union {
-    constructor(readonly tag: Tag, readonly fields: US19_Fields[Tag]) {
-        super();
-    }
-    cases() {
-        return ["US19_0", "US19_1"];
-    }
-}
-
-export function US19$reflection(): TypeInfo {
-    return union_type("Components\'.US19", [], US19_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", obj_type], ["f1_2", string_type]]]);
-}
-
-export class Mut30 extends Record {
-    l0: int32;
-    l1: US19;
-    constructor(l0: int32, l1: US19) {
-        super();
-        this.l0 = (l0 | 0);
-        this.l1 = l1;
-    }
-}
-
-export function Mut30$reflection(): TypeInfo {
-    return record_type("Components\'.Mut30", [], Mut30, () => [["l0", int32_type], ["l1", US19$reflection()]]);
-}
-
 export const enum US20_Tag {
     US20_0 = 0,
     US20_1 = 1
 }
 
-export type US20_Fields = [[], [US2[], int32, US3, string, string]];
+export type US20_Fields = [[], [US2, any, string]];
 
 export type US20 = US20_Cons<US20_Tag.US20_0> | US20_Cons<US20_Tag.US20_1>;
 
@@ -1461,8 +1447,8 @@ export function US20_US20_0() {
     return new US20_Cons<US20_Tag.US20_0>(US20_Tag.US20_0, []);
 }
 
-export function US20_US20_1(f1_0: US2[], f1_1: int32, f1_2: US3, f1_3: string, f1_4: string) {
-    return new US20_Cons<US20_Tag.US20_1>(US20_Tag.US20_1, [f1_0, f1_1, f1_2, f1_3, f1_4]);
+export function US20_US20_1(f1_0: US2, f1_1: any, f1_2: string) {
+    return new US20_Cons<US20_Tag.US20_1>(US20_Tag.US20_1, [f1_0, f1_1, f1_2]);
 }
 
 export class US20_Cons<Tag extends keyof US20_Fields> extends Union {
@@ -1475,10 +1461,10 @@ export class US20_Cons<Tag extends keyof US20_Fields> extends Union {
 }
 
 export function US20$reflection(): TypeInfo {
-    return union_type("Components\'.US20", [], US20_Cons, () => [[], [["f1_0", array_type(US2$reflection())], ["f1_1", int32_type], ["f1_2", US3$reflection()], ["f1_3", string_type], ["f1_4", string_type]]]);
+    return union_type("Components\'.US20", [], US20_Cons, () => [[], [["f1_0", US2$reflection()], ["f1_1", obj_type], ["f1_2", string_type]]]);
 }
 
-export class Mut31 extends Record {
+export class Mut30 extends Record {
     l0: int32;
     l1: US20;
     constructor(l0: int32, l1: US20) {
@@ -1488,8 +1474,52 @@ export class Mut31 extends Record {
     }
 }
 
+export function Mut30$reflection(): TypeInfo {
+    return record_type("Components\'.Mut30", [], Mut30, () => [["l0", int32_type], ["l1", US20$reflection()]]);
+}
+
+export const enum US21_Tag {
+    US21_0 = 0,
+    US21_1 = 1
+}
+
+export type US21_Fields = [[], [US2[], int32, US3, string, string]];
+
+export type US21 = US21_Cons<US21_Tag.US21_0> | US21_Cons<US21_Tag.US21_1>;
+
+export function US21_US21_0() {
+    return new US21_Cons<US21_Tag.US21_0>(US21_Tag.US21_0, []);
+}
+
+export function US21_US21_1(f1_0: US2[], f1_1: int32, f1_2: US3, f1_3: string, f1_4: string) {
+    return new US21_Cons<US21_Tag.US21_1>(US21_Tag.US21_1, [f1_0, f1_1, f1_2, f1_3, f1_4]);
+}
+
+export class US21_Cons<Tag extends keyof US21_Fields> extends Union {
+    constructor(readonly tag: Tag, readonly fields: US21_Fields[Tag]) {
+        super();
+    }
+    cases() {
+        return ["US21_0", "US21_1"];
+    }
+}
+
+export function US21$reflection(): TypeInfo {
+    return union_type("Components\'.US21", [], US21_Cons, () => [[], [["f1_0", array_type(US2$reflection())], ["f1_1", int32_type], ["f1_2", US3$reflection()], ["f1_3", string_type], ["f1_4", string_type]]]);
+}
+
+export class Mut31 extends Record {
+    l0: int32;
+    l1: US21;
+    constructor(l0: int32, l1: US21) {
+        super();
+        this.l0 = (l0 | 0);
+        this.l1 = l1;
+    }
+}
+
 export function Mut31$reflection(): TypeInfo {
-    return record_type("Components\'.Mut31", [], Mut31, () => [["l0", int32_type], ["l1", US20$reflection()]]);
+    return record_type("Components\'.Mut31", [], Mut31, () => [["l0", int32_type], ["l1", US21$reflection()]]);
 }
 
 export class Mut32 extends Record {
@@ -2128,21 +2158,8 @@ export function closure57(v0_1: int32, v1_1: () => US5, _arg: [US6, US6, US6, US
 
 export function closure61(v0_1: Mut7, _arg: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6]): [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] {
     const v72_1: any = v0_1.l0();
-    const patternInput: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] = method6();
-    const v84: US9 = patternInput[11];
-    let v150: US9;
-    if (v84.tag === US9_Tag.US9_1) {
-        const v147: any = children_1;
-        v150 = US9_US9_1(v147(v84.fields[0]));
-    }
-    else {
-        v150 = US9_US9_0();
-    }
-    const v152: string = "-12px";
-    const patternInput_1: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] = v0_1.l2([patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], patternInput[10], v150, patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], US6_US6_1(v152), patternInput[35], US6_US6_1(v152), patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], patternInput[56], patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62], patternInput[63], patternInput[64], patternInput[65], patternInput[66], patternInput[67], patternInput[68], US6_US6_1("0.6")]);
-    const v228: any = createObj(method7(patternInput_1[0], patternInput_1[1], patternInput_1[2], patternInput_1[3], patternInput_1[4], patternInput_1[5], patternInput_1[6], patternInput_1[7], patternInput_1[8], patternInput_1[9], patternInput_1[10], patternInput_1[11], patternInput_1[12], patternInput_1[13], patternInput_1[14], patternInput_1[15], patternInput_1[16], patternInput_1[17], patternInput_1[18], patternInput_1[19], patternInput_1[20], patternInput_1[21], patternInput_1[22], patternInput_1[23], patternInput_1[24], patternInput_1[25], patternInput_1[26], patternInput_1[27], patternInput_1[28], patternInput_1[29], patternInput_1[30], patternInput_1[31], patternInput_1[32], patternInput_1[33], patternInput_1[34], patternInput_1[35], patternInput_1[36], patternInput_1[37], patternInput_1[38], patternInput_1[39], patternInput_1[40], patternInput_1[41], patternInput_1[42], patternInput_1[43], patternInput_1[44], patternInput_1[45], patternInput_1[46], patternInput_1[47], patternInput_1[48], patternInput_1[49], patternInput_1[50], patternInput_1[51], patternInput_1[52], patternInput_1[53], patternInput_1[54], patternInput_1[55], patternInput_1[56], patternInput_1[57], patternInput_1[58], patternInput_1[59], patternInput_1[60], patternInput_1[61], patternInput_1[62], patternInput_1[63], patternInput_1[64], patternInput_1[65], patternInput_1[66], patternInput_1[67], patternInput_1[68], patternInput_1[69]));
-    const patternInput_2: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] = v0_1.l1([_arg[0], _arg[1], _arg[2], US7_US7_1(v72_1), _arg[4], _arg[5], _arg[6], _arg[7], _arg[8], _arg[9], _arg[10], _arg[11], _arg[12], _arg[13], _arg[14], _arg[15], _arg[16], _arg[17], _arg[18], _arg[19], _arg[20], _arg[21], _arg[22], _arg[23], _arg[24], _arg[25], _arg[26], _arg[27], _arg[28], _arg[29], _arg[30], _arg[31], _arg[32], _arg[33], _arg[34], _arg[35], _arg[36], _arg[37], _arg[38], _arg[39], _arg[40], _arg[41], _arg[42], _arg[43], _arg[44], _arg[45], _arg[46], _arg[47], _arg[48], _arg[49], _arg[50], _arg[51], _arg[52], _arg[53], _arg[54], _arg[55], US6_US6_1("14px"), _arg[57], _arg[58], _arg[59], US14_US14_1(v228), _arg[61], _arg[62], _arg[63], _arg[64], _arg[65], _arg[66], _arg[67], _arg[68], _arg[69]]);
-    return [patternInput_2[0], patternInput_2[1], patternInput_2[2], patternInput_2[3], patternInput_2[4], patternInput_2[5], patternInput_2[6], patternInput_2[7], patternInput_2[8], patternInput_2[9], patternInput_2[10], patternInput_2[11], patternInput_2[12], patternInput_2[13], patternInput_2[14], patternInput_2[15], patternInput_2[16], patternInput_2[17], patternInput_2[18], patternInput_2[19], patternInput_2[20], patternInput_2[21], patternInput_2[22], patternInput_2[23], patternInput_2[24], patternInput_2[25], patternInput_2[26], patternInput_2[27], patternInput_2[28], patternInput_2[29], patternInput_2[30], patternInput_2[31], patternInput_2[32], patternInput_2[33], patternInput_2[34], patternInput_2[35], patternInput_2[36], patternInput_2[37], patternInput_2[38], patternInput_2[39], patternInput_2[40], patternInput_2[41], patternInput_2[42], patternInput_2[43], patternInput_2[44], patternInput_2[45], patternInput_2[46], patternInput_2[47], patternInput_2[48], patternInput_2[49], patternInput_2[50], patternInput_2[51], patternInput_2[52], patternInput_2[53], patternInput_2[54], patternInput_2[55], patternInput_2[56], patternInput_2[57], patternInput_2[58], patternInput_2[59], patternInput_2[60], patternInput_2[61], patternInput_2[62], patternInput_2[63], patternInput_2[64], patternInput_2[65], patternInput_2[66], patternInput_2[67], patternInput_2[68], patternInput_2[69]];
+    const patternInput: [US6, US6, US6, US7, US6, US6, US6, US6, US6, US6, US8, US9, US6, US6, US8, US6, US6, US6, US10, US8, US6, US6, US6, US6, US6, US6, US11, US6, US6, US6, US11, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US12, US13, US12, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US6, US14, US6, US11, US6, US6, US14, US14, US6, US5, US6] = v0_1.l1([_arg[0], _arg[1], _arg[2], US7_US7_1(v72_1), _arg[4], _arg[5], _arg[6], _arg[7], _arg[8], _arg[9], _arg[10], _arg[11], _arg[12], _arg[13], _arg[14], _arg[15], _arg[16], _arg[17], _arg[18], _arg[19], _arg[20], _arg[21], _arg[22], _arg[23], _arg[24], _arg[25], _arg[26], _arg[27], _arg[28], _arg[29], _arg[30], _arg[31], _arg[32], _arg[33], _arg[34], _arg[35], _arg[36], _arg[37], _arg[38], _arg[39], _arg[40], _arg[41], _arg[42], _arg[43], _arg[44], _arg[45], _arg[46], _arg[47], _arg[48], _arg[49], _arg[50], _arg[51], _arg[52], _arg[53], _arg[54], _arg[55], US6_US6_1("14px"), _arg[57], _arg[58], _arg[59], US14_US14_0(), _arg[61], _arg[62], _arg[63], _arg[64], _arg[65], _arg[66], _arg[67], _arg[68], _arg[69]]);
+    return [patternInput[0], patternInput[1], patternInput[2], patternInput[3], patternInput[4], patternInput[5], patternInput[6], patternInput[7], patternInput[8], patternInput[9], patternInput[10], patternInput[11], patternInput[12], patternInput[13], patternInput[14], patternInput[15], patternInput[16], patternInput[17], patternInput[18], patternInput[19], patternInput[20], patternInput[21], patternInput[22], patternInput[23], patternInput[24], patternInput[25], patternInput[26], patternInput[27], patternInput[28], patternInput[29], patternInput[30], patternInput[31], patternInput[32], patternInput[33], patternInput[34], patternInput[35], patternInput[36], patternInput[37], patternInput[38], patternInput[39], patternInput[40], patternInput[41], patternInput[42], patternInput[43], patternInput[44], patternInput[45], patternInput[46], patternInput[47], patternInput[48], patternInput[49], patternInput[50], patternInput[51], patternInput[52], patternInput[53], patternInput[54], patternInput[55], patternInput[56], patternInput[57], patternInput[58], patternInput[59], patternInput[60], patternInput[61], patternInput[62], patternInput[63], patternInput[64], patternInput[65], patternInput[66], patternInput[67], patternInput[68], patternInput[69]];
 }
 
 export function closure62(unitVar: void, unitVar_1: void): any[] {
@@ -4349,27 +4366,27 @@ export function method76(v0_1: US16): [() => US16, (arg0: US16) => void] {
     })];
 }
 
-export function method77(v0_1: [US2, int64, string][]): [() => [US2, int64, string][], (arg0: [US2, int64, string][]) => void] {
+export function method77(v0_1: [US2, any, string][]): [() => [US2, any, string][], (arg0: [US2, any, string][]) => void] {
     let value_1: any, value_2: any;
     const v3: any = createSignal;
     const v4: any[] = v3(v0_1);
-    return [(value_1 = v4[0], value_1), (value_2 = v4[1], (arg_1: [US2, int64, string][]): void => {
+    return [(value_1 = v4[0], value_1), (value_2 = v4[1], (arg_1: [US2, any, string][]): void => {
         value_2(arg_1);
     })];
 }
 
-export function closure282(v0_1: string, v1_1: () => [string, int32][], v2: () => [US2, any, string][], v3: () => void, v4: () => void, v5: () => US16, v6: () => [US2, int64, string][], unitVar: void): any[] {
+export function closure282(v0_1: string, v1_1: () => [string, int32][], v2: () => [US2, any, string][], v3: () => void, v4: () => void, v5: () => US16, v6: () => [US2, any, string][], unitVar: void): any[] {
     const v9: [string, int32][] = v1_1();
     v3();
     v4();
     const v16: US16 = v5();
-    const v19: [US2, int64, string][] = v6();
+    const v19: [US2, any, string][] = v6();
     const v20: int32 = v19.length | 0;
-    const v21: [string, int64][] = fill(new Array(v20), 0, v20, null);
+    const v21: [string, any][] = fill(new Array(v20), 0, v20, null);
     const v22: Mut6 = new Mut6(0);
     while (method21(v20, v22)) {
         const v24: int32 = v22.l0 | 0;
-        const patternInput: [US2, int64, string] = v19[v24];
+        const patternInput: [US2, any, string] = v19[v24];
         const v25: US2 = patternInput[0];
         const v32: string = (v25.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v25.tag === US2_Tag.US2_2) ? "Memory" : ((v25.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
         v21[v24] = [v32, patternInput[1]];
@@ -4521,7 +4538,7 @@ export function closure293(v0_1: (arg0: US4, arg1: any[]) => void, v1_1: any): v
     v0_1(US4_US4_2(), ["> db_on > stream err ()", ["err:", JSON.stringify(v1_1)]]);
 }
 
-export function closure290(v0_1: (arg0: US4, arg1: any[]) => void, v1_1: any): void {
+export function closure290(v0_1: (arg0: US4, arg1: any[]) => void, v1_1: any): US17 {
     const v2: (arg0: UH1) => void = (v: UH1): void => {
         closure291(v0_1, v);
     };
@@ -4544,6 +4561,7 @@ export function closure290(v0_1: (arg0: US4, arg1: any[]) => void, v1_1: any): v
         },
     };
     v0_1(US4_US4_2(), ["> db_on > streamFrom subscribe ()", ["stream:", JSON.stringify(v1_1)], ["subscription (IDisposable):", v17]]);
+    return US17_US17_0(v17);
 }
 
 export function method81(v0_1_mut: [US2, string][], v1_1_mut: [US2, string][], v2_mut: int32): boolean {
@@ -4572,11 +4590,11 @@ export function method81(v0_1_mut: [US2, string][], v1_1_mut: [US2, string][], v
     }
 }
 
-export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64, string][]) => void, v3: () => [US2, int64, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, int32][], v6: (arg0: [[string, int32][], US2, string, int32]) => void, v7: (arg0: US16) => void, v8: () => US16, v9: [US2, any, string][]): void {
-    let copyOfStruct: US2, v74_1: string[], v75_1: string, v79: any, v80: int32, v81: Mut27, v90: any, v99: any, v102: any, v105: (arg0: any) => void, pr: any, v53: string[], v54: string, v58: any, v59: int32, v60: Mut27, v69: any;
-    const v10: [US2, int64, string][] = v3();
+export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, string][]) => void, v3: () => [US2, any, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, int32][], v6: (arg0: [[string, int32][], US2, string, int32]) => void, v7: (arg0: US16) => void, v8: () => US16, v9: [US2, any, string][]): void {
+    let copyOfStruct: US2;
+    const v10: [US2, any, string][] = v3();
     const v11: int32 = v9.length | 0;
-    const v12: [US2, int64, string][] = fill(new Array(v11), 0, v11, null);
+    const v12: [US2, any, string][] = fill(new Array(v11), 0, v11, null);
     const v13: Mut6 = new Mut6(0);
     while (method21(v11, v13)) {
         const v15: int32 = v13.l0 | 0;
@@ -4585,49 +4603,69 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
         const v17: any = patternInput[1];
         const v16: US2 = patternInput[0];
         const v19: int32 = v10.length | 0;
-        const v21: Mut26 = new Mut26(0, US17_US17_0());
+        const v21: Mut26 = new Mut26(0, US18_US18_0());
         while (method78(v19, v21)) {
             const v23: int32 = v21.l0 | 0;
             const v26: int32 = ((op_UnaryNegation_Int32(v23) + v19) - 1) | 0;
-            const v27: US17 = v21.l1;
-            const patternInput_1: [US2, int64, string] = v10[v26];
+            const v27: US18 = v21.l1;
+            const patternInput_1: [US2, any, string] = v10[v26];
             const v30: string = patternInput_1[2];
             const v28: US2 = patternInput_1[0];
-            const v40: US17 = (v27.tag === US17_Tag.US17_1) ? v27 : ((((copyOfStruct = v28, (copyOfStruct.tag === US2_Tag.US2_1) ? (v16.tag === US2_Tag.US2_1) : ((copyOfStruct.tag === US2_Tag.US2_2) ? (v16.tag === US2_Tag.US2_2) : ((copyOfStruct.tag === US2_Tag.US2_3) ? (v16.tag === US2_Tag.US2_3) : (v16.tag === US2_Tag.US2_0))))) && (v30 === v18)) ? US17_US17_1(v28, patternInput_1[1], v30) : US17_US17_0());
+            const v40: US18 = (v27.tag === US18_Tag.US18_1) ? v27 : ((((copyOfStruct = v28, (copyOfStruct.tag === US2_Tag.US2_1) ? (v16.tag === US2_Tag.US2_1) : ((copyOfStruct.tag === US2_Tag.US2_2) ? (v16.tag === US2_Tag.US2_2) : ((copyOfStruct.tag === US2_Tag.US2_3) ? (v16.tag === US2_Tag.US2_3) : (v16.tag === US2_Tag.US2_0))))) && (v30 === v18)) ? US18_US18_1(v28, patternInput_1[1], v30) : US18_US18_0());
             const v41: int32 = (v23 + 1) | 0;
             v21.l0 = (v41 | 0);
             v21.l1 = v40;
         }
-        const v42: US17 = v21.l1;
-        let patternInput_2: [US2, int64, string];
-        if (v42.tag === US17_Tag.US17_1) {
-            patternInput_2 = [v42.fields[0], v42.fields[1], v42.fields[2]];
-        }
-        else {
-            const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
-            const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
-            v45(US4_US4_0())(["> db_on ()"]);
-            const v51: (arg0: [string, int32], arg1: any) => void = (arg10$0040_1: [string, int32]): (arg0: any) => void => closure285(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
-            let v52: (arg0: [any, int32]) => void;
-            const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
-            v52 = ((arg: [any, int32]): void => {
-                clo(arg);
-            });
-            patternInput_2 = [v16, (v16.tag === US2_Tag.US2_1) ? ((v74_1 = v0_1.split("/"), (v75_1 = "get", (v79 = v17[v75_1]("tictactoe_spiral"), (v80 = (v74_1.length | 0), (v81 = (new Mut27(0, v79)), ((() => {
-                while (method80(v80, v81)) {
-                    const v83: int32 = v81.l0 | 0;
-                    const v84: any = v81.l1;
-                    const v85: string = v74_1[v83];
-                    const v88: any = v84[v75_1](v85);
-                    const v89: int32 = (v83 + 1) | 0;
-                    v81.l0 = (v89 | 0);
-                    v81.l1 = v88;
+        const v42: US18 = v21.l1;
+        const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
+        const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
+        v45(US4_US4_0())(["> db_on ()"]);
+        const v51: (arg0: [string, int32], arg1: any) => void = (arg10$0040_1: [string, int32]): (arg0: any) => void => closure285(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
+        let v52: (arg0: [any, int32]) => void;
+        const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
+        v52 = ((arg: [any, int32]): void => {
+            clo(arg);
+        });
+        let v111: any;
+        switch (v16.tag) {
+            case 1: {
+                const v76_1: string[] = v0_1.split("/");
+                const v77_1: string = "get";
+                const v81: any = v17[v77_1]("tictactoe_spiral");
+                const v82: int32 = v76_1.length | 0;
+                const v83: Mut27 = new Mut27(0, v81);
+                while (method80(v82, v83)) {
+                    const v85: int32 = v83.l0 | 0;
+                    const v86: any = v83.l1;
+                    const v87: string = v76_1[v85];
+                    const v90: any = v86[v77_1](v87);
+                    const v91: int32 = (v85 + 1) | 0;
+                    v83.l0 = (v91 | 0);
+                    v83.l1 = v90;
                 }
-            })(), (v90 = v81.l1, v90.on(v52))))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
+                const v92: any = v83.l1;
+                const v96: int64 = v92.on(v52);
+                v111 = (Promise.resolve(US17_US17_1(v96)));
+                break;
+            }
+            case 2: {
                 throw new Error("db_on Memory");
-            })() : ((v16.tag === US2_Tag.US2_3) ? ((v99 = HubConnection$5__streamFrom_2B594<UH0, UH0, any, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), (v102 = startAsPromise, (v105 = ((v: any): void => {
-                closure290(uncurry(2, v45), v);
-            }), ((pr = (v102(v99)), void (pr.then(v105))), getTicks(utcNow())))))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
+                break;
+            }
+            case 3: {
+                const v103: any = HubConnection$5__streamFrom_2B594<UH0, UH0, any, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1));
+                const v106: any = startAsPromise;
+                const v109: (arg0: any) => US17 = (v: any): US17 => closure290(uncurry(2, v45), v);
+                const pr: any = v106(v103);
+                v111 = (pr.then(v109));
+                break;
+            }
+            default: {
+                const v53: string[] = v0_1.split("/");
+                const v54: string = "get";
+                const v58: any = v17[v54]("tictactoe_spiral");
+                const v59: int32 = v53.length | 0;
+                const v60: Mut27 = new Mut27(0, v58);
                 while (method80(v59, v60)) {
                     const v62: int32 = v60.l0 | 0;
                     const v63: any = v60.l1;
@@ -4637,46 +4675,51 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
                     v60.l0 = (v68 | 0);
                     v60.l1 = v67;
                 }
-            })(), (v69 = v60.l1, (v69.on(v52), getTicks(utcNow())))))))))))), v18];
+                const v69: any = v60.l1;
+                v69.on(v52);
+                const v73_1: int64 = getTicks(utcNow());
+                v111 = (Promise.resolve(US17_US17_1(v73_1)));
+            }
         }
+        const patternInput_2: [US2, any, string] = (v42.tag === US18_Tag.US18_1) ? [v42.fields[0], v42.fields[1], v42.fields[2]] : [v16, v111, v18];
         v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2]];
-        const v114: int32 = (v15 + 1) | 0;
-        v13.l0 = (v114 | 0);
+        const v118: int32 = (v15 + 1) | 0;
+        v13.l0 = (v118 | 0);
     }
-    const v115: int32 = v10.length | 0;
-    const v116: [US2, string][] = fill(new Array(v115), 0, v115, null);
-    const v117: Mut6 = new Mut6(0);
-    while (method21(v115, v117)) {
-        const v119: int32 = v117.l0 | 0;
-        const patternInput_3: [US2, int64, string] = v10[v119];
-        v116[v119] = [patternInput_3[0], patternInput_3[2]];
-        const v123: int32 = (v119 + 1) | 0;
-        v117.l0 = (v123 | 0);
+    const v119: int32 = v10.length | 0;
+    const v120: [US2, string][] = fill(new Array(v119), 0, v119, null);
+    const v121: Mut6 = new Mut6(0);
+    while (method21(v119, v121)) {
+        const v123: int32 = v121.l0 | 0;
+        const patternInput_3: [US2, any, string] = v10[v123];
+        v120[v123] = [patternInput_3[0], patternInput_3[2]];
+        const v127: int32 = (v123 + 1) | 0;
+        v121.l0 = (v127 | 0);
     }
-    const v124: int32 = v12.length | 0;
-    const v125: [US2, string][] = fill(new Array(v124), 0, v124, null);
-    const v126: Mut6 = new Mut6(0);
-    while (method21(v124, v126)) {
-        const v128: int32 = v126.l0 | 0;
-        const patternInput_4: [US2, int64, string] = v12[v128];
-        v125[v128] = [patternInput_4[0], patternInput_4[2]];
-        const v132: int32 = (v128 + 1) | 0;
-        v126.l0 = (v132 | 0);
+    const v128: int32 = v12.length | 0;
+    const v129: [US2, string][] = fill(new Array(v128), 0, v128, null);
+    const v130: Mut6 = new Mut6(0);
+    while (method21(v128, v130)) {
+        const v132: int32 = v130.l0 | 0;
+        const patternInput_4: [US2, any, string] = v12[v132];
+        v129[v132] = [patternInput_4[0], patternInput_4[2]];
+        const v136: int32 = (v132 + 1) | 0;
+        v130.l0 = (v136 | 0);
     }
-    if ((((v116.length === v125.length) !== true) ? false : method81(v116, v125, 0)) !== true) {
-        const v142: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
-        const v145: [string, int64][] = fill(new Array(v124), 0, v124, null);
-        const v146: Mut6 = new Mut6(0);
-        while (method21(v124, v146)) {
-            const v148: int32 = v146.l0 | 0;
-            const patternInput_5: [US2, int64, string] = v12[v148];
-            const v149: US2 = patternInput_5[0];
-            const v156: string = (v149.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v149.tag === US2_Tag.US2_2) ? "Memory" : ((v149.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
-            v145[v148] = [v156, patternInput_5[1]];
-            const v157: int32 = (v148 + 1) | 0;
-            v146.l0 = (v157 | 0);
+    if ((((v120.length === v129.length) !== true) ? false : method81(v120, v129, 0)) !== true) {
+        const v146: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
+        const v149: [string, any][] = fill(new Array(v128), 0, v128, null);
+        const v150: Mut6 = new Mut6(0);
+        while (method21(v128, v150)) {
+            const v152: int32 = v150.l0 | 0;
+            const patternInput_5: [US2, any, string] = v12[v152];
+            const v153: US2 = patternInput_5[0];
+            const v160: string = (v153.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v153.tag === US2_Tag.US2_2) ? "Memory" : ((v153.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
+            v149[v152] = [v160, patternInput_5[1]];
+            const v161: int32 = (v152 + 1) | 0;
+            v150.l0 = (v161 | 0);
         }
-        v142(["> use_fetch > connections_change", ["new_subscriptions:", v145]]);
+        v146(["> use_fetch > connections_change", ["new_subscriptions:", v149]]);
         v2(v12);
     }
 }
@@ -4735,8 +4778,8 @@ export function method74(v0_1: string, v1_1: () => [string, int32][], v2: (arg0:
     const patternInput_4: [() => US16, (arg0: US16) => void] = method76(US16_US16_0());
     const v276: (arg0: US16) => void = patternInput_4[1];
     const v275: () => US16 = patternInput_4[0];
-    const patternInput_5: [() => [US2, int64, string][], (arg0: [US2, int64, string][]) => void] = method77([]);
-    const v278: () => [US2, int64, string][] = patternInput_5[0];
+    const patternInput_5: [() => [US2, any, string][], (arg0: [US2, any, string][]) => void] = method77([]);
+    const v278: () => [US2, any, string][] = patternInput_5[0];
     const v280: uint8[] = Array.from(get_UTF8().getBytes(v0_1));
     const v281: int32 = v280.length | 0;
     const v282: Mut25 = new Mut25(0, 100000);
@@ -5028,27 +5071,27 @@ export function closure324(v0_1: () => [string, any][], v1_1: any): any {
     return new Promise(uncurry(2, v2));
 }
 
-export function method89(v0_1: US18): [() => US18, (arg0: US18) => void] {
+export function method89(v0_1: US19): [() => US19, (arg0: US19) => void] {
     let value_1: any, value_2: any;
     const v3: any = createSignal;
     const v4: any[] = v3(v0_1);
-    return [(value_1 = v4[0], value_1), (value_2 = v4[1], (arg_1: US18): void => {
+    return [(value_1 = v4[0], value_1), (value_2 = v4[1], (arg_1: US19): void => {
         value_2(arg_1);
     })];
 }
 
-export function closure327(v0_1: string, v1_1: () => [string, any][], v2: () => [US2, any, string][], v3: () => void, v4: () => void, v5: () => US18, v6: () => [US2, int64, string][], unitVar: void): any[] {
+export function closure327(v0_1: string, v1_1: () => [string, any][], v2: () => [US2, any, string][], v3: () => void, v4: () => void, v5: () => US19, v6: () => [US2, any, string][], unitVar: void): any[] {
     const v9: [string, any][] = v1_1();
     v3();
     v4();
-    const v16: US18 = v5();
-    const v19: [US2, int64, string][] = v6();
+    const v16: US19 = v5();
+    const v19: [US2, any, string][] = v6();
     const v20: int32 = v19.length | 0;
-    const v21: [string, int64][] = fill(new Array(v20), 0, v20, null);
+    const v21: [string, any][] = fill(new Array(v20), 0, v20, null);
     const v22: Mut6 = new Mut6(0);
     while (method21(v20, v22)) {
         const v24: int32 = v22.l0 | 0;
-        const patternInput: [US2, int64, string] = v19[v24];
+        const patternInput: [US2, any, string] = v19[v24];
         const v25: US2 = patternInput[0];
         const v32: string = (v25.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v25.tag === US2_Tag.US2_2) ? "Memory" : ((v25.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
         v21[v24] = [v32, patternInput[1]];
@@ -5074,10 +5117,10 @@ export function closure331(v0_1: US2, v1_1: string, v2: [string, any][], unitVar
     return [["content_address:", v1_1], ["client_type:", (v0_1.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v0_1.tag === US2_Tag.US2_2) ? "Memory" : ((v0_1.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"))], ["new_value:", v2]];
 }
 
-export function method90(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US18) => void, v5: () => US18, v6: (arg0: US4, arg1: any[]) => void, v7: US2, v8: [US2, any, string][], v9: [string, any][], v10: string): void {
+export function method90(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US19) => void, v5: () => US19, v6: (arg0: US4, arg1: any[]) => void, v7: US2, v8: [US2, any, string][], v9: [string, any][], v10: string): void {
     let v15: (arg0: string) => int64, copyOfStruct: US2;
-    const v11: US18 = v5();
-    if ((v11.tag === US18_Tag.US18_1) ? ((v15 = ((v: string): int64 => closure287(void 0, v)), (!equalsWith(equalArrays, v11.fields[2], v9)) && (compare(v15(v10), v15(v11.fields[1])) > 0))) : true) {
+    const v11: US19 = v5();
+    if ((v11.tag === US19_Tag.US19_1) ? ((v15 = ((v: string): int64 => closure287(void 0, v)), (!equalsWith(equalArrays, v11.fields[2], v9)) && (compare(v15(v10), v15(v11.fields[1])) > 0))) : true) {
         const v18: [string, any][] = v1_1();
         const v23: string = "old_value:";
         const v30: string = "client_type:";
@@ -5085,7 +5128,7 @@ export function method90(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [
         const v34: string = "new_value_raw:";
         v6(US4_US4_2(), ["> use_fetch > on_value > set ()", [v23, v18], [v30, (v7.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v7.tag === US2_Tag.US2_2) ? "Memory" : ((v7.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"))], [v32, v10], [v34, v9]]);
         v2([v18, v7, v10, v9]);
-        v4(US18_US18_1(v7, v10, v9));
+        v4(US19_US19_1(v7, v10, v9));
         const v38: int32 = v8.length | 0;
         const v39: Mut6 = new Mut6(0);
         while (method21(v38, v39)) {
@@ -5156,22 +5199,22 @@ export function method90(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [
     }
 }
 
-export function closure330(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US18) => void, v5: () => US18, v6: (arg0: US4, arg1: any[]) => void, v7: US2, v8: [US2, any, string][], v9: (arg0: US4, arg1: any[]) => void, v10: string, v11: [string, any][], v12: any): void {
+export function closure330(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US19) => void, v5: () => US19, v6: (arg0: US4, arg1: any[]) => void, v7: US2, v8: [US2, any, string][], v9: (arg0: US4, arg1: any[]) => void, v10: string, v11: [string, any][], v12: any): void {
     v9(US4_US4_2(), ["> db_on > on_value ()", ["v:", v10, v11], ["k:", v12]]);
     method90(v0_1, v1_1, v2, v3, v4, v5, v6, v7, v8, v11, v10);
 }
 
-export function closure329(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US18) => void, v5: () => US18, v6: (arg0: US4, arg1: any[]) => void, v7: US2, v8: [US2, any, string][], v9: (arg0: US4, arg1: any[]) => void, _arg: [string, [string, any][]]): (arg0: any) => void {
+export function closure329(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US19) => void, v5: () => US19, v6: (arg0: US4, arg1: any[]) => void, v7: US2, v8: [US2, any, string][], v9: (arg0: US4, arg1: any[]) => void, _arg: [string, [string, any][]]): (arg0: any) => void {
     return (v: any): void => {
         closure330(v0_1, v1_1, v2, v3, v4, v5, v6, v7, v8, v9, _arg[0], _arg[1], v);
     };
 }
 
-export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64, string][]) => void, v3: () => [US2, int64, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, any][], v6: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v7: (arg0: US18) => void, v8: () => US18, v9: [US2, any, string][]): void {
-    let copyOfStruct: US2, v74_1: string[], v75_1: string, v79: any, v80: int32, v81: Mut27, v90: any, v99: any, v102: any, v105: (arg0: any) => void, pr: any, v53: string[], v54: string, v58: any, v59: int32, v60: Mut27, v69: any;
-    const v10: [US2, int64, string][] = v3();
+export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, string][]) => void, v3: () => [US2, any, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, any][], v6: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v7: (arg0: US19) => void, v8: () => US19, v9: [US2, any, string][]): void {
+    let copyOfStruct: US2;
+    const v10: [US2, any, string][] = v3();
     const v11: int32 = v9.length | 0;
-    const v12: [US2, int64, string][] = fill(new Array(v11), 0, v11, null);
+    const v12: [US2, any, string][] = fill(new Array(v11), 0, v11, null);
     const v13: Mut6 = new Mut6(0);
     while (method21(v11, v13)) {
         const v15: int32 = v13.l0 | 0;
@@ -5180,49 +5223,69 @@ export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
         const v17: any = patternInput[1];
         const v16: US2 = patternInput[0];
         const v19: int32 = v10.length | 0;
-        const v21: Mut26 = new Mut26(0, US17_US17_0());
+        const v21: Mut26 = new Mut26(0, US18_US18_0());
         while (method78(v19, v21)) {
             const v23: int32 = v21.l0 | 0;
             const v26: int32 = ((op_UnaryNegation_Int32(v23) + v19) - 1) | 0;
-            const v27: US17 = v21.l1;
-            const patternInput_1: [US2, int64, string] = v10[v26];
+            const v27: US18 = v21.l1;
+            const patternInput_1: [US2, any, string] = v10[v26];
             const v30: string = patternInput_1[2];
             const v28: US2 = patternInput_1[0];
-            const v40: US17 = (v27.tag === US17_Tag.US17_1) ? v27 : ((((copyOfStruct = v28, (copyOfStruct.tag === US2_Tag.US2_1) ? (v16.tag === US2_Tag.US2_1) : ((copyOfStruct.tag === US2_Tag.US2_2) ? (v16.tag === US2_Tag.US2_2) : ((copyOfStruct.tag === US2_Tag.US2_3) ? (v16.tag === US2_Tag.US2_3) : (v16.tag === US2_Tag.US2_0))))) && (v30 === v18)) ? US17_US17_1(v28, patternInput_1[1], v30) : US17_US17_0());
+            const v40: US18 = (v27.tag === US18_Tag.US18_1) ? v27 : ((((copyOfStruct = v28, (copyOfStruct.tag === US2_Tag.US2_1) ? (v16.tag === US2_Tag.US2_1) : ((copyOfStruct.tag === US2_Tag.US2_2) ? (v16.tag === US2_Tag.US2_2) : ((copyOfStruct.tag === US2_Tag.US2_3) ? (v16.tag === US2_Tag.US2_3) : (v16.tag === US2_Tag.US2_0))))) && (v30 === v18)) ? US18_US18_1(v28, patternInput_1[1], v30) : US18_US18_0());
             const v41: int32 = (v23 + 1) | 0;
             v21.l0 = (v41 | 0);
             v21.l1 = v40;
         }
-        const v42: US17 = v21.l1;
-        let patternInput_2: [US2, int64, string];
-        if (v42.tag === US17_Tag.US17_1) {
-            patternInput_2 = [v42.fields[0], v42.fields[1], v42.fields[2]];
-        }
-        else {
-            const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
-            const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
-            v45(US4_US4_0())(["> db_on ()"]);
-            const v51: (arg0: [string, [string, any][]], arg1: any) => void = (arg10$0040_1: [string, [string, any][]]): (arg0: any) => void => closure329(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
-            let v52: (arg0: [any, int32]) => void;
-            const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
-            v52 = ((arg: [any, int32]): void => {
-                clo(arg);
-            });
-            patternInput_2 = [v16, (v16.tag === US2_Tag.US2_1) ? ((v74_1 = v0_1.split("/"), (v75_1 = "get", (v79 = v17[v75_1]("tictactoe_spiral"), (v80 = (v74_1.length | 0), (v81 = (new Mut27(0, v79)), ((() => {
-                while (method80(v80, v81)) {
-                    const v83: int32 = v81.l0 | 0;
-                    const v84: any = v81.l1;
-                    const v85: string = v74_1[v83];
-                    const v88: any = v84[v75_1](v85);
-                    const v89: int32 = (v83 + 1) | 0;
-                    v81.l0 = (v89 | 0);
-                    v81.l1 = v88;
+        const v42: US18 = v21.l1;
+        const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
+        const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
+        v45(US4_US4_0())(["> db_on ()"]);
+        const v51: (arg0: [string, [string, any][]], arg1: any) => void = (arg10$0040_1: [string, [string, any][]]): (arg0: any) => void => closure329(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
+        let v52: (arg0: [any, int32]) => void;
+        const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
+        v52 = ((arg: [any, int32]): void => {
+            clo(arg);
+        });
+        let v111: any;
+        switch (v16.tag) {
+            case 1: {
+                const v76_1: string[] = v0_1.split("/");
+                const v77_1: string = "get";
+                const v81: any = v17[v77_1]("tictactoe_spiral");
+                const v82: int32 = v76_1.length | 0;
+                const v83: Mut27 = new Mut27(0, v81);
+                while (method80(v82, v83)) {
+                    const v85: int32 = v83.l0 | 0;
+                    const v86: any = v83.l1;
+                    const v87: string = v76_1[v85];
+                    const v90: any = v86[v77_1](v87);
+                    const v91: int32 = (v85 + 1) | 0;
+                    v83.l0 = (v91 | 0);
+                    v83.l1 = v90;
                 }
-            })(), (v90 = v81.l1, v90.on(v52))))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
+                const v92: any = v83.l1;
+                const v96: int64 = v92.on(v52);
+                v111 = (Promise.resolve(US17_US17_1(v96)));
+                break;
+            }
+            case 2: {
                 throw new Error("db_on Memory");
-            })() : ((v16.tag === US2_Tag.US2_3) ? ((v99 = HubConnection$5__streamFrom_2B594<UH0, UH0, any, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), (v102 = startAsPromise, (v105 = ((v: any): void => {
-                closure290(uncurry(2, v45), v);
-            }), ((pr = (v102(v99)), void (pr.then(v105))), getTicks(utcNow())))))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
+                break;
+            }
+            case 3: {
+                const v103: any = HubConnection$5__streamFrom_2B594<UH0, UH0, any, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1));
+                const v106: any = startAsPromise;
+                const v109: (arg0: any) => US17 = (v: any): US17 => closure290(uncurry(2, v45), v);
+                const pr: any = v106(v103);
+                v111 = (pr.then(v109));
+                break;
+            }
+            default: {
+                const v53: string[] = v0_1.split("/");
+                const v54: string = "get";
+                const v58: any = v17[v54]("tictactoe_spiral");
+                const v59: int32 = v53.length | 0;
+                const v60: Mut27 = new Mut27(0, v58);
                 while (method80(v59, v60)) {
                     const v62: int32 = v60.l0 | 0;
                     const v63: any = v60.l1;
@@ -5232,55 +5295,60 @@ export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, int64
                     v60.l0 = (v68 | 0);
                     v60.l1 = v67;
                 }
-            })(), (v69 = v60.l1, (v69.on(v52), getTicks(utcNow())))))))))))), v18];
+                const v69: any = v60.l1;
+                v69.on(v52);
+                const v73_1: int64 = getTicks(utcNow());
+                v111 = (Promise.resolve(US17_US17_1(v73_1)));
+            }
         }
+        const patternInput_2: [US2, any, string] = (v42.tag === US18_Tag.US18_1) ? [v42.fields[0], v42.fields[1], v42.fields[2]] : [v16, v111, v18];
         v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2]];
-        const v114: int32 = (v15 + 1) | 0;
-        v13.l0 = (v114 | 0);
+        const v118: int32 = (v15 + 1) | 0;
+        v13.l0 = (v118 | 0);
     }
-    const v115: int32 = v10.length | 0;
-    const v116: [US2, string][] = fill(new Array(v115), 0, v115, null);
-    const v117: Mut6 = new Mut6(0);
-    while (method21(v115, v117)) {
-        const v119: int32 = v117.l0 | 0;
-        const patternInput_3: [US2, int64, string] = v10[v119];
-        v116[v119] = [patternInput_3[0], patternInput_3[2]];
-        const v123: int32 = (v119 + 1) | 0;
-        v117.l0 = (v123 | 0);
+    const v119: int32 = v10.length | 0;
+    const v120: [US2, string][] = fill(new Array(v119), 0, v119, null);
+    const v121: Mut6 = new Mut6(0);
+    while (method21(v119, v121)) {
+        const v123: int32 = v121.l0 | 0;
+        const patternInput_3: [US2, any, string] = v10[v123];
+        v120[v123] = [patternInput_3[0], patternInput_3[2]];
+        const v127: int32 = (v123 + 1) | 0;
+        v121.l0 = (v127 | 0);
     }
-    const v124: int32 = v12.length | 0;
-    const v125: [US2, string][] = fill(new Array(v124), 0, v124, null);
-    const v126: Mut6 = new Mut6(0);
-    while (method21(v124, v126)) {
-        const v128: int32 = v126.l0 | 0;
-        const patternInput_4: [US2, int64, string] = v12[v128];
-        v125[v128] = [patternInput_4[0], patternInput_4[2]];
-        const v132: int32 = (v128 + 1) | 0;
-        v126.l0 = (v132 | 0);
+    const v128: int32 = v12.length | 0;
+    const v129: [US2, string][] = fill(new Array(v128), 0, v128, null);
+    const v130: Mut6 = new Mut6(0);
+    while (method21(v128, v130)) {
+        const v132: int32 = v130.l0 | 0;
+        const patternInput_4: [US2, any, string] = v12[v132];
+        v129[v132] = [patternInput_4[0], patternInput_4[2]];
+        const v136: int32 = (v132 + 1) | 0;
+        v130.l0 = (v136 | 0);
     }
-    if ((((v116.length === v125.length) !== true) ? false : method81(v116, v125, 0)) !== true) {
-        const v142: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
-        const v145: [string, int64][] = fill(new Array(v124), 0, v124, null);
-        const v146: Mut6 = new Mut6(0);
-        while (method21(v124, v146)) {
-            const v148: int32 = v146.l0 | 0;
-            const patternInput_5: [US2, int64, string] = v12[v148];
-            const v149: US2 = patternInput_5[0];
-            const v156: string = (v149.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v149.tag === US2_Tag.US2_2) ? "Memory" : ((v149.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
-            v145[v148] = [v156, patternInput_5[1]];
-            const v157: int32 = (v148 + 1) | 0;
-            v146.l0 = (v157 | 0);
+    if ((((v120.length === v129.length) !== true) ? false : method81(v120, v129, 0)) !== true) {
+        const v146: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
+        const v149: [string, any][] = fill(new Array(v128), 0, v128, null);
+        const v150: Mut6 = new Mut6(0);
+        while (method21(v128, v150)) {
+            const v152: int32 = v150.l0 | 0;
+            const patternInput_5: [US2, any, string] = v12[v152];
+            const v153: US2 = patternInput_5[0];
+            const v160: string = (v153.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v153.tag === US2_Tag.US2_2) ? "Memory" : ((v153.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
+            v149[v152] = [v160, patternInput_5[1]];
+            const v161: int32 = (v152 + 1) | 0;
+            v150.l0 = (v161 | 0);
         }
-        v142(["> use_fetch > connections_change", ["new_subscriptions:", v145]]);
+        v146(["> use_fetch > connections_change", ["new_subscriptions:", v149]]);
         v2(v12);
     }
 }
 
-export function closure333(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US18) => void, v5: () => US18, v6: (arg0: US4, arg1: any[]) => void, v7: [US2, any, string][], v8: string, v9: [string, any][]): void {
+export function closure333(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v3: () => US4, v4: (arg0: US19) => void, v5: () => US19, v6: (arg0: US4, arg1: any[]) => void, v7: [US2, any, string][], v8: string, v9: [string, any][]): void {
     method90(v0_1, v1_1, v2, v3, v4, v5, v6, US2_US2_2(), v7, v9, v8);
 }
 
-export function closure332(v0_1: (arg0: any) => any, v1_1: () => [US2, any, string][], v2: string, v3: () => [string, any][], v4: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v5: () => US4, v6: (arg0: US18) => void, v7: () => US18, v8: (arg0: US4, arg1: any[]) => void, unitVar: void): void {
+export function closure332(v0_1: (arg0: any) => any, v1_1: () => [US2, any, string][], v2: string, v3: () => [string, any][], v4: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v5: () => US4, v6: (arg0: US19) => void, v7: () => US19, v8: (arg0: US4, arg1: any[]) => void, unitVar: void): void {
     const v9: [US2, any, string][] = v1_1();
     const v10: int64 = getTicks(utcNow());
     const v12: string = newGuid();
@@ -5293,7 +5361,7 @@ export function closure332(v0_1: (arg0: any) => any, v1_1: () => [US2, any, stri
     void (pr.then(v17));
 }
 
-export function closure334(v0_1: () => [US2, any, string][], v1_1: (arg0: US4, arg1: any[]) => void, v2: string, v3: () => [string, any][], v4: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v5: () => US4, v6: (arg0: US18) => void, v7: () => US18, unitVar: void): void {
+export function closure334(v0_1: () => [US2, any, string][], v1_1: (arg0: US4, arg1: any[]) => void, v2: string, v3: () => [string, any][], v4: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v5: () => US4, v6: (arg0: US19) => void, v7: () => US19, unitVar: void): void {
     v1_1(US4_US4_2(), [">> use_fetch clear ()"]);
     const v13: [US2, any, string][] = v0_1();
     const v14: int64 = getTicks(utcNow());
@@ -5312,11 +5380,11 @@ export function method88(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [
     const v258: () => [US2, any, string][] = (v247(v246))[10];
     const patternInput_2: [() => void, () => void] = method75();
     const patternInput_3: [() => void, () => void] = method75();
-    const patternInput_4: [() => US18, (arg0: US18) => void] = method89(US18_US18_0());
-    const v276: (arg0: US18) => void = patternInput_4[1];
-    const v275: () => US18 = patternInput_4[0];
-    const patternInput_5: [() => [US2, int64, string][], (arg0: [US2, int64, string][]) => void] = method77([]);
-    const v278: () => [US2, int64, string][] = patternInput_5[0];
+    const patternInput_4: [() => US19, (arg0: US19) => void] = method89(US19_US19_0());
+    const v276: (arg0: US19) => void = patternInput_4[1];
+    const v275: () => US19 = patternInput_4[0];
+    const patternInput_5: [() => [US2, any, string][], (arg0: [US2, any, string][]) => void] = method77([]);
+    const v278: () => [US2, any, string][] = patternInput_5[0];
     const v280: uint8[] = Array.from(get_UTF8().getBytes(v0_1));
     const v281: int32 = v280.length | 0;
     const v282: Mut25 = new Mut25(0, 100000);
@@ -5885,39 +5953,39 @@ export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) =
             const v19: int32 = v17.l0 | 0;
             const v20: US2 = v10[v19];
             const v21: int32 = v4.length | 0;
-            const v23: Mut30 = new Mut30(0, US19_US19_0());
+            const v23: Mut30 = new Mut30(0, US20_US20_0());
             while (method98(v21, v23)) {
                 const v25: int32 = v23.l0 | 0;
                 const v28: int32 = ((op_UnaryNegation_Int32(v25) + v21) - 1) | 0;
-                const v29: US19 = v23.l1;
+                const v29: US20 = v23.l1;
                 const patternInput_1: [US2, any, string] = v4[v28];
                 const v32: string = patternInput_1[2];
                 const v30: US2 = patternInput_1[0];
-                const v42: US19 = (v29.tag === US19_Tag.US19_1) ? v29 : ((((copyOfStruct = v30, (copyOfStruct.tag === US2_Tag.US2_1) ? (v20.tag === US2_Tag.US2_1) : ((copyOfStruct.tag === US2_Tag.US2_2) ? (v20.tag === US2_Tag.US2_2) : ((copyOfStruct.tag === US2_Tag.US2_3) ? (v20.tag === US2_Tag.US2_3) : (v20.tag === US2_Tag.US2_0))))) && (v32 === patternInput[3])) ? US19_US19_1(v30, patternInput_1[1], v32) : US19_US19_0());
+                const v42: US20 = (v29.tag === US20_Tag.US20_1) ? v29 : ((((copyOfStruct = v30, (copyOfStruct.tag === US2_Tag.US2_1) ? (v20.tag === US2_Tag.US2_1) : ((copyOfStruct.tag === US2_Tag.US2_2) ? (v20.tag === US2_Tag.US2_2) : ((copyOfStruct.tag === US2_Tag.US2_3) ? (v20.tag === US2_Tag.US2_3) : (v20.tag === US2_Tag.US2_0))))) && (v32 === patternInput[3])) ? US20_US20_1(v30, patternInput_1[1], v32) : US20_US20_0());
                 const v43: int32 = (v25 + 1) | 0;
                 v23.l0 = (v43 | 0);
                 v23.l1 = v42;
             }
-            const v44: US19 = v23.l1;
+            const v44: US20 = v23.l1;
             let patternInput_3: [US2, any, string];
-            if (v44.tag === US19_Tag.US19_1) {
+            if (v44.tag === US20_Tag.US20_1) {
                 patternInput_3 = [v44.fields[0], v44.fields[1], v44.fields[2]];
             }
             else {
-                const v46: Mut31 = new Mut31(0, US20_US20_0());
+                const v46: Mut31 = new Mut31(0, US21_US21_0());
                 while (method99(v5, v46)) {
                     const v48: int32 = v46.l0 | 0;
                     const v51: int32 = ((op_UnaryNegation_Int32(v48) + v5) - 1) | 0;
-                    const v52: US20 = v46.l1;
+                    const v52: US21 = v46.l1;
                     const patternInput_2: [US2[], int32, US3, string, string] = v3[v51];
                     const v55: US3 = patternInput_2[2];
-                    const v67: US20 = (v52.tag === US20_Tag.US20_1) ? v52 : (((copyOfStruct_5 = v55, (copyOfStruct_5.tag === US3_Tag.US3_1) ? (v12.tag === US3_Tag.US3_1) : ((copyOfStruct_5.tag === US3_Tag.US3_2) ? (v12.tag === US3_Tag.US3_2) : (v12.tag === US3_Tag.US3_0)))) ? US20_US20_1(patternInput_2[0], patternInput_2[1], v55, patternInput_2[3], patternInput_2[4]) : US20_US20_0());
+                    const v67: US21 = (v52.tag === US21_Tag.US21_1) ? v52 : (((copyOfStruct_5 = v55, (copyOfStruct_5.tag === US3_Tag.US3_1) ? (v12.tag === US3_Tag.US3_1) : ((copyOfStruct_5.tag === US3_Tag.US3_2) ? (v12.tag === US3_Tag.US3_2) : (v12.tag === US3_Tag.US3_0)))) ? US21_US21_1(patternInput_2[0], patternInput_2[1], v55, patternInput_2[3], patternInput_2[4]) : US21_US21_0());
                     const v68: int32 = (v48 + 1) | 0;
                     v46.l0 = (v68 | 0);
                     v46.l1 = v67;
                 }
-                const v69: US20 = v46.l1;
-                const v77_1: string = (v69.tag === US20_Tag.US20_1) ? (`${v69.fields[3]}:${v69.fields[1]}/${v69.fields[4]}`) : "";
+                const v69: US21 = v46.l1;
+                const v77_1: string = (v69.tag === US21_Tag.US21_1) ? (`${v69.fields[3]}:${v69.fields[1]}/${v69.fields[4]}`) : "";
                 patternInput_3 = [v20, (v20.tag === US2_Tag.US2_1) ? ((v98 = Node$, new v98(v77_1))) : ((v20.tag === US2_Tag.US2_2) ? (() => {
                     throw new Error("new_db Memory");
                 })() : ((v20.tag === US2_Tag.US2_3) ? ((v102 = ((v: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1> => closure380(void 0, v)), (v103 = ((_ = ((arg = HubConnectionBuilder$5_$ctor_Z66CB2AA1<UH0, UH0, any, UH1, UH1>(new Bindings_signalR.HubConnectionBuilder()), v102(v0_1)(v77_1)(arg))), HubConnection$5_$ctor_Z78FDE58B<UH0, UH0, any, UH1, UH1>((protocol_2 = (_.useMsgPack ? ((protocol = MsgPack_MsgPackProtocol_$ctor(), {
@@ -6366,18 +6434,18 @@ export function closure391(unitVar: void, unitVar_1: void): any {
     return [patternInput_6[0], patternInput_6[1], patternInput_7[0], patternInput_7[1], patternInput_8[0], patternInput_8[1], patternInput_9[0], patternInput_9[1], patternInput_11[0], patternInput_11[1], patternInput_10[0], patternInput_10[1], patternInput_16[0], patternInput_16[1], patternInput_15[0], patternInput_15[1], patternInput_14[0], patternInput_14[1], patternInput_12[0], patternInput_12[1], patternInput_13[0], patternInput_13[1]];
 }
 
-export function patternInput$00407617(): [(arg0: $a, arg1: $b) => $c, (arg0: $d, arg1: $e, arg2: $f) => void] {
+export function patternInput$00407606(): [(arg0: $a, arg1: $b) => $c, (arg0: $d, arg1: $e, arg2: $f) => void] {
     return [(o: $a): (arg0: $b) => $c => ((prop: $b): $c => o[prop]), (o_1: $d): (arg0: $e, arg1: $f) => void => ((prop_1: $e): (arg0: $f) => void => ((v: $f): void => {
         o_1[prop_1] = v;
     }))];
 }
 
 export function op_DynamicAssignment<$d, $e, $f>(): (arg0: $d, arg1: $e, arg2: $f) => void {
-    return patternInput$00407617<any, any, any, $d, $e, $f>()[1];
+    return patternInput$00407606<any, any, any, $d, $e, $f>()[1];
 }
 
 export function op_Dynamic<$a, $b, $c>(): (arg0: $a, arg1: $b) => $c {
-    return patternInput$00407617<$a, $b, $c, any, any, any>()[0];
+    return patternInput$00407606<$a, $b, $c, any, any, any>()[0];
 }
 
 export const v0 = void 0;

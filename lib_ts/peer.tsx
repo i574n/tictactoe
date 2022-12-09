@@ -24,7 +24,7 @@ export const enum UH0_Tag {
     UH0_3 = 3
 }
 
-export type UH0_Fields = [[string], [string, string], [string, string], [string, string, any]];
+export type UH0_Fields = [[string], [string, string], [string, string], [string, string, string]];
 
 export type UH0 = UH0_Cons<UH0_Tag.UH0_0> | UH0_Cons<UH0_Tag.UH0_1> | UH0_Cons<UH0_Tag.UH0_2> | UH0_Cons<UH0_Tag.UH0_3>;
 
@@ -40,7 +40,7 @@ export function UH0_UH0_2(Item1: string, Item2: string) {
     return new UH0_Cons<UH0_Tag.UH0_2>(UH0_Tag.UH0_2, [Item1, Item2]);
 }
 
-export function UH0_UH0_3(Item1: string, Item2: string, Item3: any) {
+export function UH0_UH0_3(Item1: string, Item2: string, Item3: string) {
     return new UH0_Cons<UH0_Tag.UH0_3>(UH0_Tag.UH0_3, [Item1, Item2, Item3]);
 }
 
@@ -54,7 +54,7 @@ export class UH0_Cons<Tag extends keyof UH0_Fields> extends Union {
 }
 
 export function UH0$reflection(): TypeInfo {
-    return union_type("Peer.UH0", [], UH0_Cons, () => [[["Item", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type], ["Item3", obj_type]]]);
+    return union_type("Peer.UH0", [], UH0_Cons, () => [[["Item", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type]], [["Item1", string_type], ["Item2", string_type], ["Item3", string_type]]]);
 }
 
 export const enum US0_Tag {
@@ -62,7 +62,7 @@ export const enum US0_Tag {
     US0_1 = 1
 }
 
-export type US0_Fields = [[], [any]];
+export type US0_Fields = [[], [string]];
 
 export type US0 = US0_Cons<US0_Tag.US0_0> | US0_Cons<US0_Tag.US0_1>;
 
@@ -70,7 +70,7 @@ export function US0_US0_0() {
     return new US0_Cons<US0_Tag.US0_0>(US0_Tag.US0_0, []);
 }
 
-export function US0_US0_1(f1_0: any) {
+export function US0_US0_1(f1_0: string) {
     return new US0_Cons<US0_Tag.US0_1>(US0_Tag.US0_1, [f1_0]);
 }
 
@@ -84,7 +84,7 @@ export class US0_Cons<Tag extends keyof US0_Fields> extends Union {
 }
 
 export function US0$reflection(): TypeInfo {
-    return union_type("Peer.US0", [], US0_Cons, () => [[], [["f1_0", obj_type]]]);
+    return union_type("Peer.US0", [], US0_Cons, () => [[], [["f1_0", string_type]]]);
 }
 
 export const enum UH1_Tag {

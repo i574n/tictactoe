@@ -3,10 +3,10 @@ and UH0 =
     | UH0_0 of string
     | UH0_1 of string * string
     | UH0_2 of string * string
-    | UH0_3 of string * string * obj
+    | UH0_3 of string * string * string
 and [<Struct>] US0 =
     | US0_0
-    | US0_1 of f1_0 : obj
+    | US0_1 of f1_0 : string
 and UH1 =
     | UH1_0
     | UH1_1 of US0

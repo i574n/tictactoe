@@ -549,7 +549,9 @@ inl db_put forall t.
     log Debug ;[!!"> db_put ()"]
     match client_type with
     | SignalRClient =>
-        inl request' = Set { alias = "alias"; content_address; value = real real_unbox `t `string new_value }
+        inl alias = "alias"
+        inl value = real real_unbox `t `string new_value
+        inl request' = Set { alias content_address value }
         inl db : hub_connection request response = db |> real real_unbox `any `(hub_connection request response)
         $"!db.invokeAsPromise !request'"
         |> promise_iter fun (response' : response) =>
@@ -605,13 +607,17 @@ inl db_put forall t.
 //     }
 // }
 
+union subscription_handle =
+    | Timestamp : i64
+    | Disposable : $"System.IDisposable"
+
 inl db_on forall value_type.
     (get_log_level : () -> log_level_type)
     (db : any)
     (content_address : string)
     (client_type : client_type)
     (on_value : guid * value_type -> ())
-    : i64
+    : promise subscription_handle
     =
     inl get_locals () = ;[
         !!("content_address:", content_address)
@@ -631,7 +637,8 @@ inl db_on forall value_type.
     inl handler : any * i32 -> () = $"Fable.Core.JsInterop.emitJsExpr () $\"(v: any, k: any) => {!on_value}(v)(k)\""
     match client_type with
     | SignalRClient =>
-        inl request' = Get { alias = "alias"; content_address }
+        inl alias = "alias"
+        inl request' = Get { alias content_address }
         // inl action = fun (response : response) =>
         //     log Info ;[
         //         !!"> db_on > streamFrom action ()"
@@ -640,7 +647,7 @@ inl db_on forall value_type.
         inl db : hub_connection request response = db |> real real_unbox `any `(hub_connection request response)
         $"!db.streamFrom !request'"
         |> async_start_as_promise
-        |> promise_iter fun (stream : $"Fable.SignalR.StreamResult<`response>") =>
+        |> promise_map fun (stream : $"Fable.SignalR.StreamResult<`response>") =>
             inl context : $"Fable.SignalR.IStreamSubscriber<`response>" =
                 a ;[
                     new_pair "next" !!(fun (msg : response) =>
@@ -673,6 +680,8 @@ inl db_on forall value_type.
                 !!("subscription (IDisposable):", subscription)
             ]
 
+            subscription |> Disposable
+
         // inl connection = db
         // connection
         // |> connection_on "Send" fun _msg =>
@@ -680,14 +689,14 @@ inl db_on forall value_type.
         //         !!"> db_on > signalr on_value ()"
         //         !!("_msg:", _msg)
         //     ]
-        ticks ()
     | GunRsClient =>
         inl node = get_db_node db content_address
         (js_get node "on" |> real real_unbox `any `((any * i32 -> ()) -> i64)) handler
+        |> Timestamp |> promise_lift
     | GunJsClient =>
         inl node = get_db_node db content_address
         (js_get node "on" |> real real_unbox `any `((any * i32 -> ()) -> ())) handler
-        ticks ()
+        ticks () |> Timestamp |> promise_lift
     | Memory => failwith "db_on Memory"
 
 

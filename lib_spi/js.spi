@@ -47,6 +47,15 @@ nominal promise t = $"Fable.Core.JS.Promise<`t>"
 inl promise_create forall t. (fn : ((t -> ()) -> (exn -> ()) -> ())) : promise t =
     $"Promise.create !fn"
 
+inl promise_lift forall t. (a : t) : promise t =
+    $"Promise.lift !a"
+
+inl promise_reject forall t. (reason : exn) : promise t =
+    $"Promise.reject !reason"
+
+inl promise_bind forall t1 t2. (a : t1 -> promise t2) (pr : promise t1) : promise t2 =
+    $"!pr |> Promise.bind !a"
+
 inl promise_map forall t1 t2. (fn : t1 -> t2) (p : promise t1) : promise t2 =
     $"!p |> Promise.map !fn"
 

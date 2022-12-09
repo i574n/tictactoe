@@ -14,13 +14,7 @@ let base_icon (props : mut base_icon_props) =
         fun props' =>
             { props' with
                 As = Some <| props.Icon ()
-                Sx =
-                    init_props fun props' => { props' with
-                        MarginTop = Some "-12px"
-                        MarginLeft = Some "-12px"
-                        Zoom = Some "0.6"
-                    }
-                    |> props.Sx |> props_entries |> create_props |> Some
+                Sx = None
                 Size = Some "14px"
             }
             |> props.Props
