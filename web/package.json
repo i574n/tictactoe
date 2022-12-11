@@ -5,58 +5,68 @@
     "replace-ts1": "replace-in-files --regex='\\.js.;' --replacement='.ts\";' '../lib_ts/fable_modules/fable-library-ts/lib/*.js'",
     "replace-ts2": "replace-in-files --regex='\\.fs\\.js\";' --replacement='.tsx\";' '../lib_ts/**/*.tsx'",
     "pre-build": "bun run replace-ts1 && bun run replace-ts2",
+
+    "deps": "bun run pre-build && concurrently 'bun run peer-signalr' 'bun run peer-gunrs' 'bun run peer-gunjs' 'bun run start'",
+    "start": "bun run pre-build && vite",
     "build": "bun run pre-build && vite build --outDir dist",
-    "extension": "bun run pre-build && vite build --outDir dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets/extension_content_script.*.js ./dist_extension/assets/extension_content_script.js && mv ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets && cp extension_background.js extension_content_script.js ./dist_extension",
-    "dev": "bun run pre-build && vite",
-    "e2e-peer-signalr": "cd ../peer_signalr && rm -rf ./data_19761 && dotnet run --port 19761 --root-path ./data_19761",
-    "e2e-peer-gunrs": "rm -rf ./sled_db && rod start --port 14944",
-    "e2e-peer-gunjs": "cross-env-shell PORT=18765 HTTPS=true ROOT_PATH=../web/radata_18765 'cd ../peer_gunjs && rm -rf ../web/radata_18765 && bun run start-dev'",
-    "e2e-deps": "cross-env-shell IS_TEST=1 bun run build && cross-env-shell IS_TEST=1 concurrently \"bun run e2e-peer-signalr\" \"bun run e2e-peer-gunrs\" \"bun run e2e-peer-gunjs\" \"bun run serve\"",
-    "peer-gunjs": "cross-env-shell ROOT_PATH=./radata_8765 'cd ../peer_gunjs && bun run start-dev-local'",
+    "serve": "bun run pre-build && vite preview",
+
+    "peer-gunjs": "cross-env-shell ROOT_PATH=./radata_8765 'cd ../peer_gunjs && bun run start'",
     "peer-gunrs": "cd ../peer_gunrs && rod start",
     "peer-signalr": "cd ../peer_signalr && dotnet watch run --port 9761 --root-path ./data_9761",
-    "dev-deps": "bun run pre-build && concurrently 'bun run peer-signalr' 'bun run peer-gunrs' 'bun run peer-gunjs' 'bun run dev'",
-    "e2e": "playwright test",
-    "outdated-pre": "ncu --pre 1 -t greatest",
+
     "playwright-install": "playwright install --with-deps && playwright install msedge",
-    "serve": "vite preview",
-    "start": "vite"
+
+    "e2e-peer-signalr": "cd ../peer_signalr && rm -rf ./data_19761 && dotnet run --port 19761 --root-path ./data_19761",
+    "e2e-peer-gunrs": "rm -rf ./sled_db && rod start --port 14944",
+    "e2e-peer-gunjs": "cross-env-shell PORT=18765 HTTPS=true ROOT_PATH=../web/radata_18765 'cd ../peer_gunjs && rm -rf ../web/radata_18765 && bun run start-localhost'",
+    "e2e-deps": "cross-env-shell IS_TEST=1 bun run build && cross-env-shell IS_TEST=1 concurrently 'bun run e2e-peer-signalr' 'bun run e2e-peer-gunrs' 'bun run e2e-peer-gunjs' 'bun run serve'",
+    "e2e": "playwright test",
+
+    "extension": "bun run pre-build && vite build --outDir dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets/extension_content_script.*.js ./dist_extension/assets/extension_content_script.js && mv ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets && cp extension_background.js extension_content_script.js ./dist_extension",
+
+    "outdated-pre": "ncu --pre 1 -t greatest"
   },
   "dependencies": {
     "algosdk": "~1.24",
     "buffer": "~6.0",
 
-    "rusty-gun": "~0.1.2",
     "gun": "~0.2020.1238",
+    "rusty-gun": "~0.1.2",
 
     "@microsoft/signalr": "~7.0",
 
-    "solid-js": "~1.6.3",
+    "solid-js": "~1.6.4",
     "@solid-primitives/scheduled": "~1.2",
     "solid-icons": "~1.0",
+
     "solid-devtools": "~0.23",
     "@solid-devtools/transform": "~0.9",
 
+    "@hope-ui/core": "~1.0.0-next.11",
     "@stitches/core": "~1.3.1-1",
     "solid-transition-group": "0.0.12",
-    "@hope-ui/core": "~1.0.0-next.11",
     "clsx": "~1.2"
   },
   "devDependencies": {
-    "npm-check-updates": "~16.5",
-    "replace-in-files-cli": "~2.0",
-    "typescript": "next",
-    "cross-env": "~7.0",
-    "concurrently": "~7.6",
-    "@playwright/test": "~1.29.0-alpha-nov-30-2022",
-    "playwright-core": "~1.29.0-alpha-nov-30-2022",
-    "axe-playwright": "~1.1",
-    "vite": "~4.0.0-beta.7",
-    "vite-plugin-solid": "~2.4",
-    "vite-plugin-wasm": "~3.0",
-    "vite-plugin-mkcert": "~1.9",
     "esbuild": "~0.16",
     "@esbuild-plugins/node-globals-polyfill": "~0.1",
-    "path-browserify": "~1.0"
+
+    "playwright-core": "~1.29.0-alpha-nov-30-2022",
+    "@playwright/test": "~1.29.0-alpha-nov-30-2022",
+    "axe-playwright": "~1.1",
+
+    "vite": "~4.0.0",
+    "vite-plugin-solid": "~2.5",
+    "vite-plugin-mkcert": "~1.9",
+    "vite-plugin-wasm": "~3.0",
+
+    "concurrently": "~7.6",
+    "cross-env": "~7.0",
+    "npm-check-updates": "~16.5",
+    "path-browserify": "~1.0",
+    "replace-in-files-cli": "~2.0",
+
+    "typescript": "next"
   }
 }

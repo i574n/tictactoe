@@ -9,8 +9,7 @@ import { Input, Anchor, Stack, IconButton, Icon, Button, Box, hope } from "@hope
 import { utcNow, getTicks } from "../fable_modules/fable-library-ts/Date.js";
 import { BiRegularMinus, BiRegularPlus, BiRegularLinkExternal, BiRegularUndo, BiRegularUpArrow, BiRegularDownArrow, BiRegularRefresh } from "solid-icons/bi";
 import { nonSeeded } from "../fable_modules/fable-library-ts/Random.js";
-import { HubConnection$5, HubConnection$5__startNow, HubConnection$5__streamFrom_2B594, HubConnection$5__invokeAsPromise_2B595 } from "../deps/Fable.SignalR/HubConnection.tsx";
-import { startAsPromise } from "../fable_modules/fable-library-ts/Async.ts";
+import { HubConnection$5, HubConnection$5__startNow, HubConnection$5__streamFromAsPromise_2B594, HubConnection$5__invokeAsPromise_2B595 } from "../deps/Fable.SignalR/HubConnection.tsx";
 import { parse as parse_1, newGuid } from "../fable_modules/fable-library-ts/Guid.js";
 import { get_UTF8 } from "../fable_modules/fable-library-ts/Encoding.js";
 import { debounce } from "@solid-primitives/scheduled";
@@ -4485,7 +4484,7 @@ export function method79(v0_1: string, v1_1: () => [string, int32][], v2: (arg0:
                         const v121: (arg0: UH1) => void = (v_1: UH1): void => {
                             closure289(uncurry(2, v70), v_1);
                         };
-                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, any, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
+                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, UH1, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
                         void (pr.then(v121));
                         break;
                     }
@@ -4591,7 +4590,7 @@ export function method81(v0_1_mut: [US2, string][], v1_1_mut: [US2, string][], v
 }
 
 export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, string][]) => void, v3: () => [US2, any, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, int32][], v6: (arg0: [[string, int32][], US2, string, int32]) => void, v7: (arg0: US16) => void, v8: () => US16, v9: [US2, any, string][]): void {
-    let copyOfStruct: US2;
+    let copyOfStruct: US2, v76_1: string[], v77_1: string, v81: any, v82: int32, v83: Mut27, v92: any, v96: int64, v104: (arg0: any) => US17, pr: any, v53: string[], v54: string, v58: any, v59: int32, v60: Mut27, v69: any, v73_1: int64;
     const v10: [US2, any, string][] = v3();
     const v11: int32 = v9.length | 0;
     const v12: [US2, any, string][] = fill(new Array(v11), 0, v11, null);
@@ -4617,23 +4616,21 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
             v21.l1 = v40;
         }
         const v42: US18 = v21.l1;
-        const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
-        const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
-        v45(US4_US4_0())(["> db_on ()"]);
-        const v51: (arg0: [string, int32], arg1: any) => void = (arg10$0040_1: [string, int32]): (arg0: any) => void => closure285(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
-        let v52: (arg0: [any, int32]) => void;
-        const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
-        v52 = ((arg: [any, int32]): void => {
-            clo(arg);
-        });
-        let v111: any;
-        switch (v16.tag) {
-            case 1: {
-                const v76_1: string[] = v0_1.split("/");
-                const v77_1: string = "get";
-                const v81: any = v17[v77_1]("tictactoe_spiral");
-                const v82: int32 = v76_1.length | 0;
-                const v83: Mut27 = new Mut27(0, v81);
+        let patternInput_2: [US2, any, string];
+        if (v42.tag === US18_Tag.US18_1) {
+            patternInput_2 = [v42.fields[0], v42.fields[1], v42.fields[2]];
+        }
+        else {
+            const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
+            const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
+            v45(US4_US4_0())(["> db_on ()"]);
+            const v51: (arg0: [string, int32], arg1: any) => void = (arg10$0040_1: [string, int32]): (arg0: any) => void => closure285(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
+            let v52: (arg0: [any, int32]) => void;
+            const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
+            v52 = ((arg: [any, int32]): void => {
+                clo(arg);
+            });
+            patternInput_2 = [v16, (v16.tag === US2_Tag.US2_1) ? ((v76_1 = v0_1.split("/"), (v77_1 = "get", (v81 = v17[v77_1]("tictactoe_spiral"), (v82 = (v76_1.length | 0), (v83 = (new Mut27(0, v81)), ((() => {
                 while (method80(v82, v83)) {
                     const v85: int32 = v83.l0 | 0;
                     const v86: any = v83.l1;
@@ -4643,29 +4640,9 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
                     v83.l0 = (v91 | 0);
                     v83.l1 = v90;
                 }
-                const v92: any = v83.l1;
-                const v96: int64 = v92.on(v52);
-                v111 = (Promise.resolve(US17_US17_1(v96)));
-                break;
-            }
-            case 2: {
+            })(), (v92 = v83.l1, (v96 = v92.on(v52), Promise.resolve(US17_US17_1(v96))))))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
                 throw new Error("db_on Memory");
-                break;
-            }
-            case 3: {
-                const v103: any = HubConnection$5__streamFrom_2B594<UH0, UH0, any, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1));
-                const v106: any = startAsPromise;
-                const v109: (arg0: any) => US17 = (v: any): US17 => closure290(uncurry(2, v45), v);
-                const pr: any = v106(v103);
-                v111 = (pr.then(v109));
-                break;
-            }
-            default: {
-                const v53: string[] = v0_1.split("/");
-                const v54: string = "get";
-                const v58: any = v17[v54]("tictactoe_spiral");
-                const v59: int32 = v53.length | 0;
-                const v60: Mut27 = new Mut27(0, v58);
+            })() : ((v16.tag === US2_Tag.US2_3) ? ((v104 = ((v: any): US17 => closure290(uncurry(2, v45), v)), (pr = HubConnection$5__streamFromAsPromise_2B594<UH0, UH0, UH1, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), pr.then(v104)))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
                 while (method80(v59, v60)) {
                     const v62: int32 = v60.l0 | 0;
                     const v63: any = v60.l1;
@@ -4675,51 +4652,46 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
                     v60.l0 = (v68 | 0);
                     v60.l1 = v67;
                 }
-                const v69: any = v60.l1;
-                v69.on(v52);
-                const v73_1: int64 = getTicks(utcNow());
-                v111 = (Promise.resolve(US17_US17_1(v73_1)));
-            }
+            })(), (v69 = v60.l1, (v69.on(v52), (v73_1 = getTicks(utcNow()), Promise.resolve(US17_US17_1(v73_1)))))))))))))), v18];
         }
-        const patternInput_2: [US2, any, string] = (v42.tag === US18_Tag.US18_1) ? [v42.fields[0], v42.fields[1], v42.fields[2]] : [v16, v111, v18];
         v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2]];
-        const v118: int32 = (v15 + 1) | 0;
-        v13.l0 = (v118 | 0);
+        const v113: int32 = (v15 + 1) | 0;
+        v13.l0 = (v113 | 0);
     }
-    const v119: int32 = v10.length | 0;
-    const v120: [US2, string][] = fill(new Array(v119), 0, v119, null);
-    const v121: Mut6 = new Mut6(0);
-    while (method21(v119, v121)) {
-        const v123: int32 = v121.l0 | 0;
-        const patternInput_3: [US2, any, string] = v10[v123];
-        v120[v123] = [patternInput_3[0], patternInput_3[2]];
-        const v127: int32 = (v123 + 1) | 0;
-        v121.l0 = (v127 | 0);
+    const v114: int32 = v10.length | 0;
+    const v115: [US2, string][] = fill(new Array(v114), 0, v114, null);
+    const v116: Mut6 = new Mut6(0);
+    while (method21(v114, v116)) {
+        const v118: int32 = v116.l0 | 0;
+        const patternInput_3: [US2, any, string] = v10[v118];
+        v115[v118] = [patternInput_3[0], patternInput_3[2]];
+        const v122: int32 = (v118 + 1) | 0;
+        v116.l0 = (v122 | 0);
     }
-    const v128: int32 = v12.length | 0;
-    const v129: [US2, string][] = fill(new Array(v128), 0, v128, null);
-    const v130: Mut6 = new Mut6(0);
-    while (method21(v128, v130)) {
-        const v132: int32 = v130.l0 | 0;
-        const patternInput_4: [US2, any, string] = v12[v132];
-        v129[v132] = [patternInput_4[0], patternInput_4[2]];
-        const v136: int32 = (v132 + 1) | 0;
-        v130.l0 = (v136 | 0);
+    const v123: int32 = v12.length | 0;
+    const v124: [US2, string][] = fill(new Array(v123), 0, v123, null);
+    const v125: Mut6 = new Mut6(0);
+    while (method21(v123, v125)) {
+        const v127: int32 = v125.l0 | 0;
+        const patternInput_4: [US2, any, string] = v12[v127];
+        v124[v127] = [patternInput_4[0], patternInput_4[2]];
+        const v131: int32 = (v127 + 1) | 0;
+        v125.l0 = (v131 | 0);
     }
-    if ((((v120.length === v129.length) !== true) ? false : method81(v120, v129, 0)) !== true) {
-        const v146: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
-        const v149: [string, any][] = fill(new Array(v128), 0, v128, null);
-        const v150: Mut6 = new Mut6(0);
-        while (method21(v128, v150)) {
-            const v152: int32 = v150.l0 | 0;
-            const patternInput_5: [US2, any, string] = v12[v152];
-            const v153: US2 = patternInput_5[0];
-            const v160: string = (v153.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v153.tag === US2_Tag.US2_2) ? "Memory" : ((v153.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
-            v149[v152] = [v160, patternInput_5[1]];
-            const v161: int32 = (v152 + 1) | 0;
-            v150.l0 = (v161 | 0);
+    if ((((v115.length === v124.length) !== true) ? false : method81(v115, v124, 0)) !== true) {
+        const v141: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
+        const v144: [string, any][] = fill(new Array(v123), 0, v123, null);
+        const v145: Mut6 = new Mut6(0);
+        while (method21(v123, v145)) {
+            const v147: int32 = v145.l0 | 0;
+            const patternInput_5: [US2, any, string] = v12[v147];
+            const v148: US2 = patternInput_5[0];
+            const v155: string = (v148.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v148.tag === US2_Tag.US2_2) ? "Memory" : ((v148.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
+            v144[v147] = [v155, patternInput_5[1]];
+            const v156: int32 = (v147 + 1) | 0;
+            v145.l0 = (v156 | 0);
         }
-        v146(["> use_fetch > connections_change", ["new_subscriptions:", v149]]);
+        v141(["> use_fetch > connections_change", ["new_subscriptions:", v144]]);
         v2(v12);
     }
 }
@@ -5169,7 +5141,7 @@ export function method90(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [
                         const v121: (arg0: UH1) => void = (v_1: UH1): void => {
                             closure289(uncurry(2, v70), v_1);
                         };
-                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, any, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
+                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, UH1, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
                         void (pr.then(v121));
                         break;
                     }
@@ -5211,7 +5183,7 @@ export function closure329(v0_1: string, v1_1: () => [string, any][], v2: (arg0:
 }
 
 export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, string][]) => void, v3: () => [US2, any, string][], v4: (arg0: US4, arg1: any[]) => void, v5: () => [string, any][], v6: (arg0: [[string, any][], US2, string, [string, any][]]) => void, v7: (arg0: US19) => void, v8: () => US19, v9: [US2, any, string][]): void {
-    let copyOfStruct: US2;
+    let copyOfStruct: US2, v76_1: string[], v77_1: string, v81: any, v82: int32, v83: Mut27, v92: any, v96: int64, v104: (arg0: any) => US17, pr: any, v53: string[], v54: string, v58: any, v59: int32, v60: Mut27, v69: any, v73_1: int64;
     const v10: [US2, any, string][] = v3();
     const v11: int32 = v9.length | 0;
     const v12: [US2, any, string][] = fill(new Array(v11), 0, v11, null);
@@ -5237,23 +5209,21 @@ export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
             v21.l1 = v40;
         }
         const v42: US18 = v21.l1;
-        const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
-        const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
-        v45(US4_US4_0())(["> db_on ()"]);
-        const v51: (arg0: [string, [string, any][]], arg1: any) => void = (arg10$0040_1: [string, [string, any][]]): (arg0: any) => void => closure329(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
-        let v52: (arg0: [any, int32]) => void;
-        const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
-        v52 = ((arg: [any, int32]): void => {
-            clo(arg);
-        });
-        let v111: any;
-        switch (v16.tag) {
-            case 1: {
-                const v76_1: string[] = v0_1.split("/");
-                const v77_1: string = "get";
-                const v81: any = v17[v77_1]("tictactoe_spiral");
-                const v82: int32 = v76_1.length | 0;
-                const v83: Mut27 = new Mut27(0, v81);
+        let patternInput_2: [US2, any, string];
+        if (v42.tag === US18_Tag.US18_1) {
+            patternInput_2 = [v42.fields[0], v42.fields[1], v42.fields[2]];
+        }
+        else {
+            const v43: () => any[] = (): any[] => closure284(v0_1, v16, void 0);
+            const v45: (arg0: US4, arg1: any[]) => void = method17(v1_1, v43, "#666");
+            v45(US4_US4_0())(["> db_on ()"]);
+            const v51: (arg0: [string, [string, any][]], arg1: any) => void = (arg10$0040_1: [string, [string, any][]]): (arg0: any) => void => closure329(v0_1, v5, v6, v1_1, v7, v8, v4, v16, v9, uncurry(2, v45), arg10$0040_1);
+            let v52: (arg0: [any, int32]) => void;
+            const clo: (arg0: [any, int32]) => void = (v: any, k: any) => v51(v)(k);
+            v52 = ((arg: [any, int32]): void => {
+                clo(arg);
+            });
+            patternInput_2 = [v16, (v16.tag === US2_Tag.US2_1) ? ((v76_1 = v0_1.split("/"), (v77_1 = "get", (v81 = v17[v77_1]("tictactoe_spiral"), (v82 = (v76_1.length | 0), (v83 = (new Mut27(0, v81)), ((() => {
                 while (method80(v82, v83)) {
                     const v85: int32 = v83.l0 | 0;
                     const v86: any = v83.l1;
@@ -5263,29 +5233,9 @@ export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
                     v83.l0 = (v91 | 0);
                     v83.l1 = v90;
                 }
-                const v92: any = v83.l1;
-                const v96: int64 = v92.on(v52);
-                v111 = (Promise.resolve(US17_US17_1(v96)));
-                break;
-            }
-            case 2: {
+            })(), (v92 = v83.l1, (v96 = v92.on(v52), Promise.resolve(US17_US17_1(v96))))))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
                 throw new Error("db_on Memory");
-                break;
-            }
-            case 3: {
-                const v103: any = HubConnection$5__streamFrom_2B594<UH0, UH0, any, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1));
-                const v106: any = startAsPromise;
-                const v109: (arg0: any) => US17 = (v: any): US17 => closure290(uncurry(2, v45), v);
-                const pr: any = v106(v103);
-                v111 = (pr.then(v109));
-                break;
-            }
-            default: {
-                const v53: string[] = v0_1.split("/");
-                const v54: string = "get";
-                const v58: any = v17[v54]("tictactoe_spiral");
-                const v59: int32 = v53.length | 0;
-                const v60: Mut27 = new Mut27(0, v58);
+            })() : ((v16.tag === US2_Tag.US2_3) ? ((v104 = ((v: any): US17 => closure290(uncurry(2, v45), v)), (pr = HubConnection$5__streamFromAsPromise_2B594<UH0, UH0, UH1, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), pr.then(v104)))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
                 while (method80(v59, v60)) {
                     const v62: int32 = v60.l0 | 0;
                     const v63: any = v60.l1;
@@ -5295,51 +5245,46 @@ export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
                     v60.l0 = (v68 | 0);
                     v60.l1 = v67;
                 }
-                const v69: any = v60.l1;
-                v69.on(v52);
-                const v73_1: int64 = getTicks(utcNow());
-                v111 = (Promise.resolve(US17_US17_1(v73_1)));
-            }
+            })(), (v69 = v60.l1, (v69.on(v52), (v73_1 = getTicks(utcNow()), Promise.resolve(US17_US17_1(v73_1)))))))))))))), v18];
         }
-        const patternInput_2: [US2, any, string] = (v42.tag === US18_Tag.US18_1) ? [v42.fields[0], v42.fields[1], v42.fields[2]] : [v16, v111, v18];
         v12[v15] = [patternInput_2[0], patternInput_2[1], patternInput_2[2]];
-        const v118: int32 = (v15 + 1) | 0;
-        v13.l0 = (v118 | 0);
+        const v113: int32 = (v15 + 1) | 0;
+        v13.l0 = (v113 | 0);
     }
-    const v119: int32 = v10.length | 0;
-    const v120: [US2, string][] = fill(new Array(v119), 0, v119, null);
-    const v121: Mut6 = new Mut6(0);
-    while (method21(v119, v121)) {
-        const v123: int32 = v121.l0 | 0;
-        const patternInput_3: [US2, any, string] = v10[v123];
-        v120[v123] = [patternInput_3[0], patternInput_3[2]];
-        const v127: int32 = (v123 + 1) | 0;
-        v121.l0 = (v127 | 0);
+    const v114: int32 = v10.length | 0;
+    const v115: [US2, string][] = fill(new Array(v114), 0, v114, null);
+    const v116: Mut6 = new Mut6(0);
+    while (method21(v114, v116)) {
+        const v118: int32 = v116.l0 | 0;
+        const patternInput_3: [US2, any, string] = v10[v118];
+        v115[v118] = [patternInput_3[0], patternInput_3[2]];
+        const v122: int32 = (v118 + 1) | 0;
+        v116.l0 = (v122 | 0);
     }
-    const v128: int32 = v12.length | 0;
-    const v129: [US2, string][] = fill(new Array(v128), 0, v128, null);
-    const v130: Mut6 = new Mut6(0);
-    while (method21(v128, v130)) {
-        const v132: int32 = v130.l0 | 0;
-        const patternInput_4: [US2, any, string] = v12[v132];
-        v129[v132] = [patternInput_4[0], patternInput_4[2]];
-        const v136: int32 = (v132 + 1) | 0;
-        v130.l0 = (v136 | 0);
+    const v123: int32 = v12.length | 0;
+    const v124: [US2, string][] = fill(new Array(v123), 0, v123, null);
+    const v125: Mut6 = new Mut6(0);
+    while (method21(v123, v125)) {
+        const v127: int32 = v125.l0 | 0;
+        const patternInput_4: [US2, any, string] = v12[v127];
+        v124[v127] = [patternInput_4[0], patternInput_4[2]];
+        const v131: int32 = (v127 + 1) | 0;
+        v125.l0 = (v131 | 0);
     }
-    if ((((v120.length === v129.length) !== true) ? false : method81(v120, v129, 0)) !== true) {
-        const v146: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
-        const v149: [string, any][] = fill(new Array(v128), 0, v128, null);
-        const v150: Mut6 = new Mut6(0);
-        while (method21(v128, v150)) {
-            const v152: int32 = v150.l0 | 0;
-            const patternInput_5: [US2, any, string] = v12[v152];
-            const v153: US2 = patternInput_5[0];
-            const v160: string = (v153.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v153.tag === US2_Tag.US2_2) ? "Memory" : ((v153.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
-            v149[v152] = [v160, patternInput_5[1]];
-            const v161: int32 = (v152 + 1) | 0;
-            v150.l0 = (v161 | 0);
+    if ((((v115.length === v124.length) !== true) ? false : method81(v115, v124, 0)) !== true) {
+        const v141: (arg0: any[]) => void = partialApply(1, v4, [US4_US4_2()]);
+        const v144: [string, any][] = fill(new Array(v123), 0, v123, null);
+        const v145: Mut6 = new Mut6(0);
+        while (method21(v123, v145)) {
+            const v147: int32 = v145.l0 | 0;
+            const patternInput_5: [US2, any, string] = v12[v147];
+            const v148: US2 = patternInput_5[0];
+            const v155: string = (v148.tag === US2_Tag.US2_1) ? "Gun Rust" : ((v148.tag === US2_Tag.US2_2) ? "Memory" : ((v148.tag === US2_Tag.US2_3) ? "SignalR" : "Gun JavaScript"));
+            v144[v147] = [v155, patternInput_5[1]];
+            const v156: int32 = (v147 + 1) | 0;
+            v145.l0 = (v156 | 0);
         }
-        v146(["> use_fetch > connections_change", ["new_subscriptions:", v149]]);
+        v141(["> use_fetch > connections_change", ["new_subscriptions:", v144]]);
         v2(v12);
     }
 }
@@ -5893,7 +5838,7 @@ export function closure388(v0_1: (arg0: US4, arg1: any[]) => void, v1_1: UH1): v
     v0_1(US4_US4_2(), ["> hub_on_connect -> on_message ()", ["msg", v1_1]]);
 }
 
-export function closure382(v0_1: () => US4, v1_1: string, v2: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1> {
+export function closure382(v0_1: () => US4, v1_1: string, v2: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> {
     const v3: () => any[] = (): any[] => closure383(void 0, void 0);
     const v5: (arg0: US4, arg1: any[]) => void = method17(v0_1, v3, "#666");
     v5(US4_US4_0())(["> hub_on_connect ()"]);
@@ -5913,21 +5858,21 @@ export function closure382(v0_1: () => US4, v1_1: string, v2: HubConnectionBuild
     const v28: (arg0: UH1) => void = (v_4: UH1): void => {
         closure388(uncurry(2, v5), v_4);
     };
-    return HubConnectionBuilder$5__onMessage_2163CAFC<UH0, UH0, any, UH1, UH1>(HubConnectionBuilder$5__configureLogging_2D37BB17<UH0, UH0, any, UH1, UH1>(HubConnectionBuilder$5__onClose_Z5D4DDAB0<UH0, UH0, any, UH1, UH1>(HubConnectionBuilder$5__onReconnected_20659392<UH0, UH0, any, UH1, UH1>(HubConnectionBuilder$5__onReconnecting_Z5D4DDAB0<UH0, UH0, any, UH1, UH1>(HubConnectionBuilder$5__withAutomaticReconnect_3C7EFEAD<UH0, UH0, any, UH1, UH1>(HubConnectionBuilder$5__withUrl_Z721C83C5<UH0, UH0, any, UH1, UH1>(v2, v1_1), v17), (arg: Option<Error>): void => {
+    return HubConnectionBuilder$5__onMessage_2163CAFC<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__configureLogging_2D37BB17<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__onClose_Z5D4DDAB0<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__onReconnected_20659392<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__onReconnecting_Z5D4DDAB0<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__withAutomaticReconnect_3C7EFEAD<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__withUrl_Z721C83C5<UH0, UH0, UH1, UH1, UH1>(v2, v1_1), v17), (arg: Option<Error>): void => {
         v20(arg);
     }), (arg_1: Option<string>): void => {
         v22(arg_1);
     }), (arg_2: Option<Error>): void => {
         v24(arg_2);
-    }), 1), v28);
+    }), 0), v28);
 }
 
-export function closure381(v0_1: () => US4, v1_1: string): (arg0: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1> {
-    return (v: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1> => closure382(v0_1, v1_1, v);
+export function closure381(v0_1: () => US4, v1_1: string): (arg0: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> {
+    return (v: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> => closure382(v0_1, v1_1, v);
 }
 
-export function closure380(unitVar: void, v0_1: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1> {
-    return (v: string): (arg0: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1> => closure381(v0_1, v);
+export function closure380(unitVar: void, v0_1: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> {
+    return (v: string): (arg0: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> => closure381(v0_1, v);
 }
 
 export function method100(v0_1: int32, v1_1: Mut32): boolean {
@@ -5935,7 +5880,7 @@ export function method100(v0_1: int32, v1_1: Mut32): boolean {
 }
 
 export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) => void, v2: (arg0: US4, arg1: any[]) => void, _arg: [[US2[], int32, US3, string, string][], [US2, any, string][]]): void {
-    let copyOfStruct: US2, copyOfStruct_5: US3, v98: any, v102: (arg0: () => US4, arg1: string, arg2: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>, v103: HubConnection$5<UH0, UH0, any, UH1, UH1>, _: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>, arg: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>, protocol_2: any, protocol: MsgPack_MsgPackProtocol, protocol_1: Json_JsonProtocol, v79: any, v94: any;
+    let copyOfStruct: US2, copyOfStruct_5: US3, v98: any, v102: (arg0: () => US4, arg1: string, arg2: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>, v103: HubConnection$5<UH0, UH0, UH1, UH1, UH1>, _: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>, arg: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>, protocol_2: any, protocol: MsgPack_MsgPackProtocol, protocol_1: Json_JsonProtocol, v79: any, v94: any;
     const v4: [US2, any, string][] = _arg[1];
     const v3: [US2[], int32, US3, string, string][] = _arg[0];
     const v5: int32 = v3.length | 0;
@@ -5988,7 +5933,7 @@ export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) =
                 const v77_1: string = (v69.tag === US21_Tag.US21_1) ? (`${v69.fields[3]}:${v69.fields[1]}/${v69.fields[4]}`) : "";
                 patternInput_3 = [v20, (v20.tag === US2_Tag.US2_1) ? ((v98 = Node$, new v98(v77_1))) : ((v20.tag === US2_Tag.US2_2) ? (() => {
                     throw new Error("new_db Memory");
-                })() : ((v20.tag === US2_Tag.US2_3) ? ((v102 = ((v: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1> => closure380(void 0, v)), (v103 = ((_ = ((arg = HubConnectionBuilder$5_$ctor_Z66CB2AA1<UH0, UH0, any, UH1, UH1>(new Bindings_signalR.HubConnectionBuilder()), v102(v0_1)(v77_1)(arg))), HubConnection$5_$ctor_Z78FDE58B<UH0, UH0, any, UH1, UH1>((protocol_2 = (_.useMsgPack ? ((protocol = MsgPack_MsgPackProtocol_$ctor(), {
+                })() : ((v20.tag === US2_Tag.US2_3) ? ((v102 = ((v: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> => closure380(void 0, v)), (v103 = ((_ = ((arg = HubConnectionBuilder$5_$ctor_Z66CB2AA1<UH0, UH0, any, UH1, UH1>(new Bindings_signalR.HubConnectionBuilder()), v102(v0_1)(v77_1)(arg))), HubConnection$5_$ctor_Z78FDE58B<UH0, UH0, any, UH1, UH1>((protocol_2 = (_.useMsgPack ? ((protocol = MsgPack_MsgPackProtocol_$ctor(), {
                     name: "messagepack",
                     version: 1,
                     transferFormat: 2,
@@ -6172,7 +6117,7 @@ export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) =
                     writeMessage(msg_10: any): string {
                         return Json_TextMessageFormat_write(Convert_serialize(msg_10, createTypeInfo(obj_type)));
                     },
-                }))), _["hub@10"].withHubProtocol<UH0, any, UH1>(protocol_2).build<UH0, any, UH1>()), _.handlers))), (HubConnection$5__startNow<UH0, UH0, any, UH1, UH1>(v103), v103)))) : ((v79 = gun, (v94 = {
+                }))), _["hub@10"].withHubProtocol<UH0, any, UH1>(protocol_2).build<UH0, any, UH1>()), _.handlers))), (HubConnection$5__startNow<UH0, UH0, UH1, UH1, UH1>(v103), v103)))) : ((v79 = gun, (v94 = {
                     url: v77_1,
                     localStorage: false,
                     radisk: true,
@@ -6434,18 +6379,18 @@ export function closure391(unitVar: void, unitVar_1: void): any {
     return [patternInput_6[0], patternInput_6[1], patternInput_7[0], patternInput_7[1], patternInput_8[0], patternInput_8[1], patternInput_9[0], patternInput_9[1], patternInput_11[0], patternInput_11[1], patternInput_10[0], patternInput_10[1], patternInput_16[0], patternInput_16[1], patternInput_15[0], patternInput_15[1], patternInput_14[0], patternInput_14[1], patternInput_12[0], patternInput_12[1], patternInput_13[0], patternInput_13[1]];
 }
 
-export function patternInput$00407606(): [(arg0: $a, arg1: $b) => $c, (arg0: $d, arg1: $e, arg2: $f) => void] {
+export function patternInput$00407596(): [(arg0: $a, arg1: $b) => $c, (arg0: $d, arg1: $e, arg2: $f) => void] {
     return [(o: $a): (arg0: $b) => $c => ((prop: $b): $c => o[prop]), (o_1: $d): (arg0: $e, arg1: $f) => void => ((prop_1: $e): (arg0: $f) => void => ((v: $f): void => {
         o_1[prop_1] = v;
     }))];
 }
 
 export function op_DynamicAssignment<$d, $e, $f>(): (arg0: $d, arg1: $e, arg2: $f) => void {
-    return patternInput$00407606<any, any, any, $d, $e, $f>()[1];
+    return patternInput$00407596<any, any, any, $d, $e, $f>()[1];
 }
 
 export function op_Dynamic<$a, $b, $c>(): (arg0: $a, arg1: $b) => $c {
-    return patternInput$00407606<$a, $b, $c, any, any, any>()[0];
+    return patternInput$00407596<$a, $b, $c, any, any, any>()[0];
 }
 
 export const v0 = void 0;

@@ -98,11 +98,6 @@ def spiral(arg, cell, test=False):
 
     def cwpath(*arg): return os.path.abspath(os.path.join(os.getcwd(), '..', *arg))
 
-    inplace = cell.strip() == '' and arg == ''
-    if inplace:
-        # cell = util.read_file(cwpath('lib_spi', 'main.spi'))
-        raise Exception('spiral inplace')
-
     if arg not in ['spi', 'spir', 'run'] and not arg.startswith('.'):
         raise Exception('invalid arg: ' + arg)
 
@@ -147,51 +142,63 @@ def spiral(arg, cell, test=False):
     if test:
         return new_code_spi
     else:
-        old_code_spi = util.read_file(spi_path)
-        if new_code_spi != old_code_spi:
-            try:
-                if not inplace:
+        def build():
+            fsx_path = cwpath(
+                "lib_spi",
+                "ipython.fsx" if arg == 'run' else f'{_notebook_name}_spi.fsx'
+            ) if arg in ['spi', 'spir', 'run'] else arg.replace('.spir', '.spi').replace('.spi', '.fsx')
+            util.write_file(fsx_path, '')
+
+            timeout_seconds = 20
+            # run_node_output = util.run_node(
+            #     '\n'.join([
+            #         f'import * as spiral_api from "../lib_ts/spiral_api"',
+            #         f'await spiral_api.spiToFsx("{spi_path}", "{fsx_path}")'
+            #     ]),
+            #     timeout=int(get_arg(1, timeout_seconds))
+            # ).splitlines()
+            run_build_output = util.run(
+                f"cd ../lib_rs && cargo build --release && ./target/release/tictactoe_spiral --spi-path=\"{spi_path}\" --fsx-path=\"{fsx_path}\""
+            ).splitlines()
+
+            new_code_fsx = ''
+            start = time.time()
+
+            def read_fsx():
+                time.sleep(0.5)
+                return util.read_file(fsx_path).strip(" \n")
+
+            while new_code_fsx == '' and time.time() - start < timeout_seconds:
+                new_code_fsx = read_fsx()
+            new_code_fsx = read_fsx()
+
+            print({
+                'run_build_output': run_build_output,
+                'fsx_path': fsx_path,
+                'len(new_code_fsx)': len(new_code_fsx),
+                'new_code_fsx[:100]': new_code_fsx[:100],
+            })
+
+
+        try:
+            if arg.startswith('.'):
+                build()
+            else:
+                old_code_spi = util.read_file(spi_path)
+                if new_code_spi != old_code_spi:
                     util.write_file(spi_path, new_code_spi)
 
-                if arg in ['run', file_arg]:
-                    fsx_path = cwpath("lib_spi", "ipython.fsx" if arg == 'run' else f'{_notebook_name}_spi.fsx')
-                    util.write_file(fsx_path, '')
+                    if arg in ['run', file_arg]:
+                        build()
 
-                    timeout_seconds = 20
-                    run_node_output = util.run_node(
-                        '\n'.join([
-                            f'import * as spiral_api from "../lib_ts/spiral_api"',
-                            f'await spiral_api.spiToFsx("{spi_path}", "{fsx_path}")'
-                        ]),
-                        timeout=int(get_arg(1, timeout_seconds))
-                    ).splitlines()
+                        if arg == 'run':
+                            util.write_file(spi_path, '')
+                            util.write_file(fsx_path, '')
 
-                    new_code_fsx = ''
-                    start = time.time()
-
-                    def read_fsx():
-                        time.sleep(0.5)
-                        return util.read_file(fsx_path).strip(" \n")
-
-                    while new_code_fsx == '' and time.time() - start < timeout_seconds:
-                        new_code_fsx = read_fsx()
-                    new_code_fsx = read_fsx()
-
-                    if arg == 'run':
-                        util.write_file(spi_path, '')
-                        util.write_file(fsx_path, '')
-
-                    print({
-                        'run_node_output': run_node_output,
-                        'fsx_path': fsx_path,
-                        'len(new_code_fsx)': len(new_code_fsx),
-                        'new_code_fsx[:100]': new_code_fsx[:100],
-                    })
-
-            except Exception as e:
-                print(f'ipython_magic.spiral() error. new_code_spi={new_code_spi}')
-                _spiral_cache = last_spiral_cache
-                raise e
+        except Exception as e:
+            print(f'ipython_magic.spiral() error. new_code_spi={new_code_spi[:100]}')
+            _spiral_cache = last_spiral_cache
+            raise e
 
         return spi_path
 

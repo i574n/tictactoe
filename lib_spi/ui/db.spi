@@ -15,7 +15,7 @@ open real_util
 inl gun_rs_ () = import "Node" "rusty-gun"
 inl gun_js_ () = import_default "gun/gun"
 
-// inl hub_connection_builder_ () = import "HubConnectionBuilder" "@microsoft/signalr"
+// inl hub_builder_ () = import "HubConnectionBuilder" "@microsoft/signalr"
 
 inl gun_radix_ () = import_side_effects "gun/lib/radix"
 inl gun_radisk_ () = import_side_effects "gun/lib/radisk"
@@ -130,64 +130,64 @@ union rec response =
         removed_keys : a i32 string
     }
 
-type hub_connection request response = $"Fable.SignalR.HubConnection<`request, `request, `any, `response, `response>"
-type hub_connection_builder request response = $"Fable.SignalR.HubConnectionBuilder<`request, `request, `any, `response, `response>"
+type hub request response = $"Fable.SignalR.HubConnection<`request, `request, `response, `response, `response>"
+type hub_builder request response = $"Fable.SignalR.HubConnectionBuilder<`request, `request, `response, `response, `response>"
 
 
 inl hub_with_url forall request response.
     (url : string)
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     $"!hub.withUrl !url"
 
 inl hub_with_automatic_reconnect forall request response.
     (obj : any)
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     $"!hub.withAutomaticReconnect !obj"
 
 inl hub_on_reconnecting forall request response.
     (ex_fn : any -> ())
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     $"!hub.onReconnecting !ex_fn"
 
 inl hub_on_reconnected forall request response.
     (ex_fn : any -> ())
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     $"!hub.onReconnected !ex_fn"
 
 inl hub_on_close forall request response.
     (ex_fn : any -> ())
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     $"!hub.onClose !ex_fn"
 
 inl hub_configure_logging forall request response.
     (logging : $"Fable.SignalR.LogLevel")
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     $"!hub.configureLogging !logging"
 
 inl hub_on_message forall request response.
     (msg_fn : response -> ())
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     $"!hub.onMessage !msg_fn"
 
 inl hub_on_connect
     (get_log_level : () -> log_level_type)
     (url : string)
-    (hub : hub_connection_builder request response)
-    : hub_connection_builder request response
+    (hub : hub_builder request response)
+    : hub_builder request response
     =
     inl log = new_log get_log_level get_locals "#666"
     log Debug ;[!!"> hub_on_connect ()"]
@@ -226,7 +226,7 @@ inl hub_on_connect
             !!"> hub_on_connect -> on_close ()"
             !!("ex", ex)
         ]
-    |> hub_configure_logging $"Fable.SignalR.LogLevel.Debug"
+    |> hub_configure_logging $"Fable.SignalR.LogLevel.Trace"
     |> hub_on_message fun msg =>
         log Info ;[
             !!"> hub_on_connect -> on_message ()"
@@ -271,8 +271,8 @@ inl new_db
     =
     match client_type with
     | SignalRClient =>
-        // inl hub_connection_builder' = hub_connection_builder_ ()
-        // inl hub : any = create_new hub_connection_builder' (undefined ())
+        // inl hub_builder' = hub_builder_ ()
+        // inl hub : any = create_new hub_builder' (undefined ())
         // inl automatic_reconnect = create_obj (a ;[
         //     new_pair
         //         "nextRetryDelayInMilliseconds"
@@ -289,10 +289,10 @@ inl new_db
 
         // connection |> connection_start
 
-        inl connection : hub_connection request response =
+        inl hub : hub request response =
             $"Fable.SignalR.SignalR.connect<`request, `request, `any, `response, `response> ((!hub_on_connect !get_log_level !url) |> unbox) |> unbox"
-        $"!connection.startNow ()" : ()
-        !!connection
+        $"!hub.startNow ()" : ()
+        !!hub
     | GunRsClient =>
         inl gun_rs = gun_rs_ ()
         inl args = !!url
@@ -552,8 +552,8 @@ inl db_put forall t.
         inl alias = "alias"
         inl value = real real_unbox `t `string new_value
         inl request' = Set { alias content_address value }
-        inl db : hub_connection request response = db |> real real_unbox `any `(hub_connection request response)
-        $"!db.invokeAsPromise !request'"
+        inl hub : hub request response = db |> real real_unbox `any `(hub request response)
+        $"!hub.invokeAsPromise !request'"
         |> promise_iter fun (response' : response) =>
             log Info ;[
                 !!"> db_put > response' ()"
@@ -609,7 +609,7 @@ inl db_put forall t.
 
 union subscription_handle =
     | Timestamp : i64
-    | Disposable : $"System.IDisposable"
+    | Disposable : disposable
 
 inl db_on forall value_type.
     (get_log_level : () -> log_level_type)
@@ -644,9 +644,8 @@ inl db_on forall value_type.
         //         !!"> db_on > streamFrom action ()"
         //         !!("response:", response)
         //     ]
-        inl db : hub_connection request response = db |> real real_unbox `any `(hub_connection request response)
-        $"!db.streamFrom !request'"
-        |> async_start_as_promise
+        inl hub : hub request response = db |> real real_unbox `any `(hub request response)
+        $"!hub.streamFromAsPromise !request'"
         |> promise_map fun (stream : $"Fable.SignalR.StreamResult<`response>") =>
             inl context : $"Fable.SignalR.IStreamSubscriber<`response>" =
                 a ;[
@@ -671,7 +670,7 @@ inl db_on forall value_type.
                 |> create_obj
                 |> real real_unbox `any `($"Fable.SignalR.IStreamSubscriber<`response>")
 
-            inl subscription : $"System.IDisposable" =
+            inl subscription : disposable =
                 $"!stream.subscribe !context"
 
             log Info ;[

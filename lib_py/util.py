@@ -66,16 +66,18 @@ def run_shell(*args, **kwargs):
     try:
         return subprocess.run(*args, shell=True, capture_output=True, **kwargs)
     except Exception as e:
-        print(f'util.run_shell() error. args={args} kwargs={kwargs} e={e}')
+        print(f'nbs/00_util.ipynb() > run_shell () error. args={args} kwargs={kwargs} e={e}')
         raise e
 
 def run(*args, **kwargs):
     shell = run_shell(*args, **kwargs)
-    err = shell.stderr.decode()
-    if err != '':
-        print(f'util.run() error. args={args} kwargs={kwargs} err={err}')
-        raise Exception(err)
-    return shell.stdout.decode().strip('\n')
+    stdout = shell.stdout.decode()
+    stderr = shell.stderr.decode()
+    return_code = shell.returncode
+    if return_code != 0:
+        print(f'nbs/00_util.ipynb() > run () > error. args="{args}" kwargs="{kwargs}" return_code="{return_code}" stdout="{stdout}" stderr="{stderr}"')
+        raise Exception(stderr)
+    return stdout.strip('\n')
 
 def run_node(code, timeout=60, *args, **kwargs):
     e = ' --input-type=module -e ' if '\n' in code or '.' not in code else ''

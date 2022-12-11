@@ -5161,7 +5161,7 @@ and method79 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
                     let v116 : string = v9 |> unbox<string>
-                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1>>
+                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
                     let v118 : string = "alias"
                     let v119 : UH0 = UH0_3(v118, v0, v116)
                     let v120 : Fable.Core.JS.Promise<UH1> = v117.invokeAsPromise v119
@@ -5325,164 +5325,159 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
             v21.l1 <- v40
             ()
         let v42 : US18 = v21.l1
-        let v43 : (unit -> (obj [])) = closure284(v0, v16)
-        let v44 : string = "#666"
-        let v45 : (US4 -> ((obj []) -> unit)) = method17(v1, v43, v44)
-        let v46 : US4 = US4_0
-        let v47 : ((obj []) -> unit) = v45 v46
-        let v48 : string = "> db_on ()"
-        let v49 : obj = v48
-        let v50 : (obj []) = [|v49|]
-        v47 v50
-        let v51 : (struct (System.Guid * int32) -> (obj -> unit)) = closure285(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
-        let v52 : (struct (obj * int32) -> unit) = Fable.Core.JsInterop.emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
-        let v111 : Fable.Core.JS.Promise<US17> =
-            match v16 with
-            | US2_0 -> (* GunJsClient *)
-                let v53 : (string []) = v0.Split [| '/' |]
-                let v54 : string = "get"
-                let v55 : obj = (Fable.Core.JsInterop.(?)) v17 v54
-                let v56 : (string -> obj) = v55 |> unbox<(string -> obj)>
-                let v57 : string = "tictactoe_spiral"
-                let v58 : obj = v56 v57
-                let v59 : int32 = v53.Length
-                let v60 : Mut27 = {l0 = 0; l1 = v58} : Mut27
-                while method80(v59, v60) do
-                    let v62 : int32 = v60.l0
-                    let v63 : obj = v60.l1
-                    let v64 : string = v53.[int v62]
-                    let v65 : obj = (Fable.Core.JsInterop.(?)) v63 v54
-                    let v66 : (string -> obj) = v65 |> unbox<(string -> obj)>
-                    let v67 : obj = v66 v64
-                    let v68 : int32 = v62 + 1
-                    v60.l0 <- v68
-                    v60.l1 <- v67
-                    ()
-                let v69 : obj = v60.l1
-                let v70 : string = "on"
-                let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v70
-                let v72 : ((struct (obj * int32) -> unit) -> unit) = v71 |> unbox<((struct (obj * int32) -> unit) -> unit)>
-                v72 v52
-                let v73 : int64 = System.DateTime.UtcNow.Ticks
-                let v74 : US17 = US17_1(v73)
-                let v75 : Fable.Core.JS.Promise<US17> = Promise.lift v74
-                v75
-            | US2_1 -> (* GunRsClient *)
-                let v76 : (string []) = v0.Split [| '/' |]
-                let v77 : string = "get"
-                let v78 : obj = (Fable.Core.JsInterop.(?)) v17 v77
-                let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
-                let v80 : string = "tictactoe_spiral"
-                let v81 : obj = v79 v80
-                let v82 : int32 = v76.Length
-                let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
-                while method80(v82, v83) do
-                    let v85 : int32 = v83.l0
-                    let v86 : obj = v83.l1
-                    let v87 : string = v76.[int v85]
-                    let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
-                    let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
-                    let v90 : obj = v89 v87
-                    let v91 : int32 = v85 + 1
-                    v83.l0 <- v91
-                    v83.l1 <- v90
-                    ()
-                let v92 : obj = v83.l1
-                let v93 : string = "on"
-                let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
-                let v95 : ((struct (obj * int32) -> unit) -> int64) = v94 |> unbox<((struct (obj * int32) -> unit) -> int64)>
-                let v96 : int64 = v95 v52
-                let v97 : US17 = US17_1(v96)
-                let v98 : Fable.Core.JS.Promise<US17> = Promise.lift v97
-                v98
-            | US2_2 -> (* Memory *)
-                failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
-            | US2_3 -> (* SignalRClient *)
-                let v100 : Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1>>
-                let v101 : string = "alias"
-                let v102 : UH0 = UH0_1(v101, v0)
-                let v103 : Async<Fable.SignalR.StreamResult<UH1>> = v100.streamFrom v102
-                let v104 : string = "startAsPromise"
-                let v105 : string = "../../lib_ts/fable_modules/fable-library-ts/Async.ts"
-                let v106 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v104 v105
-                let v107 : obj = v106.Invoke v103
-                let v108 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v107 |> unbox<Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>>>
-                let v109 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
-                let v110 : Fable.Core.JS.Promise<US17> = v108 |> Promise.map v109
-                v110
-        let struct (v115 : US2, v116 : Fable.Core.JS.Promise<US17>, v117 : string) =
+        let struct (v110 : US2, v111 : Fable.Core.JS.Promise<US17>, v112 : string) =
             match v42 with
             | US18_0 -> (* None *)
-                struct (v16, v111, v18)
-            | US18_1(v112, v113, v114) -> (* Some *)
-                struct (v112, v113, v114)
-        v12.[int v15] <- struct (v115, v116, v117)
-        let v118 : int32 = v15 + 1
-        v13.l0 <- v118
+                let v43 : (unit -> (obj [])) = closure284(v0, v16)
+                let v44 : string = "#666"
+                let v45 : (US4 -> ((obj []) -> unit)) = method17(v1, v43, v44)
+                let v46 : US4 = US4_0
+                let v47 : ((obj []) -> unit) = v45 v46
+                let v48 : string = "> db_on ()"
+                let v49 : obj = v48
+                let v50 : (obj []) = [|v49|]
+                v47 v50
+                let v51 : (struct (System.Guid * int32) -> (obj -> unit)) = closure285(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
+                let v52 : (struct (obj * int32) -> unit) = Fable.Core.JsInterop.emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
+                let v106 : Fable.Core.JS.Promise<US17> =
+                    match v16 with
+                    | US2_0 -> (* GunJsClient *)
+                        let v53 : (string []) = v0.Split [| '/' |]
+                        let v54 : string = "get"
+                        let v55 : obj = (Fable.Core.JsInterop.(?)) v17 v54
+                        let v56 : (string -> obj) = v55 |> unbox<(string -> obj)>
+                        let v57 : string = "tictactoe_spiral"
+                        let v58 : obj = v56 v57
+                        let v59 : int32 = v53.Length
+                        let v60 : Mut27 = {l0 = 0; l1 = v58} : Mut27
+                        while method80(v59, v60) do
+                            let v62 : int32 = v60.l0
+                            let v63 : obj = v60.l1
+                            let v64 : string = v53.[int v62]
+                            let v65 : obj = (Fable.Core.JsInterop.(?)) v63 v54
+                            let v66 : (string -> obj) = v65 |> unbox<(string -> obj)>
+                            let v67 : obj = v66 v64
+                            let v68 : int32 = v62 + 1
+                            v60.l0 <- v68
+                            v60.l1 <- v67
+                            ()
+                        let v69 : obj = v60.l1
+                        let v70 : string = "on"
+                        let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v70
+                        let v72 : ((struct (obj * int32) -> unit) -> unit) = v71 |> unbox<((struct (obj * int32) -> unit) -> unit)>
+                        v72 v52
+                        let v73 : int64 = System.DateTime.UtcNow.Ticks
+                        let v74 : US17 = US17_1(v73)
+                        let v75 : Fable.Core.JS.Promise<US17> = Promise.lift v74
+                        v75
+                    | US2_1 -> (* GunRsClient *)
+                        let v76 : (string []) = v0.Split [| '/' |]
+                        let v77 : string = "get"
+                        let v78 : obj = (Fable.Core.JsInterop.(?)) v17 v77
+                        let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
+                        let v80 : string = "tictactoe_spiral"
+                        let v81 : obj = v79 v80
+                        let v82 : int32 = v76.Length
+                        let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
+                        while method80(v82, v83) do
+                            let v85 : int32 = v83.l0
+                            let v86 : obj = v83.l1
+                            let v87 : string = v76.[int v85]
+                            let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
+                            let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
+                            let v90 : obj = v89 v87
+                            let v91 : int32 = v85 + 1
+                            v83.l0 <- v91
+                            v83.l1 <- v90
+                            ()
+                        let v92 : obj = v83.l1
+                        let v93 : string = "on"
+                        let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
+                        let v95 : ((struct (obj * int32) -> unit) -> int64) = v94 |> unbox<((struct (obj * int32) -> unit) -> int64)>
+                        let v96 : int64 = v95 v52
+                        let v97 : US17 = US17_1(v96)
+                        let v98 : Fable.Core.JS.Promise<US17> = Promise.lift v97
+                        v98
+                    | US2_2 -> (* Memory *)
+                        failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
+                    | US2_3 -> (* SignalRClient *)
+                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
+                        let v101 : string = "alias"
+                        let v102 : UH0 = UH0_1(v101, v0)
+                        let v103 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v100.streamFromAsPromise v102
+                        let v104 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
+                        let v105 : Fable.Core.JS.Promise<US17> = v103 |> Promise.map v104
+                        v105
+                struct (v16, v106, v18)
+            | US18_1(v107, v108, v109) -> (* Some *)
+                struct (v107, v108, v109)
+        v12.[int v15] <- struct (v110, v111, v112)
+        let v113 : int32 = v15 + 1
+        v13.l0 <- v113
         ()
-    let v119 : int32 = v10.Length
-    let v120 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v119)
-    let v121 : Mut6 = {l0 = 0} : Mut6
-    while method21(v119, v121) do
-        let v123 : int32 = v121.l0
-        let struct (v124 : US2, v125 : Fable.Core.JS.Promise<US17>, v126 : string) = v10.[int v123]
-        v120.[int v123] <- struct (v124, v126)
-        let v127 : int32 = v123 + 1
-        v121.l0 <- v127
+    let v114 : int32 = v10.Length
+    let v115 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v114)
+    let v116 : Mut6 = {l0 = 0} : Mut6
+    while method21(v114, v116) do
+        let v118 : int32 = v116.l0
+        let struct (v119 : US2, v120 : Fable.Core.JS.Promise<US17>, v121 : string) = v10.[int v118]
+        v115.[int v118] <- struct (v119, v121)
+        let v122 : int32 = v118 + 1
+        v116.l0 <- v122
         ()
-    let v128 : int32 = v12.Length
-    let v129 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v128)
-    let v130 : Mut6 = {l0 = 0} : Mut6
-    while method21(v128, v130) do
-        let v132 : int32 = v130.l0
-        let struct (v133 : US2, v134 : Fable.Core.JS.Promise<US17>, v135 : string) = v12.[int v132]
-        v129.[int v132] <- struct (v133, v135)
-        let v136 : int32 = v132 + 1
-        v130.l0 <- v136
+    let v123 : int32 = v12.Length
+    let v124 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v123)
+    let v125 : Mut6 = {l0 = 0} : Mut6
+    while method21(v123, v125) do
+        let v127 : int32 = v125.l0
+        let struct (v128 : US2, v129 : Fable.Core.JS.Promise<US17>, v130 : string) = v12.[int v127]
+        v124.[int v127] <- struct (v128, v130)
+        let v131 : int32 = v127 + 1
+        v125.l0 <- v131
         ()
-    let v137 : int32 = v120.Length
-    let v138 : int32 = v129.Length
-    let v139 : bool = v137 = v138
-    let v140 : bool = v139 <> true
-    let v143 : bool =
-        if v140 then
+    let v132 : int32 = v115.Length
+    let v133 : int32 = v124.Length
+    let v134 : bool = v132 = v133
+    let v135 : bool = v134 <> true
+    let v138 : bool =
+        if v135 then
             false
         else
-            let v141 : int32 = 0
-            method81(v120, v129, v141)
-    let v144 : bool = v143 <> true
-    if v144 then
-        let v145 : US4 = US4_2
-        let v146 : ((obj []) -> unit) = v4 v145
-        let v147 : string = "> use_fetch > connections_change"
-        let v148 : obj = v147
-        let v149 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v128)
-        let v150 : Mut6 = {l0 = 0} : Mut6
-        while method21(v128, v150) do
-            let v152 : int32 = v150.l0
-            let struct (v153 : US2, v154 : Fable.Core.JS.Promise<US17>, v155 : string) = v12.[int v152]
-            let v160 : string =
-                match v153 with
+            let v136 : int32 = 0
+            method81(v115, v124, v136)
+    let v139 : bool = v138 <> true
+    if v139 then
+        let v140 : US4 = US4_2
+        let v141 : ((obj []) -> unit) = v4 v140
+        let v142 : string = "> use_fetch > connections_change"
+        let v143 : obj = v142
+        let v144 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v123)
+        let v145 : Mut6 = {l0 = 0} : Mut6
+        while method21(v123, v145) do
+            let v147 : int32 = v145.l0
+            let struct (v148 : US2, v149 : Fable.Core.JS.Promise<US17>, v150 : string) = v12.[int v147]
+            let v155 : string =
+                match v148 with
                 | US2_0 -> (* GunJsClient *)
-                    let v156 : string = "Gun JavaScript"
-                    v156
+                    let v151 : string = "Gun JavaScript"
+                    v151
                 | US2_1 -> (* GunRsClient *)
-                    let v157 : string = "Gun Rust"
-                    v157
+                    let v152 : string = "Gun Rust"
+                    v152
                 | US2_2 -> (* Memory *)
-                    let v158 : string = "Memory"
-                    v158
+                    let v153 : string = "Memory"
+                    v153
                 | US2_3 -> (* SignalRClient *)
-                    let v159 : string = "SignalR"
-                    v159
-            v149.[int v152] <- struct (v160, v154)
-            let v161 : int32 = v152 + 1
-            v150.l0 <- v161
+                    let v154 : string = "SignalR"
+                    v154
+            v144.[int v147] <- struct (v155, v149)
+            let v156 : int32 = v147 + 1
+            v145.l0 <- v156
             ()
-        let v162 : string = "new_subscriptions:"
-        let v163 : obj = struct (v162, v149)
-        let v164 : (obj []) = [|v148; v163|]
-        v146 v164
+        let v157 : string = "new_subscriptions:"
+        let v158 : obj = struct (v157, v144)
+        let v159 : (obj []) = [|v143; v158|]
+        v141 v159
         v2 v12
         ()
 and closure294 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : ((struct (US2 * obj * string) []) -> unit)) () : unit =
@@ -6128,7 +6123,7 @@ and method90 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
                     let v116 : string = v9 |> unbox<string>
-                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1>>
+                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
                     let v118 : string = "alias"
                     let v119 : UH0 = UH0_3(v118, v0, v116)
                     let v120 : Fable.Core.JS.Promise<UH1> = v117.invokeAsPromise v119
@@ -6203,164 +6198,159 @@ and closure328 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
             v21.l1 <- v40
             ()
         let v42 : US18 = v21.l1
-        let v43 : (unit -> (obj [])) = closure284(v0, v16)
-        let v44 : string = "#666"
-        let v45 : (US4 -> ((obj []) -> unit)) = method17(v1, v43, v44)
-        let v46 : US4 = US4_0
-        let v47 : ((obj []) -> unit) = v45 v46
-        let v48 : string = "> db_on ()"
-        let v49 : obj = v48
-        let v50 : (obj []) = [|v49|]
-        v47 v50
-        let v51 : (struct (System.Guid * (struct (System.Guid * obj) [])) -> (obj -> unit)) = closure329(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
-        let v52 : (struct (obj * int32) -> unit) = Fable.Core.JsInterop.emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
-        let v111 : Fable.Core.JS.Promise<US17> =
-            match v16 with
-            | US2_0 -> (* GunJsClient *)
-                let v53 : (string []) = v0.Split [| '/' |]
-                let v54 : string = "get"
-                let v55 : obj = (Fable.Core.JsInterop.(?)) v17 v54
-                let v56 : (string -> obj) = v55 |> unbox<(string -> obj)>
-                let v57 : string = "tictactoe_spiral"
-                let v58 : obj = v56 v57
-                let v59 : int32 = v53.Length
-                let v60 : Mut27 = {l0 = 0; l1 = v58} : Mut27
-                while method80(v59, v60) do
-                    let v62 : int32 = v60.l0
-                    let v63 : obj = v60.l1
-                    let v64 : string = v53.[int v62]
-                    let v65 : obj = (Fable.Core.JsInterop.(?)) v63 v54
-                    let v66 : (string -> obj) = v65 |> unbox<(string -> obj)>
-                    let v67 : obj = v66 v64
-                    let v68 : int32 = v62 + 1
-                    v60.l0 <- v68
-                    v60.l1 <- v67
-                    ()
-                let v69 : obj = v60.l1
-                let v70 : string = "on"
-                let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v70
-                let v72 : ((struct (obj * int32) -> unit) -> unit) = v71 |> unbox<((struct (obj * int32) -> unit) -> unit)>
-                v72 v52
-                let v73 : int64 = System.DateTime.UtcNow.Ticks
-                let v74 : US17 = US17_1(v73)
-                let v75 : Fable.Core.JS.Promise<US17> = Promise.lift v74
-                v75
-            | US2_1 -> (* GunRsClient *)
-                let v76 : (string []) = v0.Split [| '/' |]
-                let v77 : string = "get"
-                let v78 : obj = (Fable.Core.JsInterop.(?)) v17 v77
-                let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
-                let v80 : string = "tictactoe_spiral"
-                let v81 : obj = v79 v80
-                let v82 : int32 = v76.Length
-                let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
-                while method80(v82, v83) do
-                    let v85 : int32 = v83.l0
-                    let v86 : obj = v83.l1
-                    let v87 : string = v76.[int v85]
-                    let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
-                    let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
-                    let v90 : obj = v89 v87
-                    let v91 : int32 = v85 + 1
-                    v83.l0 <- v91
-                    v83.l1 <- v90
-                    ()
-                let v92 : obj = v83.l1
-                let v93 : string = "on"
-                let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
-                let v95 : ((struct (obj * int32) -> unit) -> int64) = v94 |> unbox<((struct (obj * int32) -> unit) -> int64)>
-                let v96 : int64 = v95 v52
-                let v97 : US17 = US17_1(v96)
-                let v98 : Fable.Core.JS.Promise<US17> = Promise.lift v97
-                v98
-            | US2_2 -> (* Memory *)
-                failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
-            | US2_3 -> (* SignalRClient *)
-                let v100 : Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1>>
-                let v101 : string = "alias"
-                let v102 : UH0 = UH0_1(v101, v0)
-                let v103 : Async<Fable.SignalR.StreamResult<UH1>> = v100.streamFrom v102
-                let v104 : string = "startAsPromise"
-                let v105 : string = "../../lib_ts/fable_modules/fable-library-ts/Async.ts"
-                let v106 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v104 v105
-                let v107 : obj = v106.Invoke v103
-                let v108 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v107 |> unbox<Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>>>
-                let v109 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
-                let v110 : Fable.Core.JS.Promise<US17> = v108 |> Promise.map v109
-                v110
-        let struct (v115 : US2, v116 : Fable.Core.JS.Promise<US17>, v117 : string) =
+        let struct (v110 : US2, v111 : Fable.Core.JS.Promise<US17>, v112 : string) =
             match v42 with
             | US18_0 -> (* None *)
-                struct (v16, v111, v18)
-            | US18_1(v112, v113, v114) -> (* Some *)
-                struct (v112, v113, v114)
-        v12.[int v15] <- struct (v115, v116, v117)
-        let v118 : int32 = v15 + 1
-        v13.l0 <- v118
+                let v43 : (unit -> (obj [])) = closure284(v0, v16)
+                let v44 : string = "#666"
+                let v45 : (US4 -> ((obj []) -> unit)) = method17(v1, v43, v44)
+                let v46 : US4 = US4_0
+                let v47 : ((obj []) -> unit) = v45 v46
+                let v48 : string = "> db_on ()"
+                let v49 : obj = v48
+                let v50 : (obj []) = [|v49|]
+                v47 v50
+                let v51 : (struct (System.Guid * (struct (System.Guid * obj) [])) -> (obj -> unit)) = closure329(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
+                let v52 : (struct (obj * int32) -> unit) = Fable.Core.JsInterop.emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
+                let v106 : Fable.Core.JS.Promise<US17> =
+                    match v16 with
+                    | US2_0 -> (* GunJsClient *)
+                        let v53 : (string []) = v0.Split [| '/' |]
+                        let v54 : string = "get"
+                        let v55 : obj = (Fable.Core.JsInterop.(?)) v17 v54
+                        let v56 : (string -> obj) = v55 |> unbox<(string -> obj)>
+                        let v57 : string = "tictactoe_spiral"
+                        let v58 : obj = v56 v57
+                        let v59 : int32 = v53.Length
+                        let v60 : Mut27 = {l0 = 0; l1 = v58} : Mut27
+                        while method80(v59, v60) do
+                            let v62 : int32 = v60.l0
+                            let v63 : obj = v60.l1
+                            let v64 : string = v53.[int v62]
+                            let v65 : obj = (Fable.Core.JsInterop.(?)) v63 v54
+                            let v66 : (string -> obj) = v65 |> unbox<(string -> obj)>
+                            let v67 : obj = v66 v64
+                            let v68 : int32 = v62 + 1
+                            v60.l0 <- v68
+                            v60.l1 <- v67
+                            ()
+                        let v69 : obj = v60.l1
+                        let v70 : string = "on"
+                        let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v70
+                        let v72 : ((struct (obj * int32) -> unit) -> unit) = v71 |> unbox<((struct (obj * int32) -> unit) -> unit)>
+                        v72 v52
+                        let v73 : int64 = System.DateTime.UtcNow.Ticks
+                        let v74 : US17 = US17_1(v73)
+                        let v75 : Fable.Core.JS.Promise<US17> = Promise.lift v74
+                        v75
+                    | US2_1 -> (* GunRsClient *)
+                        let v76 : (string []) = v0.Split [| '/' |]
+                        let v77 : string = "get"
+                        let v78 : obj = (Fable.Core.JsInterop.(?)) v17 v77
+                        let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
+                        let v80 : string = "tictactoe_spiral"
+                        let v81 : obj = v79 v80
+                        let v82 : int32 = v76.Length
+                        let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
+                        while method80(v82, v83) do
+                            let v85 : int32 = v83.l0
+                            let v86 : obj = v83.l1
+                            let v87 : string = v76.[int v85]
+                            let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
+                            let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
+                            let v90 : obj = v89 v87
+                            let v91 : int32 = v85 + 1
+                            v83.l0 <- v91
+                            v83.l1 <- v90
+                            ()
+                        let v92 : obj = v83.l1
+                        let v93 : string = "on"
+                        let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
+                        let v95 : ((struct (obj * int32) -> unit) -> int64) = v94 |> unbox<((struct (obj * int32) -> unit) -> int64)>
+                        let v96 : int64 = v95 v52
+                        let v97 : US17 = US17_1(v96)
+                        let v98 : Fable.Core.JS.Promise<US17> = Promise.lift v97
+                        v98
+                    | US2_2 -> (* Memory *)
+                        failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
+                    | US2_3 -> (* SignalRClient *)
+                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
+                        let v101 : string = "alias"
+                        let v102 : UH0 = UH0_1(v101, v0)
+                        let v103 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v100.streamFromAsPromise v102
+                        let v104 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
+                        let v105 : Fable.Core.JS.Promise<US17> = v103 |> Promise.map v104
+                        v105
+                struct (v16, v106, v18)
+            | US18_1(v107, v108, v109) -> (* Some *)
+                struct (v107, v108, v109)
+        v12.[int v15] <- struct (v110, v111, v112)
+        let v113 : int32 = v15 + 1
+        v13.l0 <- v113
         ()
-    let v119 : int32 = v10.Length
-    let v120 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v119)
-    let v121 : Mut6 = {l0 = 0} : Mut6
-    while method21(v119, v121) do
-        let v123 : int32 = v121.l0
-        let struct (v124 : US2, v125 : Fable.Core.JS.Promise<US17>, v126 : string) = v10.[int v123]
-        v120.[int v123] <- struct (v124, v126)
-        let v127 : int32 = v123 + 1
-        v121.l0 <- v127
+    let v114 : int32 = v10.Length
+    let v115 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v114)
+    let v116 : Mut6 = {l0 = 0} : Mut6
+    while method21(v114, v116) do
+        let v118 : int32 = v116.l0
+        let struct (v119 : US2, v120 : Fable.Core.JS.Promise<US17>, v121 : string) = v10.[int v118]
+        v115.[int v118] <- struct (v119, v121)
+        let v122 : int32 = v118 + 1
+        v116.l0 <- v122
         ()
-    let v128 : int32 = v12.Length
-    let v129 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v128)
-    let v130 : Mut6 = {l0 = 0} : Mut6
-    while method21(v128, v130) do
-        let v132 : int32 = v130.l0
-        let struct (v133 : US2, v134 : Fable.Core.JS.Promise<US17>, v135 : string) = v12.[int v132]
-        v129.[int v132] <- struct (v133, v135)
-        let v136 : int32 = v132 + 1
-        v130.l0 <- v136
+    let v123 : int32 = v12.Length
+    let v124 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v123)
+    let v125 : Mut6 = {l0 = 0} : Mut6
+    while method21(v123, v125) do
+        let v127 : int32 = v125.l0
+        let struct (v128 : US2, v129 : Fable.Core.JS.Promise<US17>, v130 : string) = v12.[int v127]
+        v124.[int v127] <- struct (v128, v130)
+        let v131 : int32 = v127 + 1
+        v125.l0 <- v131
         ()
-    let v137 : int32 = v120.Length
-    let v138 : int32 = v129.Length
-    let v139 : bool = v137 = v138
-    let v140 : bool = v139 <> true
-    let v143 : bool =
-        if v140 then
+    let v132 : int32 = v115.Length
+    let v133 : int32 = v124.Length
+    let v134 : bool = v132 = v133
+    let v135 : bool = v134 <> true
+    let v138 : bool =
+        if v135 then
             false
         else
-            let v141 : int32 = 0
-            method81(v120, v129, v141)
-    let v144 : bool = v143 <> true
-    if v144 then
-        let v145 : US4 = US4_2
-        let v146 : ((obj []) -> unit) = v4 v145
-        let v147 : string = "> use_fetch > connections_change"
-        let v148 : obj = v147
-        let v149 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v128)
-        let v150 : Mut6 = {l0 = 0} : Mut6
-        while method21(v128, v150) do
-            let v152 : int32 = v150.l0
-            let struct (v153 : US2, v154 : Fable.Core.JS.Promise<US17>, v155 : string) = v12.[int v152]
-            let v160 : string =
-                match v153 with
+            let v136 : int32 = 0
+            method81(v115, v124, v136)
+    let v139 : bool = v138 <> true
+    if v139 then
+        let v140 : US4 = US4_2
+        let v141 : ((obj []) -> unit) = v4 v140
+        let v142 : string = "> use_fetch > connections_change"
+        let v143 : obj = v142
+        let v144 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v123)
+        let v145 : Mut6 = {l0 = 0} : Mut6
+        while method21(v123, v145) do
+            let v147 : int32 = v145.l0
+            let struct (v148 : US2, v149 : Fable.Core.JS.Promise<US17>, v150 : string) = v12.[int v147]
+            let v155 : string =
+                match v148 with
                 | US2_0 -> (* GunJsClient *)
-                    let v156 : string = "Gun JavaScript"
-                    v156
+                    let v151 : string = "Gun JavaScript"
+                    v151
                 | US2_1 -> (* GunRsClient *)
-                    let v157 : string = "Gun Rust"
-                    v157
+                    let v152 : string = "Gun Rust"
+                    v152
                 | US2_2 -> (* Memory *)
-                    let v158 : string = "Memory"
-                    v158
+                    let v153 : string = "Memory"
+                    v153
                 | US2_3 -> (* SignalRClient *)
-                    let v159 : string = "SignalR"
-                    v159
-            v149.[int v152] <- struct (v160, v154)
-            let v161 : int32 = v152 + 1
-            v150.l0 <- v161
+                    let v154 : string = "SignalR"
+                    v154
+            v144.[int v147] <- struct (v155, v149)
+            let v156 : int32 = v147 + 1
+            v145.l0 <- v156
             ()
-        let v162 : string = "new_subscriptions:"
-        let v163 : obj = struct (v162, v149)
-        let v164 : (obj []) = [|v148; v163|]
-        v146 v164
+        let v157 : string = "new_subscriptions:"
+        let v158 : obj = struct (v157, v144)
+        let v159 : (obj []) = [|v143; v158|]
+        v141 v159
         v2 v12
         ()
 and closure333 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US19 -> unit), v5 : (unit -> US19), v6 : (US4 -> ((obj []) -> unit)), v7 : (struct (US2 * obj * string) []), v8 : System.Guid) (v9 : (struct (System.Guid * obj) [])) : unit =
@@ -7042,7 +7032,7 @@ and closure388 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
     ()
-and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>) : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> =
+and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>) : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> =
     let v3 : (unit -> (obj [])) = closure383()
     let v4 : string = "#666"
     let v5 : (US4 -> ((obj []) -> unit)) = method17(v0, v3, v4)
@@ -7059,22 +7049,22 @@ and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnecti
     let v15 : ((string * obj) []) = [|v14|]
     let v16 : obj = Fable.Core.JsInterop.createObj v15
     let v17 : Fable.SignalR.RetryPolicy = v16 |> unbox<Fable.SignalR.RetryPolicy>
-    let v18 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v2.withUrl v1
-    let v19 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v18.withAutomaticReconnect v17
+    let v18 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v2.withUrl v1
+    let v19 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v18.withAutomaticReconnect v17
     let v20 : (obj -> unit) = closure385(v5)
-    let v21 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v19.onReconnecting v20
+    let v21 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v19.onReconnecting v20
     let v22 : (obj -> unit) = closure386(v5)
-    let v23 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v21.onReconnected v22
+    let v23 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v21.onReconnected v22
     let v24 : (obj -> unit) = closure387(v5)
-    let v25 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v23.onClose v24
-    let v26 : Fable.SignalR.LogLevel = Fable.SignalR.LogLevel.Debug
-    let v27 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v25.configureLogging v26
+    let v25 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v23.onClose v24
+    let v26 : Fable.SignalR.LogLevel = Fable.SignalR.LogLevel.Trace
+    let v27 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v25.configureLogging v26
     let v28 : (UH1 -> unit) = closure388(v5)
-    let v29 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> = v27.onMessage v28
+    let v29 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v27.onMessage v28
     v29
-and closure381 (v0 : (unit -> US4)) (v1 : string) : (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>) =
+and closure381 (v0 : (unit -> US4)) (v1 : string) : (Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>) =
     closure382(v0, v1)
-and closure380 () (v0 : (unit -> US4)) : (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>)) =
+and closure380 () (v0 : (unit -> US4)) : (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>)) =
     closure381(v0)
 and method100 (v0 : int32, v1 : Mut32) : bool =
     let v2 : int32 = v1.l0
@@ -7215,8 +7205,8 @@ and closure379 (v0 : (unit -> US4), v1 : ((struct (US2 * obj * string) []) -> un
                         | US2_2 -> (* Memory *)
                             failwith<obj> "new_db Memory"
                         | US2_3 -> (* SignalRClient *)
-                            let v102 : ((unit -> US4) -> (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, obj, UH1, UH1>))) = closure380()
-                            let v103 : Fable.SignalR.HubConnection<UH0, UH0, obj, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, obj, UH1, UH1> ((v102 v0 v77) |> unbox) |> unbox
+                            let v102 : ((unit -> US4) -> (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>))) = closure380()
+                            let v103 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, obj, UH1, UH1> ((v102 v0 v77) |> unbox) |> unbox
                             v103.startNow ()
                             let v104 : obj = v103
                             v104
