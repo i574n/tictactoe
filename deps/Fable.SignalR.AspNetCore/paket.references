@@ -1,0 +1,6 @@
+FSharp.Core
+
+Fable.Remoting.Json
+Fable.Remoting.MsgPack
+Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson
+System.Text.Encodings.Web

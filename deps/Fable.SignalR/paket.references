@@ -1,0 +1,5 @@
+﻿FSharp.Core
+
+Fable.Promise
+Fable.Remoting.MsgPack
+Fable.SimpleJson

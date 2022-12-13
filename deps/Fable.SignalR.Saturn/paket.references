@@ -1,0 +1,6 @@
+FSharp.Core
+
+Fable.Remoting.Json
+Microsoft.AspNetCore.Authentication.JwtBearer
+Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson
+Saturn
