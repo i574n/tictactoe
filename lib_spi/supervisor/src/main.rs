@@ -1,6 +1,5 @@
 #![crate_name = "supervisor"]
 
-
 fn zmq_request(msg: String) {
     let ctx = zmq::Context::new();
     let sock = ctx.socket(zmq::REQ).unwrap();
@@ -19,7 +18,8 @@ fn spiproj_open(spiproj_path: &std::path::Path, spiproj_text: &str) {
             "uri": spiproj_path,
             "spiprojText": spiproj_text,
         }
-    }).to_string();
+    })
+    .to_string();
     zmq_request(msg);
 }
 
@@ -29,7 +29,8 @@ fn spi_build_file(spi_path: &std::path::Path, backend: &str) {
             "uri": spi_path,
             "backend": backend,
         }
-    }).to_string();
+    })
+    .to_string();
     zmq_request(msg);
 }
 
@@ -45,19 +46,25 @@ fn wait_file_change(fsx_path: &std::path::Path) -> String {
         if last_modified > start {
             lines = std::fs::read_to_string(fsx_path).unwrap();
             break;
-        }
-        else {
+        } else {
             std::thread::sleep(std::time::Duration::from_millis(100));
         }
     }
 
-    println!("waiting for file change. last_modified: {:?} lines.len(): {}", last_modified, lines.len());
+    println!(
+        "waiting for file change. last_modified: {:?} lines.len(): {}",
+        last_modified,
+        lines.len()
+    );
 
     lines
 }
 
 trait ToPath {
-    fn to_path<'a>(&'a self) -> &'a std::path::Path where Self: AsRef<std::ffi::OsStr> {
+    fn to_path<'a>(&'a self) -> &'a std::path::Path
+    where
+        Self: AsRef<std::ffi::OsStr>,
+    {
         std::path::Path::new(self)
     }
 }
@@ -65,35 +72,35 @@ trait ToPath {
 impl ToPath for String {}
 
 fn spi_to_fsx(spi_path: &std::path::Path, new_fsx_path: Option<&std::path::Path>) -> String {
-    let spi_path = spi_path.canonicalize().unwrap();
+    let spi_path = spi_path.canonicalize().expect(
+        format!(
+            "spi_path: {} not found. pwd: {}",
+            spi_path.display(),
+            std::env::current_dir().unwrap().display()
+        )
+        .as_str(),
+    );
 
-    let src_path =
-        spi_path
-            .parent()
-            .unwrap()
-            .canonicalize()
-            .unwrap();
+    let src_path = spi_path.parent().unwrap().canonicalize().unwrap();
 
     println!("src_path: {}", src_path.display());
 
-    let spiproj_path =
-        src_path
-            .ancestors()
-            .take(10)
-            .map(|p| p.join("package.spiproj"))
-            .find(|p| p.exists())
-            .unwrap();
+    let spiproj_path = src_path
+        .ancestors()
+        .take(10)
+        .map(|p| p.join("package.spiproj"))
+        .find(|p| p.exists())
+        .unwrap();
     println!("spiproj_path: {}", spiproj_path.display());
 
-    let fsx_path =
-        spi_path
-            .to_str()
-            .unwrap()
-            .replace(".spir", ".spi")
-            .replace(".spi", ".fsx")
-            .to_path()
-            .canonicalize()
-            .unwrap();
+    let fsx_path = spi_path
+        .to_str()
+        .unwrap()
+        .replace(".spir", ".spi")
+        .replace(".spi", ".fsx")
+        .to_path()
+        .canonicalize()
+        .unwrap();
 
     println!("fsx_path: {}", fsx_path.clone().display());
 
@@ -102,7 +109,7 @@ fn spi_to_fsx(spi_path: &std::path::Path, new_fsx_path: Option<&std::path::Path>
 
     spiproj_open(
         &spiproj_path,
-        &std::fs::read_to_string(&spiproj_path).unwrap()
+        &std::fs::read_to_string(&spiproj_path).unwrap(),
     );
     println!("open ok. spiproj_path: {}", spiproj_path.display());
 
@@ -136,10 +143,7 @@ struct Args {
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Args = <Args as clap::Parser>::parse();
-    let fsx = spi_to_fsx(
-        args.spi_path.to_path(),
-        Some(args.fsx_path.to_path())
-    );
+    let fsx = spi_to_fsx(args.spi_path.to_path(), Some(args.fsx_path.to_path()));
     println!("fsx.len(): {}", fsx.len());
 
     Ok(())

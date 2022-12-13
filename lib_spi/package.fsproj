@@ -9,6 +9,7 @@
     <ItemGroup>
         <Compile Include="$(MSBuildThisFileDirectory)ui/components'.fsx" />
         <Compile Include="$(MSBuildThisFileDirectory)peer.fsx" />
+        <Compile Include="$(MSBuildThisFileDirectory)supervisor/src/main.fsx" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\deps\Fable.SignalR\Fable.SignalR.fsproj" />
