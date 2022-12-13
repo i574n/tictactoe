@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <OutputType>Exe</OutputType>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="FsCore/Core.fs" />
+    <Compile Include="FsClr/Core.fs" />
+    <Compile Include="FsClr/Logger.fs" />
+    <Compile Include="FsClr/Cli.fs" />
+    <Compile Include="FsClr/FileSystem.fs" />
+    <Compile Include="../lib_spi/peer.fsx" />
+    <Compile Include="Core.fs" />
+    <Compile Include="Stream.fs" />
+    <Compile Include="HubServer.fs" />
+    <Compile Include="Main.fs" />
+    <Content Include=".gitignore" />
+    <Content Include="Dockerfile" />
+    <Content Include="published.Dockerfile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\deps\Fable.SignalR.Saturn\Fable.SignalR.Saturn.fsproj" />
+  </ItemGroup>
+  <Import Project="..\.paket\Paket.Restore.targets" />
+</Project>

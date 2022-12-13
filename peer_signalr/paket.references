@@ -1,0 +1,10 @@
+Fable.Core
+FSharp.Control.AsyncSeq
+System.Reactive.Linq
+Argu
+Giraffe
+Saturn
+Giraffe.SerilogExtensions
+Serilog.Sinks.SpectreConsole
+Serilog.Sinks.Console
+Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson

@@ -1,0 +1,36 @@
+#!fsharp
+
+#load "main.fsx"
+
+#!fsharp
+
+let (struct (a, b, c)) = Main.closure3 () ()
+
+#!fsharp
+
+a
+
+#!fsharp
+
+b
+
+#!fsharp
+
+c
+
+#!fsharp
+
+let xx = struct (1s, [| 1.0f; 0.0f; 1.0f; 0.0f |])
+
+#!fsharp
+
+c xx
+
+#!fsharp
+
+xx
+
+#!fsharp
+
+// a () xx
+xx
