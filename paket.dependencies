@@ -24,3 +24,10 @@ nuget Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson >= 5.0
 // Fable.SignalR
 nuget Fable.Remoting.MsgPack ~> 1.18
 nuget Fable.SimpleJson ~> 3.24
+
+// Fable.SignalR.Saturn
+nuget Fable.Remoting.Json ~> 2.23
+nuget Microsoft.AspNetCore.Authentication.JwtBearer ~> 7.0
+
+// Fable.SignalR.Shared
+nuget Microsoft.IO.RecyclableMemoryStream ~> 2.2

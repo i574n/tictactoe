@@ -1,4 +1,4 @@
-#![crate_name = "tictactoe_spiral"]
+#![crate_name = "supervisor"]
 
 
 fn zmq_request(msg: String) {

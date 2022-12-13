@@ -130,8 +130,8 @@ union rec response =
         removed_keys : a i32 string
     }
 
-type hub request response = $"Fable.SignalR.HubConnection<`request, `request, `response, `response, `response>"
-type hub_builder request response = $"Fable.SignalR.HubConnectionBuilder<`request, `request, `response, `response, `response>"
+type hub request response = $"Fable.SignalR.HubConnection<`request, `request, unit, `response, `response>"
+type hub_builder request response = $"Fable.SignalR.HubConnectionBuilder<`request, `request, unit, `response, `response>"
 
 
 inl hub_with_url forall request response.
@@ -290,7 +290,7 @@ inl new_db
         // connection |> connection_start
 
         inl hub : hub request response =
-            $"Fable.SignalR.SignalR.connect<`request, `request, `any, `response, `response> ((!hub_on_connect !get_log_level !url) |> unbox) |> unbox"
+            $"Fable.SignalR.SignalR.connect<`request, `request, unit, `response, `response> ((!hub_on_connect !get_log_level !url) |> unbox) |> unbox"
         $"!hub.startNow ()" : ()
         !!hub
     | GunRsClient =>

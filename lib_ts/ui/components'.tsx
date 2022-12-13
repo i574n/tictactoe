@@ -4484,7 +4484,7 @@ export function method79(v0_1: string, v1_1: () => [string, int32][], v2: (arg0:
                         const v121: (arg0: UH1) => void = (v_1: UH1): void => {
                             closure289(uncurry(2, v70), v_1);
                         };
-                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, UH1, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
+                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, void, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
                         void (pr.then(v121));
                         break;
                     }
@@ -4642,7 +4642,7 @@ export function closure283(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
                 }
             })(), (v92 = v83.l1, (v96 = v92.on(v52), Promise.resolve(US17_US17_1(v96))))))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
                 throw new Error("db_on Memory");
-            })() : ((v16.tag === US2_Tag.US2_3) ? ((v104 = ((v: any): US17 => closure290(uncurry(2, v45), v)), (pr = HubConnection$5__streamFromAsPromise_2B594<UH0, UH0, UH1, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), pr.then(v104)))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
+            })() : ((v16.tag === US2_Tag.US2_3) ? ((v104 = ((v: any): US17 => closure290(uncurry(2, v45), v)), (pr = HubConnection$5__streamFromAsPromise_2B594<UH0, UH0, void, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), pr.then(v104)))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
                 while (method80(v59, v60)) {
                     const v62: int32 = v60.l0 | 0;
                     const v63: any = v60.l1;
@@ -5141,7 +5141,7 @@ export function method90(v0_1: string, v1_1: () => [string, any][], v2: (arg0: [
                         const v121: (arg0: UH1) => void = (v_1: UH1): void => {
                             closure289(uncurry(2, v70), v_1);
                         };
-                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, UH1, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
+                        const pr: any = HubConnection$5__invokeAsPromise_2B595<UH0, UH0, void, UH1, UH1>(v43, UH0_UH0_3("alias", v0_1, v9));
                         void (pr.then(v121));
                         break;
                     }
@@ -5235,7 +5235,7 @@ export function closure328(v0_1: string, v1_1: () => US4, v2: (arg0: [US2, any, 
                 }
             })(), (v92 = v83.l1, (v96 = v92.on(v52), Promise.resolve(US17_US17_1(v96))))))))))) : ((v16.tag === US2_Tag.US2_2) ? (() => {
                 throw new Error("db_on Memory");
-            })() : ((v16.tag === US2_Tag.US2_3) ? ((v104 = ((v: any): US17 => closure290(uncurry(2, v45), v)), (pr = HubConnection$5__streamFromAsPromise_2B594<UH0, UH0, UH1, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), pr.then(v104)))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
+            })() : ((v16.tag === US2_Tag.US2_3) ? ((v104 = ((v: any): US17 => closure290(uncurry(2, v45), v)), (pr = HubConnection$5__streamFromAsPromise_2B594<UH0, UH0, void, UH1, UH1>(v17, UH0_UH0_1("alias", v0_1)), pr.then(v104)))) : ((v53 = v0_1.split("/"), (v54 = "get", (v58 = v17[v54]("tictactoe_spiral"), (v59 = (v53.length | 0), (v60 = (new Mut27(0, v58)), ((() => {
                 while (method80(v59, v60)) {
                     const v62: int32 = v60.l0 | 0;
                     const v63: any = v60.l1;
@@ -5838,7 +5838,7 @@ export function closure388(v0_1: (arg0: US4, arg1: any[]) => void, v1_1: UH1): v
     v0_1(US4_US4_2(), ["> hub_on_connect -> on_message ()", ["msg", v1_1]]);
 }
 
-export function closure382(v0_1: () => US4, v1_1: string, v2: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> {
+export function closure382(v0_1: () => US4, v1_1: string, v2: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1> {
     const v3: () => any[] = (): any[] => closure383(void 0, void 0);
     const v5: (arg0: US4, arg1: any[]) => void = method17(v0_1, v3, "#666");
     v5(US4_US4_0())(["> hub_on_connect ()"]);
@@ -5858,7 +5858,7 @@ export function closure382(v0_1: () => US4, v1_1: string, v2: HubConnectionBuild
     const v28: (arg0: UH1) => void = (v_4: UH1): void => {
         closure388(uncurry(2, v5), v_4);
     };
-    return HubConnectionBuilder$5__onMessage_2163CAFC<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__configureLogging_2D37BB17<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__onClose_Z5D4DDAB0<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__onReconnected_20659392<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__onReconnecting_Z5D4DDAB0<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__withAutomaticReconnect_3C7EFEAD<UH0, UH0, UH1, UH1, UH1>(HubConnectionBuilder$5__withUrl_Z721C83C5<UH0, UH0, UH1, UH1, UH1>(v2, v1_1), v17), (arg: Option<Error>): void => {
+    return HubConnectionBuilder$5__onMessage_2163CAFC<UH0, UH0, void, UH1, UH1>(HubConnectionBuilder$5__configureLogging_2D37BB17<UH0, UH0, void, UH1, UH1>(HubConnectionBuilder$5__onClose_Z5D4DDAB0<UH0, UH0, void, UH1, UH1>(HubConnectionBuilder$5__onReconnected_20659392<UH0, UH0, void, UH1, UH1>(HubConnectionBuilder$5__onReconnecting_Z5D4DDAB0<UH0, UH0, void, UH1, UH1>(HubConnectionBuilder$5__withAutomaticReconnect_3C7EFEAD<UH0, UH0, void, UH1, UH1>(HubConnectionBuilder$5__withUrl_Z721C83C5<UH0, UH0, void, UH1, UH1>(v2, v1_1), v17), (arg: Option<Error>): void => {
         v20(arg);
     }), (arg_1: Option<string>): void => {
         v22(arg_1);
@@ -5867,12 +5867,12 @@ export function closure382(v0_1: () => US4, v1_1: string, v2: HubConnectionBuild
     }), 0), v28);
 }
 
-export function closure381(v0_1: () => US4, v1_1: string): (arg0: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> {
-    return (v: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> => closure382(v0_1, v1_1, v);
+export function closure381(v0_1: () => US4, v1_1: string): (arg0: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1> {
+    return (v: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>): HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1> => closure382(v0_1, v1_1, v);
 }
 
-export function closure380(unitVar: void, v0_1: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> {
-    return (v: string): (arg0: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> => closure381(v0_1, v);
+export function closure380(unitVar: void, v0_1: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1> {
+    return (v: string): (arg0: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1> => closure381(v0_1, v);
 }
 
 export function method100(v0_1: int32, v1_1: Mut32): boolean {
@@ -5880,7 +5880,7 @@ export function method100(v0_1: int32, v1_1: Mut32): boolean {
 }
 
 export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) => void, v2: (arg0: US4, arg1: any[]) => void, _arg: [[US2[], int32, US3, string, string][], [US2, any, string][]]): void {
-    let copyOfStruct: US2, copyOfStruct_5: US3, v98: any, v102: (arg0: () => US4, arg1: string, arg2: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>, v103: HubConnection$5<UH0, UH0, UH1, UH1, UH1>, _: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>, arg: HubConnectionBuilder$5<UH0, UH0, any, UH1, UH1>, protocol_2: any, protocol: MsgPack_MsgPackProtocol, protocol_1: Json_JsonProtocol, v79: any, v94: any;
+    let copyOfStruct: US2, copyOfStruct_5: US3, v98: any, v102: (arg0: () => US4, arg1: string, arg2: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>, v103: HubConnection$5<UH0, UH0, void, UH1, UH1>, _: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>, arg: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>, protocol_2: any, protocol: MsgPack_MsgPackProtocol, protocol_1: Json_JsonProtocol, v79: any, v94: any;
     const v4: [US2, any, string][] = _arg[1];
     const v3: [US2[], int32, US3, string, string][] = _arg[0];
     const v5: int32 = v3.length | 0;
@@ -5933,7 +5933,7 @@ export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) =
                 const v77_1: string = (v69.tag === US21_Tag.US21_1) ? (`${v69.fields[3]}:${v69.fields[1]}/${v69.fields[4]}`) : "";
                 patternInput_3 = [v20, (v20.tag === US2_Tag.US2_1) ? ((v98 = Node$, new v98(v77_1))) : ((v20.tag === US2_Tag.US2_2) ? (() => {
                     throw new Error("new_db Memory");
-                })() : ((v20.tag === US2_Tag.US2_3) ? ((v102 = ((v: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, UH1, UH1, UH1> => closure380(void 0, v)), (v103 = ((_ = ((arg = HubConnectionBuilder$5_$ctor_Z66CB2AA1<UH0, UH0, any, UH1, UH1>(new Bindings_signalR.HubConnectionBuilder()), v102(v0_1)(v77_1)(arg))), HubConnection$5_$ctor_Z78FDE58B<UH0, UH0, any, UH1, UH1>((protocol_2 = (_.useMsgPack ? ((protocol = MsgPack_MsgPackProtocol_$ctor(), {
+                })() : ((v20.tag === US2_Tag.US2_3) ? ((v102 = ((v: () => US4): (arg0: string, arg1: HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1>) => HubConnectionBuilder$5<UH0, UH0, void, UH1, UH1> => closure380(void 0, v)), (v103 = ((_ = ((arg = HubConnectionBuilder$5_$ctor_Z66CB2AA1<UH0, UH0, void, UH1, UH1>(new Bindings_signalR.HubConnectionBuilder()), v102(v0_1)(v77_1)(arg))), HubConnection$5_$ctor_Z78FDE58B<UH0, UH0, void, UH1, UH1>((protocol_2 = (_.useMsgPack ? ((protocol = MsgPack_MsgPackProtocol_$ctor(), {
                     name: "messagepack",
                     version: 1,
                     transferFormat: 2,
@@ -5973,7 +5973,7 @@ export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) =
                         let matchValue_3: int32, invocation: any, matchValue_1_1: string, invocation_1: any, arg_4: string, streamItem: any, completion: any, streamInvocation: any, cancelInvocation: any, close: any;
                         const message: any = msg_2;
                         const outArr: uint8[] = [];
-                        writeObject((matchValue_3 = (message.type | 0), (matchValue_3 === 1) ? ((invocation = message, (matchValue_1_1 = invocation.target, (matchValue_1_1 === "Invoke") ? ((invocation.arguments.length === 2) ? MsgPack_Msg$4_InvokeInvocation<UH0, UH0, void, any>(invocation.headers, invocation.invocationId, invocation.target, invocation.arguments[0], invocation.arguments[1], invocation.streamIds) : ((invocation_1 = message, MsgPack_Msg$4_InvocationExplicit<UH0, UH0, void, any>(invocation_1.headers, invocation_1.invocationId, invocation_1.target, invocation_1.arguments, invocation_1.streamIds)))) : ((matchValue_1_1 === "Send") ? MsgPack_Msg$4_Invocation<UH0, UH0, void, any>(invocation.headers, invocation.invocationId, invocation.target, invocation.arguments, invocation.streamIds) : ((matchValue_1_1 === "StreamTo") ? MsgPack_Msg$4_Invocation<UH0, UH0, void, any>(invocation.headers, invocation.invocationId, invocation.target, invocation.arguments, invocation.streamIds) : ((arg_4 = invocation.target, toFail(printf("Invalid Invocation Target: %s"))(arg_4)))))))) : ((matchValue_3 === 2) ? ((streamItem = message, MsgPack_Msg$4_StreamItem<UH0, UH0, void, any>(streamItem.headers, streamItem.invocationId, streamItem.item))) : ((matchValue_3 === 3) ? ((completion = message, MsgPack_Msg$4_Completion<UH0, UH0, void, any>(completion.headers, completion.invocationId, completion.error, completion.result))) : ((matchValue_3 === 4) ? ((streamInvocation = message, MsgPack_Msg$4_StreamInvocation<UH0, UH0, void, any>(streamInvocation.headers, streamInvocation.invocationId, streamInvocation.target, streamInvocation.arguments, streamInvocation.streamIds))) : ((matchValue_3 === 5) ? ((cancelInvocation = message, MsgPack_Msg$4_CancelInvocation<UH0, UH0, void, any>(cancelInvocation.headers, cancelInvocation.invocationId))) : ((matchValue_3 === 6) ? MsgPack_Msg$4_Ping<UH0, UH0, void, any>() : ((matchValue_3 === 7) ? ((close = message, MsgPack_Msg$4_Close<UH0, UH0, void, any>(close.error, close.allowReconnect))) : toFail(printf("Invalid message: %A"))(message)))))))), MsgPack_Msg$4$reflection(UH0$reflection(), UH0$reflection(), unit_type, obj_type), outArr);
+                        writeObject((matchValue_3 = (message.type | 0), (matchValue_3 === 1) ? ((invocation = message, (matchValue_1_1 = invocation.target, (matchValue_1_1 === "Invoke") ? ((invocation.arguments.length === 2) ? MsgPack_Msg$4_InvokeInvocation<UH0, UH0, void, void>(invocation.headers, invocation.invocationId, invocation.target, invocation.arguments[0], invocation.arguments[1], invocation.streamIds) : ((invocation_1 = message, MsgPack_Msg$4_InvocationExplicit<UH0, UH0, void, void>(invocation_1.headers, invocation_1.invocationId, invocation_1.target, invocation_1.arguments, invocation_1.streamIds)))) : ((matchValue_1_1 === "Send") ? MsgPack_Msg$4_Invocation<UH0, UH0, void, void>(invocation.headers, invocation.invocationId, invocation.target, invocation.arguments, invocation.streamIds) : ((matchValue_1_1 === "StreamTo") ? MsgPack_Msg$4_Invocation<UH0, UH0, void, void>(invocation.headers, invocation.invocationId, invocation.target, invocation.arguments, invocation.streamIds) : ((arg_4 = invocation.target, toFail(printf("Invalid Invocation Target: %s"))(arg_4)))))))) : ((matchValue_3 === 2) ? ((streamItem = message, MsgPack_Msg$4_StreamItem<UH0, UH0, void, void>(streamItem.headers, streamItem.invocationId, streamItem.item))) : ((matchValue_3 === 3) ? ((completion = message, MsgPack_Msg$4_Completion<UH0, UH0, void, void>(completion.headers, completion.invocationId, completion.error, completion.result))) : ((matchValue_3 === 4) ? ((streamInvocation = message, MsgPack_Msg$4_StreamInvocation<UH0, UH0, void, void>(streamInvocation.headers, streamInvocation.invocationId, streamInvocation.target, streamInvocation.arguments, streamInvocation.streamIds))) : ((matchValue_3 === 5) ? ((cancelInvocation = message, MsgPack_Msg$4_CancelInvocation<UH0, UH0, void, void>(cancelInvocation.headers, cancelInvocation.invocationId))) : ((matchValue_3 === 6) ? MsgPack_Msg$4_Ping<UH0, UH0, void, void>() : ((matchValue_3 === 7) ? ((close = message, MsgPack_Msg$4_Close<UH0, UH0, void, void>(close.error, close.allowReconnect))) : toFail(printf("Invalid message: %A"))(message)))))))), MsgPack_Msg$4$reflection(UH0$reflection(), UH0$reflection(), unit_type, unit_type), outArr);
                         if (compare(fromInteger(outArr.length, true, 2), fromBits(2147483648, 0, true)) > 0) {
                             throw new Error("Messages over 2GB are not supported.");
                         }
@@ -6117,7 +6117,7 @@ export function closure379(v0_1: () => US4, v1_1: (arg0: [US2, any, string][]) =
                     writeMessage(msg_10: any): string {
                         return Json_TextMessageFormat_write(Convert_serialize(msg_10, createTypeInfo(obj_type)));
                     },
-                }))), _["hub@10"].withHubProtocol<UH0, any, UH1>(protocol_2).build<UH0, any, UH1>()), _.handlers))), (HubConnection$5__startNow<UH0, UH0, UH1, UH1, UH1>(v103), v103)))) : ((v79 = gun, (v94 = {
+                }))), _["hub@10"].withHubProtocol<UH0, void, UH1>(protocol_2).build<UH0, void, UH1>()), _.handlers))), (HubConnection$5__startNow<UH0, UH0, void, UH1, UH1>(v103), v103)))) : ((v79 = gun, (v94 = {
                     url: v77_1,
                     localStorage: false,
                     radisk: true,

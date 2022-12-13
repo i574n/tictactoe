@@ -217,7 +217,9 @@ inl icon_button props = create_native_component (icon_button_ ()) props
 inl _input type' props_fn children =
     inl _input props_fn =
         inl hope : js_function = real hope_ ()
-        create_native_component (js_get !!hope "input" |> real real_unbox `any `js_function) (fun props' => {props' with Type = Some type'} |> props_fn)
+        create_native_component
+            (js_get !!hope "input" |> real real_unbox `any `js_function)
+            (fun props' => {props' with Type = Some type'} |> props_fn)
     box
         fun props' => { props' with
             Display = Some "flex"

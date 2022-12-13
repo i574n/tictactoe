@@ -10,6 +10,7 @@ dist/
 deps/
 bin/
 obj/
+target/
 dist_extension/
 tmp/
 paket-files/

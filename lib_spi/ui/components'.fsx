@@ -5161,7 +5161,7 @@ and method79 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
                     let v116 : string = v9 |> unbox<string>
-                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
+                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
                     let v118 : string = "alias"
                     let v119 : UH0 = UH0_3(v118, v0, v116)
                     let v120 : Fable.Core.JS.Promise<UH1> = v117.invokeAsPromise v119
@@ -5401,7 +5401,7 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
                     | US2_2 -> (* Memory *)
                         failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
                     | US2_3 -> (* SignalRClient *)
-                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
+                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
                         let v101 : string = "alias"
                         let v102 : UH0 = UH0_1(v101, v0)
                         let v103 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v100.streamFromAsPromise v102
@@ -6123,7 +6123,7 @@ and method90 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
                     let v116 : string = v9 |> unbox<string>
-                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
+                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
                     let v118 : string = "alias"
                     let v119 : UH0 = UH0_3(v118, v0, v116)
                     let v120 : Fable.Core.JS.Promise<UH1> = v117.invokeAsPromise v119
@@ -6274,7 +6274,7 @@ and closure328 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
                     | US2_2 -> (* Memory *)
                         failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
                     | US2_3 -> (* SignalRClient *)
-                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1>>
+                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
                         let v101 : string = "alias"
                         let v102 : UH0 = UH0_1(v101, v0)
                         let v103 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v100.streamFromAsPromise v102
@@ -7032,7 +7032,7 @@ and closure388 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
     ()
-and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>) : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> =
+and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1>) : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> =
     let v3 : (unit -> (obj [])) = closure383()
     let v4 : string = "#666"
     let v5 : (US4 -> ((obj []) -> unit)) = method17(v0, v3, v4)
@@ -7049,22 +7049,22 @@ and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnecti
     let v15 : ((string * obj) []) = [|v14|]
     let v16 : obj = Fable.Core.JsInterop.createObj v15
     let v17 : Fable.SignalR.RetryPolicy = v16 |> unbox<Fable.SignalR.RetryPolicy>
-    let v18 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v2.withUrl v1
-    let v19 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v18.withAutomaticReconnect v17
+    let v18 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> = v2.withUrl v1
+    let v19 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> = v18.withAutomaticReconnect v17
     let v20 : (obj -> unit) = closure385(v5)
-    let v21 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v19.onReconnecting v20
+    let v21 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> = v19.onReconnecting v20
     let v22 : (obj -> unit) = closure386(v5)
-    let v23 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v21.onReconnected v22
+    let v23 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> = v21.onReconnected v22
     let v24 : (obj -> unit) = closure387(v5)
-    let v25 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v23.onClose v24
+    let v25 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> = v23.onClose v24
     let v26 : Fable.SignalR.LogLevel = Fable.SignalR.LogLevel.Trace
-    let v27 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v25.configureLogging v26
+    let v27 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> = v25.configureLogging v26
     let v28 : (UH1 -> unit) = closure388(v5)
-    let v29 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> = v27.onMessage v28
+    let v29 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> = v27.onMessage v28
     v29
-and closure381 (v0 : (unit -> US4)) (v1 : string) : (Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>) =
+and closure381 (v0 : (unit -> US4)) (v1 : string) : (Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1>) =
     closure382(v0, v1)
-and closure380 () (v0 : (unit -> US4)) : (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>)) =
+and closure380 () (v0 : (unit -> US4)) : (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1>)) =
     closure381(v0)
 and method100 (v0 : int32, v1 : Mut32) : bool =
     let v2 : int32 = v1.l0
@@ -7205,8 +7205,8 @@ and closure379 (v0 : (unit -> US4), v1 : ((struct (US2 * obj * string) []) -> un
                         | US2_2 -> (* Memory *)
                             failwith<obj> "new_db Memory"
                         | US2_3 -> (* SignalRClient *)
-                            let v102 : ((unit -> US4) -> (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, UH1, UH1, UH1>))) = closure380()
-                            let v103 : Fable.SignalR.HubConnection<UH0, UH0, UH1, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, obj, UH1, UH1> ((v102 v0 v77) |> unbox) |> unbox
+                            let v102 : ((unit -> US4) -> (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1>))) = closure380()
+                            let v103 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, unit, UH1, UH1> ((v102 v0 v77) |> unbox) |> unbox
                             v103.startNow ()
                             let v104 : obj = v103
                             v104

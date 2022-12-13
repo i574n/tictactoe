@@ -158,7 +158,7 @@ def spiral(arg, cell, test=False):
             #     timeout=int(get_arg(1, timeout_seconds))
             # ).splitlines()
             run_build_output = util.run(
-                f"cd ../lib_rs && cargo build --release && ./target/release/tictactoe_spiral --spi-path=\"{spi_path}\" --fsx-path=\"{fsx_path}\""
+                f"cd ../lib_spi/supervisor && cargo build --release && ./target/release/supervisor --spi-path=\"{spi_path}\" --fsx-path=\"{fsx_path}\""
             ).splitlines()
 
             new_code_fsx = ''

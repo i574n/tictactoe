@@ -39,6 +39,7 @@ jobs:
       - run: cargo install rod
 
       - run: cd ./web && bun run playwright-install
+      - run: cd ./web && bun run build
       - run: cd ./web && bun run e2e
       - run: cd ./web && bun run build
 
