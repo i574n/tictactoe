@@ -1,0 +1,106 @@
+<!-- livebook:{"persist_outputs":true} -->
+
+# 00_util
+
+## Section
+
+```elixir
+defmodule KinoGuide.ShellCell do
+  use Kino.JS
+  use Kino.JS.Live
+  use Kino.SmartCell, name: "Shell script"
+
+  @impl true
+  def init(_attrs, ctx) do
+    {:ok, ctx, editor: [attribute: "source"]}
+  end
+
+  @impl true
+  def handle_connect(ctx) do
+    {:ok, %{}, ctx}
+  end
+
+  @impl true
+  def to_attrs(_ctx) do
+    %{}
+  end
+
+  @impl true
+  def to_source(attrs) do
+    quote do
+      System.shell(
+        unquote(quoted_multiline(attrs["source"])),
+        into: IO.stream(),
+        stderr_to_stdout: true
+      )
+      |> elem(1)
+    end
+    |> Kino.SmartCell.quoted_to_string()
+  end
+
+  defp quoted_multiline(string) do
+    {:<<>>, [delimiter: ~s["""]], [string <> "\n"]}
+  end
+
+  asset "main.js" do
+    """
+    export function init(ctx, payload) {
+      ctx.importCSS("main.css");
+
+      root.innerHTML = `
+        <div class="app">
+          Shell script
+        </div>
+      `;
+    }
+    """
+  end
+
+  asset "main.css" do
+    """
+    .app {
+      padding: 8px 16px;
+      border: solid 1px #cad5e0;
+      border-radius: 0.5rem 0.5rem 0 0;
+      border-bottom: none;
+    }
+    """
+  end
+end
+
+Kino.SmartCell.register(KinoGuide.ShellCell)
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+:ok
+```
+
+<!-- livebook:{"attrs":{"source":"echo \"There you are:\"\nls -dlh $(pwd)\nexit 1"},"kind":"Elixir.KinoGuide.ShellCell","livebook_object":"smart_cell"} -->
+
+```elixir
+System.shell(
+  """
+  echo "There you are:"
+  ls -dlh $(pwd)
+  exit 1
+  """,
+  into: IO.stream(),
+  stderr_to_stdout: true
+)
+|> elem(1)
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+There you are:
+drwxrwxrwx+ 10 codespace codespace 4.0K Jul 22 01:52 /workspaces/spiral-notebook/lib_ex
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+1
+```

@@ -1,0 +1,18 @@
+cd $HOME/ && curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+tar xzvf nvim-linux64.tar.gz
+sudo ln -s $HOME/nvim-linux64/bin/nvim /usr/bin/nvim
+
+# sudo ln -s /run/current-system/sw/bin/nvim /usr/bin/nvim
+
+
+cd $HOME/ && curl -LO https://raw.githubusercontent.com/fc1943s/mold/master/vimfiles/core.vim
+sudo ln -s $HOME/core.vim $HOME/.vimrc
+
+cd /tmp && wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && sudo dpkg -i erlang-solutions_2.0_all.deb
+sudo apt-get update
+sudo apt-get install esl-erlang
+sudo apt-get install elixir
+mix do local.rebar --force, local.hex --force
+export PATH="$HOME/.mix/escripts:$PATH"
+echo "export PATH=\"\$HOME/.mix/escripts:\$PATH\"" >> ~/.bashrc
+mix escript.install hex livebook
