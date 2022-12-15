@@ -38,10 +38,6 @@ inl is_empty forall a. (obj : a) : bool =
 inl create_new (o : js_function) (args : any) : any =
     $"Fable.Core.JsInterop.createNew !o !args"
 
-instance to_string any = to_string'
-
-instance (~!!) any = to_any
-
 nominal promise t = $"Fable.Core.JS.Promise<`t>"
 
 inl promise_create forall t. (fn : ((t -> ()) -> (exn -> ()) -> ())) : promise t =
@@ -124,6 +120,9 @@ inl clear_interval (token : i32) : () = $"Fable.Core.JS.clearInterval !token"
 
 inl js_get (obj : any) (key : string) : any =
     $"(Fable.Core.JsInterop.(?)) !obj !key"
+
+inl js_invoke forall t. (callee : any) (args : any) : t =
+    $"(Fable.Core.JsInterop.($)) !callee !args"
 
 type env =
     {

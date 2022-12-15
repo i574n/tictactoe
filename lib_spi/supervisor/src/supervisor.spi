@@ -1,0 +1,256 @@
+inl import forall t. (name : string) (module : string) : t =
+    $"Fable.Core.Rust.import !name !module"
+
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    $"Fable.Core.Rust.emitExpr !args !code"
+
+type option' t = $"Option<`t>"
+
+inl unwrap_or_default forall t. (x : option' t) : t =
+    emit_expr x "$0.unwrap_or_default()"
+
+inl unwrap forall t. (x : option' t) : t =
+    emit_expr x "($0).as_ref().unwrap().clone()"
+
+type result' t e = $"Result<`t, `e>"
+// type ref' t = $"Ref<`t>"
+nominal lrc' t = $"Std.std.Lrc<`t>"
+nominal mut_cell' t = $"Std.std.MutCell<`t>"
+nominal box' t = $"Std.std.Box<`t>"
+nominal path = $"Std.std.path.Path"
+// nominal ref' t = lrc' (mut_cell' t)
+
+inl ok forall t. (value : t) : result' t _ =
+    emit_expr value $"\"Ok($0)\""
+
+inl unit () : any =
+    emit_expr () "()"
+
+
+
+inl new_mut_cell forall t. (obj : t) : mut_cell' t =
+    emit_expr obj "MutCell::new($0)"
+
+inl new_lrc forall t. (obj : t) : lrc' t =
+    emit_expr obj "Lrc::from($0)"
+
+instance (~!!) path = fun (x : t) =>
+    $"!x |> unbox<`path>"
+
+instance (~!!) lrc' path = fun (ref : t) => // real
+    emit_expr ref "$0.deref()"
+
+instance (~!!) mut_cell' tt = fun (ref : t) => // real
+    emit_expr ref "(**$0).get()"
+
+inl display (path : lrc' (mut_cell' (box' path))) : string =
+    emit_expr path "fable_library_rust::String_::fromStr(Box::leak(format!(\"{:?}\", ($0).strip_prefix(\"\").unwrap().display()).into_boxed_str()))"
+
+inl canonicalize (path : lrc' (mut_cell' (box' path))) : lrc' (mut_cell' (box' path)) =
+    emit_expr path "std::rc::Rc::new(fable_library_rust::Native_::MutCell::new(Box::from(($0).canonicalize().unwrap().strip_prefix(\"\").unwrap())))"
+
+
+// fn zmq_request(msg: String) {
+//     let ctx = zmq::Context::new();
+//     let sock = ctx.socket(zmq::REQ).unwrap();
+//     let port = 13805;
+//     let endpoint = &format!("tcp://localhost:{}", port);
+//     sock.connect(endpoint).unwrap();
+//     sock.send(&msg, 0).unwrap();
+//     let result = sock.recv_string(0).unwrap();
+//     println!("zmq_request. result: {}", result.unwrap());
+//     sock.disconnect(endpoint).unwrap();
+// }
+inl zmq_request (msg : string) : () =
+    console_fsx.write_line "zmq_request."
+    console_fsx.write_line "msg:"
+    console_fsx.write_line msg
+
+    inl ctx : any = emit_expr () "zmq::Context::new()"
+    inl sock : any = emit_expr ctx "$0.socket(zmq::REQ).unwrap()"
+    inl port : i32 = 13805
+    inl endpoint : string = $"$\"tcp://localhost:{!port}\""
+    emit_expr (sock, endpoint) "$0.connect(&$1).unwrap()"
+    emit_expr (sock, msg) $"$\"$0.send($1.as_str(), 0).unwrap()\""
+    inl result : any = emit_expr sock "$0.recv_string(0).unwrap().unwrap()"
+    console_fsx.write_line "zmq_request. result:"
+    console_fsx.write_line result
+    emit_expr (sock, endpoint) "$0.disconnect(&$1).unwrap()"
+
+
+// fn spiproj_open(spiproj_path: &std::path::Path, spiproj_text: &str) {
+//     let msg = serde_json::json!({
+//         "ProjectFileOpen": {
+//             "uri": spiproj_path,
+//             "spiprojText": spiproj_text,
+//         }
+//     })
+//     .to_string();
+//     zmq_request(msg);
+// }
+
+inl spiproj_open (spiproj_path : lrc' (mut_cell' (box' path))) (spiproj_text : string) : () =
+    console_fsx.write_line "spiproj_open."
+    console_fsx.write_line "spiproj_path:"
+    console_fsx.write_line spiproj_path
+    console_fsx.write_line "spiproj_text:"
+    console_fsx.write_line spiproj_text
+    ()
+
+// fn spi_build_file(spi_path: &std::path::Path, backend: &str) {
+//     let msg = serde_json::json!({
+//         "BuildFile": {
+//             "uri": spi_path,
+//             "backend": backend,
+//         }
+//     })
+//     .to_string();
+//     zmq_request(msg);
+// }
+inl spi_build_file (spi_path : lrc' (mut_cell' (box' path))) (backend : string) : () =
+    console_fsx.write_line "spi_build_file."
+    console_fsx.write_line "spi_path:"
+    console_fsx.write_line spi_path
+    console_fsx.write_line "backend:"
+    console_fsx.write_line backend
+    ()
+
+
+// fn wait_file_change(fsx_path: &std::path::Path) -> String {
+//     let lines: String;
+//     let get_last_modified = || std::fs::metadata(fsx_path).unwrap().modified().unwrap();
+//     let start = get_last_modified();
+//     println!("waiting for file change. start: {:?}", start);
+
+//     let mut last_modified: std::time::SystemTime;
+//     loop {
+//         last_modified = get_last_modified();
+//         if last_modified > start {
+//             lines = std::fs::read_to_string(fsx_path).unwrap();
+//             break;
+//         } else {
+//             std::thread::sleep(std::time::Duration::from_millis(100));
+//         }
+//     }
+
+//     println!(
+//         "waiting for file change. last_modified: {:?} lines.len(): {}",
+//         last_modified,
+//         lines.len()
+//     );
+
+//     lines
+// }
+inl wait_file_change (fsx_path : lrc' (mut_cell' (box' path))) : string =
+    console_fsx.write_line "wait_file_change."
+    console_fsx.write_line "fsx_path:"
+    console_fsx.write_line fsx_path
+    ""
+
+
+
+// trait ToPath {
+//     fn to_path<'a>(&'a self) -> &'a std::path::Path
+//     where
+//         Self: AsRef<std::ffi::OsStr>,
+//     {
+//         std::path::Path::new(self)
+//     }
+// }
+
+// impl ToPath for String {}
+
+// fn spi_to_fsx(spi_path: &std::path::Path, new_fsx_path: Option<&std::path::Path>) -> String {
+//     let spi_path = spi_path.canonicalize().expect(
+//         format!(
+//             "spi_path: {} not found. pwd: {}",
+//             spi_path.display(),
+//             std::env::current_dir().unwrap().display()
+//         )
+//         .as_str(),
+//     );
+
+//     let src_path = spi_path.parent().unwrap().canonicalize().unwrap();
+
+//     println!("src_path: {}", src_path.display());
+
+//     let spiproj_path = src_path
+//         .ancestors()
+//         .take(10)
+//         .map(|p| p.join("package.spiproj"))
+//         .find(|p| p.exists())
+//         .unwrap();
+//     println!("spiproj_path: {}", spiproj_path.display());
+
+//     let fsx_path = spi_path
+//         .to_str()
+//         .unwrap()
+//         .replace(".spir", ".spi")
+//         .replace(".spi", ".fsx")
+//         .to_path()
+//         .canonicalize()
+//         .unwrap();
+
+//     println!("fsx_path: {}", fsx_path.clone().display());
+
+//     std::fs::write(fsx_path.clone(), "").unwrap();
+//     println!("write ok. fsx_path: {}", fsx_path.display());
+
+//     spiproj_open(
+//         &spiproj_path,
+//         &std::fs::read_to_string(&spiproj_path).unwrap(),
+//     );
+//     println!("open ok. spiproj_path: {}", spiproj_path.display());
+
+//     spi_build_file(&spi_path, "Fsharp");
+//     println!("build ok. spi_path: {}", spi_path.display());
+
+//     let lines = wait_file_change(&fsx_path);
+//     println!("lines.len(): {}", lines.len());
+
+//     let new_fsx = lines;
+
+//     std::fs::write(new_fsx_path.unwrap_or(&fsx_path), new_fsx.clone()).unwrap();
+//     println!(
+//         "write ok. new_fsx_path={} fsx_path={} new_fsx.len()={}",
+//         new_fsx_path.unwrap().display(),
+//         fsx_path.display(),
+//         new_fsx.len()
+//     );
+
+//     new_fsx
+// }
+
+
+inl spi_to_fsx (spi_path : lrc' (mut_cell' (box' path))) (new_fsx_path : option' (lrc' (mut_cell' (box' path)))) : string =
+
+    console_fsx.write_line "| spi_to_fsx."
+
+    console_fsx.write_line "spi_path:"
+    console_fsx.write_line (spi_path |> display)
+
+    // console_fsx.write_line "pwd:"
+    // console_fsx.write_line ((emit_expr () "std::env::current_dir().unwrap()") |> canonicalize |> display)
+
+    inl spi_path_canonicalize = spi_path |> canonicalize
+
+    console_fsx.write_line "spi_path_canonicalize:"
+    console_fsx.write_line (spi_path_canonicalize |> display)
+
+    console_fsx.write_line "new_fsx_path:"
+    console_fsx.write_line (new_fsx_path |> unwrap |> display)
+    ""
+
+
+inl main () =
+    print_static "<supervisor>"
+
+    zmq_request
+    |> dyn
+    |> ignore
+
+    spi_to_fsx
+    |> dyn
+    |> ignore
+
+    print_static "</supervisor>"

@@ -1,4 +1,0 @@
-inl main () =
-    print_static "<supervisor>"
-
-    print_static "</supervisor>"

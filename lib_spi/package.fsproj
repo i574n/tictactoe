@@ -3,6 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <LangVersion>preview</LangVersion>
+        <RollForward>Major</RollForward>
+        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
         <PackageId>tictactoe_spiral</PackageId>
         <Version>0.0.1-alpha.1</Version>
     </PropertyGroup>

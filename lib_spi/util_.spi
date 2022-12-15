@@ -15,27 +15,33 @@ union log_level_type =
     | Error
 
 prototype (~!!) r : forall t. t -> r
-
 prototype to_string t : t -> string
 prototype of_string t : string -> t
-
 prototype append t : t -> t -> t
-instance append list t = fun (x : list t) (y : list t) => y |> listm.append x
-instance append a dim {number} t = fun (x : a dim t) (y : a dim t) => y |> am.append x
+
+instance append list t = listm.append
+instance append a dim {number} t = am.append
+
 nominal array' t = array t
 instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>
     failwith "util_.array'.append"
     y |> array'
 
-type pair a b = $"(`a * `b)"
 
-inl empty_list forall a. () : list a = Nil
-inl none forall a. () : option a = None
-inl some forall a. (x : a) : option a = Some x
-inl new_pair forall a b. (a : a) (b : b) : pair a b = $"!a, !b"
+inl to_string' forall t. (obj : t) : string = $"!obj.ToString ()"
+instance to_string any = to_string'
+
+inl to_any forall t. (obj : t) : any = $"!obj"
+instance (~!!) any = to_any
+
+inl empty_list forall t. () : list t = Nil
+inl none forall t. () : option t = None
+inl some forall t. (x : t) : option t = Some x
 inl get_locals () : array any = ;[]
 inl null forall t. () : t = $"null |> unbox<`t>"
-inl to_any forall a. (obj : a) : any = $"!obj"
+
+type pair a b = $"(`a * `b)"
+inl new_pair forall a b. (a : a) (b : b) : pair a b = $"!a, !b"
 
 inl find_last forall item result. fold_fn fn target : option result =
     fold_fn (fun (item : item) (result : option result) =>
@@ -81,10 +87,10 @@ let rec pad (count : i32) (n : string) : string =
     if n_length < count then pad count ($"$\"0{!n}\"" : string) else n
 
 inl string_get_bytes (s : string) : a i32 u8 = $"System.Text.Encoding.UTF8.GetBytes !s"
-inl to_string' forall a. (obj : a) : string = $"!obj.ToString ()"
 inl ticks () : i64 = $"`date_time.UtcNow.Ticks"
 inl random () : i32 = $"System.Random().Next ()"
 inl new_raw_guid () : guid = $"`guid.NewGuid ()"
+
 
 inl array_last forall t. (items : a i32 t) : t = $"Array.last !items"
 

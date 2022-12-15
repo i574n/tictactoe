@@ -22,8 +22,11 @@ nominal _Color = $"Color"
 nominal _Style = $"Style"
 nominal _Rule = $"Rule"
 
-inl inspect ~obj =
-    $"printfn $\"%A{!obj}\"" : ()
+inl inspect ~obj : () =
+    $"printfn $\"%A{!obj}\""
+
+inl write_line ~obj : () =
+    $"System.Console.WriteLine !obj"
 
 inl new_color color : _Color =
     get_color_index color |> $"Color.FromInt32"
@@ -46,8 +49,8 @@ inl align_rule_left rule : _Rule =
 inl write arg =
     $"AnsiConsole.Write !arg"
 
-inl write_line arg =
-    $"AnsiConsole.WriteLine !arg"
+// inl write_line arg =
+//     $"AnsiConsole.WriteLine !arg"
 
 inl write_rule_text rule_text color =
     inl color_style = new_color color |> new_style
