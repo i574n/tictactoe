@@ -1,0 +1,11 @@
+[package]
+name = "tictactoe_spiral"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+fable_library_rust = { path = "./lib_spi/supervisor/src/fable_modules/fable-library-rust" }
+supervisor = { path = "./lib_spi/supervisor" }
+
+[lib]
+path = "./lib_spi/supervisor/src/fable_modules/fable-library-rust/src/lib.rs"
