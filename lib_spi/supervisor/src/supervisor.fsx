@@ -82,13 +82,17 @@ and closure1 (v0 : Std.std.path.PathBuf) (v1 : Option<Std.std.path.PathBuf>) : s
     System.Console.WriteLine v61
     let v62 : string = Fable.Core.Rust.emitExpr v60 v11
     System.Console.WriteLine v62
-    let v63 : string = "\nnew_fsx_path:"
-    System.Console.WriteLine v63
-    let v64 : Std.std.path.PathBuf = Fable.Core.Rust.emitExpr v1 v6
-    let v65 : string = Fable.Core.Rust.emitExpr v64 v11
-    System.Console.WriteLine v65
-    let v66 : string = "???"
-    v66
+    let v63 : string = ""
+    let v64 : string = "std::fs::write($0, $1.as_str())"
+    let v65 : Result<unit, Std.std.io.Error> = Fable.Core.Rust.emitExpr struct (v60, v63) v64
+    Fable.Core.Rust.emitExpr v65 v21
+    let v66 : string = "\nnew_fsx_path:"
+    System.Console.WriteLine v66
+    let v67 : Std.std.path.PathBuf = Fable.Core.Rust.emitExpr v1 v6
+    let v68 : string = Fable.Core.Rust.emitExpr v67 v11
+    System.Console.WriteLine v68
+    let v69 : string = "???"
+    v69
 and closure0 () (v0 : Std.std.path.PathBuf) : (Option<Std.std.path.PathBuf> -> string) =
     closure1(v0)
 let v0 : (Std.std.path.PathBuf -> (Option<Std.std.path.PathBuf> -> string)) = closure0()

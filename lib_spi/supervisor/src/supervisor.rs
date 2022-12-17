@@ -113,16 +113,23 @@ pub mod Supervisor {
                                                 let v62: string =
                                                     fable_library_rust::String_::fromStr(&format!("{:?}", &v60.display()));
                                                 println!("{0}", v62);
-                                                println!("{0}",
-                                                         string("\nnew_fsx_path:"));
                                                 {
-                                                    let v64:
-                                                            std::path::PathBuf =
-                                                        (&v1).as_ref().unwrap().to_path_buf();
-                                                    let v65: string =
-                                                        fable_library_rust::String_::fromStr(&format!("{:?}", &v64.display()));
-                                                    println!("{0}", v65);
-                                                    string("???")
+                                                    let v65:
+                                                            Result<(),
+                                                                   std::io::Error> =
+                                                        std::fs::write(v60, string("").as_str());
+                                                    *((&v65).as_ref()).unwrap();
+                                                    println!("{0}",
+                                                             string("\nnew_fsx_path:"));
+                                                    {
+                                                        let v68:
+                                                                std::path::PathBuf =
+                                                            (&v1).as_ref().unwrap().to_path_buf();
+                                                        let v69: string =
+                                                            fable_library_rust::String_::fromStr(&format!("{:?}", &v68.display()));
+                                                        println!("{0}", v69);
+                                                        string("???")
+                                                    }
                                                 }
                                             }
                                         }

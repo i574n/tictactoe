@@ -47,7 +47,6 @@
 
 type ancestors = $"Std.std.path.Ancestors"
 type io_error = $"Std.std.io.Error"
-type result' t e = $"Result<`t, `e>"
 type strip_prefix_error = $"Std.std.path.StripPrefixError"
 type unativeint = $"unativeint"
 nominal box' t = $"Std.std.Box<`t>"
@@ -60,8 +59,10 @@ nominal option' t = $"Option<`t>"
 nominal path = $"Std.std.path.Path"
 nominal path_buf = $"Std.std.path.PathBuf"
 nominal ref' t = $"Std.std.Ref<`t>"
+nominal result' t e = $"Result<`t, `e>"
 nominal static_ref' t = $"Std.std.StaticRef<`t>"
 nominal str = $"Std.std.Str"
+nominal unit' = ()
 
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
@@ -72,12 +73,35 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
 // inl unit () : any =
 //     emit_expr () "()"
 
+
 // inl unwrap' x = emit_expr x "$0.unwrap()"
 inl unwrap_ref x = emit_expr x "($0).unwrap()"
-instance (~!!) ref' t' = unwrap_ref
-instance (~!!) static_ref' t' = unwrap_ref
+inl unwrap_as_ref forall t u. (x : t) : u =
+    // real
+    //     print_static ("inl unwrap_as_ref x" : string)
+    //     print_static ("x:" : string)
+    //     print_static `(`x)
+    emit_expr x "*(($0).as_ref()).unwrap()"
 instance (~!!) path_buf = fun (x : t) =>
     emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+instance (~!!) ref' t' = unwrap_ref
+instance (~!!) result' t' e' = fun (x : t) =>
+    real
+        print_static "instance (~!!) result' t' e' = fun (x : t) =>"
+        print_static "t':"
+        print_static `t'
+        print_static "e':"
+        print_static `e'
+        print_static "x:"
+        print_static x
+
+        typecase t' with
+        | _ => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+        // | path_buf => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+        // | _ => unwrap_as_ref x
+
+instance (~!!) static_ref' t' = unwrap_ref
+instance (~!!) unit' = (fun x => x |> unwrap_as_ref)
 // instance (~!!) option' t' = unwrap'
 
 inl to_ref forall t. (x : t) : ref' t =
@@ -96,8 +120,8 @@ inl take forall t. (x : unativeint) iter : iterator (ref' t) =
     emit_expr (x, iter) "$1.take($0)"
 
 
-inl new_str (path : string) : static_ref' str =
-    emit_expr path "($0).as_ref()"
+inl new_str (s : string) : static_ref' str =
+    emit_expr s "($0).as_ref()"
 
 inl to_str forall a. (obj : a) : option' (ref' str) =
     emit_expr obj "($0).to_str()"
@@ -110,6 +134,7 @@ inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
 prototype to_path_buf t : t -> path_buf
 
 // instance to_path_buf str = fun x => emit_expr x "$0.to_path_buf()"
+
 
 inl to_path_buf' path : path_buf = emit_expr path "std::path::PathBuf::from($0)"
 
@@ -142,7 +167,8 @@ inl path_strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' p
     !!(emit_expr (path, base) "($1).strip_prefix($0)" : result' (static_ref' path) strip_prefix_error)
 
 
-
+inl fs_write (path_buf : path_buf) (s : string) : result' unit' io_error =
+    emit_expr (path_buf, s) "std::fs::write($0, $1.as_str())"
 
 
 
@@ -394,6 +420,10 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     console_fsx.write_line "\nfsx_path:"
     console_fsx.write_line (fsx_path |> path_display)
 
+
+    inl x : result' unit' io_error = fs_write fsx_path ""
+    inl x : unit' = !!x
+    // inl x : () = x |> unwrap_ref
 
 
     console_fsx.write_line "\nnew_fsx_path:"
