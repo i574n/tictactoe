@@ -21,6 +21,9 @@ module std =
     [<Erase; Emit("str")>]
     type Str = class end
 
+    [<Erase; Emit("std::string::String")>]
+    type String = class end
+
     [<Erase; Emit("dyn $0")>]
     type Dyn<'T> = class end
 

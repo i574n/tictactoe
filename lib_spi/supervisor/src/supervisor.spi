@@ -63,6 +63,7 @@ nominal result' t e = $"Result<`t, `e>"
 nominal static_ref' t = $"Std.std.StaticRef<`t>"
 nominal str = $"Std.std.Str"
 nominal unit' = ()
+nominal string' = $"Std.std.String"
 
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
@@ -85,6 +86,8 @@ inl unwrap_as_ref forall t u. (x : t) : u =
 instance (~!!) path_buf = fun (x : t) =>
     emit_expr x "($0).as_ref().unwrap().to_path_buf()"
 instance (~!!) ref' t' = unwrap_ref
+instance (~!!) string' = fun (x : t) =>
+    emit_expr x "($0).as_ref().unwrap().to_string()"
 instance (~!!) result' t' e' = fun (x : t) =>
     real
         print_static "instance (~!!) result' t' e' = fun (x : t) =>"
@@ -101,7 +104,9 @@ instance (~!!) result' t' e' = fun (x : t) =>
         // | _ => unwrap_as_ref x
 
 instance (~!!) static_ref' t' = unwrap_ref
-instance (~!!) unit' = (fun x => x |> unwrap_as_ref)
+
+inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
+instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
 // instance (~!!) option' t' = unwrap'
 
 inl to_ref forall t. (x : t) : ref' t =
@@ -170,7 +175,8 @@ inl path_strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' p
 inl fs_write (path_buf : path_buf) (s : string) : result' unit' io_error =
     emit_expr (path_buf, s) "std::fs::write($0, $1.as_str())"
 
-
+inl fs_read_to_string (path_buf : path_buf) : result' string' io_error =
+    emit_expr path_buf "std::fs::read_to_string($0)"
 
 
 
@@ -185,7 +191,7 @@ inl fs_write (path_buf : path_buf) (s : string) : result' unit' io_error =
 //     println!("zmq_request. result: {}", result.unwrap());
 //     sock.disconnect(endpoint).unwrap();
 // }
-inl zmq_request (msg : string) : () =
+inl zmq_request (msg : string') : () =
     console_fsx.write_line "zmq_request."
     console_fsx.write_line "msg:"
     console_fsx.write_line msg
@@ -213,15 +219,15 @@ inl zmq_request (msg : string) : () =
 //     zmq_request(msg);
 // }
 
-inl spiproj_open (spiproj_path : lrc' (mut_cell' (box' path))) (spiproj_text : string) : () =
+inl spiproj_open (spiproj_path : path_buf) (spiproj_text : string') : () =
     console_fsx.write_line "spiproj_open."
     console_fsx.write_line "spiproj_path:"
-    console_fsx.write_line spiproj_path
+    console_fsx.write_line (spiproj_path |> path_display)
     console_fsx.write_line "spiproj_text:"
     console_fsx.write_line spiproj_text
 
     let json : any = emit_expr (spiproj_path, spiproj_text) "serde_json::json!({\"ProjectFileOpen\": {\"uri\": $0, \"spiprojText\": $1}})"
-    let str : string = emit_expr json "$0.to_string()"
+    let str : string' = emit_expr json "$0.to_string()"
     console_fsx.write_line "str:"
     console_fsx.write_line str
     zmq_request str
@@ -236,15 +242,15 @@ inl spiproj_open (spiproj_path : lrc' (mut_cell' (box' path))) (spiproj_text : s
 //     .to_string();
 //     zmq_request(msg);
 // }
-inl spi_build_file (spi_path : lrc' (mut_cell' (box' path))) (backend : string) : () =
+inl spi_build_file (spi_path : path_buf) (backend : string) : () =
     console_fsx.write_line "spi_build_file."
     console_fsx.write_line "spi_path:"
-    console_fsx.write_line spi_path
+    console_fsx.write_line (spi_path |> path_display)
     console_fsx.write_line "backend:"
     console_fsx.write_line backend
 
-    let json : any = emit_expr (spi_path, backend) "serde_json::json!({\"BuildFile\": {\"uri\": $0, \"backend\": $1}})"
-    let str : string = emit_expr json "$0.to_string()"
+    let json : any = emit_expr (spi_path, backend) "serde_json::json!({\"BuildFile\": {\"uri\": $0, \"backend\": *$1}})"
+    let str : string' = emit_expr json "$0.to_string()"
     console_fsx.write_line "str:"
     console_fsx.write_line str
     zmq_request str
@@ -276,7 +282,7 @@ inl spi_build_file (spi_path : lrc' (mut_cell' (box' path))) (backend : string) 
 
 //     lines
 // }
-inl wait_file_change (fsx_path : lrc' (mut_cell' (box' path))) : string =
+inl wait_file_change (fsx_path : path_buf) : string =
     console_fsx.write_line "wait_file_change."
     console_fsx.write_line "fsx_path:"
     console_fsx.write_line fsx_path
@@ -420,15 +426,21 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     console_fsx.write_line "\nfsx_path:"
     console_fsx.write_line (fsx_path |> path_display)
 
+    (!!(fs_write fsx_path "") : unit') |> ignore
+    console_fsx.write_line "\nwrite ok. fsx_path:"
+    console_fsx.write_line (fsx_path |> path_display)
 
-    inl x : result' unit' io_error = fs_write fsx_path ""
-    inl x : unit' = !!x
-    // inl x : () = x |> unwrap_ref
+    spiproj_open spiproj_path !!(fs_read_to_string spiproj_path)
+    console_fsx.write_line "\nopen ok. spiproj_path:"
+    console_fsx.write_line (spiproj_path |> path_display)
+
+    spi_build_file spi_path_clean "Fsharp"
+    console_fsx.write_line "\nbuild ok. spi_path_clean:"
+    console_fsx.write_line (spi_path_clean |> path_display)
 
 
     console_fsx.write_line "\nnew_fsx_path:"
-    inl x : path_buf = !!new_fsx_path
-    console_fsx.write_line (x |> path_display)
+    console_fsx.write_line (!!new_fsx_path |> path_display)
 
     "???"
 

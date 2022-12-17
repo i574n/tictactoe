@@ -85,14 +85,96 @@ and closure1 (v0 : Std.std.path.PathBuf) (v1 : Option<Std.std.path.PathBuf>) : s
     let v63 : string = ""
     let v64 : string = "std::fs::write($0, $1.as_str())"
     let v65 : Result<unit, Std.std.io.Error> = Fable.Core.Rust.emitExpr struct (v60, v63) v64
-    Fable.Core.Rust.emitExpr v65 v21
-    let v66 : string = "\nnew_fsx_path:"
-    System.Console.WriteLine v66
-    let v67 : Std.std.path.PathBuf = Fable.Core.Rust.emitExpr v1 v6
-    let v68 : string = Fable.Core.Rust.emitExpr v67 v11
+    let v66 : string = "*(($0).as_ref()).unwrap()"
+    Fable.Core.Rust.emitExpr v65 v66
+    let v67 : string = "\nwrite ok. fsx_path:"
+    System.Console.WriteLine v67
+    let v68 : string = Fable.Core.Rust.emitExpr v60 v11
     System.Console.WriteLine v68
-    let v69 : string = "???"
-    v69
+    let v69 : string = "std::fs::read_to_string($0)"
+    let v70 : Result<Std.std.String, Std.std.io.Error> = Fable.Core.Rust.emitExpr v42 v69
+    let v71 : string = "($0).as_ref().unwrap().to_string()"
+    let v72 : Std.std.String = Fable.Core.Rust.emitExpr v70 v71
+    let v73 : string = "spiproj_open."
+    System.Console.WriteLine v73
+    let v74 : string = "spiproj_path:"
+    System.Console.WriteLine v74
+    let v75 : string = Fable.Core.Rust.emitExpr v42 v11
+    System.Console.WriteLine v75
+    let v76 : string = "spiproj_text:"
+    System.Console.WriteLine v76
+    System.Console.WriteLine v72
+    let v77 : string = "serde_json::json!({\"ProjectFileOpen\": {\"uri\": $0, \"spiprojText\": $1}})"
+    let v78 : obj = Fable.Core.Rust.emitExpr struct (v42, v72) v77
+    let v79 : string = "$0.to_string()"
+    let v80 : Std.std.String = Fable.Core.Rust.emitExpr v78 v79
+    let v81 : string = "str:"
+    System.Console.WriteLine v81
+    System.Console.WriteLine v80
+    let v82 : string = "zmq_request."
+    System.Console.WriteLine v82
+    let v83 : string = "msg:"
+    System.Console.WriteLine v83
+    System.Console.WriteLine v80
+    let v84 : string = "zmq::Context::new()"
+    let v85 : obj = Fable.Core.Rust.emitExpr () v84
+    let v86 : string = "$0.socket(zmq::REQ).unwrap()"
+    let v87 : obj = Fable.Core.Rust.emitExpr v85 v86
+    let v88 : string = $"tcp://localhost:{13805}"
+    let v89 : string = "$0.connect(&$1).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v87, v88) v89
+    let v90 : string = $"$0.send($1.as_str(), 0).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v87, v80) v90
+    let v91 : string = "$0.recv_string(0).unwrap().unwrap()"
+    let v92 : obj = Fable.Core.Rust.emitExpr v87 v91
+    let v93 : string = "zmq_request. result:"
+    System.Console.WriteLine v93
+    System.Console.WriteLine v92
+    let v94 : string = "$0.disconnect(&$1).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v87, v88) v94
+    let v95 : string = "\nopen ok. spiproj_path:"
+    System.Console.WriteLine v95
+    let v96 : string = Fable.Core.Rust.emitExpr v42 v11
+    System.Console.WriteLine v96
+    let v97 : string = "spi_build_file."
+    System.Console.WriteLine v97
+    let v98 : string = "spi_path:"
+    System.Console.WriteLine v98
+    let v99 : string = Fable.Core.Rust.emitExpr v16 v11
+    System.Console.WriteLine v99
+    let v100 : string = "backend:"
+    System.Console.WriteLine v100
+    let v101 : string = "Fsharp"
+    System.Console.WriteLine v101
+    let v102 : string = "serde_json::json!({\"BuildFile\": {\"uri\": $0, \"backend\": *$1}})"
+    let v103 : obj = Fable.Core.Rust.emitExpr struct (v16, v101) v102
+    let v104 : Std.std.String = Fable.Core.Rust.emitExpr v103 v79
+    System.Console.WriteLine v81
+    System.Console.WriteLine v104
+    System.Console.WriteLine v82
+    System.Console.WriteLine v83
+    System.Console.WriteLine v104
+    let v105 : obj = Fable.Core.Rust.emitExpr () v84
+    let v106 : obj = Fable.Core.Rust.emitExpr v105 v86
+    let v107 : string = $"tcp://localhost:{13805}"
+    Fable.Core.Rust.emitExpr struct (v106, v107) v89
+    let v108 : string = $"$0.send($1.as_str(), 0).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v106, v104) v108
+    let v109 : obj = Fable.Core.Rust.emitExpr v106 v91
+    System.Console.WriteLine v93
+    System.Console.WriteLine v109
+    Fable.Core.Rust.emitExpr struct (v106, v107) v94
+    let v110 : string = "\nbuild ok. spi_path_clean:"
+    System.Console.WriteLine v110
+    let v111 : string = Fable.Core.Rust.emitExpr v16 v11
+    System.Console.WriteLine v111
+    let v112 : string = "\nnew_fsx_path:"
+    System.Console.WriteLine v112
+    let v113 : Std.std.path.PathBuf = Fable.Core.Rust.emitExpr v1 v6
+    let v114 : string = Fable.Core.Rust.emitExpr v113 v11
+    System.Console.WriteLine v114
+    let v115 : string = "???"
+    v115
 and closure0 () (v0 : Std.std.path.PathBuf) : (Option<Std.std.path.PathBuf> -> string) =
     closure1(v0)
 let v0 : (Std.std.path.PathBuf -> (Option<Std.std.path.PathBuf> -> string)) = closure0()

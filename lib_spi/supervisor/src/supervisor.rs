@@ -12,6 +12,7 @@ pub mod Supervisor {
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::String_::string;
+    use fable_library_rust::String_::stringFrom;
     pub fn closure2(unitVar: (), v0_1: &std::path::Path)
      -> std::path::PathBuf {
         v0_1.join(string("package.spiproj").as_str())
@@ -117,18 +118,181 @@ pub mod Supervisor {
                                                     let v65:
                                                             Result<(),
                                                                    std::io::Error> =
-                                                        std::fs::write(v60, string("").as_str());
+                                                        std::fs::write(v60.clone(), string("").as_str());
                                                     *((&v65).as_ref()).unwrap();
                                                     println!("{0}",
-                                                             string("\nnew_fsx_path:"));
+                                                             string("\nwrite ok. fsx_path:"));
                                                     {
-                                                        let v68:
-                                                                std::path::PathBuf =
-                                                            (&v1).as_ref().unwrap().to_path_buf();
-                                                        let v69: string =
-                                                            fable_library_rust::String_::fromStr(&format!("{:?}", &v68.display()));
-                                                        println!("{0}", v69);
-                                                        string("???")
+                                                        let v68: string =
+                                                            fable_library_rust::String_::fromStr(&format!("{:?}", &v60.display()));
+                                                        println!("{0}", v68);
+                                                        {
+                                                            let v70:
+                                                                    Result<std::string::String,
+                                                                           std::io::Error> =
+                                                                std::fs::read_to_string(&v42);
+                                                            let v72:
+                                                                    std::string::String =
+                                                                (&v70).as_ref().unwrap().to_string();
+                                                            println!("{0}",
+                                                                     string("spiproj_open."));
+                                                            println!("{0}",
+                                                                     string("spiproj_path:"));
+                                                            {
+                                                                let v75:
+                                                                        string =
+                                                                    fable_library_rust::String_::fromStr(&format!("{:?}", &v42.display()));
+                                                                println!("{0}",
+                                                                         v75);
+                                                                println!("{0}",
+                                                                         string("spiproj_text:"));
+                                                                println!("{0}",
+                                                                         &v72);
+                                                                {
+                                                                    let v78 =
+                                                                        serde_json::json!({"ProjectFileOpen": {"uri": v42.clone(), "spiprojText": v72}});
+                                                                    let v80:
+                                                                            std::string::String =
+                                                                        v78.to_string();
+                                                                    let v81:
+                                                                            string =
+                                                                        string("str:");
+                                                                    println!("{0}",
+                                                                             v81.clone());
+                                                                    println!("{0}",
+                                                                             &v80);
+                                                                    {
+                                                                        let v82:
+                                                                                string =
+                                                                            string("zmq_request.");
+                                                                        println!("{0}",
+                                                                                 v82.clone());
+                                                                        {
+                                                                            let v83:
+                                                                                    string =
+                                                                                string("msg:");
+                                                                            println!("{0}",
+                                                                                     v83.clone());
+                                                                            println!("{0}",
+                                                                                     &v80);
+                                                                            {
+                                                                                let v85 =
+                                                                                    zmq::Context::new();
+                                                                                let v87 =
+                                                                                    v85.socket(zmq::REQ).unwrap();
+                                                                                let v88:
+                                                                                        string =
+                                                                                    stringFrom(format!("tcp://localhost:{0}",
+                                                                                                       &13805i32));
+                                                                                v87.connect(&v88.clone()).unwrap();
+                                                                                v87.send(v80.as_str(), 0).unwrap();
+                                                                                {
+                                                                                    let v92 =
+                                                                                        v87.recv_string(0).unwrap().unwrap();
+                                                                                    let v93:
+                                                                                            string =
+                                                                                        string("zmq_request. result:");
+                                                                                    println!("{0}",
+                                                                                             v93.clone());
+                                                                                    println!("{0}",
+                                                                                             v92);
+                                                                                    v87.disconnect(&v88).unwrap();
+                                                                                    println!("{0}",
+                                                                                             string("\nopen ok. spiproj_path:"));
+                                                                                    {
+                                                                                        let v96:
+                                                                                                string =
+                                                                                            fable_library_rust::String_::fromStr(&format!("{:?}", &v42.display()));
+                                                                                        println!("{0}",
+                                                                                                 v96);
+                                                                                        println!("{0}",
+                                                                                                 string("spi_build_file."));
+                                                                                        println!("{0}",
+                                                                                                 string("spi_path:"));
+                                                                                        {
+                                                                                            let v99:
+                                                                                                    string =
+                                                                                                fable_library_rust::String_::fromStr(&format!("{:?}", &v16.display()));
+                                                                                            println!("{0}",
+                                                                                                     v99);
+                                                                                            println!("{0}",
+                                                                                                     string("backend:"));
+                                                                                            {
+                                                                                                let v101:
+                                                                                                        string =
+                                                                                                    string("Fsharp");
+                                                                                                println!("{0}",
+                                                                                                         v101.clone());
+                                                                                                {
+                                                                                                    let v103 =
+                                                                                                        serde_json::json!({"BuildFile": {"uri": v16.clone(), "backend": *v101}});
+                                                                                                    let v104:
+                                                                                                            std::string::String =
+                                                                                                        v103.to_string();
+                                                                                                    println!("{0}",
+                                                                                                             v81);
+                                                                                                    println!("{0}",
+                                                                                                             &v104);
+                                                                                                    println!("{0}",
+                                                                                                             v82);
+                                                                                                    println!("{0}",
+                                                                                                             v83);
+                                                                                                    println!("{0}",
+                                                                                                             &v104);
+                                                                                                    {
+                                                                                                        let v105 =
+                                                                                                            zmq::Context::new();
+                                                                                                        let v106 =
+                                                                                                            v105.socket(zmq::REQ).unwrap();
+                                                                                                        let v107:
+                                                                                                                string =
+                                                                                                            stringFrom(format!("tcp://localhost:{0}",
+                                                                                                                               &13805i32));
+                                                                                                        v106.connect(&v107.clone()).unwrap();
+                                                                                                        v106.send(v104.as_str(), 0).unwrap();
+                                                                                                        {
+                                                                                                            let v109 =
+                                                                                                                v106.recv_string(0).unwrap().unwrap();
+                                                                                                            println!("{0}",
+                                                                                                                     v93);
+                                                                                                            println!("{0}",
+                                                                                                                     v109);
+                                                                                                            v106.disconnect(&v107).unwrap();
+                                                                                                            println!("{0}",
+                                                                                                                     string("\nbuild ok. spi_path_clean:"));
+                                                                                                            {
+                                                                                                                let v111:
+                                                                                                                        string =
+                                                                                                                    fable_library_rust::String_::fromStr(&format!("{:?}", &v16.display()));
+                                                                                                                println!("{0}",
+                                                                                                                         v111);
+                                                                                                                println!("{0}",
+                                                                                                                         string("\nnew_fsx_path:"));
+                                                                                                                {
+                                                                                                                    let v113:
+                                                                                                                            std::path::PathBuf =
+                                                                                                                        (&v1).as_ref().unwrap().to_path_buf();
+                                                                                                                    let v114:
+                                                                                                                            string =
+                                                                                                                        fable_library_rust::String_::fromStr(&format!("{:?}", &v113.display()));
+                                                                                                                    println!("{0}",
+                                                                                                                             v114);
+                                                                                                                    string("???")
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
