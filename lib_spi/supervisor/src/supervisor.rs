@@ -75,30 +75,56 @@ pub mod Supervisor {
                                      -> std::path::PathBuf {
                                         Supervisor::closure2((), v)
                                     }
-                                    let v36: _ =
-                                        v33.into_iter().map(v34);
-                                    fn v37(v_1: &std::path::PathBuf) -> bool {
+                                    let v37: _ =
+                                        v33.into_iter().map((&v34).clone());
+                                    fn v38(v_1: &std::path::PathBuf) -> bool {
                                         Supervisor::closure3((), v_1)
                                     }
-                                    let v39: Option<std::path::PathBuf> =
-                                        v36.into_iter().find(v37);
-                                    let v40: std::path::PathBuf =
-                                        (&v39).as_ref().unwrap().to_path_buf();
+                                    let v41: Option<std::path::PathBuf> =
+                                        v37.into_iter().find((&v38).clone());
+                                    let v42: std::path::PathBuf =
+                                        (&v41).as_ref().unwrap().to_path_buf();
                                     println!("{0}",
                                              string("\nspiproj_path:"));
                                     {
-                                        let v42: string =
-                                            fable_library_rust::String_::fromStr(&format!("{:?}", &v40.display()));
-                                        println!("{0}", v42);
-                                        println!("{0}",
-                                                 string("\nnew_fsx_path:"));
+                                        let v44: string =
+                                            fable_library_rust::String_::fromStr(&format!("{:?}", &v42.display()));
+                                        println!("{0}", v44);
                                         {
-                                            let v44: std::path::PathBuf =
-                                                (&v1).as_ref().unwrap().to_path_buf();
-                                            let v45: string =
-                                                fable_library_rust::String_::fromStr(&format!("{:?}", &v44.display()));
-                                            println!("{0}", v45);
-                                            string("???")
+                                            let v46: Option<&str> =
+                                                (&v16).to_str();
+                                            let v47: &str = (&v46).unwrap();
+                                            let v50: string = string(".spi");
+                                            let v53: &str =
+                                                &v47.replace(&*(&string(".spir")).clone(), &(&v50).clone());
+                                            let v57: &str =
+                                                &v53.replace(&*(&v50).clone(), &(&string(".fsx")).clone());
+                                            let v58: std::path::PathBuf =
+                                                std::path::PathBuf::from(&v57);
+                                            let v59:
+                                                    Result<std::path::PathBuf,
+                                                           std::io::Error> =
+                                                (&v58).canonicalize();
+                                            let v60: std::path::PathBuf =
+                                                (&v59).as_ref().unwrap().to_path_buf();
+                                            println!("{0}",
+                                                     string("\nfsx_path:"));
+                                            {
+                                                let v62: string =
+                                                    fable_library_rust::String_::fromStr(&format!("{:?}", &v60.display()));
+                                                println!("{0}", v62);
+                                                println!("{0}",
+                                                         string("\nnew_fsx_path:"));
+                                                {
+                                                    let v64:
+                                                            std::path::PathBuf =
+                                                        (&v1).as_ref().unwrap().to_path_buf();
+                                                    let v65: string =
+                                                        fable_library_rust::String_::fromStr(&format!("{:?}", &v64.display()));
+                                                    println!("{0}", v65);
+                                                    string("???")
+                                                }
+                                            }
                                         }
                                     }
                                 }

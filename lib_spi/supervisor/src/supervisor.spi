@@ -1,43 +1,14 @@
+
+// nominal ref' t = lrc' (mut_cell' t)
+
 // inl import forall t. (name : string) (module : string) : t =
 //     $"Fable.Core.Rust.import !name !module"
-
-inl emit_expr forall a t. (args : a) (code : string) : t =
-    $"Fable.Core.Rust.emitExpr !args !code"
-
-nominal option' t = $"Option<`t>"
 
 // inl unwrap_or_default forall t. (x : option' t) : t =
 //     emit_expr x "$0.unwrap_or_default()"
 
 // inl unwrap forall t. (x : option' t) : t =
 //     emit_expr x "($0).as_ref().unwrap().clone()"
-
-type result' t e = $"Result<`t, `e>"
-// type ref' t = $"Ref<`t>"
-nominal lrc' t = $"Std.std.Lrc<`t>"
-nominal mut_cell' t = $"Std.std.MutCell<`t>"
-nominal iterator t = $"Std.std.iter.Iterator<`t>"
-nominal ref' t = $"Std.std.Ref<`t>"
-nominal mut' t = $"Std.std.Mut<`t>"
-nominal dyn' t = $"Std.std.Dyn<`t>"
-nominal static_ref' t = $"Std.std.StaticRef<`t>"
-nominal box' t = $"Std.std.Box<`t>"
-nominal path = $"Std.std.path.Path"
-nominal str = $"Std.std.Str"
-type io_error = $"Std.std.io.Error"
-type ancestors = $"Std.std.path.Ancestors"
-type strip_prefix_error = $"Std.std.path.StripPrefixError"
-nominal path_buf = $"Std.std.path.PathBuf"
-// nominal ref' t = lrc' (mut_cell' t)
-
-type unativeint = $"unativeint"
-
-inl ok forall t. (value : t) : result' t _ =
-    emit_expr value $"\"Ok($0)\""
-
-inl unit () : any =
-    emit_expr () "()"
-
 
 
 // inl new_mut_cell forall t. (obj : t) : mut_cell' t =
@@ -55,31 +26,11 @@ inl unit () : any =
 // instance (~!!) lrc' t' = fun (x : t) =>
 //     emit_expr x "($0).as_ref().unwrap().clone()"
 
-inl unwrap' x = emit_expr x "$0.unwrap()"
-inl unwrap_ref x = emit_expr x "($0).unwrap()"
-instance (~!!) ref' t' = unwrap_ref
-instance (~!!) static_ref' t' = unwrap_ref
-instance (~!!) path_buf = fun (x : t) =>
-    emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-
 // instance (~!!) lrc' path = fun (ref : t) => // real
 //     emit_expr ref "$0.deref()"
 
 // instance (~!!) mut_cell' tt = fun (ref : t) => // real
 //     emit_expr ref "(**$0).get()"
-
-inl display (path : path_buf) : string =
-    // emit_expr path "fable_library_rust::String_::fromStr(Box::leak(format!(\"{:?}\", ($0).strip_prefix(\"\").unwrap().display()).into_boxed_str()))"
-    emit_expr path "fable_library_rust::String_::fromStr(&format!(\"{:?}\", $0.display()))"
-
-inl strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' path =
-    !!(emit_expr (path, base) "($1).strip_prefix($0)" : result' (static_ref' path) strip_prefix_error)
-
-inl new_str (path : string) : static_ref' str =
-    emit_expr path "($0).as_ref()"
-
-inl box_from forall t. (obj : t) : box' t =
-    emit_expr obj "Box::from($0)"
 
 // inl rc_path (path_buf : path_buf) : static_ref' path =
 //     inl path : static_ref' path = path_buf |> strip_prefix (new_str "")
@@ -87,35 +38,114 @@ inl box_from forall t. (obj : t) : box' t =
     // inl path_box : box' path = path |> box_from
     // emit_expr path "std::rc::Rc::new(fable_library_rust::Native_::MutCell::new(Box::from($0)))"
 
-inl current_dir () : path_buf =
-    !!(emit_expr () "std::env::current_dir()" : result' path_buf io_error)
+// inl deref forall t. (x : ref' t) : t =
+//     emit_expr x "core::ops::Deref::deref($0)"
 
-inl canonicalize (path : path_buf) : path_buf =
-    !!(emit_expr path "($0).canonicalize()" : result' path_buf io_error)
+// inl self forall t. (x : t) : t =
+    // $"!x"
 
-inl parent (path : path_buf) : ref' path =
-    !!(emit_expr path "($0).parent()" : option' (ref' path))
 
-inl to_path_buf (path : ref' path) : path_buf =
-    emit_expr path "std::path::PathBuf::from($0)"
+type ancestors = $"Std.std.path.Ancestors"
+type io_error = $"Std.std.io.Error"
+type result' t e = $"Result<`t, `e>"
+type strip_prefix_error = $"Std.std.path.StripPrefixError"
+type unativeint = $"unativeint"
+nominal box' t = $"Std.std.Box<`t>"
+nominal dyn' t = $"Std.std.Dyn<`t>"
+nominal iterator t = $"Std.std.iter.Iterator<`t>"
+nominal lrc' t = $"Std.std.Lrc<`t>"
+nominal mut' t = $"Std.std.Mut<`t>"
+nominal mut_cell' t = $"Std.std.MutCell<`t>"
+nominal option' t = $"Option<`t>"
+nominal path = $"Std.std.path.Path"
+nominal path_buf = $"Std.std.path.PathBuf"
+nominal ref' t = $"Std.std.Ref<`t>"
+nominal static_ref' t = $"Std.std.StaticRef<`t>"
+nominal str = $"Std.std.Str"
 
-inl ancestors (x : path_buf) : ref' ancestors =
-    emit_expr x "$0.ancestors()"
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    $"Fable.Core.Rust.emitExpr !args !code"
+
+// inl ok forall t. (value : t) : result' t _ =
+//     emit_expr value $"\"Ok($0)\""
+
+// inl unit () : any =
+//     emit_expr () "()"
+
+// inl unwrap' x = emit_expr x "$0.unwrap()"
+inl unwrap_ref x = emit_expr x "($0).unwrap()"
+instance (~!!) ref' t' = unwrap_ref
+instance (~!!) static_ref' t' = unwrap_ref
+instance (~!!) path_buf = fun (x : t) =>
+    emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+// instance (~!!) option' t' = unwrap'
+
+inl to_ref forall t. (x : t) : ref' t =
+    $"!x |> unbox"
+
+inl box_from forall t. (obj : t) : box' t =
+    emit_expr obj "Box::from($0)"
+
+inl map forall t u. (f : t -> u) (iter : iterator t) : iterator u =
+    emit_expr (f |> to_ref, iter) "$1.into_iter().map($0)"
+
+inl find forall t. (f : ref' t -> bool) (iter : iterator t) : option' t =
+    emit_expr (f |> to_ref, iter) "$1.into_iter().find($0)"
 
 inl take forall t. (x : unativeint) iter : iterator (ref' t) =
     emit_expr (x, iter) "$1.take($0)"
 
+
+inl new_str (path : string) : static_ref' str =
+    emit_expr path "($0).as_ref()"
+
+inl to_str forall a. (obj : a) : option' (ref' str) =
+    emit_expr obj "($0).to_str()"
+
+inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
+    emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
+
+
+
+prototype to_path_buf t : t -> path_buf
+
+// instance to_path_buf str = fun x => emit_expr x "$0.to_path_buf()"
+
+inl to_path_buf' path : path_buf = emit_expr path "std::path::PathBuf::from($0)"
+
+instance to_path_buf static_ref' t = to_path_buf'
+instance to_path_buf ref' t = to_path_buf'
+
+inl path_ancestors (x : path_buf) : ref' ancestors =
+    emit_expr x "$0.ancestors()"
+
 inl path_join (s : string) (p : ref' path) : path_buf =
     emit_expr (s, p) "$1.join($0.as_str())"
 
-inl map forall t u. (f : t -> u) (iter : iterator t) : iterator u =
-    emit_expr (f, iter) "$1.into_iter().map(&Func1::get($0))"
-
-inl find forall t. (f : ref' t -> bool) (iter : iterator t) : option' t =
-    emit_expr (f, iter) "$1.into_iter().find(&Func1::get($0))"
-
 inl path_exists (p : ref' path_buf) : bool =
     emit_expr p "std::path::Path::exists($0)"
+
+inl env_current_dir () : path_buf =
+    !!(emit_expr () "std::env::current_dir()" : result' path_buf io_error)
+
+inl path_canonicalize (path : path_buf) : path_buf =
+    !!(emit_expr path "($0).canonicalize()" : result' path_buf io_error)
+
+inl path_parent (path : path_buf) : ref' path =
+    !!(emit_expr path "($0).parent()" : option' (ref' path))
+
+inl path_display (path : path_buf) : string =
+    // emit_expr path "fable_library_rust::String_::fromStr(Box::leak(format!(\"{:?}\", ($0).strip_prefix(\"\").unwrap().display()).into_boxed_str()))"
+    emit_expr path "fable_library_rust::String_::fromStr(&format!(\"{:?}\", $0.display()))"
+
+inl path_strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' path =
+    !!(emit_expr (path, base) "($1).strip_prefix($0)" : result' (static_ref' path) strip_prefix_error)
+
+
+
+
+
+
 
 
 // fn zmq_request(msg: String) {
@@ -322,43 +352,53 @@ inl wait_file_change (fsx_path : lrc' (mut_cell' (box' path))) : string =
 //     new_fsx
 // }
 
-
 inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string =
     console_fsx.write_line "\n| spi_to_fsx."
 
     console_fsx.write_line "\npwd:"
-    console_fsx.write_line (current_dir () |> canonicalize |> display)
+    console_fsx.write_line (env_current_dir () |> path_canonicalize |> path_display)
 
     console_fsx.write_line "\nspi_path:"
-    console_fsx.write_line (spi_path |> display)
+    console_fsx.write_line (spi_path |> path_display)
 
-    inl spi_path_clean = spi_path |> canonicalize
+    inl spi_path_clean = spi_path |> path_canonicalize
 
     console_fsx.write_line "\nspi_path_clean:"
-    console_fsx.write_line (spi_path_clean |> display)
+    console_fsx.write_line (spi_path_clean |> path_display)
 
-    inl src_path = spi_path_clean |> parent |> to_path_buf |> canonicalize
+    inl src_path = spi_path_clean |> path_parent |> to_path_buf |> path_canonicalize
 
     console_fsx.write_line "\nsrc_path:"
-    console_fsx.write_line (src_path |> display)
-
-
+    console_fsx.write_line (src_path |> path_display)
 
     inl spiproj_path =
         src_path
-        |> ancestors
+        |> path_ancestors
         |> take $"unativeint 10"
         |> map (path_join "package.spiproj")
         |> find path_exists
         |> (~!!)
 
     console_fsx.write_line "\nspiproj_path:"
-    console_fsx.write_line (spiproj_path |> display)
+    console_fsx.write_line (spiproj_path |> path_display)
+
+    inl fsx_path =
+        spi_path_clean
+        |> to_str
+        |> (~!!)
+        |> string_replace ".spir" ".spi"
+        |> string_replace ".spi" ".fsx"
+        |> to_path_buf
+        |> path_canonicalize
+
+    console_fsx.write_line "\nfsx_path:"
+    console_fsx.write_line (fsx_path |> path_display)
+
 
 
     console_fsx.write_line "\nnew_fsx_path:"
     inl x : path_buf = !!new_fsx_path
-    console_fsx.write_line (x |> display)
+    console_fsx.write_line (x |> path_display)
 
     "???"
 
