@@ -39,8 +39,6 @@ open real_util
     // inl path_box : box' path = path |> box_from
     // emit_expr path "std::rc::Rc::new(fable_library_rust::Native_::MutCell::new(Box::from($0)))"
 
-// inl deref forall t. (x : ref' t) : t =
-//     emit_expr x "core::ops::Deref::deref($0)"
 
 // inl self forall t. (x : t) : t =
     // $"!x"
@@ -92,15 +90,21 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
 inl new_string (str : static_ref' str) : string =
     emit_expr str "fable_library_rust::String_::string($0)"
 
+inl to_std_string (str : string) : std_string =
+    emit_expr str "($0).to_string()"
+
+inl deref forall t u. (x : t) : u =
+    emit_expr x "core::ops::Deref::deref($0)"
+
 inl format forall t. (x : t) : std_string =
     real
         inl result : std_string =
             typecase t with
-            | string => emit_expr `t `std_string x "($0).to_string()"
+            | string => to_std_string x
             | std_string => x
-            | string * string =>
-                inl aa, bb = x
-                emit_expr `(pair string string) `std_string (new_pair `string `string aa bb) "format!(\"{:?}\", $0)"
+            | array _ =>
+                inl x = deref `t `any x
+                emit_expr `any `std_string x "format!(\"{:?}\", $0)"
             | _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
         result
 
@@ -111,9 +115,6 @@ inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap
 instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
 instance (~!!) ref' t' = unwrap_ref
 instance (~!!) emit_type t' = fun (x : t) =>
-    print_static "- (~!!) emit_type t' = fun (x : t) =>"
-    print_static "x:"
-    print_static x
     real
         // typecase t with
         // | string => emit_expr `std_string `(emit_type t') (format `t x) "$0"
@@ -270,24 +271,24 @@ let new_log
             inl timestamp : string = new_timestamp () |> to_string'
             inl timestamp : string = pad 6 timestamp
             inl run_id : i32 = 999
-            inl locals : log_item =
-                !!(;[
-                    !!("timestamp:", timestamp)
-                    !!("run_id:", run_id) ]
-                    : array log_item)
-            inl obj_json : std_string = json_stringify (obj_fn ())
-            inl args_json : std_string = args |> format // json_stringify args
-            inl locals_json : std_string = json_stringify locals
-            inl new_args =
-                if env.is_test then
-                    args_json,
-                    obj_json,
-                    locals_json
-                else
-                    args_json,
-                    obj_json,
-                    locals_json
-                |> json_stringify
+            inl locals : log_item = !!(;[
+                !!"timestamp:"; !!timestamp : log_item
+                !!"run_id:"; !!run_id
+            ])
+            // inl obj_json = obj_fn () |> format
+            // inl args_json = args |> format
+            // inl locals_json = locals |> format
+            // inl new_args =
+            //     if env.is_test then
+            //         args_json,
+            //         obj_json,
+            //         locals_json
+            //     else
+            //         args_json,
+            //         obj_json,
+            //         locals_json
+            //     |> format
+            inl new_args : string = $"$\"{!args} {!obj_fn ()} {!locals}\""
             console_fsx.write_line new_args
 
 
@@ -514,11 +515,10 @@ inl wait_file_change (fsx_path : path_buf) : string =
 
 
 inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string =
-    inl get_locals () : log_item =
-        !!(;[
-            !!("spi_path:", spi_path |> path_display) : log_item
-            !!("new_fsx_path:", spi_path)
-            ] : array log_item)
+    inl get_locals () = !!(;[
+        !!"spi_path:"; !!(spi_path |> path_display) : log_item
+        !!"new_fsx_path:"; !!(!!new_fsx_path |> path_display)
+    ])
     inl log = new_log (fun () => Debug) get_locals "#666"
 
     inl spi_path_clean = spi_path |> path_canonicalize
@@ -547,14 +547,13 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     spi_build_file spi_path_clean "Fsharp"
 
     log Debug !!(;[
-        !!"> spi_to_fsx ()"
-        !!("pwd:", env_current_dir () |> path_canonicalize |> path_display)
-        !!("spi_path_clean:", spi_path_clean |> path_display)
-        !!("src_path:", src_path |> path_display)
-        !!("spiproj_path:", spiproj_path |> path_display)
-        !!("fsx_path:", fsx_path |> path_display)
-                ] : array log_item)
-
+        !!"> spi_to_fsx ()" : log_item
+        !!"pwd:"; !!(env_current_dir () |> path_canonicalize |> path_display)
+        !!"spi_path_clean:"; !!(spi_path_clean |> path_display)
+        !!"src_path:"; !!(src_path |> path_display)
+        !!"spiproj_path:"; !!(spiproj_path |> path_display)
+        !!"fsx_path:"; !!(fsx_path |> path_display)
+    ])
 
     "???"
 

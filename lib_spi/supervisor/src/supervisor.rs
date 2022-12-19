@@ -11,7 +11,6 @@ pub mod Supervisor {
     use fable_library_rust::Native_::Array;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
-    use fable_library_rust::Native_::Lrc;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::array;
     use fable_library_rust::Native_::on_startup;
@@ -24,14 +23,22 @@ pub mod Supervisor {
     pub fn closure2(unitVar: (), unitVar_1: ()) -> Supervisor::US0 {
         Supervisor::US0::US0_0
     }
-    pub fn closure3(v0_1: std::path::PathBuf, unitVar: ())
-     -> std::string::String {
-        let v2: string =
+    pub fn closure3(v0_1: std::path::PathBuf, v1: Option<std::path::PathBuf>,
+                    unitVar: ()) -> std::string::String {
+        let v5: std::string::String =
+            (&string("spi_path:")).to_string().clone();
+        let v7: string =
             fable_library_rust::String_::fromStr(&format!("{:?}", &v0_1.display()));
-        let v11: Array<std::string::String> =
-            array(&[format!("{:?}", &Lrc::new((string("spi_path:"), v2))),
-                    format!("{:?}", string("new_fsx_path:"))]);
-        format!("{:?}", &v11).clone()
+        let v9: std::string::String = (&v7).to_string().clone();
+        let v12: std::string::String =
+            (&string("new_fsx_path:")).to_string().clone();
+        let v14: std::path::PathBuf = (&v1).as_ref().unwrap().to_path_buf();
+        let v15: string =
+            fable_library_rust::String_::fromStr(&format!("{:?}", &v14.display()));
+        let v18: Array<std::string::String> =
+            array(&[v5, v9, v12, (&v15).to_string()]);
+        let v20 = core::ops::Deref::deref(&v18);
+        format!("{:?}", v20).clone()
     }
     pub fn method1() -> (string, string, string, bool) {
         let v0_1: string = string("");
@@ -54,61 +61,48 @@ pub mod Supervisor {
             }
     }
     pub fn closure5(v0_1: Func0<Supervisor::US0>,
-                    v1: Func0<std::string::String>, v2: string, v3: string,
-                    v4: string, v5: bool, v6: i64, v7: Supervisor::US0,
-                    v8: std::string::String) {
-        let v9: Supervisor::US0 = v0_1();
-        if match &v9 {
+                    v1: Func0<std::string::String>, v2: i64,
+                    v3: Supervisor::US0, v4: std::string::String) {
+        let v5: Supervisor::US0 = v0_1();
+        if match &v5 {
                Supervisor::US0::US0_1 => 3i32,
                Supervisor::US0::US0_2 => 1i32,
                Supervisor::US0::US0_3 => 2i32,
                _ => 0i32,
            } <=
-               match &v7 {
+               match &v3 {
                    Supervisor::US0::US0_1 => 3i32,
                    Supervisor::US0::US0_2 => 1i32,
                    Supervisor::US0::US0_3 => 2i32,
                    _ => 0i32,
                } {
-            let v14: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-            let v20: string =
+            let v10: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+            let v16: string =
                 Supervisor::method2(6i32,
-                                    toString(&((&v14).timestamp() - v6)));
+                                    toString(&((&v10).timestamp() - v2)));
             let v29: Array<std::string::String> =
-                array(&[format!("{:?}", &Lrc::new((string("timestamp:"),
-                                                   v20))),
-                        format!("{:?}", string("run_id:"))]);
-            let v31: std::string::String = format!("{:?}", &v29).clone();
-            let v32: std::string::String = v1();
-            let v34 = serde_json::json!(*&v32);
-            let v36: std::string::String = v34.to_string();
-            let v37: std::string::String = format!("{:?}", &v8);
-            let v38 = serde_json::json!(*&v31);
-            let v39: std::string::String = v38.to_string();
-            let v40 = serde_json::json!(*v37);
-            let v41: std::string::String = v40.to_string();
-            println!("{0}", &v41);
+                array(&[(&string("timestamp:")).to_string(),
+                        (&v16).to_string(), (&string("run_id:")).to_string(),
+                        format!("{:?}", &999i32)]);
+            let v31 = core::ops::Deref::deref(&v29);
+            let v33: std::string::String = format!("{:?}", v31).clone();
+            let v34: string =
+                stringFrom(format!("{0} {1} {2}", &v4, &v1(), &v33));
+            println!("{0}", v34);
             ()
         }
     }
     pub fn closure4(v0_1: Func0<Supervisor::US0>,
-                    v1: Func0<std::string::String>, v2: string, v3: string,
-                    v4: string, v5: bool, v6: i64, v7: Supervisor::US0)
-     -> Func1<std::string::String, ()> {
+                    v1: Func0<std::string::String>, v2: i64,
+                    v3: Supervisor::US0) -> Func1<std::string::String, ()> {
         Func1::new({
                        let v0_1 = v0_1.clone();
                        let v1 = v1.clone();
                        let v2 = v2.clone();
                        let v3 = v3.clone();
-                       let v4 = v4.clone();
-                       let v5 = v5.clone();
-                       let v6 = v6.clone();
-                       let v7 = v7.clone();
                        move |v: std::string::String|
-                           Supervisor::closure5(v0_1.clone(), v1.clone(),
-                                                v2.clone(), v3.clone(),
-                                                v4.clone(), v5, v6,
-                                                v7.clone(), v.clone())
+                           Supervisor::closure5(v0_1.clone(), v1.clone(), v2,
+                                                v3.clone(), v.clone())
                    })
     }
     pub fn method0(v0_1: Func0<Supervisor::US0>,
@@ -119,16 +113,11 @@ pub mod Supervisor {
         let v7: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
         let v9: i64 = (&v7).timestamp();
         Func1::new({
-                       let patternInput = patternInput.clone();
                        let v0_1 = v0_1.clone();
                        let v1 = v1.clone();
                        let v9 = v9.clone();
                        move |v: Supervisor::US0|
-                           Supervisor::closure4(v0_1.clone(), v1.clone(),
-                                                patternInput.0.clone(),
-                                                patternInput.1.clone(),
-                                                patternInput.2.clone(),
-                                                patternInput.3.clone(), v9,
+                           Supervisor::closure4(v0_1.clone(), v1.clone(), v9,
                                                 v.clone())
                    })
     }
@@ -145,7 +134,10 @@ pub mod Supervisor {
         let v3 =
             Func0::new({
                            let v0_1 = v0_1.clone();
-                           move || Supervisor::closure3(v0_1.clone(), ())
+                           let v1 = v1.clone();
+                           move ||
+                               Supervisor::closure3(v0_1.clone(), v1.clone(),
+                                                    ())
                        });
         let v5 = Supervisor::method0(Func0::from(v2), v3);
         let v7: Result<std::path::PathBuf, std::io::Error> =
@@ -217,45 +209,52 @@ pub mod Supervisor {
                             let v80 = v5(Supervisor::US0::US0_0);
                             let v84: std::string::String =
                                 (&string("> spi_to_fsx ()")).to_string().clone();
-                            let v86:
+                            let v87: std::string::String =
+                                (&string("pwd:")).to_string().clone();
+                            let v89:
                                     Result<std::path::PathBuf,
                                            std::io::Error> =
                                 std::env::current_dir();
-                            let v87: std::path::PathBuf =
-                                (&v86).as_ref().unwrap().to_path_buf();
-                            let v88:
+                            let v90: std::path::PathBuf =
+                                (&v89).as_ref().unwrap().to_path_buf();
+                            let v91:
                                     Result<std::path::PathBuf,
                                            std::io::Error> =
-                                (&v87).canonicalize();
-                            let v89: std::path::PathBuf =
-                                (&v88).as_ref().unwrap().to_path_buf();
-                            let v91: string =
-                                fable_library_rust::String_::fromStr(&format!("{:?}", &v89.display()));
+                                (&v90).canonicalize();
+                            let v92: std::path::PathBuf =
+                                (&v91).as_ref().unwrap().to_path_buf();
+                            let v94: string =
+                                fable_library_rust::String_::fromStr(&format!("{:?}", &v92.display()));
                             let v96: std::string::String =
-                                format!("{:?}", &Lrc::new((string("pwd:"),
-                                                           v91))).clone();
-                            let v97: string =
+                                (&v94).to_string().clone();
+                            let v99: std::string::String =
+                                (&string("spi_path_clean:")).to_string().clone();
+                            let v100: string =
                                 fable_library_rust::String_::fromStr(&format!("{:?}", &v9.display()));
-                            let v101: std::string::String =
-                                format!("{:?}", &Lrc::new((string("spi_path_clean:"),
-                                                           v97))).clone();
-                            let v102: string =
+                            let v102: std::string::String =
+                                (&v100).to_string().clone();
+                            let v105: std::string::String =
+                                (&string("src_path:")).to_string().clone();
+                            let v106: string =
                                 fable_library_rust::String_::fromStr(&format!("{:?}", &v17.display()));
-                            let v106: std::string::String =
-                                format!("{:?}", &Lrc::new((string("src_path:"),
-                                                           v102))).clone();
-                            let v107: string =
-                                fable_library_rust::String_::fromStr(&format!("{:?}", &v31.display()));
+                            let v108: std::string::String =
+                                (&v106).to_string().clone();
                             let v111: std::string::String =
-                                format!("{:?}", &Lrc::new((string("spiproj_path:"),
-                                                           v107))).clone();
+                                (&string("spiproj_path:")).to_string().clone();
                             let v112: string =
+                                fable_library_rust::String_::fromStr(&format!("{:?}", &v31.display()));
+                            let v114: std::string::String =
+                                (&v112).to_string().clone();
+                            let v117: std::string::String =
+                                (&string("fsx_path:")).to_string().clone();
+                            let v118: string =
                                 fable_library_rust::String_::fromStr(&format!("{:?}", &v47.display()));
-                            let v117: Array<std::string::String> =
-                                array(&[v84, v96, v101, v106, v111,
-                                        format!("{:?}", &Lrc::new((string("fsx_path:"),
-                                                                   v112)))]);
-                            v80(format!("{:?}", &v117).clone());
+                            let v121: Array<std::string::String> =
+                                array(&[v84, v87, v96, v99, v102, v105, v108,
+                                        v111, v114, v117,
+                                        (&v118).to_string()]);
+                            let v123 = core::ops::Deref::deref(&v121);
+                            v80(format!("{:?}", v123).clone());
                             string("???")
                         }
                     }

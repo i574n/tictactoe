@@ -5,21 +5,30 @@ type [<Struct>] US0 =
     | US0_3
 let rec closure2 () () : US0 =
     US0_0
-and closure3 (v0 : Types.std.path.PathBuf) () : Types.EmitType<Types.std.string.String> =
-    let v1 : string = "fable_library_rust::String_::fromStr(&format!(\"{:?}\", $0.display()))"
-    let v2 : string = Fable.Core.Rust.emitExpr v0 v1
-    let v3 : string = "spi_path:"
-    let v4 : (string * string) = v3, v2
-    let v5 : string = "format!(\"{:?}\", $0)"
-    let v6 : Types.std.string.String = Fable.Core.Rust.emitExpr v4 v5
-    let v7 : Types.EmitType<Types.std.string.String> = v6 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v8 : string = "new_fsx_path:"
-    let v9 : Types.std.string.String = Fable.Core.Rust.emitExpr struct (v8, v0) v5
-    let v10 : Types.EmitType<Types.std.string.String> = v9 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v11 : (Types.EmitType<Types.std.string.String> []) = [|v7; v10|]
-    let v12 : Types.std.string.String = Fable.Core.Rust.emitExpr v11 v5
-    let v13 : Types.EmitType<Types.std.string.String> = v12 |> unbox<Types.EmitType<Types.std.string.String>>
-    v13
+and closure3 (v0 : Types.std.path.PathBuf, v1 : Option<Types.std.path.PathBuf>) () : Types.EmitType<Types.std.string.String> =
+    let v2 : string = "spi_path:"
+    let v3 : string = "($0).to_string()"
+    let v4 : Types.std.string.String = Fable.Core.Rust.emitExpr v2 v3
+    let v5 : Types.EmitType<Types.std.string.String> = v4 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v6 : string = "fable_library_rust::String_::fromStr(&format!(\"{:?}\", $0.display()))"
+    let v7 : string = Fable.Core.Rust.emitExpr v0 v6
+    let v8 : Types.std.string.String = Fable.Core.Rust.emitExpr v7 v3
+    let v9 : Types.EmitType<Types.std.string.String> = v8 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v10 : string = "new_fsx_path:"
+    let v11 : Types.std.string.String = Fable.Core.Rust.emitExpr v10 v3
+    let v12 : Types.EmitType<Types.std.string.String> = v11 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v13 : string = "($0).as_ref().unwrap().to_path_buf()"
+    let v14 : Types.std.path.PathBuf = Fable.Core.Rust.emitExpr v1 v13
+    let v15 : string = Fable.Core.Rust.emitExpr v14 v6
+    let v16 : Types.std.string.String = Fable.Core.Rust.emitExpr v15 v3
+    let v17 : Types.EmitType<Types.std.string.String> = v16 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v18 : (Types.EmitType<Types.std.string.String> []) = [|v5; v9; v12; v17|]
+    let v19 : string = "core::ops::Deref::deref($0)"
+    let v20 : obj = Fable.Core.Rust.emitExpr v18 v19
+    let v21 : string = "format!(\"{:?}\", $0)"
+    let v22 : Types.std.string.String = Fable.Core.Rust.emitExpr v20 v21
+    let v23 : Types.EmitType<Types.std.string.String> = v22 |> unbox<Types.EmitType<Types.std.string.String>>
+    v23
 and method1 () : struct (string * string * string * bool) =
     let v0 : string = ""
     let v1 : obj = v0
@@ -32,10 +41,10 @@ and method2 (v0 : int32, v1 : string) : string =
         method2(v0, v4)
     else
         v1
-and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>), v2 : string, v3 : string, v4 : string, v5 : bool, v6 : int64, v7 : US0) (v8 : Types.EmitType<Types.std.string.String>) : unit =
-    let v9 : US0 = v0 ()
-    let v10 : int32 =
-        match v9 with
+and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>), v2 : int64, v3 : US0) (v4 : Types.EmitType<Types.std.string.String>) : unit =
+    let v5 : US0 = v0 ()
+    let v6 : int32 =
+        match v5 with
         | US0_0 -> (* Debug *)
             0
         | US0_1 -> (* Error *)
@@ -44,8 +53,8 @@ and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.
             1
         | US0_3 -> (* Warn *)
             2
-    let v11 : int32 =
-        match v7 with
+    let v7 : int32 =
+        match v3 with
         | US0_0 -> (* Debug *)
             0
         | US0_1 -> (* Error *)
@@ -54,48 +63,45 @@ and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.
             1
         | US0_3 -> (* Warn *)
             2
-    let v12 : bool = v10 <= v11
-    if v12 then
-        let v13 : string = "chrono::Utc::now()"
-        let v14 : Types.chrono.DateTime<Types.chrono.Utc> = Fable.Core.Rust.emitExpr () v13
-        let v15 : string = "($0).timestamp()"
-        let v16 : int64 = Fable.Core.Rust.emitExpr v14 v15
-        let v17 : int64 = v16 - v6
-        let v18 : string = v17.ToString ()
-        let v19 : int32 = 6
-        let v20 : string = method2(v19, v18)
-        let v21 : string = "timestamp:"
-        let v22 : (string * string) = v21, v20
-        let v23 : string = "format!(\"{:?}\", $0)"
-        let v24 : Types.std.string.String = Fable.Core.Rust.emitExpr v22 v23
+    let v8 : bool = v6 <= v7
+    if v8 then
+        let v9 : string = "chrono::Utc::now()"
+        let v10 : Types.chrono.DateTime<Types.chrono.Utc> = Fable.Core.Rust.emitExpr () v9
+        let v11 : string = "($0).timestamp()"
+        let v12 : int64 = Fable.Core.Rust.emitExpr v10 v11
+        let v13 : int64 = v12 - v2
+        let v14 : string = v13.ToString ()
+        let v15 : int32 = 6
+        let v16 : string = method2(v15, v14)
+        let v17 : string = "timestamp:"
+        let v18 : string = "($0).to_string()"
+        let v19 : Types.std.string.String = Fable.Core.Rust.emitExpr v17 v18
+        let v20 : Types.EmitType<Types.std.string.String> = v19 |> unbox<Types.EmitType<Types.std.string.String>>
+        let v21 : Types.std.string.String = Fable.Core.Rust.emitExpr v16 v18
+        let v22 : Types.EmitType<Types.std.string.String> = v21 |> unbox<Types.EmitType<Types.std.string.String>>
+        let v23 : string = "run_id:"
+        let v24 : Types.std.string.String = Fable.Core.Rust.emitExpr v23 v18
         let v25 : Types.EmitType<Types.std.string.String> = v24 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v26 : string = "run_id:"
-        let v27 : Types.std.string.String = Fable.Core.Rust.emitExpr struct (v26, 999) v23
+        let v26 : string = "format!(\"{:?}\", $0)"
+        let v27 : Types.std.string.String = Fable.Core.Rust.emitExpr 999 v26
         let v28 : Types.EmitType<Types.std.string.String> = v27 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v29 : (Types.EmitType<Types.std.string.String> []) = [|v25; v28|]
-        let v30 : Types.std.string.String = Fable.Core.Rust.emitExpr v29 v23
-        let v31 : Types.EmitType<Types.std.string.String> = v30 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v32 : Types.EmitType<Types.std.string.String> = v1 ()
-        let v33 : string = "serde_json::json!(*$0)"
-        let v34 : obj = Fable.Core.Rust.emitExpr v32 v33
-        let v35 : string = "$0.to_string()"
-        let v36 : Types.std.string.String = Fable.Core.Rust.emitExpr v34 v35
-        let v37 : Types.std.string.String = Fable.Core.Rust.emitExpr v8 v23
-        let v38 : obj = Fable.Core.Rust.emitExpr v31 v33
-        let v39 : Types.std.string.String = Fable.Core.Rust.emitExpr v38 v35
-        let v40 : obj = Fable.Core.Rust.emitExpr struct (v37, v36, v39) v33
-        let v41 : Types.std.string.String = Fable.Core.Rust.emitExpr v40 v35
-        System.Console.WriteLine v41
+        let v29 : (Types.EmitType<Types.std.string.String> []) = [|v20; v22; v25; v28|]
+        let v30 : string = "core::ops::Deref::deref($0)"
+        let v31 : obj = Fable.Core.Rust.emitExpr v29 v30
+        let v32 : Types.std.string.String = Fable.Core.Rust.emitExpr v31 v26
+        let v33 : Types.EmitType<Types.std.string.String> = v32 |> unbox<Types.EmitType<Types.std.string.String>>
+        let v34 : string = $"{v4} {v1 ()} {v33}"
+        System.Console.WriteLine v34
         ()
-and closure4 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>), v2 : string, v3 : string, v4 : string, v5 : bool, v6 : int64) (v7 : US0) : (Types.EmitType<Types.std.string.String> -> unit) =
-    closure5(v0, v1, v2, v3, v4, v5, v6, v7)
+and closure4 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>), v2 : int64) (v3 : US0) : (Types.EmitType<Types.std.string.String> -> unit) =
+    closure5(v0, v1, v2, v3)
 and method0 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>)) : (US0 -> (Types.EmitType<Types.std.string.String> -> unit)) =
     let struct (v2 : string, v3 : string, v4 : string, v5 : bool) = method1()
     let v6 : string = "chrono::Utc::now()"
     let v7 : Types.chrono.DateTime<Types.chrono.Utc> = Fable.Core.Rust.emitExpr () v6
     let v8 : string = "($0).timestamp()"
     let v9 : int64 = Fable.Core.Rust.emitExpr v7 v8
-    closure4(v0, v1, v2, v3, v4, v5, v9)
+    closure4(v0, v1, v9)
 and closure6 () (v0 : Types.Ref<Types.std.path.Path>) : Types.std.path.PathBuf =
     let v1 : string = "package.spiproj"
     let v2 : string = "$1.join($0.as_str())"
@@ -107,7 +113,7 @@ and closure7 () (v0 : Types.Ref<Types.std.path.PathBuf>) : bool =
     v2
 and closure1 (v0 : Types.std.path.PathBuf) (v1 : Option<Types.std.path.PathBuf>) : string =
     let v2 : (unit -> US0) = closure2()
-    let v3 : (unit -> Types.EmitType<Types.std.string.String>) = closure3(v0)
+    let v3 : (unit -> Types.EmitType<Types.std.string.String>) = closure3(v0, v1)
     let v4 : string = "#666"
     let v5 : (US0 -> (Types.EmitType<Types.std.string.String> -> unit)) = method0(v2, v3)
     let v6 : string = "($0).canonicalize()"
@@ -196,44 +202,51 @@ and closure1 (v0 : Types.std.path.PathBuf) (v1 : Option<Types.std.path.PathBuf>)
     let v82 : string = "($0).to_string()"
     let v83 : Types.std.string.String = Fable.Core.Rust.emitExpr v81 v82
     let v84 : Types.EmitType<Types.std.string.String> = v83 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v85 : string = "std::env::current_dir()"
-    let v86 : Result<Types.std.path.PathBuf, Types.std.io.Error> = Fable.Core.Rust.emitExpr () v85
-    let v87 : Types.std.path.PathBuf = Fable.Core.Rust.emitExpr v86 v8
-    let v88 : Result<Types.std.path.PathBuf, Types.std.io.Error> = Fable.Core.Rust.emitExpr v87 v6
-    let v89 : Types.std.path.PathBuf = Fable.Core.Rust.emitExpr v88 v8
-    let v90 : string = "fable_library_rust::String_::fromStr(&format!(\"{:?}\", $0.display()))"
-    let v91 : string = Fable.Core.Rust.emitExpr v89 v90
-    let v92 : string = "pwd:"
-    let v93 : (string * string) = v92, v91
-    let v94 : string = "format!(\"{:?}\", $0)"
-    let v95 : Types.std.string.String = Fable.Core.Rust.emitExpr v93 v94
+    let v85 : string = "pwd:"
+    let v86 : Types.std.string.String = Fable.Core.Rust.emitExpr v85 v82
+    let v87 : Types.EmitType<Types.std.string.String> = v86 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v88 : string = "std::env::current_dir()"
+    let v89 : Result<Types.std.path.PathBuf, Types.std.io.Error> = Fable.Core.Rust.emitExpr () v88
+    let v90 : Types.std.path.PathBuf = Fable.Core.Rust.emitExpr v89 v8
+    let v91 : Result<Types.std.path.PathBuf, Types.std.io.Error> = Fable.Core.Rust.emitExpr v90 v6
+    let v92 : Types.std.path.PathBuf = Fable.Core.Rust.emitExpr v91 v8
+    let v93 : string = "fable_library_rust::String_::fromStr(&format!(\"{:?}\", $0.display()))"
+    let v94 : string = Fable.Core.Rust.emitExpr v92 v93
+    let v95 : Types.std.string.String = Fable.Core.Rust.emitExpr v94 v82
     let v96 : Types.EmitType<Types.std.string.String> = v95 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v97 : string = Fable.Core.Rust.emitExpr v9 v90
-    let v98 : string = "spi_path_clean:"
-    let v99 : (string * string) = v98, v97
-    let v100 : Types.std.string.String = Fable.Core.Rust.emitExpr v99 v94
-    let v101 : Types.EmitType<Types.std.string.String> = v100 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v102 : string = Fable.Core.Rust.emitExpr v17 v90
+    let v97 : string = "spi_path_clean:"
+    let v98 : Types.std.string.String = Fable.Core.Rust.emitExpr v97 v82
+    let v99 : Types.EmitType<Types.std.string.String> = v98 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v100 : string = Fable.Core.Rust.emitExpr v9 v93
+    let v101 : Types.std.string.String = Fable.Core.Rust.emitExpr v100 v82
+    let v102 : Types.EmitType<Types.std.string.String> = v101 |> unbox<Types.EmitType<Types.std.string.String>>
     let v103 : string = "src_path:"
-    let v104 : (string * string) = v103, v102
-    let v105 : Types.std.string.String = Fable.Core.Rust.emitExpr v104 v94
-    let v106 : Types.EmitType<Types.std.string.String> = v105 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v107 : string = Fable.Core.Rust.emitExpr v31 v90
-    let v108 : string = "spiproj_path:"
-    let v109 : (string * string) = v108, v107
-    let v110 : Types.std.string.String = Fable.Core.Rust.emitExpr v109 v94
+    let v104 : Types.std.string.String = Fable.Core.Rust.emitExpr v103 v82
+    let v105 : Types.EmitType<Types.std.string.String> = v104 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v106 : string = Fable.Core.Rust.emitExpr v17 v93
+    let v107 : Types.std.string.String = Fable.Core.Rust.emitExpr v106 v82
+    let v108 : Types.EmitType<Types.std.string.String> = v107 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v109 : string = "spiproj_path:"
+    let v110 : Types.std.string.String = Fable.Core.Rust.emitExpr v109 v82
     let v111 : Types.EmitType<Types.std.string.String> = v110 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v112 : string = Fable.Core.Rust.emitExpr v47 v90
-    let v113 : string = "fsx_path:"
-    let v114 : (string * string) = v113, v112
-    let v115 : Types.std.string.String = Fable.Core.Rust.emitExpr v114 v94
-    let v116 : Types.EmitType<Types.std.string.String> = v115 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v117 : (Types.EmitType<Types.std.string.String> []) = [|v84; v96; v101; v106; v111; v116|]
-    let v118 : Types.std.string.String = Fable.Core.Rust.emitExpr v117 v94
-    let v119 : Types.EmitType<Types.std.string.String> = v118 |> unbox<Types.EmitType<Types.std.string.String>>
-    v80 v119
-    let v120 : string = "???"
-    v120
+    let v112 : string = Fable.Core.Rust.emitExpr v31 v93
+    let v113 : Types.std.string.String = Fable.Core.Rust.emitExpr v112 v82
+    let v114 : Types.EmitType<Types.std.string.String> = v113 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v115 : string = "fsx_path:"
+    let v116 : Types.std.string.String = Fable.Core.Rust.emitExpr v115 v82
+    let v117 : Types.EmitType<Types.std.string.String> = v116 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v118 : string = Fable.Core.Rust.emitExpr v47 v93
+    let v119 : Types.std.string.String = Fable.Core.Rust.emitExpr v118 v82
+    let v120 : Types.EmitType<Types.std.string.String> = v119 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v121 : (Types.EmitType<Types.std.string.String> []) = [|v84; v87; v96; v99; v102; v105; v108; v111; v114; v117; v120|]
+    let v122 : string = "core::ops::Deref::deref($0)"
+    let v123 : obj = Fable.Core.Rust.emitExpr v121 v122
+    let v124 : string = "format!(\"{:?}\", $0)"
+    let v125 : Types.std.string.String = Fable.Core.Rust.emitExpr v123 v124
+    let v126 : Types.EmitType<Types.std.string.String> = v125 |> unbox<Types.EmitType<Types.std.string.String>>
+    v80 v126
+    let v127 : string = "???"
+    v127
 and closure0 () (v0 : Types.std.path.PathBuf) : (Option<Types.std.path.PathBuf> -> string) =
     closure1(v0)
 let v0 : (Types.std.path.PathBuf -> (Option<Types.std.path.PathBuf> -> string)) = closure0()
