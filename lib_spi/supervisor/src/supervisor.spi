@@ -104,8 +104,8 @@ inl format forall t. (x : t) : std_string =
             | std_string => x
             | array _ =>
                 inl x = deref `t `any x
-                emit_expr `any `std_string x "format!(\"{:?}\", $0)"
-            | _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+                emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
+            | _ => emit_expr `t `std_string x "format!(\"{}\", $0)"
         result
 
 
@@ -187,7 +187,7 @@ inl path_parent (path : path_buf) : ref' path =
 
 inl path_display (path : path_buf) : string =
     // emit_expr path "fable_library_rust::String_::fromStr(Box::leak(format!(\"{:?}\", ($0).strip_prefix(\"\").unwrap().display()).into_boxed_str()))"
-    emit_expr path "fable_library_rust::String_::fromStr(&format!(\"{:?}\", $0.display()))"
+    emit_expr path "fable_library_rust::String_::fromStr(&format!(\"{}\", $0.display()))"
 
 inl path_strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' path =
     !!(emit_expr (path, base) "($1).strip_prefix($0)" : result' (static_ref' path) strip_prefix_error)
@@ -256,6 +256,9 @@ inl real_core_union_tag log_level : i32 =
 
 type log_item = emit_type std_string
 
+inl color_string (color : string) (str : emit_type std_string) : std_string =
+    (emit_expr (str, color) "colored::Colorize::color(&*$0, $1.to_string())" : any)
+    |> format
 
 let new_log
     (get_log_level : () -> log_level_type)
@@ -288,6 +291,8 @@ let new_log
             //         obj_json,
             //         locals_json
             //     |> format
+            inl args = args |> color_string "purple"
+            inl locals = locals |> color_string "green"
             inl new_args : string = $"$\"{!args} {!obj_fn ()} {!locals}\""
             console_fsx.write_line new_args
 
