@@ -11,6 +11,7 @@ pub mod Supervisor {
     use fable_library_rust::Native_::Array;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
+    use fable_library_rust::Native_::Lrc;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::array;
     use fable_library_rust::Native_::on_startup;
@@ -27,12 +28,10 @@ pub mod Supervisor {
      -> std::string::String {
         let v2: string =
             fable_library_rust::String_::fromStr(&format!("{:?}", &v0_1.display()));
-        let v8: Array<std::string::String> =
-            array(&[format!("{:?}", string("spi_path:")),
+        let v11: Array<std::string::String> =
+            array(&[format!("{:?}", &Lrc::new((string("spi_path:"), v2))),
                     format!("{:?}", string("new_fsx_path:"))]);
-        let v10 = serde_json::json!(****&v8);
-        let v12: std::string::String = v10.to_string();
-        format!("{:?}", &v12)
+        format!("{:?}", &v11).clone()
     }
     pub fn method1() -> (string, string, string, bool) {
         let v0_1: string = string("");
@@ -75,19 +74,20 @@ pub mod Supervisor {
             let v20: string =
                 Supervisor::method2(6i32,
                                     toString(&((&v14).timestamp() - v6)));
-            let v26: Array<std::string::String> =
-                array(&[format!("{:?}", string("timestamp:")),
+            let v29: Array<std::string::String> =
+                array(&[format!("{:?}", &Lrc::new((string("timestamp:"),
+                                                   v20))),
                         format!("{:?}", string("run_id:"))]);
-            let v27: std::string::String = format!("{:?}", &v26);
-            let v28: std::string::String = v1();
-            let v30 = serde_json::json!(*&v28);
-            let v32: std::string::String = v30.to_string();
-            let v33: std::string::String = format!("{:?}", &v8);
-            let v34 = serde_json::json!(*&v27);
-            let v35: std::string::String = v34.to_string();
-            let v36 = serde_json::json!(*v33);
-            let v37: std::string::String = v36.to_string();
-            println!("{0}", &v37);
+            let v31: std::string::String = format!("{:?}", &v29).clone();
+            let v32: std::string::String = v1();
+            let v34 = serde_json::json!(*&v32);
+            let v36: std::string::String = v34.to_string();
+            let v37: std::string::String = format!("{:?}", &v8);
+            let v38 = serde_json::json!(*&v31);
+            let v39: std::string::String = v38.to_string();
+            let v40 = serde_json::json!(*v37);
+            let v41: std::string::String = v40.to_string();
+            println!("{0}", &v41);
             ()
         }
     }
@@ -215,42 +215,47 @@ pub mod Supervisor {
                         v75.disconnect(&v76).unwrap();
                         {
                             let v80 = v5(Supervisor::US0::US0_0);
-                            let v83: std::string::String =
-                                format!("{:?}", &string("> spi_to_fsx ()"));
-                            let v85:
+                            let v84: std::string::String =
+                                (&string("> spi_to_fsx ()")).to_string().clone();
+                            let v86:
                                     Result<std::path::PathBuf,
                                            std::io::Error> =
                                 std::env::current_dir();
-                            let v86: std::path::PathBuf =
-                                (&v85).as_ref().unwrap().to_path_buf();
-                            let v87:
+                            let v87: std::path::PathBuf =
+                                (&v86).as_ref().unwrap().to_path_buf();
+                            let v88:
                                     Result<std::path::PathBuf,
                                            std::io::Error> =
-                                (&v86).canonicalize();
-                            let v88: std::path::PathBuf =
-                                (&v87).as_ref().unwrap().to_path_buf();
-                            let v90: string =
-                                fable_library_rust::String_::fromStr(&format!("{:?}", &v88.display()));
-                            let v92: std::string::String =
-                                format!("{:?}", string("pwd:"));
-                            let v93: string =
+                                (&v87).canonicalize();
+                            let v89: std::path::PathBuf =
+                                (&v88).as_ref().unwrap().to_path_buf();
+                            let v91: string =
+                                fable_library_rust::String_::fromStr(&format!("{:?}", &v89.display()));
+                            let v96: std::string::String =
+                                format!("{:?}", &Lrc::new((string("pwd:"),
+                                                           v91))).clone();
+                            let v97: string =
                                 fable_library_rust::String_::fromStr(&format!("{:?}", &v9.display()));
-                            let v95: std::string::String =
-                                format!("{:?}", string("spi_path_clean:"));
-                            let v96: string =
-                                fable_library_rust::String_::fromStr(&format!("{:?}", &v17.display()));
-                            let v98: std::string::String =
-                                format!("{:?}", string("src_path:"));
-                            let v99: string =
-                                fable_library_rust::String_::fromStr(&format!("{:?}", &v31.display()));
                             let v101: std::string::String =
-                                format!("{:?}", string("spiproj_path:"));
+                                format!("{:?}", &Lrc::new((string("spi_path_clean:"),
+                                                           v97))).clone();
                             let v102: string =
+                                fable_library_rust::String_::fromStr(&format!("{:?}", &v17.display()));
+                            let v106: std::string::String =
+                                format!("{:?}", &Lrc::new((string("src_path:"),
+                                                           v102))).clone();
+                            let v107: string =
+                                fable_library_rust::String_::fromStr(&format!("{:?}", &v31.display()));
+                            let v111: std::string::String =
+                                format!("{:?}", &Lrc::new((string("spiproj_path:"),
+                                                           v107))).clone();
+                            let v112: string =
                                 fable_library_rust::String_::fromStr(&format!("{:?}", &v47.display()));
-                            let v105: Array<std::string::String> =
-                                array(&[v83, v92, v95, v98, v101,
-                                        format!("{:?}", string("fsx_path:"))]);
-                            v80(format!("{:?}", &v105));
+                            let v117: Array<std::string::String> =
+                                array(&[v84, v96, v101, v106, v111,
+                                        format!("{:?}", &Lrc::new((string("fsx_path:"),
+                                                                   v112)))]);
+                            v80(format!("{:?}", &v117).clone());
                             string("???")
                         }
                     }

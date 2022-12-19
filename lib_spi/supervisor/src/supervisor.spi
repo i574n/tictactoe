@@ -1,3 +1,4 @@
+open real_util
 
 // nominal ref' t = lrc' (mut_cell' t)
 
@@ -71,7 +72,7 @@ nominal path = $"Types.std.path.Path"
 nominal path_buf = $"Types.std.path.PathBuf"
 type strip_prefix_error = $"Types.std.path.StripPrefixError"
 
-nominal string' = $"Types.std.string.String"
+nominal std_string = $"Types.std.string.String"
 
 type utc = $"Types.chrono.Utc"
 type local = $"Types.chrono.Local"
@@ -88,67 +89,50 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
 // inl unit () : any =
 //     emit_expr () "()"
 
+inl new_string (str : static_ref' str) : string =
+    emit_expr str "fable_library_rust::String_::string($0)"
+
+inl format forall t. (x : t) : std_string =
+    real
+        inl result : std_string =
+            typecase t with
+            | string => emit_expr `t `std_string x "($0).to_string()"
+            | std_string => x
+            | string * string =>
+                inl aa, bb = x
+                emit_expr `(pair string string) `std_string (new_pair `string `string aa bb) "format!(\"{:?}\", $0)"
+            | _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+        result
+
 
 // inl unwrap' x = emit_expr x "$0.unwrap()"
 inl unwrap_ref x = emit_expr x "($0).unwrap()"
-inl unwrap_as_ref forall t u. (x : t) : u =
-    // real
-    //     print_static ("inl unwrap_as_ref x" : string)
-    //     print_static ("x:" : string)
-    //     print_static `(`x)
-    emit_expr x "*(($0).as_ref()).unwrap()"
-
-
-instance (~!!) path_buf = fun (x : t) =>
-    emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-
-
+inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
+instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
 instance (~!!) ref' t' = unwrap_ref
-
-inl format forall t. (x : t) : string' =
-    emit_expr x "format!(\"{:?}\", $0)"
-
 instance (~!!) emit_type t' = fun (x : t) =>
-    // x |> format |> emit_type t'
-    emit_expr x "format!(\"{:?}\", $0)"
-
-// inl x forall t. fn : t =
-//     real
-//         typecase t with
-//         | _ => fn ()
-
-instance (~!!) string' = fun (x : t) =>
-    // real x `t fun () =>
-            // print_static "instance (~!!) string' = fun (x : t) =>"
-            // print_static ("x:" : string)
-            // print_static `(`x)
-    emit_expr x "($0).as_ref().unwrap().to_string()"
-
-
-instance (~!!) result' t' e' = fun (x : t) =>
+    print_static "- (~!!) emit_type t' = fun (x : t) =>"
+    print_static "x:"
+    print_static x
     real
-        print_static "instance (~!!) result' t' e' = fun (x : t) =>"
-        print_static "t':"
-        print_static `t'
-        print_static "e':"
-        print_static `e'
-        print_static "x:"
-        print_static x
-
-        typecase t' with
-        | _ => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-        // | path_buf => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-        // | _ => unwrap_as_ref x
-
+        // typecase t with
+        // | string => emit_expr `std_string `(emit_type t') (format `t x) "$0"
+        // | string' => emit_expr `string' `(emit_type t') x "$0"
+        // // | string => emit_expr `string' `(emit_type t') (x |> format `t) "$0"
+        // | _ =>
+            inl x : std_string = format `t x
+            real_unbox `std_string `(emit_type t') x
+instance (~!!) result' t' e' = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
 instance (~!!) static_ref' t' = unwrap_ref
-
+instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_string()"
 inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
-
 instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
-// instance (~!!) option' t' = unwrap'
 
-inl to_ref forall t. (x : t) : ref' t =
-    $"!x |> unbox"
+
+
+
+inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
+
 
 // inl box_from forall t. (obj : t) : box' t =
 //     emit_expr obj "Box::from($0)"
@@ -173,11 +157,9 @@ inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
     emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
 
 
-
 prototype to_path_buf t : t -> path_buf
 
 // instance to_path_buf str = fun x => emit_expr x "$0.to_path_buf()"
-
 
 inl to_path_buf' path : path_buf = emit_expr path "std::path::PathBuf::from($0)"
 
@@ -213,8 +195,116 @@ inl path_strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' p
 inl fs_write (path_buf : path_buf) (s : string) : result' unit' io_error =
     emit_expr (path_buf, s) "std::fs::write($0, $1.as_str())"
 
-inl fs_read_to_string (path_buf : path_buf) : result' string' io_error =
+inl fs_read_to_string (path_buf : path_buf) : result' std_string io_error =
     emit_expr path_buf "std::fs::read_to_string($0)"
+
+
+
+
+
+
+type env =
+    {
+        codespace_name : string
+        github_run_id : string
+        github_sha : string
+        is_test : bool
+    }
+let get_env () : env =
+    inl env : any = !!"" // ($"Fable.Core.JsInterop.emitJsExpr () \"components.env\"" : any)
+
+    inl codespace_name = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
+    inl github_run_id = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
+    inl github_sha = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
+    inl is_test =
+        // inl is_test' : any = js_get env "IS_TEST"
+        inl is_test' : bool = false // is_empty is_test'
+        not is_test'
+
+    {
+        codespace_name
+        github_run_id
+        github_sha
+        is_test
+    } : env
+
+inl now () : datetime utc =
+    emit_expr () "chrono::Utc::now()"
+
+inl ticks () : ticks =
+    emit_expr (now ()) "($0).timestamp()"
+
+inl json_stringify forall t. (obj : t) : std_string =
+    let json : any =
+        real
+            emit_expr `t `any obj
+                typecase t with
+                | array _ => "serde_json::json!(****$0)"
+                | _ => "serde_json::json!(*$0)"
+
+    let str : std_string = emit_expr json "$0.to_string()"
+    str
+
+
+inl real_core_union_tag log_level : i32 =
+    match log_level with
+    | Debug => 0
+    | Info => 1
+    | Warn => 2
+    | Error => 3
+
+type log_item = emit_type std_string
+
+
+let new_log
+    (get_log_level : () -> log_level_type)
+    (obj_fn : () -> log_item)
+    (color : string)
+    : log_level_type -> log_item -> ()
+    =
+    inl env : env = get_env ()
+    inl start_timestamp = ticks ()
+    fun log_level (args : log_item) : () =>
+        if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
+            inl new_timestamp () = ticks () - start_timestamp
+            inl timestamp : string = new_timestamp () |> to_string'
+            inl timestamp : string = pad 6 timestamp
+            inl run_id : i32 = 999
+            inl locals : log_item =
+                !!(;[
+                    !!("timestamp:", timestamp)
+                    !!("run_id:", run_id) ]
+                    : array log_item)
+            inl obj_json : std_string = json_stringify (obj_fn ())
+            inl args_json : std_string = args |> format // json_stringify args
+            inl locals_json : std_string = json_stringify locals
+            inl new_args =
+                if env.is_test then
+                    args_json,
+                    obj_json,
+                    locals_json
+                else
+                    args_json,
+                    obj_json,
+                    locals_json
+                |> json_stringify
+            console_fsx.write_line new_args
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -229,7 +319,7 @@ inl fs_read_to_string (path_buf : path_buf) : result' string' io_error =
 //     println!("zmq_request. result: {}", result.unwrap());
 //     sock.disconnect(endpoint).unwrap();
 // }
-inl zmq_request (msg : string') : () =
+inl zmq_request (msg : std_string) : () =
     // console_fsx.write_line "zmq_request."
     // console_fsx.write_line "msg:"
     // console_fsx.write_line msg
@@ -257,7 +347,7 @@ inl zmq_request (msg : string') : () =
 //     zmq_request(msg);
 // }
 
-inl spiproj_open (spiproj_path : path_buf) (spiproj_text : string') : () =
+inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
     // console_fsx.write_line "spiproj_open."
     // console_fsx.write_line "spiproj_path:"
     // console_fsx.write_line (spiproj_path |> path_display)
@@ -265,7 +355,7 @@ inl spiproj_open (spiproj_path : path_buf) (spiproj_text : string') : () =
     // console_fsx.write_line spiproj_text
 
     let json : any = emit_expr (spiproj_path, spiproj_text) "serde_json::json!({\"ProjectFileOpen\": {\"uri\": $0, \"spiprojText\": $1}})"
-    let str : string' = emit_expr json "$0.to_string()"
+    let str : std_string = emit_expr json "$0.to_string()"
     // console_fsx.write_line "str:"
     // console_fsx.write_line str
     zmq_request str
@@ -288,7 +378,7 @@ inl spi_build_file (spi_path : path_buf) (backend : string) : () =
     // console_fsx.write_line backend
 
     let json : any = emit_expr (spi_path, backend) "serde_json::json!({\"BuildFile\": {\"uri\": $0, \"backend\": *$1}})"
-    let str : string' = emit_expr json "$0.to_string()"
+    let str : std_string = emit_expr json "$0.to_string()"
     // console_fsx.write_line "str:"
     // console_fsx.write_line str
     zmq_request str
@@ -421,102 +511,14 @@ inl wait_file_change (fsx_path : path_buf) : string =
 
 //     new_fsx
 // }
-type env =
-    {
-        codespace_name : string
-        github_run_id : string
-        github_sha : string
-        is_test : bool
-    }
-let get_env () : env =
-    inl env : any = !!"" // ($"Fable.Core.JsInterop.emitJsExpr () \"components.env\"" : any)
-
-    inl codespace_name = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
-    inl github_run_id = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
-    inl github_sha = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
-    inl is_test =
-        // inl is_test' : any = js_get env "IS_TEST"
-        inl is_test' : bool = false // is_empty is_test'
-        not is_test'
-
-    {
-        codespace_name
-        github_run_id
-        github_sha
-        is_test
-    } : env
-
-inl now () : datetime utc =
-    emit_expr () "chrono::Utc::now()"
-
-inl ticks () : ticks =
-    emit_expr (now ()) "($0).timestamp()"
-
-inl json_stringify forall t. (obj : t) : string' =
-    let json : any =
-        real
-            emit_expr `t `any obj
-                typecase t with
-                | array _ => "serde_json::json!(****$0)"
-                | _ => "serde_json::json!(*$0)"
-
-    let str : string' = emit_expr json "$0.to_string()"
-    str
-
-
-inl real_core_union_tag log_level : i32 =
-    match log_level with
-    | Debug => 0
-    | Info => 1
-    | Warn => 2
-    | Error => 3
-
-type log_item = emit_type string'
-
-
-let new_log
-    (get_log_level : () -> log_level_type)
-    (obj_fn : () -> log_item)
-    (color : string)
-    : log_level_type -> log_item -> ()
-    =
-    inl env : env = get_env ()
-    inl start_timestamp = ticks ()
-    fun log_level (args : log_item) : () =>
-        if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
-            inl new_timestamp () = ticks () - start_timestamp
-            inl timestamp : string = new_timestamp () |> to_string'
-            inl timestamp : string = pad 6 timestamp
-            inl run_id : i32 = 999
-            inl locals : log_item =
-                !!(;[
-                    !!("timestamp:", timestamp)
-                    !!("run_id:", run_id) ]
-                   : array log_item)
-            inl obj_json : string' = json_stringify (obj_fn ())
-            inl args_json : string' = args |> format // json_stringify args
-            inl locals_json : string' = json_stringify locals
-            inl new_args =
-                if env.is_test then
-                    args_json,
-                    obj_json,
-                    locals_json
-                else
-                    args_json,
-                    obj_json,
-                    locals_json
-                |> json_stringify
-            console_fsx.write_line new_args
 
 
 inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string =
     inl get_locals () : log_item =
-        ;[
+        !!(;[
             !!("spi_path:", spi_path |> path_display) : log_item
             !!("new_fsx_path:", spi_path)
-        ]
-        |> json_stringify
-        |> (~!!)
+            ] : array log_item)
     inl log = new_log (fun () => Debug) get_locals "#666"
 
     inl spi_path_clean = spi_path |> path_canonicalize
@@ -551,7 +553,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         !!("src_path:", src_path |> path_display)
         !!("spiproj_path:", spiproj_path |> path_display)
         !!("fsx_path:", fsx_path |> path_display)
-                        ] : array log_item)
+                ] : array log_item)
 
 
     "???"
