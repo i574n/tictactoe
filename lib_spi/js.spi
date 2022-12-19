@@ -118,6 +118,10 @@ inl clear_timeout (token : i32) : () = $"Fable.Core.JS.clearTimeout !token"
 inl set_interval (callback : () -> ()) (ms : i32) : i32 = $"Fable.Core.JS.setInterval !callback !ms"
 inl clear_interval (token : i32) : () = $"Fable.Core.JS.clearInterval !token"
 
+inl ticks () : ticks = $"`date_time.UtcNow.Ticks"
+inl new_guid () : guid =
+    new_guid_from_ticks (ticks ())
+
 inl js_get (obj : any) (key : string) : any =
     $"(Fable.Core.JsInterop.(?)) !obj !key"
 

@@ -4,8 +4,9 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-fable_library_rust = { path = "./src/fable_modules/fable-library-rust" }
+chrono = "~0.4"
 clap = { version = "~4.0", features = ["derive"] }
+fable_library_rust = { path = "./src/fable_modules/fable-library-rust" }
 serde_json = "1.0"
 zmq = "~0.10"
 
