@@ -1,9 +1,9 @@
-repository: fc1943s/tictactoe_spiral
+repository: fc1943s/tictactoe
 output: web
-topnav_title: tictactoe_spiral
-site_title: tictactoe_spiral
+topnav_title: tictactoe
+site_title: tictactoe
 company_name: fc1943s
-description: 
+description:
 # Set to false to disable KaTeX math
 use_math: true
 # Add Google analytics id if you have one and want to use it here
@@ -20,7 +20,7 @@ exclude:
   - .idea/
   - .gitignore
   - vendor
- 
+
 exclude: [vendor]
 
 highlighter: rouge
@@ -61,6 +61,6 @@ sidebars:
 
 plugins:
     - jekyll-remote-theme
-    
+
 remote_theme: fastai/nbdev-jekyll-theme
-baseurl: /tictactoe_spiral/docs/
+baseurl: /tictactoe/docs/

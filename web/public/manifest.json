@@ -1,8 +1,8 @@
 {
-    "name": "tictactoe_spiral",
+    "name": "tictactoe",
     "version": "0.0.1",
     "manifest_version": 3,
-    "description": "tictactoe_spiral",
+    "description": "tictactoe",
     "permissions": [
         "activeTab",
         "tabs",
@@ -21,7 +21,7 @@
                 "<all_urls>"
             ],
             "resources": [
-                "tictactoe_spiral/assets/*"
+                "tictactoe/assets/*"
             ]
         }
     ],

@@ -1,5 +1,5 @@
 {
-  "name": "tictactoe_spiral_peer_gunjs",
+  "name": "tictactoe_peer_gunjs",
   "version": "0.0.1",
   "description": "",
   "main": "server.js",

@@ -5,7 +5,7 @@
         <LangVersion>preview</LangVersion>
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
-        <PackageId>tictactoe_spiral</PackageId>
+        <PackageId>tictactoe</PackageId>
         <Version>0.0.1-alpha.1</Version>
     </PropertyGroup>
     <ItemGroup>

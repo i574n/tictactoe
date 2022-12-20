@@ -207,7 +207,7 @@ newTest("test1", async ({ browser }) => {
     const pages = await Promise.all(util.range(pageCount).map((i) => newPage(i, context)))
 
     await Promise.all(pages.map(async page => {
-        await page.goto("https://localhost:3700/tictactoe_spiral", { waitUntil: 'networkidle' })
+        await page.goto("https://localhost:3700/tictactoe", { waitUntil: 'networkidle' })
         await injectAxe(page)
     }))
 

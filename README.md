@@ -1,4 +1,4 @@
-# tictactoe_spiral
+# tictactoe
 
 ```
 nbs/03_tictactoe_pyteal.ipynb

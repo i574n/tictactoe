@@ -1,5 +1,5 @@
 {
-  "name": "tictactoe_spiral_web",
+  "name": "tictactoe_web",
   "version": "0.0.1",
   "scripts": {
     "replace-ts1": "replace-in-files --regex='\\.js.;' --replacement='.ts\";' '../lib_ts/fable_modules/fable-library-ts/lib/*.js'",
@@ -23,7 +23,7 @@
     "e2e-deps": "cross-env-shell IS_TEST=1 bun run build && cross-env-shell IS_TEST=1 concurrently 'bun run e2e-peer-signalr' 'bun run e2e-peer-gunrs' 'bun run e2e-peer-gunjs' 'bun run serve'",
     "e2e": "playwright test",
 
-    "extension": "bun run pre-build && vite build --outDir dist_extension && mkdir ./dist_extension/tictactoe_spiral && mv ./dist_extension/assets/extension_content_script.*.js ./dist_extension/assets/extension_content_script.js && mv ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe_spiral/assets && cp extension_background.js extension_content_script.js ./dist_extension",
+    "extension": "bun run pre-build && vite build --outDir dist_extension && mkdir ./dist_extension/tictactoe && mv ./dist_extension/assets/extension_content_script.*.js ./dist_extension/assets/extension_content_script.js && mv ./dist_extension/assets/App.*.css ./dist_extension/assets/App.css && mv ./dist_extension/assets ./dist_extension/tictactoe/assets && cp extension_background.js extension_content_script.js ./dist_extension",
 
     "outdated-pre": "ncu --pre 1 -t greatest"
   },

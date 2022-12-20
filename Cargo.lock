@@ -758,7 +758,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "tictactoe_spiral"
+name = "tictactoe"
 version = "0.0.1"
 dependencies = [
  "fable_library_rust",

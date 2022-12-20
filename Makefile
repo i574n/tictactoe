@@ -2,11 +2,11 @@
 SHELL := /bin/bash
 SRC = $(wildcard ./*.ipynb)
 
-all: tictactoe_spiral docs
+all: tictactoe docs
 
-tictactoe_spiral: $(SRC)
+tictactoe: $(SRC)
 	nbdev_build_lib
-	touch tictactoe_spiral
+	touch tictactoe
 
 sync:
 	nbdev_update_lib

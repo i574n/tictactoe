@@ -8,7 +8,7 @@ import devtoolsPlugin from '@solid-devtools/transform'
 
 
 export default defineConfig({
-  base: '/tictactoe_spiral/',
+  base: '/tictactoe/',
   resolve: {
     alias: {
       path: 'path-browserify',

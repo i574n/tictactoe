@@ -39,8 +39,8 @@ modules = ["util.py",
            "algo_network.py",
            "tictactoe_testnet.py"]
 
-doc_url = "https://fc1943s.github.io/tictactoe_spiral/docs/"
+doc_url = "https://fc1943s.github.io/tictactoe/docs/"
 
-git_url = "https://github.com/fc1943s/tictactoe_spiral/"
+git_url = "https://github.com/fc1943s/tictactoe/"
 
 def custom_doc_links(name): return None

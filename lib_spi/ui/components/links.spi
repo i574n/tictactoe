@@ -32,8 +32,8 @@ let links (props : mut solid_props) =
         id
         fun () => ;[
             match github_sha with
-            | "" => link "https://github.com/fc1943s/tictactoe_spiral"
-            | _ => link $"$\"https://github.com/fc1943s/tictactoe_spiral/tree/{!github_sha}\""
-            link "https://fc1943s.github.io/tictactoe_spiral"
-            link "https://fc1943s.github.io/tictactoe_spiral/docs"
+            | "" => link "https://github.com/fc1943s/tictactoe"
+            | _ => link $"$\"https://github.com/fc1943s/tictactoe/tree/{!github_sha}\""
+            link "https://fc1943s.github.io/tictactoe"
+            link "https://fc1943s.github.io/tictactoe/docs"
         ]

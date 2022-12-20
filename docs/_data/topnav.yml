@@ -2,7 +2,7 @@ topnav:
 - title: Topnav
   items:
     - title: github
-      external_url: https://github.com/fc1943s/tictactoe_spiral/
+      external_url: https://github.com/fc1943s/tictactoe/
 
 #Topnav dropdowns
 topnav_dropdowns:
