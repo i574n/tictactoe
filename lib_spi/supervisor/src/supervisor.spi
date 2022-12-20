@@ -87,14 +87,17 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
 // inl unit () : any =
 //     emit_expr () "()"
 
-inl new_string (str : static_ref' str) : string =
-    emit_expr str "fable_library_rust::String_::string($0)"
+inl deref forall t u. (x : t) : u =
+    emit_expr x "core::ops::Deref::deref($0)"
+
+inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
+
+
+// inl new_string (str : static_ref' str) : string =
+    // emit_expr str "fable_library_rust::String_::string($0)"
 
 inl to_std_string (str : string) : std_string =
     emit_expr str "($0).to_string()"
-
-inl deref forall t u. (x : t) : u =
-    emit_expr x "core::ops::Deref::deref($0)"
 
 inl format forall t. (x : t) : std_string =
     real
@@ -107,6 +110,43 @@ inl format forall t. (x : t) : std_string =
                 emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
             | _ => emit_expr `t `std_string x "format!(\"{}\", $0)"
         result
+
+inl new_str (s : string) : static_ref' str =
+    emit_expr s "($0).as_ref()"
+
+inl to_str forall a. (obj : a) : option' (ref' str) =
+    emit_expr obj "($0).to_str()"
+
+inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
+    emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
+
+inl json_stringify forall t. (obj : t) : std_string =
+    let json : any =
+        real
+            emit_expr `t `any obj
+                typecase t with
+                | array _ => "serde_json::json!(****$0)"
+                | _ => "serde_json::json!(*$0)"
+
+    let str : std_string = emit_expr json "$0.to_string()"
+    str
+
+inl color_name (name : string) (str : emit_type std_string) : std_string =
+    (emit_expr (str, name) "colored::Colorize::color(&*$0, $1.to_string())" : any)
+    |> format
+
+inl substring (start : i32) (len : i32) (str : string) : string =
+    $"!str.Substring (!start, !len)"
+
+inl hex_to_u8 (hex : string) : u8 =
+    emit_expr hex "u8::from_str_radix($0, 16).unwrap()"
+
+inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
+    inl r = color_hex |> substring 0 2 |> hex_to_u8
+    inl g = color_hex |> substring 2 2 |> hex_to_u8
+    inl b = color_hex |> substring 4 2 |> hex_to_u8
+    (emit_expr (str, r, g, b) "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)" : any)
+    |> format
 
 
 // inl unwrap' x = emit_expr x "$0.unwrap()"
@@ -130,13 +170,9 @@ inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
 instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
 
 
-
-
-inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
-
-
 // inl box_from forall t. (obj : t) : box' t =
 //     emit_expr obj "Box::from($0)"
+
 
 inl map forall t u. (f : t -> u) (iter : iterator t) : iterator u =
     emit_expr (f |> to_ref, iter) "$1.into_iter().map($0)"
@@ -146,16 +182,6 @@ inl find forall t. (f : ref' t -> bool) (iter : iterator t) : option' t =
 
 inl take forall t. (x : unativeint) iter : iterator (ref' t) =
     emit_expr (x, iter) "$1.take($0)"
-
-
-inl new_str (s : string) : static_ref' str =
-    emit_expr s "($0).as_ref()"
-
-inl to_str forall a. (obj : a) : option' (ref' str) =
-    emit_expr obj "($0).to_str()"
-
-inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
-    emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
 
 
 prototype to_path_buf t : t -> path_buf
@@ -200,7 +226,11 @@ inl fs_read_to_string (path_buf : path_buf) : result' std_string io_error =
     emit_expr path_buf "std::fs::read_to_string($0)"
 
 
+inl now () : datetime utc =
+    emit_expr () "chrono::Utc::now()"
 
+inl ticks () : ticks =
+    emit_expr (now ()) "($0).timestamp()"
 
 
 
@@ -229,23 +259,6 @@ let get_env () : env =
         is_test
     } : env
 
-inl now () : datetime utc =
-    emit_expr () "chrono::Utc::now()"
-
-inl ticks () : ticks =
-    emit_expr (now ()) "($0).timestamp()"
-
-inl json_stringify forall t. (obj : t) : std_string =
-    let json : any =
-        real
-            emit_expr `t `any obj
-                typecase t with
-                | array _ => "serde_json::json!(****$0)"
-                | _ => "serde_json::json!(*$0)"
-
-    let str : std_string = emit_expr json "$0.to_string()"
-    str
-
 
 inl real_core_union_tag log_level : i32 =
     match log_level with
@@ -256,13 +269,10 @@ inl real_core_union_tag log_level : i32 =
 
 type log_item = emit_type std_string
 
-inl color_string (color : string) (str : emit_type std_string) : std_string =
-    (emit_expr (str, color) "colored::Colorize::color(&*$0, $1.to_string())" : any)
-    |> format
 
 let new_log
     (get_log_level : () -> log_level_type)
-    (obj_fn : () -> log_item)
+    (ext_locals_fn : () -> log_item)
     (color : string)
     : log_level_type -> log_item -> ()
     =
@@ -291,18 +301,11 @@ let new_log
             //         obj_json,
             //         locals_json
             //     |> format
-            inl args = args |> color_string "purple"
-            inl locals = locals |> color_string "green"
-            inl new_args : string = $"$\"{!args} {!obj_fn ()} {!locals}\""
+            inl ext_locals = ext_locals_fn () |> color_name "purple"
+            inl args = args |> truecolor color
+            inl locals = locals |> truecolor "222222"
+            inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
             console_fsx.write_line new_args
-
-
-
-
-
-
-
-
 
 
 
@@ -521,13 +524,21 @@ inl wait_file_change (fsx_path : path_buf) : string =
 
 inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string =
     inl get_locals () = !!(;[
+        !!"> spi_to_fsx ()" : log_item
+    ])
+    inl log = new_log (fun () => Debug) get_locals "de884c"
+
+    log Debug !!(;[
+        !!"pwd:"; !!(env_current_dir () |> path_canonicalize |> path_display)
         !!"spi_path:"; !!(spi_path |> path_display) : log_item
         !!"new_fsx_path:"; !!(!!new_fsx_path |> path_display)
     ])
-    inl log = new_log (fun () => Debug) get_locals "#666"
 
     inl spi_path_clean = spi_path |> path_canonicalize
+    log Debug !!(;[!!"spi_path_clean:"; !!(spi_path_clean |> path_display) : log_item])
+
     inl src_path = spi_path_clean |> path_parent |> to_path_buf |> path_canonicalize
+    log Debug !!(;[!!"src_path:"; !!(src_path |> path_display) : log_item])
 
     inl spiproj_path =
         src_path
@@ -536,6 +547,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         |> map (path_join "package.spiproj")
         |> find path_exists
         |> (~!!)
+    log Debug !!(;[!!"spiproj_path:"; !!(spiproj_path |> path_display) : log_item])
 
     inl fsx_path =
         spi_path_clean
@@ -545,20 +557,16 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         |> string_replace ".spi" ".fsx"
         |> to_path_buf
         |> path_canonicalize
+    log Debug !!(;[!!"fsx_path:"; !!(fsx_path |> path_display) : log_item])
 
     (!!(fs_write fsx_path "") : unit') |> ignore
+    log Debug !!"> fs_write fsx_path \"\"; ok"
 
     spiproj_open spiproj_path !!(fs_read_to_string spiproj_path)
-    spi_build_file spi_path_clean "Fsharp"
+    log Debug !!"> spiproj_open; ok"
 
-    log Debug !!(;[
-        !!"> spi_to_fsx ()" : log_item
-        !!"pwd:"; !!(env_current_dir () |> path_canonicalize |> path_display)
-        !!"spi_path_clean:"; !!(spi_path_clean |> path_display)
-        !!"src_path:"; !!(src_path |> path_display)
-        !!"spiproj_path:"; !!(spiproj_path |> path_display)
-        !!"fsx_path:"; !!(fsx_path |> path_display)
-    ])
+    spi_build_file spi_path_clean "Fsharp"
+    log Debug !!"> spi_build_file; ok"
 
     "???"
 
