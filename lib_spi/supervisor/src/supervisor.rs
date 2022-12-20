@@ -20,6 +20,7 @@ pub mod Supervisor {
     use fable_library_rust::Range_::rangeNumeric;
     use fable_library_rust::Seq_::toArray;
     use fable_library_rust::String_::append;
+    use fable_library_rust::String_::length;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::stringFrom;
     use fable_library_rust::String_::substring2;
@@ -46,6 +47,22 @@ pub mod Supervisor {
         let v0_1: string = string("");
         (v0_1.clone(), v0_1.clone(), v0_1, true)
     }
+    pub fn method2(v0_1: i32, v1: string) -> string {
+        let v0_1: MutCell<i32> = MutCell::new(v0_1);
+        let v1: MutCell<string> = MutCell::new(v1.clone());
+        '_method2:
+            loop  {
+                break '_method2
+                    (if length(v1.get()) < v0_1.get() {
+                         let v0_1_temp: i32 = v0_1.get();
+                         let v1_temp: string =
+                             stringFrom(format!("0{0}", &v1.get()));
+                         v0_1.set(v0_1_temp);
+                         v1.set(v1_temp);
+                         continue '_method2
+                     } else { v1.get() }) ;
+            }
+    }
     pub fn closure5(v0_1: Func0<Supervisor::US0>,
                     v1: Func0<std::string::String>, v2: string, v3: i64,
                     v4: Supervisor::US0, v5: std::string::String) {
@@ -63,39 +80,41 @@ pub mod Supervisor {
                    _ => 0i32,
                } {
             let v11: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-            let v15: string = toString(&((&v11).timestamp() - v3));
-            let v17: u8 = rand::random::<u8>();
-            let v30: Array<std::string::String> =
+            let v17: string =
+                Supervisor::method2(6i32,
+                                    toString(&((&v11).timestamp() - v3)));
+            let v19: u8 = rand::random::<u8>();
+            let v32: Array<std::string::String> =
                 array(&[(&string("timestamp:")).to_string(),
-                        (&v15).to_string(), (&string("run_id:")).to_string(),
-                        format!("{}", &v17)]);
-            let v32 = core::ops::Deref::deref(&v30);
-            let v35: std::string::String = format!("{:?}", ***v32).clone();
-            let v36: std::string::String = v1();
-            let v39 =
-                colored::Colorize::color(&*v36, string("purple").to_string());
-            let v40: std::string::String = format!("{}", v39);
-            let v41: string = substring2(v2.clone(), 0i32, 2i32);
-            let v43: u8 = u8::from_str_radix(&v41, 16).unwrap();
-            let v44: string = substring2(v2.clone(), 2i32, 2i32);
-            let v45: u8 = u8::from_str_radix(&v44, 16).unwrap();
-            let v46: string = substring2(v2, 4i32, 2i32);
+                        (&v17).to_string(), (&string("run_id:")).to_string(),
+                        format!("{}", &v19)]);
+            let v34 = core::ops::Deref::deref(&v32);
+            let v37: std::string::String = format!("{:?}", ***v34).clone();
+            let v38: std::string::String = v1();
+            let v41 =
+                colored::Colorize::color(&*v38, string("purple").to_string());
+            let v42: std::string::String = format!("{}", v41);
+            let v43: string = substring2(v2.clone(), 0i32, 2i32);
+            let v45: u8 = u8::from_str_radix(&v43, 16).unwrap();
+            let v46: string = substring2(v2.clone(), 2i32, 2i32);
             let v47: u8 = u8::from_str_radix(&v46, 16).unwrap();
-            let v49 =
-                colored::Colorize::truecolor(&*v5.to_string(), v43, v45, v47);
-            let v50: std::string::String = format!("{}", v49);
-            let v51: string = string("222222");
-            let v52: string = substring2(v51.clone(), 0i32, 2i32);
-            let v53: u8 = u8::from_str_radix(&v52, 16).unwrap();
-            let v54: string = substring2(v51.clone(), 2i32, 2i32);
+            let v48: string = substring2(v2, 4i32, 2i32);
+            let v49: u8 = u8::from_str_radix(&v48, 16).unwrap();
+            let v51 =
+                colored::Colorize::truecolor(&*v5.to_string(), v45, v47, v49);
+            let v52: std::string::String = format!("{}", v51);
+            let v53: string = string("222222");
+            let v54: string = substring2(v53.clone(), 0i32, 2i32);
             let v55: u8 = u8::from_str_radix(&v54, 16).unwrap();
-            let v56: string = substring2(v51, 4i32, 2i32);
+            let v56: string = substring2(v53.clone(), 2i32, 2i32);
             let v57: u8 = u8::from_str_radix(&v56, 16).unwrap();
-            let v58 =
-                colored::Colorize::truecolor(&*v35.to_string(), v53, v55, v57);
-            let v59: std::string::String = format!("{}", v58);
+            let v58: string = substring2(v53, 4i32, 2i32);
+            let v59: u8 = u8::from_str_radix(&v58, 16).unwrap();
+            let v60 =
+                colored::Colorize::truecolor(&*v37.to_string(), v55, v57, v59);
+            let v61: std::string::String = format!("{}", v60);
             println!("{0}",
-                     stringFrom(format!("{0} {1} {2}", &v40, &v50, &v59)));
+                     stringFrom(format!("{0} {1} {2}", &v42, &v52, &v61)));
             ()
         }
     }
@@ -174,7 +193,7 @@ pub mod Supervisor {
         let v6 = core::ops::Deref::deref(&v4);
         format!("{:?}", ***v6).clone()
     }
-    pub fn method2(v0_1: i32, v1: Lrc<Supervisor::Mut0>) -> bool {
+    pub fn method3(v0_1: i32, v1: Lrc<Supervisor::Mut0>) -> bool {
         v1.l0.get() < v0_1
     }
     pub fn closure1(v0_1: std::path::PathBuf, v1: Option<std::path::PathBuf>)
@@ -615,7 +634,7 @@ pub mod Supervisor {
                                                                                                                       MutCell::new(0i32),
                                                                                                                   l1:
                                                                                                                       MutCell::new(Supervisor::US1::US1_0),});
-                                                                                    while Supervisor::method2(v355,
+                                                                                    while Supervisor::method3(v355,
                                                                                                               v357.clone())
                                                                                           {
                                                                                         let v359:

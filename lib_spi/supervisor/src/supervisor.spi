@@ -304,7 +304,7 @@ let new_log
         if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
             inl new_timestamp () = ticks () - start_timestamp
             inl timestamp : string = new_timestamp () |> to_string'
-            // inl timestamp : string = pad 6 timestamp
+            inl timestamp : string = pad 6 timestamp
             inl run_id : u8 = random ()
             inl locals : log_item = !!(;[
                 !!"timestamp:"; !!timestamp : log_item

@@ -25,6 +25,14 @@ and method1 () : struct (string * string * string * bool) =
     let v0 : string = ""
     let v1 : obj = v0
     struct (v0, v0, v0, true)
+and method2 (v0 : int32, v1 : string) : string =
+    let v2 : int32 = String.length v1
+    let v3 : bool = v2 < v0
+    if v3 then
+        let v4 : string = $"0{v1}"
+        method2(v0, v4)
+    else
+        v1
 and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>), v2 : string, v3 : int64, v4 : US0) (v5 : Types.EmitType<Types.std.string.String>) : unit =
     let v6 : US0 = v0 ()
     let v7 : int32 =
@@ -55,52 +63,54 @@ and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.
         let v13 : int64 = Fable.Core.Rust.emitExpr v11 v12
         let v14 : int64 = v13 - v3
         let v15 : string = (v14).ToString ()
-        let v16 : string = "rand::random::<u8>()"
-        let v17 : uint8 = Fable.Core.Rust.emitExpr () v16
-        let v18 : string = "timestamp:"
-        let v19 : string = "($0).to_string()"
-        let v20 : Types.std.string.String = Fable.Core.Rust.emitExpr v18 v19
-        let v21 : Types.EmitType<Types.std.string.String> = v20 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v22 : Types.std.string.String = Fable.Core.Rust.emitExpr v15 v19
+        let v16 : int32 = 6
+        let v17 : string = method2(v16, v15)
+        let v18 : string = "rand::random::<u8>()"
+        let v19 : uint8 = Fable.Core.Rust.emitExpr () v18
+        let v20 : string = "timestamp:"
+        let v21 : string = "($0).to_string()"
+        let v22 : Types.std.string.String = Fable.Core.Rust.emitExpr v20 v21
         let v23 : Types.EmitType<Types.std.string.String> = v22 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v24 : string = "run_id:"
-        let v25 : Types.std.string.String = Fable.Core.Rust.emitExpr v24 v19
-        let v26 : Types.EmitType<Types.std.string.String> = v25 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v27 : string = "format!(\"{}\", $0)"
-        let v28 : Types.std.string.String = Fable.Core.Rust.emitExpr v17 v27
-        let v29 : Types.EmitType<Types.std.string.String> = v28 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v30 : (Types.EmitType<Types.std.string.String> []) = [|v21; v23; v26; v29|]
-        let v31 : string = "core::ops::Deref::deref($0)"
-        let v32 : obj = Fable.Core.Rust.emitExpr v30 v31
-        let v33 : string = "format!(\"{:?}\", ***$0)"
-        let v34 : Types.std.string.String = Fable.Core.Rust.emitExpr v32 v33
-        let v35 : Types.EmitType<Types.std.string.String> = v34 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v36 : Types.EmitType<Types.std.string.String> = v1 ()
-        let v37 : string = "purple"
-        let v38 : string = "colored::Colorize::color(&*$0, $1.to_string())"
-        let v39 : obj = Fable.Core.Rust.emitExpr struct (v36, v37) v38
-        let v40 : Types.std.string.String = Fable.Core.Rust.emitExpr v39 v27
-        let v41 : string = v2.Substring (0, 2)
-        let v42 : string = "u8::from_str_radix($0, 16).unwrap()"
-        let v43 : uint8 = Fable.Core.Rust.emitExpr v41 v42
-        let v44 : string = v2.Substring (2, 2)
-        let v45 : uint8 = Fable.Core.Rust.emitExpr v44 v42
-        let v46 : string = v2.Substring (4, 2)
-        let v47 : uint8 = Fable.Core.Rust.emitExpr v46 v42
-        let v48 : string = "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)"
-        let v49 : obj = Fable.Core.Rust.emitExpr struct (v5, v43, v45, v47) v48
-        let v50 : Types.std.string.String = Fable.Core.Rust.emitExpr v49 v27
-        let v51 : string = "222222"
-        let v52 : string = v51.Substring (0, 2)
-        let v53 : uint8 = Fable.Core.Rust.emitExpr v52 v42
-        let v54 : string = v51.Substring (2, 2)
-        let v55 : uint8 = Fable.Core.Rust.emitExpr v54 v42
-        let v56 : string = v51.Substring (4, 2)
-        let v57 : uint8 = Fable.Core.Rust.emitExpr v56 v42
-        let v58 : obj = Fable.Core.Rust.emitExpr struct (v35, v53, v55, v57) v48
-        let v59 : Types.std.string.String = Fable.Core.Rust.emitExpr v58 v27
-        let v60 : string = $"{v40} {v50} {v59}"
-        System.Console.WriteLine v60
+        let v24 : Types.std.string.String = Fable.Core.Rust.emitExpr v17 v21
+        let v25 : Types.EmitType<Types.std.string.String> = v24 |> unbox<Types.EmitType<Types.std.string.String>>
+        let v26 : string = "run_id:"
+        let v27 : Types.std.string.String = Fable.Core.Rust.emitExpr v26 v21
+        let v28 : Types.EmitType<Types.std.string.String> = v27 |> unbox<Types.EmitType<Types.std.string.String>>
+        let v29 : string = "format!(\"{}\", $0)"
+        let v30 : Types.std.string.String = Fable.Core.Rust.emitExpr v19 v29
+        let v31 : Types.EmitType<Types.std.string.String> = v30 |> unbox<Types.EmitType<Types.std.string.String>>
+        let v32 : (Types.EmitType<Types.std.string.String> []) = [|v23; v25; v28; v31|]
+        let v33 : string = "core::ops::Deref::deref($0)"
+        let v34 : obj = Fable.Core.Rust.emitExpr v32 v33
+        let v35 : string = "format!(\"{:?}\", ***$0)"
+        let v36 : Types.std.string.String = Fable.Core.Rust.emitExpr v34 v35
+        let v37 : Types.EmitType<Types.std.string.String> = v36 |> unbox<Types.EmitType<Types.std.string.String>>
+        let v38 : Types.EmitType<Types.std.string.String> = v1 ()
+        let v39 : string = "purple"
+        let v40 : string = "colored::Colorize::color(&*$0, $1.to_string())"
+        let v41 : obj = Fable.Core.Rust.emitExpr struct (v38, v39) v40
+        let v42 : Types.std.string.String = Fable.Core.Rust.emitExpr v41 v29
+        let v43 : string = v2.Substring (0, 2)
+        let v44 : string = "u8::from_str_radix($0, 16).unwrap()"
+        let v45 : uint8 = Fable.Core.Rust.emitExpr v43 v44
+        let v46 : string = v2.Substring (2, 2)
+        let v47 : uint8 = Fable.Core.Rust.emitExpr v46 v44
+        let v48 : string = v2.Substring (4, 2)
+        let v49 : uint8 = Fable.Core.Rust.emitExpr v48 v44
+        let v50 : string = "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)"
+        let v51 : obj = Fable.Core.Rust.emitExpr struct (v5, v45, v47, v49) v50
+        let v52 : Types.std.string.String = Fable.Core.Rust.emitExpr v51 v29
+        let v53 : string = "222222"
+        let v54 : string = v53.Substring (0, 2)
+        let v55 : uint8 = Fable.Core.Rust.emitExpr v54 v44
+        let v56 : string = v53.Substring (2, 2)
+        let v57 : uint8 = Fable.Core.Rust.emitExpr v56 v44
+        let v58 : string = v53.Substring (4, 2)
+        let v59 : uint8 = Fable.Core.Rust.emitExpr v58 v44
+        let v60 : obj = Fable.Core.Rust.emitExpr struct (v37, v55, v57, v59) v50
+        let v61 : Types.std.string.String = Fable.Core.Rust.emitExpr v60 v29
+        let v62 : string = $"{v42} {v52} {v61}"
+        System.Console.WriteLine v62
         ()
 and closure4 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>), v2 : string, v3 : int64) (v4 : US0) : (Types.EmitType<Types.std.string.String> -> unit) =
     closure5(v0, v1, v2, v3, v4)
@@ -176,7 +186,7 @@ and closure15 () () : Types.EmitType<Types.std.string.String> =
     let v8 : Types.std.string.String = Fable.Core.Rust.emitExpr v6 v7
     let v9 : Types.EmitType<Types.std.string.String> = v8 |> unbox<Types.EmitType<Types.std.string.String>>
     v9
-and method2 (v0 : int32, v1 : Mut0) : bool =
+and method3 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
@@ -561,7 +571,7 @@ and closure1 (v0 : Types.std.path.PathBuf) (v1 : Option<Types.std.path.PathBuf>)
     let v355 : int32 = v354.Length
     let v356 : US1 = US1_0
     let v357 : Mut0 = {l0 = 0; l1 = v356} : Mut0
-    while method2(v355, v357) do
+    while method3(v355, v357) do
         let v359 : int32 = v357.l0
         let v360 : US1 = v357.l1
         let v361 : int32 = v354.[int v359]
