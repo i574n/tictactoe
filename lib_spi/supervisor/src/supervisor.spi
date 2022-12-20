@@ -61,6 +61,8 @@ nominal static_ref' t = $"Types.StaticRef<`t>"
 nominal str = $"Types.Str"
 nominal emit_type t = $"Types.EmitType<`t>"
 
+// nominal hash_map k v = $"Types.std.collections.HashMap<`k, `v>"
+
 type io_error = $"Types.std.io.Error"
 
 nominal iterator t = $"Types.std.iter.Iterator<`t>"
@@ -92,6 +94,8 @@ inl deref forall t u. (x : t) : u =
 
 inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
 
+inl len forall t. (x : t) : i32 =
+    emit_expr x "($0).len().try_into().unwrap()"
 
 // inl new_string (str : static_ref' str) : string =
     // emit_expr str "fable_library_rust::String_::string($0)"
@@ -114,32 +118,37 @@ inl format forall t. (x : t) : std_string =
 inl new_str (s : string) : static_ref' str =
     emit_expr s "($0).as_ref()"
 
-inl to_str forall a. (obj : a) : option' (ref' str) =
-    emit_expr obj "($0).to_str()"
+inl to_str forall t. (x : t) : option' (ref' str) =
+    emit_expr x "($0).to_str()"
 
-inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
-    emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
-
-inl json_stringify forall t. (obj : t) : std_string =
-    let json : any =
-        real
-            emit_expr `t `any obj
-                typecase t with
-                | array _ => "serde_json::json!(****$0)"
-                | _ => "serde_json::json!(*$0)"
-
-    let str : std_string = emit_expr json "$0.to_string()"
-    str
-
-inl color_name (name : string) (str : emit_type std_string) : std_string =
-    (emit_expr (str, name) "colored::Colorize::color(&*$0, $1.to_string())" : any)
-    |> format
+inl to_string'' forall t. (x : t) : string =
+    emit_expr x "fable_library_rust::String_::fromStr($0)"
 
 inl substring (start : i32) (len : i32) (str : string) : string =
     $"!str.Substring (!start, !len)"
 
+inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
+    emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
+
+inl serialize args json : std_string =
+    emit_expr args ("serde_json::json!(" +\ json +\ ")")
+
+// inl json_stringify forall t. (obj : t) : std_string =
+//     real
+//         typecase t with
+//         | array _ => serialize `t obj "****$0"
+//         | _ => serialize `t obj "*$0"
+
+inl serialize args json : std_string =
+    emit_expr args ("serde_json::json!(" +\ json +\ ").to_string()")
+
+
 inl hex_to_u8 (hex : string) : u8 =
     emit_expr hex "u8::from_str_radix($0, 16).unwrap()"
+
+inl color_name (name : string) (str : emit_type std_string) : std_string =
+    (emit_expr (str, name) "colored::Colorize::color(&*$0, $1.to_string())" : any)
+    |> format
 
 inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
     inl r = color_hex |> substring 0 2 |> hex_to_u8
@@ -233,6 +242,9 @@ inl ticks () : ticks =
     emit_expr (now ()) "($0).timestamp()"
 
 
+inl random () : u8 = emit_expr () "rand::random::<u8>()"
+
+
 
 type env =
     {
@@ -282,25 +294,12 @@ let new_log
         if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
             inl new_timestamp () = ticks () - start_timestamp
             inl timestamp : string = new_timestamp () |> to_string'
-            inl timestamp : string = pad 6 timestamp
-            inl run_id : i32 = 999
+            // inl timestamp : string = pad 6 timestamp
+            inl run_id : u8 = random ()
             inl locals : log_item = !!(;[
                 !!"timestamp:"; !!timestamp : log_item
                 !!"run_id:"; !!run_id
             ])
-            // inl obj_json = obj_fn () |> format
-            // inl args_json = args |> format
-            // inl locals_json = locals |> format
-            // inl new_args =
-            //     if env.is_test then
-            //         args_json,
-            //         obj_json,
-            //         locals_json
-            //     else
-            //         args_json,
-            //         obj_json,
-            //         locals_json
-            //     |> format
             inl ext_locals = ext_locals_fn () |> color_name "purple"
             inl args = args |> truecolor color
             inl locals = locals |> truecolor "222222"
@@ -345,6 +344,30 @@ inl zmq_request (msg : std_string) : () =
     emit_expr (sock, endpoint) "$0.disconnect(&$1).unwrap()"
 
 
+
+
+union supervisor_req =
+    | ProjectFileOpen : { spiproj_path : path_buf; spiproj_text : std_string }
+    | BuildFile : { spi_path : path_buf; backend : std_string }
+
+inl get_req_json = function
+    | ProjectFileOpen { spiproj_path spiproj_text } =>
+        (spiproj_path, spiproj_text),
+        "{" +\
+            "\"ProjectFileOpen\": {" +\
+                "\"uri\": $0," +\
+                "\"spiprojText\": $1" +\
+            "}" +\
+        "}"
+    | BuildFile { spi_path backend } =>
+        (spi_path, backend),
+        "{" +\
+            "\"BuildFile\": {" +\
+                "\"uri\": $0," +\
+                "\"backend\": $1" +\
+            "}" +\
+        "}"
+
 // fn spiproj_open(spiproj_path: &std::path::Path, spiproj_text: &str) {
 //     let msg = serde_json::json!({
 //         "ProjectFileOpen": {
@@ -355,19 +378,23 @@ inl zmq_request (msg : std_string) : () =
 //     .to_string();
 //     zmq_request(msg);
 // }
-
 inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
-    // console_fsx.write_line "spiproj_open."
-    // console_fsx.write_line "spiproj_path:"
-    // console_fsx.write_line (spiproj_path |> path_display)
-    // console_fsx.write_line "spiproj_text:"
-    // console_fsx.write_line spiproj_text
+    inl get_locals () = !!(;[
+        !!"> spiproj_open ()" : log_item
+    ])
+    inl log = new_log (fun () => Debug) get_locals "e36a62"
 
-    let json : any = emit_expr (spiproj_path, spiproj_text) "serde_json::json!({\"ProjectFileOpen\": {\"uri\": $0, \"spiprojText\": $1}})"
-    let str : std_string = emit_expr json "$0.to_string()"
-    // console_fsx.write_line "str:"
-    // console_fsx.write_line str
-    zmq_request str
+    log Debug !!(;[
+        !!"spiproj_path:"; !!(spiproj_path |> path_display) : log_item
+        !!"spiproj_text.len():"; !!(spiproj_text |> len)
+    ])
+
+    inl args, req_json = ProjectFileOpen { spiproj_path spiproj_text } |> get_req_json
+    inl json = serialize args req_json
+
+    log Debug !!(;[!!"json.len():"; !!(json |> len) : log_item])
+
+    zmq_request json
 
 // fn spi_build_file(spi_path: &std::path::Path, backend: &str) {
 //     let msg = serde_json::json!({
@@ -380,17 +407,22 @@ inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
 //     zmq_request(msg);
 // }
 inl spi_build_file (spi_path : path_buf) (backend : string) : () =
-    // console_fsx.write_line "spi_build_file."
-    // console_fsx.write_line "spi_path:"
-    // console_fsx.write_line (spi_path |> path_display)
-    // console_fsx.write_line "backend:"
-    // console_fsx.write_line backend
+    inl get_locals () = !!(;[
+        !!"> spi_build_file ()" : log_item
+    ])
+    inl log = new_log (fun () => Debug) get_locals "98d5ef"
 
-    let json : any = emit_expr (spi_path, backend) "serde_json::json!({\"BuildFile\": {\"uri\": $0, \"backend\": *$1}})"
-    let str : std_string = emit_expr json "$0.to_string()"
-    // console_fsx.write_line "str:"
-    // console_fsx.write_line str
-    zmq_request str
+    log Debug !!(;[
+        !!"spi_path:"; !!(spi_path |> path_display) : log_item
+        !!"backend:"; !!backend
+    ])
+
+    inl args, req_json = BuildFile { spi_path; backend = backend |> to_std_string } |> get_req_json
+    inl json = serialize args req_json
+
+    log Debug !!(;[!!"json.len():"; !!(json |> len) : log_item])
+
+    zmq_request json
 
 
 

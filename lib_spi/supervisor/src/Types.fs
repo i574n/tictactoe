@@ -109,6 +109,10 @@ type StaticRef<'T> = class end
 type Str = class end
 
 module std =
+    // module collections =
+    //     [<Erase; Emit("std::collections::HashMap<$0, $1>")>]
+    //     type HashMap<'K, 'V> = class end
+
     module io =
         [<Erase; Emit("std::io::Error")>]
         type Error = class end

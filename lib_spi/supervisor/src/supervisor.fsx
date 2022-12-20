@@ -21,14 +21,6 @@ and method1 () : struct (string * string * string * bool) =
     let v0 : string = ""
     let v1 : obj = v0
     struct (v0, v0, v0, true)
-and method2 (v0 : int32, v1 : string) : string =
-    let v2 : int32 = String.length v1
-    let v3 : bool = v2 < v0
-    if v3 then
-        let v4 : string = $"0{v1}"
-        method2(v0, v4)
-    else
-        v1
 and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.String>), v2 : string, v3 : int64, v4 : US0) (v5 : Types.EmitType<Types.std.string.String>) : unit =
     let v6 : US0 = v0 ()
     let v7 : int32 =
@@ -58,20 +50,20 @@ and closure5 (v0 : (unit -> US0), v1 : (unit -> Types.EmitType<Types.std.string.
         let v12 : string = "($0).timestamp()"
         let v13 : int64 = Fable.Core.Rust.emitExpr v11 v12
         let v14 : int64 = v13 - v3
-        let v15 : string = v14.ToString ()
-        let v16 : int32 = 6
-        let v17 : string = method2(v16, v15)
+        let v15 : string = (v14).ToString ()
+        let v16 : string = "rand::random::<u8>()"
+        let v17 : uint8 = Fable.Core.Rust.emitExpr () v16
         let v18 : string = "timestamp:"
         let v19 : string = "($0).to_string()"
         let v20 : Types.std.string.String = Fable.Core.Rust.emitExpr v18 v19
         let v21 : Types.EmitType<Types.std.string.String> = v20 |> unbox<Types.EmitType<Types.std.string.String>>
-        let v22 : Types.std.string.String = Fable.Core.Rust.emitExpr v17 v19
+        let v22 : Types.std.string.String = Fable.Core.Rust.emitExpr v15 v19
         let v23 : Types.EmitType<Types.std.string.String> = v22 |> unbox<Types.EmitType<Types.std.string.String>>
         let v24 : string = "run_id:"
         let v25 : Types.std.string.String = Fable.Core.Rust.emitExpr v24 v19
         let v26 : Types.EmitType<Types.std.string.String> = v25 |> unbox<Types.EmitType<Types.std.string.String>>
         let v27 : string = "format!(\"{}\", $0)"
-        let v28 : Types.std.string.String = Fable.Core.Rust.emitExpr 999 v27
+        let v28 : Types.std.string.String = Fable.Core.Rust.emitExpr v17 v27
         let v29 : Types.EmitType<Types.std.string.String> = v28 |> unbox<Types.EmitType<Types.std.string.String>>
         let v30 : (Types.EmitType<Types.std.string.String> []) = [|v21; v23; v26; v29|]
         let v31 : string = "core::ops::Deref::deref($0)"
@@ -124,6 +116,34 @@ and closure7 () (v0 : Types.Ref<Types.std.path.PathBuf>) : bool =
     let v1 : string = "std::path::Path::exists($0)"
     let v2 : bool = Fable.Core.Rust.emitExpr v0 v1
     v2
+and closure8 () () : US0 =
+    US0_0
+and closure9 () () : Types.EmitType<Types.std.string.String> =
+    let v0 : string = "> spiproj_open ()"
+    let v1 : string = "($0).to_string()"
+    let v2 : Types.std.string.String = Fable.Core.Rust.emitExpr v0 v1
+    let v3 : Types.EmitType<Types.std.string.String> = v2 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v4 : (Types.EmitType<Types.std.string.String> []) = [|v3|]
+    let v5 : string = "core::ops::Deref::deref($0)"
+    let v6 : obj = Fable.Core.Rust.emitExpr v4 v5
+    let v7 : string = "format!(\"{:?}\", ***$0)"
+    let v8 : Types.std.string.String = Fable.Core.Rust.emitExpr v6 v7
+    let v9 : Types.EmitType<Types.std.string.String> = v8 |> unbox<Types.EmitType<Types.std.string.String>>
+    v9
+and closure10 () () : US0 =
+    US0_0
+and closure11 () () : Types.EmitType<Types.std.string.String> =
+    let v0 : string = "> spi_build_file ()"
+    let v1 : string = "($0).to_string()"
+    let v2 : Types.std.string.String = Fable.Core.Rust.emitExpr v0 v1
+    let v3 : Types.EmitType<Types.std.string.String> = v2 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v4 : (Types.EmitType<Types.std.string.String> []) = [|v3|]
+    let v5 : string = "core::ops::Deref::deref($0)"
+    let v6 : obj = Fable.Core.Rust.emitExpr v4 v5
+    let v7 : string = "format!(\"{:?}\", ***$0)"
+    let v8 : Types.std.string.String = Fable.Core.Rust.emitExpr v6 v7
+    let v9 : Types.EmitType<Types.std.string.String> = v8 |> unbox<Types.EmitType<Types.std.string.String>>
+    v9
 and closure1 (v0 : Types.std.path.PathBuf) (v1 : Option<Types.std.path.PathBuf>) : string =
     let v2 : (unit -> US0) = closure2()
     let v3 : (unit -> Types.EmitType<Types.std.string.String>) = closure3()
@@ -273,49 +293,138 @@ and closure1 (v0 : Types.std.path.PathBuf) (v1 : Option<Types.std.path.PathBuf>)
     let v140 : Result<Types.std.string.String, Types.std.io.Error> = Fable.Core.Rust.emitExpr v89 v139
     let v141 : string = "($0).as_ref().unwrap().to_string()"
     let v142 : Types.std.string.String = Fable.Core.Rust.emitExpr v140 v141
-    let v143 : string = "serde_json::json!({\"ProjectFileOpen\": {\"uri\": $0, \"spiprojText\": $1}})"
-    let v144 : obj = Fable.Core.Rust.emitExpr struct (v89, v142) v143
-    let v145 : string = "$0.to_string()"
-    let v146 : Types.std.string.String = Fable.Core.Rust.emitExpr v144 v145
-    let v147 : string = "zmq::Context::new()"
-    let v148 : obj = Fable.Core.Rust.emitExpr () v147
-    let v149 : string = "$0.socket(zmq::REQ).unwrap()"
-    let v150 : obj = Fable.Core.Rust.emitExpr v148 v149
-    let v151 : string = $"tcp://localhost:{13805}"
-    let v152 : string = "$0.connect(&$1).unwrap()"
-    Fable.Core.Rust.emitExpr struct (v150, v151) v152
-    let v153 : string = $"$0.send($1.as_str(), 0).unwrap()"
-    Fable.Core.Rust.emitExpr struct (v150, v146) v153
-    let v154 : string = "$0.recv_string(0).unwrap().unwrap()"
-    let v155 : obj = Fable.Core.Rust.emitExpr v150 v154
-    let v156 : string = "$0.disconnect(&$1).unwrap()"
-    Fable.Core.Rust.emitExpr struct (v150, v151) v156
-    let v157 : US0 = US0_0
-    let v158 : (Types.EmitType<Types.std.string.String> -> unit) = v5 v157
-    let v159 : string = "> spiproj_open; ok"
-    let v160 : Types.std.string.String = Fable.Core.Rust.emitExpr v159 v9
+    let v143 : (unit -> US0) = closure8()
+    let v144 : (unit -> Types.EmitType<Types.std.string.String>) = closure9()
+    let v145 : string = "e36a62"
+    let v146 : (US0 -> (Types.EmitType<Types.std.string.String> -> unit)) = method0(v143, v144, v145)
+    let v147 : US0 = US0_0
+    let v148 : (Types.EmitType<Types.std.string.String> -> unit) = v146 v147
+    let v149 : Types.std.string.String = Fable.Core.Rust.emitExpr v92 v9
+    let v150 : Types.EmitType<Types.std.string.String> = v149 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v151 : string = Fable.Core.Rust.emitExpr v89 v19
+    let v152 : Types.std.string.String = Fable.Core.Rust.emitExpr v151 v9
+    let v153 : Types.EmitType<Types.std.string.String> = v152 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v154 : string = "spiproj_text.len():"
+    let v155 : Types.std.string.String = Fable.Core.Rust.emitExpr v154 v9
+    let v156 : Types.EmitType<Types.std.string.String> = v155 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v157 : string = "($0).len().try_into().unwrap()"
+    let v158 : int32 = Fable.Core.Rust.emitExpr v142 v157
+    let v159 : string = "format!(\"{}\", $0)"
+    let v160 : Types.std.string.String = Fable.Core.Rust.emitExpr v158 v159
     let v161 : Types.EmitType<Types.std.string.String> = v160 |> unbox<Types.EmitType<Types.std.string.String>>
-    v158 v161
-    let v162 : string = "Fsharp"
-    let v163 : string = "serde_json::json!({\"BuildFile\": {\"uri\": $0, \"backend\": *$1}})"
-    let v164 : obj = Fable.Core.Rust.emitExpr struct (v43, v162) v163
-    let v165 : Types.std.string.String = Fable.Core.Rust.emitExpr v164 v145
-    let v166 : obj = Fable.Core.Rust.emitExpr () v147
-    let v167 : obj = Fable.Core.Rust.emitExpr v166 v149
-    let v168 : string = $"tcp://localhost:{13805}"
-    Fable.Core.Rust.emitExpr struct (v167, v168) v152
-    let v169 : string = $"$0.send($1.as_str(), 0).unwrap()"
-    Fable.Core.Rust.emitExpr struct (v167, v165) v169
-    let v170 : obj = Fable.Core.Rust.emitExpr v167 v154
-    Fable.Core.Rust.emitExpr struct (v167, v168) v156
-    let v171 : US0 = US0_0
-    let v172 : (Types.EmitType<Types.std.string.String> -> unit) = v5 v171
-    let v173 : string = "> spi_build_file; ok"
-    let v174 : Types.std.string.String = Fable.Core.Rust.emitExpr v173 v9
-    let v175 : Types.EmitType<Types.std.string.String> = v174 |> unbox<Types.EmitType<Types.std.string.String>>
-    v172 v175
-    let v176 : string = "???"
-    v176
+    let v162 : (Types.EmitType<Types.std.string.String> []) = [|v150; v153; v156; v161|]
+    let v163 : obj = Fable.Core.Rust.emitExpr v162 v37
+    let v164 : Types.std.string.String = Fable.Core.Rust.emitExpr v163 v39
+    let v165 : Types.EmitType<Types.std.string.String> = v164 |> unbox<Types.EmitType<Types.std.string.String>>
+    v148 v165
+    let v166 : string = "{"
+    let v167 : string = "\"ProjectFileOpen\": {"
+    let v168 : string = v166 + v167
+    let v169 : string = "\"uri\": $0,"
+    let v170 : string = v168 + v169
+    let v171 : string = "\"spiprojText\": $1"
+    let v172 : string = v170 + v171
+    let v173 : string = "}"
+    let v174 : string = v172 + v173
+    let v175 : string = v174 + v173
+    let v176 : string = "serde_json::json!("
+    let v177 : string = v176 + v175
+    let v178 : string = ").to_string()"
+    let v179 : string = v177 + v178
+    let v180 : Types.std.string.String = Fable.Core.Rust.emitExpr struct (v89, v142) v179
+    let v181 : US0 = US0_0
+    let v182 : (Types.EmitType<Types.std.string.String> -> unit) = v146 v181
+    let v183 : string = "json.len():"
+    let v184 : Types.std.string.String = Fable.Core.Rust.emitExpr v183 v9
+    let v185 : Types.EmitType<Types.std.string.String> = v184 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v186 : int32 = Fable.Core.Rust.emitExpr v180 v157
+    let v187 : Types.std.string.String = Fable.Core.Rust.emitExpr v186 v159
+    let v188 : Types.EmitType<Types.std.string.String> = v187 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v189 : (Types.EmitType<Types.std.string.String> []) = [|v185; v188|]
+    let v190 : obj = Fable.Core.Rust.emitExpr v189 v37
+    let v191 : Types.std.string.String = Fable.Core.Rust.emitExpr v190 v39
+    let v192 : Types.EmitType<Types.std.string.String> = v191 |> unbox<Types.EmitType<Types.std.string.String>>
+    v182 v192
+    let v193 : string = "zmq::Context::new()"
+    let v194 : obj = Fable.Core.Rust.emitExpr () v193
+    let v195 : string = "$0.socket(zmq::REQ).unwrap()"
+    let v196 : obj = Fable.Core.Rust.emitExpr v194 v195
+    let v197 : string = $"tcp://localhost:{13805}"
+    let v198 : string = "$0.connect(&$1).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v196, v197) v198
+    let v199 : string = $"$0.send($1.as_str(), 0).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v196, v180) v199
+    let v200 : string = "$0.recv_string(0).unwrap().unwrap()"
+    let v201 : obj = Fable.Core.Rust.emitExpr v196 v200
+    let v202 : string = "$0.disconnect(&$1).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v196, v197) v202
+    let v203 : US0 = US0_0
+    let v204 : (Types.EmitType<Types.std.string.String> -> unit) = v5 v203
+    let v205 : string = "> spiproj_open; ok"
+    let v206 : Types.std.string.String = Fable.Core.Rust.emitExpr v205 v9
+    let v207 : Types.EmitType<Types.std.string.String> = v206 |> unbox<Types.EmitType<Types.std.string.String>>
+    v204 v207
+    let v208 : (unit -> US0) = closure10()
+    let v209 : (unit -> Types.EmitType<Types.std.string.String>) = closure11()
+    let v210 : string = "98d5ef"
+    let v211 : (US0 -> (Types.EmitType<Types.std.string.String> -> unit)) = method0(v208, v209, v210)
+    let v212 : US0 = US0_0
+    let v213 : (Types.EmitType<Types.std.string.String> -> unit) = v211 v212
+    let v214 : Types.std.string.String = Fable.Core.Rust.emitExpr v23 v9
+    let v215 : Types.EmitType<Types.std.string.String> = v214 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v216 : string = Fable.Core.Rust.emitExpr v43 v19
+    let v217 : Types.std.string.String = Fable.Core.Rust.emitExpr v216 v9
+    let v218 : Types.EmitType<Types.std.string.String> = v217 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v219 : string = "backend:"
+    let v220 : Types.std.string.String = Fable.Core.Rust.emitExpr v219 v9
+    let v221 : Types.EmitType<Types.std.string.String> = v220 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v222 : string = "Fsharp"
+    let v223 : Types.std.string.String = Fable.Core.Rust.emitExpr v222 v9
+    let v224 : Types.EmitType<Types.std.string.String> = v223 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v225 : (Types.EmitType<Types.std.string.String> []) = [|v215; v218; v221; v224|]
+    let v226 : obj = Fable.Core.Rust.emitExpr v225 v37
+    let v227 : Types.std.string.String = Fable.Core.Rust.emitExpr v226 v39
+    let v228 : Types.EmitType<Types.std.string.String> = v227 |> unbox<Types.EmitType<Types.std.string.String>>
+    v213 v228
+    let v229 : Types.std.string.String = Fable.Core.Rust.emitExpr v222 v9
+    let v230 : string = "\"BuildFile\": {"
+    let v231 : string = v166 + v230
+    let v232 : string = v231 + v169
+    let v233 : string = "\"backend\": $1"
+    let v234 : string = v232 + v233
+    let v235 : string = v234 + v173
+    let v236 : string = v235 + v173
+    let v237 : string = v176 + v236
+    let v238 : string = v237 + v178
+    let v239 : Types.std.string.String = Fable.Core.Rust.emitExpr struct (v43, v229) v238
+    let v240 : US0 = US0_0
+    let v241 : (Types.EmitType<Types.std.string.String> -> unit) = v211 v240
+    let v242 : Types.std.string.String = Fable.Core.Rust.emitExpr v183 v9
+    let v243 : Types.EmitType<Types.std.string.String> = v242 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v244 : int32 = Fable.Core.Rust.emitExpr v239 v157
+    let v245 : Types.std.string.String = Fable.Core.Rust.emitExpr v244 v159
+    let v246 : Types.EmitType<Types.std.string.String> = v245 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v247 : (Types.EmitType<Types.std.string.String> []) = [|v243; v246|]
+    let v248 : obj = Fable.Core.Rust.emitExpr v247 v37
+    let v249 : Types.std.string.String = Fable.Core.Rust.emitExpr v248 v39
+    let v250 : Types.EmitType<Types.std.string.String> = v249 |> unbox<Types.EmitType<Types.std.string.String>>
+    v241 v250
+    let v251 : obj = Fable.Core.Rust.emitExpr () v193
+    let v252 : obj = Fable.Core.Rust.emitExpr v251 v195
+    let v253 : string = $"tcp://localhost:{13805}"
+    Fable.Core.Rust.emitExpr struct (v252, v253) v198
+    let v254 : string = $"$0.send($1.as_str(), 0).unwrap()"
+    Fable.Core.Rust.emitExpr struct (v252, v239) v254
+    let v255 : obj = Fable.Core.Rust.emitExpr v252 v200
+    Fable.Core.Rust.emitExpr struct (v252, v253) v202
+    let v256 : US0 = US0_0
+    let v257 : (Types.EmitType<Types.std.string.String> -> unit) = v5 v256
+    let v258 : string = "> spi_build_file; ok"
+    let v259 : Types.std.string.String = Fable.Core.Rust.emitExpr v258 v9
+    let v260 : Types.EmitType<Types.std.string.String> = v259 |> unbox<Types.EmitType<Types.std.string.String>>
+    v257 v260
+    let v261 : string = "???"
+    v261
 and closure0 () (v0 : Types.std.path.PathBuf) : (Option<Types.std.path.PathBuf> -> string) =
     closure1(v0)
 let v0 : (Types.std.path.PathBuf -> (Option<Types.std.path.PathBuf> -> string)) = closure0()

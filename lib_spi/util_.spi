@@ -29,7 +29,7 @@ instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>
     y |> array'
 
 
-inl to_string' forall t. (obj : t) : string = $"!obj.ToString ()"
+inl to_string' forall t. (x : t) : string = $"(!x).ToString ()"
 instance to_string any = to_string'
 
 inl to_any forall t. (obj : t) : any = $"!obj"
@@ -78,9 +78,11 @@ inl union_list_get forall union_type union_key_type value_type.
                     | ~x * ~x => some `value_type union_item_value
                     | _ => None
 
+
 inl (/@) a b = b |> append a
 inl (/??) a b = a |> optionm.defaultWith b
 inl (/.) props key = union_list_get key props
+inl (+\) forall t. (a : t) (b : t) : t = $"!a + !b"
 
 
 let rec pad (count : i32) (n : string) : string =
