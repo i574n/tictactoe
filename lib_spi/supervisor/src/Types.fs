@@ -127,14 +127,19 @@ module std =
         type Ancestors = class end
         [<Erase; Emit("std::path::Path")>]
         type Path = class end
-        [<Erase; Emit("std::path::StripPrefixError")>]
-        type StripPrefixError = class end
         [<Erase; Emit("std::path::PathBuf")>]
         type PathBuf = class end
+        [<Erase; Emit("std::path::StripPrefixError")>]
+        type StripPrefixError = class end
 
     module string =
         [<Erase; Emit("std::string::String")>]
         type String = class end
+
+    module time =
+        [<Erase; Emit("std::time::SystemTime")>]
+        type SystemTime = class end
+
 
 module chrono =
     [<Erase; Emit("chrono::Utc")>]

@@ -8,12 +8,17 @@
 #![allow(unused_attributes)]
 pub mod Supervisor {
     use super::*;
+    use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
     use fable_library_rust::Native_::Array;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
+    use fable_library_rust::Native_::Lrc;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::array;
     use fable_library_rust::Native_::on_startup;
+    use fable_library_rust::Option_::defaultValue;
+    use fable_library_rust::Range_::rangeNumeric;
+    use fable_library_rust::Seq_::toArray;
     use fable_library_rust::String_::append;
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::stringFrom;
@@ -21,6 +26,13 @@ pub mod Supervisor {
     use fable_library_rust::String_::toString;
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
     pub enum US0 { US0_0, US0_1, US0_2, US0_3, }
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+    pub enum US1 { US1_0, US1_1(string), }
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+    pub struct Mut0 {
+        pub l0: MutCell<i32>,
+        pub l1: MutCell<Supervisor::US1>,
+    }
     pub fn closure2(unitVar: (), unitVar_1: ()) -> Supervisor::US0 {
         Supervisor::US0::US0_0
     }
@@ -140,9 +152,30 @@ pub mod Supervisor {
     }
     pub fn closure11(unitVar: (), unitVar_1: ()) -> std::string::String {
         let v4: Array<std::string::String> =
+            array(&[(&string("> zmq_request ()")).to_string()]);
+        let v6 = core::ops::Deref::deref(&v4);
+        format!("{:?}", ***v6).clone()
+    }
+    pub fn closure12(unitVar: (), unitVar_1: ()) -> Supervisor::US0 {
+        Supervisor::US0::US0_0
+    }
+    pub fn closure13(unitVar: (), unitVar_1: ()) -> std::string::String {
+        let v4: Array<std::string::String> =
             array(&[(&string("> spi_build_file ()")).to_string()]);
         let v6 = core::ops::Deref::deref(&v4);
         format!("{:?}", ***v6).clone()
+    }
+    pub fn closure14(unitVar: (), unitVar_1: ()) -> Supervisor::US0 {
+        Supervisor::US0::US0_0
+    }
+    pub fn closure15(unitVar: (), unitVar_1: ()) -> std::string::String {
+        let v4: Array<std::string::String> =
+            array(&[(&string("> wait_file_change ()")).to_string()]);
+        let v6 = core::ops::Deref::deref(&v4);
+        format!("{:?}", ***v6).clone()
+    }
+    pub fn method2(v0_1: i32, v1: Lrc<Supervisor::Mut0>) -> bool {
+        v1.l0.get() < v0_1
     }
     pub fn closure1(v0_1: std::path::PathBuf, v1: Option<std::path::PathBuf>)
      -> string {
@@ -245,8 +278,9 @@ pub mod Supervisor {
                         let v117: std::path::PathBuf =
                             (&v116).as_ref().unwrap().to_path_buf();
                         let v119 = v5(Supervisor::US0::US0_0);
+                        let v120: string = string("fsx_path:");
                         let v122: std::string::String =
-                            (&string("fsx_path:")).to_string().clone();
+                            (&v120).to_string().clone();
                         let v123: string =
                             fable_library_rust::String_::fromStr(&format!("{}", &v117.display()));
                         let v126: Array<std::string::String> =
@@ -254,8 +288,9 @@ pub mod Supervisor {
                         let v127 = core::ops::Deref::deref(&v126);
                         v119(format!("{:?}", ***v127).clone());
                         {
+                            let v130: string = string("");
                             let v132: Result<(), std::io::Error> =
-                                std::fs::write(v117, string("").as_str());
+                                std::fs::write(v117.clone(), v130.clone().as_str());
                             *((&v132).as_ref()).unwrap();
                             v5(Supervisor::US0::US0_0)((&string("> fs_write fsx_path \"\"; ok")).to_string().clone());
                             {
@@ -321,97 +356,376 @@ pub mod Supervisor {
                                     let v190 = core::ops::Deref::deref(&v189);
                                     v182(format!("{:?}", ***v190).clone());
                                     {
-                                        let v194 = zmq::Context::new();
+                                        fn v193() -> Supervisor::US0 {
+                                            Supervisor::closure10((), ())
+                                        }
+                                        fn v194() -> std::string::String {
+                                            Supervisor::closure11((), ())
+                                        }
+                                        let v195: string = string("fcfb1b");
                                         let v196 =
-                                            v194.socket(zmq::REQ).unwrap();
-                                        let v197: string =
-                                            stringFrom(format!("tcp://localhost:{0}",
-                                                               &13805i32));
-                                        v196.connect(&v197.clone()).unwrap();
-                                        v196.send(v180.as_str(), 0).unwrap();
+                                            Supervisor::method0(Func0::from(v193),
+                                                                Func0::from(v194),
+                                                                v195.clone());
+                                        let v198 =
+                                            v196(Supervisor::US0::US0_0);
+                                        let v199: string = string("host:");
+                                        let v201: std::string::String =
+                                            (&v199).to_string().clone();
+                                        let v202: string =
+                                            string("localhost");
+                                        let v204: std::string::String =
+                                            (&v202).to_string().clone();
+                                        let v205: string = string("port:");
+                                        let v207: std::string::String =
+                                            (&v205).to_string().clone();
+                                        let v209: std::string::String =
+                                            format!("{}", &13805i32).clone();
+                                        let v210: string =
+                                            string("msg.len():");
+                                        let v212: std::string::String =
+                                            (&v210).to_string().clone();
+                                        let v213: i32 =
+                                            (&v180).len().try_into().unwrap();
+                                        let v216: Array<std::string::String> =
+                                            array(&[v201, v204, v207, v209,
+                                                    v212,
+                                                    format!("{}", &v213)]);
+                                        let v217 =
+                                            core::ops::Deref::deref(&v216);
+                                        v198(format!("{:?}", ***v217).clone());
                                         {
-                                            let v201 =
-                                                v196.recv_string(0).unwrap().unwrap();
-                                            v196.disconnect(&v197).unwrap();
-                                            v5(Supervisor::US0::US0_0)((&string("> spiproj_open; ok")).to_string().clone());
+                                            let v221 = zmq::Context::new();
+                                            let v223 =
+                                                v221.socket(zmq::REQ).unwrap();
+                                            let v224: string =
+                                                stringFrom(format!("tcp://{0}:{1}",
+                                                                   &v202,
+                                                                   &13805i32));
+                                            v223.connect(&v224.clone()).unwrap();
+                                            v223.send(v180.as_str(), 0).unwrap();
                                             {
-                                                fn v208() -> Supervisor::US0 {
-                                                    Supervisor::closure10((),
-                                                                          ())
-                                                }
-                                                fn v209()
-                                                 -> std::string::String {
-                                                    Supervisor::closure11((),
-                                                                          ())
-                                                }
-                                                let v211 =
-                                                    Supervisor::method0(Func0::from(v208),
-                                                                        Func0::from(v209),
-                                                                        string("98d5ef"));
-                                                let v213 =
-                                                    v211(Supervisor::US0::US0_0);
-                                                let v215:
+                                                let v228:
                                                         std::string::String =
-                                                    (&v23).to_string().clone();
-                                                let v216: string =
-                                                    fable_library_rust::String_::fromStr(&format!("{}", &v43.display()));
-                                                let v222: string =
-                                                    string("Fsharp");
-                                                let v225:
-                                                        Array<std::string::String> =
-                                                    array(&[v215,
-                                                            (&v216).to_string(),
-                                                            (&string("backend:")).to_string(),
-                                                            (&v222).to_string()]);
-                                                let v226 =
-                                                    core::ops::Deref::deref(&v225);
-                                                v213(format!("{:?}", ***v226).clone());
+                                                    v223.recv_string(0).unwrap().unwrap();
+                                                v223.disconnect(&v224).unwrap();
                                                 {
-                                                    let v229:
+                                                    let v231 =
+                                                        v196(Supervisor::US0::US0_0);
+                                                    let v232: string =
+                                                        string("result.len():");
+                                                    let v234:
                                                             std::string::String =
-                                                        (&v222).to_string();
-                                                    let v238: string =
-                                                        append(append(v176,
-                                                                      append(append(append(append(append(v166,
-                                                                                                         string("\"BuildFile\": {")),
-                                                                                                  v169),
-                                                                                           string("\"backend\": $1")),
-                                                                                    v173.clone()),
-                                                                             v173)),
-                                                               v178);
-                                                    let v239:
-                                                            std::string::String =
-                                                        serde_json::json!({"BuildFile": {"uri": v43,"backend": v229}}).to_string();
-                                                    let v241 =
-                                                        v211(Supervisor::US0::US0_0);
-                                                    let v243:
-                                                            std::string::String =
-                                                        (&v183).to_string().clone();
-                                                    let v244: i32 =
-                                                        (&v239).len().try_into().unwrap();
-                                                    let v247:
+                                                        (&v232).to_string().clone();
+                                                    let v235: i32 =
+                                                        (&v228).len().try_into().unwrap();
+                                                    let v238:
                                                             Array<std::string::String> =
-                                                        array(&[v243,
-                                                                format!("{}", &v244)]);
-                                                    let v248 =
-                                                        core::ops::Deref::deref(&v247);
-                                                    v241(format!("{:?}", ***v248).clone());
+                                                        array(&[v234,
+                                                                format!("{}", &v235)]);
+                                                    let v239 =
+                                                        core::ops::Deref::deref(&v238);
+                                                    v231(format!("{:?}", ***v239).clone());
+                                                    v5(Supervisor::US0::US0_0)((&string("> spiproj_open; ok")).to_string().clone());
                                                     {
-                                                        let v251 =
-                                                            zmq::Context::new();
+                                                        fn v247()
+                                                         -> Supervisor::US0 {
+                                                            Supervisor::closure12((),
+                                                                                  ())
+                                                        }
+                                                        fn v248()
+                                                         ->
+                                                             std::string::String {
+                                                            Supervisor::closure13((),
+                                                                                  ())
+                                                        }
+                                                        let v250 =
+                                                            Supervisor::method0(Func0::from(v247),
+                                                                                Func0::from(v248),
+                                                                                string("98d5ef"));
                                                         let v252 =
-                                                            v251.socket(zmq::REQ).unwrap();
-                                                        let v253: string =
-                                                            stringFrom(format!("tcp://localhost:{0}",
-                                                                               &13805i32));
-                                                        v252.connect(&v253.clone()).unwrap();
-                                                        v252.send(v239.as_str(), 0).unwrap();
+                                                            v250(Supervisor::US0::US0_0);
+                                                        let v254:
+                                                                std::string::String =
+                                                            (&v23).to_string().clone();
+                                                        let v255: string =
+                                                            fable_library_rust::String_::fromStr(&format!("{}", &v43.display()));
+                                                        let v261: string =
+                                                            string("Fsharp");
+                                                        let v264:
+                                                                Array<std::string::String> =
+                                                            array(&[v254,
+                                                                    (&v255).to_string(),
+                                                                    (&string("backend:")).to_string(),
+                                                                    (&v261).to_string()]);
+                                                        let v265 =
+                                                            core::ops::Deref::deref(&v264);
+                                                        v252(format!("{:?}", ***v265).clone());
                                                         {
-                                                            let v255 =
-                                                                v252.recv_string(0).unwrap().unwrap();
-                                                            v252.disconnect(&v253).unwrap();
-                                                            v5(Supervisor::US0::US0_0)((&string("> spi_build_file; ok")).to_string().clone());
-                                                            string("???")
+                                                            let v268:
+                                                                    std::string::String =
+                                                                (&v261).to_string();
+                                                            let v277: string =
+                                                                append(append(v176,
+                                                                              append(append(append(append(append(v166,
+                                                                                                                 string("\"BuildFile\": {")),
+                                                                                                          v169),
+                                                                                                   string("\"backend\": $1")),
+                                                                                            v173.clone()),
+                                                                                     v173)),
+                                                                       v178);
+                                                            let v278:
+                                                                    std::string::String =
+                                                                serde_json::json!({"BuildFile": {"uri": v43,"backend": v268}}).to_string();
+                                                            let v280 =
+                                                                v250(Supervisor::US0::US0_0);
+                                                            let v282:
+                                                                    std::string::String =
+                                                                (&v183).to_string().clone();
+                                                            let v283: i32 =
+                                                                (&v278).len().try_into().unwrap();
+                                                            let v286:
+                                                                    Array<std::string::String> =
+                                                                array(&[v282,
+                                                                        format!("{}", &v283)]);
+                                                            let v287 =
+                                                                core::ops::Deref::deref(&v286);
+                                                            v280(format!("{:?}", ***v287).clone());
+                                                            {
+                                                                let v290 =
+                                                                    Supervisor::method0(Func0::from(v193),
+                                                                                        Func0::from(v194),
+                                                                                        v195);
+                                                                let v292 =
+                                                                    v290(Supervisor::US0::US0_0);
+                                                                let v294:
+                                                                        std::string::String =
+                                                                    (&v199).to_string().clone();
+                                                                let v296:
+                                                                        std::string::String =
+                                                                    (&v202).to_string().clone();
+                                                                let v298:
+                                                                        std::string::String =
+                                                                    (&v205).to_string().clone();
+                                                                let v300:
+                                                                        std::string::String =
+                                                                    format!("{}", &13805i32).clone();
+                                                                let v302:
+                                                                        std::string::String =
+                                                                    (&v210).to_string().clone();
+                                                                let v303:
+                                                                        i32 =
+                                                                    (&v278).len().try_into().unwrap();
+                                                                let v306:
+                                                                        Array<std::string::String> =
+                                                                    array(&[v294,
+                                                                            v296,
+                                                                            v298,
+                                                                            v300,
+                                                                            v302,
+                                                                            format!("{}", &v303)]);
+                                                                let v307 =
+                                                                    core::ops::Deref::deref(&v306);
+                                                                v292(format!("{:?}", ***v307).clone());
+                                                                {
+                                                                    let v310 =
+                                                                        zmq::Context::new();
+                                                                    let v311 =
+                                                                        v310.socket(zmq::REQ).unwrap();
+                                                                    let v312:
+                                                                            string =
+                                                                        stringFrom(format!("tcp://{0}:{1}",
+                                                                                           &v202,
+                                                                                           &13805i32));
+                                                                    v311.connect(&v312.clone()).unwrap();
+                                                                    v311.send(v278.as_str(), 0).unwrap();
+                                                                    {
+                                                                        let v314:
+                                                                                std::string::String =
+                                                                            v311.recv_string(0).unwrap().unwrap();
+                                                                        v311.disconnect(&v312).unwrap();
+                                                                        {
+                                                                            let v316 =
+                                                                                v290(Supervisor::US0::US0_0);
+                                                                            let v318:
+                                                                                    std::string::String =
+                                                                                (&v232).to_string().clone();
+                                                                            let v319:
+                                                                                    i32 =
+                                                                                (&v314).len().try_into().unwrap();
+                                                                            let v322:
+                                                                                    Array<std::string::String> =
+                                                                                array(&[v318,
+                                                                                        format!("{}", &v319)]);
+                                                                            let v323 =
+                                                                                core::ops::Deref::deref(&v322);
+                                                                            v316(format!("{:?}", ***v323).clone());
+                                                                            v5(Supervisor::US0::US0_0)((&string("> spi_build_file; ok")).to_string().clone());
+                                                                            {
+                                                                                fn v331()
+                                                                                 ->
+                                                                                     Supervisor::US0 {
+                                                                                    Supervisor::closure14((),
+                                                                                                          ())
+                                                                                }
+                                                                                fn v332()
+                                                                                 ->
+                                                                                     std::string::String {
+                                                                                    Supervisor::closure15((),
+                                                                                                          ())
+                                                                                }
+                                                                                let v334 =
+                                                                                    Supervisor::method0(Func0::from(v331),
+                                                                                                        Func0::from(v332),
+                                                                                                        string("387957"));
+                                                                                let v336:
+                                                                                        std::time::SystemTime =
+                                                                                    std::fs::metadata(&v117).unwrap().modified().unwrap();
+                                                                                let v338 =
+                                                                                    v334(Supervisor::US0::US0_0);
+                                                                                let v340:
+                                                                                        std::string::String =
+                                                                                    (&v120).to_string().clone();
+                                                                                let v341:
+                                                                                        string =
+                                                                                    fable_library_rust::String_::fromStr(&format!("{}", &v117.display()));
+                                                                                let v350:
+                                                                                        Array<std::string::String> =
+                                                                                    array(&[v340,
+                                                                                            (&v341).to_string(),
+                                                                                            (&string("start:")).to_string(),
+                                                                                            format!("{:?}", &v336)]);
+                                                                                let v351 =
+                                                                                    core::ops::Deref::deref(&v350);
+                                                                                v338(format!("{:?}", ***v351).clone());
+                                                                                {
+                                                                                    let v354:
+                                                                                            Array<i32> =
+                                                                                        toArray(rangeNumeric(0i32,
+                                                                                                             1i32,
+                                                                                                             50i32).clone());
+                                                                                    let v355:
+                                                                                            i32 =
+                                                                                        v354.len()
+                                                                                            as
+                                                                                            i32;
+                                                                                    let v357:
+                                                                                            Lrc<Supervisor::Mut0> =
+                                                                                        Lrc::new(Supervisor::Mut0{l0:
+                                                                                                                      MutCell::new(0i32),
+                                                                                                                  l1:
+                                                                                                                      MutCell::new(Supervisor::US1::US1_0),});
+                                                                                    while Supervisor::method2(v355,
+                                                                                                              v357.clone())
+                                                                                          {
+                                                                                        let v359:
+                                                                                                i32 =
+                                                                                            v357.l0.get();
+                                                                                        let v360:
+                                                                                                Supervisor::US1 =
+                                                                                            v357.l1.get().clone();
+                                                                                        let v361:
+                                                                                                i32 =
+                                                                                            v354[v359].clone();
+                                                                                        let v391:
+                                                                                                Supervisor::US1 =
+                                                                                            match &v360
+                                                                                                {
+                                                                                                Supervisor::US1::US1_1(v360_1_0)
+                                                                                                =>
+                                                                                                Supervisor::US1::US1_1(v360_1_0.clone()),
+                                                                                                _
+                                                                                                =>
+                                                                                                {
+                                                                                                    let v362:
+                                                                                                            std::time::SystemTime =
+                                                                                                        std::fs::metadata(&v117).unwrap().modified().unwrap();
+                                                                                                    let v364 =
+                                                                                                        v334(Supervisor::US0::US0_0);
+                                                                                                    let v375:
+                                                                                                            Array<std::string::String> =
+                                                                                                        array(&[(&string("i:")).to_string(),
+                                                                                                                format!("{}", &v361),
+                                                                                                                (&string("last_modified:")).to_string(),
+                                                                                                                format!("{:?}", &v362)]);
+                                                                                                    let v376 =
+                                                                                                        core::ops::Deref::deref(&v375);
+                                                                                                    v364(format!("{:?}", ***v376).clone());
+                                                                                                    if v362 > v336
+                                                                                                       {
+                                                                                                        let v381:
+                                                                                                                Result<std::string::String,
+                                                                                                                       std::io::Error> =
+                                                                                                            std::fs::read_to_string(&v117);
+                                                                                                        let v382:
+                                                                                                                std::string::String =
+                                                                                                            (&v381).as_ref().unwrap().to_string();
+                                                                                                        Supervisor::US1::US1_1(fable_library_rust::String_::fromStr(&v382))
+                                                                                                    } else {
+                                                                                                        std::thread::sleep(std::time::Duration::from_millis(*&100u64));
+                                                                                                        Supervisor::US1::US1_0
+                                                                                                    }
+                                                                                                }
+                                                                                            };
+                                                                                        let v392:
+                                                                                                i32 =
+                                                                                            v359
+                                                                                                +
+                                                                                                1i32;
+                                                                                        v357.l0.set(v392);
+                                                                                        v357.l1.set(v391.clone());
+                                                                                        ()
+                                                                                    }
+                                                                                    {
+                                                                                        let v393:
+                                                                                                Supervisor::US1 =
+                                                                                            v357.l1.get().clone();
+                                                                                        let v395:
+                                                                                                string =
+                                                                                            match &v393
+                                                                                                {
+                                                                                                Supervisor::US1::US1_1(v393_1_0)
+                                                                                                =>
+                                                                                                v393_1_0.clone(),
+                                                                                                _
+                                                                                                =>
+                                                                                                v130,
+                                                                                            };
+                                                                                        let v397 =
+                                                                                            v5(Supervisor::US0::US0_0);
+                                                                                        let v400:
+                                                                                                std::string::String =
+                                                                                            (&string("new_fsx.len():")).to_string().clone();
+                                                                                        let v401:
+                                                                                                i32 =
+                                                                                            (&v395).len().try_into().unwrap();
+                                                                                        let v404:
+                                                                                                Array<std::string::String> =
+                                                                                            array(&[v400,
+                                                                                                    format!("{}", &v401)]);
+                                                                                        let v405 =
+                                                                                            core::ops::Deref::deref(&v404);
+                                                                                        v397(format!("{:?}", ***v405).clone());
+                                                                                        {
+                                                                                            let v408:
+                                                                                                    std::path::PathBuf =
+                                                                                                defaultValue(v117,
+                                                                                                             v1);
+                                                                                            let v409:
+                                                                                                    Result<(),
+                                                                                                           std::io::Error> =
+                                                                                                std::fs::write(v408, v395.clone().as_str());
+                                                                                            *((&v409).as_ref()).unwrap();
+                                                                                            v5(Supervisor::US0::US0_0)((&string("> fs_write new_fsx_path; ok")).to_string().clone());
+                                                                                            v395
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }

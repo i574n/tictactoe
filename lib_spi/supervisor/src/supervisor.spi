@@ -74,6 +74,8 @@ type strip_prefix_error = $"Types.std.path.StripPrefixError"
 
 nominal std_string = $"Types.std.string.String"
 
+nominal systemtime = $"Types.std.time.SystemTime"
+
 type utc = $"Types.chrono.Utc"
 type local = $"Types.chrono.Local"
 type datetime t = $"Types.chrono.DateTime<`t>"
@@ -109,6 +111,7 @@ inl format forall t. (x : t) : std_string =
             typecase t with
             | string => to_std_string x
             | std_string => x
+            | systemtime => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
             | array _ =>
                 inl x = deref `t `any x
                 emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
@@ -161,6 +164,8 @@ inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
 // inl unwrap' x = emit_expr x "$0.unwrap()"
 inl unwrap_ref x = emit_expr x "($0).unwrap()"
 inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
+inl unwrap_or forall t. (a : t) (b : option' t) : t =
+    $"!b |> Option.defaultValue !a"
 instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
 instance (~!!) ref' t' = unwrap_ref
 instance (~!!) emit_type t' = fun (x : t) =>
@@ -241,8 +246,13 @@ inl now () : datetime utc =
 inl ticks () : ticks =
     emit_expr (now ()) "($0).timestamp()"
 
+inl sleep (ms : u64) : () =
+    emit_expr ms "std::thread::sleep(std::time::Duration::from_millis(*$0))"
+
 
 inl random () : u8 = emit_expr () "rand::random::<u8>()"
+
+inl range forall t {number}. (a : t) (b : t) : a i32 t = $"[| !a..!b |]"
 
 
 
@@ -307,44 +317,33 @@ let new_log
             console_fsx.write_line new_args
 
 
+inl zmq_request (msg : std_string) : std_string =
+    inl get_locals () = !!(;[
+        !!"> zmq_request ()" : log_item
+    ])
+    inl log = new_log (fun () => Debug) get_locals "fcfb1b"
 
-
-
-
-
-
-
-
-
-// fn zmq_request(msg: String) {
-//     let ctx = zmq::Context::new();
-//     let sock = ctx.socket(zmq::REQ).unwrap();
-//     let port = 13805;
-//     let endpoint = &format!("tcp://localhost:{}", port);
-//     sock.connect(endpoint).unwrap();
-//     sock.send(&msg, 0).unwrap();
-//     let result = sock.recv_string(0).unwrap();
-//     println!("zmq_request. result: {}", result.unwrap());
-//     sock.disconnect(endpoint).unwrap();
-// }
-inl zmq_request (msg : std_string) : () =
-    // console_fsx.write_line "zmq_request."
-    // console_fsx.write_line "msg:"
-    // console_fsx.write_line msg
+    inl host = "localhost"
+    inl port : i32 = 13805
+    log Debug !!(;[
+        !!"host:"; !!host : log_item
+        !!"port:"; !!port
+        !!"msg.len():"; !!(msg |> len)
+    ])
 
     inl ctx : any = emit_expr () "zmq::Context::new()"
     inl sock : any = emit_expr ctx "$0.socket(zmq::REQ).unwrap()"
-    inl port : i32 = 13805
-    inl endpoint : string = $"$\"tcp://localhost:{!port}\""
+    inl endpoint : string = $"$\"tcp://{!host}:{!port}\""
+
     emit_expr (sock, endpoint) "$0.connect(&$1).unwrap()"
     emit_expr (sock, msg) $"$\"$0.send($1.as_str(), 0).unwrap()\""
-    inl result : any = emit_expr sock "$0.recv_string(0).unwrap().unwrap()"
-    // console_fsx.write_line "zmq_request. result:"
-    // console_fsx.write_line result
+    inl result : std_string = emit_expr sock "$0.recv_string(0).unwrap().unwrap()"
+
     emit_expr (sock, endpoint) "$0.disconnect(&$1).unwrap()"
 
+    log Debug !!(;[!!"result.len():"; !!(result |> len) : log_item])
 
-
+    result
 
 union supervisor_req =
     | ProjectFileOpen : { spiproj_path : path_buf; spiproj_text : std_string }
@@ -368,16 +367,6 @@ inl get_req_json = function
             "}" +\
         "}"
 
-// fn spiproj_open(spiproj_path: &std::path::Path, spiproj_text: &str) {
-//     let msg = serde_json::json!({
-//         "ProjectFileOpen": {
-//             "uri": spiproj_path,
-//             "spiprojText": spiproj_text,
-//         }
-//     })
-//     .to_string();
-//     zmq_request(msg);
-// }
 inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
     inl get_locals () = !!(;[
         !!"> spiproj_open ()" : log_item
@@ -394,18 +383,8 @@ inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
 
     log Debug !!(;[!!"json.len():"; !!(json |> len) : log_item])
 
-    zmq_request json
+    zmq_request json |> ignore
 
-// fn spi_build_file(spi_path: &std::path::Path, backend: &str) {
-//     let msg = serde_json::json!({
-//         "BuildFile": {
-//             "uri": spi_path,
-//             "backend": backend,
-//         }
-//     })
-//     .to_string();
-//     zmq_request(msg);
-// }
 inl spi_build_file (spi_path : path_buf) (backend : string) : () =
     inl get_locals () = !!(;[
         !!"> spi_build_file ()" : log_item
@@ -422,137 +401,43 @@ inl spi_build_file (spi_path : path_buf) (backend : string) : () =
 
     log Debug !!(;[!!"json.len():"; !!(json |> len) : log_item])
 
-    zmq_request json
+    zmq_request json |> ignore
 
-
-
-// fn wait_file_change(fsx_path: &std::path::Path) -> String {
-//     let lines: String;
-//     let get_last_modified = || std::fs::metadata(fsx_path).unwrap().modified().unwrap();
-//     let start = get_last_modified();
-//     println!("waiting for file change. start: {:?}", start);
-
-//     let mut last_modified: std::time::SystemTime;
-//     loop {
-//         last_modified = get_last_modified();
-//         if last_modified > start {
-//             lines = std::fs::read_to_string(fsx_path).unwrap();
-//             break;
-//         } else {
-//             std::thread::sleep(std::time::Duration::from_millis(100));
-//         }
-//     }
-
-//     println!(
-//         "waiting for file change. last_modified: {:?} lines.len(): {}",
-//         last_modified,
-//         lines.len()
-//     );
-
-//     lines
-// }
 inl wait_file_change (fsx_path : path_buf) : string =
-    // console_fsx.write_line "wait_file_change."
-    // console_fsx.write_line "fsx_path:"
-    // console_fsx.write_line fsx_path
+    inl get_locals () = !!(;[
+        !!"> wait_file_change ()" : log_item
+    ])
+    inl log = new_log (fun () => Debug) get_locals "387957"
 
-    emit_expr () "let lines: String;"
-    inl get_last_modified () : any = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
+    inl get_last_modified () : systemtime = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
     inl start = get_last_modified ()
-    // console_fsx.write_line "waiting for file change. start:"
-    // console_fsx.write_line start
 
-    emit_expr () "let mut last_modified: std::time::SystemTime;"
-    emit_expr () "loop {"
-    inl last_modified = get_last_modified ()
-    // console_fsx.write_line "waiting for file change. last_modified:"
-    // console_fsx.write_line last_modified
-    if (emit_expr (last_modified, start) "$0 > $1") then
-        emit_expr fsx_path "lines = std::fs::read_to_string($0).unwrap();"
-        emit_expr () "break"
-    else
-        emit_expr () "std::thread::sleep(std::time::Duration::from_millis(100));"
+    log Debug !!(;[
+        !!"fsx_path:"; !!(fsx_path |> path_display) : log_item
+        !!"start:"; !!start
+    ])
 
-    emit_expr () "}"
+    inl new_fsx =
+        range 0i32 50
+        |> am.fold
+            fun new_fsx i =>
+                match new_fsx with
+                | Some lines => Some lines
+                | None =>
+                    inl last_modified = get_last_modified ()
+                    log Debug !!(;[
+                        !!"i:"; !!i : log_item
+                        !!"last_modified:"; !!last_modified
+                    ])
+                    if emit_expr (last_modified, start) "$0 > $1" then
+                        inl lines : std_string = !!(fsx_path |> fs_read_to_string)
+                        Some (lines |> to_string'')
+                    else
+                        sleep 100
+                        None
+            None
 
-    // console_fsx.write_line "waiting for file change. lines.len():"
-    emit_expr () "lines.len()"
-    emit_expr () "lines"
-
-
-
-// trait ToPath {
-//     fn to_path<'a>(&'a self) -> &'a std::path::Path
-//     where
-//         Self: AsRef<std::ffi::OsStr>,
-//     {
-//         std::path::Path::new(self)
-//     }
-// }
-
-// impl ToPath for String {}
-
-// fn spi_to_fsx(spi_path: &std::path::Path, new_fsx_path: Option<&std::path::Path>) -> String {
-//     let spi_path = spi_path.canonicalize().expect(
-//         format!(
-//             "spi_path: {} not found. pwd: {}",
-//             spi_path.display(),
-//             std::env::current_dir().unwrap().display()
-//         )
-//         .as_str(),
-//     );
-
-//     let src_path = spi_path.parent().unwrap().canonicalize().unwrap();
-
-//     println!("src_path: {}", src_path.display());
-
-//     let spiproj_path = src_path
-//         .ancestors()
-//         .take(10)
-//         .map(|p| p.join("package.spiproj"))
-//         .find(|p| p.exists())
-//         .unwrap();
-//     println!("spiproj_path: {}", spiproj_path.display());
-
-//     let fsx_path = spi_path
-//         .to_str()
-//         .unwrap()
-//         .replace(".spir", ".spi")
-//         .replace(".spi", ".fsx")
-//         .to_path()
-//         .canonicalize()
-//         .unwrap();
-
-//     println!("fsx_path: {}", fsx_path.clone().display());
-
-//     std::fs::write(fsx_path.clone(), "").unwrap();
-//     println!("write ok. fsx_path: {}", fsx_path.display());
-
-//     spiproj_open(
-//         &spiproj_path,
-//         &std::fs::read_to_string(&spiproj_path).unwrap(),
-//     );
-//     println!("open ok. spiproj_path: {}", spiproj_path.display());
-
-//     spi_build_file(&spi_path, "Fsharp");
-//     println!("build ok. spi_path: {}", spi_path.display());
-
-//     let lines = wait_file_change(&fsx_path);
-//     println!("lines.len(): {}", lines.len());
-
-//     let new_fsx = lines;
-
-//     std::fs::write(new_fsx_path.unwrap_or(&fsx_path), new_fsx.clone()).unwrap();
-//     println!(
-//         "write ok. new_fsx_path={} fsx_path={} new_fsx.len()={}",
-//         new_fsx_path.unwrap().display(),
-//         fsx_path.display(),
-//         new_fsx.len()
-//     );
-
-//     new_fsx
-// }
-
+    new_fsx /?? ""
 
 inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string =
     inl get_locals () = !!(;[
@@ -600,8 +485,14 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     spi_build_file spi_path_clean "Fsharp"
     log Debug !!"> spi_build_file; ok"
 
-    "???"
+    inl new_fsx = wait_file_change fsx_path
+    log Debug !!(;[!!"new_fsx.len():"; !!(new_fsx |> len) : log_item])
 
+
+    (!!(fs_write (new_fsx_path |> unwrap_or fsx_path) new_fsx) : unit') |> ignore
+    log Debug !!"> fs_write new_fsx_path; ok"
+
+    new_fsx
 
 inl main () =
     print_static "<supervisor>"
