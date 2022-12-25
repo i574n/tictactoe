@@ -681,7 +681,7 @@ pub mod Supervisor {
                                                                                                             (&v381).as_ref().unwrap().to_string();
                                                                                                         Supervisor::US1::US1_1(fable_library_rust::String_::fromStr(&v382))
                                                                                                     } else {
-                                                                                                        std::thread::sleep(std::time::Duration::from_millis(*&100u64));
+                                                                                                        std::thread::sleep(std::time::Duration::from_millis(*&25u64));
                                                                                                         Supervisor::US1::US1_0
                                                                                                     }
                                                                                                 }

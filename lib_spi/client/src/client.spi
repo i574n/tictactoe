@@ -495,10 +495,10 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     new_fsx
 
 inl main () =
-    print_static "<supervisor>"
+    print_static "<client>"
 
-    spi_to_fsx
-    |> dyn
-    |> ignore
+    // spi_to_fsx
+    // |> dyn
+    // |> ignore
 
-    print_static "</supervisor>"
+    print_static "</client>"

@@ -606,7 +606,7 @@ and closure1 (v0 : Types.std.path.PathBuf) (v1 : Option<Types.std.path.PathBuf>)
                     US1_1(v384)
                 else
                     let v386 : string = "std::thread::sleep(std::time::Duration::from_millis(*$0))"
-                    Fable.Core.Rust.emitExpr 100UL v386
+                    Fable.Core.Rust.emitExpr 25UL v386
                     US1_0
             | US1_1(v389) -> (* Some *)
                 US1_1(v389)
