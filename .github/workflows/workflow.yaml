@@ -33,32 +33,32 @@ jobs:
       - run: cd lib_spi && pwsh build-ts.ps1
 
       - run: bun install
-      - run: cd ./web && bun install
-      - run: cd ./peer_gunjs && bun install
+      - run: echo cd ./web && bun install
+      - run: echo cd ./peer_gunjs && bun install
       - run: cd ./lib_spi/client && bun install
 
-      - run: cargo install rod
+      - run: echo cargo install rod
 
-      - run: cd ./web && bun run playwright-install
+      - run: echo cd ./lib_spi/client && bun run playwright-install
 
       - run: cd ./lib_spi/client && bun run build
 
-      - run: echo cd ./web && bun run build
-      - run: echo cd ./web && bun run e2e
-      - run: echo cd ./web && bun run build
+      - run: echo cd ./lib_spi/client && bun run build
+      - run: echo cd ./lib_spi/client && bun run e2e
+      - run: echo cd ./lib_spi/client && bun run build
 
       - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: playwright-report
-          path: ./client/playwright-report/
+          path: ./lib_spi/client/playwright-report/
           retention-days: 30
 
       - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: playwright-videos
-          path: ./client/playwright-videos/
+          path: ./lib_spi/client/playwright-videos/
           retention-days: 30
 
       - uses: actions/setup-python@v4
@@ -73,18 +73,18 @@ jobs:
 
       - run: cd docs && bundle init && bundle add jekyll jekyll-remote-theme && bundle exec jekyll build
 
-      - run: cd ./client && bun run extension
+      - run: cd ./lib_spi/client && bun run extension
 
       - uses: actions/upload-artifact@v2
         with:
           name: dist_extension
-          path: ./client/dist_extension
+          path: ./lib_spi/client/dist_extension
           retention-days: 30
 
       - uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: ./client/dist
+          path: ./lib_spi/client/dist
           retention-days: 30
 
       - uses: actions/upload-artifact@v2

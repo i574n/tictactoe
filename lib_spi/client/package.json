@@ -30,6 +30,9 @@
   "dependencies": {
   },
   "devDependencies": {
+    "esbuild": "~0.16",
+    "@esbuild-plugins/node-globals-polyfill": "~0.1",
+
     "vite": "~4.0.0",
     "vite-plugin-mkcert": "~1.9",
     "vite-plugin-wasm": "~3.0",
