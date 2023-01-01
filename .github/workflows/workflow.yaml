@@ -36,23 +36,23 @@ jobs:
       - run: cd lib_spi && pwsh build-ts.ps1
 
       - run: bun install
-      - run: echo cd web && bun install
-      - run: echo cd peer_gunjs && bun install
-      - run: cd lib_spi/client && bun install
+      - run: echo cd web && echo bun install
+      - run: echo cd peer_gunjs && echo bun install
+      - run: cd lib_spi/client && echo bun install
 
       - run: echo cargo install rod
 
-      - run: echo cd lib_spi/client && bun run playwright-install
+      - run: echo cd lib_spi/client && echo bun run playwright-install
 
       - run: cd lib_spi/supervisor && pwsh build.ps1
-      - run: echo cd lib_spi/client && pwsh build.ps1
+      - run: echo cd lib_spi/client && echo pwsh build.ps1
       - run: cd lib_spi/client && ~/.cargo/bin/wasm-pack build --target web --dev "$PSScriptRoot"
 
       - run: cd lib_spi/client && bun run build
 
-      - run: echo cd lib_spi/client && bun run build
-      - run: echo cd lib_spi/client && bun run e2e
-      - run: echo cd lib_spi/client && bun run build
+      - run: echo cd lib_spi/client && echo bun run build
+      - run: echo cd lib_spi/client && echo bun run e2e
+      - run: echo cd lib_spi/client && echo bun run build
 
       - uses: actions/upload-artifact@v2
         if: always()
