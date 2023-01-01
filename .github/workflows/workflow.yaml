@@ -46,7 +46,7 @@ jobs:
 
       - run: cd lib_spi/supervisor && pwsh build.ps1
       - run: echo cd lib_spi/client && echo pwsh build.ps1
-      - run: cd lib_spi/client && ~/.cargo/bin/wasm-pack build --target web --dev "$PSScriptRoot"
+      - run: cd lib_spi/client && ~/.cargo/bin/wasm-pack build --target web --dev
 
       - run: cd lib_spi/client && bun run build
 
