@@ -4,7 +4,7 @@
   "scripts": {
     "replace-ts1": "replace-in-files --regex='\\.js.;' --replacement='.ts\";' '../lib_ts/fable_modules/fable-library-ts/lib/*.js'",
     "replace-ts2": "replace-in-files --regex='\\.fs\\.js\";' --replacement='.tsx\";' '../lib_ts/**/*.tsx'",
-    "pre-build": "bun run replace-ts1 && bun run replace-ts2",
+    "pre-build": "echo bun run replace-ts1 && echo bun run replace-ts2",
 
     "deps": "bun run pre-build && concurrently 'bun run peer-signalr' 'bun run peer-gunrs' 'bun run peer-gunjs' 'bun run start'",
     "start": "bun run pre-build && vite",
