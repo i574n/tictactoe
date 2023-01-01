@@ -1,5 +1,111 @@
 open real_util
 
+
+// #![allow(dead_code)]
+// #![allow(non_snake_case)]
+// #![allow(non_camel_case_types)]
+// #![allow(non_upper_case_globals)]
+// #![allow(unused_parens)]
+// #![allow(unused_imports)]
+// #![allow(unused_variables)]
+// #![allow(unused_attributes)]
+
+
+// use druid::widget::prelude::*;
+// use druid::widget::{Flex, Label, TextBox};
+// use druid::{AppLauncher, Data, Lens, UnitPoint, WidgetExt, WindowDesc};
+
+// const VERTICAL_WIDGET_SPACING: f64 = 20.0;
+// const TEXT_BOX_WIDTH: f64 = 200.0;
+
+// const TITLE: &str = "tictactoe";
+// const INITIAL_TEXT: &str = "";
+
+// #[derive(Clone, Data, Lens)]
+// struct State {
+//     text: String,
+// }
+
+// pub fn main() {
+//     let main_window = WindowDesc::new(|| build_root_widget())
+//         .title(TITLE)
+//         .window_size((400.0, 400.0));
+
+//     // create the initial app state
+//     let initial_state: State = State {
+//         text: INITIAL_TEXT.to_string(),
+//     };
+
+//     AppLauncher::with_window(main_window)
+//         // .log_to_console()
+//         .launch(initial_state)
+//         .expect("Failed to launch application");
+// }
+
+// fn build_root_widget() -> impl Widget<State> {
+//     // a label that will determine its text based on the current app data.
+//     let label = Label::new(|data: &State, _env: &Env| {
+//         if data.text.is_empty() {
+//             INITIAL_TEXT.to_string()
+//         } else {
+//             format!("text={}", data.text)
+//         }
+//     })
+//     .with_text_size(32.0);
+
+//     // a textbox that modifies `name`.
+//     let textbox = TextBox::new()
+//         .with_placeholder(INITIAL_TEXT)
+//         .with_text_size(18.0)
+//         .fix_width(TEXT_BOX_WIDTH)
+//         .lens(State::text);
+
+//     // arrange the two widgets vertically, with some padding
+//     Flex::column()
+//         .with_child(label)
+//         .with_spacer(VERTICAL_WIDGET_SPACING)
+//         .with_child(textbox)
+//         .align_vertical(UnitPoint::CENTER)
+// }
+
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    $"Fable.Core.Rust.emitExpr !args !code"
+
+inl app () =
+    console_fsx.write_line "app ()"
+    inl v = "v"
+    emit_expr v "tracing::debug!(\"v={}\", $0)"
+    1i32
+
+
+inl main () =
+    print_static "<client>"
+
+    app
+    |> dyn
+    |> ignore
+
+    print_static "</client>"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // nominal ref' t = lrc' (mut_cell' t)
 
 // inl import forall t. (name : string) (module : string) : t =
@@ -82,8 +188,6 @@ type datetime t = $"Types.chrono.DateTime<`t>"
 
 // type box' t = $"Types.fable_library_rust.Native_.Box<`t>"
 
-inl emit_expr forall a t. (args : a) (code : string) : t =
-    $"Fable.Core.Rust.emitExpr !args !code"
 
 // inl ok forall t. (value : t) : result' t _ =
 //     emit_expr value $"\"Ok($0)\""
@@ -493,12 +597,3 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     log Debug !!"> fs_write new_fsx_path; ok"
 
     new_fsx
-
-inl main () =
-    print_static "<client>"
-
-    // spi_to_fsx
-    // |> dyn
-    // |> ignore
-
-    print_static "</client>"
