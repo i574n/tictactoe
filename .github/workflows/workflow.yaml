@@ -38,7 +38,7 @@ jobs:
       - run: bun install
       - run: echo cd web && echo bun install
       - run: echo cd peer_gunjs && echo bun install
-      - run: cd lib_spi/client && echo bun install
+      - run: cd lib_spi/client && bun install
 
       - run: echo cargo install rod
 
