@@ -30,6 +30,9 @@ jobs:
 
       - run: dotnet tool restore
       - run: dotnet paket restore
+
+      - run: pwsh init.ps1
+
       - run: cd lib_spi && pwsh build-ts.ps1
 
       - run: bun install

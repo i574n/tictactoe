@@ -15,12 +15,12 @@ pub mod Client {
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
         println!("{0}", string("app ()"));
         tracing::debug!("v={}", &string("v"));
-        web_sys::console::log_1(&"Hello using web-sys".into());
+        web_sys::console::log_1(&"1Hello using web-sys".into());
         1i32
     }
     pub fn v0() -> Func0<i32> {
         static v0: MutCell<Option<Func0<i32>>> = MutCell::new(None);
-        web_sys::console::log_1(&"Hello using web-sys".into());
+        web_sys::console::log_1(&"2Hello using web-sys".into());
         v0.get_or_init(move || Func0::new(move || Client::closure0((), ())))
     }
     on_startup!(());

@@ -21,7 +21,15 @@ echo "export PATH=\"\$BUN_INSTALL/bin:\$PATH\"" >> ~/.bashrc
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 export PATH="$HOME/.cargo/bin:$PATH"
 echo "export PATH=\"\$HOME/.cargo/bin:\$PATH\"" >> ~/.bashrc
+
+rustup toolchain install nightly
+
+pwsh init.ps1
+
 cargo install rod
+
+cargo install cargo-outdated
+cargo install http-server
 
 dotnet paket install
 
