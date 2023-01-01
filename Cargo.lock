@@ -236,7 +236,6 @@ name = "client"
 version = "0.0.1"
 dependencies = [
  "druid",
- "fable_library_rust",
  "log",
  "tracing",
  "wasm-bindgen",

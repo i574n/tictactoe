@@ -71,10 +71,12 @@ open real_util
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
 
+
+inl console_log (str : string) : () =
+    emit_expr str "web_sys::console::log_1(&wasm_bindgen::JsValue::from_str($0))"
+
 inl app () =
-    console_fsx.write_line "app ()"
-    inl v = "v"
-    emit_expr v "tracing::debug!(\"v={}\", $0)"
+    console_log "app ()"
     1i32
 
 

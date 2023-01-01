@@ -10,7 +10,7 @@ crate-type = ["cdylib", "rlib"]
 path = "./src/lib.rs"
 
 [dependencies]
-fable_library_rust = { path = "../supervisor/src/fable_modules/fable-library-rust" }
+# fable_library_rust = { path = "../supervisor/src/fable_modules/fable-library-rust" }
 
 # rand = { version = "~0.8", features = ["small_rng"] }
 # colored = "~2.0"
