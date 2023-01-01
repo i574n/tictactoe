@@ -12,5 +12,5 @@ pub mod Client {
     on_startup!(());
 }
 #[path = "../../supervisor/src/Types.rs"]
-mod module_b10c81cb;
-pub use module_b10c81cb::*;
+mod module_6e8b5e6f;
+pub use module_6e8b5e6f::*;

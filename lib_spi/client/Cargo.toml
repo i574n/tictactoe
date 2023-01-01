@@ -3,21 +3,33 @@
 name = "client"
 version = "0.0.1"
 edition = "2021"
-
-[dependencies]
-iced = { version = "~0.6", features = ["async-std", "debug"] }
-serde = { version = "~1.0", features = ["derive"] }
-once_cell = "~1.15"
-
-colored = "~2.0"
-fable_library_rust = { path = "../supervisor/src/fable_modules/fable-library-rust" }
-rand = "~0.8"
-serde_json = "~1.0"
-zmq = "~0.10"
-
-[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-async-std = "~1.0"
-directories-next = "~2.0"
+build = "build.rs"
 
 [lib]
 path = "./src/main.rs"
+
+[dependencies]
+fable_library_rust = { path = "../supervisor/src/fable_modules/fable-library-rust" }
+
+rand = { version = "~0.8", features = ["small_rng"] }
+colored = "~2.0"
+
+zmq = "~0.10"
+
+axum = "~0.6"
+wasm-bindgen = { version = "~0.2", features = ["enable-interning"] }
+
+tokio = { version = "~1.23", features = ["full"] }
+
+serde = { version = "~1.0", features = ["derive"] }
+serde_json = "~1.0"
+
+once_cell = "~1.17"
+
+
+[build-dependencies]
+
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+async-std = "~1.12"
+directories-next = "~2.0"
