@@ -45,6 +45,7 @@ jobs:
       - run: echo cd lib_spi/client && bun run playwright-install
 
       - run: npm install -g node-gyp@latest
+      - run: npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
 
       - run: cd lib_spi/supervisor && pwsh build.ps1
       - run: cd lib_spi/client && pwsh build.ps1
