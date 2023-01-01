@@ -45,7 +45,8 @@ jobs:
       - run: echo cd lib_spi/client && bun run playwright-install
 
       - run: cd lib_spi/supervisor && pwsh build.ps1
-      - run: cd lib_spi/client && pwsh build.ps1
+      - run: echo cd lib_spi/client && pwsh build.ps1
+      - run: cd lib_spi/client && ~/.cargo/bin/wasm-pack build --target web --dev "$PSScriptRoot"
 
       - run: cd lib_spi/client && bun run build
 
