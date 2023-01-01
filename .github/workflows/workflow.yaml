@@ -33,32 +33,34 @@ jobs:
       - run: cd lib_spi && pwsh build-ts.ps1
 
       - run: bun install
-      - run: echo cd ./web && bun install
-      - run: echo cd ./peer_gunjs && bun install
-      - run: cd ./lib_spi/client && bun install
+      - run: echo cd web && bun install
+      - run: echo cd peer_gunjs && bun install
+      - run: cd lib_spi/client && bun install
 
       - run: echo cargo install rod
 
-      - run: echo cd ./lib_spi/client && bun run playwright-install
+      - run: echo cd lib_spi/client && bun run playwright-install
 
-      - run: cd ./lib_spi/client && bun run build
+      - run: cd lib_spi/client && pwsh build.ps1
 
-      - run: echo cd ./lib_spi/client && bun run build
-      - run: echo cd ./lib_spi/client && bun run e2e
-      - run: echo cd ./lib_spi/client && bun run build
+      - run: cd lib_spi/client && bun run build
+
+      - run: echo cd lib_spi/client && bun run build
+      - run: echo cd lib_spi/client && bun run e2e
+      - run: echo cd lib_spi/client && bun run build
 
       - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: playwright-report
-          path: ./lib_spi/client/playwright-report/
+          path: lib_spi/client/playwright-report/
           retention-days: 30
 
       - uses: actions/upload-artifact@v2
         if: always()
         with:
           name: playwright-videos
-          path: ./lib_spi/client/playwright-videos/
+          path: lib_spi/client/playwright-videos/
           retention-days: 30
 
       - uses: actions/setup-python@v4
@@ -73,24 +75,24 @@ jobs:
 
       - run: cd docs && bundle init && bundle add jekyll jekyll-remote-theme && bundle exec jekyll build
 
-      - run: cd ./lib_spi/client && bun run extension
+      - run: cd lib_spi/client && bun run extension
 
       - uses: actions/upload-artifact@v2
         with:
           name: dist_extension
-          path: ./lib_spi/client/dist_extension
+          path: lib_spi/client/dist_extension
           retention-days: 30
 
       - uses: actions/upload-artifact@v2
         with:
           name: dist
-          path: ./lib_spi/client/dist
+          path: lib_spi/client/dist
           retention-days: 30
 
       - uses: actions/upload-artifact@v2
         with:
           name: docs
-          path: ./docs/_site
+          path: docs/_site
           retention-days: 30
 
   push:
@@ -104,14 +106,14 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-          path: ./dist
+          path: dist
 
       - uses: actions/download-artifact@v2
         with:
           name: docs
-          path: ./dist/docs
+          path: dist/docs
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: dist
