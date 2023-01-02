@@ -3,6 +3,6 @@ dotnet fable `
     --optimize `
     --lang rs `
     --extension .rs `
-    --outDir "$PSScriptRoot/src"
+    --outDir "$PSScriptRoot"
 
 ~/.cargo/bin/wasm-pack build --target web --dev "$PSScriptRoot"

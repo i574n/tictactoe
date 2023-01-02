@@ -5,12 +5,12 @@ modules:
     real_util*
     util_-
     console_fsx
-    client/
-        src/
-            client
     supervisor/
-        src/
-            supervisor
+        supervisor
+    cli/
+        cli
+    client/
+        client
     real_js*
     js
     tictactoe

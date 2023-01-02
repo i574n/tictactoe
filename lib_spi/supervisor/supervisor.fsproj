@@ -8,8 +8,8 @@
         <OutputType>Exe</OutputType>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="$(MSBuildThisFileDirectory)src/Types.fs" />
-        <Compile Include="$(MSBuildThisFileDirectory)src/supervisor.fsx" />
+        <Compile Include="$(MSBuildThisFileDirectory)../rust/Types.fs" />
+        <Compile Include="$(MSBuildThisFileDirectory)supervisor.fsx" />
     </ItemGroup>
     <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

@@ -10,7 +10,6 @@ export default defineConfig({
   resolve: {
     alias: {
       path: 'path-browserify',
-      '@': resolve(__dirname, 'src')
     },
   },
   define: {

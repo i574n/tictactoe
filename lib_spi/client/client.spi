@@ -77,7 +77,7 @@ inl console_log (str : string) : () =
 
 inl app () =
     console_log "app ()"
-    1i32
+    2i32
 
 
 inl main () =

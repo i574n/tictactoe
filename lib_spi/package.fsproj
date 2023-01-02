@@ -11,9 +11,10 @@
     <ItemGroup>
         <Compile Include="$(MSBuildThisFileDirectory)ui/components'.fsx" />
         <Compile Include="$(MSBuildThisFileDirectory)peer.fsx" />
-        <Compile Include="$(MSBuildThisFileDirectory)supervisor/src/Types.fs" />
-        <Compile Include="$(MSBuildThisFileDirectory)supervisor/src/supervisor.fsx" />
-        <Compile Include="$(MSBuildThisFileDirectory)client/src/client.fsx" />
+        <Compile Include="$(MSBuildThisFileDirectory)rust/Types.fs" />
+        <Compile Include="$(MSBuildThisFileDirectory)supervisor/supervisor.fsx" />
+        <Compile Include="$(MSBuildThisFileDirectory)cli/cli.fsx" />
+        <Compile Include="$(MSBuildThisFileDirectory)client/client.fsx" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\deps\Fable.SignalR\Fable.SignalR.fsproj" />

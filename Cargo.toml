@@ -8,4 +8,4 @@ client = { path = "./lib_spi/client" }
 supervisor = { path = "./lib_spi/supervisor" }
 
 [lib]
-path = "./lib_spi/client/src/main.rs"
+path = "./lib_spi/client/main.rs"
