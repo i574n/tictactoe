@@ -67,6 +67,10 @@ module chrono =
     [<Erase; Emit("chrono::DateTime<$0>")>]
     type DateTime<'T> = class end
 
+module colored =
+    [<Erase; Emit("colored::ColoredString")>]
+    type ColoredString = class end
+
 module fable_library_rust =
     module Native_ =
         [<Erase; Emit("fable_library_rust::Native_::Box_<$0>")>]

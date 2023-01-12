@@ -11,6 +11,7 @@ pub mod Cli {
     use fable_library_rust::Native_::Array;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
+    use fable_library_rust::Native_::Lrc;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::array;
     use fable_library_rust::Native_::arrayEmpty;
@@ -20,6 +21,12 @@ pub mod Cli {
     use fable_library_rust::String_::stringFrom;
     use fable_library_rust::String_::substring2;
     use fable_library_rust::String_::toString;
+    #[derive(Clone, Debug, Hash)]
+    pub enum UH0 { UH0_0(std::string::String, Lrc<Cli::UH0>), UH0_1, }
+    #[derive(Clone, Debug, Hash)]
+    pub struct Mut0 {
+        pub l0: MutCell<Lrc<Cli::UH0>>,
+    }
     pub fn method0() -> (string, string, string, bool) {
         let v0_1: string = string("");
         (v0_1.clone(), v0_1.clone(), v0_1, true)
@@ -41,58 +48,61 @@ pub mod Cli {
                      } else { v1.get() }) ;
             }
     }
-    pub fn closure1(v0_1: i64, v1: Vec<u8>) -> Result<bool, std::io::Error> {
-        let v3: i32 = (&v1).len().try_into().unwrap();
-        let v11: Array<std::string::String> =
-            array(&[(&string("line.len():")).to_string(),
-                    format!("{}", &v3)]);
-        let v13 = core::ops::Deref::deref(&v11);
-        let v16: std::string::String = format!("{:?}", ***v13).clone();
-        let v18: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-        let v24: string =
-            Cli::method2(6i32, toString(&((&v18).timestamp() - v0_1)));
-        let v26: u8 = rand::random::<u8>();
-        let v37: Array<std::string::String> =
-            array(&[(&string("timestamp:")).to_string(), (&v24).to_string(),
-                    (&string("run_id:")).to_string(), format!("{}", &v26)]);
-        let v38 = core::ops::Deref::deref(&v37);
-        let v40: std::string::String = format!("{:?}", ***v38).clone();
-        let v44: Array<std::string::String> =
-            array(&[(&string("> read_lines ()")).to_string()]);
-        let v45 = core::ops::Deref::deref(&v44);
-        let v47: std::string::String = format!("{:?}", ***v45).clone();
-        let v50 =
-            colored::Colorize::color(&*v47, string("purple").to_string());
-        let v51: std::string::String = format!("{}", v50);
-        let v52: string = string("666666");
-        let v53: string = substring2(v52.clone(), 0i32, 2i32);
-        let v55: u8 = u8::from_str_radix(&v53, 16).unwrap();
-        let v56: string = substring2(v52.clone(), 2i32, 2i32);
-        let v57: u8 = u8::from_str_radix(&v56, 16).unwrap();
-        let v58: string = substring2(v52, 4i32, 2i32);
-        let v59: u8 = u8::from_str_radix(&v58, 16).unwrap();
-        let v61 =
-            colored::Colorize::truecolor(&*v16.to_string(), v55, v57, v59);
-        let v62: std::string::String = format!("{}", v61);
-        let v63: string = string("222222");
-        let v64: string = substring2(v63.clone(), 0i32, 2i32);
-        let v65: u8 = u8::from_str_radix(&v64, 16).unwrap();
-        let v66: string = substring2(v63.clone(), 2i32, 2i32);
-        let v67: u8 = u8::from_str_radix(&v66, 16).unwrap();
-        let v68: string = substring2(v63, 4i32, 2i32);
-        let v69: u8 = u8::from_str_radix(&v68, 16).unwrap();
-        let v70 =
-            colored::Colorize::truecolor(&*v40.to_string(), v65, v67, v69);
-        let v71: std::string::String = format!("{}", v70);
-        println!("{0}", stringFrom(format!("{0} {1} {2}", &v51, &v62, &v71)));
+    pub fn closure1(v0_1: Lrc<Cli::Mut0>, v1: Vec<u8>)
+     -> Result<bool, std::io::Error> {
+        let v3: std::string::String =
+            std::string::String::from_utf8((&v1).to_owned()).unwrap();
+        let v4: Lrc<Cli::UH0> = v0_1.l0.get().clone();
+        v0_1.l0.set(Lrc::new(Cli::UH0::UH0_0(v3.clone(), v4.clone())));
         Ok(true)
     }
-    pub fn method3(v0_1: i64)
+    pub fn method3(v0_1: Lrc<Cli::Mut0>)
      -> Func1<Vec<u8>, Result<bool, std::io::Error>> {
         Func1::new({
                        let v0_1 = v0_1.clone();
-                       move |v: Vec<u8>| Cli::closure1(v0_1, v.clone())
+                       move |v: Vec<u8>|
+                           Cli::closure1(v0_1.clone(), v.clone())
                    })
+    }
+    pub fn method4(v0_1: Lrc<Cli::UH0>, v1: Lrc<Cli::UH0>) -> Lrc<Cli::UH0> {
+        let v0_1: MutCell<Lrc<Cli::UH0>> = MutCell::new(v0_1.clone());
+        let v1: MutCell<Lrc<Cli::UH0>> = MutCell::new(v1.clone());
+        '_method4:
+            loop  {
+                break '_method4
+                    (match v0_1.get().as_ref() {
+                         Cli::UH0::UH0_1 => v1.get(),
+                         Cli::UH0::UH0_0(v0_1_0_0, v0_1_0_1) => {
+                             let v0_1_temp: Lrc<Cli::UH0> = v0_1_0_1.clone();
+                             let v1_temp: Lrc<Cli::UH0> =
+                                 Lrc::new(Cli::UH0::UH0_0(v0_1_0_0.clone(),
+                                                          v1.get()));
+                             v0_1.set(v0_1_temp);
+                             v1.set(v1_temp);
+                             continue '_method4
+                         }
+                     }) ;
+            }
+    }
+    pub fn method5(v0_1: Lrc<Cli::UH0>, v1: string) -> string {
+        let v0_1: MutCell<Lrc<Cli::UH0>> = MutCell::new(v0_1.clone());
+        let v1: MutCell<string> = MutCell::new(v1.clone());
+        '_method5:
+            loop  {
+                break '_method5
+                    (match v0_1.get().as_ref() {
+                         Cli::UH0::UH0_1 => v1.get(),
+                         Cli::UH0::UH0_0(v0_1_0_0, v0_1_0_1) => {
+                             let v0_1_temp: Lrc<Cli::UH0> = v0_1_0_1.clone();
+                             let v1_temp: string =
+                                 stringFrom(format!("{0}{1}", &v1.get(),
+                                                    v0_1_0_0));
+                             v0_1.set(v0_1_temp);
+                             v1.set(v1_temp);
+                             continue '_method5
+                         }
+                     }) ;
+            }
     }
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
         let patternInput: (string, string, string, bool) = Cli::method0();
@@ -123,7 +133,7 @@ pub mod Cli {
         let v50: string = string("run_id:");
         let v56: Array<std::string::String> =
             array(&[(&v45).to_string(), (&v42).to_string(),
-                    (&v50).to_string(), format!("{}", &v44)]);
+                    (&v50).to_string(), format!("{:?}", &v44)]);
         let v57 = core::ops::Deref::deref(&v56);
         let v59: std::string::String = format!("{:?}", ***v57).clone();
         let v60: string = string("> read_lines ()");
@@ -131,39 +141,40 @@ pub mod Cli {
         let v64 = core::ops::Deref::deref(&v63);
         let v66: std::string::String = format!("{:?}", ***v64).clone();
         let v67: string = string("purple");
-        let v69 = colored::Colorize::color(&*v66, v67.clone().to_string());
-        let v70: std::string::String = format!("{}", v69);
-        let v71: string = string("666666");
-        let v72: string = substring2(v71.clone(), 0i32, 2i32);
-        let v74: u8 = u8::from_str_radix(&v72, 16).unwrap();
-        let v75: string = substring2(v71.clone(), 2i32, 2i32);
-        let v76: u8 = u8::from_str_radix(&v75, 16).unwrap();
-        let v77: string = substring2(v71.clone(), 4i32, 2i32);
-        let v78: u8 = u8::from_str_radix(&v77, 16).unwrap();
-        let v80 =
-            colored::Colorize::truecolor(&*v36.to_string(), v74, v76, v78);
-        let v81: std::string::String = format!("{}", v80);
-        let v82: string = string("222222");
-        let v83: string = substring2(v82.clone(), 0i32, 2i32);
-        let v84: u8 = u8::from_str_radix(&v83, 16).unwrap();
-        let v85: string = substring2(v82.clone(), 2i32, 2i32);
-        let v86: u8 = u8::from_str_radix(&v85, 16).unwrap();
-        let v87: string = substring2(v82.clone(), 4i32, 2i32);
-        let v88: u8 = u8::from_str_radix(&v87, 16).unwrap();
-        let v89 =
-            colored::Colorize::truecolor(&*v59.to_string(), v84, v86, v88);
-        let v90: std::string::String = format!("{}", v89);
-        println!("{0}", stringFrom(format!("{0} {1} {2}", &v70, &v81, &v90)));
+        let v69: colored::ColoredString =
+            colored::Colorize::color(&*v66, v67.clone().to_string());
+        let v71: std::string::String = format!("{}", &v69);
+        let v72: string = string("666666");
+        let v73: string = substring2(v72.clone(), 0i32, 2i32);
+        let v75: u8 = u8::from_str_radix(&v73, 16).unwrap();
+        let v76: string = substring2(v72.clone(), 2i32, 2i32);
+        let v77: u8 = u8::from_str_radix(&v76, 16).unwrap();
+        let v78: string = substring2(v72.clone(), 4i32, 2i32);
+        let v79: u8 = u8::from_str_radix(&v78, 16).unwrap();
+        let v81: colored::ColoredString =
+            colored::Colorize::truecolor(&*v36.to_string(), v75, v77, v79);
+        let v82: std::string::String = format!("{}", &v81);
+        let v83: string = string("222222");
+        let v84: string = substring2(v83.clone(), 0i32, 2i32);
+        let v85: u8 = u8::from_str_radix(&v84, 16).unwrap();
+        let v86: string = substring2(v83.clone(), 2i32, 2i32);
+        let v87: u8 = u8::from_str_radix(&v86, 16).unwrap();
+        let v88: string = substring2(v83.clone(), 4i32, 2i32);
+        let v89: u8 = u8::from_str_radix(&v88, 16).unwrap();
+        let v90: colored::ColoredString =
+            colored::Colorize::truecolor(&*v59.to_string(), v85, v87, v89);
+        let v91: std::string::String = format!("{}", &v90);
+        println!("{0}", stringFrom(format!("{0} {1} {2}", &v71, &v82, &v91)));
         {
-            let v93: Result<std::fs::File, std::io::Error> =
+            let v94: Result<std::fs::File, std::io::Error> =
                 std::fs::File::open(&v22);
-            let v95: &std::fs::File = &v93.unwrap();
-            let v97:
+            let v96: &std::fs::File = &v94.unwrap();
+            let v98:
                     std::cell::RefCell<linereader::LineReader<&std::fs::File>> =
-                std::cell::RefCell::new(linereader::LineReader::new(&v95));
+                std::cell::RefCell::new(linereader::LineReader::new(&v96));
             let v104: Array<std::string::String> =
                 array(&[(&string("reader:")).to_string(),
-                        format!("{:?}", &v97)]);
+                        format!("{:?}", &v98)]);
             let v105 = core::ops::Deref::deref(&v104);
             let v107: std::string::String = format!("{:?}", ***v105).clone();
             let v108: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
@@ -172,142 +183,148 @@ pub mod Cli {
             let v114: u8 = rand::random::<u8>();
             let v123: Array<std::string::String> =
                 array(&[(&v45).to_string(), (&v113).to_string(),
-                        (&v50).to_string(), format!("{}", &v114)]);
+                        (&v50).to_string(), format!("{:?}", &v114)]);
             let v124 = core::ops::Deref::deref(&v123);
             let v126: std::string::String = format!("{:?}", ***v124).clone();
             let v129: Array<std::string::String> =
                 array(&[(&v60).to_string()]);
             let v130 = core::ops::Deref::deref(&v129);
             let v132: std::string::String = format!("{:?}", ***v130).clone();
-            let v133 =
+            let v133: colored::ColoredString =
                 colored::Colorize::color(&*v132, v67.clone().to_string());
-            let v134: std::string::String = format!("{}", v133);
-            let v135: string = substring2(v71.clone(), 0i32, 2i32);
+            let v134: std::string::String = format!("{}", &v133);
+            let v135: string = substring2(v72.clone(), 0i32, 2i32);
             let v136: u8 = u8::from_str_radix(&v135, 16).unwrap();
-            let v137: string = substring2(v71.clone(), 2i32, 2i32);
+            let v137: string = substring2(v72.clone(), 2i32, 2i32);
             let v138: u8 = u8::from_str_radix(&v137, 16).unwrap();
-            let v139: string = substring2(v71.clone(), 4i32, 2i32);
+            let v139: string = substring2(v72.clone(), 4i32, 2i32);
             let v140: u8 = u8::from_str_radix(&v139, 16).unwrap();
-            let v141 =
+            let v141: colored::ColoredString =
                 colored::Colorize::truecolor(&*v107.to_string(), v136, v138, v140);
-            let v142: std::string::String = format!("{}", v141);
-            let v143: string = substring2(v82.clone(), 0i32, 2i32);
+            let v142: std::string::String = format!("{}", &v141);
+            let v143: string = substring2(v83.clone(), 0i32, 2i32);
             let v144: u8 = u8::from_str_radix(&v143, 16).unwrap();
-            let v145: string = substring2(v82.clone(), 2i32, 2i32);
+            let v145: string = substring2(v83.clone(), 2i32, 2i32);
             let v146: u8 = u8::from_str_radix(&v145, 16).unwrap();
-            let v147: string = substring2(v82.clone(), 4i32, 2i32);
+            let v147: string = substring2(v83.clone(), 4i32, 2i32);
             let v148: u8 = u8::from_str_radix(&v147, 16).unwrap();
-            let v149 =
+            let v149: colored::ColoredString =
                 colored::Colorize::truecolor(&*v126.to_string(), v144, v146, v148);
-            let v150: std::string::String = format!("{}", v149);
+            let v150: std::string::String = format!("{}", &v149);
             println!("{0}",
                      stringFrom(format!("{0} {1} {2}", &v134, &v142, &v150)));
             {
-                let v153: Vec<Vec<u8>> = Vec::new();
-                let v154 = Cli::method3(v18);
+                let v153: Lrc<Cli::Mut0> =
+                    Lrc::new(Cli::Mut0{l0:
+                                           MutCell::new(Lrc::new(Cli::UH0::UH0_1)),});
+                let v154 = Cli::method3(v153.clone());
                 let v156: Result<(), std::io::Error> =
-                    (v97).borrow_mut().for_each(move |x| v154(x.to_vec()));
+                    (v98).borrow_mut().for_each(move |x| v154(x.to_vec()));
                 *((&v156).as_ref()).unwrap();
                 {
-                    let v158: string = string("lines:");
-                    let v163: Array<std::string::String> =
-                        array(&[(&v158).to_string(), format!("{:?}", &v153)]);
-                    let v164 = core::ops::Deref::deref(&v163);
-                    let v166: std::string::String =
-                        format!("{:?}", ***v164).clone();
-                    let v167: chrono::DateTime<chrono::Utc> =
+                    let v162: string =
+                        Cli::method5(Cli::method4(v153.l0.get().clone(),
+                                                  Lrc::new(Cli::UH0::UH0_1)),
+                                     string(""));
+                    let v163: string = string("lines:");
+                    let v168: Array<std::string::String> =
+                        array(&[(&v163).to_string(), (&v162).to_string()]);
+                    let v169 = core::ops::Deref::deref(&v168);
+                    let v171: std::string::String =
+                        format!("{:?}", ***v169).clone();
+                    let v172: chrono::DateTime<chrono::Utc> =
                         chrono::Utc::now();
-                    let v172: string =
+                    let v177: string =
                         Cli::method2(6i32,
-                                     toString(&((&v167).timestamp() - v18)));
-                    let v173: u8 = rand::random::<u8>();
-                    let v182: Array<std::string::String> =
-                        array(&[(&v45).to_string(), (&v172).to_string(),
-                                (&v50).to_string(), format!("{}", &v173)]);
-                    let v183 = core::ops::Deref::deref(&v182);
-                    let v185: std::string::String =
-                        format!("{:?}", ***v183).clone();
-                    let v188: Array<std::string::String> =
+                                     toString(&((&v172).timestamp() - v18)));
+                    let v178: u8 = rand::random::<u8>();
+                    let v187: Array<std::string::String> =
+                        array(&[(&v45).to_string(), (&v177).to_string(),
+                                (&v50).to_string(), format!("{:?}", &v178)]);
+                    let v188 = core::ops::Deref::deref(&v187);
+                    let v190: std::string::String =
+                        format!("{:?}", ***v188).clone();
+                    let v193: Array<std::string::String> =
                         array(&[(&v60).to_string()]);
-                    let v189 = core::ops::Deref::deref(&v188);
-                    let v191: std::string::String =
-                        format!("{:?}", ***v189).clone();
-                    let v192 =
-                        colored::Colorize::color(&*v191, v67.clone().to_string());
-                    let v193: std::string::String = format!("{}", v192);
-                    let v194: string = substring2(v71.clone(), 0i32, 2i32);
-                    let v195: u8 = u8::from_str_radix(&v194, 16).unwrap();
-                    let v196: string = substring2(v71.clone(), 2i32, 2i32);
-                    let v197: u8 = u8::from_str_radix(&v196, 16).unwrap();
-                    let v198: string = substring2(v71.clone(), 4i32, 2i32);
-                    let v199: u8 = u8::from_str_radix(&v198, 16).unwrap();
-                    let v200 =
-                        colored::Colorize::truecolor(&*v166.to_string(), v195, v197, v199);
-                    let v201: std::string::String = format!("{}", v200);
-                    let v202: string = substring2(v82.clone(), 0i32, 2i32);
-                    let v203: u8 = u8::from_str_radix(&v202, 16).unwrap();
-                    let v204: string = substring2(v82.clone(), 2i32, 2i32);
-                    let v205: u8 = u8::from_str_radix(&v204, 16).unwrap();
-                    let v206: string = substring2(v82.clone(), 4i32, 2i32);
-                    let v207: u8 = u8::from_str_radix(&v206, 16).unwrap();
-                    let v208 =
-                        colored::Colorize::truecolor(&*v185.to_string(), v203, v205, v207);
-                    let v209: std::string::String = format!("{}", v208);
+                    let v194 = core::ops::Deref::deref(&v193);
+                    let v196: std::string::String =
+                        format!("{:?}", ***v194).clone();
+                    let v197: colored::ColoredString =
+                        colored::Colorize::color(&*v196, v67.clone().to_string());
+                    let v198: std::string::String = format!("{}", &v197);
+                    let v199: string = substring2(v72.clone(), 0i32, 2i32);
+                    let v200: u8 = u8::from_str_radix(&v199, 16).unwrap();
+                    let v201: string = substring2(v72.clone(), 2i32, 2i32);
+                    let v202: u8 = u8::from_str_radix(&v201, 16).unwrap();
+                    let v203: string = substring2(v72.clone(), 4i32, 2i32);
+                    let v204: u8 = u8::from_str_radix(&v203, 16).unwrap();
+                    let v205: colored::ColoredString =
+                        colored::Colorize::truecolor(&*v171.to_string(), v200, v202, v204);
+                    let v206: std::string::String = format!("{}", &v205);
+                    let v207: string = substring2(v83.clone(), 0i32, 2i32);
+                    let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+                    let v209: string = substring2(v83.clone(), 2i32, 2i32);
+                    let v210: u8 = u8::from_str_radix(&v209, 16).unwrap();
+                    let v211: string = substring2(v83.clone(), 4i32, 2i32);
+                    let v212: u8 = u8::from_str_radix(&v211, 16).unwrap();
+                    let v213: colored::ColoredString =
+                        colored::Colorize::truecolor(&*v190.to_string(), v208, v210, v212);
+                    let v214: std::string::String = format!("{}", &v213);
                     println!("{0}",
-                             stringFrom(format!("{0} {1} {2}", &v193, &v201, &v209)));
+                             stringFrom(format!("{0} {1} {2}", &v198, &v206, &v214)));
                     {
-                        let v216: Array<std::string::String> =
-                            array(&[(&v158).to_string(),
-                                    format!("{}", &arrayEmpty::<string>())]);
-                        let v217 = core::ops::Deref::deref(&v216);
-                        let v219: std::string::String =
-                            format!("{:?}", ***v217).clone();
-                        let v220: chrono::DateTime<chrono::Utc> =
+                        let v221: Array<std::string::String> =
+                            array(&[(&v163).to_string(),
+                                    format!("{:?}", &arrayEmpty::<string>())]);
+                        let v222 = core::ops::Deref::deref(&v221);
+                        let v224: std::string::String =
+                            format!("{:?}", ***v222).clone();
+                        let v225: chrono::DateTime<chrono::Utc> =
                             chrono::Utc::now();
-                        let v225: string =
+                        let v230: string =
                             Cli::method2(6i32,
-                                         toString(&((&v220).timestamp() -
+                                         toString(&((&v225).timestamp() -
                                                         v7)));
-                        let v226: u8 = rand::random::<u8>();
-                        let v235: Array<std::string::String> =
-                            array(&[(&v45).to_string(), (&v225).to_string(),
+                        let v231: u8 = rand::random::<u8>();
+                        let v240: Array<std::string::String> =
+                            array(&[(&v45).to_string(), (&v230).to_string(),
                                     (&v50).to_string(),
-                                    format!("{}", &v226)]);
-                        let v236 = core::ops::Deref::deref(&v235);
-                        let v238: std::string::String =
-                            format!("{:?}", ***v236).clone();
-                        let v242: Array<std::string::String> =
+                                    format!("{:?}", &v231)]);
+                        let v241 = core::ops::Deref::deref(&v240);
+                        let v243: std::string::String =
+                            format!("{:?}", ***v241).clone();
+                        let v247: Array<std::string::String> =
                             array(&[(&string("> app ()")).to_string()]);
-                        let v243 = core::ops::Deref::deref(&v242);
-                        let v245: std::string::String =
-                            format!("{:?}", ***v243).clone();
-                        let v246 =
-                            colored::Colorize::color(&*v245, v67.to_string());
-                        let v247: std::string::String = format!("{}", v246);
-                        let v248: string =
-                            substring2(v71.clone(), 0i32, 2i32);
-                        let v249: u8 = u8::from_str_radix(&v248, 16).unwrap();
-                        let v250: string =
-                            substring2(v71.clone(), 2i32, 2i32);
-                        let v251: u8 = u8::from_str_radix(&v250, 16).unwrap();
-                        let v252: string = substring2(v71, 4i32, 2i32);
-                        let v253: u8 = u8::from_str_radix(&v252, 16).unwrap();
-                        let v254 =
-                            colored::Colorize::truecolor(&*v219.to_string(), v249, v251, v253);
-                        let v255: std::string::String = format!("{}", v254);
-                        let v256: string =
-                            substring2(v82.clone(), 0i32, 2i32);
-                        let v257: u8 = u8::from_str_radix(&v256, 16).unwrap();
-                        let v258: string =
-                            substring2(v82.clone(), 2i32, 2i32);
-                        let v259: u8 = u8::from_str_radix(&v258, 16).unwrap();
-                        let v260: string = substring2(v82, 4i32, 2i32);
-                        let v261: u8 = u8::from_str_radix(&v260, 16).unwrap();
-                        let v262 =
-                            colored::Colorize::truecolor(&*v238.to_string(), v257, v259, v261);
-                        let v263: std::string::String = format!("{}", v262);
+                        let v248 = core::ops::Deref::deref(&v247);
+                        let v250: std::string::String =
+                            format!("{:?}", ***v248).clone();
+                        let v251: colored::ColoredString =
+                            colored::Colorize::color(&*v250, v67.to_string());
+                        let v252: std::string::String = format!("{}", &v251);
+                        let v253: string =
+                            substring2(v72.clone(), 0i32, 2i32);
+                        let v254: u8 = u8::from_str_radix(&v253, 16).unwrap();
+                        let v255: string =
+                            substring2(v72.clone(), 2i32, 2i32);
+                        let v256: u8 = u8::from_str_radix(&v255, 16).unwrap();
+                        let v257: string = substring2(v72, 4i32, 2i32);
+                        let v258: u8 = u8::from_str_radix(&v257, 16).unwrap();
+                        let v259: colored::ColoredString =
+                            colored::Colorize::truecolor(&*v224.to_string(), v254, v256, v258);
+                        let v260: std::string::String = format!("{}", &v259);
+                        let v261: string =
+                            substring2(v83.clone(), 0i32, 2i32);
+                        let v262: u8 = u8::from_str_radix(&v261, 16).unwrap();
+                        let v263: string =
+                            substring2(v83.clone(), 2i32, 2i32);
+                        let v264: u8 = u8::from_str_radix(&v263, 16).unwrap();
+                        let v265: string = substring2(v83, 4i32, 2i32);
+                        let v266: u8 = u8::from_str_radix(&v265, 16).unwrap();
+                        let v267: colored::ColoredString =
+                            colored::Colorize::truecolor(&*v243.to_string(), v262, v264, v266);
+                        let v268: std::string::String = format!("{}", &v267);
                         println!("{0}",
-                                 stringFrom(format!("{0} {1} {2}", &v247, &v255, &v263)));
+                                 stringFrom(format!("{0} {1} {2}", &v252, &v260, &v268)));
                         0i32
                     }
                 }

@@ -46,6 +46,8 @@ type utc = $"Types.chrono.Utc"
 type local = $"Types.chrono.Local"
 type datetime t = $"Types.chrono.DateTime<`t>"
 
+nominal colored_string = $"Types.colored.ColoredString"
+
 nominal linereader t = $"Types.linereader.LineReader<`t>"
 
 
@@ -65,24 +67,15 @@ inl to_std_string (str : string) : std_string =
 
 inl format forall t. (x : t) : std_string =
     real
-        inl format_pretty_print forall t. (x : t) : std_string =
-            emit_expr `t `std_string x "format!(\"{:?}\", $0)"
         inl result : std_string =
             typecase t with
             | string => to_std_string x
             | std_string => x
-            | systemtime => format_pretty_print `t x
-            | ref' _ => format_pretty_print `t x
-            | static_ref' _ => format_pretty_print `t x
-            | box _ => format_pretty_print `t x
-            | ref_cell _ => format_pretty_print `t x
-            | linereader _ => format_pretty_print `t x
-            | vec _ => format_pretty_print `t x
-            | array' _ => format_pretty_print `t x
+            | colored_string => emit_expr `t `std_string x "format!(\"{}\", $0)"
             | array _ =>
                 inl x = deref `t `any x
                 emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
-            | _ => emit_expr `t `std_string x "format!(\"{}\", $0)"
+            | _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
         result
 
 inl as_str (s : string) : ref' str =
@@ -117,14 +110,14 @@ inl hex_to_u8 (hex : string) : u8 =
     emit_expr hex "u8::from_str_radix($0, 16).unwrap()"
 
 inl color_name (name : string) (str : emit_type std_string) : std_string =
-    (emit_expr (str, name) "colored::Colorize::color(&*$0, $1.to_string())" : any)
+    (emit_expr (str, name) "colored::Colorize::color(&*$0, $1.to_string())" : colored_string)
     |> format
 
 inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
     inl r = color_hex |> substring 0 2 |> hex_to_u8
     inl g = color_hex |> substring 2 2 |> hex_to_u8
     inl b = color_hex |> substring 4 2 |> hex_to_u8
-    (emit_expr (str, r, g, b) "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)" : any)
+    (emit_expr (str, r, g, b) "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)" : colored_string)
     |> format
 
 
