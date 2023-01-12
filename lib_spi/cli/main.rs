@@ -1,4 +1,4 @@
-#![crate_name = "cli"]
+// #![crate_name = "cli"]
 
 mod cli;
 

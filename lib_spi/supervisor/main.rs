@@ -1,4 +1,4 @@
-#![crate_name = "supervisor"]
+// #![crate_name = "supervisor"]
 
 mod supervisor;
 

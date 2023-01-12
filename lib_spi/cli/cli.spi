@@ -33,22 +33,29 @@ inl read_lines (path : path_buf) : a i32 string =
     ])
 
     inl file : result' file io_error = emit_expr path_clean "std::fs::File::open($0)"
-    inl file : file = !!file
-    inl reader : box (linereader (ref' file)) = emit_expr file "Box::new(linereader::LineReader::new(&$0))"
+    inl file : ref' file = !!file
+    // inl reader : box (linereader (ref' file)) = emit_expr file "Box::new(linereader::LineReader::new(&$0))"
+
+    inl reader : ref_cell (linereader (ref' file)) = emit_expr file "std::cell::RefCell::new(linereader::LineReader::new($0))"
+    // inl reader : linereader (ref' file) = emit_expr file "linereader::LineReader::new(&$0)"
+
 
     log Debug !!(;[
         !!"reader:"; !!reader : log_item
     ])
-    // inl lines : vec string = emit_expr () "vec![]"
-    // inl for_each forall a. (fn : ref' a -> result' bool io_error) (reader : box _) : result' () io_error =
-    //     emit_expr (reader, fn) "$0.l0.for_each(|x| $1(&x))"
-    // (reader
-    //     |> for_each fun (line : ref' (array' u8)) =>
-    //         console_fsx.write_line "line:"
-    //         console_fsx.write_line (line |> format)
-    //         $"Ok true"
-    //     |> (~!!) : unit')
-    // |> ignore
+    inl lines : vec string = emit_expr () "vec![]"
+
+    inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) : result' () io_error =
+        emit_expr (reader, join fn) $"\"($0).borrow_mut().for_each(move |x| $1(x.to_vec()))\""
+
+    (reader
+        |> for_each fun (line : vec u8) =>
+            log Debug !!(;[
+                !!"line:"; !!(line |> format) : log_item
+            ])
+            $"Ok true"
+        |> (~!!) : unit')
+    |> ignore
 
     a ;[]
 

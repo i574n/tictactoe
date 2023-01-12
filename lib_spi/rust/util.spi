@@ -25,6 +25,8 @@ nominal vec t = $"Types.Vec<`t>"
 
 // nominal hash_map k v = $"Types.std.collections.HashMap<`k, `v>"
 
+nominal ref_cell t = $"Types.std.cell.RefCell<`t>"
+
 nominal file = $"Types.std.fs.File"
 
 type io_error = $"Types.std.io.Error"
@@ -63,13 +65,20 @@ inl to_std_string (str : string) : std_string =
 
 inl format forall t. (x : t) : std_string =
     real
+        inl format_pretty_print forall t. (x : t) : std_string =
+            emit_expr `t `std_string x "format!(\"{:?}\", $0)"
         inl result : std_string =
             typecase t with
             | string => to_std_string x
             | std_string => x
-            | systemtime => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
-            | ref' _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
-            | box _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+            | systemtime => format_pretty_print `t x
+            | ref' _ => format_pretty_print `t x
+            | static_ref' _ => format_pretty_print `t x
+            | box _ => format_pretty_print `t x
+            | ref_cell _ => format_pretty_print `t x
+            | linereader _ => format_pretty_print `t x
+            | vec _ => format_pretty_print `t x
+            | array' _ => format_pretty_print `t x
             | array _ =>
                 inl x = deref `t `any x
                 emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
@@ -120,7 +129,7 @@ inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
 
 
 // inl unwrap' x = emit_expr x "$0.unwrap()"
-inl unwrap_ref x = emit_expr x "($0).unwrap()"
+inl unwrap_ref x = emit_expr x "$0.unwrap()"
 inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
 inl unwrap_or forall t. (a : t) (b : option' t) : t =
     $"!b |> Option.defaultValue !a"

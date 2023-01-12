@@ -136,6 +136,27 @@ and closure7 () () : Types.EmitType<Types.std.string.String> =
     let v8 : Types.std.string.String = Fable.Core.Rust.emitExpr v6 v7
     let v9 : Types.EmitType<Types.std.string.String> = v8 |> unbox<Types.EmitType<Types.std.string.String>>
     v9
+and closure8 (v0 : (US0 -> (Types.EmitType<Types.std.string.String> -> unit))) (v1 : Types.Vec<uint8>) : Result<bool, Types.std.io.Error> =
+    let v2 : US0 = US0_0
+    let v3 : (Types.EmitType<Types.std.string.String> -> unit) = v0 v2
+    let v4 : string = "line:"
+    let v5 : string = "($0).to_string()"
+    let v6 : Types.std.string.String = Fable.Core.Rust.emitExpr v4 v5
+    let v7 : Types.EmitType<Types.std.string.String> = v6 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v8 : string = "format!(\"{:?}\", $0)"
+    let v9 : Types.std.string.String = Fable.Core.Rust.emitExpr v1 v8
+    let v10 : Types.EmitType<Types.std.string.String> = v9 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v11 : (Types.EmitType<Types.std.string.String> []) = [|v7; v10|]
+    let v12 : string = "core::ops::Deref::deref($0)"
+    let v13 : obj = Fable.Core.Rust.emitExpr v11 v12
+    let v14 : string = "format!(\"{:?}\", ***$0)"
+    let v15 : Types.std.string.String = Fable.Core.Rust.emitExpr v13 v14
+    let v16 : Types.EmitType<Types.std.string.String> = v15 |> unbox<Types.EmitType<Types.std.string.String>>
+    v3 v16
+    let v17 : Result<bool, Types.std.io.Error> = Ok true
+    v17
+and method4 (v0 : (US0 -> (Types.EmitType<Types.std.string.String> -> unit))) : (Types.Vec<uint8> -> Result<bool, Types.std.io.Error>) =
+    closure8(v0)
 and closure0 () () : int32 =
     let v0 : (unit -> US0) = closure1()
     let v1 : (unit -> Types.EmitType<Types.std.string.String>) = closure2()
@@ -172,11 +193,11 @@ and closure0 () () : int32 =
     let v32 : Types.EmitType<Types.std.string.String> = v31 |> unbox<Types.EmitType<Types.std.string.String>>
     v18 v32
     let v33 : string = "std::fs::File::open($0)"
-    let v34 : obj = Fable.Core.Rust.emitExpr v16 v33
-    let v35 : string = "($0).unwrap()"
-    let v36 : obj = Fable.Core.Rust.emitExpr v34 v35
-    let v37 : string = "Box::new(linereader::LineReader::new(&$0))"
-    let v38 : Types.Box<Types.linereader.LineReader<Types.Ref<Types.std.fs.File>>> = Fable.Core.Rust.emitExpr v36 v37
+    let v34 : Result<Types.std.fs.File, Types.std.io.Error> = Fable.Core.Rust.emitExpr v16 v33
+    let v35 : string = "$0.unwrap()"
+    let v36 : Types.Ref<Types.std.fs.File> = Fable.Core.Rust.emitExpr v34 v35
+    let v37 : string = "std::cell::RefCell::new(linereader::LineReader::new($0))"
+    let v38 : Types.std.cell.RefCell<Types.linereader.LineReader<Types.Ref<Types.std.fs.File>>> = Fable.Core.Rust.emitExpr v36 v37
     let v39 : US0 = US0_0
     let v40 : (Types.EmitType<Types.std.string.String> -> unit) = v12 v39
     let v41 : string = "reader:"
@@ -190,20 +211,27 @@ and closure0 () () : int32 =
     let v49 : Types.std.string.String = Fable.Core.Rust.emitExpr v48 v30
     let v50 : Types.EmitType<Types.std.string.String> = v49 |> unbox<Types.EmitType<Types.std.string.String>>
     v40 v50
-    let v51 : (string []) = [||]
-    let v52 : US0 = US0_0
-    let v53 : (Types.EmitType<Types.std.string.String> -> unit) = v4 v52
-    let v54 : string = "lines:"
-    let v55 : Types.std.string.String = Fable.Core.Rust.emitExpr v54 v20
-    let v56 : Types.EmitType<Types.std.string.String> = v55 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v57 : string = "format!(\"{}\", $0)"
-    let v58 : Types.std.string.String = Fable.Core.Rust.emitExpr v51 v57
-    let v59 : Types.EmitType<Types.std.string.String> = v58 |> unbox<Types.EmitType<Types.std.string.String>>
-    let v60 : (Types.EmitType<Types.std.string.String> []) = [|v56; v59|]
-    let v61 : obj = Fable.Core.Rust.emitExpr v60 v28
-    let v62 : Types.std.string.String = Fable.Core.Rust.emitExpr v61 v30
-    let v63 : Types.EmitType<Types.std.string.String> = v62 |> unbox<Types.EmitType<Types.std.string.String>>
-    v53 v63
+    let v51 : string = "vec![]"
+    let v52 : Types.Vec<string> = Fable.Core.Rust.emitExpr () v51
+    let v53 : (Types.Vec<uint8> -> Result<bool, Types.std.io.Error>) = method4(v12)
+    let v54 : string = "($0).borrow_mut().for_each(move |x| $1(x.to_vec()))"
+    let v55 : Result<unit, Types.std.io.Error> = Fable.Core.Rust.emitExpr struct (v38, v53) v54
+    let v56 : string = "*(($0).as_ref()).unwrap()"
+    Fable.Core.Rust.emitExpr v55 v56
+    let v57 : (string []) = [||]
+    let v58 : US0 = US0_0
+    let v59 : (Types.EmitType<Types.std.string.String> -> unit) = v4 v58
+    let v60 : string = "lines:"
+    let v61 : Types.std.string.String = Fable.Core.Rust.emitExpr v60 v20
+    let v62 : Types.EmitType<Types.std.string.String> = v61 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v63 : string = "format!(\"{}\", $0)"
+    let v64 : Types.std.string.String = Fable.Core.Rust.emitExpr v57 v63
+    let v65 : Types.EmitType<Types.std.string.String> = v64 |> unbox<Types.EmitType<Types.std.string.String>>
+    let v66 : (Types.EmitType<Types.std.string.String> []) = [|v62; v65|]
+    let v67 : obj = Fable.Core.Rust.emitExpr v66 v28
+    let v68 : Types.std.string.String = Fable.Core.Rust.emitExpr v67 v30
+    let v69 : Types.EmitType<Types.std.string.String> = v68 |> unbox<Types.EmitType<Types.std.string.String>>
+    v59 v69
     0
 let v0 : (unit -> int32) = closure0()
 ()

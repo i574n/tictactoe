@@ -4,9 +4,25 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
+chrono = "~0.4"
+clap = { version = "~4.0", features = ["derive"] }
+colored = "~2.0"
+fable_library_rust = { path = "./lib_spi/supervisor/fable_modules/fable-library-rust" }
+rand = "~0.8"
+serde_json = "~1.0"
+zmq = "~0.10"
+
+linereader = "~0.4"
+
+wasm-bindgen = { version = "~0.2", features = ["enable-interning"] }
+web-sys = { version = "~0.3", features = ["console"] }
+
+[dev-dependencies]
+
+[build-dependencies]
 supervisor = { path = "./lib_spi/supervisor" }
 cli = { path = "./lib_spi/cli" }
 client = { path = "./lib_spi/client" }
 
 [lib]
-path = "./main.rs"
+path = "./lib_spi/cli/main.rs"

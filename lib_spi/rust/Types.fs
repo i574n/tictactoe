@@ -26,6 +26,9 @@ type Str = class end
 type Vec<'T> = class end
 
 module std =
+    module cell =
+        [<Erase; Emit("std::cell::RefCell<$0>")>]
+        type RefCell<'T> = class end
     module fs =
         [<Erase; Emit("std::fs::File")>]
         type File = class end

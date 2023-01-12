@@ -799,9 +799,19 @@ dependencies = [
 name = "tictactoe"
 version = "0.0.1"
 dependencies = [
+ "chrono",
+ "clap",
  "cli",
  "client",
+ "colored",
+ "fable_library_rust",
+ "linereader",
+ "rand",
+ "serde_json",
  "supervisor",
+ "wasm-bindgen",
+ "web-sys",
+ "zmq",
 ]
 
 [[package]]

@@ -11,6 +11,7 @@ pub mod Cli {
     use fable_library_rust::Native_::Array;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
+    use fable_library_rust::Native_::Func2;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::array;
     use fable_library_rust::Native_::arrayEmpty;
@@ -147,6 +148,24 @@ pub mod Cli {
         let v6 = core::ops::Deref::deref(&v4);
         format!("{:?}", ***v6).clone()
     }
+    pub fn closure8(v0_1: Func2<Cli::US0, std::string::String, ()>,
+                    v1: Vec<u8>) -> Result<bool, std::io::Error> {
+        let v3 = Func1::new(move |arg0| v0_1(Cli::US0::US0_0, arg0));
+        let v11: Array<std::string::String> =
+            array(&[(&string("line:")).to_string(), format!("{:?}", &v1)]);
+        let v13 = core::ops::Deref::deref(&v11);
+        v3(format!("{:?}", ***v13).clone());
+        Ok(true)
+    }
+    pub fn method4(v0_1: Func2<Cli::US0, std::string::String, ()>)
+     -> Func1<Vec<u8>, Result<bool, std::io::Error>> {
+        let v = v0_1;
+        Func1::new({
+                       let v = v.clone();
+                       move |v_1: Vec<u8>|
+                           Cli::closure8(v.clone(), v_1.clone())
+                   })
+    }
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
         fn v0_1() -> Cli::US0 { Cli::closure1((), ()) }
         fn v1() -> std::string::String { Cli::closure2((), ()) }
@@ -176,10 +195,12 @@ pub mod Cli {
         let v29 = core::ops::Deref::deref(&v27);
         v18(format!("{:?}", ***v29).clone());
         {
-            let v34 = std::fs::File::open(&v16);
-            let v36 = (v34).unwrap();
-            let v38: Box<linereader::LineReader<&std::fs::File>> =
-                Box::new(linereader::LineReader::new(&v36));
+            let v34: Result<std::fs::File, std::io::Error> =
+                std::fs::File::open(&v16);
+            let v36: &std::fs::File = &v34.unwrap();
+            let v38:
+                    std::cell::RefCell<linereader::LineReader<&std::fs::File>> =
+                std::cell::RefCell::new(linereader::LineReader::new(&v36));
             let v40 = v12(Cli::US0::US0_0);
             let v47: Array<std::string::String> =
                 array(&[(&string("reader:")).to_string(),
@@ -187,13 +208,21 @@ pub mod Cli {
             let v48 = core::ops::Deref::deref(&v47);
             v40(format!("{:?}", ***v48).clone());
             {
-                let v53 = v4(Cli::US0::US0_0);
-                let v60: Array<std::string::String> =
-                    array(&[(&string("lines:")).to_string(),
-                            format!("{}", &arrayEmpty::<string>())]);
-                let v61 = core::ops::Deref::deref(&v60);
-                v53(format!("{:?}", ***v61).clone());
-                0i32
+                let v52: Vec<string> = vec![];
+                let v53 =
+                    Cli::method4(Func2::new(move |arg0, arg1| v12(arg0)(arg1)));
+                let v55: Result<(), std::io::Error> =
+                    (v38).borrow_mut().for_each(move |x| v53(x.to_vec()));
+                *((&v55).as_ref()).unwrap();
+                {
+                    let v59 = v4(Cli::US0::US0_0);
+                    let v66: Array<std::string::String> =
+                        array(&[(&string("lines:")).to_string(),
+                                format!("{}", &arrayEmpty::<string>())]);
+                    let v67 = core::ops::Deref::deref(&v66);
+                    v59(format!("{:?}", ***v67).clone());
+                    0i32
+                }
             }
         }
     }
