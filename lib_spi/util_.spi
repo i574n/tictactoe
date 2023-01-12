@@ -23,10 +23,10 @@ prototype append t : t -> t -> t
 instance append list t = listm.append
 instance append a dim {number} t = am.append
 
-nominal array' t = array t
-instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>
-    failwith "util_.array'.append"
-    y |> array'
+// nominal array' t = array t
+// instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>
+//     failwith "util_.array'.append"
+//     y |> array'
 
 
 inl to_string' forall t. (x : t) : string = $"(!x).ToString ()"

@@ -5,6 +5,8 @@ modules:
     real_util*
     util_-
     console_fsx
+    rust/
+        util
     supervisor/
         supervisor
     cli/

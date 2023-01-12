@@ -1,0 +1,313 @@
+open real_util
+
+
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    $"Fable.Core.Rust.emitExpr !args !code"
+
+inl console_log (str : string) : () =
+    emit_expr str "web_sys::console::log_1(&wasm_bindgen::JsValue::from_str($0))"
+
+
+nominal unit' = ()
+type unativeint = $"unativeint"
+nominal option' t = $"Option<`t>"
+nominal result' t e = $"Result<`t, `e>"
+
+nominal array' t = $"Types.Array<`t>"
+nominal box t = $"Types.Box<`t>"
+nominal dyn' t = $"Types.Dyn<`t>"
+nominal emit_type t = $"Types.EmitType<`t>"
+nominal mut' t = $"Types.Mut<`t>"
+nominal ref' t = $"Types.Ref<`t>"
+nominal static_ref' t = $"Types.StaticRef<`t>"
+nominal str = $"Types.Str"
+nominal vec t = $"Types.Vec<`t>"
+
+// nominal hash_map k v = $"Types.std.collections.HashMap<`k, `v>"
+
+nominal file = $"Types.std.fs.File"
+
+type io_error = $"Types.std.io.Error"
+
+nominal iterator t = $"Types.std.iter.Iterator<`t>"
+
+type ancestors = $"Types.std.path.Ancestors"
+nominal path = $"Types.std.path.Path"
+nominal path_buf = $"Types.std.path.PathBuf"
+type strip_prefix_error = $"Types.std.path.StripPrefixError"
+
+nominal std_string = $"Types.std.string.String"
+
+nominal systemtime = $"Types.std.time.SystemTime"
+
+type utc = $"Types.chrono.Utc"
+type local = $"Types.chrono.Local"
+type datetime t = $"Types.chrono.DateTime<`t>"
+
+nominal linereader t = $"Types.linereader.LineReader<`t>"
+
+
+inl deref forall t u. (x : t) : u =
+    emit_expr x "core::ops::Deref::deref($0)"
+
+inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
+
+inl len forall t. (x : t) : i32 =
+    emit_expr x "($0).len().try_into().unwrap()"
+
+// inl new_string (str : static_ref' str) : string =
+    // emit_expr str "fable_library_rust::String_::string($0)"
+
+inl to_std_string (str : string) : std_string =
+    emit_expr str "($0).to_string()"
+
+inl format forall t. (x : t) : std_string =
+    real
+        inl result : std_string =
+            typecase t with
+            | string => to_std_string x
+            | std_string => x
+            | systemtime => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+            | ref' _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+            | box _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+            | array _ =>
+                inl x = deref `t `any x
+                emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
+            | _ => emit_expr `t `std_string x "format!(\"{}\", $0)"
+        result
+
+inl as_str (s : string) : ref' str =
+    emit_expr (join s) "$0.as_str()"
+
+inl to_str forall t. (x : t) : option' (ref' str) =
+    emit_expr x "($0).to_str()"
+
+inl to_string'' forall t. (x : t) : string =
+    emit_expr x "fable_library_rust::String_::fromStr($0)"
+
+inl substring (start : i32) (len : i32) (str : string) : string =
+    $"!str.Substring (!start, !len)"
+
+inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
+    emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
+
+inl serialize args json : std_string =
+    emit_expr args ("serde_json::json!(" +\ json +\ ")")
+
+// inl json_stringify forall t. (obj : t) : std_string =
+//     real
+//         typecase t with
+//         | array _ => serialize `t obj "****$0"
+//         | _ => serialize `t obj "*$0"
+
+inl serialize args json : std_string =
+    emit_expr args ("serde_json::json!(" +\ json +\ ").to_string()")
+
+
+inl hex_to_u8 (hex : string) : u8 =
+    emit_expr hex "u8::from_str_radix($0, 16).unwrap()"
+
+inl color_name (name : string) (str : emit_type std_string) : std_string =
+    (emit_expr (str, name) "colored::Colorize::color(&*$0, $1.to_string())" : any)
+    |> format
+
+inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
+    inl r = color_hex |> substring 0 2 |> hex_to_u8
+    inl g = color_hex |> substring 2 2 |> hex_to_u8
+    inl b = color_hex |> substring 4 2 |> hex_to_u8
+    (emit_expr (str, r, g, b) "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)" : any)
+    |> format
+
+
+// inl unwrap' x = emit_expr x "$0.unwrap()"
+inl unwrap_ref x = emit_expr x "($0).unwrap()"
+inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
+inl unwrap_or forall t. (a : t) (b : option' t) : t =
+    $"!b |> Option.defaultValue !a"
+instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+instance (~!!) ref' t' = unwrap_ref
+instance (~!!) file = unwrap_ref
+instance (~!!) emit_type t' = fun (x : t) =>
+    real
+        // typecase t with
+        // | string => emit_expr `std_string `(emit_type t') (format `t x) "$0"
+        // | string' => emit_expr `string' `(emit_type t') x "$0"
+        // // | string => emit_expr `string' `(emit_type t') (x |> format `t) "$0"
+        // | _ =>
+            inl x : std_string = format `t x
+            real_unbox `std_string `(emit_type t') x
+instance (~!!) result' t' e' = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+instance (~!!) static_ref' t' = unwrap_ref
+instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_string()"
+inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
+instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
+
+
+// inl box_from forall t. (obj : t) : box' t =
+//     emit_expr obj "Box::from($0)"
+
+
+inl map forall t u. (f : t -> u) (iter : iterator t) : iterator u =
+    emit_expr (f |> to_ref, iter) "$1.into_iter().map($0)"
+
+inl find forall t. (f : ref' t -> bool) (iter : iterator t) : option' t =
+    emit_expr (f |> to_ref, iter) "$1.into_iter().find($0)"
+
+inl take forall t. (x : unativeint) iter : iterator (ref' t) =
+    emit_expr (x, iter) "$1.take($0)"
+
+
+prototype to_path_buf t : t -> path_buf
+
+// instance to_path_buf str = fun x => emit_expr x "$0.to_path_buf()"
+
+inl to_path_buf' path : path_buf = emit_expr path "std::path::PathBuf::from($0)"
+
+instance to_path_buf static_ref' t = to_path_buf'
+instance to_path_buf ref' t = to_path_buf'
+
+inl path_ancestors (x : path_buf) : ref' ancestors =
+    emit_expr x "$0.ancestors()"
+
+inl path_join (s : string) (p : ref' path) : path_buf =
+    emit_expr (s, p) "$1.join($0.as_str())"
+
+inl path_exists (p : ref' path_buf) : bool =
+    emit_expr p "std::path::Path::exists($0)"
+
+inl env_current_dir () : path_buf =
+    !!(emit_expr () "std::env::current_dir()" : result' path_buf io_error)
+
+inl path_canonicalize (path : path_buf) : path_buf =
+    !!(emit_expr path "($0).canonicalize()" : result' path_buf io_error)
+
+inl path_parent (path : path_buf) : ref' path =
+    !!(emit_expr path "($0).parent()" : option' (ref' path))
+
+inl path_display (path : path_buf) : string =
+    // emit_expr path "fable_library_rust::String_::fromStr(Box::leak(format!(\"{:?}\", ($0).strip_prefix(\"\").unwrap().display()).into_boxed_str()))"
+    emit_expr path "fable_library_rust::String_::fromStr(&format!(\"{}\", $0.display()))"
+
+inl path_strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' path =
+    !!(emit_expr (path, base) "($1).strip_prefix($0)" : result' (static_ref' path) strip_prefix_error)
+
+
+inl fs_write (path_buf : path_buf) (s : string) : result' unit' io_error =
+    emit_expr (path_buf, s) "std::fs::write($0, $1.as_str())"
+
+inl fs_read_to_string (path_buf : path_buf) : result' std_string io_error =
+    emit_expr path_buf "std::fs::read_to_string($0)"
+
+
+inl now () : datetime utc =
+    emit_expr () "chrono::Utc::now()"
+
+inl ticks () : ticks =
+    emit_expr (now ()) "($0).timestamp()"
+
+inl sleep (ms : u64) : () =
+    emit_expr ms "std::thread::sleep(std::time::Duration::from_millis(*$0))"
+
+
+inl random () : u8 = emit_expr () "rand::random::<u8>()"
+
+inl range forall t {number}. (a : t) (b : t) : a i32 t = $"[| !a..!b |]"
+
+
+
+type env =
+    {
+        codespace_name : string
+        github_run_id : string
+        github_sha : string
+        is_test : bool
+    }
+let get_env () : env =
+    inl env : any = !!"" // ($"Fable.Core.JsInterop.emitJsExpr () \"components.env\"" : any)
+
+    inl codespace_name = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
+    inl github_run_id = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
+    inl github_sha = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
+    inl is_test =
+        // inl is_test' : any = js_get env "IS_TEST"
+        inl is_test' : bool = false // is_empty is_test'
+        not is_test'
+
+    {
+        codespace_name
+        github_run_id
+        github_sha
+        is_test
+    } : env
+
+
+inl real_core_union_tag log_level : i32 =
+    match log_level with
+    | Debug => 0
+    | Info => 1
+    | Warn => 2
+    | Error => 3
+
+type log_item = emit_type std_string
+
+
+let new_log
+    (get_log_level : () -> log_level_type)
+    (ext_locals_fn : () -> log_item)
+    (log_fn : string -> ())
+    (color : string)
+    : log_level_type -> log_item -> ()
+    =
+    inl env : env = get_env ()
+    inl start_timestamp = ticks ()
+    fun log_level (args : log_item) : () =>
+        if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
+            inl new_timestamp () = ticks () - start_timestamp
+            inl timestamp : string = new_timestamp () |> to_string'
+            inl timestamp : string = pad 6 timestamp
+            inl run_id : u8 = random ()
+            inl locals : log_item = !!(;[
+                !!"timestamp:"; !!timestamp : log_item
+                !!"run_id:"; !!run_id
+            ])
+            inl ext_locals = ext_locals_fn () |> color_name "purple"
+            inl args = args |> truecolor color
+            inl locals = locals |> truecolor "222222"
+            inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
+            log_fn new_args
+
+inl wait_file_change (fsx_path : path_buf) : string =
+    inl get_locals () = !!(;[
+        !!"> wait_file_change ()" : log_item
+    ])
+    inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "387957"
+
+    inl get_last_modified () : systemtime = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
+    inl start = get_last_modified ()
+
+    log Debug !!(;[
+        !!"fsx_path:"; !!(fsx_path |> path_display) : log_item
+        !!"start:"; !!start
+    ])
+
+    inl new_fsx =
+        range 0i32 50
+        |> am.fold
+            fun new_fsx i =>
+                match new_fsx with
+                | Some lines => Some lines
+                | None =>
+                    inl last_modified = get_last_modified ()
+                    log Debug !!(;[
+                        !!"i:"; !!i : log_item
+                        !!"last_modified:"; !!last_modified
+                    ])
+                    if emit_expr (last_modified, start) "$0 > $1" then
+                        inl lines : std_string = !!(fsx_path |> fs_read_to_string)
+                        Some (lines |> to_string'')
+                    else
+                        sleep 25
+                        None
+            None
+
+    new_fsx /?? ""

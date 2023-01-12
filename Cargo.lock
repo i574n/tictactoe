@@ -123,6 +123,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "cli"
+version = "0.0.1"
+dependencies = [
+ "chrono",
+ "clap",
+ "colored",
+ "fable_library_rust",
+ "linereader",
+ "rand",
+ "serde_json",
+ "zmq",
+]
+
+[[package]]
 name = "client"
 version = "0.0.1"
 dependencies = [
@@ -450,6 +464,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "201de327520df007757c1f0adce6e827fe8562fbc28bfd9c15571c66ca1f5f79"
 
 [[package]]
+name = "linereader"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d921fea6860357575519aca014c6e22470585accdd543b370c404a8a72d0dd1d"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
 name = "link-cplusplus"
 version = "1.0.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -472,6 +495,12 @@ checksum = "abb12e687cfb44aa40f41fc3978ef76448f9b6038cad6aef4259d3c095a2382e"
 dependencies = [
  "cfg-if",
 ]
+
+[[package]]
+name = "memchr"
+version = "2.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
 
 [[package]]
 name = "memoffset"
@@ -770,6 +799,7 @@ dependencies = [
 name = "tictactoe"
 version = "0.0.1"
 dependencies = [
+ "cli",
  "client",
  "supervisor",
 ]

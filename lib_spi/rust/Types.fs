@@ -6,10 +6,14 @@ namespace Types
 open Fable.Core
 open Fable.Core.Rust
 
-[<Erase; Emit("$0")>]
-type EmitType<'T> = class end
+[<Erase; Emit("[$0]")>]
+type Array<'T> = class end
+[<Erase; Emit("Box<$0>")>]
+type Box<'T> = class end
 [<Erase; Emit("dyn $0")>]
 type Dyn<'T> = class end
+[<Erase; Emit("$0")>]
+type EmitType<'T> = class end
 [<Erase; Emit("mut $0")>]
 type Mut<'T> = class end
 [<Erase; Emit("&$0")>]
@@ -18,8 +22,13 @@ type Ref<'T> = class end
 type StaticRef<'T> = class end
 [<Erase; Emit("str")>]
 type Str = class end
+[<Erase; Emit("Vec<$0>")>]
+type Vec<'T> = class end
 
 module std =
+    module fs =
+        [<Erase; Emit("std::fs::File")>]
+        type File = class end
     module io =
         [<Erase; Emit("std::io::Error")>]
         type Error = class end
@@ -59,6 +68,10 @@ module fable_library_rust =
     module Native_ =
         [<Erase; Emit("fable_library_rust::Native_::Box_<$0>")>]
         type Box<'T> = class end
+
+module linereader =
+    [<Erase; Emit("linereader::LineReader<$0>")>]
+    type LineReader<'T> = class end
 
 // // #else
 // //     ()
