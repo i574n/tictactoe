@@ -260,7 +260,7 @@ inl real_core_union_tag log_level : i32 =
 type log_item = emit_type std_string
 
 
-let new_log
+inl new_log
     (get_log_level : () -> log_level_type)
     (ext_locals_fn : () -> log_item)
     (log_fn : string -> ())

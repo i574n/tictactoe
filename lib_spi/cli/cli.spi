@@ -43,19 +43,33 @@ inl read_lines (path : path_buf) : a i32 string =
     log Debug !!(;[
         !!"reader:"; !!reader : log_item
     ])
-    inl lines : vec string = emit_expr () "vec![]"
+
+    inl lines : vec (vec u8) = emit_expr () "Vec::new()"
+    // emit_expr () $"\"let mut !lines = !lines\""
 
     inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) : result' () io_error =
         emit_expr (reader, join fn) $"\"($0).borrow_mut().for_each(move |x| $1(x.to_vec()))\""
 
     (reader
         |> for_each fun (line : vec u8) =>
+            inl line_len = line |> len
             log Debug !!(;[
-                !!"line:"; !!(line |> format) : log_item
+                !!"line.len():"; !!(line_len) : log_item
             ])
+            // emit_expr (lines, line) $"\"$0.clone().push($1)\""
             $"Ok true"
         |> (~!!) : unit')
     |> ignore
+
+    log Debug !!(;[
+        !!"lines:"; !!(lines |> format) : log_item
+    ])
+
+    // inl lines : string =
+    //     lines
+    //     |> map (fun (line : vec u8) => line |> vec_to_string)
+    //     |> vec_to_string
+
 
     a ;[]
 
