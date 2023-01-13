@@ -96,6 +96,8 @@ inl substring (start : i32) (len : i32) (str : string) : string =
 inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
     emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
 
+inl string_contains (search : string) (s : string) : bool =
+    emit_expr (search |> to_ref, s |> to_ref) "($1).contains(&*$0)"
 
 inl raw_string_literal (s : string) : ref' str =
     emit_expr () $"$\"r#\\\"{!s}\\\"#\""
@@ -116,6 +118,9 @@ inl regex_replace_all regex replacement text =
     |> regex_build
     |> regex_replace_all' text replacement
     |> to_string''
+
+inl from_utf8 (v : vec u8) : std_string =
+    emit_expr v "std::string::String::from_utf8(($0).to_owned()).unwrap()"
 
 
 inl serialize args json : std_string =

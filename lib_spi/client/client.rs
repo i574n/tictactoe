@@ -14,7 +14,7 @@ pub mod Client {
     use fable_library_rust::String_::string;
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
         web_sys::console::log_1(&wasm_bindgen::JsValue::from_str(&string("app ()")));
-        2i32
+        0i32
     }
     pub fn v0() -> Func0<i32> {
         static v0: MutCell<Option<Func0<i32>>> = MutCell::new(None);
