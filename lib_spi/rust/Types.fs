@@ -80,6 +80,13 @@ module linereader =
     [<Erase; Emit("linereader::LineReader<$0>")>]
     type LineReader<'T> = class end
 
+module regex =
+    [<Erase; Emit("regex::Regex")>]
+    type Regex = class end
+    [<Erase; Emit("regex::RegexBuilder")>]
+    type RegexBuilder = class end
+
+
 // // #else
 // //     ()
 // // #endif //FABLE_COMPILER_RUST

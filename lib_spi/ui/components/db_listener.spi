@@ -50,8 +50,8 @@ let db_listener (props : mut ()) =
     inl db_connection_options, set_db_connection_options = use_db_connection_options ()
 
     inl get_locals () : array any = ;[
-        !!("db_connection_options':", db_connection_options ())
-        !!("db_connections':", db_connections ())
+        !!("db_connection_options", db_connection_options ())
+        !!("db_connections", db_connections ())
     ]
     inl log = use_log get_locals "#cf1100"
     log Debug ;[!!"> db_listener ()"]
@@ -84,7 +84,7 @@ let db_listener (props : mut ()) =
         if connections_hash db_connections' <> connections_hash new_connections then
             log Info ;[
                 !!"> db_listener > effect"
-                !!("new_connections:", new_connections)
+                !!("new_connections", new_connections)
             ]
 
             set_db_connections new_connections

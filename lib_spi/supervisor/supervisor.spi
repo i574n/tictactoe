@@ -32,9 +32,9 @@ inl zmq_request (msg : std_string) : std_string =
     inl host = "localhost"
     inl port : i32 = 13805
     log Debug !!(;[
-        !!"host:"; !!host : log_item
-        !!"port:"; !!port
-        !!"msg.len():"; !!(msg |> len)
+        !!"host"; !!host : log_item
+        !!"port"; !!port
+        !!"msg len"; !!(msg |> len)
     ])
 
     inl ctx : any = emit_expr () "zmq::Context::new()"
@@ -47,7 +47,7 @@ inl zmq_request (msg : std_string) : std_string =
 
     emit_expr (sock, endpoint) "$0.disconnect(&$1).unwrap()"
 
-    log Debug !!(;[!!"result.len():"; !!(result |> len) : log_item])
+    log Debug !!(;[!!"result len"; !!(result |> len) : log_item])
 
     result
 
@@ -58,14 +58,14 @@ inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
     inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "e36a62"
 
     log Debug !!(;[
-        !!"spiproj_path:"; !!(spiproj_path |> path_display) : log_item
-        !!"spiproj_text.len():"; !!(spiproj_text |> len)
+        !!"spiproj_path"; !!(spiproj_path |> path_display) : log_item
+        !!"spiproj_text len"; !!(spiproj_text |> len)
     ])
 
     inl args, req_json = ProjectFileOpen { spiproj_path spiproj_text } |> get_req_json
     inl json = serialize args req_json
 
-    log Debug !!(;[!!"json.len():"; !!(json |> len) : log_item])
+    log Debug !!(;[!!"json len="; !!(json |> len) : log_item])
 
     zmq_request json |> ignore
 
@@ -76,14 +76,14 @@ inl spi_build_file (spi_path : path_buf) (backend : string) : () =
     inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "98d5ef"
 
     log Debug !!(;[
-        !!"spi_path:"; !!(spi_path |> path_display) : log_item
-        !!"backend:"; !!backend
+        !!"spi_path"; !!(spi_path |> path_display) : log_item
+        !!"backend"; !!backend
     ])
 
     inl args, req_json = BuildFile { spi_path; backend = backend |> to_std_string } |> get_req_json
     inl json = serialize args req_json
 
-    log Debug !!(;[!!"json.len():"; !!(json |> len) : log_item])
+    log Debug !!(;[!!"json len"; !!(json |> len) : log_item])
 
     zmq_request json |> ignore
 
@@ -94,16 +94,16 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "de884c"
 
     log Debug !!(;[
-        !!"pwd:"; !!(env_current_dir () |> path_canonicalize |> path_display) : log_item
-        !!"spi_path:"; !!(spi_path |> path_display)
-        !!"new_fsx_path:"; !!(!!new_fsx_path |> path_display)
+        !!"pwd"; !!(env_current_dir () |> path_canonicalize |> path_display) : log_item
+        !!"spi_path"; !!(spi_path |> path_display)
+        !!"new_fsx_path"; !!(!!new_fsx_path |> path_display)
     ])
 
     inl spi_path_clean = spi_path |> path_canonicalize
-    log Debug !!(;[!!"spi_path_clean:"; !!(spi_path_clean |> path_display) : log_item])
+    log Debug !!(;[!!"spi_path_clean"; !!(spi_path_clean |> path_display) : log_item])
 
     inl src_path = spi_path_clean |> path_parent |> to_path_buf |> path_canonicalize
-    log Debug !!(;[!!"src_path:"; !!(src_path |> path_display) : log_item])
+    log Debug !!(;[!!"src_path"; !!(src_path |> path_display) : log_item])
 
     inl spiproj_path =
         src_path
@@ -112,7 +112,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         |> map (path_join "package.spiproj")
         |> find path_exists
         |> (~!!)
-    log Debug !!(;[!!"spiproj_path:"; !!(spiproj_path |> path_display) : log_item])
+    log Debug !!(;[!!"spiproj_path"; !!(spiproj_path |> path_display) : log_item])
 
     inl fsx_path =
         spi_path_clean
@@ -122,7 +122,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         |> string_replace ".spi" ".fsx"
         |> to_path_buf
         |> path_canonicalize
-    log Debug !!(;[!!"fsx_path:"; !!(fsx_path |> path_display) : log_item])
+    log Debug !!(;[!!"fsx_path"; !!(fsx_path |> path_display) : log_item])
 
     (!!(fs_write fsx_path "") : unit') |> ignore
     log Debug !!"> fs_write fsx_path \"\"; ok"
@@ -134,7 +134,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     log Debug !!"> spi_build_file; ok"
 
     inl new_fsx = wait_file_change fsx_path
-    log Debug !!(;[!!"new_fsx.len():"; !!(new_fsx |> len) : log_item])
+    log Debug !!(;[!!"new_fsx len"; !!(new_fsx |> len) : log_item])
 
     (!!(fs_write (new_fsx_path |> unwrap_or fsx_path) new_fsx) : unit') |> ignore
     log Debug !!"> fs_write new_fsx_path; ok"

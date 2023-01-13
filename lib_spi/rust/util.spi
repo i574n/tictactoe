@@ -50,6 +50,9 @@ nominal colored_string = $"Types.colored.ColoredString"
 
 nominal linereader t = $"Types.linereader.LineReader<`t>"
 
+nominal regex = $"Types.regex.Regex"
+nominal regex_builder = $"Types.regex.RegexBuilder"
+
 
 inl deref forall t u. (x : t) : u =
     emit_expr x "core::ops::Deref::deref($0)"
@@ -92,6 +95,28 @@ inl substring (start : i32) (len : i32) (str : string) : string =
 
 inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
     emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
+
+
+inl raw_string_literal (s : string) : ref' str =
+    emit_expr () $"$\"r#\\\"{!s}\\\"#\""
+
+inl new_regex_builder (regex : ref' str) : regex_builder =
+    emit_expr regex "regex::RegexBuilder::new($0)"
+
+inl regex_build (regex_builder : regex_builder) : ref' regex =
+    emit_expr regex_builder "$0.build().unwrap()"
+
+inl regex_replace_all' (text : string) (replacement : string) (regex : ref' regex) : std_string =
+    emit_expr (regex, text |> as_str, replacement |> as_str) "$0.replace_all(&$1, $2).to_string()"
+
+inl regex_replace_all regex replacement text =
+    regex
+    |> raw_string_literal
+    |> new_regex_builder
+    |> regex_build
+    |> regex_replace_all' text replacement
+    |> to_string''
+
 
 inl serialize args json : std_string =
     emit_expr args ("serde_json::json!(" +\ json +\ ")")
@@ -245,13 +270,13 @@ let get_env () : env =
 
 inl real_core_union_tag log_level : i32 =
     match log_level with
+    | Verbose => -1
     | Debug => 0
     | Info => 1
     | Warn => 2
     | Error => 3
 
 type log_item = emit_type std_string
-
 
 inl new_log
     (get_log_level : () -> log_level_type)
@@ -260,6 +285,14 @@ inl new_log
     (color : string)
     : log_level_type -> log_item -> ()
     =
+    inl clean_log (text : log_item) : log_item =
+        inl text =
+            (($"!text |> unbox" : std_string) |> to_string'')
+            |> regex_replace_all "\"([^\"]+)\", \"([^\"]+)\"" "$1=$2"
+            |> regex_replace_all "\\[\"(.*?)\"\\]" "[$1]"
+            |> regex_replace_all ", " " "
+        !!text
+
     inl env : env = get_env ()
     inl start_timestamp = ticks ()
     fun log_level (args : log_item) : () =>
@@ -269,12 +302,15 @@ inl new_log
             inl timestamp : string = pad 6 timestamp
             inl run_id : u8 = random ()
             inl locals : log_item = !!(;[
-                !!"timestamp:"; !!timestamp : log_item
-                !!"run_id:"; !!run_id
+                !!"timestamp"; !!timestamp : log_item
+                !!"run_id"; !!run_id
+                !!"log_level"; !!(log_level |> to_string)
             ])
-            inl ext_locals = ext_locals_fn () |> color_name "purple"
-            inl args = args |> truecolor color
-            inl locals = locals |> truecolor "222222"
+
+            inl ext_locals = ext_locals_fn () |> clean_log |> color_name "purple"
+            inl args = args |> clean_log |> truecolor color
+            inl locals = locals |> clean_log |> truecolor "222222"
+
             inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
             log_fn new_args
 
@@ -288,8 +324,8 @@ inl wait_file_change (fsx_path : path_buf) : string =
     inl start = get_last_modified ()
 
     log Debug !!(;[
-        !!"fsx_path:"; !!(fsx_path |> path_display) : log_item
-        !!"start:"; !!start
+        !!"fsx_path"; !!(fsx_path |> path_display) : log_item
+        !!"start"; !!start
     ])
 
     inl new_fsx =
@@ -301,8 +337,8 @@ inl wait_file_change (fsx_path : path_buf) : string =
                 | None =>
                     inl last_modified = get_last_modified ()
                     log Debug !!(;[
-                        !!"i:"; !!i : log_item
-                        !!"last_modified:"; !!last_modified
+                        !!"i"; !!i : log_item
+                        !!"last_modified"; !!last_modified
                     ])
                     if emit_expr (last_modified, start) "$0 > $1" then
                         inl lines : std_string = !!(fsx_path |> fs_read_to_string)

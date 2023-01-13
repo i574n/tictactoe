@@ -10,6 +10,7 @@ nominal disposable = $"System.IDisposable"
 nominal async t = $"Async<`t>"
 
 union log_level_type =
+    | Verbose
     | Debug
     | Info
     | Warn
@@ -22,6 +23,21 @@ prototype append t : t -> t -> t
 
 instance append list t = listm.append
 instance append a dim {number} t = am.append
+
+instance to_string log_level_type = function
+    | Debug => "Debug"
+    | Info => "Info"
+    | Warn => "Warn"
+    | Error => "Error"
+    | _ => "Error"
+
+instance of_string log_level_type = function
+    | "Debug" => Debug
+    | "Info" => Info
+    | "Warn" => Warn
+    | "Error" => Error
+    | _ => Error
+
 
 // nominal array' t = array t
 // instance append array' t = fun (array' (x : array t)) (array' (y : array t)) =>

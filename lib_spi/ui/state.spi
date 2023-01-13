@@ -56,19 +56,6 @@ let use_log get_locals color =
     new_log log_level get_locals color
 
 
-instance to_string log_level_type = function
-    | Debug => "Debug"
-    | Info => "Info"
-    | Warn => "Warn"
-    | Error => "Error"
-
-instance of_string log_level_type = function
-    | "Debug" => Debug
-    | "Info" => Info
-    | "Warn" => Warn
-    | "Error" => Error
-    | _ => Error
-
 let empty_db_connection () : db_connection_options =
     {
         server_type = SignalRServer

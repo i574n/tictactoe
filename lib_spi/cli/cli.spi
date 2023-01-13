@@ -27,47 +27,38 @@ inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) :
 inl from_utf8 (v : vec u8) : std_string =
     emit_expr v "std::string::String::from_utf8(($0).to_owned()).unwrap()"
 
-inl read_lines (path : path_buf) : a i32 string =
+inl read_lines (path : path_buf) : list std_string =
     inl get_locals () = !!(;[
         !!"> read_lines ()" : log_item
     ])
     inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "666666"
 
     inl path_clean = path |> path_canonicalize
-    log Debug !!(;[
-        !!"path_clean:"; !!(path_clean |> path_display) : log_item
-    ])
+    log Debug !!(;[!!"path_clean"; !!(path_clean |> path_display) : log_item])
 
     inl file : result' file io_error = emit_expr path_clean "std::fs::File::open($0)"
     inl file : ref' file = !!file
 
     inl reader : ref_cell (linereader (ref' file)) = emit_expr file "std::cell::RefCell::new(linereader::LineReader::new($0))"
-    log Debug !!(;[!!"reader:"; !!reader : log_item])
+    log Debug !!(;[!!"reader"; !!reader : log_item])
 
     inl lines_list : mut (list std_string) = mut Nil
 
     (reader
         |> for_each fun (line : vec u8) =>
-            // log Debug !!(;[!!"line.len():"; !!(line |> len) : log_item])
+            log Verbose !!(;[!!"line len"; !!(line |> len) : log_item])
             lines_list <- (line |> from_utf8) :: *lines_list
             $"Ok true"
         |> (~!!) : unit')
     |> ignore
 
-    // log Debug !!(;[!!"lines_list:"; !!lines_list : log_item])
-
-    inl lines : string =
+    inl lines : list std_string =
         *lines_list
         |> listm.rev
-        |> listm.fold
-            fun acc x =>
-                inl x = x
-                $"$\"{!acc}{!x}\""
-            ""
 
-    log Debug !!(;[!!"lines:"; !!lines : log_item])
+    log Debug !!(;[!!"lines len"; !!(lines |> listm.length : i32) : log_item])
 
-    a ;[]
+    lines
 
 inl app () =
     inl get_locals () = !!(;[
@@ -77,9 +68,15 @@ inl app () =
 
     inl lines = read_lines ("./cli.rs" |> as_str |> to_path_buf)
 
-    log Debug !!(;[
-        !!"lines:"; !!lines : log_item
-    ])
+    inl text =
+        lines
+        |> listm.fold
+            fun acc x =>
+                inl x = x
+                $"$\"{!acc}{!x}\""
+            ""
+
+    log Debug !!(;[!!"text len"; !!(text |> len) : log_item])
 
         // let text = lines.clone().into_iter().collect::<String>();
         // println!("text={:?}", text);

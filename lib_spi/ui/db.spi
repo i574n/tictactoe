@@ -541,9 +541,9 @@ inl db_put forall t.
     (new_value : t)
     : () =
     inl get_locals () = ;[
-        !!("content_address:", content_address)
-        !!("client_type:", client_type |> to_string)
-        !!("new_value:", new_value)
+        !!("content_address", content_address)
+        !!("client_type", client_type |> to_string)
+        !!("new_value", new_value)
     ]
     inl log = new_log get_log_level get_locals "#666"
     log Debug ;[!!"> db_put ()"]
@@ -557,7 +557,7 @@ inl db_put forall t.
         |> promise_iter fun (response' : response) =>
             log Info ;[
                 !!"> db_put > response' ()"
-                !!("response':", response' |> json_stringify)
+                !!("response'", response' |> json_stringify)
             ]
         // connection
         // |> connection_invoke
@@ -620,8 +620,8 @@ inl db_on forall value_type.
     : promise subscription_handle
     =
     inl get_locals () = ;[
-        !!("content_address:", content_address)
-        !!("client_type:", client_type |> to_string)
+        !!("content_address", content_address)
+        !!("client_type", client_type |> to_string)
     ]
     inl log = new_log get_log_level get_locals "#666"
     log Debug ;[!!"> db_on ()"]
@@ -629,8 +629,8 @@ inl db_on forall value_type.
     inl on_value (v : guid * value_type) (k : any) =
         log Info ;[
             !!"> db_on > on_value ()"
-            !!("v:", v)
-            !!("k:", k)
+            !!("v", v)
+            !!("k", k)
         ]
         on_value v
 
@@ -642,7 +642,7 @@ inl db_on forall value_type.
         // inl action = fun (response : response) =>
         //     log Info ;[
         //         !!"> db_on > streamFrom action ()"
-        //         !!("response:", response)
+        //         !!("response", response)
         //     ]
         inl hub : hub request response = db |> real real_unbox `any `(hub request response)
         $"!hub.streamFromAsPromise !request'"
@@ -652,7 +652,7 @@ inl db_on forall value_type.
                     new_pair "next" !!(fun (msg : response) =>
                         log Info ;[
                             !!"> db_on > stream next ()"
-                            !!("msg:", msg)
+                            !!("msg", msg)
                         ]
                     )
                     new_pair "complete" !!(fun () =>
@@ -663,7 +663,7 @@ inl db_on forall value_type.
                     new_pair "error" !!(fun (err : any) =>
                         log Info ;[
                             !!"> db_on > stream err ()"
-                            !!("err:", err |> json_stringify)
+                            !!("err", err |> json_stringify)
                         ]
                     )
                 ]
@@ -675,8 +675,8 @@ inl db_on forall value_type.
 
             log Info ;[
                 !!"> db_on > streamFrom subscribe ()"
-                !!("stream:", stream |> json_stringify)
-                !!("subscription (IDisposable):", subscription)
+                !!("stream", stream |> json_stringify)
+                !!("subscription (IDisposable)", subscription)
             ]
 
             subscription |> Disposable
@@ -686,7 +686,7 @@ inl db_on forall value_type.
         // |> connection_on "Send" fun _msg =>
         //     log Info ;[
         //         !!"> db_on > signalr on_value ()"
-        //         !!("_msg:", _msg)
+        //         !!("_msg", _msg)
         //     ]
     | GunRsClient =>
         inl node = get_db_node db content_address
@@ -732,7 +732,7 @@ inl db_off
     (content_address : string)
     =
     inl get_locals () = ;[
-        !!("content_address:", content_address)
+        !!("content_address", content_address)
     ]
     inl log = new_log get_log_level get_locals "#666"
     log Debug ;[!!"> db_off ()"]

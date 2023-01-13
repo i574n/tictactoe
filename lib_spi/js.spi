@@ -183,8 +183,8 @@ let new_log
             inl timestamp : string = pad 6 timestamp
             inl run_id : i32 = $"Fable.Core.JsInterop.emitJsExpr () \"components.run_id\""
             inl locals : array any = ;[
-                !!("timestamp:", timestamp)
-                !!("run_id:", run_id)
+                !!("timestamp", timestamp)
+                !!("run_id", run_id)
             ]
             inl obj_json : string = json_stringify (obj_fn ())
             inl args_json : string = json_stringify args
