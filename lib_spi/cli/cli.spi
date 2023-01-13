@@ -27,7 +27,7 @@ inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) :
 inl from_utf8 (v : vec u8) : std_string =
     emit_expr v "std::string::String::from_utf8(($0).to_owned()).unwrap()"
 
-inl read_lines (path : path_buf) : list std_string =
+inl read_lines (path : path_buf) : list string =
     inl get_locals () = !!(;[
         !!"> read_lines ()" : log_item
     ])
@@ -52,9 +52,10 @@ inl read_lines (path : path_buf) : list std_string =
         |> (~!!) : unit')
     |> ignore
 
-    inl lines : list std_string =
+    inl lines =
         *lines_list
         |> listm.rev
+        |> listm.map to_string''
 
     log Debug !!(;[!!"lines len"; !!(lines |> listm.length : i32) : log_item])
 
@@ -66,17 +67,12 @@ inl app () =
     ])
     inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "666666"
 
-    inl lines = read_lines ("./cli.rs" |> as_str |> to_path_buf)
+    inl lines = read_lines ("../client/client.rs" |> as_str |> to_path_buf)
 
-    inl text =
-        lines
-        |> listm.fold
-            fun acc x =>
-                inl x = x
-                $"$\"{!acc}{!x}\""
-            ""
+    inl text = lines |> listm.fold (+\) ""
 
     log Debug !!(;[!!"text len"; !!(text |> len) : log_item])
+    log Debug !!(;[!!"text"; !!text : log_item])
 
         // let text = lines.clone().into_iter().collect::<String>();
         // println!("text={:?}", text);

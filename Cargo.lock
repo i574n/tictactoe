@@ -151,6 +151,7 @@ name = "client"
 version = "0.0.1"
 dependencies = [
  "fable_library_rust",
+ "regex",
  "wasm-bindgen",
  "web-sys",
 ]
@@ -785,6 +786,7 @@ dependencies = [
  "colored",
  "fable_library_rust",
  "rand",
+ "regex",
  "serde_json",
  "zmq",
 ]

@@ -22,6 +22,8 @@ wasm-bindgen = { version = "~0.2", features = ["enable-interning"] }
 
 web-sys = { version = "~0.3", features = ["console"] }
 
+regex = "~1.7"
+
 # druid = { version = "~0.7", features = ["im", "image", "png"] }
 # console_error_panic_hook = "~0.1"
 # tracing = "~0.1"
