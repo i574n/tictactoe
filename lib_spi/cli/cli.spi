@@ -44,9 +44,17 @@ inl app () =
     ])
     inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "666666"
 
-    inl path = "../client/client.rs" |> as_str |> to_path_buf
+    inl command =
+        new_clap_command "command"
+        |> add_clap_arg (new_clap_arg "rs-path")
+        |> get_clap_matches
 
-    inl lines = read_lines path
+    inl rs_path = command |> get_clap_one "rs-path" |> to_path_buf
+    inl rs_path_clean = rs_path |> path_canonicalize
+
+    log Debug !!(;[!!"rs_path_clean"; !!rs_path_clean : log_item])
+
+    inl lines = read_lines rs_path_clean
 
     inl lines =
         lines
@@ -65,8 +73,8 @@ inl app () =
 
     log Debug !!(;[!!"text len"; !!(text |> len) : log_item])
 
-    (!!(fs_write path text) : unit') |> ignore
-    log Debug !!"> fs_write path text; ok"
+    (!!(fs_write rs_path_clean text) : unit') |> ignore
+    log Debug !!"> fs_write rs_path_clean text; ok"
 
     0i32
 

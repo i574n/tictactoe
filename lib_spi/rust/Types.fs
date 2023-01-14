@@ -67,6 +67,17 @@ module chrono =
     [<Erase; Emit("chrono::DateTime<$0>")>]
     type DateTime<'T> = class end
 
+module clap =
+    module builder =
+        [<Erase; Emit("clap::builder::Arg")>]
+        type Arg = class end
+        [<Erase; Emit("clap::builder::Command")>]
+        type Command = class end
+
+    module parser =
+        [<Erase; Emit("clap::parser::ArgMatches")>]
+        type ArgMatches = class end
+
 module colored =
     [<Erase; Emit("colored::ColoredString")>]
     type ColoredString = class end

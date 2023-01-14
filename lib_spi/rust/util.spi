@@ -46,6 +46,9 @@ type utc = $"Types.chrono.Utc"
 type local = $"Types.chrono.Local"
 type datetime t = $"Types.chrono.DateTime<`t>"
 
+nominal clap_arg = $"Types.clap.builder.Arg"
+nominal clap_arg_matches = $"Types.clap.parser.ArgMatches"
+nominal clap_command = $"Types.clap.builder.Command"
 nominal colored_string = $"Types.colored.ColoredString"
 
 nominal linereader t = $"Types.linereader.LineReader<`t>"
@@ -68,6 +71,10 @@ inl len forall t. (x : t) : i32 =
 inl to_std_string (str : string) : std_string =
     emit_expr str "($0).to_string()"
 
+inl format_debug forall t. (x : t) : std_string =
+    real
+        emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+
 inl format forall t. (x : t) : std_string =
     real
         inl result : std_string =
@@ -78,11 +85,14 @@ inl format forall t. (x : t) : std_string =
             | array _ =>
                 inl x = deref `t `any x
                 emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
-            | _ => emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+            | _ => format_debug `t x
         result
 
 inl as_str (s : string) : ref' str =
     emit_expr (join s) "$0.as_str()"
+
+inl as_str' (s : string) : ref' str =
+    emit_expr (join s) "($0).as_str()"
 
 inl to_str forall t. (x : t) : option' (ref' str) =
     emit_expr x "($0).to_str()"
@@ -121,6 +131,24 @@ inl regex_replace_all regex replacement text =
 
 inl from_utf8 (v : vec u8) : std_string =
     emit_expr v "std::string::String::from_utf8(($0).to_owned()).unwrap()"
+
+
+inl new_clap_command (name : string) : clap_command =
+    emit_expr (name |> raw_string_literal) "clap::Command::new($0)"
+
+inl new_clap_arg (name : string) : clap_arg =
+    emit_expr (name |> raw_string_literal) "clap::Arg::new($0)"
+
+inl add_clap_arg (arg : clap_arg) (command : clap_command) : clap_command =
+    emit_expr (command, arg) "$0.arg($1)"
+
+inl get_clap_matches (command : clap_command) : ref' clap_arg_matches =
+    emit_expr command "$0.get_matches()"
+
+inl get_clap_one (arg : string) (matches : ref' clap_arg_matches) : ref' std_string =
+    emit_expr
+        (matches, arg |> as_str, ($"\"--\" + !arg + \"=\"" : string) |> as_str)
+        "&($0).get_one::<String>($1).unwrap().replace($2, \"\")"
 
 
 inl serialize args json : std_string =
