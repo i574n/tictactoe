@@ -10,7 +10,7 @@ inl app () =
     inl iframe : any = emit_expr document "$0.create_element(\"iframe\").unwrap()"
     emit_expr iframe "$0.set_attribute(\"src\", \"https://time.is\").unwrap()"
     emit_expr iframe "$0.set_attribute(\"width\", \"100%\").unwrap()"
-    emit_expr iframe "$0.set_attribute(\"height\", \"50vh\").unwrap()"
+    emit_expr iframe "$0.set_attribute(\"style\", \"height: 50vh\").unwrap()"
     emit_expr (body, iframe) "$0.append_child(&$1).unwrap()"
 
     0i32

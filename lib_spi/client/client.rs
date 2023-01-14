@@ -21,7 +21,7 @@ pub mod Client {
             let v9 = v5.create_element("iframe").unwrap();
             v9.set_attribute("src", "https://time.is").unwrap();
             v9.set_attribute("width", "100%").unwrap();
-            v9.set_attribute("height", "50vh").unwrap();
+            v9.set_attribute("style", "height: 50vh").unwrap();
             v7.append_child(&v9).unwrap();
             0i32
         }

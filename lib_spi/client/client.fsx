@@ -14,7 +14,7 @@ let rec closure0 () () : int32 =
     Fable.Core.Rust.emitExpr v9 v10
     let v11 : string = "$0.set_attribute(\"width\", \"100%\").unwrap()"
     Fable.Core.Rust.emitExpr v9 v11
-    let v12 : string = "$0.set_attribute(\"height\", \"50vh\").unwrap()"
+    let v12 : string = "$0.set_attribute(\"style\", \"height: 50vh\").unwrap()"
     Fable.Core.Rust.emitExpr v9 v12
     let v13 : string = "$0.append_child(&$1).unwrap()"
     Fable.Core.Rust.emitExpr struct (v7, v9) v13
