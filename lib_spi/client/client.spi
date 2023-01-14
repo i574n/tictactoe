@@ -3,6 +3,16 @@ open rust.util
 
 inl app () =
     console_log "app ()"
+
+    inl window : any = emit_expr () "web_sys::window().unwrap()"
+    inl document : any = emit_expr window "$0.document().unwrap()"
+    inl body : any = emit_expr document "$0.body().unwrap()"
+    inl iframe : any = emit_expr document "$0.create_element(\"iframe\").unwrap()"
+    emit_expr iframe "$0.set_attribute(\"src\", \"https://time.is\").unwrap()"
+    emit_expr iframe "$0.set_attribute(\"width\", \"100%\").unwrap()"
+    emit_expr iframe "$0.set_attribute(\"height\", \"50vh\").unwrap()"
+    emit_expr (body, iframe) "$0.append_child(&$1).unwrap()"
+
     0i32
 
 

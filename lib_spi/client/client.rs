@@ -14,7 +14,17 @@ pub mod Client {
     use fable_library_rust::String_::string;
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
         web_sys::console::log_1(&wasm_bindgen::JsValue::from_str(&string("app ()")));
-        0i32
+        {
+            let v3 = web_sys::window().unwrap();
+            let v5 = v3.document().unwrap();
+            let v7 = v5.body().unwrap();
+            let v9 = v5.create_element("iframe").unwrap();
+            v9.set_attribute("src", "https://time.is").unwrap();
+            v9.set_attribute("width", "100%").unwrap();
+            v9.set_attribute("height", "50vh").unwrap();
+            v7.append_child(&v9).unwrap();
+            0i32
+        }
     }
     pub fn v0() -> Func0<i32> {
         static v0: MutCell<Option<Func0<i32>>> = MutCell::new(None);
