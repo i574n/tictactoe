@@ -100,8 +100,17 @@ inl to_str forall t. (x : t) : option' (ref' str) =
 inl to_string'' forall t. (x : t) : string =
     emit_expr x "fable_library_rust::String_::fromStr($0)"
 
-inl substring (start : i32) (len : i32) (str : string) : string =
+inl substring' (start : i32) (len : i32) (str : string) : string =
     $"!str.Substring (!start, !len)"
+
+inl unativeint forall t{int}. (n : t) : unativeint =
+    $"unativeint !n"
+
+inl substring (start : i32) (end : i32) (str : string) : string =
+    (emit_expr
+        (str |> as_str, start |> unativeint, end |> unativeint)
+        "&$0[$1..$2]" : ref' str)
+    |> to_string''
 
 inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
     emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
@@ -133,17 +142,29 @@ inl from_utf8 (v : vec u8) : std_string =
     emit_expr v "std::string::String::from_utf8(($0).to_owned()).unwrap()"
 
 
-inl new_clap_command (name : string) : clap_command =
-    emit_expr (name |> raw_string_literal) "clap::Command::new($0)"
-
 inl new_clap_arg (name : string) : clap_arg =
     emit_expr (name |> raw_string_literal) "clap::Arg::new($0)"
+
+inl new_clap_command (name : string) : clap_command =
+    emit_expr
+        (name |> raw_string_literal)
+        ("clap::Command::new($0)" +\
+            ".propagate_version(true)" +\
+            ".subcommand_required(false)" +\
+            ".about(\"command about\")" +\
+            ".arg_required_else_help(true)")
 
 inl add_clap_arg (arg : clap_arg) (command : clap_command) : clap_command =
     emit_expr (command, arg) "$0.arg($1)"
 
+inl add_clap_subcommand (subcommand : clap_command) (command : clap_command) : clap_command =
+    emit_expr (command, subcommand) "$0.subcommand($1)"
+
 inl get_clap_matches (command : clap_command) : ref' clap_arg_matches =
     emit_expr command "$0.get_matches()"
+
+inl matches_subcommand (matches : ref' clap_arg_matches) : ref' (option' (ref' str * ref' clap_arg_matches)) =
+    emit_expr matches "$0.subcommand()"
 
 inl get_clap_one (arg : string) (matches : ref' clap_arg_matches) : ref' std_string =
     emit_expr
@@ -173,8 +194,8 @@ inl color_name (name : string) (str : emit_type std_string) : std_string =
 
 inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
     inl r = color_hex |> substring 0 2 |> hex_to_u8
-    inl g = color_hex |> substring 2 2 |> hex_to_u8
-    inl b = color_hex |> substring 4 2 |> hex_to_u8
+    inl g = color_hex |> substring 2 4 |> hex_to_u8
+    inl b = color_hex |> substring 4 6 |> hex_to_u8
     (emit_expr (str, r, g, b) "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)" : colored_string)
     |> format
 

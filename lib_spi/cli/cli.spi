@@ -44,12 +44,22 @@ inl app () =
     ])
     inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "666666"
 
-    inl command =
-        new_clap_command "command"
-        |> add_clap_arg (new_clap_arg "rs-path")
+    inl name, sub_matches : ref' str * ref' clap_arg_matches =
+        new_clap_command "app1"
+        |> add_clap_subcommand (
+            new_clap_command "PostFsxRsBuild"
+            |> add_clap_arg (new_clap_arg "rs-path")
+        )
+        |> add_clap_subcommand (
+            new_clap_command "SpiFsxBuild"
+            |> add_clap_arg (new_clap_arg "spi-path")
+            |> add_clap_arg (new_clap_arg "fsx-path")
+        )
         |> get_clap_matches
+        |> matches_subcommand
+        |> unwrap_as_ref
 
-    inl rs_path = command |> get_clap_one "rs-path" |> to_path_buf
+    inl rs_path = sub_matches |> get_clap_one "rs-path" |> to_path_buf
     inl rs_path_clean = rs_path |> path_canonicalize
 
     log Debug !!(;[!!"rs_path_clean"; !!rs_path_clean : log_item])
@@ -61,7 +71,9 @@ inl app () =
         |> listm.fold
             fun (i, acc) line =>
                 match i with
-                | _ when line |> string_contains "/node_modules/" => 1, acc
+                | _ when line |> string_contains "/node_modules/" =>
+                    log Debug !!(;[!!"found line. removing."; !!" line"; !!line : log_item])
+                    1, acc
                 | 0 => 0, line :: acc
                 | 2 => 0, acc
                 | _ => i + 1, acc
