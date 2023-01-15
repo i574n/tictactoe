@@ -427,19 +427,24 @@ inl new_log
 
             match get_rust_target () with
             | Wasm32 =>
+                inl ext_locals = ext_locals |> to_string'
+                inl args = args |> to_string'
+                inl locals = locals |> to_string'
                 console_log' (a ;[
-                    !!"%c%s %c%s %c%s"
-                    !!"color: purple"
-                    !!(($"$\"{!ext_locals}\"" : string))
-                    !!($"$\"color: {!color}\"" : string)
-                    !!($"$\"{!args} {!locals}\"" : string)
-                    !!"color: #222222"
-                    !!($"$\"{!locals}\"" : string)
+                    !!(
+                        ext_locals +\
+                        " %c" +\ args +\
+                        " %c" +\ locals
+                    )
+                    // !!"color: purple;"
+                    !!($"$\"color: #{!color};\"" : string)
+                    // !!"color: #222222;"
+                    !!"color: #385779;"
                 ])
             | _ =>
-                inl ext_locals = ext_locals |> color_name "purple"
+                inl ext_locals = ext_locals
                 inl args = args |> truecolor color
-                inl locals = locals |> truecolor "222222"
+                inl locals = locals |> truecolor "385779"
 
                 inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
                 console_fsx.write_line new_args
