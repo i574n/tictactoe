@@ -1,17 +1,44 @@
 open rust.util
 
 
-inl app () =
-    console_log "app ()"
+inl get_window () : any = emit_expr () "web_sys::window().unwrap()"
+inl get_document (window : any) : any = emit_expr window "$0.document().unwrap()"
+inl get_body (document : any) : any = emit_expr document "$0.body().unwrap()"
+inl create_element (tag : string) (document : any) : any =
+    emit_expr (document, tag |> raw_string_literal) "$0.create_element($1).unwrap()"
 
-    inl window : any = emit_expr () "web_sys::window().unwrap()"
-    inl document : any = emit_expr window "$0.document().unwrap()"
-    inl body : any = emit_expr document "$0.body().unwrap()"
-    inl iframe : any = emit_expr document "$0.create_element(\"iframe\").unwrap()"
-    emit_expr iframe "$0.set_attribute(\"src\", \"https://time.is\").unwrap()"
-    emit_expr iframe "$0.set_attribute(\"width\", \"100%\").unwrap()"
-    emit_expr iframe "$0.set_attribute(\"style\", \"height: 50vh\").unwrap()"
-    emit_expr (body, iframe) "$0.append_child(&$1).unwrap()"
+inl set_attribute (key : string) (value : string) (element : any) : any =
+    emit_expr (element, key |> raw_string_literal, value |> raw_string_literal) "$0.set_attribute($1, $2).unwrap()"
+    element
+
+inl append_parent (parent : any) (element : any) : () =
+    emit_expr (parent, element) "$0.append_child(&$1).unwrap()"
+
+
+inl app () =
+    inl get_locals () = !!(;[
+        !!"> app ()" : log_item
+    ])
+    inl log = new_log (fun () => Debug) get_locals console_log "387957"
+
+    inl window = get_window ()
+    inl document = window |> get_document
+    inl body = document |> get_body
+    inl iframe = document |> create_element "iframe"
+
+    log Debug !!(;[
+        !!"window"; !!window : log_item
+        !!"document"; !!document
+        !!"body"; !!body
+        !!"iframe"; !!iframe
+    ])
+
+    iframe
+    |> set_attribute "src" "https://time.is"
+    |> set_attribute "width" "100%"
+    |> set_attribute "style" "height: 100vh; border: 0;"
+    |> set_attribute "data-test" "1"
+    |> append_parent body
 
     0i32
 
