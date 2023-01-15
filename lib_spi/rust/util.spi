@@ -1,13 +1,6 @@
 open real_util
 
 
-inl emit_expr forall a t. (args : a) (code : string) : t =
-    $"Fable.Core.Rust.emitExpr !args !code"
-
-inl console_log (str : string) : () =
-    emit_expr str "web_sys::console::log_1(&wasm_bindgen::JsValue::from_str($0))"
-
-
 nominal unit' = ()
 type unativeint = $"unativeint"
 nominal option' t = $"Option<`t>"
@@ -22,8 +15,6 @@ nominal ref' t = $"Types.Ref<`t>"
 nominal static_ref' t = $"Types.StaticRef<`t>"
 nominal str = $"Types.Str"
 nominal vec t = $"Types.Vec<`t>"
-
-// nominal hash_map k v = $"Types.std.collections.HashMap<`k, `v>"
 
 nominal ref_cell t = $"Types.std.cell.RefCell<`t>"
 
@@ -57,8 +48,39 @@ nominal regex = $"Types.regex.Regex"
 nominal regex_builder = $"Types.regex.RegexBuilder"
 
 
-inl deref forall t u. (x : t) : u =
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    $"Fable.Core.Rust.emitExpr !args !code"
+
+inl js_value_from_str (str : string) : any =
+    emit_expr str "wasm_bindgen::JsValue::from_str($0)"
+
+inl js_value_from_obj (obj : any) : any =
+    emit_expr obj "serde_wasm_bindgen::to_value(&****$0).unwrap()"
+
+inl console_log (str : string) : () =
+    emit_expr (str |> js_value_from_str) "web_sys::console::log_1(&$0)"
+
+inl raw_string_literal (s : string) : ref' str =
+    emit_expr () $"$\"r#\\\"{!s}\\\"#\""
+
+inl deref' forall t. (x : ref' t) : t =
+    emit_expr x "*$0"
+
+inl deref forall t u. (x : t) : ref' u =
     emit_expr x "core::ops::Deref::deref($0)"
+    |> deref'
+    |> deref'
+    |> deref'
+
+inl to_std_string (str : string) : std_string =
+    emit_expr str "($0).to_string()"
+
+inl console_log' (args : a i32 string) : () =
+    inl arr : a i32 std_string = args |> am.map to_std_string
+    inl arr : ref' any = arr |> deref
+    inl arr : any = arr |> to_any
+    emit_expr (arr |> js_value_from_obj) "web_sys::console::log(&js_sys::Array::from(&$0))"
+
 
 inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
 
@@ -68,12 +90,13 @@ inl len forall t. (x : t) : i32 =
 // inl new_string (str : static_ref' str) : string =
     // emit_expr str "fable_library_rust::String_::string($0)"
 
-inl to_std_string (str : string) : std_string =
-    emit_expr str "($0).to_string()"
 
-inl format_debug forall t. (x : t) : std_string =
+inl format' forall t. (x : t) (debug : bool) : std_string =
     real
-        emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+        emit_expr `t `std_string x
+            if debug
+            then "format!(\"{:?}\", $0)"
+            else "format!(\"{}\", $0)"
 
 inl format forall t. (x : t) : std_string =
     real
@@ -81,11 +104,11 @@ inl format forall t. (x : t) : std_string =
             typecase t with
             | string => to_std_string x
             | std_string => x
-            | colored_string => emit_expr `t `std_string x "format!(\"{}\", $0)"
+            | colored_string => format' `t x false
             | array _ =>
                 inl x = deref `t `any x
-                emit_expr `any `std_string x "format!(\"{:?}\", ***$0)"
-            | _ => format_debug `t x
+                format' `any x true
+            | _ => format' `t x true
         result
 
 inl as_str (s : string) : ref' str =
@@ -117,9 +140,6 @@ inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
 
 inl string_contains (search : string) (s : string) : bool =
     emit_expr (search |> to_ref, s |> to_ref) "($1).contains(&*$0)"
-
-inl raw_string_literal (s : string) : ref' str =
-    emit_expr () $"$\"r#\\\"{!s}\\\"#\""
 
 inl new_regex_builder (regex : ref' str) : regex_builder =
     emit_expr regex "regex::RegexBuilder::new($0)"
