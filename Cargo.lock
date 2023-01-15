@@ -139,10 +139,14 @@ dependencies = [
  "clap",
  "colored",
  "fable_library_rust",
+ "js-sys",
  "linereader",
  "rand",
  "regex",
+ "serde-wasm-bindgen",
  "serde_json",
+ "wasm-bindgen",
+ "web-sys",
  "zmq",
 ]
 

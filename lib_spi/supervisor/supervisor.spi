@@ -27,7 +27,7 @@ inl zmq_request (msg : std_string) : std_string =
     inl get_locals () = !!(;[
         !!"> zmq_request ()" : log_item
     ])
-    inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "fcfb1b"
+    inl log = new_log (fun () => Debug) get_locals "fcfb1b"
 
     inl host = "localhost"
     inl port : i32 = 13805
@@ -55,7 +55,7 @@ inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
     inl get_locals () = !!(;[
         !!"> spiproj_open ()" : log_item
     ])
-    inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "e36a62"
+    inl log = new_log (fun () => Debug) get_locals "e36a62"
 
     log Debug !!(;[
         !!"spiproj_path"; !!(spiproj_path |> path_display) : log_item
@@ -73,7 +73,7 @@ inl spi_build_file (spi_path : path_buf) (backend : string) : () =
     inl get_locals () = !!(;[
         !!"> spi_build_file ()" : log_item
     ])
-    inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "98d5ef"
+    inl log = new_log (fun () => Debug) get_locals "98d5ef"
 
     log Debug !!(;[
         !!"spi_path"; !!(spi_path |> path_display) : log_item
@@ -91,7 +91,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     inl get_locals () = !!(;[
         !!"> spi_to_fsx ()" : log_item
     ])
-    inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "de884c"
+    inl log = new_log (fun () => Debug) get_locals "de884c"
 
     log Debug !!(;[
         !!"pwd"; !!(env_current_dir () |> path_canonicalize |> path_display) : log_item

@@ -22,7 +22,7 @@ prototype of_string t : string -> t
 prototype append t : t -> t -> t
 
 instance append list t = listm.append
-instance append a dim {number} t = am.append
+instance append a dim {int; number} t = am.append
 
 instance to_string log_level_type = function
     | Debug => "Debug"

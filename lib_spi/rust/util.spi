@@ -51,20 +51,28 @@ nominal regex_builder = $"Types.regex.RegexBuilder"
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
 
+inl deref forall t u. (x : t) : ref' u =
+    emit_expr x "core::ops::Deref::deref($0)"
+
 inl deref' forall t. (x : ref' t) : t =
     emit_expr x "**$0"
 
-inl deref forall t u. (x : t) : ref' u =
-    emit_expr x "core::ops::Deref::deref($0)"
-    // |> deref'
-    // |> deref'
-    // |> deref'
+inl deref'' forall t. (x : ref' t) : ref' t =
+    emit_expr x "&***$0"
+
+inl deref''' forall t. (x : t) : t =
+    emit_expr x "**$0"
 
 inl to_std_string (str : string) : std_string =
     emit_expr str "($0).to_string()"
 
 inl to_std_string' (str : string) : std_string =
     emit_expr str "std::string::String::from($0.to_string())"
+
+type log_item = emit_type std_string
+
+inl as_ref forall t u. (x : t) : ref' u =
+    emit_expr x "($0).as_ref()"
 
 inl format' forall t. (x : t) (debug : bool) : std_string =
     real
@@ -80,8 +88,11 @@ inl format forall t. (x : t) : std_string =
             | string => to_std_string x
             | std_string => x
             | colored_string => format' `t x false
+            | log_item => format' `t x false
             | array _ =>
-                inl x = deref `t `any x
+                inl x : ref' any = deref `t `any x
+                inl x : ref' any = deref'' `any x
+                inl x : ref' any = deref'' `any x
                 format' `any x true
             | _ => format' `t x true
         result
@@ -111,7 +122,6 @@ inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
 instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
 
 
-
 inl js_value_from_str (str : string) : any =
     emit_expr str "wasm_bindgen::JsValue::from_str($0)"
 
@@ -124,26 +134,14 @@ inl console_log (str : string) : () =
 inl raw_string_literal (s : string) : ref' str =
     emit_expr () $"$\"r#\\\"{!s}\\\"#\""
 
-// inl raw_string_literal' (s : string) : ref' str =
-//     emit_expr () $"$\"r#\\\"{!s}\\\"#\""
-
-
-// value.into_iter().map(JsValue::from).collect::<js_sys::Array>().unchecked_into::<T>()
-
 inl as_str (s : string) : ref' str =
     emit_expr (join s) "$0.as_str()"
 
 inl as_str' (s : ref' str) : std_string =
     emit_expr s "std::string::String::from(*$0)"
 
-
 inl to_string'' forall t. (x : t) : string =
     emit_expr x "fable_library_rust::String_::fromStr($0)"
-
-let toArray' forall (ar : * -> * -> *) {create; set} dim {number} el. (l : list el) : ar dim el =
-    inl ar = create (listm.length l)
-    // inl _ = listm.fold (fun i x => set ar i x . i+1) 0 l
-    ar
 
 inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
 
@@ -151,41 +149,9 @@ inl to_ref' forall t. (x : t) : ref' t =
     emit_expr x "&$0"
 
 inl console_log' (args : a i32 std_string) : () =
-    // inl args : a i32 string = args |> listm.toArray
-    // inl x : any = $"!args |> unbox"
-    // console_log x
-
-
-    // inl arr : a i32 std_string =
-    //     args
-    //     |> listm.fold
-    //            (fun acc x =>
-    //                acc /@ a ;[(x |> to_std_string)])
-    //            (a ;[])
-
-    // inl args : a i32 std_string =
-    //     args |> am.map ( to_std_string')
-
-    // inl args : a i32 (ref' str) =
-    //     args |> listm.map (as_str)
-    //     |> toArray'
-
-    inl args : ref' any = args |> deref
-    // inl args : std_string = args |> listm.index 1
-
-    // inl args : std_string = args |> to_std_string'
-    // inl args_str = args |> to_string'
-    // console_log args_str
-
-    // inl args : any = emit_expr args "(***$0).as_ref()"
-
-    inl args : ref' (vec any) = emit_expr args "$0"
-
-    // inl args : ref' any = args |> deref
+    inl args : ref' (vec any) = args |> deref
     inl args : any = args |> to_any
-    // emit_expr (arr |> js_value_from_obj) "web_sys::console::log(&js_sys::Array::from(&$0))"
     emit_expr (args |> js_value_from_obj) "web_sys::console::log(&js_sys::Array::from(&$0))"
-
 
 
 inl len forall t. (x : t) : i32 =
@@ -193,8 +159,6 @@ inl len forall t. (x : t) : i32 =
 
 // inl new_string (str : static_ref' str) : string =
     // emit_expr str "fable_library_rust::String_::string($0)"
-
-
 
 
 inl substring' (start : i32) (len : i32) (str : string) : string =
@@ -295,6 +259,28 @@ inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
 
 
 
+
+inl get_window () : any = emit_expr () "web_sys::window().unwrap()"
+inl get_document (window : any) : any = emit_expr window "$0.document().unwrap()"
+inl get_body (document : any) : any = emit_expr document "$0.body().unwrap()"
+inl create_element (tag : string) (document : any) : any =
+    emit_expr (document, tag |> raw_string_literal) "$0.create_element($1).unwrap()"
+
+inl set_attribute (key : string) (value : string) (element : any) : any =
+    emit_expr (element, key |> raw_string_literal, value |> raw_string_literal) "$0.set_attribute($1, $2).unwrap()"
+    element
+
+inl append_parent (parent : any) (element : any) : () =
+    emit_expr (parent, element) "$0.append_child(&$1).unwrap()"
+
+union rust_target =
+    | Wasm32
+    | UnknownRustTarget
+
+inl get_rust_target () : rust_target =
+    if emit_expr () "cfg!(target_arch = \"wasm32\")"
+    then Wasm32
+    else UnknownRustTarget
 
 // inl box_from forall t. (obj : t) : box' t =
 //     emit_expr obj "Box::from($0)"
@@ -405,18 +391,17 @@ inl real_core_union_tag log_level : i32 =
     | Warn => 2
     | Error => 3
 
-type log_item = emit_type std_string
-
 inl new_log
     (get_log_level : () -> log_level_type)
     (ext_locals_fn : () -> log_item)
-    (log_fn : string -> ())
     (color : string)
     : log_level_type -> log_item -> ()
     =
     inl clean_log (text : log_item) : log_item =
         inl text =
-            (($"!text |> unbox" : std_string) |> to_string'')
+            text
+            |> format
+            |> to_string'
             |> regex_replace_all "\"([^\"]+)\", \"([^\"]+)\"" "$1=$2"
             |> regex_replace_all "\\[\"(.*?)\"\\]" "[$1]"
             |> regex_replace_all ", " " "
@@ -436,18 +421,34 @@ inl new_log
                 !!"log_level"; !!(log_level |> to_string)
             ])
 
-            inl ext_locals = ext_locals_fn () |> clean_log |> color_name "purple"
-            inl args = args |> clean_log |> truecolor color
-            inl locals = locals |> clean_log |> truecolor "222222"
+            inl ext_locals = ext_locals_fn () |> clean_log
+            inl args = args |> clean_log
+            inl locals = locals |> clean_log
 
-            inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
-            log_fn new_args
+            match get_rust_target () with
+            | Wasm32 =>
+                console_log' (a ;[
+                    !!"%c%s %c%s %c%s"
+                    !!"color: purple"
+                    !!(($"$\"{!ext_locals}\"" : string))
+                    !!($"$\"color: {!color}\"" : string)
+                    !!($"$\"{!args} {!locals}\"" : string)
+                    !!"color: #222222"
+                    !!($"$\"{!locals}\"" : string)
+                ])
+            | _ =>
+                inl ext_locals = ext_locals |> color_name "purple"
+                inl args = args |> truecolor color
+                inl locals = locals |> truecolor "222222"
+
+                inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
+                console_fsx.write_line new_args
 
 inl wait_file_change (fsx_path : path_buf) : string =
     inl get_locals () = !!(;[
         !!"> wait_file_change ()" : log_item
     ])
-    inl log = new_log (fun () => Debug) get_locals console_fsx.write_line "387957"
+    inl log = new_log (fun () => Debug) get_locals "387957"
 
     inl get_last_modified () : systemtime = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
     inl start = get_last_modified ()
