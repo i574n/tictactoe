@@ -68,17 +68,20 @@ pub mod Client {
         let v53: string =
             Client::method1(6i32, toString(&((&v48).timestamp() - v7)));
         let v55: u8 = rand::random::<u8>();
+        let v56: string = string("timestamp");
+        let v61: string = string("run_id");
+        let v66: string = string("log_level");
+        let v69: string = string("Debug");
         let v72: Array<std::string::String> =
-            array(&[(&string("timestamp")).to_string(), (&v53).to_string(),
-                    (&string("run_id")).to_string(), format!("{:?}", &v55),
-                    (&string("log_level")).to_string(),
-                    (&string("Debug")).to_string()]);
+            array(&[(&v56).to_string(), (&v53).to_string(),
+                    (&v61).to_string(), format!("{:?}", &v55),
+                    (&v66).to_string(), (&v69).to_string()]);
         let v73 = core::ops::Deref::deref(&v72);
         let v74 = &***&v73;
         let v75 = &***&v74;
         let v77: std::string::String = format!("{:?}", &v75).clone();
-        let v81: Array<std::string::String> =
-            array(&[(&string("> app ()")).to_string()]);
+        let v78: string = string("> app ()");
+        let v81: Array<std::string::String> = array(&[(&v78).to_string()]);
         let v82 = core::ops::Deref::deref(&v81);
         let v83 = &***&v82;
         let v84 = &***&v83;
@@ -255,7 +258,244 @@ pub mod Client {
                         let v298: &str = r#"1"#;
                         v18.set_attribute(v295, v298).unwrap();
                         v13.append_child(&v18).unwrap();
-                        0i32
+                        {
+                            let v306: Array<std::string::String> =
+                                array(&[(&string("app end")).to_string(),
+                                        (&string("???")).to_string()]);
+                            let v307 = core::ops::Deref::deref(&v306);
+                            let v308 = &***&v307;
+                            let v309 = &***&v308;
+                            let v311: std::string::String =
+                                format!("{:?}", &v309).clone();
+                            let v312: chrono::DateTime<chrono::Utc> =
+                                chrono::Utc::now();
+                            let v317: string =
+                                Client::method1(6i32,
+                                                toString(&((&v312).timestamp()
+                                                               - v7)));
+                            let v318: u8 = rand::random::<u8>();
+                            let v331: Array<std::string::String> =
+                                array(&[(&v56).to_string(),
+                                        (&v317).to_string(),
+                                        (&v61).to_string(),
+                                        format!("{:?}", &v318),
+                                        (&v66).to_string(),
+                                        (&v69).to_string()]);
+                            let v332 = core::ops::Deref::deref(&v331);
+                            let v333 = &***&v332;
+                            let v334 = &***&v333;
+                            let v336: std::string::String =
+                                format!("{:?}", &v334).clone();
+                            let v339: Array<std::string::String> =
+                                array(&[(&v78).to_string()]);
+                            let v340 = core::ops::Deref::deref(&v339);
+                            let v341 = &***&v340;
+                            let v342 = &***&v341;
+                            let v344: std::string::String =
+                                format!("{:?}", &v342).clone();
+                            let v346: string =
+                                toString(&format!("{}", &v344));
+                            let v348: &str = r#""([^"]+)", "([^"]+)""#;
+                            let v349: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v348);
+                            let v350: &regex::Regex = &v349.build().unwrap();
+                            let v351: string = Client::method2(v346);
+                            let v352: &str = &v351.as_str();
+                            let v353: string = Client::method3();
+                            let v354: &str = &v353.as_str();
+                            let v355: std::string::String =
+                                v350.replace_all(&v352, v354).to_string();
+                            let v356: string =
+                                fable_library_rust::String_::fromStr(&v355);
+                            let v358: &str = r#"\["(.*?)"\]"#;
+                            let v359: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v358);
+                            let v360: &regex::Regex = &v359.build().unwrap();
+                            let v361: string = Client::method2(v356);
+                            let v362: &str = &v361.as_str();
+                            let v363: string = Client::method4();
+                            let v364: &str = &v363.as_str();
+                            let v365: std::string::String =
+                                v360.replace_all(&v362, v364).to_string();
+                            let v366: string =
+                                fable_library_rust::String_::fromStr(&v365);
+                            let v368: &str = r#", "#;
+                            let v369: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v368);
+                            let v370: &regex::Regex = &v369.build().unwrap();
+                            let v371: string = Client::method2(v366);
+                            let v372: &str = &v371.as_str();
+                            let v373: string = Client::method5();
+                            let v374: &str = &v373.as_str();
+                            let v375: std::string::String =
+                                v370.replace_all(&v372, v374).to_string();
+                            let v376: string =
+                                fable_library_rust::String_::fromStr(&v375);
+                            let v378: std::string::String =
+                                (&v376).to_string().clone();
+                            let v380: string =
+                                toString(&format!("{}", &v311));
+                            let v382: &str = r#""([^"]+)", "([^"]+)""#;
+                            let v383: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v382);
+                            let v384: &regex::Regex = &v383.build().unwrap();
+                            let v385: string = Client::method2(v380);
+                            let v386: &str = &v385.as_str();
+                            let v387: string = Client::method3();
+                            let v388: &str = &v387.as_str();
+                            let v389: std::string::String =
+                                v384.replace_all(&v386, v388).to_string();
+                            let v390: string =
+                                fable_library_rust::String_::fromStr(&v389);
+                            let v392: &str = r#"\["(.*?)"\]"#;
+                            let v393: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v392);
+                            let v394: &regex::Regex = &v393.build().unwrap();
+                            let v395: string = Client::method2(v390);
+                            let v396: &str = &v395.as_str();
+                            let v397: string = Client::method4();
+                            let v398: &str = &v397.as_str();
+                            let v399: std::string::String =
+                                v394.replace_all(&v396, v398).to_string();
+                            let v400: string =
+                                fable_library_rust::String_::fromStr(&v399);
+                            let v402: &str = r#", "#;
+                            let v403: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v402);
+                            let v404: &regex::Regex = &v403.build().unwrap();
+                            let v405: string = Client::method2(v400);
+                            let v406: &str = &v405.as_str();
+                            let v407: string = Client::method5();
+                            let v408: &str = &v407.as_str();
+                            let v409: std::string::String =
+                                v404.replace_all(&v406, v408).to_string();
+                            let v410: string =
+                                fable_library_rust::String_::fromStr(&v409);
+                            let v412: std::string::String =
+                                (&v410).to_string().clone();
+                            let v414: string =
+                                toString(&format!("{}", &v336));
+                            let v416: &str = r#""([^"]+)", "([^"]+)""#;
+                            let v417: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v416);
+                            let v418: &regex::Regex = &v417.build().unwrap();
+                            let v419: string = Client::method2(v414);
+                            let v420: &str = &v419.as_str();
+                            let v421: string = Client::method3();
+                            let v422: &str = &v421.as_str();
+                            let v423: std::string::String =
+                                v418.replace_all(&v420, v422).to_string();
+                            let v424: string =
+                                fable_library_rust::String_::fromStr(&v423);
+                            let v426: &str = r#"\["(.*?)"\]"#;
+                            let v427: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v426);
+                            let v428: &regex::Regex = &v427.build().unwrap();
+                            let v429: string = Client::method2(v424);
+                            let v430: &str = &v429.as_str();
+                            let v431: string = Client::method4();
+                            let v432: &str = &v431.as_str();
+                            let v433: std::string::String =
+                                v428.replace_all(&v430, v432).to_string();
+                            let v434: string =
+                                fable_library_rust::String_::fromStr(&v433);
+                            let v436: &str = r#", "#;
+                            let v437: regex::RegexBuilder =
+                                regex::RegexBuilder::new(&v436);
+                            let v438: &regex::Regex = &v437.build().unwrap();
+                            let v439: string = Client::method2(v434);
+                            let v440: &str = &v439.as_str();
+                            let v441: string = Client::method5();
+                            let v442: &str = &v441.as_str();
+                            let v443: std::string::String =
+                                v438.replace_all(&v440, v442).to_string();
+                            let v444: string =
+                                fable_library_rust::String_::fromStr(&v443);
+                            let v446: std::string::String =
+                                (&v444).to_string().clone();
+                            if let Client::US0::US0_1 =
+                                   &if cfg!(target_arch = "wasm32") {
+                                        Client::US0::US0_1
+                                    } else { Client::US0::US0_0 } {
+                                let v454: string = string(" %c");
+                                let v458: string =
+                                    append(append(append(append(toString(&v378),
+                                                                v454.clone()),
+                                                         toString(&v412)),
+                                                  v454), toString(&v446));
+                                let v466: Array<std::string::String> =
+                                    array(&[(&v458).as_ref().to_string(),
+                                            (&stringFrom(format!("color: #{0};",
+                                                                 &string("387957")))).as_ref().to_string(),
+                                            (&string("color: #385779;")).as_ref().to_string()]);
+                                let v467 = core::ops::Deref::deref(&v466);
+                                let v470 =
+                                    serde_wasm_bindgen::to_value(&*****&v467).unwrap();
+                                web_sys::console::log(&js_sys::Array::from(&v470));
+                                ()
+                            } else {
+                                let v472: string = Client::method6();
+                                let v473: &str = &v472.as_str();
+                                let v477: &str =
+                                    &v473[0i32 as usize..2i32 as usize];
+                                let v478: string =
+                                    fable_library_rust::String_::fromStr(&v477);
+                                let v480: u8 =
+                                    u8::from_str_radix(&v478, 16).unwrap();
+                                let v481: string = Client::method6();
+                                let v482: &str = &v481.as_str();
+                                let v485: &str =
+                                    &v482[2i32 as usize..4i32 as usize];
+                                let v486: string =
+                                    fable_library_rust::String_::fromStr(&v485);
+                                let v487: u8 =
+                                    u8::from_str_radix(&v486, 16).unwrap();
+                                let v488: string = Client::method6();
+                                let v489: &str = &v488.as_str();
+                                let v492: &str =
+                                    &v489[4i32 as usize..6i32 as usize];
+                                let v493: string =
+                                    fable_library_rust::String_::fromStr(&v492);
+                                let v494: u8 =
+                                    u8::from_str_radix(&v493, 16).unwrap();
+                                let v496: colored::ColoredString =
+                                    colored::Colorize::truecolor(&*v412.to_string(), v480, v487, v494);
+                                let v497: std::string::String =
+                                    format!("{}", &v496);
+                                let v498: string = Client::method7();
+                                let v499: &str = &v498.as_str();
+                                let v502: &str =
+                                    &v499[0i32 as usize..2i32 as usize];
+                                let v503: string =
+                                    fable_library_rust::String_::fromStr(&v502);
+                                let v504: u8 =
+                                    u8::from_str_radix(&v503, 16).unwrap();
+                                let v505: string = Client::method7();
+                                let v506: &str = &v505.as_str();
+                                let v509: &str =
+                                    &v506[2i32 as usize..4i32 as usize];
+                                let v510: string =
+                                    fable_library_rust::String_::fromStr(&v509);
+                                let v511: u8 =
+                                    u8::from_str_radix(&v510, 16).unwrap();
+                                let v512: string = Client::method7();
+                                let v513: &str = &v512.as_str();
+                                let v516: &str =
+                                    &v513[4i32 as usize..6i32 as usize];
+                                let v517: string =
+                                    fable_library_rust::String_::fromStr(&v516);
+                                let v518: u8 =
+                                    u8::from_str_radix(&v517, 16).unwrap();
+                                let v519: colored::ColoredString =
+                                    colored::Colorize::truecolor(&*v446.to_string(), v504, v511, v518);
+                                let v520: std::string::String =
+                                    format!("{}", &v519);
+                                println!("{0}",
+                                         stringFrom(format!("{0} {1} {2}", &v378, &v497, &v520)));
+                                ()
+                            }
+                            0i32
+                        }
                     }
                 }
             }

@@ -431,14 +431,8 @@ inl new_log
                 inl args = args |> to_string'
                 inl locals = locals |> to_string'
                 console_log' (a ;[
-                    !!(
-                        ext_locals +\
-                        " %c" +\ args +\
-                        " %c" +\ locals
-                    )
-                    // !!"color: purple;"
+                    !!(ext_locals +\ " %c" +\ args +\ " %c" +\ locals)
                     !!($"$\"color: #{!color};\"" : string)
-                    // !!"color: #222222;"
                     !!"color: #385779;"
                 ])
             | _ =>
