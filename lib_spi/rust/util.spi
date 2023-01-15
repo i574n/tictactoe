@@ -51,45 +51,20 @@ nominal regex_builder = $"Types.regex.RegexBuilder"
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
 
-inl js_value_from_str (str : string) : any =
-    emit_expr str "wasm_bindgen::JsValue::from_str($0)"
-
-inl js_value_from_obj (obj : any) : any =
-    emit_expr obj "serde_wasm_bindgen::to_value(&****$0).unwrap()"
-
-inl console_log (str : string) : () =
-    emit_expr (str |> js_value_from_str) "web_sys::console::log_1(&$0)"
-
-inl raw_string_literal (s : string) : ref' str =
-    emit_expr () $"$\"r#\\\"{!s}\\\"#\""
-
 inl deref' forall t. (x : ref' t) : t =
-    emit_expr x "*$0"
+    emit_expr x "**$0"
 
 inl deref forall t u. (x : t) : ref' u =
     emit_expr x "core::ops::Deref::deref($0)"
-    |> deref'
-    |> deref'
-    |> deref'
+    // |> deref'
+    // |> deref'
+    // |> deref'
 
 inl to_std_string (str : string) : std_string =
     emit_expr str "($0).to_string()"
 
-inl console_log' (args : a i32 string) : () =
-    inl arr : a i32 std_string = args |> am.map to_std_string
-    inl arr : ref' any = arr |> deref
-    inl arr : any = arr |> to_any
-    emit_expr (arr |> js_value_from_obj) "web_sys::console::log(&js_sys::Array::from(&$0))"
-
-
-inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
-
-inl len forall t. (x : t) : i32 =
-    emit_expr x "($0).len().try_into().unwrap()"
-
-// inl new_string (str : static_ref' str) : string =
-    // emit_expr str "fable_library_rust::String_::string($0)"
-
+inl to_std_string' (str : string) : std_string =
+    emit_expr str "std::string::String::from($0.to_string())"
 
 inl format' forall t. (x : t) (debug : bool) : std_string =
     real
@@ -111,17 +86,116 @@ inl format forall t. (x : t) : std_string =
             | _ => format' `t x true
         result
 
+// inl unwrap' x = emit_expr x "$0.unwrap()"
+inl unwrap_ref x = emit_expr x "$0.unwrap()"
+inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
+inl unwrap_or forall t. (a : t) (b : option' t) : t =
+    $"!b |> Option.defaultValue !a"
+instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+instance (~!!) ref' t' = unwrap_ref
+instance (~!!) file = unwrap_ref
+instance (~!!) emit_type t' = fun (x : t) =>
+    real
+        // typecase t with
+        // | string => emit_expr `std_string `(emit_type t') (format `t x) "$0"
+        // | string' => emit_expr `string' `(emit_type t') x "$0"
+        // // | string => emit_expr `string' `(emit_type t') (x |> format `t) "$0"
+        // | _ =>
+            inl x : std_string = format `t x
+            real_unbox `std_string `(emit_type t') x
+instance (~!!) result' t' e' = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
+instance (~!!) static_ref' t' = unwrap_ref
+// instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_string()"
+instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().to_string()"
+inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
+instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
+
+
+
+inl js_value_from_str (str : string) : any =
+    emit_expr str "wasm_bindgen::JsValue::from_str($0)"
+
+inl js_value_from_obj (obj : any) : any =
+    emit_expr obj "serde_wasm_bindgen::to_value(&*****$0).unwrap()"
+
+inl console_log (str : string) : () =
+    emit_expr (str |> js_value_from_str) "web_sys::console::log_1(&$0)"
+
+inl raw_string_literal (s : string) : ref' str =
+    emit_expr () $"$\"r#\\\"{!s}\\\"#\""
+
+// inl raw_string_literal' (s : string) : ref' str =
+//     emit_expr () $"$\"r#\\\"{!s}\\\"#\""
+
+
+// value.into_iter().map(JsValue::from).collect::<js_sys::Array>().unchecked_into::<T>()
+
 inl as_str (s : string) : ref' str =
     emit_expr (join s) "$0.as_str()"
 
-inl as_str' (s : string) : ref' str =
-    emit_expr (join s) "($0).as_str()"
+inl as_str' (s : ref' str) : std_string =
+    emit_expr s "std::string::String::from(*$0)"
 
-inl to_str forall t. (x : t) : option' (ref' str) =
-    emit_expr x "($0).to_str()"
 
 inl to_string'' forall t. (x : t) : string =
     emit_expr x "fable_library_rust::String_::fromStr($0)"
+
+let toArray' forall (ar : * -> * -> *) {create; set} dim {number} el. (l : list el) : ar dim el =
+    inl ar = create (listm.length l)
+    // inl _ = listm.fold (fun i x => set ar i x . i+1) 0 l
+    ar
+
+inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
+
+inl to_ref' forall t. (x : t) : ref' t =
+    emit_expr x "&$0"
+
+inl console_log' (args : a i32 std_string) : () =
+    // inl args : a i32 string = args |> listm.toArray
+    // inl x : any = $"!args |> unbox"
+    // console_log x
+
+
+    // inl arr : a i32 std_string =
+    //     args
+    //     |> listm.fold
+    //            (fun acc x =>
+    //                acc /@ a ;[(x |> to_std_string)])
+    //            (a ;[])
+
+    // inl args : a i32 std_string =
+    //     args |> am.map ( to_std_string')
+
+    // inl args : a i32 (ref' str) =
+    //     args |> listm.map (as_str)
+    //     |> toArray'
+
+    inl args : ref' any = args |> deref
+    // inl args : std_string = args |> listm.index 1
+
+    // inl args : std_string = args |> to_std_string'
+    // inl args_str = args |> to_string'
+    // console_log args_str
+
+    // inl args : any = emit_expr args "(***$0).as_ref()"
+
+    inl args : ref' (vec any) = emit_expr args "$0"
+
+    // inl args : ref' any = args |> deref
+    inl args : any = args |> to_any
+    // emit_expr (arr |> js_value_from_obj) "web_sys::console::log(&js_sys::Array::from(&$0))"
+    emit_expr (args |> js_value_from_obj) "web_sys::console::log(&js_sys::Array::from(&$0))"
+
+
+
+inl len forall t. (x : t) : i32 =
+    emit_expr x "($0).len().try_into().unwrap()"
+
+// inl new_string (str : static_ref' str) : string =
+    // emit_expr str "fable_library_rust::String_::string($0)"
+
+
+
 
 inl substring' (start : i32) (len : i32) (str : string) : string =
     $"!str.Substring (!start, !len)"
@@ -220,28 +294,6 @@ inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
     |> format
 
 
-// inl unwrap' x = emit_expr x "$0.unwrap()"
-inl unwrap_ref x = emit_expr x "$0.unwrap()"
-inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
-inl unwrap_or forall t. (a : t) (b : option' t) : t =
-    $"!b |> Option.defaultValue !a"
-instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-instance (~!!) ref' t' = unwrap_ref
-instance (~!!) file = unwrap_ref
-instance (~!!) emit_type t' = fun (x : t) =>
-    real
-        // typecase t with
-        // | string => emit_expr `std_string `(emit_type t') (format `t x) "$0"
-        // | string' => emit_expr `string' `(emit_type t') x "$0"
-        // // | string => emit_expr `string' `(emit_type t') (x |> format `t) "$0"
-        // | _ =>
-            inl x : std_string = format `t x
-            real_unbox `std_string `(emit_type t') x
-instance (~!!) result' t' e' = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-instance (~!!) static_ref' t' = unwrap_ref
-instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_string()"
-inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
-instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
 
 
 // inl box_from forall t. (obj : t) : box' t =
@@ -275,6 +327,9 @@ inl path_join (s : string) (p : ref' path) : path_buf =
 
 inl path_exists (p : ref' path_buf) : bool =
     emit_expr p "std::path::Path::exists($0)"
+
+inl path_to_str (x : path_buf) : option' (ref' str) =
+    emit_expr x "($0).to_str()"
 
 inl env_current_dir () : path_buf =
     !!(emit_expr () "std::env::current_dir()" : result' path_buf io_error)

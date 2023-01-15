@@ -40,7 +40,7 @@ inl app () =
     |> set_attribute "data-test" "1"
     |> append_parent body
 
-    console_log' (a ;["a"; "b"])
+    console_log' (a ;[!!"a"; !!"b"])
 
     0i32
 

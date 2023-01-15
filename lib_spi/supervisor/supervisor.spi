@@ -116,7 +116,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
 
     inl fsx_path =
         spi_path_clean
-        |> to_str
+        |> path_to_str
         |> (~!!)
         |> string_replace ".spir" ".spi"
         |> string_replace ".spi" ".fsx"
