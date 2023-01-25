@@ -14,9 +14,13 @@ nominal mut' t = $"Types.Mut<`t>"
 nominal ref' t = $"Types.Ref<`t>"
 nominal static_ref' t = $"Types.StaticRef<`t>"
 nominal str = $"Types.Str"
+nominal tuple' a b = $"Types.Tuple<`a, `b>"
 nominal vec t = $"Types.Vec<`t>"
 
+nominal cell_ref t = $"Types.std.cell.CellRef<`t>"
 nominal ref_cell t = $"Types.std.cell.RefCell<`t>"
+
+nominal vec_deque t = $"Types.std.collections.VecDeque<`t>"
 
 nominal file = $"Types.std.fs.File"
 
@@ -29,9 +33,16 @@ nominal path = $"Types.std.path.Path"
 nominal path_buf = $"Types.std.path.PathBuf"
 type strip_prefix_error = $"Types.std.path.StripPrefixError"
 
+nominal rc t = $"Types.std.rc.Rc<`t>"
+
 nominal std_string = $"Types.std.string.String"
 
+nominal arc t = $"Types.std.sync.Arc<`t>"
+nominal mutex t = $"Types.std.sync.Mutex<`t>"
+
 nominal systemtime = $"Types.std.time.SystemTime"
+
+nominal condvar = $"Types.async_std.sync.Condvar"
 
 type utc = $"Types.chrono.Utc"
 type local = $"Types.chrono.Local"
@@ -42,11 +53,17 @@ nominal clap_arg_matches = $"Types.clap.parser.ArgMatches"
 nominal clap_command = $"Types.clap.builder.Command"
 nominal colored_string = $"Types.colored.ColoredString"
 
+nominal future t = $"Types.core.future.Future<`t>"
+
+nominal request = $"Types.ehttp.Request"
+nominal response = $"Types.ehttp.Response"
+
 nominal linereader t = $"Types.linereader.LineReader<`t>"
 
 nominal regex = $"Types.regex.Regex"
 nominal regex_builder = $"Types.regex.RegexBuilder"
 
+nominal js_value = $"Types.wasm_bindgen.JsValue"
 
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
@@ -69,10 +86,11 @@ inl to_std_string (str : string) : std_string =
 inl to_std_string' (str : string) : std_string =
     emit_expr str "std::string::String::from($0.to_string())"
 
-type log_item = emit_type std_string
-
 inl as_ref forall t u. (x : t) : ref' u =
     emit_expr x "($0).as_ref()"
+
+type log_item = emit_type std_string
+
 
 inl format' forall t. (x : t) (debug : bool) : std_string =
     real
@@ -97,6 +115,12 @@ inl format forall t. (x : t) : std_string =
             | _ => format' `t x true
         result
 
+
+let (~!>) forall t. (x : t) : log_item =
+    inl str : std_string = format x
+    real
+        real_unbox `std_string `log_item str
+
 // inl unwrap' x = emit_expr x "$0.unwrap()"
 inl unwrap_ref x = emit_expr x "$0.unwrap()"
 inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
@@ -117,7 +141,11 @@ instance (~!!) emit_type t' = fun (x : t) =>
 instance (~!!) result' t' e' = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
 instance (~!!) static_ref' t' = unwrap_ref
 // instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_string()"
-instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().to_string()"
+instance (~!!) std_string = fun (x : t) =>
+    real
+        typecase t with
+        | result' _ _ => emit_expr `t `std_string x "($0).as_ref().unwrap().to_string()"
+        | _ => emit_expr `t `std_string x "($0).as_ref().to_string()"
 inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
 instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
 
@@ -150,8 +178,8 @@ inl to_ref' forall t. (x : t) : ref' t =
 
 inl console_log' (args : a i32 std_string) : () =
     inl args : ref' (vec any) = args |> deref
-    inl args : any = args |> to_any
-    emit_expr (args |> js_value_from_obj) "web_sys::console::log(&js_sys::Array::from(&$0))"
+    inl args : any = args |> to_any |> js_value_from_obj
+    emit_expr args "web_sys::console::log(&js_sys::Array::from(&$0))"
 
 
 inl len forall t. (x : t) : i32 =
@@ -230,8 +258,8 @@ inl get_clap_one (arg : string) (matches : ref' clap_arg_matches) : ref' std_str
         "&($0).get_one::<String>($1).unwrap().replace($2, \"\")"
 
 
-inl serialize args json : std_string =
-    emit_expr args ("serde_json::json!(" +\ json +\ ")")
+// inl serialize args json : std_string =
+//     emit_expr args ("serde_json::json!(" +\ json +\ ")")
 
 // inl json_stringify forall t. (obj : t) : std_string =
 //     real
@@ -357,6 +385,148 @@ inl range forall t {number}. (a : t) (b : t) : a i32 t = $"[| !a..!b |]"
 
 
 
+
+
+
+
+
+
+
+inl as_bytes (x : std_string) : any =
+    emit_expr () $"\"!x.as_bytes()\""
+
+inl to_vec forall t. (x : t) : vec t =
+    emit_expr () $"\"!x.to_vec()\""
+
+inl none' forall t. =
+    $"None |> unbox" : option' t
+
+// inl some' forall t. (x : t) : option' t =
+//     new_option' ($"Some !x" : t)
+
+inl is_none forall t. (x : option' t) : bool =
+    emit_expr () $"\"!x.is_none()\""
+
+inl clone' forall t. (x : t) : t =
+    emit_expr () $"\"!x.clone()\""
+
+inl borrow forall t. (x : ref_cell t) : cell_ref t =
+    emit_expr () $"\"!x.borrow()\""
+
+inl borrow_mut forall t. (x : ref_cell t) : t =
+    emit_expr () $"\"!x.borrow_mut()\""
+
+inl lock' forall t. (x : arc t) : future (mutex t) =
+    emit_expr () $"\"!x.lock()\""
+
+inl lock' forall t. (x : arc t) : future (mutex t) =
+    emit_expr () $"\"!x.lock()\""
+
+inl try_lock forall t. (x : cell_ref t) : option' (future (mutex t)) =
+    emit_expr () $"\"!x.try_lock()\""
+
+inl wait forall t. (x : mutex t) : mutex t =
+    emit_expr () $"\"!x.lock()\""
+
+inl mutex''' forall t. (x : mutex t) : t =
+    emit_expr () $"\"!x\""
+
+inl await' forall t. (x : future t) : t =
+    emit_expr () $"\"!x.await\""
+
+inl condvar_notify_one (x : mutex condvar) : any =
+    emit_expr () $"\"!x.notify_one()\""
+
+inl new_box forall t. (x : t) : box t =
+    emit_expr () $"\"Box::new(!x)\""
+
+inl new_tuple forall a b. (a : a) (b : b) : tuple' a b =
+    emit_expr () $"\"(!a, !b)\""
+
+
+inl new_ref_cell forall t. (x : t) : ref_cell t =
+    inl x = join x
+    emit_expr () $"\"std::cell::RefCell::new(!x)\""
+
+inl new_arc forall t. (x : t) : arc t =
+    inl x = join x
+    emit_expr () $"\"std::sync::Arc::new(!x)\""
+
+inl new_mutex forall t. (x : t) : mutex t =
+    inl x = join x
+    emit_expr () $"\"async_std::sync::Mutex::new(!x)\""
+
+// inl new_arc_mutex forall t. (x : t) : arc (mutex (ref' t)) = emit_expr (join x) $"\"std::sync::Arc::new(parking_lot::Mutex::new($0))\""
+inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
+    x
+    |> new_mutex
+    |> new_arc
+
+inl new_condvar () : condvar =
+    emit_expr () "async_std::sync::Condvar::new()"
+
+inl block_on forall t. (fn : future t) : () =
+    emit_expr () $"\"async_std::task::block_on(!fn)\""
+
+inl http_request_get (url : string) : request =
+    inl url = url |> to_std_string
+    emit_expr url "ehttp::Request::get($0)"
+
+inl http_request_post (url : string) (body : string) : request =
+    inl url = url |> to_std_string
+    inl body = body |> to_std_string |> as_bytes |> to_vec
+    emit_expr (url, body) "ehttp::Request::post($0, $1)"
+
+inl http_fetch (request : request) (on_done : box any) : () =
+    emit_expr () $"\"ehttp::fetch(!request, !on_done)\""
+
+inl fetch' request (fn : ref_cell (arc (mutex (option' response))) -> ()) =
+    inl pair = new_tuple (new_mutex false) (new_condvar ()) |> new_arc
+    inl pair2 = pair |> clone'
+
+    inl response : option' response = none'
+    inl response = response |> new_arc_mutex |> new_ref_cell
+    inl response' : ref_cell (arc (mutex (option' response))) = response |> clone'
+
+    inl on_done : any =
+        emit_expr
+            ()
+            ($"\"move |x: ehttp::Result<ehttp::Response>| {\"" +\
+            $"\"  let r = x.clone().unwrap();\"" +\
+            $"\"  *!response.borrow_mut().try_lock().unwrap() = Some(r);\"" +\
+            $"\"  async_std::task::block_on(async move {\"" +\
+            $"\"    let (lock, cvar) = &*!pair2;\"" +\
+            $"\"    let mut started = lock.lock().await;\"" +\
+            $"\"    *started = true;\"" +\
+            $"\"    cvar.notify_one();\"" +\
+            $"\"  });\"" +\
+            "}")
+    inl on_done : box any = on_done |> new_box
+    http_fetch request on_done
+
+    inl fn : future any =
+        emit_expr
+            ()
+            ("async move {" +\
+            $"\"  let (lock, cvar) = &*!pair;\"" +\
+            $"\"  let mut started = lock.lock().await;\"" +\
+            $"\"  while !!*started {\"" +\
+            $"\"    started = cvar.wait(started).await;\"" +\
+            $"\"  }\"" +\
+            $"\"  !fn(!response');\"" +\
+            "}")
+
+    block_on fn
+
+
+inl new_async_move (body : any) : future any =
+    emit_expr
+        ()
+        ($"\"async move {\"" +\
+        $"\"  !body;\"" +\
+        "}")
+
+
 type env =
     {
         codespace_name : string
@@ -393,9 +563,9 @@ inl real_core_union_tag log_level : i32 =
 
 inl new_log
     (get_log_level : () -> log_level_type)
-    (ext_locals_fn : () -> log_item)
+    (ext_locals_fn : () -> array log_item)
     (color : string)
-    : log_level_type -> log_item -> ()
+    : log_level_type -> array log_item -> ()
     =
     inl clean_log (text : log_item) : log_item =
         inl text =
@@ -404,58 +574,58 @@ inl new_log
             |> to_string'
             |> regex_replace_all "\"([^\"]+)\", \"([^\"]+)\"" "$1=$2"
             |> regex_replace_all "\\[\"(.*?)\"\\]" "[$1]"
+            |> regex_replace_all "\\\\\"" "\""
             |> regex_replace_all ", " " "
-        !!text
+        !>text
 
     inl env : env = get_env ()
     inl start_timestamp = ticks ()
-    fun log_level (args : log_item) : () =>
-        if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
-            inl new_timestamp () = ticks () - start_timestamp
-            inl timestamp : string = new_timestamp () |> to_string'
-            inl timestamp : string = pad 6 timestamp
-            inl run_id : u8 = random ()
-            inl locals : log_item = !!(;[
-                !!"timestamp"; !!timestamp : log_item
-                !!"run_id"; !!run_id
-                !!"log_level"; !!(log_level |> to_string)
-            ])
-
-            inl ext_locals = ext_locals_fn () |> clean_log
-            inl args = args |> clean_log
-            inl locals = locals |> clean_log
-
-            match get_rust_target () with
-            | Wasm32 =>
-                inl ext_locals = ext_locals |> to_string'
-                inl args = args |> to_string'
-                inl locals = locals |> to_string'
-                console_log' (a ;[
-                    !!(ext_locals +\ " %c" +\ args +\ " %c" +\ locals)
-                    !!($"$\"color: #{!color};\"" : string)
-                    !!"color: #385779;"
+    fun log_level (args : array log_item) : () =>
+        join
+            if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
+                inl new_timestamp () = ticks () - start_timestamp
+                inl timestamp : string = new_timestamp () |> to_string'
+                inl timestamp : string = pad 6 timestamp
+                inl run_id : u8 = random ()
+                inl locals = !>(;[
+                    !>"timestamp"; !>timestamp
+                    !>"run_id"; !>run_id
+                    !>"log_level"; !>(log_level |> to_string)
                 ])
-            | _ =>
-                inl ext_locals = ext_locals
-                inl args = args |> truecolor color
-                inl locals = locals |> truecolor "385779"
 
-                inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
-                console_fsx.write_line new_args
+                inl ext_locals = !!(ext_locals_fn ()) |> clean_log
+                inl args = !!args |> clean_log
+                inl locals = locals |> clean_log
+
+                match get_rust_target () with
+                | Wasm32 =>
+                    inl ext_locals = ext_locals |> to_string'
+                    inl args = args |> to_string'
+                    inl locals = locals |> to_string'
+                    console_log' (a ;[
+                        !!(ext_locals +\ " %c" +\ args +\ " %c" +\ locals)
+                        !!($"$\"color: #{!color};\"" : string)
+                        !!"color: #385779;"
+                    ])
+                | _ =>
+                    inl ext_locals = ext_locals
+                    inl args = args |> truecolor color
+                    inl locals = locals |> truecolor "385779"
+
+                    inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
+                    console_fsx.write_line new_args
 
 inl wait_file_change (fsx_path : path_buf) : string =
-    inl get_locals () = !!(;[
-        !!"> wait_file_change ()" : log_item
-    ])
+    inl get_locals () = ;[!>"> wait_file_change ()"]
     inl log = new_log (fun () => Debug) get_locals "387957"
 
     inl get_last_modified () : systemtime = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
     inl start = get_last_modified ()
 
-    log Debug !!(;[
-        !!"fsx_path"; !!(fsx_path |> path_display) : log_item
-        !!"start"; !!start
-    ])
+    log Debug ;[
+        !>"fsx_path"; !>(fsx_path |> path_display)
+        !>"start"; !>start
+    ]
 
     inl new_fsx =
         range 0i32 50
@@ -465,10 +635,10 @@ inl wait_file_change (fsx_path : path_buf) : string =
                 | Some lines => Some lines
                 | None =>
                     inl last_modified = get_last_modified ()
-                    log Debug !!(;[
-                        !!"i"; !!i : log_item
-                        !!"last_modified"; !!last_modified
-                    ])
+                    log Debug ;[
+                        !>"i"; !>i
+                        !>"last_modified"; !>last_modified
+                    ]
                     if emit_expr (last_modified, start) "$0 > $1" then
                         inl lines : std_string = !!(fsx_path |> fs_read_to_string)
                         Some (lines |> to_string'')

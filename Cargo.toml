@@ -27,3 +27,13 @@ client = { path = "./lib_spi/client" }
 
 [lib]
 path = "./lib_spi/cli/main.rs"
+
+
+
+[workspace]
+
+members = [
+    "lib_spi/supervisor",
+    "lib_spi/cli",
+    "lib_spi/client",
+]

@@ -2,9 +2,9 @@ open rust.util
 
 
 inl app () =
-    inl get_locals () = !!(;[
-        !!"> app ()" : log_item
-    ])
+    emit_expr () "console_error_panic_hook::set_once()"
+
+    inl get_locals () = ;[!>"> app ()"]
     inl log = new_log (fun () => Debug) get_locals "387957"
 
     inl window = get_window ()
@@ -12,12 +12,12 @@ inl app () =
     inl body = document |> get_body
     inl iframe = document |> create_element "iframe"
 
-    log Debug !!(;[
-        !!"window"; !!window : log_item
-        !!"document"; !!document
-        !!"body"; !!body
-        !!"iframe"; !!iframe
-    ])
+    log Debug ;[
+        !>"window"; !>window
+        !>"document"; !>document
+        !>"body"; !>body
+        !>"iframe"; !>iframe
+    ]
 
     iframe
     |> set_attribute "src" "https://time.is"
@@ -26,7 +26,15 @@ inl app () =
     |> set_attribute "data-test" "1"
     |> append_parent body
 
-    log Debug !!(;[!!"app end"; !!"???" : log_item])
+    inl url = "https://dummyjson.com/users"
+
+    inl request = http_request_get url
+    fetch' request fun response =>
+        log Debug ;[!>"app > fetch ()"]
+        inl response = response |> borrow |> try_lock
+        log Debug ;[!>"response"; !>(response |> format)]
+
+    log Debug ;[!>"app end"; !>"???"]
 
     0i32
 

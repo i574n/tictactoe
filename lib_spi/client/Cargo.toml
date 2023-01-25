@@ -16,21 +16,50 @@ colored = "~2.0"
 rand = { version = "~0.8", features = ["small_rng"] }
 chrono = "~0.4"
 regex = "~1.7"
-web-sys = { version = "~0.3", features = ["console", "Document", "Window", "HtmlBodyElement", "HtmlIFrameElement"] }
+web-sys = { version = "~0.3", features = [
+        "console", "Document", "Window", "HtmlBodyElement", "HtmlIFrameElement"
+]}
 js-sys = "~0.3"
-wasm-bindgen = { version = "~0.2", features = ["enable-interning"] }
-serde = { version = "~1.0", features = ["derive"] }
+wasm-bindgen = { version = "~0.2", features = ["enable-interning", "serde-serialize"] }
+# serde = { version = "~1.0", features = ["derive"] }
+# serde_json = "~1.0"
 serde-wasm-bindgen = "~0.4"
+console_error_panic_hook = "~0.1"
+ehttp = "~0.2"
+
+# gloo-net = "~0.2"
+
+wasm-bindgen-futures = { version = "~0.4", features = [] }
+# tokio-timer = "~0.3.0-alpha.6"
+wasm-timer = "~0.2"
+
+# crossbeam-channel = "~0.5"
+
+parking_lot = "~0.12"
+
+async-std = { version = "~1.12", features = ["unstable"] }
+
+# yew = { version = "~0.20", features = ["csr"] }
+
+# http = "*"
+
+# hyper = "~1.0.0-rc.2"
+# hyper-tls = "~0.5"
+
+# reqwest = "*"
+
+# reqwest-wasm = "~0.11"
+
+
+# frankenstein = "~0.22"
 
 # zmq = "~0.10"
 # axum = "~0.6"
-# tokio = { version = "~1.23", features = ["full"] }
+# tokio = { version = "~1.23", features = ["rt", "sync", "macros", "time"] }
 
-# serde_json = "~1.0"
 # colored = "~2.0"
 # wasm-logger = "~0.2"
 # log = "~0.4"
-# console_error_panic_hook = "~0.1"
 # tracing = "~0.1"
 # log = "~0.4"
 # instant = { version = "0.1.6", features = ["wasm-bindgen"] }

@@ -22,13 +22,20 @@ type Ref<'T> = class end
 type StaticRef<'T> = class end
 [<Erase; Emit("str")>]
 type Str = class end
+[<Erase; Emit("($0, $1)")>]
+type Tuple<'A, 'B> = class end
 [<Erase; Emit("Vec<$0>")>]
 type Vec<'T> = class end
 
 module std =
     module cell =
+        [<Erase; Emit("std::cell::Ref<$0>")>]
+        type CellRef<'T> = class end
         [<Erase; Emit("std::cell::RefCell<$0>")>]
         type RefCell<'T> = class end
+    module collections =
+        [<Erase; Emit("std::collections::VecDeque<$0>")>]
+        type VecDeque<'T> = class end
     module fs =
         [<Erase; Emit("std::fs::File")>]
         type File = class end
@@ -50,14 +57,28 @@ module std =
         [<Erase; Emit("std::path::StripPrefixError")>]
         type StripPrefixError = class end
 
+    module rc =
+        [<Erase; Emit("std::rc::Rc<$0>")>]
+        type Rc<'T> = class end
+
     module string =
         [<Erase; Emit("std::string::String")>]
         type String = class end
+
+    module sync =
+        [<Erase; Emit("std::sync::Arc<$0>")>]
+        type Arc<'T> = class end
+        [<Erase; Emit("async_std::sync::Mutex<$0>")>]
+        type Mutex<'T> = class end
 
     module time =
         [<Erase; Emit("std::time::SystemTime")>]
         type SystemTime = class end
 
+module async_std =
+    module sync =
+        [<Erase; Emit("async_std::sync::Condvar")>]
+        type Condvar = class end
 
 module chrono =
     [<Erase; Emit("chrono::Utc")>]
@@ -82,6 +103,17 @@ module colored =
     [<Erase; Emit("colored::ColoredString")>]
     type ColoredString = class end
 
+module core =
+    module future =
+        [<Erase; Emit("_")>]
+        type Future<'T> = class end
+
+module ehttp =
+    [<Erase; Emit("ehttp::Request")>]
+    type Request = class end
+    [<Erase; Emit("ehttp::Response")>]
+    type Response = class end
+
 module fable_library_rust =
     module Native_ =
         [<Erase; Emit("fable_library_rust::Native_::Box_<$0>")>]
@@ -97,6 +129,9 @@ module regex =
     [<Erase; Emit("regex::RegexBuilder")>]
     type RegexBuilder = class end
 
+module wasm_bindgen =
+    [<Erase; Emit("wasm_bindgen::JsValue")>]
+    type JsValue = class end
 
 // // #else
 // //     ()
