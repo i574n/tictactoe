@@ -1,0 +1,6 @@
+open console_fsx
+
+
+// cell
+inl main () : () = 
+    inspect "test"

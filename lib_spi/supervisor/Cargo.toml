@@ -20,5 +20,6 @@ js-sys = "~0.3"
 wasm-bindgen = { version = "~0.2", features = ["enable-interning", "serde-serialize"] }
 serde-wasm-bindgen = "~0.4"
 
-[lib]
+[[bin]]
+name = "supervisor"
 path = "./main.rs"

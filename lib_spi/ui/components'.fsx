@@ -19,6 +19,7 @@ and [<Struct>] US4 =
     | US4_1
     | US4_2
     | US4_3
+    | US4_4
 and [<Struct>] US5 =
     | US5_0
     | US5_1 of f1_0 : int32
@@ -186,30 +187,30 @@ and closure5 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : U
     struct (v0, v1, v2, v3, v71, v5, v6, v7, v8, v73, v10, v11, v12, v13, v14, v15, v16, v75, v18, v19, v20, v77, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v79, v81, v39, v40, v41, v42, v43, v44, v83, v46, v47, v48, v49, v50, v51, v52, v53, v85, v86, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v87, v69)
 and closure8 (v0 : Mut1) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : US6 = v0.l46
-    let v74 : string =
+    let v75 : string =
         match v71 with
         | US6_0 -> (* None *)
-            let v72 : string = "hidden"
-            v72
-        | US6_1(v73) -> (* Some *)
+            let v73 : string = "hidden"
             v73
-    let v75 : US6 = v0.l47
-    let v78 : string =
-        match v75 with
+        | US6_1(v72) -> (* Some *)
+            v72
+    let v76 : US6 = v0.l47
+    let v80 : string =
+        match v76 with
         | US6_0 -> (* None *)
-            let v76 : string = "hidden"
-            v76
+            let v78 : string = "hidden"
+            v78
         | US6_1(v77) -> (* Some *)
             v77
-    let v79 : string = "flex"
-    let v80 : US6 = US6_1(v79)
-    let v81 : string = "1"
+    let v81 : string = "flex"
     let v82 : US6 = US6_1(v81)
-    let v83 : string = "column"
+    let v83 : string = "1"
     let v84 : US6 = US6_1(v83)
-    let v85 : US6 = US6_1(v74)
-    let v86 : US6 = US6_1(v78)
-    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v80, v19, v20, v82, v84, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v85, v86, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
+    let v85 : string = "column"
+    let v86 : US6 = US6_1(v85)
+    let v87 : US6 = US6_1(v75)
+    let v88 : US6 = US6_1(v80)
+    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v82, v19, v20, v84, v86, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v87, v88, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
 and closure10 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : string = "blackAlpha.700"
     let v71 : US6 = US6_1(v70)
@@ -1442,32 +1443,32 @@ and method7 (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US
 and method5 (v0 : Fable.Core.JS.Function, v1 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)), v2 : (unit -> (Fable.Core.JSX.Element []))) : Fable.Core.JSX.Element =
     let struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) = method6()
     let struct (v73 : US6, v74 : US6, v75 : US6, v76 : US7, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US6, v83 : US8, v84 : US9, v85 : US6, v86 : US6, v87 : US8, v88 : US6, v89 : US6, v90 : US6, v91 : US10, v92 : US8, v93 : US6, v94 : US6, v95 : US6, v96 : US6, v97 : US6, v98 : US6, v99 : US11, v100 : US6, v101 : US6, v102 : US6, v103 : US11, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US6, v112 : US6, v113 : US6, v114 : US12, v115 : US13, v116 : US12, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US6, v133 : US14, v134 : US6, v135 : US11, v136 : US6, v137 : US6, v138 : US14, v139 : US14, v140 : US6, v141 : US5, v142 : US6) = v1 struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72)
-    let v150 : US9 =
+    let v151 : US9 =
         match v84 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v144) -> (* Some *)
-            let v145 : string = "children"
-            let v146 : string = "solid-js"
-            let v147 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v145 v146
-            let v148 : (unit -> (Fable.Core.JSX.Element [])) = v147.Invoke v144 |> unbox<unit -> Fable.Core.JSX.Element[]>
-            US9_1(v148)
-    let v152 : (unit -> (Fable.Core.JSX.Element [])) =
-        match v150 with
+        | US9_1(v143) -> (* Some *)
+            let v144 : string = "children"
+            let v145 : string = "solid-js"
+            let v146 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v144 v145
+            let v147 : (unit -> (Fable.Core.JSX.Element [])) = v146.Invoke v143 |> unbox<unit -> Fable.Core.JSX.Element[]>
+            US9_1(v147)
+    let v154 : (unit -> (Fable.Core.JSX.Element [])) =
+        match v151 with
         | US9_0 -> (* None *)
             v2
-        | US9_1(v151) -> (* Some *)
-            v151
-    let v153 : US9 = US9_1(v152)
-    let v154 : ((string * obj) []) = method7(v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v153, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v142)
-    let v155 : obj = Fable.Core.JsInterop.createObj v154
-    Fable.Core.JsInterop.emitJsExpr (v155, v2) "$0.children = $1"
-    let v156 : (obj -> Fable.Core.JSX.Element) = v0 |> unbox<(obj -> Fable.Core.JSX.Element)>
-    let v157 : string = "createComponent"
-    let v158 : string = "solid-js"
-    let v159 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v157 v158
-    let v160 : Fable.Core.JSX.Element = v159.Invoke (v156, v155) |> unbox<Fable.Core.JSX.Element>
-    v160
+        | US9_1(v152) -> (* Some *)
+            v152
+    let v155 : US9 = US9_1(v154)
+    let v156 : ((string * obj) []) = method7(v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v155, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v142)
+    let v157 : obj = Fable.Core.JsInterop.createObj v156
+    Fable.Core.JsInterop.emitJsExpr (v157, v2) "$0.children = $1"
+    let v158 : (obj -> Fable.Core.JSX.Element) = v0 |> unbox<(obj -> Fable.Core.JSX.Element)>
+    let v159 : string = "createComponent"
+    let v160 : string = "solid-js"
+    let v161 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v159 v160
+    let v162 : Fable.Core.JSX.Element = v161.Invoke (v158, v157) |> unbox<Fable.Core.JSX.Element>
+    v162
 and closure9 (v0 : Mut1) () : (Fable.Core.JSX.Element []) =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/core"
@@ -1478,14 +1479,14 @@ and closure9 (v0 : Mut1) () : (Fable.Core.JSX.Element []) =
     let v7 : Fable.Core.JS.Function = v6 |> unbox<Fable.Core.JS.Function>
     let v8 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure10()
     let v9 : US9 = v0.l11
-    let v12 : (unit -> (Fable.Core.JSX.Element [])) =
+    let v13 : (unit -> (Fable.Core.JSX.Element [])) =
         match v9 with
         | US9_0 -> (* None *)
             closure11()
-        | US9_1(v11) -> (* Some *)
-            v11
-    let v13 : Fable.Core.JSX.Element = method5(v7, v8, v12)
-    [|v13|]
+        | US9_1(v10) -> (* Some *)
+            v10
+    let v14 : Fable.Core.JSX.Element = method5(v7, v8, v13)
+    [|v14|]
 and method4 (v0 : Mut1) : Fable.Core.JSX.Element =
     let v1 : string = "hope"
     let v2 : string = "@hope-ui/core"
@@ -1538,8 +1539,7 @@ and closure17 (v0 : Mut3, v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 :
         if v144 then
             true
         else
-            let v145 : bool = v71 ()
-            v145
+            v71 ()
     let v151 : string =
         if v146 then
             let v147 : string = Fable.Core.JS.undefined
@@ -1548,76 +1548,76 @@ and closure17 (v0 : Mut3, v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 :
         else
             let v150 : string = "0px !important"
             v150
-    let v154 : string =
+    let v155 : string =
         match v24 with
         | US6_0 -> (* None *)
-            let v152 : string = "sm"
-            v152
-        | US6_1(v153) -> (* Some *)
+            let v153 : string = "sm"
             v153
-    let v157 : string =
+        | US6_1(v152) -> (* Some *)
+            v152
+    let v159 : string =
         match v52 with
         | US6_0 -> (* None *)
-            let v155 : string = "0"
-            v155
+            let v157 : string = "0"
+            v157
         | US6_1(v156) -> (* Some *)
             v156
-    let v164 : string =
+    let v166 : string =
         match v51 with
-        | US6_0 -> (* None *)
-            let v158 : string = "15px"
-            v158
-        | US6_1(v159) -> (* Some *)
-            let v160 : bool = "0" = v159
-            if v160 then
-                let v161 : string = "0"
-                v161
-            else
-                let v162 : string = "15px"
+        | US6_1(v160) -> (* Some *)
+            let v161 : bool = "0" = v160
+            if v161 then
+                let v162 : string = "0"
                 v162
-    let v165 : string = method13(v164, v157)
-    let v166 : US6 = US6_1(v151)
-    let v167 : string = "neutral.500"
-    let v168 : US6 = US6_1(v167)
-    let v169 : string = "neutral.400"
+            else
+                let v163 : string = "15px"
+                v163
+        | _ ->
+            let v165 : string = "15px"
+            v165
+    let v167 : string = method13(v166, v159)
+    let v168 : US6 = US6_1(v151)
+    let v169 : string = "neutral.500"
     let v170 : US6 = US6_1(v169)
-    let v171 : string = "flex"
+    let v171 : string = "neutral.400"
     let v172 : US6 = US6_1(v171)
-    let v173 : string = "column"
+    let v173 : string = "flex"
     let v174 : US6 = US6_1(v173)
-    let v175 : US6 = US6_1(v154)
-    let v176 : string = "0"
-    let v177 : US6 = US6_1(v176)
-    let v178 : US6 = US6_1(v176)
-    let v179 : US6 = US6_1(v165)
-    let v180 : US6 = US6_1(v176)
-    struct (v72, v73, v74, v75, v76, v77, v166, v168, v80, v81, v82, v83, v170, v85, v86, v87, v88, v172, v90, v91, v92, v174, v94, v175, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v177, v178, v179, v180, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
+    let v175 : string = "column"
+    let v176 : US6 = US6_1(v175)
+    let v177 : US6 = US6_1(v155)
+    let v178 : string = "0"
+    let v179 : US6 = US6_1(v178)
+    let v180 : US6 = US6_1(v178)
+    let v181 : US6 = US6_1(v167)
+    let v182 : US6 = US6_1(v178)
+    struct (v72, v73, v74, v75, v76, v77, v168, v170, v80, v81, v82, v83, v172, v85, v86, v87, v88, v174, v90, v91, v92, v176, v94, v177, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v179, v180, v181, v182, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
 and closure19 (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) struct (v70 : US6, v71 : US6, v72 : US6, v73 : US7, v74 : US6, v75 : US6, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US8, v81 : US9, v82 : US6, v83 : US6, v84 : US8, v85 : US6, v86 : US6, v87 : US6, v88 : US10, v89 : US8, v90 : US6, v91 : US6, v92 : US6, v93 : US6, v94 : US6, v95 : US6, v96 : US11, v97 : US6, v98 : US6, v99 : US6, v100 : US11, v101 : US6, v102 : US6, v103 : US6, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US12, v112 : US13, v113 : US12, v114 : US6, v115 : US6, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US14, v131 : US6, v132 : US11, v133 : US6, v134 : US6, v135 : US14, v136 : US14, v137 : US6, v138 : US5, v139 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
-    let v142 : string =
+    let v143 : string =
         match v52 with
         | US6_0 -> (* None *)
-            let v140 : string = "4px"
-            v140
-        | US6_1(v141) -> (* Some *)
+            let v141 : string = "4px"
             v141
-    let v145 : string =
+        | US6_1(v140) -> (* Some *)
+            v140
+    let v147 : string =
         match v49 with
         | US6_0 -> (* None *)
-            let v143 : string = "2px"
-            v143
+            let v145 : string = "2px"
+            v145
         | US6_1(v144) -> (* Some *)
             v144
-    let v148 : string =
+    let v151 : string =
         match v50 with
         | US6_0 -> (* None *)
-            let v146 : string = "8px"
-            v146
-        | US6_1(v147) -> (* Some *)
-            v147
-    let v149 : US6 = US6_1(v145)
-    let v150 : US6 = US6_1(v148)
-    let v151 : US6 = US6_1(v142)
-    struct (v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v149, v150, v121, v151, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139)
+            let v149 : string = "8px"
+            v149
+        | US6_1(v148) -> (* Some *)
+            v148
+    let v152 : US6 = US6_1(v147)
+    let v153 : US6 = US6_1(v151)
+    let v154 : US6 = US6_1(v143)
+    struct (v70, v71, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v152, v153, v121, v154, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139)
 and closure22 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : string = "flex"
     let v71 : US6 = US6_1(v70)
@@ -1630,7 +1630,6 @@ and closure25 (v0 : Mut4) (v1 : obj) : unit =
     let v6 : bool = v5 |> unbox<bool>
     let v7 : (bool -> unit) = v0.l1
     v7 v6
-    ()
 and closure24 (v0 : Mut4, v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) struct (v71 : US6, v72 : US6, v73 : US6, v74 : US7, v75 : US6, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US8, v82 : US9, v83 : US6, v84 : US6, v85 : US8, v86 : US6, v87 : US6, v88 : US6, v89 : US10, v90 : US8, v91 : US6, v92 : US6, v93 : US6, v94 : US6, v95 : US6, v96 : US6, v97 : US11, v98 : US6, v99 : US6, v100 : US6, v101 : US11, v102 : US6, v103 : US6, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US6, v112 : US12, v113 : US13, v114 : US12, v115 : US6, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US14, v132 : US6, v133 : US11, v134 : US6, v135 : US6, v136 : US14, v137 : US14, v138 : US6, v139 : US5, v140 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v141 : (unit -> bool) = v0.l0
     let v142 : bool = v141 ()
@@ -1663,14 +1662,14 @@ and closure27 (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : 
     let v71 : string = "@hope-ui/core"
     let v72 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v70 v71
     let v73 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure28()
-    let v76 : (unit -> (Fable.Core.JSX.Element [])) =
+    let v77 : (unit -> (Fable.Core.JSX.Element [])) =
         match v11 with
         | US9_0 -> (* None *)
             closure29()
-        | US9_1(v75) -> (* Some *)
-            v75
-    let v77 : Fable.Core.JSX.Element = method5(v72, v73, v76)
-    [|v77|]
+        | US9_1(v74) -> (* Some *)
+            v74
+    let v78 : Fable.Core.JSX.Element = method5(v72, v73, v77)
+    [|v78|]
 and closure23 (v0 : Mut4, v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) () : (Fable.Core.JSX.Element []) =
     let v71 : string = "hope"
     let v72 : string = "@hope-ui/core"
@@ -1692,22 +1691,22 @@ and closure21 () (v0 : Mut4) : Fable.Core.JSX.Element =
     let v1 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = v0.l2
     let struct (v2 : US6, v3 : US6, v4 : US6, v5 : US7, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US8, v13 : US9, v14 : US6, v15 : US6, v16 : US8, v17 : US6, v18 : US6, v19 : US6, v20 : US10, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US11, v29 : US6, v30 : US6, v31 : US6, v32 : US11, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US12, v44 : US13, v45 : US12, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US14, v63 : US6, v64 : US11, v65 : US6, v66 : US6, v67 : US14, v68 : US14, v69 : US6, v70 : US5, v71 : US6) = method6()
     let struct (v72 : US6, v73 : US6, v74 : US6, v75 : US7, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US8, v83 : US9, v84 : US6, v85 : US6, v86 : US8, v87 : US6, v88 : US6, v89 : US6, v90 : US10, v91 : US8, v92 : US6, v93 : US6, v94 : US6, v95 : US6, v96 : US6, v97 : US6, v98 : US11, v99 : US6, v100 : US6, v101 : US6, v102 : US11, v103 : US6, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US6, v112 : US6, v113 : US12, v114 : US13, v115 : US12, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US14, v133 : US6, v134 : US11, v135 : US6, v136 : US6, v137 : US14, v138 : US14, v139 : US6, v140 : US5, v141 : US6) = v1 struct (v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71)
-    let v149 : US9 =
+    let v150 : US9 =
         match v83 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v143) -> (* Some *)
-            let v144 : string = "children"
-            let v145 : string = "solid-js"
-            let v146 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v144 v145
-            let v147 : (unit -> (Fable.Core.JSX.Element [])) = v146.Invoke v143 |> unbox<unit -> Fable.Core.JSX.Element[]>
-            US9_1(v147)
-    let v150 : string = "Box"
-    let v151 : string = "@hope-ui/core"
-    let v152 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v150 v151
-    let v153 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure22()
-    let v154 : (unit -> (Fable.Core.JSX.Element [])) = closure23(v0, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
-    method5(v152, v153, v154)
+        | US9_1(v142) -> (* Some *)
+            let v143 : string = "children"
+            let v144 : string = "solid-js"
+            let v145 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v143 v144
+            let v146 : (unit -> (Fable.Core.JSX.Element [])) = v145.Invoke v142 |> unbox<unit -> Fable.Core.JSX.Element[]>
+            US9_1(v146)
+    let v151 : string = "Box"
+    let v152 : string = "@hope-ui/core"
+    let v153 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v151 v152
+    let v154 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure22()
+    let v155 : (unit -> (Fable.Core.JSX.Element [])) = closure23(v0, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v150, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
+    method5(v153, v154, v155)
 and closure31 (v0 : Fable.Core.JSX.Element) () : (Fable.Core.JSX.Element []) =
     [|v0|]
 and closure30 (v0 : Fable.Core.JSX.Element) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
@@ -1723,19 +1722,15 @@ and method14 (v0 : (Mut4 -> Fable.Core.JSX.Element), v1 : (unit -> bool), v2 : (
     v8
 and closure20 (v0 : Mut3, v1 : (bool -> unit), v2 : (unit -> bool), v3 : Fable.Core.JSX.Element) () : (Fable.Core.JSX.Element []) =
     let v4 : US15 = v0.l3
-    let v11 : Fable.Core.JSX.Element =
+    let v8 : Fable.Core.JSX.Element =
         match v4 with
-        | US15_0 -> (* CheckDisabled *)
+        | US15_2 -> (* CheckHidden *)
+            v3
+        | _ ->
             let v5 : (Mut4 -> Fable.Core.JSX.Element) = closure21()
             let v6 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure30(v3)
             method14(v5, v2, v1, v6)
-        | US15_1 -> (* CheckEnabled *)
-            let v8 : (Mut4 -> Fable.Core.JSX.Element) = closure21()
-            let v9 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure30(v3)
-            method14(v8, v2, v1, v9)
-        | US15_2 -> (* CheckHidden *)
-            v3
-    [|v11|]
+    [|v8|]
 and closure18 (v0 : Mut3, v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6, v71 : (bool -> unit), v72 : (unit -> bool), v73 : Fable.Core.JSX.Element) () : (Fable.Core.JSX.Element []) =
     let v74 : string = "Box"
     let v75 : string = "@hope-ui/core"
@@ -1757,91 +1752,94 @@ and closure33 () () : (Fable.Core.JSX.Element []) =
     let v2 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v1 ]
     [|v2|]
 and closure34 (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) struct (v70 : US6, v71 : US6, v72 : US6, v73 : US7, v74 : US6, v75 : US6, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US8, v81 : US9, v82 : US6, v83 : US6, v84 : US8, v85 : US6, v86 : US6, v87 : US6, v88 : US10, v89 : US8, v90 : US6, v91 : US6, v92 : US6, v93 : US6, v94 : US6, v95 : US6, v96 : US11, v97 : US6, v98 : US6, v99 : US6, v100 : US11, v101 : US6, v102 : US6, v103 : US6, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US12, v112 : US13, v113 : US12, v114 : US6, v115 : US6, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US14, v131 : US6, v132 : US11, v133 : US6, v134 : US6, v135 : US14, v136 : US14, v137 : US6, v138 : US5, v139 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
-    let v142 : string =
+    let v143 : string =
         match v23 with
         | US6_0 -> (* None *)
-            let v140 : string = "sm"
-            v140
-        | US6_1(v141) -> (* Some *)
+            let v141 : string = "sm"
             v141
-    let v145 : string =
+        | US6_1(v140) -> (* Some *)
+            v140
+    let v147 : string =
         match v28 with
         | US6_0 -> (* None *)
-            let v143 : string = "center"
-            v143
+            let v145 : string = "center"
+            v145
         | US6_1(v144) -> (* Some *)
             v144
-    let v148 : string =
-        match v34 with
-        | US6_0 -> (* None *)
-            let v146 : string = "0"
-            v146
-        | US6_1(v147) -> (* Some *)
-            v147
     let v151 : string =
-        match v33 with
+        match v34 with
         | US6_0 -> (* None *)
             let v149 : string = "0"
             v149
-        | US6_1(v150) -> (* Some *)
-            v150
-    let v154 : string =
+        | US6_1(v148) -> (* Some *)
+            v148
+    let v155 : string =
+        match v33 with
+        | US6_0 -> (* None *)
+            let v153 : string = "0"
+            v153
+        | US6_1(v152) -> (* Some *)
+            v152
+    let v159 : string =
         match v48 with
         | US6_0 -> (* None *)
-            let v152 : string = "0"
-            v152
-        | US6_1(v153) -> (* Some *)
-            v153
-    let v155 : string = "0"
-    let v156 : US6 = US6_1(v155)
-    let v157 : string = "flex"
-    let v158 : US6 = US6_1(v157)
-    let v159 : string = "6"
-    let v160 : US6 = US6_1(v159)
-    let v161 : string = "column"
-    let v162 : US6 = US6_1(v161)
-    let v163 : US6 = US6_1(v142)
-    let v164 : US6 = US6_1(v145)
-    let v165 : string = "base"
-    let v166 : US6 = US6_1(v165)
-    let v167 : US6 = US6_1(v151)
-    let v168 : US6 = US6_1(v148)
-    let v169 : US6 = US6_1(v155)
-    let v170 : US6 = US6_1(v155)
-    let v171 : string = "85vh"
-    let v172 : US6 = US6_1(v171)
-    let v173 : US6 = US6_1(v155)
-    let v174 : string = "auto"
-    let v175 : US6 = US6_1(v174)
-    let v176 : US6 = US6_1(v154)
-    struct (v70, v71, v72, v73, v74, v156, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v158, v88, v89, v160, v162, v92, v163, v94, v95, v96, v97, v164, v99, v100, v166, v102, v167, v168, v169, v170, v172, v108, v109, v110, v111, v112, v113, v173, v175, v116, v117, v176, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139)
+            let v157 : string = "0"
+            v157
+        | US6_1(v156) -> (* Some *)
+            v156
+    let v160 : string = "0"
+    let v161 : US6 = US6_1(v160)
+    let v162 : string = "flex"
+    let v163 : US6 = US6_1(v162)
+    let v164 : string = "6"
+    let v165 : US6 = US6_1(v164)
+    let v166 : string = "column"
+    let v167 : US6 = US6_1(v166)
+    let v168 : US6 = US6_1(v143)
+    let v169 : US6 = US6_1(v147)
+    let v170 : string = "base"
+    let v171 : US6 = US6_1(v170)
+    let v172 : US6 = US6_1(v155)
+    let v173 : US6 = US6_1(v151)
+    let v174 : US6 = US6_1(v160)
+    let v175 : US6 = US6_1(v160)
+    let v176 : string = "85vh"
+    let v177 : US6 = US6_1(v176)
+    let v178 : US6 = US6_1(v160)
+    let v179 : string = "auto"
+    let v180 : US6 = US6_1(v179)
+    let v181 : US6 = US6_1(v159)
+    struct (v70, v71, v72, v73, v74, v161, v76, v77, v78, v79, v80, v81, v82, v83, v84, v85, v86, v163, v88, v89, v165, v167, v92, v168, v94, v95, v96, v97, v169, v99, v100, v171, v102, v172, v173, v174, v175, v177, v108, v109, v110, v111, v112, v113, v178, v180, v116, v117, v181, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139)
 and closure37 (v0 : int32, v1 : (unit -> string), v2 : (unit -> US4), v3 : (unit -> US5)) () : (obj []) =
-    let v4 : string = "loader_id:"
+    let v4 : string = "loader_id"
     let v5 : obj = struct (v4, v0)
     let v6 : string = v1 ()
-    let v7 : string = "chain_token:"
+    let v7 : string = "chain_token"
     let v8 : obj = struct (v7, v6)
     let v9 : US4 = v2 ()
-    let v14 : string =
+    let v18 : string =
         match v9 with
         | US4_0 -> (* Debug *)
             let v10 : string = "Debug"
             v10
         | US4_1 -> (* Error *)
-            let v11 : string = "Error"
-            v11
-        | US4_2 -> (* Info *)
-            let v12 : string = "Info"
-            v12
-        | US4_3 -> (* Warn *)
-            let v13 : string = "Warn"
+            let v13 : string = "Error"
             v13
-    let v15 : string = "log_level:"
-    let v16 : obj = struct (v15, v14)
-    let v17 : US5 = v3 ()
-    let v18 : string = "ui_modal:"
-    let v19 : obj = struct (v18, v17)
-    [|v5; v8; v16; v19|]
+        | US4_2 -> (* Info *)
+            let v11 : string = "Info"
+            v11
+        | US4_4 -> (* Warn *)
+            let v12 : string = "Warn"
+            v12
+        | _ ->
+            let v14 : string = "Error"
+            v14
+    let v19 : string = "log_level"
+    let v20 : obj = struct (v19, v18)
+    let v21 : US5 = v3 ()
+    let v22 : string = "ui_modal"
+    let v23 : obj = struct (v22, v21)
+    [|v5; v8; v20; v23|]
 and method18 (v0 : int32, v1 : string) : string =
     let v2 : int32 = String.length v1
     let v3 : bool = v2 < v0
@@ -1858,13 +1856,13 @@ and closure39 (v0 : (unit -> US4), v1 : (unit -> (obj [])), v2 : string, v3 : st
     if v14 then
         let v15 : int64 = System.DateTime.UtcNow.Ticks
         let v16 : int64 = v15 - v8
-        let v17 : string = v16.ToString ()
+        let v17 : string = (v16).ToString ()
         let v18 : int32 = 6
         let v19 : string = method18(v18, v17)
         let v20 : int32 = Fable.Core.JsInterop.emitJsExpr () "components.run_id"
-        let v21 : string = "timestamp:"
+        let v21 : string = "timestamp"
         let v22 : obj = struct (v21, v19)
-        let v23 : string = "run_id:"
+        let v23 : string = "run_id"
         let v24 : obj = struct (v23, v20)
         let v25 : (obj []) = [|v22; v24|]
         let v26 : (obj []) = v1 ()
@@ -1890,23 +1888,21 @@ and method17 (v0 : (unit -> US4), v1 : (unit -> (obj [])), v2 : string) : (US4 -
     let v8 : int64 = System.DateTime.UtcNow.Ticks
     closure38(v0, v1, v2, v3, v4, v5, v6, v7, v8)
 and method16 (v0 : (unit -> (obj [])), v1 : string) : (US4 -> ((obj []) -> unit)) =
-    let v110 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v111 : string = "useContext"
-    let v112 : string = "solid-js"
-    let v113 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v111 v112
-    let struct (v114 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v115 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v116 : (unit -> int32), v117 : (int32 -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> string), v121 : (string -> unit), v122 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v123 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v124 : (unit -> (struct (US2 * obj * string) [])), v125 : ((struct (US2 * obj * string) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * obj) [])), v129 : ((struct (System.Guid * obj) []) -> unit), v130 : (unit -> (struct (System.Guid * int32) [])), v131 : ((struct (System.Guid * int32) []) -> unit), v132 : (unit -> US4), v133 : (US4 -> unit), v134 : (unit -> US5), v135 : (US5 -> unit)) = v113.Invoke v110 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    method17(v132, v0, v1)
+    let v97 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v98 : string = "useContext"
+    let v99 : string = "solid-js"
+    let v100 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v98 v99
+    let struct (v101 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v102 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v103 : (unit -> int32), v104 : (int32 -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> string), v108 : (string -> unit), v109 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v110 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v111 : (unit -> (struct (US2 * obj * string) [])), v112 : ((struct (US2 * obj * string) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * obj) [])), v116 : ((struct (System.Guid * obj) []) -> unit), v117 : (unit -> (struct (System.Guid * int32) [])), v118 : ((struct (System.Guid * int32) []) -> unit), v119 : (unit -> US4), v120 : (US4 -> unit), v121 : (unit -> US5), v122 : (US5 -> unit)) = v100.Invoke v97 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    method17(v119, v0, v1)
 and closure40 (v0 : Mut5, v1 : int32, v2 : (US5 -> unit)) () : unit =
     let v3 : bool = v0.l1
     if v3 then
         let v4 : US5 = US5_1(v1)
         v2 v4
-        ()
 and closure41 (v0 : (bool -> unit), v1 : (unit -> bool)) () : unit =
     let v2 : bool = v1 ()
     if v2 then
         v0 false
-        ()
 and closure42 (v0 : Mut5) () : unit =
     let v1 : US13 = v0.l3
     match v1 with
@@ -1914,7 +1910,6 @@ and closure42 (v0 : Mut5) () : unit =
         ()
     | US13_1(v2) -> (* Some *)
         v2 ()
-        ()
 and closure43 (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) struct (v70 : US6, v71 : US6, v72 : US6, v73 : US7, v74 : US6, v75 : US6, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US8, v81 : US9, v82 : US6, v83 : US6, v84 : US8, v85 : US6, v86 : US6, v87 : US6, v88 : US10, v89 : US8, v90 : US6, v91 : US6, v92 : US6, v93 : US6, v94 : US6, v95 : US6, v96 : US11, v97 : US6, v98 : US6, v99 : US6, v100 : US11, v101 : US6, v102 : US6, v103 : US6, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US12, v112 : US13, v113 : US12, v114 : US6, v115 : US6, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US14, v131 : US6, v132 : US11, v133 : US6, v134 : US6, v135 : US14, v136 : US14, v137 : US6, v138 : US5, v139 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v140 : string = "flex"
     let v141 : US6 = US6_1(v140)
@@ -1966,13 +1961,13 @@ and method19 (v0 : Mut1) : Fable.Core.JSX.Element =
     let v3 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v1 v2
     let v4 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure48(v0)
     let v5 : US9 = v0.l11
-    let v8 : (unit -> (Fable.Core.JSX.Element [])) =
+    let v9 : (unit -> (Fable.Core.JSX.Element [])) =
         match v5 with
         | US9_0 -> (* None *)
             closure49()
-        | US9_1(v7) -> (* Some *)
-            v7
-    method5(v3, v4, v8)
+        | US9_1(v6) -> (* Some *)
+            v6
+    method5(v3, v4, v9)
 and closure47 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method19(v0)
 and closure51 (v0 : (bool -> unit), v1 : Mut5) () : unit =
@@ -1982,9 +1977,7 @@ and closure51 (v0 : (bool -> unit), v1 : Mut5) () : unit =
         ()
     | US13_1(v3) -> (* Some *)
         v3 ()
-        ()
     v0 true
-    ()
 and closure50 (v0 : (bool -> unit), v1 : Mut5) struct (v2 : US6, v3 : US6, v4 : US6, v5 : US7, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US8, v13 : US9, v14 : US6, v15 : US6, v16 : US8, v17 : US6, v18 : US6, v19 : US6, v20 : US10, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US11, v29 : US6, v30 : US6, v31 : US6, v32 : US11, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US12, v44 : US13, v45 : US12, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US14, v63 : US6, v64 : US11, v65 : US6, v66 : US6, v67 : US14, v68 : US14, v69 : US6, v70 : US5, v71 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v72 : (unit -> unit) = closure51(v0, v1)
     let v73 : US13 = US13_1(v72)
@@ -1997,30 +1990,30 @@ and closure52 () () : (Fable.Core.JSX.Element []) =
 and method22 (v0 : (Mut1 -> Fable.Core.JSX.Element), v1 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)), v2 : (unit -> (Fable.Core.JSX.Element []))) : Fable.Core.JSX.Element =
     let struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) = method6()
     let struct (v73 : US6, v74 : US6, v75 : US6, v76 : US7, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US6, v83 : US8, v84 : US9, v85 : US6, v86 : US6, v87 : US8, v88 : US6, v89 : US6, v90 : US6, v91 : US10, v92 : US8, v93 : US6, v94 : US6, v95 : US6, v96 : US6, v97 : US6, v98 : US6, v99 : US11, v100 : US6, v101 : US6, v102 : US6, v103 : US11, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US6, v112 : US6, v113 : US6, v114 : US12, v115 : US13, v116 : US12, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US6, v133 : US14, v134 : US6, v135 : US11, v136 : US6, v137 : US6, v138 : US14, v139 : US14, v140 : US6, v141 : US5, v142 : US6) = v1 struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72)
-    let v150 : US9 =
+    let v151 : US9 =
         match v84 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v144) -> (* Some *)
-            let v145 : string = "children"
-            let v146 : string = "solid-js"
-            let v147 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v145 v146
-            let v148 : (unit -> (Fable.Core.JSX.Element [])) = v147.Invoke v144 |> unbox<unit -> Fable.Core.JSX.Element[]>
-            US9_1(v148)
-    let v152 : (unit -> (Fable.Core.JSX.Element [])) =
-        match v150 with
+        | US9_1(v143) -> (* Some *)
+            let v144 : string = "children"
+            let v145 : string = "solid-js"
+            let v146 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v144 v145
+            let v147 : (unit -> (Fable.Core.JSX.Element [])) = v146.Invoke v143 |> unbox<unit -> Fable.Core.JSX.Element[]>
+            US9_1(v147)
+    let v154 : (unit -> (Fable.Core.JSX.Element [])) =
+        match v151 with
         | US9_0 -> (* None *)
             v2
-        | US9_1(v151) -> (* Some *)
-            v151
-    let v153 : US9 = US9_1(v152)
-    let v154 : Mut1 = {l0 = v73; l1 = v74; l2 = v75; l3 = v76; l4 = v77; l5 = v78; l6 = v79; l7 = v80; l8 = v81; l9 = v82; l10 = v83; l11 = v153; l12 = v85; l13 = v86; l14 = v87; l15 = v88; l16 = v89; l17 = v90; l18 = v91; l19 = v92; l20 = v93; l21 = v94; l22 = v95; l23 = v96; l24 = v97; l25 = v98; l26 = v99; l27 = v100; l28 = v101; l29 = v102; l30 = v103; l31 = v104; l32 = v105; l33 = v106; l34 = v107; l35 = v108; l36 = v109; l37 = v110; l38 = v111; l39 = v112; l40 = v113; l41 = v114; l42 = v115; l43 = v116; l44 = v117; l45 = v118; l46 = v119; l47 = v120; l48 = v121; l49 = v122; l50 = v123; l51 = v124; l52 = v125; l53 = v126; l54 = v127; l55 = v128; l56 = v129; l57 = v130; l58 = v131; l59 = v132; l60 = v133; l61 = v134; l62 = v135; l63 = v136; l64 = v137; l65 = v138; l66 = v139; l67 = v140; l68 = v141; l69 = v142} : Mut1
-    Fable.Core.JsInterop.emitJsExpr (v154, v2) "$0.children = $1"
-    let v155 : string = "createComponent"
-    let v156 : string = "solid-js"
-    let v157 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v155 v156
-    let v158 : Fable.Core.JSX.Element = v157.Invoke (v0, v154) |> unbox<Fable.Core.JSX.Element>
-    v158
+        | US9_1(v152) -> (* Some *)
+            v152
+    let v155 : US9 = US9_1(v154)
+    let v156 : Mut1 = {l0 = v73; l1 = v74; l2 = v75; l3 = v76; l4 = v77; l5 = v78; l6 = v79; l7 = v80; l8 = v81; l9 = v82; l10 = v83; l11 = v155; l12 = v85; l13 = v86; l14 = v87; l15 = v88; l16 = v89; l17 = v90; l18 = v91; l19 = v92; l20 = v93; l21 = v94; l22 = v95; l23 = v96; l24 = v97; l25 = v98; l26 = v99; l27 = v100; l28 = v101; l29 = v102; l30 = v103; l31 = v104; l32 = v105; l33 = v106; l34 = v107; l35 = v108; l36 = v109; l37 = v110; l38 = v111; l39 = v112; l40 = v113; l41 = v114; l42 = v115; l43 = v116; l44 = v117; l45 = v118; l46 = v119; l47 = v120; l48 = v121; l49 = v122; l50 = v123; l51 = v124; l52 = v125; l53 = v126; l54 = v127; l55 = v128; l56 = v129; l57 = v130; l58 = v131; l59 = v132; l60 = v133; l61 = v134; l62 = v135; l63 = v136; l64 = v137; l65 = v138; l66 = v139; l67 = v140; l68 = v141; l69 = v142} : Mut1
+    Fable.Core.JsInterop.emitJsExpr (v156, v2) "$0.children = $1"
+    let v157 : string = "createComponent"
+    let v158 : string = "solid-js"
+    let v159 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v157 v158
+    let v160 : Fable.Core.JSX.Element = v159.Invoke (v0, v156) |> unbox<Fable.Core.JSX.Element>
+    v160
 and closure46 (v0 : (bool -> unit), v1 : Mut5) () : (Fable.Core.JSX.Element []) =
     let v2 : (Mut1 -> Fable.Core.JSX.Element) = closure47()
     let v3 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure50(v0, v1)
@@ -2153,16 +2146,16 @@ and closure57 (v0 : int32, v1 : (unit -> US5)) struct (v2 : US6, v3 : US6, v4 : 
     let v72 : US5 = v1 ()
     let v81 : US6 =
         match v72 with
-        | US5_0 -> (* None *)
-            US6_0
-        | US5_1(v74) -> (* Some *)
-            let v75 : bool = v74 = v0
-            let v76 : bool = v75 <> true
-            if v76 then
-                let v77 : string = "none"
-                US6_1(v77)
+        | US5_1(v73) -> (* Some *)
+            let v74 : bool = v73 = v0
+            let v75 : bool = v74 <> true
+            if v75 then
+                let v76 : string = "none"
+                US6_1(v76)
             else
                 US6_0
+        | _ ->
+            US6_0
     let v82 : string = "row"
     let v83 : US6 = US6_1(v82)
     let v84 : string = "absolute"
@@ -2182,8 +2175,7 @@ and closure61 (v0 : Mut7) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : U
     let v75 : string = "14px"
     let v76 : US6 = US6_1(v75)
     let v77 : US14 = US14_0
-    let struct (v78 : US6, v79 : US6, v80 : US6, v81 : US7, v82 : US6, v83 : US6, v84 : US6, v85 : US6, v86 : US6, v87 : US6, v88 : US8, v89 : US9, v90 : US6, v91 : US6, v92 : US8, v93 : US6, v94 : US6, v95 : US6, v96 : US10, v97 : US8, v98 : US6, v99 : US6, v100 : US6, v101 : US6, v102 : US6, v103 : US6, v104 : US11, v105 : US6, v106 : US6, v107 : US6, v108 : US11, v109 : US6, v110 : US6, v111 : US6, v112 : US6, v113 : US6, v114 : US6, v115 : US6, v116 : US6, v117 : US6, v118 : US6, v119 : US12, v120 : US13, v121 : US12, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US6, v133 : US6, v134 : US6, v135 : US6, v136 : US6, v137 : US6, v138 : US14, v139 : US6, v140 : US11, v141 : US6, v142 : US6, v143 : US14, v144 : US14, v145 : US6, v146 : US5, v147 : US6) = v73 struct (v1, v2, v3, v74, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v76, v58, v59, v60, v77, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-    struct (v78, v79, v80, v81, v82, v83, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v142, v143, v144, v145, v146, v147)
+    v73 struct (v1, v2, v3, v74, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v76, v58, v59, v60, v77, v62, v63, v64, v65, v66, v67, v68, v69, v70)
 and closure62 () () : (Fable.Core.JSX.Element []) =
     [||]
 and method23 (v0 : Mut7) : Fable.Core.JSX.Element =
@@ -2209,7 +2201,6 @@ and method24 (v0 : (Mut7 -> Fable.Core.JSX.Element), v1 : (unit -> Fable.Core.JS
     v7
 and closure64 (v0 : (bool -> unit)) () : unit =
     v0 true
-    ()
 and closure59 (v0 : (bool -> unit)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
     let v72 : (unit -> Fable.Core.JS.Function) = closure63()
@@ -2255,7 +2246,6 @@ and closure69 (v0 : int32, v1 : (US5 -> unit), v2 : (unit -> US5)) () : unit =
         else
             US5_0
     v1 v11
-    ()
 and closure66 (v0 : int32, v1 : (US5 -> unit), v2 : (unit -> US5)) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v73 : US5 = v2 ()
     let v77 : bool =
@@ -2313,9 +2303,7 @@ and closure73 (v0 : (bool -> unit), v1 : Mut5) () : unit =
         ()
     | US13_1(v3) -> (* Some *)
         v3 ()
-        ()
     v0 false
-    ()
 and closure71 (v0 : (bool -> unit), v1 : Mut5) struct (v2 : US6, v3 : US6, v4 : US6, v5 : US7, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US8, v13 : US9, v14 : US6, v15 : US6, v16 : US8, v17 : US6, v18 : US6, v19 : US6, v20 : US10, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US11, v29 : US6, v30 : US6, v31 : US6, v32 : US11, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US12, v44 : US13, v45 : US12, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US14, v63 : US6, v64 : US11, v65 : US6, v66 : US6, v67 : US14, v68 : US14, v69 : US6, v70 : US5, v71 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v72 : (Mut7 -> Fable.Core.JSX.Element) = closure60()
     let v73 : (unit -> Fable.Core.JS.Function) = closure72()
@@ -2368,19 +2356,19 @@ and closure56 (v0 : int32, v1 : (US5 -> unit), v2 : (unit -> US5), v3 : (bool ->
             v16
     [|v13; v17|]
 and closure54 (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6, v70 : int32, v71 : (US5 -> unit), v72 : (unit -> US5), v73 : (bool -> unit), v74 : (bool -> unit), v75 : (unit -> bool), v76 : Mut5) () : (Fable.Core.JSX.Element []) =
-    let v85 : Fable.Core.JSX.Element =
+    let v86 : Fable.Core.JSX.Element =
         match v11 with
         | US9_0 -> (* None *)
-            let v77 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
-            v77
-        | US9_1(v78) -> (* Some *)
-            let v79 : string = "Box"
-            let v80 : string = "@hope-ui/core"
-            let v81 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v79 v80
-            let v82 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure55(v72)
-            let v83 : (unit -> (Fable.Core.JSX.Element [])) = closure56(v70, v71, v72, v73, v74, v75, v76, v78)
-            method5(v81, v82, v83)
-    [|v85|]
+            let v84 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
+            v84
+        | US9_1(v77) -> (* Some *)
+            let v78 : string = "Box"
+            let v79 : string = "@hope-ui/core"
+            let v80 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v78 v79
+            let v81 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure55(v72)
+            let v82 : (unit -> (Fable.Core.JSX.Element [])) = closure56(v70, v71, v72, v73, v74, v75, v76, v77)
+            method5(v80, v81, v82)
+    [|v86|]
 and closure44 (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6, v70 : int32, v71 : (US5 -> unit), v72 : (unit -> US5), v73 : (bool -> unit), v74 : (unit -> bool), v75 : (bool -> unit), v76 : (unit -> bool), v77 : Mut5) () : (Fable.Core.JSX.Element []) =
     let v78 : bool = v74 ()
     let v79 : bool = v78 = false
@@ -2404,68 +2392,66 @@ and method15 (v0 : Mut5) : Fable.Core.JSX.Element =
     let v1 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = v0.l4
     let struct (v2 : US6, v3 : US6, v4 : US6, v5 : US7, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US8, v13 : US9, v14 : US6, v15 : US6, v16 : US8, v17 : US6, v18 : US6, v19 : US6, v20 : US10, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US11, v29 : US6, v30 : US6, v31 : US6, v32 : US11, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US12, v44 : US13, v45 : US12, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US14, v63 : US6, v64 : US11, v65 : US6, v66 : US6, v67 : US14, v68 : US14, v69 : US6, v70 : US5, v71 : US6) = method6()
     let struct (v72 : US6, v73 : US6, v74 : US6, v75 : US7, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US8, v83 : US9, v84 : US6, v85 : US6, v86 : US8, v87 : US6, v88 : US6, v89 : US6, v90 : US10, v91 : US8, v92 : US6, v93 : US6, v94 : US6, v95 : US6, v96 : US6, v97 : US6, v98 : US11, v99 : US6, v100 : US6, v101 : US6, v102 : US11, v103 : US6, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US6, v112 : US6, v113 : US12, v114 : US13, v115 : US12, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US14, v133 : US6, v134 : US11, v135 : US6, v136 : US6, v137 : US14, v138 : US14, v139 : US6, v140 : US5, v141 : US6) = v1 struct (v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71)
-    let v149 : US9 =
+    let v150 : US9 =
         match v83 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v143) -> (* Some *)
-            let v144 : string = "children"
-            let v145 : string = "solid-js"
-            let v146 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v144 v145
-            let v147 : (unit -> (Fable.Core.JSX.Element [])) = v146.Invoke v143 |> unbox<unit -> Fable.Core.JSX.Element[]>
-            US9_1(v147)
-    let v150 : int32 = System.Random().Next ()
-    let v259 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v260 : string = "useContext"
-    let v261 : string = "solid-js"
-    let v262 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v260 v261
-    let struct (v263 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v264 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v265 : (unit -> int32), v266 : (int32 -> unit), v267 : (unit -> string), v268 : (string -> unit), v269 : (unit -> string), v270 : (string -> unit), v271 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v272 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v273 : (unit -> (struct (US2 * obj * string) [])), v274 : ((struct (US2 * obj * string) []) -> unit), v275 : (unit -> (struct (System.Guid * obj) [])), v276 : ((struct (System.Guid * obj) []) -> unit), v277 : (unit -> (struct (System.Guid * obj) [])), v278 : ((struct (System.Guid * obj) []) -> unit), v279 : (unit -> (struct (System.Guid * int32) [])), v280 : ((struct (System.Guid * int32) []) -> unit), v281 : (unit -> US4), v282 : (US4 -> unit), v283 : (unit -> US5), v284 : (US5 -> unit)) = v262.Invoke v259 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v393 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v394 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v260 v261
-    let struct (v395 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v396 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v397 : (unit -> int32), v398 : (int32 -> unit), v399 : (unit -> string), v400 : (string -> unit), v401 : (unit -> string), v402 : (string -> unit), v403 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v404 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v405 : (unit -> (struct (US2 * obj * string) [])), v406 : ((struct (US2 * obj * string) []) -> unit), v407 : (unit -> (struct (System.Guid * obj) [])), v408 : ((struct (System.Guid * obj) []) -> unit), v409 : (unit -> (struct (System.Guid * obj) [])), v410 : ((struct (System.Guid * obj) []) -> unit), v411 : (unit -> (struct (System.Guid * int32) [])), v412 : ((struct (System.Guid * int32) []) -> unit), v413 : (unit -> US4), v414 : (US4 -> unit), v415 : (unit -> US5), v416 : (US5 -> unit)) = v394.Invoke v393 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v525 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v526 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v260 v261
-    let struct (v527 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v528 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v529 : (unit -> int32), v530 : (int32 -> unit), v531 : (unit -> string), v532 : (string -> unit), v533 : (unit -> string), v534 : (string -> unit), v535 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v536 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v537 : (unit -> (struct (US2 * obj * string) [])), v538 : ((struct (US2 * obj * string) []) -> unit), v539 : (unit -> (struct (System.Guid * obj) [])), v540 : ((struct (System.Guid * obj) []) -> unit), v541 : (unit -> (struct (System.Guid * obj) [])), v542 : ((struct (System.Guid * obj) []) -> unit), v543 : (unit -> (struct (System.Guid * int32) [])), v544 : ((struct (System.Guid * int32) []) -> unit), v545 : (unit -> US4), v546 : (US4 -> unit), v547 : (unit -> US5), v548 : (US5 -> unit)) = v526.Invoke v525 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v549 : (unit -> (obj [])) = closure37(v150, v267, v413, v547)
-    let v550 : string = "#de884c"
-    let v551 : (US4 -> ((obj []) -> unit)) = method16(v549, v550)
-    let v552 : US4 = US4_0
-    let v553 : ((obj []) -> unit) = v551 v552
-    let v554 : string = "> loader ()"
-    let v555 : obj = v554
-    let v556 : (obj []) = [|v555|]
-    v553 v556
-    let v557 : bool = v0.l0
-    let struct (v558 : (unit -> bool), v559 : (bool -> unit)) = method12(v557)
-    let v560 : bool = false
-    let struct (v561 : (unit -> bool), v562 : (bool -> unit)) = method12(v560)
-    let v563 : string = "createEffect"
-    let v564 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v563 v261
-    let v565 : (unit -> unit) = closure40(v0, v150, v548)
-    v564.Invoke v565 |> ignore
-    let v566 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v563 v261
-    let v567 : (unit -> unit) = closure41(v562, v561)
-    v566.Invoke v567 |> ignore
-    let v568 : string = "onCleanup"
-    let v569 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v568 v261
-    let v570 : (unit -> unit) = closure42(v0)
-    v569.Invoke v570 |> ignore
-    let v571 : bool = v0.l0
-    let v572 : bool = v571 = true
-    if v572 then
-        let v573 : US13 = v0.l2
-        match v573 with
+        | US9_1(v142) -> (* Some *)
+            let v143 : string = "children"
+            let v144 : string = "solid-js"
+            let v145 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v143 v144
+            let v146 : (unit -> (Fable.Core.JSX.Element [])) = v145.Invoke v142 |> unbox<unit -> Fable.Core.JSX.Element[]>
+            US9_1(v146)
+    let v151 : int32 = System.Random().Next ()
+    let v247 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v248 : string = "useContext"
+    let v249 : string = "solid-js"
+    let v250 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v248 v249
+    let struct (v251 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v252 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v253 : (unit -> int32), v254 : (int32 -> unit), v255 : (unit -> string), v256 : (string -> unit), v257 : (unit -> string), v258 : (string -> unit), v259 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v260 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v261 : (unit -> (struct (US2 * obj * string) [])), v262 : ((struct (US2 * obj * string) []) -> unit), v263 : (unit -> (struct (System.Guid * obj) [])), v264 : ((struct (System.Guid * obj) []) -> unit), v265 : (unit -> (struct (System.Guid * obj) [])), v266 : ((struct (System.Guid * obj) []) -> unit), v267 : (unit -> (struct (System.Guid * int32) [])), v268 : ((struct (System.Guid * int32) []) -> unit), v269 : (unit -> US4), v270 : (US4 -> unit), v271 : (unit -> US5), v272 : (US5 -> unit)) = v250.Invoke v247 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v368 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v369 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v248 v249
+    let struct (v370 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v371 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v372 : (unit -> int32), v373 : (int32 -> unit), v374 : (unit -> string), v375 : (string -> unit), v376 : (unit -> string), v377 : (string -> unit), v378 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v379 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v380 : (unit -> (struct (US2 * obj * string) [])), v381 : ((struct (US2 * obj * string) []) -> unit), v382 : (unit -> (struct (System.Guid * obj) [])), v383 : ((struct (System.Guid * obj) []) -> unit), v384 : (unit -> (struct (System.Guid * obj) [])), v385 : ((struct (System.Guid * obj) []) -> unit), v386 : (unit -> (struct (System.Guid * int32) [])), v387 : ((struct (System.Guid * int32) []) -> unit), v388 : (unit -> US4), v389 : (US4 -> unit), v390 : (unit -> US5), v391 : (US5 -> unit)) = v369.Invoke v368 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v487 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v488 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v248 v249
+    let struct (v489 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v490 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v491 : (unit -> int32), v492 : (int32 -> unit), v493 : (unit -> string), v494 : (string -> unit), v495 : (unit -> string), v496 : (string -> unit), v497 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v498 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v499 : (unit -> (struct (US2 * obj * string) [])), v500 : ((struct (US2 * obj * string) []) -> unit), v501 : (unit -> (struct (System.Guid * obj) [])), v502 : ((struct (System.Guid * obj) []) -> unit), v503 : (unit -> (struct (System.Guid * obj) [])), v504 : ((struct (System.Guid * obj) []) -> unit), v505 : (unit -> (struct (System.Guid * int32) [])), v506 : ((struct (System.Guid * int32) []) -> unit), v507 : (unit -> US4), v508 : (US4 -> unit), v509 : (unit -> US5), v510 : (US5 -> unit)) = v488.Invoke v487 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v511 : (unit -> (obj [])) = closure37(v151, v255, v388, v509)
+    let v512 : string = "#de884c"
+    let v513 : (US4 -> ((obj []) -> unit)) = method16(v511, v512)
+    let v514 : US4 = US4_0
+    let v515 : ((obj []) -> unit) = v513 v514
+    let v516 : string = "> loader ()"
+    let v517 : obj = v516
+    let v518 : (obj []) = [|v517|]
+    v515 v518
+    let v519 : bool = v0.l0
+    let struct (v520 : (unit -> bool), v521 : (bool -> unit)) = method12(v519)
+    let v522 : bool = false
+    let struct (v523 : (unit -> bool), v524 : (bool -> unit)) = method12(v522)
+    let v525 : string = "createEffect"
+    let v526 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v525 v249
+    let v527 : (unit -> unit) = closure40(v0, v151, v510)
+    v526.Invoke v527 |> ignore
+    let v528 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v525 v249
+    let v529 : (unit -> unit) = closure41(v524, v523)
+    v528.Invoke v529 |> ignore
+    let v530 : string = "onCleanup"
+    let v531 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v530 v249
+    let v532 : (unit -> unit) = closure42(v0)
+    v531.Invoke v532 |> ignore
+    let v533 : bool = v0.l0
+    if v533 then
+        let v534 : US13 = v0.l2
+        match v534 with
         | US13_0 -> (* None *)
             ()
-        | US13_1(v574) -> (* Some *)
-            v574 ()
-            ()
-    let v575 : string = "Box"
-    let v576 : string = "@hope-ui/core"
-    let v577 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v575 v576
-    let v578 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure43(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
-    let v579 : (unit -> (Fable.Core.JSX.Element [])) = closure44(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v150, v548, v547, v559, v558, v562, v561, v0)
-    method5(v577, v578, v579)
+        | US13_1(v535) -> (* Some *)
+            v535 ()
+    let v536 : string = "Box"
+    let v537 : string = "@hope-ui/core"
+    let v538 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v536 v537
+    let v539 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure43(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v150, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
+    let v540 : (unit -> (Fable.Core.JSX.Element [])) = closure44(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v150, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v151, v510, v509, v521, v520, v524, v523, v0)
+    method5(v538, v539, v540)
 and closure36 () (v0 : Mut5) : Fable.Core.JSX.Element =
     method15(v0)
 and closure75 (v0 : (unit -> (Fable.Core.JSX.Element []))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
@@ -2480,134 +2466,124 @@ and method25 (v0 : (Mut5 -> Fable.Core.JSX.Element), v1 : bool, v2 : bool, v3 : 
     v10
 and closure35 (v0 : Mut3, v1 : (unit -> bool), v2 : (unit -> (Fable.Core.JSX.Element []))) () : (Fable.Core.JSX.Element []) =
     let v3 : US15 = v0.l3
-    let v25 : Fable.Core.JSX.Element =
+    let v15 : Fable.Core.JSX.Element =
         match v3 with
-        | US15_0 -> (* CheckDisabled *)
-            let v4 : bool = v1 ()
-            if v4 then
-                let v5 : (Mut5 -> Fable.Core.JSX.Element) = closure36()
-                let v6 : US13 = v0.l0
-                let v7 : US13 = v0.l1
-                let v8 : bool = true
-                let v9 : bool = false
-                let v10 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure75(v2)
-                method25(v5, v8, v9, v6, v7, v10)
-            else
-                let v12 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
-                v12
-        | US15_1 -> (* CheckEnabled *)
-            let v14 : bool = v1 ()
-            if v14 then
-                let v15 : (Mut5 -> Fable.Core.JSX.Element) = closure36()
-                let v16 : US13 = v0.l0
-                let v17 : US13 = v0.l1
-                let v18 : bool = true
-                let v19 : bool = false
-                let v20 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure75(v2)
-                method25(v15, v18, v19, v16, v17, v20)
-            else
-                let v22 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
-                v22
         | US15_2 -> (* CheckHidden *)
-            let v24 : Fable.Core.JSX.Element = v2 |> unbox<Fable.Core.JSX.Element>
-            v24
-    [|v25|]
+            let v4 : Fable.Core.JSX.Element = v2 |> unbox<Fable.Core.JSX.Element>
+            v4
+        | _ ->
+            let v5 : bool = v1 ()
+            if v5 then
+                let v6 : (Mut5 -> Fable.Core.JSX.Element) = closure36()
+                let v7 : US13 = v0.l0
+                let v8 : US13 = v0.l1
+                let v9 : bool = true
+                let v10 : bool = false
+                let v11 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure75(v2)
+                method25(v6, v9, v10, v7, v8, v11)
+            else
+                let v13 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
+                v13
+    [|v15|]
 and closure16 (v0 : Mut3, v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6, v71 : (bool -> unit), v72 : (unit -> bool)) () : (Fable.Core.JSX.Element []) =
-    let v85 : Fable.Core.JSX.Element =
+    let v86 : Fable.Core.JSX.Element =
         match v63 with
         | US11_0 -> (* None *)
-            let v73 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
-            v73
-        | US11_1(v74) -> (* Some *)
-            let v75 : string = "hope"
-            let v76 : string = "@hope-ui/core"
-            let v77 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v75 v76
-            let v78 : obj = v77
-            let v79 : string = "td"
-            let v80 : obj = (Fable.Core.JsInterop.(?)) v78 v79
-            let v81 : Fable.Core.JS.Function = v80 |> unbox<Fable.Core.JS.Function>
-            let v82 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure17(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v72)
-            let v83 : (unit -> (Fable.Core.JSX.Element [])) = closure18(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v74)
-            method5(v81, v82, v83)
-    let v107 : Fable.Core.JSX.Element =
+            let v84 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
+            v84
+        | US11_1(v73) -> (* Some *)
+            let v74 : string = "hope"
+            let v75 : string = "@hope-ui/core"
+            let v76 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v74 v75
+            let v77 : obj = v76
+            let v78 : string = "td"
+            let v79 : obj = (Fable.Core.JsInterop.(?)) v77 v78
+            let v80 : Fable.Core.JS.Function = v79 |> unbox<Fable.Core.JS.Function>
+            let v81 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure17(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v72)
+            let v82 : (unit -> (Fable.Core.JSX.Element [])) = closure18(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71, v72, v73)
+            method5(v80, v81, v82)
+    let v109 : Fable.Core.JSX.Element =
         match v12 with
         | US9_0 -> (* None *)
-            let v86 : string = "hope"
-            let v87 : string = "@hope-ui/core"
-            let v88 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v86 v87
-            let v89 : obj = v88
-            let v90 : string = "td"
-            let v91 : obj = (Fable.Core.JsInterop.(?)) v89 v90
-            let v92 : Fable.Core.JS.Function = v91 |> unbox<Fable.Core.JS.Function>
-            let v93 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure32()
-            let v94 : (unit -> (Fable.Core.JSX.Element [])) = closure33()
-            method5(v92, v93, v94)
-        | US9_1(v96) -> (* Some *)
-            let v97 : string = "hope"
-            let v98 : string = "@hope-ui/core"
-            let v99 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v97 v98
-            let v100 : obj = v99
-            let v101 : string = "td"
-            let v102 : obj = (Fable.Core.JsInterop.(?)) v100 v101
-            let v103 : Fable.Core.JS.Function = v102 |> unbox<Fable.Core.JS.Function>
-            let v104 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure34(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
-            let v105 : (unit -> (Fable.Core.JSX.Element [])) = closure35(v0, v72, v96)
-            method5(v103, v104, v105)
-    [|v85; v107|]
+            let v98 : string = "hope"
+            let v99 : string = "@hope-ui/core"
+            let v100 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v98 v99
+            let v101 : obj = v100
+            let v102 : string = "td"
+            let v103 : obj = (Fable.Core.JsInterop.(?)) v101 v102
+            let v104 : Fable.Core.JS.Function = v103 |> unbox<Fable.Core.JS.Function>
+            let v105 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure32()
+            let v106 : (unit -> (Fable.Core.JSX.Element [])) = closure33()
+            method5(v104, v105, v106)
+        | US9_1(v87) -> (* Some *)
+            let v88 : string = "hope"
+            let v89 : string = "@hope-ui/core"
+            let v90 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v88 v89
+            let v91 : obj = v90
+            let v92 : string = "td"
+            let v93 : obj = (Fable.Core.JsInterop.(?)) v91 v92
+            let v94 : Fable.Core.JS.Function = v93 |> unbox<Fable.Core.JS.Function>
+            let v95 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure34(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
+            let v96 : (unit -> (Fable.Core.JSX.Element [])) = closure35(v0, v72, v87)
+            method5(v94, v95, v96)
+    [|v86; v109|]
 and method11 (v0 : Mut3) : Fable.Core.JSX.Element =
     let v1 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = v0.l2
     let struct (v2 : US6, v3 : US6, v4 : US6, v5 : US7, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US8, v13 : US9, v14 : US6, v15 : US6, v16 : US8, v17 : US6, v18 : US6, v19 : US6, v20 : US10, v21 : US8, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US11, v29 : US6, v30 : US6, v31 : US6, v32 : US11, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US12, v44 : US13, v45 : US12, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US14, v63 : US6, v64 : US11, v65 : US6, v66 : US6, v67 : US14, v68 : US14, v69 : US6, v70 : US5, v71 : US6) = method6()
     let struct (v72 : US6, v73 : US6, v74 : US6, v75 : US7, v76 : US6, v77 : US6, v78 : US6, v79 : US6, v80 : US6, v81 : US6, v82 : US8, v83 : US9, v84 : US6, v85 : US6, v86 : US8, v87 : US6, v88 : US6, v89 : US6, v90 : US10, v91 : US8, v92 : US6, v93 : US6, v94 : US6, v95 : US6, v96 : US6, v97 : US6, v98 : US11, v99 : US6, v100 : US6, v101 : US6, v102 : US11, v103 : US6, v104 : US6, v105 : US6, v106 : US6, v107 : US6, v108 : US6, v109 : US6, v110 : US6, v111 : US6, v112 : US6, v113 : US12, v114 : US13, v115 : US12, v116 : US6, v117 : US6, v118 : US6, v119 : US6, v120 : US6, v121 : US6, v122 : US6, v123 : US6, v124 : US6, v125 : US6, v126 : US6, v127 : US6, v128 : US6, v129 : US6, v130 : US6, v131 : US6, v132 : US14, v133 : US6, v134 : US11, v135 : US6, v136 : US6, v137 : US14, v138 : US14, v139 : US6, v140 : US5, v141 : US6) = v1 struct (v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70, v71)
-    let v149 : US9 =
+    let v150 : US9 =
         match v83 with
         | US9_0 -> (* None *)
             US9_0
-        | US9_1(v143) -> (* Some *)
-            let v144 : string = "children"
-            let v145 : string = "solid-js"
-            let v146 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v144 v145
-            let v147 : (unit -> (Fable.Core.JSX.Element [])) = v146.Invoke v143 |> unbox<unit -> Fable.Core.JSX.Element[]>
-            US9_1(v147)
-    let v150 : US15 = v0.l3
-    let v152 : bool =
-        match v150 with
+        | US9_1(v142) -> (* Some *)
+            let v143 : string = "children"
+            let v144 : string = "solid-js"
+            let v145 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v143 v144
+            let v146 : (unit -> (Fable.Core.JSX.Element [])) = v145.Invoke v142 |> unbox<unit -> Fable.Core.JSX.Element[]>
+            US9_1(v146)
+    let v151 : US15 = v0.l3
+    let v153 : bool =
+        match v151 with
         | US15_0 -> (* CheckDisabled *)
             true
         | _ ->
             false
-    let v153 : bool = v152 <> true
-    let struct (v154 : (unit -> bool), v155 : (bool -> unit)) = method12(v153)
-    let v156 : string = "hope"
-    let v157 : string = "@hope-ui/core"
-    let v158 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v156 v157
-    let v159 : obj = v158
-    let v160 : string = "tr"
-    let v161 : obj = (Fable.Core.JsInterop.(?)) v159 v160
-    let v162 : Fable.Core.JS.Function = v161 |> unbox<Fable.Core.JS.Function>
-    let v163 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure15(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
-    let v164 : (unit -> (Fable.Core.JSX.Element [])) = closure16(v0, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v149, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v155, v154)
-    method5(v162, v163, v164)
+    let v154 : bool = v153 <> true
+    let struct (v155 : (unit -> bool), v156 : (bool -> unit)) = method12(v154)
+    let v157 : string = "hope"
+    let v158 : string = "@hope-ui/core"
+    let v159 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v157 v158
+    let v160 : obj = v159
+    let v161 : string = "tr"
+    let v162 : obj = (Fable.Core.JsInterop.(?)) v160 v161
+    let v163 : Fable.Core.JS.Function = v162 |> unbox<Fable.Core.JS.Function>
+    let v164 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure15(v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v150, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141)
+    let v165 : (unit -> (Fable.Core.JSX.Element [])) = closure16(v0, v72, v73, v74, v75, v76, v77, v78, v79, v80, v81, v82, v150, v84, v85, v86, v87, v88, v89, v90, v91, v92, v93, v94, v95, v96, v97, v98, v99, v100, v101, v102, v103, v104, v105, v106, v107, v108, v109, v110, v111, v112, v113, v114, v115, v116, v117, v118, v119, v120, v121, v122, v123, v124, v125, v126, v127, v128, v129, v130, v131, v132, v133, v134, v135, v136, v137, v138, v139, v140, v141, v156, v155)
+    method5(v163, v164, v165)
 and closure14 () (v0 : Mut3) : Fable.Core.JSX.Element =
     method11(v0)
 and closure80 (v0 : (unit -> US4)) () : (Fable.Core.JSX.Element []) =
     let v1 : US4 = v0 ()
-    let v6 : string =
+    let v10 : string =
         match v1 with
         | US4_0 -> (* Debug *)
             let v2 : string = "Debug"
             v2
         | US4_1 -> (* Error *)
-            let v3 : string = "Error"
-            v3
-        | US4_2 -> (* Info *)
-            let v4 : string = "Info"
-            v4
-        | US4_3 -> (* Warn *)
-            let v5 : string = "Warn"
+            let v5 : string = "Error"
             v5
-    let v7 : Fable.Core.JSX.Element = v6 |> unbox<Fable.Core.JSX.Element>
-    let v8 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v7 ]
-    [|v8|]
+        | US4_2 -> (* Info *)
+            let v3 : string = "Info"
+            v3
+        | US4_4 -> (* Warn *)
+            let v4 : string = "Warn"
+            v4
+        | _ ->
+            let v6 : string = "Error"
+            v6
+    let v11 : Fable.Core.JSX.Element = v10 |> unbox<Fable.Core.JSX.Element>
+    let v12 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v11 ]
+    [|v12|]
 and closure79 (v0 : (unit -> US4)) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : string = "Log Level"
     let v72 : Fable.Core.JSX.Element = v71 |> unbox<Fable.Core.JSX.Element>
@@ -2672,12 +2648,12 @@ and closure89 () (v0 : string) : obj =
     let v1 : obj = v0
     v1
 and closure90 () () : struct ((unit -> string) * (string -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v116, v117)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v103, v104)
 and method28 (v0 : (Mut8 -> Fable.Core.JSX.Element), v1 : (string -> obj), v2 : (unit -> struct ((unit -> string) * (string -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut8 = {l0 = v1; l1 = v2; l2 = v3} : Mut8
     let v5 : string = "createComponent"
@@ -2686,12 +2662,12 @@ and method28 (v0 : (Mut8 -> Fable.Core.JSX.Element), v1 : (string -> obj), v2 : 
     let v8 : Fable.Core.JSX.Element = v7.Invoke (v0, v4) |> unbox<Fable.Core.JSX.Element>
     v8
 and closure91 () () : struct ((unit -> string) * (string -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v118, v119)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v105, v106)
 and closure95 (v0 : Mut9, v1 : (unit -> int32)) () : (Fable.Core.JSX.Element []) =
     let v2 : int32 = v1 ()
     let v3 : (int32 -> obj) = v0.l0
@@ -2737,12 +2713,12 @@ and closure96 () (v0 : int32) : obj =
     let v1 : obj = v0
     v1
 and closure97 () () : struct ((unit -> int32) * (int32 -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v114, v115)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v101, v102)
 and method30 (v0 : (Mut9 -> Fable.Core.JSX.Element), v1 : (int32 -> obj), v2 : (unit -> struct ((unit -> int32) * (int32 -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut9 = {l0 = v1; l1 = v2; l2 = v3} : Mut9
     let v5 : string = "createComponent"
@@ -2809,12 +2785,12 @@ and closure102 () (v0 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string
     let v19 : obj = v2
     v19
 and closure103 () () : struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v112, v113)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v99, v100)
 and method32 (v0 : (Mut10 -> Fable.Core.JSX.Element), v1 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> obj), v2 : (unit -> struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut10 = {l0 = v1; l1 = v2; l2 = v3} : Mut10
     let v5 : string = "createComponent"
@@ -2867,12 +2843,12 @@ and closure108 () (v0 : (struct (US2 * obj * string) [])) : obj =
     let v1 : obj = v0
     v1
 and closure109 () () : struct ((unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v122, v123)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v109, v110)
 and method34 (v0 : (Mut11 -> Fable.Core.JSX.Element), v1 : ((struct (US2 * obj * string) []) -> obj), v2 : (unit -> struct ((unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut11 = {l0 = v1; l1 = v2; l2 = v3} : Mut11
     let v5 : string = "createComponent"
@@ -2925,12 +2901,12 @@ and closure114 () (v0 : (struct ((US2 []) * int32 * US3 * string * string) [])) 
     let v1 : obj = v0
     v1
 and closure115 () () : struct ((unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v120, v121)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v107, v108)
 and method36 (v0 : (Mut12 -> Fable.Core.JSX.Element), v1 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> obj), v2 : (unit -> struct ((unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut12 = {l0 = v1; l1 = v2; l2 = v3} : Mut12
     let v5 : string = "createComponent"
@@ -2980,29 +2956,32 @@ and method37 (v0 : Mut13) : Fable.Core.JSX.Element =
 and closure116 () (v0 : Mut13) : Fable.Core.JSX.Element =
     method37(v0)
 and closure120 () (v0 : US4) : obj =
-    let v5 : string =
+    let v9 : string =
         match v0 with
         | US4_0 -> (* Debug *)
             let v1 : string = "Debug"
             v1
         | US4_1 -> (* Error *)
-            let v2 : string = "Error"
-            v2
-        | US4_2 -> (* Info *)
-            let v3 : string = "Info"
-            v3
-        | US4_3 -> (* Warn *)
-            let v4 : string = "Warn"
+            let v4 : string = "Error"
             v4
-    let v6 : obj = v5
-    v6
+        | US4_2 -> (* Info *)
+            let v2 : string = "Info"
+            v2
+        | US4_4 -> (* Warn *)
+            let v3 : string = "Warn"
+            v3
+        | _ ->
+            let v5 : string = "Error"
+            v5
+    let v10 : obj = v9
+    v10
 and closure121 () () : struct ((unit -> US4) * (US4 -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v130, v131)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v117, v118)
 and method38 (v0 : (Mut13 -> Fable.Core.JSX.Element), v1 : (US4 -> obj), v2 : (unit -> struct ((unit -> US4) * (US4 -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut13 = {l0 = v1; l1 = v2; l2 = v3} : Mut13
     let v5 : string = "createComponent"
@@ -3055,12 +3034,12 @@ and closure126 () (v0 : US5) : obj =
     let v1 : obj = v0
     v1
 and closure127 () () : struct ((unit -> US5) * (US5 -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v132, v133)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v119, v120)
 and method40 (v0 : (Mut14 -> Fable.Core.JSX.Element), v1 : (US5 -> obj), v2 : (unit -> struct ((unit -> US5) * (US5 -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut14 = {l0 = v1; l1 = v2; l2 = v3} : Mut14
     let v5 : string = "createComponent"
@@ -3113,12 +3092,12 @@ and closure132 () (v0 : (struct (System.Guid * int32) [])) : obj =
     let v1 : obj = v0
     v1
 and closure133 () () : struct ((unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v128, v129)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v115, v116)
 and method42 (v0 : (Mut15 -> Fable.Core.JSX.Element), v1 : ((struct (System.Guid * int32) []) -> obj), v2 : (unit -> struct ((unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut15 = {l0 = v1; l1 = v2; l2 = v3} : Mut15
     let v5 : string = "createComponent"
@@ -3171,12 +3150,12 @@ and closure138 () (v0 : (struct (System.Guid * obj) [])) : obj =
     let v1 : obj = v0
     v1
 and closure139 () () : struct ((unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v126, v127)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v113, v114)
 and method44 (v0 : (Mut16 -> Fable.Core.JSX.Element), v1 : ((struct (System.Guid * obj) []) -> obj), v2 : (unit -> struct ((unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit))), v3 : string) : Fable.Core.JSX.Element =
     let v4 : Mut16 = {l0 = v1; l1 = v2; l2 = v3} : Mut16
     let v5 : string = "createComponent"
@@ -3185,12 +3164,12 @@ and method44 (v0 : (Mut16 -> Fable.Core.JSX.Element), v1 : ((struct (System.Guid
     let v8 : Fable.Core.JSX.Element = v7.Invoke (v0, v4) |> unbox<Fable.Core.JSX.Element>
     v8
 and closure140 () () : struct ((unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit)) =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    struct (v124, v125)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    struct (v111, v112)
 and closure84 () () : (Fable.Core.JSX.Element []) =
     let v0 : (Mut8 -> Fable.Core.JSX.Element) = closure85()
     let v1 : (string -> obj) = closure89()
@@ -3312,17 +3291,17 @@ and closure6 (v0 : (unit -> US4)) () : (Fable.Core.JSX.Element []) =
     let v4 : Fable.Core.JSX.Element = method22(v1, v2, v3)
     [|v4|]
 and method3 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v134 : string = "Box"
-    let v135 : string = "@hope-ui/core"
-    let v136 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v134 v135
-    let v137 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure5()
-    let v138 : (unit -> (Fable.Core.JSX.Element [])) = closure6(v130)
-    method5(v136, v137, v138)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v121 : string = "Box"
+    let v122 : string = "@hope-ui/core"
+    let v123 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v121 v122
+    let v124 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure5()
+    let v125 : (unit -> (Fable.Core.JSX.Element [])) = closure6(v117)
+    method5(v123, v124, v125)
 and closure4 () (v0 : Mut2) : Fable.Core.JSX.Element =
     method3()
 and method45 (v0 : (Mut2 -> Fable.Core.JSX.Element)) : Fable.Core.JSX.Element =
@@ -3354,16 +3333,16 @@ and closure151 (v0 : Mut1) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : 
     struct (v144, v145, v146, v147, v148, v149, v150, v151, v152, v153, v154, v155, v156, v157, v158, v159, v160, v161, v162, v163, v164, v165, v166, v167, v168, v169, v170, v171, v172, v173, v174, v175, v176, v177, v178, v179, v180, v181, v182, v183, v184, v185, v186, v187, v188, v189, v190, v191, v192, v193, v194, v195, v196, v197, v198, v199, v200, v201, v202, v203, v204, v205, v206, v207, v208, v209, v210, v211, v212, v213)
 and closure152 (v0 : Mut1) () : (Fable.Core.JSX.Element []) =
     let v1 : US6 = v0.l25
-    let v4 : string =
+    let v5 : string =
         match v1 with
         | US6_0 -> (* None *)
-            let v2 : string = ""
-            v2
-        | US6_1(v3) -> (* Some *)
+            let v3 : string = ""
             v3
-    let v5 : Fable.Core.JSX.Element = v4 |> unbox<Fable.Core.JSX.Element>
-    let v6 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v5 ]
-    [|v6|]
+        | US6_1(v2) -> (* Some *)
+            v2
+    let v6 : Fable.Core.JSX.Element = v5 |> unbox<Fable.Core.JSX.Element>
+    let v7 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v6 ]
+    [|v7|]
 and closure153 () () : Fable.Core.JS.Function =
     let v0 : string = "BiRegularLinkExternal"
     let v1 : string = "solid-icons/bi"
@@ -3407,7 +3386,7 @@ and method47 (v0 : Mut1) : Fable.Core.JSX.Element =
 and closure149 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method47(v0)
 and closure155 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
-    let v70 : string = "https://github.com/fc1943s/tictactoe_spiral"
+    let v70 : string = "https://github.com/fc1943s/tictactoe"
     let v71 : US6 = US6_1(v70)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v71, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
 and closure156 () () : (Fable.Core.JSX.Element []) =
@@ -3440,7 +3419,7 @@ and closure157 (v0 : string) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 
     let v74 : US6 = US6_1(v73)
     struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v72, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v74, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
 and closure162 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
-    let v70 : string = "https://fc1943s.github.io/tictactoe_spiral"
+    let v70 : string = "https://fc1943s.github.io/tictactoe"
     let v71 : US6 = US6_1(v70)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v71, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
 and closure161 () () : (Fable.Core.JSX.Element []) =
@@ -3456,7 +3435,7 @@ and closure160 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     let v73 : US6 = US6_1(v72)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v71, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v73, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
 and closure165 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
-    let v70 : string = "https://fc1943s.github.io/tictactoe_spiral/docs"
+    let v70 : string = "https://fc1943s.github.io/tictactoe/docs"
     let v71 : US6 = US6_1(v70)
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v71, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69)
 and closure164 () () : (Fable.Core.JSX.Element []) =
@@ -3482,7 +3461,7 @@ and closure146 (v0 : string) () : (Fable.Core.JSX.Element []) =
             let v6 : US15 = US15_2
             method26(v2, v3, v4, v5, v6)
         else
-            let v8 : string = $"https://github.com/fc1943s/tictactoe_spiral/tree/{v0}"
+            let v8 : string = $"https://github.com/fc1943s/tictactoe/tree/{v0}"
             let v9 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
             let v10 : US13 = US13_0
             let v11 : US13 = US13_0
@@ -3680,28 +3659,27 @@ and closure197 (v0 : Mut17) (v1 : obj) : unit =
     let v7 : (US6 -> unit) = v0.l1
     let v8 : US6 = US6_1(v6)
     v7 v8
-    ()
 and closure196 (v0 : Mut17) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (unit -> US6) = v0.l0
     let v72 : US6 = v71 ()
     let v73 : string = Fable.Core.JS.undefined
-    let v75 : string =
+    let v76 : string =
         match v72 with
         | US6_0 -> (* None *)
             v73
         | US6_1(v74) -> (* Some *)
             v74
-    let v76 : obj = v75
-    let v77 : string = "15vw"
-    let v78 : US6 = US6_1(v77)
-    let v79 : (obj -> unit) = closure197(v0)
-    let v80 : US12 = US12_1(v79)
-    let v81 : string = "xs"
-    let v82 : US6 = US6_1(v81)
-    let v83 : string = "text"
-    let v84 : US6 = US6_1(v83)
-    let v85 : US14 = US14_1(v76)
-    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v78, v42, v43, v80, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v82, v58, v59, v60, v61, v62, v63, v64, v84, v85, v67, v68, v69, v70)
+    let v77 : obj = v76
+    let v78 : string = "15vw"
+    let v79 : US6 = US6_1(v78)
+    let v80 : (obj -> unit) = closure197(v0)
+    let v81 : US12 = US12_1(v80)
+    let v82 : string = "xs"
+    let v83 : US6 = US6_1(v82)
+    let v84 : string = "text"
+    let v85 : US6 = US6_1(v84)
+    let v86 : US14 = US14_1(v77)
+    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v79, v42, v43, v81, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v83, v58, v59, v60, v61, v62, v63, v64, v85, v86, v67, v68, v69, v70)
 and closure198 () () : (Fable.Core.JSX.Element []) =
     [||]
 and method52 (v0 : Mut17) : Fable.Core.JSX.Element =
@@ -3717,14 +3695,13 @@ and closure199 (v0 : (unit -> string)) () : US6 =
     let v1 : string = v0 ()
     US6_1(v1)
 and closure200 (v0 : (string -> unit)) (v1 : US6) : unit =
-    let v4 : string =
+    let v5 : string =
         match v1 with
         | US6_0 -> (* None *)
             failwith<string> "Option does not have a value."
-        | US6_1(v3) -> (* Some *)
-            v3
-    v0 v4
-    ()
+        | US6_1(v2) -> (* Some *)
+            v2
+    v0 v5
 and method53 (v0 : (Mut17 -> Fable.Core.JSX.Element), v1 : (unit -> US6), v2 : (US6 -> unit)) : Fable.Core.JSX.Element =
     let v3 : Mut17 = {l0 = v1; l1 = v2} : Mut17
     let v4 : string = "createComponent"
@@ -3773,28 +3750,27 @@ and closure207 (v0 : Mut18) (v1 : obj) : unit =
     let v7 : (US5 -> unit) = v0.l1
     let v8 : US5 = US5_1(v6)
     v7 v8
-    ()
 and closure206 (v0 : Mut18) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : (unit -> US5) = v0.l0
     let v72 : US5 = v71 ()
     let v73 : int32 = Fable.Core.JS.undefined
-    let v75 : int32 =
+    let v76 : int32 =
         match v72 with
         | US5_0 -> (* None *)
             v73
         | US5_1(v74) -> (* Some *)
             v74
-    let v76 : obj = v75
-    let v77 : string = "15vw"
-    let v78 : US6 = US6_1(v77)
-    let v79 : (obj -> unit) = closure207(v0)
-    let v80 : US12 = US12_1(v79)
-    let v81 : string = "xs"
-    let v82 : US6 = US6_1(v81)
-    let v83 : string = "text"
-    let v84 : US6 = US6_1(v83)
-    let v85 : US14 = US14_1(v76)
-    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v78, v42, v43, v80, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v82, v58, v59, v60, v61, v62, v63, v64, v84, v85, v67, v68, v69, v70)
+    let v77 : obj = v76
+    let v78 : string = "15vw"
+    let v79 : US6 = US6_1(v78)
+    let v80 : (obj -> unit) = closure207(v0)
+    let v81 : US12 = US12_1(v80)
+    let v82 : string = "xs"
+    let v83 : US6 = US6_1(v82)
+    let v84 : string = "text"
+    let v85 : US6 = US6_1(v84)
+    let v86 : US14 = US14_1(v77)
+    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v79, v42, v43, v81, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v83, v58, v59, v60, v61, v62, v63, v64, v85, v86, v67, v68, v69, v70)
 and method54 (v0 : Mut18) : Fable.Core.JSX.Element =
     let v1 : string = "Input"
     let v2 : string = "@hope-ui/core"
@@ -3808,14 +3784,13 @@ and closure208 (v0 : (unit -> int32)) () : US5 =
     let v1 : int32 = v0 ()
     US5_1(v1)
 and closure209 (v0 : (int32 -> unit)) (v1 : US5) : unit =
-    let v4 : int32 =
+    let v5 : int32 =
         match v1 with
         | US5_0 -> (* None *)
             failwith<int32> "Option does not have a value."
-        | US5_1(v3) -> (* Some *)
-            v3
-    v0 v4
-    ()
+        | US5_1(v2) -> (* Some *)
+            v2
+    v0 v5
 and method55 (v0 : (Mut18 -> Fable.Core.JSX.Element), v1 : (unit -> US5), v2 : (US5 -> unit)) : Fable.Core.JSX.Element =
     let v3 : Mut18 = {l0 = v1; l1 = v2} : Mut18
     let v4 : string = "createComponent"
@@ -3858,21 +3833,21 @@ and closure192 (v0 : (string -> unit), v1 : (unit -> string), v2 : (string -> un
     let v21 : Fable.Core.JSX.Element = method26(v6, v17, v18, v19, v20)
     [|v11; v16; v21|]
 and method51 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v242 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v243 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v244 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v245 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v246 : (unit -> int32), v247 : (int32 -> unit), v248 : (unit -> string), v249 : (string -> unit), v250 : (unit -> string), v251 : (string -> unit), v252 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v253 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v254 : (unit -> (struct (US2 * obj * string) [])), v255 : ((struct (US2 * obj * string) []) -> unit), v256 : (unit -> (struct (System.Guid * obj) [])), v257 : ((struct (System.Guid * obj) []) -> unit), v258 : (unit -> (struct (System.Guid * obj) [])), v259 : ((struct (System.Guid * obj) []) -> unit), v260 : (unit -> (struct (System.Guid * int32) [])), v261 : ((struct (System.Guid * int32) []) -> unit), v262 : (unit -> US4), v263 : (US4 -> unit), v264 : (unit -> US5), v265 : (US5 -> unit)) = v243.Invoke v242 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v374 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v375 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v376 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v377 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v378 : (unit -> int32), v379 : (int32 -> unit), v380 : (unit -> string), v381 : (string -> unit), v382 : (unit -> string), v383 : (string -> unit), v384 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v385 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v386 : (unit -> (struct (US2 * obj * string) [])), v387 : ((struct (US2 * obj * string) []) -> unit), v388 : (unit -> (struct (System.Guid * obj) [])), v389 : ((struct (System.Guid * obj) []) -> unit), v390 : (unit -> (struct (System.Guid * obj) [])), v391 : ((struct (System.Guid * obj) []) -> unit), v392 : (unit -> (struct (System.Guid * int32) [])), v393 : ((struct (System.Guid * int32) []) -> unit), v394 : (unit -> US4), v395 : (US4 -> unit), v396 : (unit -> US5), v397 : (US5 -> unit)) = v375.Invoke v374 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v398 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
-    let v399 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v400 : (unit -> (Fable.Core.JSX.Element [])) = closure192(v117, v116, v251, v250, v379, v378)
-    method22(v398, v399, v400)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v216 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v217 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v218 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v219 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v220 : (unit -> int32), v221 : (int32 -> unit), v222 : (unit -> string), v223 : (string -> unit), v224 : (unit -> string), v225 : (string -> unit), v226 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v227 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v228 : (unit -> (struct (US2 * obj * string) [])), v229 : ((struct (US2 * obj * string) []) -> unit), v230 : (unit -> (struct (System.Guid * obj) [])), v231 : ((struct (System.Guid * obj) []) -> unit), v232 : (unit -> (struct (System.Guid * obj) [])), v233 : ((struct (System.Guid * obj) []) -> unit), v234 : (unit -> (struct (System.Guid * int32) [])), v235 : ((struct (System.Guid * int32) []) -> unit), v236 : (unit -> US4), v237 : (US4 -> unit), v238 : (unit -> US5), v239 : (US5 -> unit)) = v217.Invoke v216 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v335 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v336 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v337 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v338 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v339 : (unit -> int32), v340 : (int32 -> unit), v341 : (unit -> string), v342 : (string -> unit), v343 : (unit -> string), v344 : (string -> unit), v345 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v346 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v347 : (unit -> (struct (US2 * obj * string) [])), v348 : ((struct (US2 * obj * string) []) -> unit), v349 : (unit -> (struct (System.Guid * obj) [])), v350 : ((struct (System.Guid * obj) []) -> unit), v351 : (unit -> (struct (System.Guid * obj) [])), v352 : ((struct (System.Guid * obj) []) -> unit), v353 : (unit -> (struct (System.Guid * int32) [])), v354 : ((struct (System.Guid * int32) []) -> unit), v355 : (unit -> US4), v356 : (US4 -> unit), v357 : (unit -> US5), v358 : (US5 -> unit)) = v336.Invoke v335 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v359 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
+    let v360 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
+    let v361 : (unit -> (Fable.Core.JSX.Element [])) = closure192(v104, v103, v225, v224, v340, v339)
+    method22(v359, v360, v361)
 and closure191 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method51()
 and closure210 () () : (Fable.Core.JSX.Element []) =
@@ -3895,15 +3870,14 @@ and closure222 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v
     let v8 : string = v2 ()
     US6_1(v8)
 and closure223 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v3 : (string -> unit), v4 : (unit -> string), v5 : (string -> unit), v6 : (unit -> string), v7 : (string -> unit)) (v8 : US6) : unit =
-    let v11 : string =
+    let v12 : string =
         match v8 with
         | US6_0 -> (* None *)
-            let v9 : string = ""
-            v9
-        | US6_1(v10) -> (* Some *)
+            let v10 : string = ""
             v10
-    v3 v11
-    ()
+        | US6_1(v9) -> (* Some *)
+            v9
+    v3 v12
 and closure221 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v3 : (string -> unit), v4 : (unit -> string), v5 : (string -> unit), v6 : (unit -> string), v7 : (string -> unit)) () : (Fable.Core.JSX.Element []) =
     let v8 : (Mut17 -> Fable.Core.JSX.Element) = closure195()
     let v9 : (unit -> US6) = closure222(v0, v1, v2, v3, v4, v5, v6, v7)
@@ -3924,15 +3898,14 @@ and closure226 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v
     let v8 : string = v6 ()
     US6_1(v8)
 and closure227 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v3 : (string -> unit), v4 : (unit -> string), v5 : (string -> unit), v6 : (unit -> string), v7 : (string -> unit)) (v8 : US6) : unit =
-    let v11 : string =
+    let v12 : string =
         match v8 with
         | US6_0 -> (* None *)
-            let v9 : string = ""
-            v9
-        | US6_1(v10) -> (* Some *)
+            let v10 : string = ""
             v10
-    v7 v11
-    ()
+        | US6_1(v9) -> (* Some *)
+            v9
+    v7 v12
 and closure225 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v3 : (string -> unit), v4 : (unit -> string), v5 : (string -> unit), v6 : (unit -> string), v7 : (string -> unit)) () : (Fable.Core.JSX.Element []) =
     let v8 : (Mut17 -> Fable.Core.JSX.Element) = closure195()
     let v9 : (unit -> US6) = closure226(v0, v1, v2, v3, v4, v5, v6, v7)
@@ -3970,7 +3943,7 @@ and closure218 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v
     [|v11|]
 and closure217 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v3 : (string -> unit), v4 : (unit -> string), v5 : (string -> unit), v6 : (unit -> string), v7 : (string -> unit)) struct (v8 : US6, v9 : US6, v10 : US6, v11 : US7, v12 : US6, v13 : US6, v14 : US6, v15 : US6, v16 : US6, v17 : US6, v18 : US8, v19 : US9, v20 : US6, v21 : US6, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US10, v27 : US8, v28 : US6, v29 : US6, v30 : US6, v31 : US6, v32 : US6, v33 : US6, v34 : US11, v35 : US6, v36 : US6, v37 : US6, v38 : US11, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US12, v50 : US13, v51 : US12, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US6, v64 : US6, v65 : US6, v66 : US6, v67 : US6, v68 : US14, v69 : US6, v70 : US11, v71 : US6, v72 : US6, v73 : US14, v74 : US14, v75 : US6, v76 : US5, v77 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v78 : US0 = v0 ()
-    let v84 : string =
+    let v86 : string =
         match v78 with
         | US0_0 -> (* Admin *)
             let v79 : string = "admin"
@@ -3978,17 +3951,17 @@ and closure217 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v
         | US0_1(v80) -> (* Player *)
             match v80 with
             | US1_0 -> (* O *)
-                let v81 : string = "o"
-                v81
-            | US1_1 -> (* X *)
-                let v82 : string = "x"
+                let v82 : string = "o"
                 v82
-    let v85 : Fable.Core.JSX.Element = v84 |> unbox<Fable.Core.JSX.Element>
-    let v86 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v85 ]
-    let v87 : (unit -> (Fable.Core.JSX.Element [])) = closure218(v0, v1, v2, v3, v4, v5, v6, v7)
-    let v88 : US9 = US9_1(v87)
-    let v89 : US11 = US11_1(v86)
-    struct (v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v88, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v89, v71, v72, v73, v74, v75, v76, v77)
+            | US1_1 -> (* X *)
+                let v81 : string = "x"
+                v81
+    let v87 : Fable.Core.JSX.Element = v86 |> unbox<Fable.Core.JSX.Element>
+    let v88 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v87 ]
+    let v89 : (unit -> (Fable.Core.JSX.Element [])) = closure218(v0, v1, v2, v3, v4, v5, v6, v7)
+    let v90 : US9 = US9_1(v89)
+    let v91 : US11 = US11_1(v88)
+    struct (v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v90, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v91, v71, v72, v73, v74, v75, v76, v77)
 and closure216 (v0 : (unit -> US0), v1 : (US0 -> unit), v2 : (unit -> string), v3 : (string -> unit), v4 : (unit -> string), v5 : (string -> unit), v6 : (unit -> string), v7 : (string -> unit)) (v8 : (unit -> int32)) : (Fable.Core.JSX.Element []) =
     let v9 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
     let v10 : US13 = US13_0
@@ -4014,15 +3987,15 @@ and closure214 (v0 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> 
     let v8 : Fable.Core.JSX.Element = method5(v6, v7, v3)
     [|v8|]
 and method56 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v134 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
-    let v135 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
-    let v136 : (unit -> (Fable.Core.JSX.Element [])) = closure214(v112)
-    method22(v134, v135, v136)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v121 : (Mut1 -> Fable.Core.JSX.Element) = closure7()
+    let v122 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure12()
+    let v123 : (unit -> (Fable.Core.JSX.Element [])) = closure214(v99)
+    method22(v121, v122, v123)
 and closure213 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method56()
 and closure229 () () : (Fable.Core.JSX.Element []) =
@@ -4136,7 +4109,7 @@ and closure248 (v0 : Mut20, v1 : (unit -> (struct ((US2 []) * int32 * US3 * stri
         let v10 : int32 = v9 - 1
         let v11 : US6 = v5.l1
         let struct (v12 : (US2 []), v13 : int32, v14 : US3, v15 : string, v16 : string) = v2.[int v10]
-        let v24 : US6 =
+        let v23 : US6 =
             match v11 with
             | US6_0 -> (* None *)
                 let v17 : US3 = v0.l1
@@ -4152,18 +4125,17 @@ and closure248 (v0 : Mut20, v1 : (unit -> (struct ((US2 []) * int32 * US3 * stri
                         false
                 if v18 then
                     let v19 : (struct ((US2 []) * int32 * US3 * string * string) -> US6) = v0.l0
-                    let v20 : US6 = v19 struct (v12, v13, v14, v15, v16)
-                    v20
+                    v19 struct (v12, v13, v14, v15, v16)
                 else
                     US6_0
-            | US6_1(v23) -> (* Some *)
+            | _ ->
                 v11
-        let v25 : int32 = v7 + 1
-        v5.l0 <- v25
-        v5.l1 <- v24
+        let v24 : int32 = v7 + 1
+        v5.l0 <- v24
+        v5.l1 <- v23
         ()
-    let v26 : US6 = v5.l1
-    v26
+    let v25 : US6 = v5.l1
+    v25
 and closure249 (v0 : Mut20, v1 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v2 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) (v3 : US6) : unit =
     let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v2 ()
     let v5 : int32 = v4.Length
@@ -4187,8 +4159,7 @@ and closure249 (v0 : Mut20, v1 : ((struct ((US2 []) * int32 * US3 * string * str
             if v16 then
                 let v17 : (struct ((US2 []) * int32 * US3 * string * string) -> (US6 -> struct ((US2 []) * int32 * US3 * string * string))) = v0.l2
                 let v18 : (US6 -> struct ((US2 []) * int32 * US3 * string * string)) = v17 struct (v10, v11, v12, v13, v14)
-                let struct (v19 : (US2 []), v20 : int32, v21 : US3, v22 : string, v23 : string) = v18 v3
-                struct (v19, v20, v21, v22, v23)
+                v18 v3
             else
                 struct (v10, v11, v12, v13, v14)
         v6.[int v9] <- struct (v24, v25, v26, v27, v28)
@@ -4196,31 +4167,30 @@ and closure249 (v0 : Mut20, v1 : ((struct ((US2 []) * int32 * US3 * string * str
         v7.l0 <- v29
         ()
     v1 v6
-    ()
 and method60 (v0 : Mut20) : Fable.Core.JSX.Element =
-    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v110 : string = "useContext"
-    let v111 : string = "solid-js"
-    let v112 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v110 v111
-    let struct (v113 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v114 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v115 : (unit -> int32), v116 : (int32 -> unit), v117 : (unit -> string), v118 : (string -> unit), v119 : (unit -> string), v120 : (string -> unit), v121 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v122 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v123 : (unit -> (struct (US2 * obj * string) [])), v124 : ((struct (US2 * obj * string) []) -> unit), v125 : (unit -> (struct (System.Guid * obj) [])), v126 : ((struct (System.Guid * obj) []) -> unit), v127 : (unit -> (struct (System.Guid * obj) [])), v128 : ((struct (System.Guid * obj) []) -> unit), v129 : (unit -> (struct (System.Guid * int32) [])), v130 : ((struct (System.Guid * int32) []) -> unit), v131 : (unit -> US4), v132 : (US4 -> unit), v133 : (unit -> US5), v134 : (US5 -> unit)) = v112.Invoke v109 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v135 : (Mut17 -> Fable.Core.JSX.Element) = closure195()
-    let v136 : (unit -> US6) = closure248(v0, v121)
-    let v137 : (US6 -> unit) = closure249(v0, v122, v121)
-    method53(v135, v136, v137)
+    let v96 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v97 : string = "useContext"
+    let v98 : string = "solid-js"
+    let v99 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v97 v98
+    let struct (v100 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v101 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v102 : (unit -> int32), v103 : (int32 -> unit), v104 : (unit -> string), v105 : (string -> unit), v106 : (unit -> string), v107 : (string -> unit), v108 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v109 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v110 : (unit -> (struct (US2 * obj * string) [])), v111 : ((struct (US2 * obj * string) []) -> unit), v112 : (unit -> (struct (System.Guid * obj) [])), v113 : ((struct (System.Guid * obj) []) -> unit), v114 : (unit -> (struct (System.Guid * obj) [])), v115 : ((struct (System.Guid * obj) []) -> unit), v116 : (unit -> (struct (System.Guid * int32) [])), v117 : ((struct (System.Guid * int32) []) -> unit), v118 : (unit -> US4), v119 : (US4 -> unit), v120 : (unit -> US5), v121 : (US5 -> unit)) = v99.Invoke v96 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v122 : (Mut17 -> Fable.Core.JSX.Element) = closure195()
+    let v123 : (unit -> US6) = closure248(v0, v108)
+    let v124 : (US6 -> unit) = closure249(v0, v109, v108)
+    method53(v122, v123, v124)
 and closure247 () (v0 : Mut20) : Fable.Core.JSX.Element =
     method60(v0)
 and closure250 () struct (v0 : (US2 []), v1 : int32, v2 : US3, v3 : string, v4 : string) : US6 =
     US6_1(v3)
 and closure252 (v0 : Mut19, v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) (v6 : US6) : struct ((US2 []) * int32 * US3 * string * string) =
     let v7 : US3 = v0.l0
-    let v10 : string =
+    let v11 : string =
         match v6 with
         | US6_0 -> (* None *)
-            let v8 : string = ""
-            v8
-        | US6_1(v9) -> (* Some *)
+            let v9 : string = ""
             v9
-    struct (v1, v2, v7, v10, v5)
+        | US6_1(v8) -> (* Some *)
+            v8
+    struct (v1, v2, v7, v11, v5)
 and closure251 (v0 : Mut19) struct (v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) : (US6 -> struct ((US2 []) * int32 * US3 * string * string)) =
     closure252(v0, v1, v2, v3, v4, v5)
 and method62 (v0 : (Mut20 -> Fable.Core.JSX.Element), v1 : (struct ((US2 []) * int32 * US3 * string * string) -> US6), v2 : US3, v3 : (struct ((US2 []) * int32 * US3 * string * string) -> (US6 -> struct ((US2 []) * int32 * US3 * string * string)))) : Fable.Core.JSX.Element =
@@ -4263,7 +4233,7 @@ and closure256 (v0 : Mut22, v1 : (unit -> (struct ((US2 []) * int32 * US3 * stri
         let v10 : int32 = v9 - 1
         let v11 : US5 = v5.l1
         let struct (v12 : (US2 []), v13 : int32, v14 : US3, v15 : string, v16 : string) = v2.[int v10]
-        let v24 : US5 =
+        let v23 : US5 =
             match v11 with
             | US5_0 -> (* None *)
                 let v17 : US3 = v0.l1
@@ -4279,18 +4249,17 @@ and closure256 (v0 : Mut22, v1 : (unit -> (struct ((US2 []) * int32 * US3 * stri
                         false
                 if v18 then
                     let v19 : (struct ((US2 []) * int32 * US3 * string * string) -> US5) = v0.l0
-                    let v20 : US5 = v19 struct (v12, v13, v14, v15, v16)
-                    v20
+                    v19 struct (v12, v13, v14, v15, v16)
                 else
                     US5_0
-            | US5_1(v23) -> (* Some *)
+            | _ ->
                 v11
-        let v25 : int32 = v7 + 1
-        v5.l0 <- v25
-        v5.l1 <- v24
+        let v24 : int32 = v7 + 1
+        v5.l0 <- v24
+        v5.l1 <- v23
         ()
-    let v26 : US5 = v5.l1
-    v26
+    let v25 : US5 = v5.l1
+    v25
 and closure257 (v0 : Mut22, v1 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v2 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) (v3 : US5) : unit =
     let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v2 ()
     let v5 : int32 = v4.Length
@@ -4314,8 +4283,7 @@ and closure257 (v0 : Mut22, v1 : ((struct ((US2 []) * int32 * US3 * string * str
             if v16 then
                 let v17 : (struct ((US2 []) * int32 * US3 * string * string) -> (US5 -> struct ((US2 []) * int32 * US3 * string * string))) = v0.l2
                 let v18 : (US5 -> struct ((US2 []) * int32 * US3 * string * string)) = v17 struct (v10, v11, v12, v13, v14)
-                let struct (v19 : (US2 []), v20 : int32, v21 : US3, v22 : string, v23 : string) = v18 v3
-                struct (v19, v20, v21, v22, v23)
+                v18 v3
             else
                 struct (v10, v11, v12, v13, v14)
         v6.[int v9] <- struct (v24, v25, v26, v27, v28)
@@ -4323,30 +4291,29 @@ and closure257 (v0 : Mut22, v1 : ((struct ((US2 []) * int32 * US3 * string * str
         v7.l0 <- v29
         ()
     v1 v6
-    ()
 and method63 (v0 : Mut22) : Fable.Core.JSX.Element =
-    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v110 : string = "useContext"
-    let v111 : string = "solid-js"
-    let v112 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v110 v111
-    let struct (v113 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v114 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v115 : (unit -> int32), v116 : (int32 -> unit), v117 : (unit -> string), v118 : (string -> unit), v119 : (unit -> string), v120 : (string -> unit), v121 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v122 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v123 : (unit -> (struct (US2 * obj * string) [])), v124 : ((struct (US2 * obj * string) []) -> unit), v125 : (unit -> (struct (System.Guid * obj) [])), v126 : ((struct (System.Guid * obj) []) -> unit), v127 : (unit -> (struct (System.Guid * obj) [])), v128 : ((struct (System.Guid * obj) []) -> unit), v129 : (unit -> (struct (System.Guid * int32) [])), v130 : ((struct (System.Guid * int32) []) -> unit), v131 : (unit -> US4), v132 : (US4 -> unit), v133 : (unit -> US5), v134 : (US5 -> unit)) = v112.Invoke v109 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v135 : (Mut18 -> Fable.Core.JSX.Element) = closure205()
-    let v136 : (unit -> US5) = closure256(v0, v121)
-    let v137 : (US5 -> unit) = closure257(v0, v122, v121)
-    method55(v135, v136, v137)
+    let v96 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v97 : string = "useContext"
+    let v98 : string = "solid-js"
+    let v99 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v97 v98
+    let struct (v100 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v101 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v102 : (unit -> int32), v103 : (int32 -> unit), v104 : (unit -> string), v105 : (string -> unit), v106 : (unit -> string), v107 : (string -> unit), v108 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v109 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v110 : (unit -> (struct (US2 * obj * string) [])), v111 : ((struct (US2 * obj * string) []) -> unit), v112 : (unit -> (struct (System.Guid * obj) [])), v113 : ((struct (System.Guid * obj) []) -> unit), v114 : (unit -> (struct (System.Guid * obj) [])), v115 : ((struct (System.Guid * obj) []) -> unit), v116 : (unit -> (struct (System.Guid * int32) [])), v117 : ((struct (System.Guid * int32) []) -> unit), v118 : (unit -> US4), v119 : (US4 -> unit), v120 : (unit -> US5), v121 : (US5 -> unit)) = v99.Invoke v96 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v122 : (Mut18 -> Fable.Core.JSX.Element) = closure205()
+    let v123 : (unit -> US5) = closure256(v0, v108)
+    let v124 : (US5 -> unit) = closure257(v0, v109, v108)
+    method55(v122, v123, v124)
 and closure255 () (v0 : Mut22) : Fable.Core.JSX.Element =
     method63(v0)
 and closure258 () struct (v0 : (US2 []), v1 : int32, v2 : US3, v3 : string, v4 : string) : US5 =
     US5_1(v1)
 and closure260 (v0 : Mut19, v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) (v6 : US5) : struct ((US2 []) * int32 * US3 * string * string) =
     let v7 : US3 = v0.l0
-    let v9 : int32 =
+    let v10 : int32 =
         match v6 with
         | US5_0 -> (* None *)
             0
         | US5_1(v8) -> (* Some *)
             v8
-    struct (v1, v9, v7, v4, v5)
+    struct (v1, v10, v7, v4, v5)
 and closure259 (v0 : Mut19) struct (v1 : (US2 []), v2 : int32, v3 : US3, v4 : string, v5 : string) : (US5 -> struct ((US2 []) * int32 * US3 * string * string)) =
     closure260(v0, v1, v2, v3, v4, v5)
 and method65 (v0 : (Mut22 -> Fable.Core.JSX.Element), v1 : (struct ((US2 []) * int32 * US3 * string * string) -> US5), v2 : US3, v3 : (struct ((US2 []) * int32 * US3 * string * string) -> (US5 -> struct ((US2 []) * int32 * US3 * string * string)))) : Fable.Core.JSX.Element =
@@ -4407,57 +4374,57 @@ and closure242 (v0 : Mut19) () : (Fable.Core.JSX.Element []) =
     [|v3|]
 and closure241 (v0 : Mut19) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : US3 = v0.l0
-    let v75 : string =
+    let v77 : string =
         match v71 with
         | US3_0 -> (* GunJsServer *)
-            let v72 : string = "Gun JavaScript"
-            v72
+            let v74 : string = "Gun JavaScript"
+            v74
         | US3_1 -> (* GunRsServer *)
             let v73 : string = "Gun Rust"
             v73
         | US3_2 -> (* SignalRServer *)
-            let v74 : string = "SignalR"
-            v74
-    let v76 : Fable.Core.JSX.Element = v75 |> unbox<Fable.Core.JSX.Element>
-    let v77 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v76 ]
-    let v78 : (unit -> (Fable.Core.JSX.Element [])) = closure242(v0)
-    let v79 : US9 = US9_1(v78)
-    let v80 : US6 = US6_0
-    let v81 : US11 = US11_1(v77)
-    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v79, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v80, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v81, v64, v65, v66, v67, v68, v69, v70)
+            let v72 : string = "SignalR"
+            v72
+    let v78 : Fable.Core.JSX.Element = v77 |> unbox<Fable.Core.JSX.Element>
+    let v79 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v78 ]
+    let v80 : (unit -> (Fable.Core.JSX.Element [])) = closure242(v0)
+    let v81 : US9 = US9_1(v80)
+    let v82 : US6 = US6_0
+    let v83 : US11 = US11_1(v79)
+    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v81, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v82, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v83, v64, v65, v66, v67, v68, v69, v70)
 and closure266 (v0 : Mut24) () : (obj []) =
     let v1 : US3 = v0.l1
-    let v5 : string =
+    let v7 : string =
         match v1 with
         | US3_0 -> (* GunJsServer *)
-            let v2 : string = "Gun JavaScript"
-            v2
+            let v4 : string = "Gun JavaScript"
+            v4
         | US3_1 -> (* GunRsServer *)
             let v3 : string = "Gun Rust"
             v3
         | US3_2 -> (* SignalRServer *)
-            let v4 : string = "SignalR"
-            v4
-    let v6 : string = "props.ServerType:"
-    let v7 : obj = struct (v6, v5)
-    let v8 : US2 = v0.l0
-    let v13 : string =
-        match v8 with
+            let v2 : string = "SignalR"
+            v2
+    let v8 : string = "props.ServerType"
+    let v9 : obj = struct (v8, v7)
+    let v10 : US2 = v0.l0
+    let v18 : string =
+        match v10 with
         | US2_0 -> (* GunJsClient *)
-            let v9 : string = "Gun JavaScript"
-            v9
+            let v13 : string = "Gun JavaScript"
+            v13
         | US2_1 -> (* GunRsClient *)
-            let v10 : string = "Gun Rust"
-            v10
-        | US2_2 -> (* Memory *)
-            let v11 : string = "Memory"
-            v11
-        | US2_3 -> (* SignalRClient *)
-            let v12 : string = "SignalR"
+            let v12 : string = "Gun Rust"
             v12
-    let v14 : string = "props.ClientType:"
-    let v15 : obj = struct (v14, v13)
-    [|v7; v15|]
+        | US2_2 -> (* Memory *)
+            let v14 : string = "Memory"
+            v14
+        | US2_3 -> (* SignalRClient *)
+            let v11 : string = "SignalR"
+            v11
+    let v19 : string = "props.ClientType"
+    let v20 : obj = struct (v19, v18)
+    [|v9; v20|]
 and method70 (v0 : US2, v1 : (US2 []), v2 : int32) : bool =
     let v3 : int32 = v1.Length
     let v4 : bool = v2 < v3
@@ -4618,79 +4585,78 @@ and closure268 (v0 : Mut24, v1 : ((struct ((US2 []) * int32 * US3 * string * str
         v7.l0 <- v58
         ()
     v1 v6
-    ()
 and closure270 (v0 : Mut24) () : (Fable.Core.JSX.Element []) =
     let v1 : US2 = v0.l0
-    let v6 : string =
+    let v9 : string =
         match v1 with
         | US2_0 -> (* GunJsClient *)
-            let v2 : string = "Gun JavaScript"
-            v2
+            let v4 : string = "Gun JavaScript"
+            v4
         | US2_1 -> (* GunRsClient *)
             let v3 : string = "Gun Rust"
             v3
         | US2_2 -> (* Memory *)
-            let v4 : string = "Memory"
-            v4
-        | US2_3 -> (* SignalRClient *)
-            let v5 : string = "SignalR"
+            let v5 : string = "Memory"
             v5
-    let v7 : Fable.Core.JSX.Element = v6 |> unbox<Fable.Core.JSX.Element>
-    let v8 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v7 ]
-    [|v8|]
+        | US2_3 -> (* SignalRClient *)
+            let v2 : string = "SignalR"
+            v2
+    let v10 : Fable.Core.JSX.Element = v9 |> unbox<Fable.Core.JSX.Element>
+    let v11 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v10 ]
+    [|v11|]
 and closure269 (v0 : Mut24) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v71 : US2 = v0.l0
-    let v76 : string =
+    let v79 : string =
         match v71 with
         | US2_0 -> (* GunJsClient *)
-            let v72 : string = "gunjs"
-            v72
+            let v74 : string = "gunjs"
+            v74
         | US2_1 -> (* GunRsClient *)
             let v73 : string = "gunrs"
             v73
         | US2_2 -> (* Memory *)
-            let v74 : string = "mem"
-            v74
-        | US2_3 -> (* SignalRClient *)
-            let v75 : string = "signalr"
+            let v75 : string = "mem"
             v75
-    let v77 : US3 = v0.l1
-    let v81 : string =
-        match v77 with
+        | US2_3 -> (* SignalRClient *)
+            let v72 : string = "signalr"
+            v72
+    let v80 : US3 = v0.l1
+    let v86 : string =
+        match v80 with
         | US3_0 -> (* GunJsServer *)
-            let v78 : string = "gunjs"
-            v78
+            let v83 : string = "gunjs"
+            v83
         | US3_1 -> (* GunRsServer *)
-            let v79 : string = "gunrs"
-            v79
+            let v82 : string = "gunrs"
+            v82
         | US3_2 -> (* SignalRServer *)
-            let v80 : string = "signalr"
-            v80
-    let v82 : string = $"db-{v76}-{v81}"
-    let v83 : (unit -> (Fable.Core.JSX.Element [])) = closure270(v0)
-    let v84 : US9 = US9_1(v83)
-    let v85 : US6 = US6_1(v82)
-    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v84, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v85, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
+            let v81 : string = "signalr"
+            v81
+    let v87 : string = $"db-{v79}-{v86}"
+    let v88 : (unit -> (Fable.Core.JSX.Element [])) = closure270(v0)
+    let v89 : US9 = US9_1(v88)
+    let v90 : US6 = US6_1(v87)
+    struct (v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v89, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v90, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v65, v66, v67, v68, v69, v70)
 and method68 (v0 : Mut24) : Fable.Core.JSX.Element =
-    let v109 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v110 : string = "useContext"
-    let v111 : string = "solid-js"
-    let v112 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v110 v111
-    let struct (v113 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v114 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v115 : (unit -> int32), v116 : (int32 -> unit), v117 : (unit -> string), v118 : (string -> unit), v119 : (unit -> string), v120 : (string -> unit), v121 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v122 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v123 : (unit -> (struct (US2 * obj * string) [])), v124 : ((struct (US2 * obj * string) []) -> unit), v125 : (unit -> (struct (System.Guid * obj) [])), v126 : ((struct (System.Guid * obj) []) -> unit), v127 : (unit -> (struct (System.Guid * obj) [])), v128 : ((struct (System.Guid * obj) []) -> unit), v129 : (unit -> (struct (System.Guid * int32) [])), v130 : ((struct (System.Guid * int32) []) -> unit), v131 : (unit -> US4), v132 : (US4 -> unit), v133 : (unit -> US5), v134 : (US5 -> unit)) = v112.Invoke v109 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v135 : (unit -> (obj [])) = closure266(v0)
-    let v136 : string = "#666"
-    let v137 : (US4 -> ((obj []) -> unit)) = method16(v135, v136)
-    let v138 : US4 = US4_0
-    let v139 : ((obj []) -> unit) = v137 v138
-    let v140 : string = "> db_client ()"
-    let v141 : obj = v140
-    let v142 : (obj []) = [|v141|]
-    v139 v142
-    let v143 : (Mut4 -> Fable.Core.JSX.Element) = closure21()
-    let v144 : (unit -> bool) = closure267(v0, v121)
-    let v145 : (bool -> unit) = closure268(v0, v122, v121)
-    let v146 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure269(v0)
-    method14(v143, v144, v145, v146)
+    let v96 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v97 : string = "useContext"
+    let v98 : string = "solid-js"
+    let v99 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v97 v98
+    let struct (v100 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v101 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v102 : (unit -> int32), v103 : (int32 -> unit), v104 : (unit -> string), v105 : (string -> unit), v106 : (unit -> string), v107 : (string -> unit), v108 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v109 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v110 : (unit -> (struct (US2 * obj * string) [])), v111 : ((struct (US2 * obj * string) []) -> unit), v112 : (unit -> (struct (System.Guid * obj) [])), v113 : ((struct (System.Guid * obj) []) -> unit), v114 : (unit -> (struct (System.Guid * obj) [])), v115 : ((struct (System.Guid * obj) []) -> unit), v116 : (unit -> (struct (System.Guid * int32) [])), v117 : ((struct (System.Guid * int32) []) -> unit), v118 : (unit -> US4), v119 : (US4 -> unit), v120 : (unit -> US5), v121 : (US5 -> unit)) = v99.Invoke v96 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v122 : (unit -> (obj [])) = closure266(v0)
+    let v123 : string = "#666"
+    let v124 : (US4 -> ((obj []) -> unit)) = method16(v122, v123)
+    let v125 : US4 = US4_0
+    let v126 : ((obj []) -> unit) = v124 v125
+    let v127 : string = "> db_client ()"
+    let v128 : obj = v127
+    let v129 : (obj []) = [|v128|]
+    v126 v129
+    let v130 : (Mut4 -> Fable.Core.JSX.Element) = closure21()
+    let v131 : (unit -> bool) = closure267(v0, v108)
+    let v132 : (bool -> unit) = closure268(v0, v109, v108)
+    let v133 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure269(v0)
+    method14(v130, v131, v132, v133)
 and closure265 () (v0 : Mut24) : Fable.Core.JSX.Element =
     method68(v0)
 and method72 (v0 : (Mut24 -> Fable.Core.JSX.Element), v1 : US2, v2 : US3) : Fable.Core.JSX.Element =
@@ -4788,7 +4754,7 @@ and closure235 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 :
     struct (v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v74, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v76, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v77, v63, v64, v65, v66, v67, v68, v69)
 and closure276 (v0 : (unit -> (struct (System.Guid * int32) []))) () : (obj []) =
     let v1 : (struct (System.Guid * int32) []) = v0 ()
-    let v2 : string = "profile_tmp_counter:"
+    let v2 : string = "profile_tmp_counter"
     let v3 : obj = struct (v2, v1)
     [|v3|]
 and closure277 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
@@ -4798,7 +4764,6 @@ and closure277 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
     let v4 : obj = v3
     let v5 : (obj []) = [|v4|]
     v2 v5
-    ()
 and closure278 (v0 : ((struct (System.Guid * int32) []) -> unit)) struct (v1 : (struct (System.Guid * int32) []), v2 : US2, v3 : System.Guid, v4 : int32) : unit =
     let v5 : (struct (System.Guid * int32) []) = [|struct (v3, v4)|]
     let v6 : int32 = v1.Length
@@ -4822,12 +4787,10 @@ and closure278 (v0 : ((struct (System.Guid * int32) []) -> unit)) struct (v1 : (
         v10.l0 <- v21
         ()
     v0 v9
-    ()
 and closure281 (v0 : (unit -> (struct (System.Guid * int32) [])), v1 : (int32 -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (System.Guid * int32) []) = v0 ()
     let v4 : int32 = v3.Length
     v1 v4
-    ()
 and closure280 (v0 : (unit -> (struct (System.Guid * int32) []))) (v1 : (int32 -> unit)) : ((exn -> unit) -> unit) =
     closure281(v0, v1)
 and closure279 (v0 : (unit -> (struct (System.Guid * int32) []))) (v1 : obj) : Fable.Core.JS.Promise<int32> =
@@ -4859,19 +4822,19 @@ and method77 (v0 : (struct (US2 * Fable.Core.JS.Promise<US17> * string) [])) : s
     let v6 : ((struct (US2 * Fable.Core.JS.Promise<US17> * string) []) -> unit) = v4.[1] |> unbox<(struct (US2 * Fable.Core.JS.Promise<US17> * string) []) -> unit>
     struct (v5, v6)
 and closure282 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US16), v6 : (unit -> (struct (US2 * Fable.Core.JS.Promise<US17> * string) []))) () : (obj []) =
-    let v7 : string = "content_address:"
+    let v7 : string = "content_address"
     let v8 : obj = struct (v7, v0)
     let v9 : (struct (System.Guid * int32) []) = v1 ()
-    let v10 : string = "getter:"
+    let v10 : string = "getter"
     let v11 : obj = struct (v10, v9)
     v3 ()
-    let v12 : string = "events:"
+    let v12 : string = "events"
     let v13 : obj = v12
     v4 ()
-    let v14 : string = "timers:"
+    let v14 : string = "timers"
     let v15 : obj = v14
     let v16 : US16 = v5 ()
-    let v17 : string = "value:"
+    let v17 : string = "value"
     let v18 : obj = struct (v17, v16)
     let v19 : (struct (US2 * Fable.Core.JS.Promise<US17> * string) []) = v6 ()
     let v20 : int32 = v19.Length
@@ -4880,104 +4843,104 @@ and closure282 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v
     while method21(v20, v22) do
         let v24 : int32 = v22.l0
         let struct (v25 : US2, v26 : Fable.Core.JS.Promise<US17>, v27 : string) = v19.[int v24]
-        let v32 : string =
+        let v35 : string =
             match v25 with
             | US2_0 -> (* GunJsClient *)
-                let v28 : string = "Gun JavaScript"
-                v28
+                let v30 : string = "Gun JavaScript"
+                v30
             | US2_1 -> (* GunRsClient *)
                 let v29 : string = "Gun Rust"
                 v29
             | US2_2 -> (* Memory *)
-                let v30 : string = "Memory"
-                v30
-            | US2_3 -> (* SignalRClient *)
-                let v31 : string = "SignalR"
+                let v31 : string = "Memory"
                 v31
-        v21.[int v24] <- struct (v32, v26)
-        let v33 : int32 = v24 + 1
-        v22.l0 <- v33
+            | US2_3 -> (* SignalRClient *)
+                let v28 : string = "SignalR"
+                v28
+        v21.[int v24] <- struct (v35, v26)
+        let v36 : int32 = v24 + 1
+        v22.l0 <- v36
         ()
-    let v34 : string = "subscriptions:"
-    let v35 : obj = struct (v34, v21)
-    let v36 : (struct (US2 * obj * string) []) = v2 ()
-    let v37 : int32 = v36.Length
-    let v38 : (string []) = Array.zeroCreate<string> (v37)
-    let v39 : Mut6 = {l0 = 0} : Mut6
-    while method21(v37, v39) do
-        let v41 : int32 = v39.l0
-        let struct (v42 : US2, v43 : obj, v44 : string) = v36.[int v41]
-        let v49 : string =
-            match v42 with
+    let v37 : string = "subscriptions"
+    let v38 : obj = struct (v37, v21)
+    let v39 : (struct (US2 * obj * string) []) = v2 ()
+    let v40 : int32 = v39.Length
+    let v41 : (string []) = Array.zeroCreate<string> (v40)
+    let v42 : Mut6 = {l0 = 0} : Mut6
+    while method21(v40, v42) do
+        let v44 : int32 = v42.l0
+        let struct (v45 : US2, v46 : obj, v47 : string) = v39.[int v44]
+        let v55 : string =
+            match v45 with
             | US2_0 -> (* GunJsClient *)
-                let v45 : string = "Gun JavaScript"
-                v45
+                let v50 : string = "Gun JavaScript"
+                v50
             | US2_1 -> (* GunRsClient *)
-                let v46 : string = "Gun Rust"
-                v46
+                let v49 : string = "Gun Rust"
+                v49
             | US2_2 -> (* Memory *)
-                let v47 : string = "Memory"
-                v47
+                let v51 : string = "Memory"
+                v51
             | US2_3 -> (* SignalRClient *)
                 let v48 : string = "SignalR"
                 v48
-        v38.[int v41] <- v49
-        let v50 : int32 = v41 + 1
-        v39.l0 <- v50
+        v41.[int v44] <- v55
+        let v56 : int32 = v44 + 1
+        v42.l0 <- v56
         ()
-    let v51 : string = "db_connections:"
-    let v52 : obj = struct (v51, v38)
-    [|v8; v11; v13; v15; v18; v35; v52|]
+    let v57 : string = "db_connections"
+    let v58 : obj = struct (v57, v41)
+    [|v8; v11; v13; v15; v18; v38; v58|]
 and method78 (v0 : int32, v1 : Mut26) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
 and closure284 (v0 : string, v1 : US2) () : (obj []) =
-    let v2 : string = "content_address:"
+    let v2 : string = "content_address"
     let v3 : obj = struct (v2, v0)
-    let v8 : string =
+    let v11 : string =
         match v1 with
         | US2_0 -> (* GunJsClient *)
-            let v4 : string = "Gun JavaScript"
-            v4
+            let v6 : string = "Gun JavaScript"
+            v6
         | US2_1 -> (* GunRsClient *)
             let v5 : string = "Gun Rust"
             v5
         | US2_2 -> (* Memory *)
-            let v6 : string = "Memory"
-            v6
-        | US2_3 -> (* SignalRClient *)
-            let v7 : string = "SignalR"
+            let v7 : string = "Memory"
             v7
-    let v9 : string = "client_type:"
-    let v10 : obj = struct (v9, v8)
-    [|v3; v10|]
+        | US2_3 -> (* SignalRClient *)
+            let v4 : string = "SignalR"
+            v4
+    let v12 : string = "client_type"
+    let v13 : obj = struct (v12, v11)
+    [|v3; v13|]
 and closure287 () (v0 : System.Guid) : int64 =
-    let v1 : string = v0.ToString ()
+    let v1 : string = (v0).ToString ()
     let v2 : int64 = int64 $"{v1.[0..7]}{v1.[9..12]}{v1.[14..17]}{v1.[19..20]}"
     v2
 and closure288 (v0 : US2, v1 : string, v2 : int32) () : (obj []) =
-    let v3 : string = "content_address:"
+    let v3 : string = "content_address"
     let v4 : obj = struct (v3, v1)
-    let v9 : string =
+    let v12 : string =
         match v0 with
         | US2_0 -> (* GunJsClient *)
-            let v5 : string = "Gun JavaScript"
-            v5
+            let v7 : string = "Gun JavaScript"
+            v7
         | US2_1 -> (* GunRsClient *)
             let v6 : string = "Gun Rust"
             v6
         | US2_2 -> (* Memory *)
-            let v7 : string = "Memory"
-            v7
-        | US2_3 -> (* SignalRClient *)
-            let v8 : string = "SignalR"
+            let v8 : string = "Memory"
             v8
-    let v10 : string = "client_type:"
-    let v11 : obj = struct (v10, v9)
-    let v12 : string = "new_value:"
-    let v13 : obj = struct (v12, v2)
-    [|v4; v11; v13|]
+        | US2_3 -> (* SignalRClient *)
+            let v5 : string = "SignalR"
+            v5
+    let v13 : string = "client_type"
+    let v14 : obj = struct (v13, v12)
+    let v15 : string = "new_value"
+    let v16 : obj = struct (v15, v2)
+    [|v4; v14; v16|]
 and method80 (v0 : int32, v1 : Mut27) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
@@ -4988,14 +4951,13 @@ and closure289 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
     let v4 : string = "> db_put > response' ()"
     let v5 : obj = v4
     let v6 : string = Fable.Core.JS.JSON.stringify v1
-    let v7 : string = "response':"
+    let v7 : string = "response'"
     let v8 : obj = struct (v7, v6)
     let v9 : (obj []) = [|v5; v8|]
     v3 v9
-    ()
 and method79 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v3 : (unit -> US4), v4 : (US16 -> unit), v5 : (unit -> US16), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : int32, v10 : System.Guid) : unit =
     let v11 : US16 = v5 ()
-    let v17 : bool =
+    let v18 : bool =
         match v11 with
         | US16_0 -> (* None *)
             true
@@ -5003,46 +4965,46 @@ and method79 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 
             let v15 : (System.Guid -> int64) = closure287()
             let v16 : bool = v14 <> v9 && v15 v10 > v15 v13
             v16
-    if v17 then
-        let v18 : (struct (System.Guid * int32) []) = v1 ()
-        let v19 : US4 = US4_2
-        let v20 : ((obj []) -> unit) = v6 v19
-        let v21 : string = "> use_fetch > on_value > set ()"
-        let v22 : obj = v21
-        let v23 : string = "old_value:"
-        let v24 : obj = struct (v23, v18)
-        let v29 : string =
+    if v18 then
+        let v19 : (struct (System.Guid * int32) []) = v1 ()
+        let v20 : US4 = US4_2
+        let v21 : ((obj []) -> unit) = v6 v20
+        let v22 : string = "> use_fetch > on_value > set ()"
+        let v23 : obj = v22
+        let v24 : string = "old_value"
+        let v25 : obj = struct (v24, v19)
+        let v33 : string =
             match v7 with
             | US2_0 -> (* GunJsClient *)
-                let v25 : string = "Gun JavaScript"
-                v25
-            | US2_1 -> (* GunRsClient *)
-                let v26 : string = "Gun Rust"
-                v26
-            | US2_2 -> (* Memory *)
-                let v27 : string = "Memory"
-                v27
-            | US2_3 -> (* SignalRClient *)
-                let v28 : string = "SignalR"
+                let v28 : string = "Gun JavaScript"
                 v28
-        let v30 : string = "client_type:"
-        let v31 : obj = struct (v30, v29)
-        let v32 : string = "new_guid':"
-        let v33 : obj = struct (v32, v10)
-        let v34 : string = "new_value_raw:"
-        let v35 : obj = struct (v34, v9)
-        let v36 : (obj []) = [|v22; v24; v31; v33; v35|]
-        v20 v36
-        v2 struct (v18, v7, v10, v9)
-        let v37 : US16 = US16_1(v7, v10, v9)
-        v4 v37
-        let v38 : int32 = v8.Length
-        let v39 : Mut6 = {l0 = 0} : Mut6
-        while method21(v38, v39) do
-            let v41 : int32 = v39.l0
-            let struct (v42 : US2, v43 : obj, v44 : string) = v8.[int v41]
-            let v45 : bool =
-                match v42, v7 with
+            | US2_1 -> (* GunRsClient *)
+                let v27 : string = "Gun Rust"
+                v27
+            | US2_2 -> (* Memory *)
+                let v29 : string = "Memory"
+                v29
+            | US2_3 -> (* SignalRClient *)
+                let v26 : string = "SignalR"
+                v26
+        let v34 : string = "client_type"
+        let v35 : obj = struct (v34, v33)
+        let v36 : string = "new_guid'"
+        let v37 : obj = struct (v36, v10)
+        let v38 : string = "new_value_raw"
+        let v39 : obj = struct (v38, v9)
+        let v40 : (obj []) = [|v23; v25; v35; v37; v39|]
+        v21 v40
+        v2 struct (v19, v7, v10, v9)
+        let v41 : US16 = US16_1(v7, v10, v9)
+        v4 v41
+        let v42 : int32 = v8.Length
+        let v43 : Mut6 = {l0 = 0} : Mut6
+        while method21(v42, v43) do
+            let v45 : int32 = v43.l0
+            let struct (v46 : US2, v47 : obj, v48 : string) = v8.[int v45]
+            let v49 : bool =
+                match v46, v7 with
                 | US2_0, US2_0 -> (* GunJsClient *)
                     true
                 | US2_1, US2_1 -> (* GunRsClient *)
@@ -5053,123 +5015,121 @@ and method79 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 
                     true
                 | _ ->
                     false
-            let v46 : bool = v45 <> true
-            if v46 then
-                let v47 : US4 = US4_2
-                let v48 : ((obj []) -> unit) = v6 v47
-                let v49 : string = "> use_fetch > on_value > set () > db_put"
-                let v50 : obj = v49
-                let v51 : obj = struct (v23, v18)
-                let v56 : string =
+            let v50 : bool = v49 <> true
+            if v50 then
+                let v51 : US4 = US4_2
+                let v52 : ((obj []) -> unit) = v6 v51
+                let v53 : string = "> use_fetch > on_value > set () > db_put"
+                let v54 : obj = v53
+                let v55 : obj = struct (v24, v19)
+                let v63 : string =
                     match v7 with
                     | US2_0 -> (* GunJsClient *)
-                        let v52 : string = "Gun JavaScript"
-                        v52
+                        let v58 : string = "Gun JavaScript"
+                        v58
                     | US2_1 -> (* GunRsClient *)
-                        let v53 : string = "Gun Rust"
-                        v53
+                        let v57 : string = "Gun Rust"
+                        v57
                     | US2_2 -> (* Memory *)
-                        let v54 : string = "Memory"
-                        v54
+                        let v59 : string = "Memory"
+                        v59
                     | US2_3 -> (* SignalRClient *)
-                        let v55 : string = "SignalR"
-                        v55
-                let v57 : obj = struct (v30, v56)
-                let v58 : obj = struct (v32, v10)
-                let v59 : obj = struct (v34, v9)
-                let v64 : string =
-                    match v42 with
+                        let v56 : string = "SignalR"
+                        v56
+                let v64 : obj = struct (v34, v63)
+                let v65 : obj = struct (v36, v10)
+                let v66 : obj = struct (v38, v9)
+                let v74 : string =
+                    match v46 with
                     | US2_0 -> (* GunJsClient *)
-                        let v60 : string = "Gun JavaScript"
-                        v60
+                        let v69 : string = "Gun JavaScript"
+                        v69
                     | US2_1 -> (* GunRsClient *)
-                        let v61 : string = "Gun Rust"
-                        v61
+                        let v68 : string = "Gun Rust"
+                        v68
                     | US2_2 -> (* Memory *)
-                        let v62 : string = "Memory"
-                        v62
+                        let v70 : string = "Memory"
+                        v70
                     | US2_3 -> (* SignalRClient *)
-                        let v63 : string = "SignalR"
-                        v63
-                let v65 : string = "connection_client_type:"
-                let v66 : obj = struct (v65, v64)
-                let v67 : (obj []) = [|v50; v51; v57; v58; v59; v66|]
-                v48 v67
-                let v68 : (unit -> (obj [])) = closure288(v42, v0, v9)
-                let v69 : string = "#666"
-                let v70 : (US4 -> ((obj []) -> unit)) = method17(v3, v68, v69)
-                let v71 : US4 = US4_0
-                let v72 : ((obj []) -> unit) = v70 v71
-                let v73 : string = "> db_put ()"
-                let v74 : obj = v73
-                let v75 : (obj []) = [|v74|]
-                v72 v75
-                match v42 with
+                        let v67 : string = "SignalR"
+                        v67
+                let v75 : string = "connection_client_type"
+                let v76 : obj = struct (v75, v74)
+                let v77 : (obj []) = [|v54; v55; v64; v65; v66; v76|]
+                v52 v77
+                let v78 : (unit -> (obj [])) = closure288(v46, v0, v9)
+                let v79 : string = "#666"
+                let v80 : (US4 -> ((obj []) -> unit)) = method17(v3, v78, v79)
+                let v81 : US4 = US4_0
+                let v82 : ((obj []) -> unit) = v80 v81
+                let v83 : string = "> db_put ()"
+                let v84 : obj = v83
+                let v85 : (obj []) = [|v84|]
+                v82 v85
+                match v46 with
                 | US2_0 -> (* GunJsClient *)
-                    let v76 : (string []) = v0.Split [| '/' |]
-                    let v77 : string = "get"
-                    let v78 : obj = (Fable.Core.JsInterop.(?)) v43 v77
-                    let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
-                    let v80 : string = "tictactoe_spiral"
-                    let v81 : obj = v79 v80
-                    let v82 : int32 = v76.Length
-                    let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
-                    while method80(v82, v83) do
-                        let v85 : int32 = v83.l0
-                        let v86 : obj = v83.l1
-                        let v87 : string = v76.[int v85]
-                        let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
-                        let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
-                        let v90 : obj = v89 v87
-                        let v91 : int32 = v85 + 1
-                        v83.l0 <- v91
-                        v83.l1 <- v90
+                    let v112 : (string []) = v0.Split [| '/' |]
+                    let v113 : string = "get"
+                    let v114 : obj = (Fable.Core.JsInterop.(?)) v47 v113
+                    let v115 : (string -> obj) = v114 |> unbox<(string -> obj)>
+                    let v116 : string = "tictactoe"
+                    let v117 : obj = v115 v116
+                    let v118 : int32 = v112.Length
+                    let v119 : Mut27 = {l0 = 0; l1 = v117} : Mut27
+                    while method80(v118, v119) do
+                        let v121 : int32 = v119.l0
+                        let v122 : obj = v119.l1
+                        let v123 : string = v112.[int v121]
+                        let v124 : obj = (Fable.Core.JsInterop.(?)) v122 v113
+                        let v125 : (string -> obj) = v124 |> unbox<(string -> obj)>
+                        let v126 : obj = v125 v123
+                        let v127 : int32 = v121 + 1
+                        v119.l0 <- v127
+                        v119.l1 <- v126
                         ()
-                    let v92 : obj = v83.l1
-                    let v93 : string = "put"
-                    let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
-                    let v95 : (int32 -> unit) = v94 |> unbox<(int32 -> unit)>
-                    v95 v9
-                    ()
+                    let v128 : obj = v119.l1
+                    let v129 : string = "put"
+                    let v130 : obj = (Fable.Core.JsInterop.(?)) v128 v129
+                    let v131 : (int32 -> unit) = v130 |> unbox<(int32 -> unit)>
+                    v131 v9
                 | US2_1 -> (* GunRsClient *)
-                    let v96 : (string []) = v0.Split [| '/' |]
-                    let v97 : string = "get"
-                    let v98 : obj = (Fable.Core.JsInterop.(?)) v43 v97
-                    let v99 : (string -> obj) = v98 |> unbox<(string -> obj)>
-                    let v100 : string = "tictactoe_spiral"
-                    let v101 : obj = v99 v100
-                    let v102 : int32 = v96.Length
-                    let v103 : Mut27 = {l0 = 0; l1 = v101} : Mut27
-                    while method80(v102, v103) do
-                        let v105 : int32 = v103.l0
-                        let v106 : obj = v103.l1
-                        let v107 : string = v96.[int v105]
-                        let v108 : obj = (Fable.Core.JsInterop.(?)) v106 v97
-                        let v109 : (string -> obj) = v108 |> unbox<(string -> obj)>
-                        let v110 : obj = v109 v107
-                        let v111 : int32 = v105 + 1
-                        v103.l0 <- v111
-                        v103.l1 <- v110
+                    let v92 : (string []) = v0.Split [| '/' |]
+                    let v93 : string = "get"
+                    let v94 : obj = (Fable.Core.JsInterop.(?)) v47 v93
+                    let v95 : (string -> obj) = v94 |> unbox<(string -> obj)>
+                    let v96 : string = "tictactoe"
+                    let v97 : obj = v95 v96
+                    let v98 : int32 = v92.Length
+                    let v99 : Mut27 = {l0 = 0; l1 = v97} : Mut27
+                    while method80(v98, v99) do
+                        let v101 : int32 = v99.l0
+                        let v102 : obj = v99.l1
+                        let v103 : string = v92.[int v101]
+                        let v104 : obj = (Fable.Core.JsInterop.(?)) v102 v93
+                        let v105 : (string -> obj) = v104 |> unbox<(string -> obj)>
+                        let v106 : obj = v105 v103
+                        let v107 : int32 = v101 + 1
+                        v99.l0 <- v107
+                        v99.l1 <- v106
                         ()
-                    let v112 : obj = v103.l1
-                    let v113 : string = "put"
-                    let v114 : obj = (Fable.Core.JsInterop.(?)) v112 v113
-                    let v115 : (int32 -> unit) = v114 |> unbox<(int32 -> unit)>
-                    v115 v9
-                    ()
+                    let v108 : obj = v99.l1
+                    let v109 : string = "put"
+                    let v110 : obj = (Fable.Core.JsInterop.(?)) v108 v109
+                    let v111 : (int32 -> unit) = v110 |> unbox<(int32 -> unit)>
+                    v111 v9
                 | US2_2 -> (* Memory *)
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
-                    let v116 : string = v9 |> unbox<string>
-                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
-                    let v118 : string = "alias"
-                    let v119 : UH0 = UH0_3(v118, v0, v116)
-                    let v120 : Fable.Core.JS.Promise<UH1> = v117.invokeAsPromise v119
-                    let v121 : (UH1 -> unit) = closure289(v70)
-                    v120 |> Promise.iter v121
+                    let v86 : string = v9 |> unbox<string>
+                    let v87 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v47 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
+                    let v88 : string = "alias"
+                    let v89 : UH0 = UH0_3(v88, v0, v86)
+                    let v90 : Fable.Core.JS.Promise<UH1> = v87.invokeAsPromise v89
+                    let v91 : (UH1 -> unit) = closure289(v80)
+                    v90 |> Promise.iter v91
                     ()
-            let v122 : int32 = v41 + 1
-            v39.l0 <- v122
+            let v132 : int32 = v45 + 1
+            v43.l0 <- v132
             ()
         ()
 and closure286 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v3 : (unit -> US4), v4 : (US16 -> unit), v5 : (unit -> US16), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : (US4 -> ((obj []) -> unit)), v10 : System.Guid, v11 : int32) (v12 : obj) : unit =
@@ -5177,9 +5137,9 @@ and closure286 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v
     let v14 : ((obj []) -> unit) = v9 v13
     let v15 : string = "> db_on > on_value ()"
     let v16 : obj = v15
-    let v17 : string = "v:"
+    let v17 : string = "v"
     let v18 : obj = struct (v17, v10, v11)
-    let v19 : string = "k:"
+    let v19 : string = "k"
     let v20 : obj = struct (v19, v12)
     let v21 : (obj []) = [|v16; v18; v20|]
     v14 v21
@@ -5191,11 +5151,10 @@ and closure291 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
     let v3 : ((obj []) -> unit) = v0 v2
     let v4 : string = "> db_on > stream next ()"
     let v5 : obj = v4
-    let v6 : string = "msg:"
+    let v6 : string = "msg"
     let v7 : obj = struct (v6, v1)
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
-    ()
 and closure292 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
     let v1 : US4 = US4_2
     let v2 : ((obj []) -> unit) = v0 v1
@@ -5203,18 +5162,16 @@ and closure292 (v0 : (US4 -> ((obj []) -> unit))) () : unit =
     let v4 : obj = v3
     let v5 : (obj []) = [|v4|]
     v2 v5
-    ()
 and closure293 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
     let v2 : US4 = US4_2
     let v3 : ((obj []) -> unit) = v0 v2
     let v4 : string = "> db_on > stream err ()"
     let v5 : obj = v4
     let v6 : string = Fable.Core.JS.JSON.stringify v1
-    let v7 : string = "err:"
+    let v7 : string = "err"
     let v8 : obj = struct (v7, v6)
     let v9 : (obj []) = [|v5; v8|]
     v3 v9
-    ()
 and closure290 (v0 : (US4 -> ((obj []) -> unit))) (v1 : Fable.SignalR.StreamResult<UH1>) : US17 =
     let v2 : (UH1 -> unit) = closure291(v0)
     let v3 : obj = v2
@@ -5237,9 +5194,9 @@ and closure290 (v0 : (US4 -> ((obj []) -> unit))) (v1 : Fable.SignalR.StreamResu
     let v20 : string = "> db_on > streamFrom subscribe ()"
     let v21 : obj = v20
     let v22 : string = Fable.Core.JS.JSON.stringify v1
-    let v23 : string = "stream:"
+    let v23 : string = "stream"
     let v24 : obj = struct (v23, v22)
-    let v25 : string = "subscription (IDisposable):"
+    let v25 : string = "subscription (IDisposable)"
     let v26 : obj = struct (v25, v17)
     let v27 : (obj []) = [|v21; v24; v26|]
     v19 v27
@@ -5293,7 +5250,7 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
             let v26 : int32 = v25 - 1
             let v27 : US18 = v21.l1
             let struct (v28 : US2, v29 : Fable.Core.JS.Promise<US17>, v30 : string) = v10.[int v26]
-            let v40 : US18 =
+            let v37 : US18 =
                 match v27 with
                 | US18_0 -> (* None *)
                     let v31 : bool =
@@ -5318,15 +5275,15 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
                         US18_1(v28, v29, v30)
                     else
                         US18_0
-                | US18_1(v37, v38, v39) -> (* Some *)
+                | _ ->
                     v27
-            let v41 : int32 = v23 + 1
-            v21.l0 <- v41
-            v21.l1 <- v40
+            let v38 : int32 = v23 + 1
+            v21.l0 <- v38
+            v21.l1 <- v37
             ()
-        let v42 : US18 = v21.l1
-        let struct (v110 : US2, v111 : Fable.Core.JS.Promise<US17>, v112 : string) =
-            match v42 with
+        let v39 : US18 = v21.l1
+        let struct (v113 : US2, v114 : Fable.Core.JS.Promise<US17>, v115 : string) =
+            match v39 with
             | US18_0 -> (* None *)
                 let v43 : (unit -> (obj [])) = closure284(v0, v16)
                 let v44 : string = "#666"
@@ -5339,153 +5296,151 @@ and closure283 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
                 v47 v50
                 let v51 : (struct (System.Guid * int32) -> (obj -> unit)) = closure285(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
                 let v52 : (struct (obj * int32) -> unit) = Fable.Core.JsInterop.emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
-                let v106 : Fable.Core.JS.Promise<US17> =
+                let v109 : Fable.Core.JS.Promise<US17> =
                     match v16 with
                     | US2_0 -> (* GunJsClient *)
-                        let v53 : (string []) = v0.Split [| '/' |]
-                        let v54 : string = "get"
-                        let v55 : obj = (Fable.Core.JsInterop.(?)) v17 v54
-                        let v56 : (string -> obj) = v55 |> unbox<(string -> obj)>
-                        let v57 : string = "tictactoe_spiral"
-                        let v58 : obj = v56 v57
-                        let v59 : int32 = v53.Length
-                        let v60 : Mut27 = {l0 = 0; l1 = v58} : Mut27
-                        while method80(v59, v60) do
-                            let v62 : int32 = v60.l0
-                            let v63 : obj = v60.l1
-                            let v64 : string = v53.[int v62]
-                            let v65 : obj = (Fable.Core.JsInterop.(?)) v63 v54
-                            let v66 : (string -> obj) = v65 |> unbox<(string -> obj)>
-                            let v67 : obj = v66 v64
-                            let v68 : int32 = v62 + 1
-                            v60.l0 <- v68
-                            v60.l1 <- v67
+                        let v82 : (string []) = v0.Split [| '/' |]
+                        let v83 : string = "get"
+                        let v84 : obj = (Fable.Core.JsInterop.(?)) v17 v83
+                        let v85 : (string -> obj) = v84 |> unbox<(string -> obj)>
+                        let v86 : string = "tictactoe"
+                        let v87 : obj = v85 v86
+                        let v88 : int32 = v82.Length
+                        let v89 : Mut27 = {l0 = 0; l1 = v87} : Mut27
+                        while method80(v88, v89) do
+                            let v91 : int32 = v89.l0
+                            let v92 : obj = v89.l1
+                            let v93 : string = v82.[int v91]
+                            let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v83
+                            let v95 : (string -> obj) = v94 |> unbox<(string -> obj)>
+                            let v96 : obj = v95 v93
+                            let v97 : int32 = v91 + 1
+                            v89.l0 <- v97
+                            v89.l1 <- v96
                             ()
-                        let v69 : obj = v60.l1
-                        let v70 : string = "on"
-                        let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v70
-                        let v72 : ((struct (obj * int32) -> unit) -> unit) = v71 |> unbox<((struct (obj * int32) -> unit) -> unit)>
-                        v72 v52
-                        let v73 : int64 = System.DateTime.UtcNow.Ticks
-                        let v74 : US17 = US17_1(v73)
-                        let v75 : Fable.Core.JS.Promise<US17> = Promise.lift v74
-                        v75
+                        let v98 : obj = v89.l1
+                        let v99 : string = "on"
+                        let v100 : obj = (Fable.Core.JsInterop.(?)) v98 v99
+                        let v101 : ((struct (obj * int32) -> unit) -> unit) = v100 |> unbox<((struct (obj * int32) -> unit) -> unit)>
+                        v101 v52
+                        let v102 : int64 = System.DateTime.UtcNow.Ticks
+                        let v103 : US17 = US17_1(v102)
+                        let v104 : Fable.Core.JS.Promise<US17> = Promise.lift v103
+                        v104
                     | US2_1 -> (* GunRsClient *)
-                        let v76 : (string []) = v0.Split [| '/' |]
-                        let v77 : string = "get"
-                        let v78 : obj = (Fable.Core.JsInterop.(?)) v17 v77
-                        let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
-                        let v80 : string = "tictactoe_spiral"
-                        let v81 : obj = v79 v80
-                        let v82 : int32 = v76.Length
-                        let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
-                        while method80(v82, v83) do
-                            let v85 : int32 = v83.l0
-                            let v86 : obj = v83.l1
-                            let v87 : string = v76.[int v85]
-                            let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
-                            let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
-                            let v90 : obj = v89 v87
-                            let v91 : int32 = v85 + 1
-                            v83.l0 <- v91
-                            v83.l1 <- v90
+                        let v59 : (string []) = v0.Split [| '/' |]
+                        let v60 : string = "get"
+                        let v61 : obj = (Fable.Core.JsInterop.(?)) v17 v60
+                        let v62 : (string -> obj) = v61 |> unbox<(string -> obj)>
+                        let v63 : string = "tictactoe"
+                        let v64 : obj = v62 v63
+                        let v65 : int32 = v59.Length
+                        let v66 : Mut27 = {l0 = 0; l1 = v64} : Mut27
+                        while method80(v65, v66) do
+                            let v68 : int32 = v66.l0
+                            let v69 : obj = v66.l1
+                            let v70 : string = v59.[int v68]
+                            let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v60
+                            let v72 : (string -> obj) = v71 |> unbox<(string -> obj)>
+                            let v73 : obj = v72 v70
+                            let v74 : int32 = v68 + 1
+                            v66.l0 <- v74
+                            v66.l1 <- v73
                             ()
-                        let v92 : obj = v83.l1
-                        let v93 : string = "on"
-                        let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
-                        let v95 : ((struct (obj * int32) -> unit) -> int64) = v94 |> unbox<((struct (obj * int32) -> unit) -> int64)>
-                        let v96 : int64 = v95 v52
-                        let v97 : US17 = US17_1(v96)
-                        let v98 : Fable.Core.JS.Promise<US17> = Promise.lift v97
-                        v98
+                        let v75 : obj = v66.l1
+                        let v76 : string = "on"
+                        let v77 : obj = (Fable.Core.JsInterop.(?)) v75 v76
+                        let v78 : ((struct (obj * int32) -> unit) -> int64) = v77 |> unbox<((struct (obj * int32) -> unit) -> int64)>
+                        let v79 : int64 = v78 v52
+                        let v80 : US17 = US17_1(v79)
+                        let v81 : Fable.Core.JS.Promise<US17> = Promise.lift v80
+                        v81
                     | US2_2 -> (* Memory *)
                         failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
                     | US2_3 -> (* SignalRClient *)
-                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
-                        let v101 : string = "alias"
-                        let v102 : UH0 = UH0_1(v101, v0)
-                        let v103 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v100.streamFromAsPromise v102
-                        let v104 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
-                        let v105 : Fable.Core.JS.Promise<US17> = v103 |> Promise.map v104
-                        v105
-                struct (v16, v106, v18)
-            | US18_1(v107, v108, v109) -> (* Some *)
-                struct (v107, v108, v109)
-        v12.[int v15] <- struct (v110, v111, v112)
-        let v113 : int32 = v15 + 1
-        v13.l0 <- v113
+                        let v53 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
+                        let v54 : string = "alias"
+                        let v55 : UH0 = UH0_1(v54, v0)
+                        let v56 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v53.streamFromAsPromise v55
+                        let v57 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
+                        let v58 : Fable.Core.JS.Promise<US17> = v56 |> Promise.map v57
+                        v58
+                struct (v16, v109, v18)
+            | US18_1(v40, v41, v42) -> (* Some *)
+                struct (v40, v41, v42)
+        v12.[int v15] <- struct (v113, v114, v115)
+        let v116 : int32 = v15 + 1
+        v13.l0 <- v116
         ()
-    let v114 : int32 = v10.Length
-    let v115 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v114)
-    let v116 : Mut6 = {l0 = 0} : Mut6
-    while method21(v114, v116) do
-        let v118 : int32 = v116.l0
-        let struct (v119 : US2, v120 : Fable.Core.JS.Promise<US17>, v121 : string) = v10.[int v118]
-        v115.[int v118] <- struct (v119, v121)
-        let v122 : int32 = v118 + 1
-        v116.l0 <- v122
+    let v117 : int32 = v10.Length
+    let v118 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v117)
+    let v119 : Mut6 = {l0 = 0} : Mut6
+    while method21(v117, v119) do
+        let v121 : int32 = v119.l0
+        let struct (v122 : US2, v123 : Fable.Core.JS.Promise<US17>, v124 : string) = v10.[int v121]
+        v118.[int v121] <- struct (v122, v124)
+        let v125 : int32 = v121 + 1
+        v119.l0 <- v125
         ()
-    let v123 : int32 = v12.Length
-    let v124 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v123)
-    let v125 : Mut6 = {l0 = 0} : Mut6
-    while method21(v123, v125) do
-        let v127 : int32 = v125.l0
-        let struct (v128 : US2, v129 : Fable.Core.JS.Promise<US17>, v130 : string) = v12.[int v127]
-        v124.[int v127] <- struct (v128, v130)
-        let v131 : int32 = v127 + 1
-        v125.l0 <- v131
+    let v126 : int32 = v12.Length
+    let v127 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v126)
+    let v128 : Mut6 = {l0 = 0} : Mut6
+    while method21(v126, v128) do
+        let v130 : int32 = v128.l0
+        let struct (v131 : US2, v132 : Fable.Core.JS.Promise<US17>, v133 : string) = v12.[int v130]
+        v127.[int v130] <- struct (v131, v133)
+        let v134 : int32 = v130 + 1
+        v128.l0 <- v134
         ()
-    let v132 : int32 = v115.Length
-    let v133 : int32 = v124.Length
-    let v134 : bool = v132 = v133
-    let v135 : bool = v134 <> true
-    let v138 : bool =
-        if v135 then
+    let v135 : int32 = v118.Length
+    let v136 : int32 = v127.Length
+    let v137 : bool = v135 = v136
+    let v138 : bool = v137 <> true
+    let v141 : bool =
+        if v138 then
             false
         else
-            let v136 : int32 = 0
-            method81(v115, v124, v136)
-    let v139 : bool = v138 <> true
-    if v139 then
-        let v140 : US4 = US4_2
-        let v141 : ((obj []) -> unit) = v4 v140
-        let v142 : string = "> use_fetch > connections_change"
-        let v143 : obj = v142
-        let v144 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v123)
-        let v145 : Mut6 = {l0 = 0} : Mut6
-        while method21(v123, v145) do
-            let v147 : int32 = v145.l0
-            let struct (v148 : US2, v149 : Fable.Core.JS.Promise<US17>, v150 : string) = v12.[int v147]
-            let v155 : string =
-                match v148 with
+            let v139 : int32 = 0
+            method81(v118, v127, v139)
+    let v142 : bool = v141 <> true
+    if v142 then
+        let v143 : US4 = US4_2
+        let v144 : ((obj []) -> unit) = v4 v143
+        let v145 : string = "> use_fetch > connections_change"
+        let v146 : obj = v145
+        let v147 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v126)
+        let v148 : Mut6 = {l0 = 0} : Mut6
+        while method21(v126, v148) do
+            let v150 : int32 = v148.l0
+            let struct (v151 : US2, v152 : Fable.Core.JS.Promise<US17>, v153 : string) = v12.[int v150]
+            let v161 : string =
+                match v151 with
                 | US2_0 -> (* GunJsClient *)
-                    let v151 : string = "Gun JavaScript"
-                    v151
+                    let v156 : string = "Gun JavaScript"
+                    v156
                 | US2_1 -> (* GunRsClient *)
-                    let v152 : string = "Gun Rust"
-                    v152
+                    let v155 : string = "Gun Rust"
+                    v155
                 | US2_2 -> (* Memory *)
-                    let v153 : string = "Memory"
-                    v153
+                    let v157 : string = "Memory"
+                    v157
                 | US2_3 -> (* SignalRClient *)
                     let v154 : string = "SignalR"
                     v154
-            v144.[int v147] <- struct (v155, v149)
-            let v156 : int32 = v147 + 1
-            v145.l0 <- v156
+            v147.[int v150] <- struct (v161, v152)
+            let v162 : int32 = v150 + 1
+            v148.l0 <- v162
             ()
-        let v157 : string = "new_subscriptions:"
-        let v158 : obj = struct (v157, v144)
-        let v159 : (obj []) = [|v143; v158|]
-        v141 v159
+        let v163 : string = "new_subscriptions"
+        let v164 : obj = struct (v163, v147)
+        let v165 : (obj []) = [|v146; v164|]
+        v144 v165
         v2 v12
-        ()
 and closure294 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : ((struct (US2 * obj * string) []) -> unit)) () : unit =
     let v2 : (struct (US2 * obj * string) []) = v0 ()
     v1 v2
-    ()
 and closure296 (v0 : string) () : (obj []) =
-    let v1 : string = "content_address:"
+    let v1 : string = "content_address"
     let v2 : obj = struct (v1, v0)
     [|v2|]
 and closure295 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : string, v2 : (unit -> US4), v3 : (US4 -> ((obj []) -> unit))) () : unit =
@@ -5509,7 +5464,6 @@ and closure295 (v0 : ((struct (US2 * obj * string) []) -> unit), v1 : string, v2
     let v19 : obj = v18
     let v20 : (obj []) = [|v19|]
     v17 v20
-    ()
 and closure298 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v3 : (unit -> US4), v4 : (US16 -> unit), v5 : (unit -> US16), v6 : (US4 -> ((obj []) -> unit)), v7 : (struct (US2 * obj * string) []), v8 : System.Guid) (v9 : int32) : unit =
     let v10 : US2 = US2_2
     method79(v0, v1, v2, v3, v4, v5, v6, v10, v7, v9, v8)
@@ -5517,8 +5471,8 @@ and closure297 (v0 : (obj -> Fable.Core.JS.Promise<int32>), v1 : (unit -> (struc
     let v9 : (struct (US2 * obj * string) []) = v1 ()
     let v10 : int64 = System.DateTime.UtcNow.Ticks
     let v11 : System.Guid = System.Guid.NewGuid ()
-    let v12 : string = v11.ToString ()
-    let v13 : string = v10.ToString ()
+    let v12 : string = (v11).ToString ()
+    let v13 : string = (v10).ToString ()
     let v14 : System.Guid = System.Guid $"{v13.[0..7]}-{v13.[8..11]}-{v13.[12..15]}-{v13.[16..17]}{v12.[21..]}"
     let v15 : obj = ()
     let v16 : Fable.Core.JS.Promise<int32> = v0 v15
@@ -5535,68 +5489,68 @@ and closure299 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((
     let v13 : (struct (US2 * obj * string) []) = v0 ()
     let v14 : int64 = System.DateTime.UtcNow.Ticks
     let v15 : System.Guid = System.Guid.NewGuid ()
-    let v16 : string = v15.ToString ()
-    let v17 : string = v14.ToString ()
+    let v16 : string = (v15).ToString ()
+    let v17 : string = (v14).ToString ()
     let v18 : System.Guid = System.Guid $"{v17.[0..7]}-{v17.[8..11]}-{v17.[12..15]}-{v17.[16..17]}{v16.[21..]}"
     let v19 : US2 = US2_2
     let v20 : int32 = Fable.Core.JsInterop.emitJsExpr () "null"
     method79(v2, v3, v4, v5, v6, v7, v1, v19, v13, v20, v18)
 and method74 (v0 : string, v1 : (unit -> (struct (System.Guid * int32) [])), v2 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit), v3 : (obj -> Fable.Core.JS.Promise<int32>)) : struct ((unit -> unit) * (unit -> unit)) =
-    let v112 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v113 : string = "useContext"
-    let v114 : string = "solid-js"
-    let v115 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
-    let struct (v116 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v117 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v118 : (unit -> int32), v119 : (int32 -> unit), v120 : (unit -> string), v121 : (string -> unit), v122 : (unit -> string), v123 : (string -> unit), v124 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v125 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v126 : (unit -> (struct (US2 * obj * string) [])), v127 : ((struct (US2 * obj * string) []) -> unit), v128 : (unit -> (struct (System.Guid * obj) [])), v129 : ((struct (System.Guid * obj) []) -> unit), v130 : (unit -> (struct (System.Guid * obj) [])), v131 : ((struct (System.Guid * obj) []) -> unit), v132 : (unit -> (struct (System.Guid * int32) [])), v133 : ((struct (System.Guid * int32) []) -> unit), v134 : (unit -> US4), v135 : (US4 -> unit), v136 : (unit -> US5), v137 : (US5 -> unit)) = v115.Invoke v112 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v246 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v247 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
-    let struct (v248 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v249 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v250 : (unit -> int32), v251 : (int32 -> unit), v252 : (unit -> string), v253 : (string -> unit), v254 : (unit -> string), v255 : (string -> unit), v256 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v257 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v258 : (unit -> (struct (US2 * obj * string) [])), v259 : ((struct (US2 * obj * string) []) -> unit), v260 : (unit -> (struct (System.Guid * obj) [])), v261 : ((struct (System.Guid * obj) []) -> unit), v262 : (unit -> (struct (System.Guid * obj) [])), v263 : ((struct (System.Guid * obj) []) -> unit), v264 : (unit -> (struct (System.Guid * int32) [])), v265 : ((struct (System.Guid * int32) []) -> unit), v266 : (unit -> US4), v267 : (US4 -> unit), v268 : (unit -> US5), v269 : (US5 -> unit)) = v247.Invoke v246 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let struct (v270 : (unit -> unit), v271 : (unit -> unit)) = method75()
-    let struct (v272 : (unit -> unit), v273 : (unit -> unit)) = method75()
-    let v274 : US16 = US16_0
-    let struct (v275 : (unit -> US16), v276 : (US16 -> unit)) = method76(v274)
-    let v277 : (struct (US2 * Fable.Core.JS.Promise<US17> * string) []) = [||]
-    let struct (v278 : (unit -> (struct (US2 * Fable.Core.JS.Promise<US17> * string) [])), v279 : ((struct (US2 * Fable.Core.JS.Promise<US17> * string) []) -> unit)) = method77(v277)
-    let v280 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
-    let v281 : int32 = v280.Length
-    let v282 : Mut25 = {l0 = 0; l1 = 100000} : Mut25
-    while method71(v281, v282) do
-        let v284 : int32 = v282.l0
-        let v285 : int32 = v282.l1
-        let v286 : uint8 = v280.[int v284]
-        let v287 : int32 = v286 |> unbox<int32>
-        let v288 : int32 = v287 * 14
-        let v289 : int32 = v285 + v288
-        let v290 : int32 = v284 + 1
-        v282.l0 <- v290
-        v282.l1 <- v289
+    let v99 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v100 : string = "useContext"
+    let v101 : string = "solid-js"
+    let v102 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v100 v101
+    let struct (v103 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v104 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v105 : (unit -> int32), v106 : (int32 -> unit), v107 : (unit -> string), v108 : (string -> unit), v109 : (unit -> string), v110 : (string -> unit), v111 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v112 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v113 : (unit -> (struct (US2 * obj * string) [])), v114 : ((struct (US2 * obj * string) []) -> unit), v115 : (unit -> (struct (System.Guid * obj) [])), v116 : ((struct (System.Guid * obj) []) -> unit), v117 : (unit -> (struct (System.Guid * obj) [])), v118 : ((struct (System.Guid * obj) []) -> unit), v119 : (unit -> (struct (System.Guid * int32) [])), v120 : ((struct (System.Guid * int32) []) -> unit), v121 : (unit -> US4), v122 : (US4 -> unit), v123 : (unit -> US5), v124 : (US5 -> unit)) = v102.Invoke v99 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v220 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v221 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v100 v101
+    let struct (v222 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v223 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v224 : (unit -> int32), v225 : (int32 -> unit), v226 : (unit -> string), v227 : (string -> unit), v228 : (unit -> string), v229 : (string -> unit), v230 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v231 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v232 : (unit -> (struct (US2 * obj * string) [])), v233 : ((struct (US2 * obj * string) []) -> unit), v234 : (unit -> (struct (System.Guid * obj) [])), v235 : ((struct (System.Guid * obj) []) -> unit), v236 : (unit -> (struct (System.Guid * obj) [])), v237 : ((struct (System.Guid * obj) []) -> unit), v238 : (unit -> (struct (System.Guid * int32) [])), v239 : ((struct (System.Guid * int32) []) -> unit), v240 : (unit -> US4), v241 : (US4 -> unit), v242 : (unit -> US5), v243 : (US5 -> unit)) = v221.Invoke v220 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let struct (v244 : (unit -> unit), v245 : (unit -> unit)) = method75()
+    let struct (v246 : (unit -> unit), v247 : (unit -> unit)) = method75()
+    let v248 : US16 = US16_0
+    let struct (v249 : (unit -> US16), v250 : (US16 -> unit)) = method76(v248)
+    let v251 : (struct (US2 * Fable.Core.JS.Promise<US17> * string) []) = [||]
+    let struct (v252 : (unit -> (struct (US2 * Fable.Core.JS.Promise<US17> * string) [])), v253 : ((struct (US2 * Fable.Core.JS.Promise<US17> * string) []) -> unit)) = method77(v251)
+    let v254 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
+    let v255 : int32 = v254.Length
+    let v256 : Mut25 = {l0 = 0; l1 = 100000} : Mut25
+    while method71(v255, v256) do
+        let v258 : int32 = v256.l0
+        let v259 : int32 = v256.l1
+        let v260 : uint8 = v254.[int v258]
+        let v261 : int32 = v260 |> unbox<int32>
+        let v262 : int32 = v261 * 14
+        let v263 : int32 = v259 + v262
+        let v264 : int32 = v258 + 1
+        v256.l0 <- v264
+        v256.l1 <- v263
         ()
-    let v291 : int32 = v282.l1
-    let v292 : string = v291.ToString ()
-    let v293 : string = $"#{v292}"
-    let v294 : (unit -> (obj [])) = closure282(v0, v1, v258, v270, v272, v275, v278)
-    let v295 : (US4 -> ((obj []) -> unit)) = method16(v294, v293)
-    let v296 : US4 = US4_0
-    let v297 : ((obj []) -> unit) = v295 v296
-    let v298 : string = "> use_fetch ()"
-    let v299 : obj = v298
-    let v300 : (obj []) = [|v299|]
-    v297 v300
-    let v301 : string = "debounce"
-    let v302 : string = "@solid-primitives/scheduled"
-    let v303 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v301 v302
-    let v304 : ((struct (US2 * obj * string) []) -> unit) = closure283(v0, v134, v279, v278, v295, v1, v2, v276, v275)
-    let v305 : ((struct (US2 * obj * string) []) -> unit) = v303.Invoke (v304, 2500) |> unbox<(struct (US2 * obj * string) []) -> unit>
-    let v306 : string = "createEffect"
-    let v307 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v306 v114
-    let v308 : (unit -> unit) = closure294(v258, v305)
-    v307.Invoke v308 |> ignore
-    let v309 : string = "onCleanup"
-    let v310 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v309 v114
-    let v311 : (unit -> unit) = closure295(v305, v0, v134, v295)
-    v310.Invoke v311 |> ignore
-    let v312 : (unit -> unit) = closure297(v3, v258, v0, v1, v2, v134, v276, v275, v295)
-    let v313 : (unit -> unit) = closure299(v258, v295, v0, v1, v2, v134, v276, v275)
-    struct (v312, v313)
+    let v265 : int32 = v256.l1
+    let v266 : string = (v265).ToString ()
+    let v267 : string = $"#{v266}"
+    let v268 : (unit -> (obj [])) = closure282(v0, v1, v232, v244, v246, v249, v252)
+    let v269 : (US4 -> ((obj []) -> unit)) = method16(v268, v267)
+    let v270 : US4 = US4_0
+    let v271 : ((obj []) -> unit) = v269 v270
+    let v272 : string = "> use_fetch ()"
+    let v273 : obj = v272
+    let v274 : (obj []) = [|v273|]
+    v271 v274
+    let v275 : string = "debounce"
+    let v276 : string = "@solid-primitives/scheduled"
+    let v277 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v275 v276
+    let v278 : ((struct (US2 * obj * string) []) -> unit) = closure283(v0, v121, v253, v252, v269, v1, v2, v250, v249)
+    let v279 : ((struct (US2 * obj * string) []) -> unit) = v277.Invoke (v278, 2500) |> unbox<(struct (US2 * obj * string) []) -> unit>
+    let v280 : string = "createEffect"
+    let v281 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v280 v101
+    let v282 : (unit -> unit) = closure294(v232, v279)
+    v281.Invoke v282 |> ignore
+    let v283 : string = "onCleanup"
+    let v284 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v283 v101
+    let v285 : (unit -> unit) = closure295(v279, v0, v121, v269)
+    v284.Invoke v285 |> ignore
+    let v286 : (unit -> unit) = closure297(v3, v232, v0, v1, v2, v121, v250, v249, v269)
+    let v287 : (unit -> unit) = closure299(v232, v269, v0, v1, v2, v121, v250, v249)
+    struct (v286, v287)
 and closure301 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : string = "center"
     let v71 : string = "baseline"
@@ -5737,7 +5691,7 @@ and closure318 (v0 : int32, v1 : int32) () : (Fable.Core.JSX.Element []) =
     let v11 : Fable.Core.JSX.Element = method5(v8, v9, v10)
     [|v11|]
 and closure317 (v0 : int32, v1 : int32, v2 : System.Guid) struct (v3 : US6, v4 : US6, v5 : US6, v6 : US7, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US6, v12 : US6, v13 : US8, v14 : US9, v15 : US6, v16 : US6, v17 : US8, v18 : US6, v19 : US6, v20 : US6, v21 : US10, v22 : US8, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US6, v28 : US6, v29 : US11, v30 : US6, v31 : US6, v32 : US6, v33 : US11, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US6, v43 : US6, v44 : US12, v45 : US13, v46 : US12, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US6, v62 : US6, v63 : US14, v64 : US6, v65 : US11, v66 : US6, v67 : US6, v68 : US14, v69 : US14, v70 : US6, v71 : US5, v72 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
-    let v73 : string = v2.ToString ()
+    let v73 : string = (v2).ToString ()
     let v74 : Fable.Core.JSX.Element = v73 |> unbox<Fable.Core.JSX.Element>
     let v75 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v74 ]
     let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure318(v0, v1)
@@ -5810,45 +5764,43 @@ and closure300 (v0 : (unit -> (struct (System.Guid * int32) [])), v1 : (unit -> 
     let v83 : US11 = US11_1(v78)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v80, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v82, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v83, v66, v67, v68, v69, v70, v71, v72)
 and method73 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v134 : (unit -> (obj [])) = closure276(v128)
-    let v135 : string = "#666"
-    let v136 : (US4 -> ((obj []) -> unit)) = method16(v134, v135)
-    let v137 : US4 = US4_0
-    let v138 : ((obj []) -> unit) = v136 v137
-    let v139 : string = "> counter ()"
-    let v140 : obj = v139
-    let v141 : (obj []) = [|v140|]
-    v138 v141
-    let v142 : string = "createEffect"
-    let v143 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v142 v110
-    let v144 : (unit -> unit) = closure277(v136)
-    v143.Invoke v144 |> ignore
-    let v145 : string = "profile/tmp/counter"
-    let v146 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit) = closure278(v129)
-    let v147 : (obj -> Fable.Core.JS.Promise<int32>) = closure279(v128)
-    let struct (v148 : (unit -> unit), v149 : (unit -> unit)) = method74(v145, v128, v146, v147)
-    let v150 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
-    let v151 : US13 = US13_0
-    let v152 : US13 = US13_0
-    let v153 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure300(v128, v149, v148)
-    let v154 : US15 = US15_2
-    method26(v150, v151, v152, v153, v154)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v121 : (unit -> (obj [])) = closure276(v115)
+    let v122 : string = "#666"
+    let v123 : (US4 -> ((obj []) -> unit)) = method16(v121, v122)
+    let v124 : US4 = US4_0
+    let v125 : ((obj []) -> unit) = v123 v124
+    let v126 : string = "> counter ()"
+    let v127 : obj = v126
+    let v128 : (obj []) = [|v127|]
+    v125 v128
+    let v129 : string = "createEffect"
+    let v130 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v129 v97
+    let v131 : (unit -> unit) = closure277(v123)
+    v130.Invoke v131 |> ignore
+    let v132 : string = "profile/tmp/counter"
+    let v133 : (struct ((struct (System.Guid * int32) []) * US2 * System.Guid * int32) -> unit) = closure278(v116)
+    let v134 : (obj -> Fable.Core.JS.Promise<int32>) = closure279(v115)
+    let struct (v135 : (unit -> unit), v136 : (unit -> unit)) = method74(v132, v115, v133, v134)
+    let v137 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
+    let v138 : US13 = US13_0
+    let v139 : US13 = US13_0
+    let v140 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure300(v115, v136, v135)
+    let v141 : US15 = US15_2
+    method26(v137, v138, v139, v140, v141)
 and closure275 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method73()
 and closure321 () () : (Fable.Core.JSX.Element []) =
     [||]
 and closure323 (v0 : ((struct (System.Guid * obj) []) -> unit)) struct (v1 : (struct (System.Guid * obj) []), v2 : US2, v3 : System.Guid, v4 : (struct (System.Guid * obj) [])) : unit =
     v0 v4
-    ()
 and closure326 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : ((struct (System.Guid * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (System.Guid * obj) []) = v0 ()
     v1 v3
-    ()
 and closure325 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : ((struct (System.Guid * obj) []) -> unit)) : ((exn -> unit) -> unit) =
     closure326(v0, v1)
 and closure324 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : obj) : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> =
@@ -5864,19 +5816,19 @@ and method89 (v0 : US19) : struct ((unit -> US19) * (US19 -> unit)) =
     let v6 : (US19 -> unit) = v4.[1] |> unbox<US19 -> unit>
     struct (v5, v6)
 and closure327 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (unit -> (struct (US2 * obj * string) [])), v3 : (unit -> unit), v4 : (unit -> unit), v5 : (unit -> US19), v6 : (unit -> (struct (US2 * Fable.Core.JS.Promise<US17> * string) []))) () : (obj []) =
-    let v7 : string = "content_address:"
+    let v7 : string = "content_address"
     let v8 : obj = struct (v7, v0)
     let v9 : (struct (System.Guid * obj) []) = v1 ()
-    let v10 : string = "getter:"
+    let v10 : string = "getter"
     let v11 : obj = struct (v10, v9)
     v3 ()
-    let v12 : string = "events:"
+    let v12 : string = "events"
     let v13 : obj = v12
     v4 ()
-    let v14 : string = "timers:"
+    let v14 : string = "timers"
     let v15 : obj = v14
     let v16 : US19 = v5 ()
-    let v17 : string = "value:"
+    let v17 : string = "value"
     let v18 : obj = struct (v17, v16)
     let v19 : (struct (US2 * Fable.Core.JS.Promise<US17> * string) []) = v6 ()
     let v20 : int32 = v19.Length
@@ -5885,79 +5837,79 @@ and closure327 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 
     while method21(v20, v22) do
         let v24 : int32 = v22.l0
         let struct (v25 : US2, v26 : Fable.Core.JS.Promise<US17>, v27 : string) = v19.[int v24]
-        let v32 : string =
+        let v35 : string =
             match v25 with
             | US2_0 -> (* GunJsClient *)
-                let v28 : string = "Gun JavaScript"
-                v28
+                let v30 : string = "Gun JavaScript"
+                v30
             | US2_1 -> (* GunRsClient *)
                 let v29 : string = "Gun Rust"
                 v29
             | US2_2 -> (* Memory *)
-                let v30 : string = "Memory"
-                v30
-            | US2_3 -> (* SignalRClient *)
-                let v31 : string = "SignalR"
+                let v31 : string = "Memory"
                 v31
-        v21.[int v24] <- struct (v32, v26)
-        let v33 : int32 = v24 + 1
-        v22.l0 <- v33
+            | US2_3 -> (* SignalRClient *)
+                let v28 : string = "SignalR"
+                v28
+        v21.[int v24] <- struct (v35, v26)
+        let v36 : int32 = v24 + 1
+        v22.l0 <- v36
         ()
-    let v34 : string = "subscriptions:"
-    let v35 : obj = struct (v34, v21)
-    let v36 : (struct (US2 * obj * string) []) = v2 ()
-    let v37 : int32 = v36.Length
-    let v38 : (string []) = Array.zeroCreate<string> (v37)
-    let v39 : Mut6 = {l0 = 0} : Mut6
-    while method21(v37, v39) do
-        let v41 : int32 = v39.l0
-        let struct (v42 : US2, v43 : obj, v44 : string) = v36.[int v41]
-        let v49 : string =
-            match v42 with
+    let v37 : string = "subscriptions"
+    let v38 : obj = struct (v37, v21)
+    let v39 : (struct (US2 * obj * string) []) = v2 ()
+    let v40 : int32 = v39.Length
+    let v41 : (string []) = Array.zeroCreate<string> (v40)
+    let v42 : Mut6 = {l0 = 0} : Mut6
+    while method21(v40, v42) do
+        let v44 : int32 = v42.l0
+        let struct (v45 : US2, v46 : obj, v47 : string) = v39.[int v44]
+        let v55 : string =
+            match v45 with
             | US2_0 -> (* GunJsClient *)
-                let v45 : string = "Gun JavaScript"
-                v45
+                let v50 : string = "Gun JavaScript"
+                v50
             | US2_1 -> (* GunRsClient *)
-                let v46 : string = "Gun Rust"
-                v46
+                let v49 : string = "Gun Rust"
+                v49
             | US2_2 -> (* Memory *)
-                let v47 : string = "Memory"
-                v47
+                let v51 : string = "Memory"
+                v51
             | US2_3 -> (* SignalRClient *)
                 let v48 : string = "SignalR"
                 v48
-        v38.[int v41] <- v49
-        let v50 : int32 = v41 + 1
-        v39.l0 <- v50
+        v41.[int v44] <- v55
+        let v56 : int32 = v44 + 1
+        v42.l0 <- v56
         ()
-    let v51 : string = "db_connections:"
-    let v52 : obj = struct (v51, v38)
-    [|v8; v11; v13; v15; v18; v35; v52|]
+    let v57 : string = "db_connections"
+    let v58 : obj = struct (v57, v41)
+    [|v8; v11; v13; v15; v18; v38; v58|]
 and closure331 (v0 : US2, v1 : string, v2 : (struct (System.Guid * obj) [])) () : (obj []) =
-    let v3 : string = "content_address:"
+    let v3 : string = "content_address"
     let v4 : obj = struct (v3, v1)
-    let v9 : string =
+    let v12 : string =
         match v0 with
         | US2_0 -> (* GunJsClient *)
-            let v5 : string = "Gun JavaScript"
-            v5
+            let v7 : string = "Gun JavaScript"
+            v7
         | US2_1 -> (* GunRsClient *)
             let v6 : string = "Gun Rust"
             v6
         | US2_2 -> (* Memory *)
-            let v7 : string = "Memory"
-            v7
-        | US2_3 -> (* SignalRClient *)
-            let v8 : string = "SignalR"
+            let v8 : string = "Memory"
             v8
-    let v10 : string = "client_type:"
-    let v11 : obj = struct (v10, v9)
-    let v12 : string = "new_value:"
-    let v13 : obj = struct (v12, v2)
-    [|v4; v11; v13|]
+        | US2_3 -> (* SignalRClient *)
+            let v5 : string = "SignalR"
+            v5
+    let v13 : string = "client_type"
+    let v14 : obj = struct (v13, v12)
+    let v15 : string = "new_value"
+    let v16 : obj = struct (v15, v2)
+    [|v4; v14; v16|]
 and method90 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US19 -> unit), v5 : (unit -> US19), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : (struct (System.Guid * obj) []), v10 : System.Guid) : unit =
     let v11 : US19 = v5 ()
-    let v17 : bool =
+    let v18 : bool =
         match v11 with
         | US19_0 -> (* None *)
             true
@@ -5965,46 +5917,46 @@ and method90 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
             let v15 : (System.Guid -> int64) = closure287()
             let v16 : bool = v14 <> v9 && v15 v10 > v15 v13
             v16
-    if v17 then
-        let v18 : (struct (System.Guid * obj) []) = v1 ()
-        let v19 : US4 = US4_2
-        let v20 : ((obj []) -> unit) = v6 v19
-        let v21 : string = "> use_fetch > on_value > set ()"
-        let v22 : obj = v21
-        let v23 : string = "old_value:"
-        let v24 : obj = struct (v23, v18)
-        let v29 : string =
+    if v18 then
+        let v19 : (struct (System.Guid * obj) []) = v1 ()
+        let v20 : US4 = US4_2
+        let v21 : ((obj []) -> unit) = v6 v20
+        let v22 : string = "> use_fetch > on_value > set ()"
+        let v23 : obj = v22
+        let v24 : string = "old_value"
+        let v25 : obj = struct (v24, v19)
+        let v33 : string =
             match v7 with
             | US2_0 -> (* GunJsClient *)
-                let v25 : string = "Gun JavaScript"
-                v25
-            | US2_1 -> (* GunRsClient *)
-                let v26 : string = "Gun Rust"
-                v26
-            | US2_2 -> (* Memory *)
-                let v27 : string = "Memory"
-                v27
-            | US2_3 -> (* SignalRClient *)
-                let v28 : string = "SignalR"
+                let v28 : string = "Gun JavaScript"
                 v28
-        let v30 : string = "client_type:"
-        let v31 : obj = struct (v30, v29)
-        let v32 : string = "new_guid':"
-        let v33 : obj = struct (v32, v10)
-        let v34 : string = "new_value_raw:"
-        let v35 : obj = struct (v34, v9)
-        let v36 : (obj []) = [|v22; v24; v31; v33; v35|]
-        v20 v36
-        v2 struct (v18, v7, v10, v9)
-        let v37 : US19 = US19_1(v7, v10, v9)
-        v4 v37
-        let v38 : int32 = v8.Length
-        let v39 : Mut6 = {l0 = 0} : Mut6
-        while method21(v38, v39) do
-            let v41 : int32 = v39.l0
-            let struct (v42 : US2, v43 : obj, v44 : string) = v8.[int v41]
-            let v45 : bool =
-                match v42, v7 with
+            | US2_1 -> (* GunRsClient *)
+                let v27 : string = "Gun Rust"
+                v27
+            | US2_2 -> (* Memory *)
+                let v29 : string = "Memory"
+                v29
+            | US2_3 -> (* SignalRClient *)
+                let v26 : string = "SignalR"
+                v26
+        let v34 : string = "client_type"
+        let v35 : obj = struct (v34, v33)
+        let v36 : string = "new_guid'"
+        let v37 : obj = struct (v36, v10)
+        let v38 : string = "new_value_raw"
+        let v39 : obj = struct (v38, v9)
+        let v40 : (obj []) = [|v23; v25; v35; v37; v39|]
+        v21 v40
+        v2 struct (v19, v7, v10, v9)
+        let v41 : US19 = US19_1(v7, v10, v9)
+        v4 v41
+        let v42 : int32 = v8.Length
+        let v43 : Mut6 = {l0 = 0} : Mut6
+        while method21(v42, v43) do
+            let v45 : int32 = v43.l0
+            let struct (v46 : US2, v47 : obj, v48 : string) = v8.[int v45]
+            let v49 : bool =
+                match v46, v7 with
                 | US2_0, US2_0 -> (* GunJsClient *)
                     true
                 | US2_1, US2_1 -> (* GunRsClient *)
@@ -6015,123 +5967,121 @@ and method90 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : 
                     true
                 | _ ->
                     false
-            let v46 : bool = v45 <> true
-            if v46 then
-                let v47 : US4 = US4_2
-                let v48 : ((obj []) -> unit) = v6 v47
-                let v49 : string = "> use_fetch > on_value > set () > db_put"
-                let v50 : obj = v49
-                let v51 : obj = struct (v23, v18)
-                let v56 : string =
+            let v50 : bool = v49 <> true
+            if v50 then
+                let v51 : US4 = US4_2
+                let v52 : ((obj []) -> unit) = v6 v51
+                let v53 : string = "> use_fetch > on_value > set () > db_put"
+                let v54 : obj = v53
+                let v55 : obj = struct (v24, v19)
+                let v63 : string =
                     match v7 with
                     | US2_0 -> (* GunJsClient *)
-                        let v52 : string = "Gun JavaScript"
-                        v52
+                        let v58 : string = "Gun JavaScript"
+                        v58
                     | US2_1 -> (* GunRsClient *)
-                        let v53 : string = "Gun Rust"
-                        v53
+                        let v57 : string = "Gun Rust"
+                        v57
                     | US2_2 -> (* Memory *)
-                        let v54 : string = "Memory"
-                        v54
+                        let v59 : string = "Memory"
+                        v59
                     | US2_3 -> (* SignalRClient *)
-                        let v55 : string = "SignalR"
-                        v55
-                let v57 : obj = struct (v30, v56)
-                let v58 : obj = struct (v32, v10)
-                let v59 : obj = struct (v34, v9)
-                let v64 : string =
-                    match v42 with
+                        let v56 : string = "SignalR"
+                        v56
+                let v64 : obj = struct (v34, v63)
+                let v65 : obj = struct (v36, v10)
+                let v66 : obj = struct (v38, v9)
+                let v74 : string =
+                    match v46 with
                     | US2_0 -> (* GunJsClient *)
-                        let v60 : string = "Gun JavaScript"
-                        v60
+                        let v69 : string = "Gun JavaScript"
+                        v69
                     | US2_1 -> (* GunRsClient *)
-                        let v61 : string = "Gun Rust"
-                        v61
+                        let v68 : string = "Gun Rust"
+                        v68
                     | US2_2 -> (* Memory *)
-                        let v62 : string = "Memory"
-                        v62
+                        let v70 : string = "Memory"
+                        v70
                     | US2_3 -> (* SignalRClient *)
-                        let v63 : string = "SignalR"
-                        v63
-                let v65 : string = "connection_client_type:"
-                let v66 : obj = struct (v65, v64)
-                let v67 : (obj []) = [|v50; v51; v57; v58; v59; v66|]
-                v48 v67
-                let v68 : (unit -> (obj [])) = closure331(v42, v0, v9)
-                let v69 : string = "#666"
-                let v70 : (US4 -> ((obj []) -> unit)) = method17(v3, v68, v69)
-                let v71 : US4 = US4_0
-                let v72 : ((obj []) -> unit) = v70 v71
-                let v73 : string = "> db_put ()"
-                let v74 : obj = v73
-                let v75 : (obj []) = [|v74|]
-                v72 v75
-                match v42 with
+                        let v67 : string = "SignalR"
+                        v67
+                let v75 : string = "connection_client_type"
+                let v76 : obj = struct (v75, v74)
+                let v77 : (obj []) = [|v54; v55; v64; v65; v66; v76|]
+                v52 v77
+                let v78 : (unit -> (obj [])) = closure331(v46, v0, v9)
+                let v79 : string = "#666"
+                let v80 : (US4 -> ((obj []) -> unit)) = method17(v3, v78, v79)
+                let v81 : US4 = US4_0
+                let v82 : ((obj []) -> unit) = v80 v81
+                let v83 : string = "> db_put ()"
+                let v84 : obj = v83
+                let v85 : (obj []) = [|v84|]
+                v82 v85
+                match v46 with
                 | US2_0 -> (* GunJsClient *)
-                    let v76 : (string []) = v0.Split [| '/' |]
-                    let v77 : string = "get"
-                    let v78 : obj = (Fable.Core.JsInterop.(?)) v43 v77
-                    let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
-                    let v80 : string = "tictactoe_spiral"
-                    let v81 : obj = v79 v80
-                    let v82 : int32 = v76.Length
-                    let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
-                    while method80(v82, v83) do
-                        let v85 : int32 = v83.l0
-                        let v86 : obj = v83.l1
-                        let v87 : string = v76.[int v85]
-                        let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
-                        let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
-                        let v90 : obj = v89 v87
-                        let v91 : int32 = v85 + 1
-                        v83.l0 <- v91
-                        v83.l1 <- v90
+                    let v112 : (string []) = v0.Split [| '/' |]
+                    let v113 : string = "get"
+                    let v114 : obj = (Fable.Core.JsInterop.(?)) v47 v113
+                    let v115 : (string -> obj) = v114 |> unbox<(string -> obj)>
+                    let v116 : string = "tictactoe"
+                    let v117 : obj = v115 v116
+                    let v118 : int32 = v112.Length
+                    let v119 : Mut27 = {l0 = 0; l1 = v117} : Mut27
+                    while method80(v118, v119) do
+                        let v121 : int32 = v119.l0
+                        let v122 : obj = v119.l1
+                        let v123 : string = v112.[int v121]
+                        let v124 : obj = (Fable.Core.JsInterop.(?)) v122 v113
+                        let v125 : (string -> obj) = v124 |> unbox<(string -> obj)>
+                        let v126 : obj = v125 v123
+                        let v127 : int32 = v121 + 1
+                        v119.l0 <- v127
+                        v119.l1 <- v126
                         ()
-                    let v92 : obj = v83.l1
-                    let v93 : string = "put"
-                    let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
-                    let v95 : ((struct (System.Guid * obj) []) -> unit) = v94 |> unbox<((struct (System.Guid * obj) []) -> unit)>
-                    v95 v9
-                    ()
+                    let v128 : obj = v119.l1
+                    let v129 : string = "put"
+                    let v130 : obj = (Fable.Core.JsInterop.(?)) v128 v129
+                    let v131 : ((struct (System.Guid * obj) []) -> unit) = v130 |> unbox<((struct (System.Guid * obj) []) -> unit)>
+                    v131 v9
                 | US2_1 -> (* GunRsClient *)
-                    let v96 : (string []) = v0.Split [| '/' |]
-                    let v97 : string = "get"
-                    let v98 : obj = (Fable.Core.JsInterop.(?)) v43 v97
-                    let v99 : (string -> obj) = v98 |> unbox<(string -> obj)>
-                    let v100 : string = "tictactoe_spiral"
-                    let v101 : obj = v99 v100
-                    let v102 : int32 = v96.Length
-                    let v103 : Mut27 = {l0 = 0; l1 = v101} : Mut27
-                    while method80(v102, v103) do
-                        let v105 : int32 = v103.l0
-                        let v106 : obj = v103.l1
-                        let v107 : string = v96.[int v105]
-                        let v108 : obj = (Fable.Core.JsInterop.(?)) v106 v97
-                        let v109 : (string -> obj) = v108 |> unbox<(string -> obj)>
-                        let v110 : obj = v109 v107
-                        let v111 : int32 = v105 + 1
-                        v103.l0 <- v111
-                        v103.l1 <- v110
+                    let v92 : (string []) = v0.Split [| '/' |]
+                    let v93 : string = "get"
+                    let v94 : obj = (Fable.Core.JsInterop.(?)) v47 v93
+                    let v95 : (string -> obj) = v94 |> unbox<(string -> obj)>
+                    let v96 : string = "tictactoe"
+                    let v97 : obj = v95 v96
+                    let v98 : int32 = v92.Length
+                    let v99 : Mut27 = {l0 = 0; l1 = v97} : Mut27
+                    while method80(v98, v99) do
+                        let v101 : int32 = v99.l0
+                        let v102 : obj = v99.l1
+                        let v103 : string = v92.[int v101]
+                        let v104 : obj = (Fable.Core.JsInterop.(?)) v102 v93
+                        let v105 : (string -> obj) = v104 |> unbox<(string -> obj)>
+                        let v106 : obj = v105 v103
+                        let v107 : int32 = v101 + 1
+                        v99.l0 <- v107
+                        v99.l1 <- v106
                         ()
-                    let v112 : obj = v103.l1
-                    let v113 : string = "put"
-                    let v114 : obj = (Fable.Core.JsInterop.(?)) v112 v113
-                    let v115 : ((struct (System.Guid * obj) []) -> unit) = v114 |> unbox<((struct (System.Guid * obj) []) -> unit)>
-                    v115 v9
-                    ()
+                    let v108 : obj = v99.l1
+                    let v109 : string = "put"
+                    let v110 : obj = (Fable.Core.JsInterop.(?)) v108 v109
+                    let v111 : ((struct (System.Guid * obj) []) -> unit) = v110 |> unbox<((struct (System.Guid * obj) []) -> unit)>
+                    v111 v9
                 | US2_2 -> (* Memory *)
                     failwith<unit> "db_on Memory"
                 | US2_3 -> (* SignalRClient *)
-                    let v116 : string = v9 |> unbox<string>
-                    let v117 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v43 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
-                    let v118 : string = "alias"
-                    let v119 : UH0 = UH0_3(v118, v0, v116)
-                    let v120 : Fable.Core.JS.Promise<UH1> = v117.invokeAsPromise v119
-                    let v121 : (UH1 -> unit) = closure289(v70)
-                    v120 |> Promise.iter v121
+                    let v86 : string = v9 |> unbox<string>
+                    let v87 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v47 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
+                    let v88 : string = "alias"
+                    let v89 : UH0 = UH0_3(v88, v0, v86)
+                    let v90 : Fable.Core.JS.Promise<UH1> = v87.invokeAsPromise v89
+                    let v91 : (UH1 -> unit) = closure289(v80)
+                    v90 |> Promise.iter v91
                     ()
-            let v122 : int32 = v41 + 1
-            v39.l0 <- v122
+            let v132 : int32 = v45 + 1
+            v43.l0 <- v132
             ()
         ()
 and closure330 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US19 -> unit), v5 : (unit -> US19), v6 : (US4 -> ((obj []) -> unit)), v7 : US2, v8 : (struct (US2 * obj * string) []), v9 : (US4 -> ((obj []) -> unit)), v10 : System.Guid, v11 : (struct (System.Guid * obj) [])) (v12 : obj) : unit =
@@ -6139,9 +6089,9 @@ and closure330 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 
     let v14 : ((obj []) -> unit) = v9 v13
     let v15 : string = "> db_on > on_value ()"
     let v16 : obj = v15
-    let v17 : string = "v:"
+    let v17 : string = "v"
     let v18 : obj = struct (v17, v10, v11)
-    let v19 : string = "k:"
+    let v19 : string = "k"
     let v20 : obj = struct (v19, v12)
     let v21 : (obj []) = [|v16; v18; v20|]
     v14 v21
@@ -6166,7 +6116,7 @@ and closure328 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
             let v26 : int32 = v25 - 1
             let v27 : US18 = v21.l1
             let struct (v28 : US2, v29 : Fable.Core.JS.Promise<US17>, v30 : string) = v10.[int v26]
-            let v40 : US18 =
+            let v37 : US18 =
                 match v27 with
                 | US18_0 -> (* None *)
                     let v31 : bool =
@@ -6191,15 +6141,15 @@ and closure328 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
                         US18_1(v28, v29, v30)
                     else
                         US18_0
-                | US18_1(v37, v38, v39) -> (* Some *)
+                | _ ->
                     v27
-            let v41 : int32 = v23 + 1
-            v21.l0 <- v41
-            v21.l1 <- v40
+            let v38 : int32 = v23 + 1
+            v21.l0 <- v38
+            v21.l1 <- v37
             ()
-        let v42 : US18 = v21.l1
-        let struct (v110 : US2, v111 : Fable.Core.JS.Promise<US17>, v112 : string) =
-            match v42 with
+        let v39 : US18 = v21.l1
+        let struct (v113 : US2, v114 : Fable.Core.JS.Promise<US17>, v115 : string) =
+            match v39 with
             | US18_0 -> (* None *)
                 let v43 : (unit -> (obj [])) = closure284(v0, v16)
                 let v44 : string = "#666"
@@ -6212,147 +6162,146 @@ and closure328 (v0 : string, v1 : (unit -> US4), v2 : ((struct (US2 * Fable.Core
                 v47 v50
                 let v51 : (struct (System.Guid * (struct (System.Guid * obj) [])) -> (obj -> unit)) = closure329(v0, v5, v6, v1, v7, v8, v4, v16, v9, v45)
                 let v52 : (struct (obj * int32) -> unit) = Fable.Core.JsInterop.emitJsExpr () $"(v: any, k: any) => {v51}(v)(k)"
-                let v106 : Fable.Core.JS.Promise<US17> =
+                let v109 : Fable.Core.JS.Promise<US17> =
                     match v16 with
                     | US2_0 -> (* GunJsClient *)
-                        let v53 : (string []) = v0.Split [| '/' |]
-                        let v54 : string = "get"
-                        let v55 : obj = (Fable.Core.JsInterop.(?)) v17 v54
-                        let v56 : (string -> obj) = v55 |> unbox<(string -> obj)>
-                        let v57 : string = "tictactoe_spiral"
-                        let v58 : obj = v56 v57
-                        let v59 : int32 = v53.Length
-                        let v60 : Mut27 = {l0 = 0; l1 = v58} : Mut27
-                        while method80(v59, v60) do
-                            let v62 : int32 = v60.l0
-                            let v63 : obj = v60.l1
-                            let v64 : string = v53.[int v62]
-                            let v65 : obj = (Fable.Core.JsInterop.(?)) v63 v54
-                            let v66 : (string -> obj) = v65 |> unbox<(string -> obj)>
-                            let v67 : obj = v66 v64
-                            let v68 : int32 = v62 + 1
-                            v60.l0 <- v68
-                            v60.l1 <- v67
+                        let v82 : (string []) = v0.Split [| '/' |]
+                        let v83 : string = "get"
+                        let v84 : obj = (Fable.Core.JsInterop.(?)) v17 v83
+                        let v85 : (string -> obj) = v84 |> unbox<(string -> obj)>
+                        let v86 : string = "tictactoe"
+                        let v87 : obj = v85 v86
+                        let v88 : int32 = v82.Length
+                        let v89 : Mut27 = {l0 = 0; l1 = v87} : Mut27
+                        while method80(v88, v89) do
+                            let v91 : int32 = v89.l0
+                            let v92 : obj = v89.l1
+                            let v93 : string = v82.[int v91]
+                            let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v83
+                            let v95 : (string -> obj) = v94 |> unbox<(string -> obj)>
+                            let v96 : obj = v95 v93
+                            let v97 : int32 = v91 + 1
+                            v89.l0 <- v97
+                            v89.l1 <- v96
                             ()
-                        let v69 : obj = v60.l1
-                        let v70 : string = "on"
-                        let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v70
-                        let v72 : ((struct (obj * int32) -> unit) -> unit) = v71 |> unbox<((struct (obj * int32) -> unit) -> unit)>
-                        v72 v52
-                        let v73 : int64 = System.DateTime.UtcNow.Ticks
-                        let v74 : US17 = US17_1(v73)
-                        let v75 : Fable.Core.JS.Promise<US17> = Promise.lift v74
-                        v75
+                        let v98 : obj = v89.l1
+                        let v99 : string = "on"
+                        let v100 : obj = (Fable.Core.JsInterop.(?)) v98 v99
+                        let v101 : ((struct (obj * int32) -> unit) -> unit) = v100 |> unbox<((struct (obj * int32) -> unit) -> unit)>
+                        v101 v52
+                        let v102 : int64 = System.DateTime.UtcNow.Ticks
+                        let v103 : US17 = US17_1(v102)
+                        let v104 : Fable.Core.JS.Promise<US17> = Promise.lift v103
+                        v104
                     | US2_1 -> (* GunRsClient *)
-                        let v76 : (string []) = v0.Split [| '/' |]
-                        let v77 : string = "get"
-                        let v78 : obj = (Fable.Core.JsInterop.(?)) v17 v77
-                        let v79 : (string -> obj) = v78 |> unbox<(string -> obj)>
-                        let v80 : string = "tictactoe_spiral"
-                        let v81 : obj = v79 v80
-                        let v82 : int32 = v76.Length
-                        let v83 : Mut27 = {l0 = 0; l1 = v81} : Mut27
-                        while method80(v82, v83) do
-                            let v85 : int32 = v83.l0
-                            let v86 : obj = v83.l1
-                            let v87 : string = v76.[int v85]
-                            let v88 : obj = (Fable.Core.JsInterop.(?)) v86 v77
-                            let v89 : (string -> obj) = v88 |> unbox<(string -> obj)>
-                            let v90 : obj = v89 v87
-                            let v91 : int32 = v85 + 1
-                            v83.l0 <- v91
-                            v83.l1 <- v90
+                        let v59 : (string []) = v0.Split [| '/' |]
+                        let v60 : string = "get"
+                        let v61 : obj = (Fable.Core.JsInterop.(?)) v17 v60
+                        let v62 : (string -> obj) = v61 |> unbox<(string -> obj)>
+                        let v63 : string = "tictactoe"
+                        let v64 : obj = v62 v63
+                        let v65 : int32 = v59.Length
+                        let v66 : Mut27 = {l0 = 0; l1 = v64} : Mut27
+                        while method80(v65, v66) do
+                            let v68 : int32 = v66.l0
+                            let v69 : obj = v66.l1
+                            let v70 : string = v59.[int v68]
+                            let v71 : obj = (Fable.Core.JsInterop.(?)) v69 v60
+                            let v72 : (string -> obj) = v71 |> unbox<(string -> obj)>
+                            let v73 : obj = v72 v70
+                            let v74 : int32 = v68 + 1
+                            v66.l0 <- v74
+                            v66.l1 <- v73
                             ()
-                        let v92 : obj = v83.l1
-                        let v93 : string = "on"
-                        let v94 : obj = (Fable.Core.JsInterop.(?)) v92 v93
-                        let v95 : ((struct (obj * int32) -> unit) -> int64) = v94 |> unbox<((struct (obj * int32) -> unit) -> int64)>
-                        let v96 : int64 = v95 v52
-                        let v97 : US17 = US17_1(v96)
-                        let v98 : Fable.Core.JS.Promise<US17> = Promise.lift v97
-                        v98
+                        let v75 : obj = v66.l1
+                        let v76 : string = "on"
+                        let v77 : obj = (Fable.Core.JsInterop.(?)) v75 v76
+                        let v78 : ((struct (obj * int32) -> unit) -> int64) = v77 |> unbox<((struct (obj * int32) -> unit) -> int64)>
+                        let v79 : int64 = v78 v52
+                        let v80 : US17 = US17_1(v79)
+                        let v81 : Fable.Core.JS.Promise<US17> = Promise.lift v80
+                        v81
                     | US2_2 -> (* Memory *)
                         failwith<Fable.Core.JS.Promise<US17>> "db_on Memory"
                     | US2_3 -> (* SignalRClient *)
-                        let v100 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
-                        let v101 : string = "alias"
-                        let v102 : UH0 = UH0_1(v101, v0)
-                        let v103 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v100.streamFromAsPromise v102
-                        let v104 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
-                        let v105 : Fable.Core.JS.Promise<US17> = v103 |> Promise.map v104
-                        v105
-                struct (v16, v106, v18)
-            | US18_1(v107, v108, v109) -> (* Some *)
-                struct (v107, v108, v109)
-        v12.[int v15] <- struct (v110, v111, v112)
-        let v113 : int32 = v15 + 1
-        v13.l0 <- v113
+                        let v53 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = v17 |> unbox<Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1>>
+                        let v54 : string = "alias"
+                        let v55 : UH0 = UH0_1(v54, v0)
+                        let v56 : Fable.Core.JS.Promise<Fable.SignalR.StreamResult<UH1>> = v53.streamFromAsPromise v55
+                        let v57 : (Fable.SignalR.StreamResult<UH1> -> US17) = closure290(v45)
+                        let v58 : Fable.Core.JS.Promise<US17> = v56 |> Promise.map v57
+                        v58
+                struct (v16, v109, v18)
+            | US18_1(v40, v41, v42) -> (* Some *)
+                struct (v40, v41, v42)
+        v12.[int v15] <- struct (v113, v114, v115)
+        let v116 : int32 = v15 + 1
+        v13.l0 <- v116
         ()
-    let v114 : int32 = v10.Length
-    let v115 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v114)
-    let v116 : Mut6 = {l0 = 0} : Mut6
-    while method21(v114, v116) do
-        let v118 : int32 = v116.l0
-        let struct (v119 : US2, v120 : Fable.Core.JS.Promise<US17>, v121 : string) = v10.[int v118]
-        v115.[int v118] <- struct (v119, v121)
-        let v122 : int32 = v118 + 1
-        v116.l0 <- v122
+    let v117 : int32 = v10.Length
+    let v118 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v117)
+    let v119 : Mut6 = {l0 = 0} : Mut6
+    while method21(v117, v119) do
+        let v121 : int32 = v119.l0
+        let struct (v122 : US2, v123 : Fable.Core.JS.Promise<US17>, v124 : string) = v10.[int v121]
+        v118.[int v121] <- struct (v122, v124)
+        let v125 : int32 = v121 + 1
+        v119.l0 <- v125
         ()
-    let v123 : int32 = v12.Length
-    let v124 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v123)
-    let v125 : Mut6 = {l0 = 0} : Mut6
-    while method21(v123, v125) do
-        let v127 : int32 = v125.l0
-        let struct (v128 : US2, v129 : Fable.Core.JS.Promise<US17>, v130 : string) = v12.[int v127]
-        v124.[int v127] <- struct (v128, v130)
-        let v131 : int32 = v127 + 1
-        v125.l0 <- v131
+    let v126 : int32 = v12.Length
+    let v127 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v126)
+    let v128 : Mut6 = {l0 = 0} : Mut6
+    while method21(v126, v128) do
+        let v130 : int32 = v128.l0
+        let struct (v131 : US2, v132 : Fable.Core.JS.Promise<US17>, v133 : string) = v12.[int v130]
+        v127.[int v130] <- struct (v131, v133)
+        let v134 : int32 = v130 + 1
+        v128.l0 <- v134
         ()
-    let v132 : int32 = v115.Length
-    let v133 : int32 = v124.Length
-    let v134 : bool = v132 = v133
-    let v135 : bool = v134 <> true
-    let v138 : bool =
-        if v135 then
+    let v135 : int32 = v118.Length
+    let v136 : int32 = v127.Length
+    let v137 : bool = v135 = v136
+    let v138 : bool = v137 <> true
+    let v141 : bool =
+        if v138 then
             false
         else
-            let v136 : int32 = 0
-            method81(v115, v124, v136)
-    let v139 : bool = v138 <> true
-    if v139 then
-        let v140 : US4 = US4_2
-        let v141 : ((obj []) -> unit) = v4 v140
-        let v142 : string = "> use_fetch > connections_change"
-        let v143 : obj = v142
-        let v144 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v123)
-        let v145 : Mut6 = {l0 = 0} : Mut6
-        while method21(v123, v145) do
-            let v147 : int32 = v145.l0
-            let struct (v148 : US2, v149 : Fable.Core.JS.Promise<US17>, v150 : string) = v12.[int v147]
-            let v155 : string =
-                match v148 with
+            let v139 : int32 = 0
+            method81(v118, v127, v139)
+    let v142 : bool = v141 <> true
+    if v142 then
+        let v143 : US4 = US4_2
+        let v144 : ((obj []) -> unit) = v4 v143
+        let v145 : string = "> use_fetch > connections_change"
+        let v146 : obj = v145
+        let v147 : (struct (string * Fable.Core.JS.Promise<US17>) []) = Array.zeroCreate<struct (string * Fable.Core.JS.Promise<US17>)> (v126)
+        let v148 : Mut6 = {l0 = 0} : Mut6
+        while method21(v126, v148) do
+            let v150 : int32 = v148.l0
+            let struct (v151 : US2, v152 : Fable.Core.JS.Promise<US17>, v153 : string) = v12.[int v150]
+            let v161 : string =
+                match v151 with
                 | US2_0 -> (* GunJsClient *)
-                    let v151 : string = "Gun JavaScript"
-                    v151
+                    let v156 : string = "Gun JavaScript"
+                    v156
                 | US2_1 -> (* GunRsClient *)
-                    let v152 : string = "Gun Rust"
-                    v152
+                    let v155 : string = "Gun Rust"
+                    v155
                 | US2_2 -> (* Memory *)
-                    let v153 : string = "Memory"
-                    v153
+                    let v157 : string = "Memory"
+                    v157
                 | US2_3 -> (* SignalRClient *)
                     let v154 : string = "SignalR"
                     v154
-            v144.[int v147] <- struct (v155, v149)
-            let v156 : int32 = v147 + 1
-            v145.l0 <- v156
+            v147.[int v150] <- struct (v161, v152)
+            let v162 : int32 = v150 + 1
+            v148.l0 <- v162
             ()
-        let v157 : string = "new_subscriptions:"
-        let v158 : obj = struct (v157, v144)
-        let v159 : (obj []) = [|v143; v158|]
-        v141 v159
+        let v163 : string = "new_subscriptions"
+        let v164 : obj = struct (v163, v147)
+        let v165 : (obj []) = [|v146; v164|]
+        v144 v165
         v2 v12
-        ()
 and closure333 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (unit -> US4), v4 : (US19 -> unit), v5 : (unit -> US19), v6 : (US4 -> ((obj []) -> unit)), v7 : (struct (US2 * obj * string) []), v8 : System.Guid) (v9 : (struct (System.Guid * obj) [])) : unit =
     let v10 : US2 = US2_2
     method90(v0, v1, v2, v3, v4, v5, v6, v10, v7, v9, v8)
@@ -6360,8 +6309,8 @@ and closure332 (v0 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [
     let v9 : (struct (US2 * obj * string) []) = v1 ()
     let v10 : int64 = System.DateTime.UtcNow.Ticks
     let v11 : System.Guid = System.Guid.NewGuid ()
-    let v12 : string = v11.ToString ()
-    let v13 : string = v10.ToString ()
+    let v12 : string = (v11).ToString ()
+    let v13 : string = (v10).ToString ()
     let v14 : System.Guid = System.Guid $"{v13.[0..7]}-{v13.[8..11]}-{v13.[12..15]}-{v13.[16..17]}{v12.[21..]}"
     let v15 : obj = ()
     let v16 : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> = v0 v15
@@ -6378,68 +6327,68 @@ and closure334 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (US4 -> ((
     let v13 : (struct (US2 * obj * string) []) = v0 ()
     let v14 : int64 = System.DateTime.UtcNow.Ticks
     let v15 : System.Guid = System.Guid.NewGuid ()
-    let v16 : string = v15.ToString ()
-    let v17 : string = v14.ToString ()
+    let v16 : string = (v15).ToString ()
+    let v17 : string = (v14).ToString ()
     let v18 : System.Guid = System.Guid $"{v17.[0..7]}-{v17.[8..11]}-{v17.[12..15]}-{v17.[16..17]}{v16.[21..]}"
     let v19 : US2 = US2_2
     let v20 : (struct (System.Guid * obj) []) = Fable.Core.JsInterop.emitJsExpr () "null"
     method90(v2, v3, v4, v5, v6, v7, v1, v19, v13, v20, v18)
 and method88 (v0 : string, v1 : (unit -> (struct (System.Guid * obj) [])), v2 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit), v3 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>)) : struct ((unit -> unit) * (unit -> unit)) =
-    let v112 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v113 : string = "useContext"
-    let v114 : string = "solid-js"
-    let v115 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
-    let struct (v116 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v117 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v118 : (unit -> int32), v119 : (int32 -> unit), v120 : (unit -> string), v121 : (string -> unit), v122 : (unit -> string), v123 : (string -> unit), v124 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v125 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v126 : (unit -> (struct (US2 * obj * string) [])), v127 : ((struct (US2 * obj * string) []) -> unit), v128 : (unit -> (struct (System.Guid * obj) [])), v129 : ((struct (System.Guid * obj) []) -> unit), v130 : (unit -> (struct (System.Guid * obj) [])), v131 : ((struct (System.Guid * obj) []) -> unit), v132 : (unit -> (struct (System.Guid * int32) [])), v133 : ((struct (System.Guid * int32) []) -> unit), v134 : (unit -> US4), v135 : (US4 -> unit), v136 : (unit -> US5), v137 : (US5 -> unit)) = v115.Invoke v112 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v246 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v247 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v113 v114
-    let struct (v248 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v249 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v250 : (unit -> int32), v251 : (int32 -> unit), v252 : (unit -> string), v253 : (string -> unit), v254 : (unit -> string), v255 : (string -> unit), v256 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v257 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v258 : (unit -> (struct (US2 * obj * string) [])), v259 : ((struct (US2 * obj * string) []) -> unit), v260 : (unit -> (struct (System.Guid * obj) [])), v261 : ((struct (System.Guid * obj) []) -> unit), v262 : (unit -> (struct (System.Guid * obj) [])), v263 : ((struct (System.Guid * obj) []) -> unit), v264 : (unit -> (struct (System.Guid * int32) [])), v265 : ((struct (System.Guid * int32) []) -> unit), v266 : (unit -> US4), v267 : (US4 -> unit), v268 : (unit -> US5), v269 : (US5 -> unit)) = v247.Invoke v246 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let struct (v270 : (unit -> unit), v271 : (unit -> unit)) = method75()
-    let struct (v272 : (unit -> unit), v273 : (unit -> unit)) = method75()
-    let v274 : US19 = US19_0
-    let struct (v275 : (unit -> US19), v276 : (US19 -> unit)) = method89(v274)
-    let v277 : (struct (US2 * Fable.Core.JS.Promise<US17> * string) []) = [||]
-    let struct (v278 : (unit -> (struct (US2 * Fable.Core.JS.Promise<US17> * string) [])), v279 : ((struct (US2 * Fable.Core.JS.Promise<US17> * string) []) -> unit)) = method77(v277)
-    let v280 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
-    let v281 : int32 = v280.Length
-    let v282 : Mut25 = {l0 = 0; l1 = 100000} : Mut25
-    while method71(v281, v282) do
-        let v284 : int32 = v282.l0
-        let v285 : int32 = v282.l1
-        let v286 : uint8 = v280.[int v284]
-        let v287 : int32 = v286 |> unbox<int32>
-        let v288 : int32 = v287 * 14
-        let v289 : int32 = v285 + v288
-        let v290 : int32 = v284 + 1
-        v282.l0 <- v290
-        v282.l1 <- v289
+    let v99 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v100 : string = "useContext"
+    let v101 : string = "solid-js"
+    let v102 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v100 v101
+    let struct (v103 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v104 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v105 : (unit -> int32), v106 : (int32 -> unit), v107 : (unit -> string), v108 : (string -> unit), v109 : (unit -> string), v110 : (string -> unit), v111 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v112 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v113 : (unit -> (struct (US2 * obj * string) [])), v114 : ((struct (US2 * obj * string) []) -> unit), v115 : (unit -> (struct (System.Guid * obj) [])), v116 : ((struct (System.Guid * obj) []) -> unit), v117 : (unit -> (struct (System.Guid * obj) [])), v118 : ((struct (System.Guid * obj) []) -> unit), v119 : (unit -> (struct (System.Guid * int32) [])), v120 : ((struct (System.Guid * int32) []) -> unit), v121 : (unit -> US4), v122 : (US4 -> unit), v123 : (unit -> US5), v124 : (US5 -> unit)) = v102.Invoke v99 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v220 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v221 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v100 v101
+    let struct (v222 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v223 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v224 : (unit -> int32), v225 : (int32 -> unit), v226 : (unit -> string), v227 : (string -> unit), v228 : (unit -> string), v229 : (string -> unit), v230 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v231 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v232 : (unit -> (struct (US2 * obj * string) [])), v233 : ((struct (US2 * obj * string) []) -> unit), v234 : (unit -> (struct (System.Guid * obj) [])), v235 : ((struct (System.Guid * obj) []) -> unit), v236 : (unit -> (struct (System.Guid * obj) [])), v237 : ((struct (System.Guid * obj) []) -> unit), v238 : (unit -> (struct (System.Guid * int32) [])), v239 : ((struct (System.Guid * int32) []) -> unit), v240 : (unit -> US4), v241 : (US4 -> unit), v242 : (unit -> US5), v243 : (US5 -> unit)) = v221.Invoke v220 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let struct (v244 : (unit -> unit), v245 : (unit -> unit)) = method75()
+    let struct (v246 : (unit -> unit), v247 : (unit -> unit)) = method75()
+    let v248 : US19 = US19_0
+    let struct (v249 : (unit -> US19), v250 : (US19 -> unit)) = method89(v248)
+    let v251 : (struct (US2 * Fable.Core.JS.Promise<US17> * string) []) = [||]
+    let struct (v252 : (unit -> (struct (US2 * Fable.Core.JS.Promise<US17> * string) [])), v253 : ((struct (US2 * Fable.Core.JS.Promise<US17> * string) []) -> unit)) = method77(v251)
+    let v254 : (uint8 []) = System.Text.Encoding.UTF8.GetBytes v0
+    let v255 : int32 = v254.Length
+    let v256 : Mut25 = {l0 = 0; l1 = 100000} : Mut25
+    while method71(v255, v256) do
+        let v258 : int32 = v256.l0
+        let v259 : int32 = v256.l1
+        let v260 : uint8 = v254.[int v258]
+        let v261 : int32 = v260 |> unbox<int32>
+        let v262 : int32 = v261 * 14
+        let v263 : int32 = v259 + v262
+        let v264 : int32 = v258 + 1
+        v256.l0 <- v264
+        v256.l1 <- v263
         ()
-    let v291 : int32 = v282.l1
-    let v292 : string = v291.ToString ()
-    let v293 : string = $"#{v292}"
-    let v294 : (unit -> (obj [])) = closure327(v0, v1, v258, v270, v272, v275, v278)
-    let v295 : (US4 -> ((obj []) -> unit)) = method16(v294, v293)
-    let v296 : US4 = US4_0
-    let v297 : ((obj []) -> unit) = v295 v296
-    let v298 : string = "> use_fetch ()"
-    let v299 : obj = v298
-    let v300 : (obj []) = [|v299|]
-    v297 v300
-    let v301 : string = "debounce"
-    let v302 : string = "@solid-primitives/scheduled"
-    let v303 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v301 v302
-    let v304 : ((struct (US2 * obj * string) []) -> unit) = closure328(v0, v134, v279, v278, v295, v1, v2, v276, v275)
-    let v305 : ((struct (US2 * obj * string) []) -> unit) = v303.Invoke (v304, 2500) |> unbox<(struct (US2 * obj * string) []) -> unit>
-    let v306 : string = "createEffect"
-    let v307 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v306 v114
-    let v308 : (unit -> unit) = closure294(v258, v305)
-    v307.Invoke v308 |> ignore
-    let v309 : string = "onCleanup"
-    let v310 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v309 v114
-    let v311 : (unit -> unit) = closure295(v305, v0, v134, v295)
-    v310.Invoke v311 |> ignore
-    let v312 : (unit -> unit) = closure332(v3, v258, v0, v1, v2, v134, v276, v275, v295)
-    let v313 : (unit -> unit) = closure334(v258, v295, v0, v1, v2, v134, v276, v275)
-    struct (v312, v313)
+    let v265 : int32 = v256.l1
+    let v266 : string = (v265).ToString ()
+    let v267 : string = $"#{v266}"
+    let v268 : (unit -> (obj [])) = closure327(v0, v1, v232, v244, v246, v249, v252)
+    let v269 : (US4 -> ((obj []) -> unit)) = method16(v268, v267)
+    let v270 : US4 = US4_0
+    let v271 : ((obj []) -> unit) = v269 v270
+    let v272 : string = "> use_fetch ()"
+    let v273 : obj = v272
+    let v274 : (obj []) = [|v273|]
+    v271 v274
+    let v275 : string = "debounce"
+    let v276 : string = "@solid-primitives/scheduled"
+    let v277 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v275 v276
+    let v278 : ((struct (US2 * obj * string) []) -> unit) = closure328(v0, v121, v253, v252, v269, v1, v2, v250, v249)
+    let v279 : ((struct (US2 * obj * string) []) -> unit) = v277.Invoke (v278, 2500) |> unbox<(struct (US2 * obj * string) []) -> unit>
+    let v280 : string = "createEffect"
+    let v281 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v280 v101
+    let v282 : (unit -> unit) = closure294(v232, v279)
+    v281.Invoke v282 |> ignore
+    let v283 : string = "onCleanup"
+    let v284 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v283 v101
+    let v285 : (unit -> unit) = closure295(v279, v0, v121, v269)
+    v284.Invoke v285 |> ignore
+    let v286 : (unit -> unit) = closure332(v3, v232, v0, v1, v2, v121, v250, v249, v269)
+    let v287 : (unit -> unit) = closure334(v232, v269, v0, v1, v2, v121, v250, v249)
+    struct (v286, v287)
 and closure336 () struct (v0 : US6, v1 : US6, v2 : US6, v3 : US7, v4 : US6, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US8, v11 : US9, v12 : US6, v13 : US6, v14 : US8, v15 : US6, v16 : US6, v17 : US6, v18 : US10, v19 : US8, v20 : US6, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US11, v27 : US6, v28 : US6, v29 : US6, v30 : US11, v31 : US6, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US12, v42 : US13, v43 : US12, v44 : US6, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US14, v61 : US6, v62 : US11, v63 : US6, v64 : US6, v65 : US14, v66 : US14, v67 : US6, v68 : US5, v69 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let v70 : string = "center"
     let v71 : string = "baseline"
@@ -6569,7 +6518,7 @@ and closure350 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.
     [|v10|]
 and closure349 (v0 : (unit -> struct (System.Guid * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let struct (v71 : System.Guid, v72 : obj) = v0 ()
-    let v73 : string = v71.ToString ()
+    let v73 : string = (v71).ToString ()
     let v74 : Fable.Core.JSX.Element = v73 |> unbox<Fable.Core.JSX.Element>
     let v75 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v74 ]
     let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure350(v0)
@@ -6641,32 +6590,30 @@ and closure335 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> un
     let v83 : US11 = US11_1(v78)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v80, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v82, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v83, v66, v67, v68, v69, v70, v71, v72)
 and method87 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v134 : string = "profile/tmp/chain_status"
-    let v135 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure323(v127)
-    let v136 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure324(v126)
-    let struct (v137 : (unit -> unit), v138 : (unit -> unit)) = method88(v134, v126, v135, v136)
-    let v139 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
-    let v140 : US13 = US13_0
-    let v141 : US13 = US13_0
-    let v142 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure335(v126, v138, v137)
-    let v143 : US15 = US15_2
-    method26(v139, v140, v141, v142, v143)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v121 : string = "profile/tmp/chain_status"
+    let v122 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure323(v114)
+    let v123 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure324(v113)
+    let struct (v124 : (unit -> unit), v125 : (unit -> unit)) = method88(v121, v113, v122, v123)
+    let v126 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
+    let v127 : US13 = US13_0
+    let v128 : US13 = US13_0
+    let v129 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure335(v113, v125, v124)
+    let v130 : US15 = US15_2
+    method26(v126, v127, v128, v129, v130)
 and closure322 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method87()
 and closure353 () () : (Fable.Core.JSX.Element []) =
     [||]
 and closure355 (v0 : ((struct (System.Guid * obj) []) -> unit)) struct (v1 : (struct (System.Guid * obj) []), v2 : US2, v3 : System.Guid, v4 : (struct (System.Guid * obj) [])) : unit =
     v0 v4
-    ()
 and closure358 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : ((struct (System.Guid * obj) []) -> unit)) (v2 : (exn -> unit)) : unit =
     let v3 : (struct (System.Guid * obj) []) = v0 ()
     v1 v3
-    ()
 and closure357 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : ((struct (System.Guid * obj) []) -> unit)) : ((exn -> unit) -> unit) =
     closure358(v0, v1)
 and closure356 (v0 : (unit -> (struct (System.Guid * obj) []))) (v1 : obj) : Fable.Core.JS.Promise<(struct (System.Guid * obj) [])> =
@@ -6769,7 +6716,7 @@ and closure374 (v0 : (unit -> struct (System.Guid * obj))) () : (Fable.Core.JSX.
     [|v10|]
 and closure373 (v0 : (unit -> struct (System.Guid * obj))) struct (v1 : US6, v2 : US6, v3 : US6, v4 : US7, v5 : US6, v6 : US6, v7 : US6, v8 : US6, v9 : US6, v10 : US6, v11 : US8, v12 : US9, v13 : US6, v14 : US6, v15 : US8, v16 : US6, v17 : US6, v18 : US6, v19 : US10, v20 : US8, v21 : US6, v22 : US6, v23 : US6, v24 : US6, v25 : US6, v26 : US6, v27 : US11, v28 : US6, v29 : US6, v30 : US6, v31 : US11, v32 : US6, v33 : US6, v34 : US6, v35 : US6, v36 : US6, v37 : US6, v38 : US6, v39 : US6, v40 : US6, v41 : US6, v42 : US12, v43 : US13, v44 : US12, v45 : US6, v46 : US6, v47 : US6, v48 : US6, v49 : US6, v50 : US6, v51 : US6, v52 : US6, v53 : US6, v54 : US6, v55 : US6, v56 : US6, v57 : US6, v58 : US6, v59 : US6, v60 : US6, v61 : US14, v62 : US6, v63 : US11, v64 : US6, v65 : US6, v66 : US14, v67 : US14, v68 : US6, v69 : US5, v70 : US6) : struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) =
     let struct (v71 : System.Guid, v72 : obj) = v0 ()
-    let v73 : string = v71.ToString ()
+    let v73 : string = (v71).ToString ()
     let v74 : Fable.Core.JSX.Element = v73 |> unbox<Fable.Core.JSX.Element>
     let v75 : Fable.Core.JSX.Element = Feliz.JSX.Solid.Html.fragment [ v74 ]
     let v76 : (unit -> (Fable.Core.JSX.Element [])) = closure374(v0)
@@ -6837,21 +6784,21 @@ and closure359 (v0 : (unit -> (struct (System.Guid * obj) [])), v1 : (unit -> un
     let v83 : US11 = US11_1(v78)
     struct (v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v80, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v82, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46, v47, v48, v49, v50, v51, v52, v53, v54, v55, v56, v57, v58, v59, v60, v61, v62, v63, v64, v83, v66, v67, v68, v69, v70, v71, v72)
 and method96 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v134 : string = "profile/tmp/chain_deploy"
-    let v135 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure355(v125)
-    let v136 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure356(v124)
-    let struct (v137 : (unit -> unit), v138 : (unit -> unit)) = method88(v134, v124, v135, v136)
-    let v139 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
-    let v140 : US13 = US13_0
-    let v141 : US13 = US13_0
-    let v142 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure359(v124, v138, v137)
-    let v143 : US15 = US15_2
-    method26(v139, v140, v141, v142, v143)
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v121 : string = "profile/tmp/chain_deploy"
+    let v122 : (struct ((struct (System.Guid * obj) []) * US2 * System.Guid * (struct (System.Guid * obj) [])) -> unit) = closure355(v112)
+    let v123 : (obj -> Fable.Core.JS.Promise<(struct (System.Guid * obj) [])>) = closure356(v111)
+    let struct (v124 : (unit -> unit), v125 : (unit -> unit)) = method88(v121, v111, v122, v123)
+    let v126 : (Mut3 -> Fable.Core.JSX.Element) = closure14()
+    let v127 : US13 = US13_0
+    let v128 : US13 = US13_0
+    let v129 : (struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6) -> struct (US6 * US6 * US6 * US7 * US6 * US6 * US6 * US6 * US6 * US6 * US8 * US9 * US6 * US6 * US8 * US6 * US6 * US6 * US10 * US8 * US6 * US6 * US6 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US11 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US12 * US13 * US12 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US6 * US14 * US6 * US11 * US6 * US6 * US14 * US14 * US6 * US5 * US6)) = closure359(v111, v125, v124)
+    let v130 : US15 = US15_2
+    method26(v126, v127, v128, v129, v130)
 and closure354 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method96()
 and closure376 () () : (Fable.Core.JSX.Element []) =
@@ -6965,10 +6912,10 @@ and closure1 () (v0 : Mut1) : Fable.Core.JSX.Element =
     method1()
 and closure378 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) []))) () : (obj []) =
     let v2 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
-    let v3 : string = "db_connection_options':"
+    let v3 : string = "db_connection_options"
     let v4 : obj = struct (v3, v2)
     let v5 : (struct (US2 * obj * string) []) = v0 ()
-    let v6 : string = "db_connections':"
+    let v6 : string = "db_connections"
     let v7 : obj = struct (v6, v5)
     [|v4; v7|]
 and method98 (v0 : int32, v1 : Mut30) : bool =
@@ -7001,7 +6948,6 @@ and closure385 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
     let v7 : obj = struct (v6, v1)
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
-    ()
 and closure386 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
     let v2 : US4 = US4_2
     let v3 : ((obj []) -> unit) = v0 v2
@@ -7011,7 +6957,6 @@ and closure386 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
     let v7 : obj = struct (v6, v1)
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
-    ()
 and closure387 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
     let v2 : US4 = US4_2
     let v3 : ((obj []) -> unit) = v0 v2
@@ -7021,7 +6966,6 @@ and closure387 (v0 : (US4 -> ((obj []) -> unit))) (v1 : obj) : unit =
     let v7 : obj = struct (v6, v1)
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
-    ()
 and closure388 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
     let v2 : US4 = US4_2
     let v3 : ((obj []) -> unit) = v0 v2
@@ -7031,7 +6975,6 @@ and closure388 (v0 : (US4 -> ((obj []) -> unit))) (v1 : UH1) : unit =
     let v7 : obj = struct (v6, v1)
     let v8 : (obj []) = [|v5; v7|]
     v3 v8
-    ()
 and closure382 (v0 : (unit -> US4), v1 : string) (v2 : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1>) : Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> =
     let v3 : (unit -> (obj [])) = closure383()
     let v4 : string = "#666"
@@ -7093,7 +7036,7 @@ and closure379 (v0 : (unit -> US4), v1 : ((struct (US2 * obj * string) []) -> un
                 let v28 : int32 = v27 - 1
                 let v29 : US20 = v23.l1
                 let struct (v30 : US2, v31 : obj, v32 : string) = v4.[int v28]
-                let v42 : US20 =
+                let v39 : US20 =
                     match v29 with
                     | US20_0 -> (* None *)
                         let v33 : bool =
@@ -7118,15 +7061,15 @@ and closure379 (v0 : (unit -> US4), v1 : ((struct (US2 * obj * string) []) -> un
                             US20_1(v30, v31, v32)
                         else
                             US20_0
-                    | US20_1(v39, v40, v41) -> (* Some *)
+                    | _ ->
                         v29
-                let v43 : int32 = v25 + 1
-                v23.l0 <- v43
-                v23.l1 <- v42
+                let v40 : int32 = v25 + 1
+                v23.l0 <- v40
+                v23.l1 <- v39
                 ()
-            let v44 : US20 = v23.l1
-            let struct (v109 : US2, v110 : obj, v111 : string) =
-                match v44 with
+            let v41 : US20 = v23.l1
+            let struct (v108 : US2, v109 : obj, v110 : string) =
+                match v41 with
                 | US20_0 -> (* None *)
                     let v45 : US21 = US21_0
                     let v46 : Mut31 = {l0 = 0; l1 = v45} : Mut31
@@ -7137,7 +7080,7 @@ and closure379 (v0 : (unit -> US4), v1 : ((struct (US2 * obj * string) []) -> un
                         let v51 : int32 = v50 - 1
                         let v52 : US21 = v46.l1
                         let struct (v53 : (US2 []), v54 : int32, v55 : US3, v56 : string, v57 : string) = v3.[int v51]
-                        let v67 : US21 =
+                        let v62 : US21 =
                             match v52 with
                             | US21_0 -> (* None *)
                                 let v58 : bool =
@@ -7154,195 +7097,192 @@ and closure379 (v0 : (unit -> US4), v1 : ((struct (US2 * obj * string) []) -> un
                                     US21_1(v53, v54, v55, v56, v57)
                                 else
                                     US21_0
-                            | US21_1(v62, v63, v64, v65, v66) -> (* Some *)
+                            | _ ->
                                 v52
-                        let v68 : int32 = v48 + 1
-                        v46.l0 <- v68
-                        v46.l1 <- v67
+                        let v63 : int32 = v48 + 1
+                        v46.l0 <- v63
+                        v46.l1 <- v62
                         ()
-                    let v69 : US21 = v46.l1
-                    let v77 : string =
-                        match v69 with
+                    let v64 : US21 = v46.l1
+                    let v73 : string =
+                        match v64 with
                         | US21_0 -> (* None *)
-                            let v70 : string = ""
+                            let v71 : string = ""
+                            v71
+                        | US21_1(v65, v66, v67, v68, v69) -> (* Some *)
+                            let v70 : string = $"{v68}:{v66}/{v69}"
                             v70
-                        | US21_1(v71, v72, v73, v74, v75) -> (* Some *)
-                            let v76 : string = $"{v74}:{v72}/{v75}"
-                            v76
-                    let v105 : obj =
+                    let v104 : obj =
                         match v20 with
                         | US2_0 -> (* GunJsClient *)
-                            let v78 : string = "gun/gun"
-                            let v79 : Fable.Core.JS.Function = Fable.Core.JsInterop.importDefault v78
-                            let v80 : string = "gun/lib/radix"
-                            Fable.Core.JsInterop.importSideEffects v80
-                            let v81 : string = "gun/lib/radisk"
-                            Fable.Core.JsInterop.importSideEffects v81
-                            let v82 : string = "gun/lib/store"
-                            Fable.Core.JsInterop.importSideEffects v82
-                            let v83 : string = "gun/lib/rindexed"
-                            Fable.Core.JsInterop.importSideEffects v83
-                            let v84 : obj = v77
-                            let v85 : string = "url"
-                            let v86 : (string * obj) = v85, v84
-                            let v87 : obj = false
-                            let v88 : string = "localStorage"
-                            let v89 : (string * obj) = v88, v87
-                            let v90 : obj = true
-                            let v91 : string = "radisk"
-                            let v92 : (string * obj) = v91, v90
-                            let v93 : ((string * obj) []) = [|v86; v89; v92|]
-                            let v94 : obj = Fable.Core.JsInterop.createObj v93
-                            let v95 : obj = Fable.Core.JsInterop.createNew v79 v94
-                            v95
+                            let v82 : string = "gun/gun"
+                            let v83 : Fable.Core.JS.Function = Fable.Core.JsInterop.importDefault v82
+                            let v84 : string = "gun/lib/radix"
+                            Fable.Core.JsInterop.importSideEffects v84
+                            let v85 : string = "gun/lib/radisk"
+                            Fable.Core.JsInterop.importSideEffects v85
+                            let v86 : string = "gun/lib/store"
+                            Fable.Core.JsInterop.importSideEffects v86
+                            let v87 : string = "gun/lib/rindexed"
+                            Fable.Core.JsInterop.importSideEffects v87
+                            let v88 : obj = v73
+                            let v89 : string = "url"
+                            let v90 : (string * obj) = v89, v88
+                            let v91 : obj = false
+                            let v92 : string = "localStorage"
+                            let v93 : (string * obj) = v92, v91
+                            let v94 : obj = true
+                            let v95 : string = "radisk"
+                            let v96 : (string * obj) = v95, v94
+                            let v97 : ((string * obj) []) = [|v90; v93; v96|]
+                            let v98 : obj = Fable.Core.JsInterop.createObj v97
+                            let v99 : obj = Fable.Core.JsInterop.createNew v83 v98
+                            v99
                         | US2_1 -> (* GunRsClient *)
-                            let v96 : string = "Node"
-                            let v97 : string = "rusty-gun"
-                            let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
-                            let v99 : obj = v77
-                            let v100 : obj = Fable.Core.JsInterop.createNew v98 v99
-                            v100
+                            let v77 : string = "Node"
+                            let v78 : string = "rusty-gun"
+                            let v79 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v77 v78
+                            let v80 : obj = v73
+                            let v81 : obj = Fable.Core.JsInterop.createNew v79 v80
+                            v81
                         | US2_2 -> (* Memory *)
                             failwith<obj> "new_db Memory"
                         | US2_3 -> (* SignalRClient *)
-                            let v102 : ((unit -> US4) -> (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1>))) = closure380()
-                            let v103 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, unit, UH1, UH1> ((v102 v0 v77) |> unbox) |> unbox
-                            v103.startNow ()
-                            let v104 : obj = v103
-                            v104
-                    struct (v20, v105, v77)
-                | US20_1(v106, v107, v108) -> (* Some *)
-                    struct (v106, v107, v108)
-            v16.[int v19] <- struct (v109, v110, v111)
-            let v112 : int32 = v19 + 1
-            v17.l0 <- v112
+                            let v74 : ((unit -> US4) -> (string -> (Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1> -> Fable.SignalR.HubConnectionBuilder<UH0, UH0, unit, UH1, UH1>))) = closure380()
+                            let v75 : Fable.SignalR.HubConnection<UH0, UH0, unit, UH1, UH1> = Fable.SignalR.SignalR.connect<UH0, UH0, unit, UH1, UH1> ((v74 v0 v73) |> unbox) |> unbox
+                            v75.startNow ()
+                            let v76 : obj = v75
+                            v76
+                    struct (v20, v104, v73)
+                | US20_1(v42, v43, v44) -> (* Some *)
+                    struct (v42, v43, v44)
+            v16.[int v19] <- struct (v108, v109, v110)
+            let v111 : int32 = v19 + 1
+            v17.l0 <- v111
             ()
         v6.[int v9] <- v16
-        let v113 : int32 = v9 + 1
-        v7.l0 <- v113
+        let v112 : int32 = v9 + 1
+        v7.l0 <- v112
         ()
-    let v114 : (struct (US2 * obj * string) []) = [||]
-    let v115 : int32 = v6.Length
-    let v116 : Mut32 = {l0 = 0; l1 = v114} : Mut32
-    while method100(v115, v116) do
-        let v118 : int32 = v116.l0
-        let v119 : (struct (US2 * obj * string) []) = v116.l1
-        let v120 : (struct (US2 * obj * string) []) = v6.[int v118]
+    let v113 : (struct (US2 * obj * string) []) = [||]
+    let v114 : int32 = v6.Length
+    let v115 : Mut32 = {l0 = 0; l1 = v113} : Mut32
+    while method100(v114, v115) do
+        let v117 : int32 = v115.l0
+        let v118 : (struct (US2 * obj * string) []) = v115.l1
+        let v119 : (struct (US2 * obj * string) []) = v6.[int v117]
+        let v120 : int32 = v118.Length
         let v121 : int32 = v119.Length
-        let v122 : int32 = v120.Length
-        let v123 : int32 = v121 + v122
-        let v124 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v123)
-        let v125 : Mut6 = {l0 = 0} : Mut6
-        while method21(v123, v125) do
-            let v127 : int32 = v125.l0
-            let v128 : bool = v127 < v121
-            let struct (v136 : US2, v137 : obj, v138 : string) =
-                if v128 then
-                    let struct (v129 : US2, v130 : obj, v131 : string) = v119.[int v127]
-                    struct (v129, v130, v131)
+        let v122 : int32 = v120 + v121
+        let v123 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (v122)
+        let v124 : Mut6 = {l0 = 0} : Mut6
+        while method21(v122, v124) do
+            let v126 : int32 = v124.l0
+            let v127 : bool = v126 < v120
+            let struct (v135 : US2, v136 : obj, v137 : string) =
+                if v127 then
+                    let struct (v128 : US2, v129 : obj, v130 : string) = v118.[int v126]
+                    struct (v128, v129, v130)
                 else
-                    let v132 : int32 = v127 - v121
-                    let struct (v133 : US2, v134 : obj, v135 : string) = v120.[int v132]
-                    struct (v133, v134, v135)
-            v124.[int v127] <- struct (v136, v137, v138)
-            let v139 : int32 = v127 + 1
-            v125.l0 <- v139
+                    let v131 : int32 = v126 - v120
+                    let struct (v132 : US2, v133 : obj, v134 : string) = v119.[int v131]
+                    struct (v132, v133, v134)
+            v123.[int v126] <- struct (v135, v136, v137)
+            let v138 : int32 = v126 + 1
+            v124.l0 <- v138
             ()
-        let v140 : int32 = v118 + 1
-        v116.l0 <- v140
-        v116.l1 <- v124
+        let v139 : int32 = v117 + 1
+        v115.l0 <- v139
+        v115.l1 <- v123
         ()
-    let v141 : (struct (US2 * obj * string) []) = v116.l1
-    let v142 : int32 = v4.Length
-    let v143 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v142)
-    let v144 : Mut6 = {l0 = 0} : Mut6
-    while method21(v142, v144) do
-        let v146 : int32 = v144.l0
-        let struct (v147 : US2, v148 : obj, v149 : string) = v4.[int v146]
-        v143.[int v146] <- struct (v147, v149)
-        let v150 : int32 = v146 + 1
-        v144.l0 <- v150
+    let v140 : (struct (US2 * obj * string) []) = v115.l1
+    let v141 : int32 = v4.Length
+    let v142 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v141)
+    let v143 : Mut6 = {l0 = 0} : Mut6
+    while method21(v141, v143) do
+        let v145 : int32 = v143.l0
+        let struct (v146 : US2, v147 : obj, v148 : string) = v4.[int v145]
+        v142.[int v145] <- struct (v146, v148)
+        let v149 : int32 = v145 + 1
+        v143.l0 <- v149
         ()
-    let v151 : int32 = v141.Length
-    let v152 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v151)
-    let v153 : Mut6 = {l0 = 0} : Mut6
-    while method21(v151, v153) do
-        let v155 : int32 = v153.l0
-        let struct (v156 : US2, v157 : obj, v158 : string) = v141.[int v155]
-        v152.[int v155] <- struct (v156, v158)
-        let v159 : int32 = v155 + 1
-        v153.l0 <- v159
+    let v150 : int32 = v140.Length
+    let v151 : (struct (US2 * string) []) = Array.zeroCreate<struct (US2 * string)> (v150)
+    let v152 : Mut6 = {l0 = 0} : Mut6
+    while method21(v150, v152) do
+        let v154 : int32 = v152.l0
+        let struct (v155 : US2, v156 : obj, v157 : string) = v140.[int v154]
+        v151.[int v154] <- struct (v155, v157)
+        let v158 : int32 = v154 + 1
+        v152.l0 <- v158
         ()
-    let v160 : int32 = v143.Length
-    let v161 : int32 = v152.Length
-    let v162 : bool = v160 = v161
-    let v163 : bool = v162 <> true
-    let v166 : bool =
-        if v163 then
+    let v159 : int32 = v142.Length
+    let v160 : int32 = v151.Length
+    let v161 : bool = v159 = v160
+    let v162 : bool = v161 <> true
+    let v165 : bool =
+        if v162 then
             false
         else
-            let v164 : int32 = 0
-            method81(v143, v152, v164)
-    let v167 : bool = v166 <> true
-    if v167 then
-        let v168 : US4 = US4_2
-        let v169 : ((obj []) -> unit) = v2 v168
-        let v170 : string = "> db_listener > effect"
-        let v171 : obj = v170
-        let v172 : string = "new_connections:"
-        let v173 : obj = struct (v172, v141)
-        let v174 : (obj []) = [|v171; v173|]
-        v169 v174
-        v1 v141
-        ()
+            let v163 : int32 = 0
+            method81(v142, v151, v163)
+    let v166 : bool = v165 <> true
+    if v166 then
+        let v167 : US4 = US4_2
+        let v168 : ((obj []) -> unit) = v2 v167
+        let v169 : string = "> db_listener > effect"
+        let v170 : obj = v169
+        let v171 : string = "new_connections"
+        let v172 : obj = struct (v171, v140)
+        let v173 : (obj []) = [|v170; v172|]
+        v168 v173
+        v1 v140
 and closure389 (v0 : (unit -> (struct (US2 * obj * string) [])), v1 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v2 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     let v3 : (struct (US2 * obj * string) []) = v0 ()
     let v4 : (struct ((US2 []) * int32 * US3 * string * string) []) = v1 ()
     v2 struct (v4, v3)
-    ()
 and closure390 (v0 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit)) () : unit =
     let v1 : obj = v0
     let v2 : string = "clear"
     let v3 : obj = (Fable.Core.JsInterop.(?)) v1 v2
     let v4 : (unit -> unit) = v3 |> unbox<(unit -> unit)>
     v4 ()
-    ()
 and method97 () : Fable.Core.JSX.Element =
-    let v108 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v109 : string = "useContext"
-    let v110 : string = "solid-js"
-    let v111 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v112 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v113 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v114 : (unit -> int32), v115 : (int32 -> unit), v116 : (unit -> string), v117 : (string -> unit), v118 : (unit -> string), v119 : (string -> unit), v120 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v121 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v122 : (unit -> (struct (US2 * obj * string) [])), v123 : ((struct (US2 * obj * string) []) -> unit), v124 : (unit -> (struct (System.Guid * obj) [])), v125 : ((struct (System.Guid * obj) []) -> unit), v126 : (unit -> (struct (System.Guid * obj) [])), v127 : ((struct (System.Guid * obj) []) -> unit), v128 : (unit -> (struct (System.Guid * int32) [])), v129 : ((struct (System.Guid * int32) []) -> unit), v130 : (unit -> US4), v131 : (US4 -> unit), v132 : (unit -> US5), v133 : (US5 -> unit)) = v111.Invoke v108 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v242 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v243 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v244 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v245 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v246 : (unit -> int32), v247 : (int32 -> unit), v248 : (unit -> string), v249 : (string -> unit), v250 : (unit -> string), v251 : (string -> unit), v252 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v253 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v254 : (unit -> (struct (US2 * obj * string) [])), v255 : ((struct (US2 * obj * string) []) -> unit), v256 : (unit -> (struct (System.Guid * obj) [])), v257 : ((struct (System.Guid * obj) []) -> unit), v258 : (unit -> (struct (System.Guid * obj) [])), v259 : ((struct (System.Guid * obj) []) -> unit), v260 : (unit -> (struct (System.Guid * int32) [])), v261 : ((struct (System.Guid * int32) []) -> unit), v262 : (unit -> US4), v263 : (US4 -> unit), v264 : (unit -> US5), v265 : (US5 -> unit)) = v243.Invoke v242 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v374 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
-    let v375 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v109 v110
-    let struct (v376 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v377 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v378 : (unit -> int32), v379 : (int32 -> unit), v380 : (unit -> string), v381 : (string -> unit), v382 : (unit -> string), v383 : (string -> unit), v384 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v385 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v386 : (unit -> (struct (US2 * obj * string) [])), v387 : ((struct (US2 * obj * string) []) -> unit), v388 : (unit -> (struct (System.Guid * obj) [])), v389 : ((struct (System.Guid * obj) []) -> unit), v390 : (unit -> (struct (System.Guid * obj) [])), v391 : ((struct (System.Guid * obj) []) -> unit), v392 : (unit -> (struct (System.Guid * int32) [])), v393 : ((struct (System.Guid * int32) []) -> unit), v394 : (unit -> US4), v395 : (US4 -> unit), v396 : (unit -> US5), v397 : (US5 -> unit)) = v375.Invoke v374 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
-    let v398 : (unit -> (obj [])) = closure378(v254, v384)
-    let v399 : string = "#cf1100"
-    let v400 : (US4 -> ((obj []) -> unit)) = method16(v398, v399)
-    let v401 : US4 = US4_0
-    let v402 : ((obj []) -> unit) = v400 v401
-    let v403 : string = "> db_listener ()"
-    let v404 : obj = v403
-    let v405 : (obj []) = [|v404|]
-    v402 v405
-    let v406 : string = "debounce"
-    let v407 : string = "@solid-primitives/scheduled"
-    let v408 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v406 v407
-    let v409 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = closure379(v130, v255, v400)
-    let v410 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = v408.Invoke (v409, 300) |> unbox<struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit>
-    let v411 : string = "createEffect"
-    let v412 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v411 v110
-    let v413 : (unit -> unit) = closure389(v254, v384, v410)
-    v412.Invoke v413 |> ignore
-    let v414 : string = "onCleanup"
-    let v415 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v414 v110
-    let v416 : (unit -> unit) = closure390(v410)
-    v415.Invoke v416 |> ignore
-    let v417 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
-    v417
+    let v95 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v96 : string = "useContext"
+    let v97 : string = "solid-js"
+    let v98 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v99 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v100 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v101 : (unit -> int32), v102 : (int32 -> unit), v103 : (unit -> string), v104 : (string -> unit), v105 : (unit -> string), v106 : (string -> unit), v107 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v108 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v109 : (unit -> (struct (US2 * obj * string) [])), v110 : ((struct (US2 * obj * string) []) -> unit), v111 : (unit -> (struct (System.Guid * obj) [])), v112 : ((struct (System.Guid * obj) []) -> unit), v113 : (unit -> (struct (System.Guid * obj) [])), v114 : ((struct (System.Guid * obj) []) -> unit), v115 : (unit -> (struct (System.Guid * int32) [])), v116 : ((struct (System.Guid * int32) []) -> unit), v117 : (unit -> US4), v118 : (US4 -> unit), v119 : (unit -> US5), v120 : (US5 -> unit)) = v98.Invoke v95 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v216 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v217 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v218 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v219 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v220 : (unit -> int32), v221 : (int32 -> unit), v222 : (unit -> string), v223 : (string -> unit), v224 : (unit -> string), v225 : (string -> unit), v226 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v227 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v228 : (unit -> (struct (US2 * obj * string) [])), v229 : ((struct (US2 * obj * string) []) -> unit), v230 : (unit -> (struct (System.Guid * obj) [])), v231 : ((struct (System.Guid * obj) []) -> unit), v232 : (unit -> (struct (System.Guid * obj) [])), v233 : ((struct (System.Guid * obj) []) -> unit), v234 : (unit -> (struct (System.Guid * int32) [])), v235 : ((struct (System.Guid * int32) []) -> unit), v236 : (unit -> US4), v237 : (US4 -> unit), v238 : (unit -> US5), v239 : (US5 -> unit)) = v217.Invoke v216 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v335 : obj = Fable.Core.JsInterop.emitJsExpr () "components.state_context"
+    let v336 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v96 v97
+    let struct (v337 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v338 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit), v339 : (unit -> int32), v340 : (int32 -> unit), v341 : (unit -> string), v342 : (string -> unit), v343 : (unit -> string), v344 : (string -> unit), v345 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v346 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit), v347 : (unit -> (struct (US2 * obj * string) [])), v348 : ((struct (US2 * obj * string) []) -> unit), v349 : (unit -> (struct (System.Guid * obj) [])), v350 : ((struct (System.Guid * obj) []) -> unit), v351 : (unit -> (struct (System.Guid * obj) [])), v352 : ((struct (System.Guid * obj) []) -> unit), v353 : (unit -> (struct (System.Guid * int32) [])), v354 : ((struct (System.Guid * int32) []) -> unit), v355 : (unit -> US4), v356 : (US4 -> unit), v357 : (unit -> US5), v358 : (US5 -> unit)) = v336.Invoke v335 |> unbox<struct ((unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])) * ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit) * (unit -> int32) * (int32 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])) * ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit) * (unit -> (struct (US2 * obj * string) [])) * ((struct (US2 * obj * string) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * obj) [])) * ((struct (System.Guid * obj) []) -> unit) * (unit -> (struct (System.Guid * int32) [])) * ((struct (System.Guid * int32) []) -> unit) * (unit -> US4) * (US4 -> unit) * (unit -> US5) * (US5 -> unit))>
+    let v359 : (unit -> (obj [])) = closure378(v228, v345)
+    let v360 : string = "#cf1100"
+    let v361 : (US4 -> ((obj []) -> unit)) = method16(v359, v360)
+    let v362 : US4 = US4_0
+    let v363 : ((obj []) -> unit) = v361 v362
+    let v364 : string = "> db_listener ()"
+    let v365 : obj = v364
+    let v366 : (obj []) = [|v365|]
+    v363 v366
+    let v367 : string = "debounce"
+    let v368 : string = "@solid-primitives/scheduled"
+    let v369 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v367 v368
+    let v370 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = closure379(v117, v229, v361)
+    let v371 : (struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit) = v369.Invoke (v370, 300) |> unbox<struct ((struct ((US2 []) * int32 * US3 * string * string) []) * (struct (US2 * obj * string) [])) -> unit>
+    let v372 : string = "createEffect"
+    let v373 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v372 v97
+    let v374 : (unit -> unit) = closure389(v228, v345, v371)
+    v373.Invoke v374 |> ignore
+    let v375 : string = "onCleanup"
+    let v376 : Fable.Core.JS.Function = Fable.Core.JsInterop.import v375 v97
+    let v377 : (unit -> unit) = closure390(v371)
+    v376.Invoke v377 |> ignore
+    let v378 : Fable.Core.JSX.Element = Fable.Core.JS.undefined
+    v378
 and closure377 () (v0 : Mut2) : Fable.Core.JSX.Element =
     method97()
 and method101 () : (struct (US0 * string * string * string) []) =
@@ -7451,148 +7391,129 @@ and method114 (v0 : (struct (System.Guid * obj) [])) : struct ((unit -> (struct 
     let v6 : ((struct (System.Guid * obj) []) -> unit) = v4.[1] |> unbox<(struct (System.Guid * obj) []) -> unit>
     struct (v5, v6)
 and closure391 () () : obj =
-    let struct (v108 : string, v109 : obj, v110 : string, v111 : string, v112 : bool) = method2()
-    let v113 : (struct (US0 * string * string * string) []) = method101()
-    let v114 : int32 = v113.Length
-    let v115 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) = Array.zeroCreate<struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit))> (v114)
-    let v116 : Mut6 = {l0 = 0} : Mut6
-    while method21(v114, v116) do
-        let v118 : int32 = v116.l0
-        let struct (v119 : US0, v120 : string, v121 : string, v122 : string) = v113.[int v118]
-        let struct (v123 : (unit -> US0), v124 : (US0 -> unit)) = method102(v119)
-        let struct (v125 : (unit -> string), v126 : (string -> unit)) = method103(v122)
-        let struct (v127 : (unit -> string), v128 : (string -> unit)) = method103(v120)
-        let struct (v129 : (unit -> string), v130 : (string -> unit)) = method103(v121)
-        v115.[int v118] <- struct (v123, v124, v127, v128, v129, v130, v125, v126)
-        let v131 : int32 = v118 + 1
-        v116.l0 <- v131
+    let struct (v95 : string, v96 : obj, v97 : string, v98 : string, v99 : bool) = method2()
+    let v100 : (struct (US0 * string * string * string) []) = method101()
+    let v101 : int32 = v100.Length
+    let v102 : (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) = Array.zeroCreate<struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit))> (v101)
+    let v103 : Mut6 = {l0 = 0} : Mut6
+    while method21(v101, v103) do
+        let v105 : int32 = v103.l0
+        let struct (v106 : US0, v107 : string, v108 : string, v109 : string) = v100.[int v105]
+        let struct (v110 : (unit -> US0), v111 : (US0 -> unit)) = method102(v106)
+        let struct (v112 : (unit -> string), v113 : (string -> unit)) = method103(v109)
+        let struct (v114 : (unit -> string), v115 : (string -> unit)) = method103(v107)
+        let struct (v116 : (unit -> string), v117 : (string -> unit)) = method103(v108)
+        v102.[int v105] <- struct (v110, v111, v114, v115, v116, v117, v112, v113)
+        let v118 : int32 = v105 + 1
+        v103.l0 <- v118
         ()
-    let struct (v132 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v133 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit)) = method104(v115)
-    let v134 : bool = "" = v108
-    let v136 : int32 =
-        if v134 then
+    let struct (v119 : (unit -> (struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) [])), v120 : ((struct ((unit -> US0) * (US0 -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit) * (unit -> string) * (string -> unit)) []) -> unit)) = method104(v102)
+    let v121 : bool = "" = v95
+    let v123 : int32 =
+        if v121 then
             method105()
         else
             80
-    let struct (v137 : (unit -> int32), v138 : (int32 -> unit)) = method106(v136)
-    let v139 : string = method107()
-    let struct (v140 : (unit -> string), v141 : (string -> unit)) = method103(v139)
-    let v144 : string =
-        if v134 then
+    let struct (v124 : (unit -> int32), v125 : (int32 -> unit)) = method106(v123)
+    let v126 : string = method107()
+    let struct (v127 : (unit -> string), v128 : (string -> unit)) = method103(v126)
+    let v131 : string =
+        if v121 then
             method108()
         else
-            let v143 : string = $"http://{v108}-4001.githubpreview.dev"
-            v143
-    let struct (v145 : (unit -> string), v146 : (string -> unit)) = method103(v144)
-    let v147 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (0)
-    let struct (v148 : (unit -> (struct (US2 * obj * string) [])), v149 : ((struct (US2 * obj * string) []) -> unit)) = method109(v147)
-    let v155 : string =
-        if v134 then
-            let v150 : string = "http://localhost"
-            v150
+            let v130 : string = $"http://{v95}-4001.githubpreview.dev"
+            v130
+    let struct (v132 : (unit -> string), v133 : (string -> unit)) = method103(v131)
+    let v134 : (struct (US2 * obj * string) []) = Array.zeroCreate<struct (US2 * obj * string)> (0)
+    let struct (v135 : (unit -> (struct (US2 * obj * string) [])), v136 : ((struct (US2 * obj * string) []) -> unit)) = method109(v134)
+    let v141 : string =
+        if v121 then
+            let v137 : string = "http://localhost"
+            v137
         else
-            let v151 : bool = true = v112
-            if v151 then
-                let v152 : string = "http://localhost"
-                v152
+            if v99 then
+                let v138 : string = "http://localhost"
+                v138
             else
-                let v153 : string = $"http://{v108}-9761.githubpreview.dev"
-                v153
-    let v160 : int32 =
-        if v134 then
-            let v156 : bool = true = v112
-            if v156 then
+                let v139 : string = $"http://{v95}-9761.githubpreview.dev"
+                v139
+    let v143 : int32 =
+        if v121 then
+            if v99 then
                 19761
             else
-                let v157 : bool = false = v112
-                if v157 then
-                    9761
-                else
-                    80
+                9761
         else
             80
-    let v161 : (US2 []) = Array.zeroCreate<US2> (0)
-    let v162 : US3 = US3_2
-    let v163 : string = "peer"
-    let v169 : string =
-        if v134 then
-            let v164 : string = "ws://localhost"
-            v164
+    let v144 : (US2 []) = Array.zeroCreate<US2> (0)
+    let v145 : US3 = US3_2
+    let v146 : string = "peer"
+    let v151 : string =
+        if v121 then
+            let v147 : string = "ws://localhost"
+            v147
         else
-            let v165 : bool = true = v112
-            if v165 then
-                let v166 : string = "ws://localhost"
-                v166
+            if v99 then
+                let v148 : string = "ws://localhost"
+                v148
             else
-                let v167 : string = $"ws://{v108}-4944.githubpreview.dev"
-                v167
-    let v174 : int32 =
-        if v134 then
-            let v170 : bool = true = v112
-            if v170 then
+                let v149 : string = $"ws://{v95}-4944.githubpreview.dev"
+                v149
+    let v153 : int32 =
+        if v121 then
+            if v99 then
                 14944
             else
-                let v171 : bool = false = v112
-                if v171 then
-                    4944
-                else
-                    80
+                4944
         else
             80
-    let v175 : (US2 []) = Array.zeroCreate<US2> (0)
-    let v176 : US3 = US3_1
-    let v177 : string = "ws"
-    let v183 : string =
-        if v134 then
-            let v178 : string = "wss://localhost"
-            v178
+    let v154 : (US2 []) = Array.zeroCreate<US2> (0)
+    let v155 : US3 = US3_1
+    let v156 : string = "ws"
+    let v161 : string =
+        if v121 then
+            let v157 : string = "wss://localhost"
+            v157
         else
-            let v179 : bool = true = v112
-            if v179 then
-                let v180 : string = "wss://localhost"
-                v180
+            if v99 then
+                let v158 : string = "wss://localhost"
+                v158
             else
-                let v181 : string = $"ws://{v108}-8765.githubpreview.dev"
-                v181
-    let v188 : int32 =
-        if v134 then
-            let v184 : bool = true = v112
-            if v184 then
+                let v159 : string = $"ws://{v95}-8765.githubpreview.dev"
+                v159
+    let v163 : int32 =
+        if v121 then
+            if v99 then
                 18765
             else
-                let v185 : bool = false = v112
-                if v185 then
-                    8765
-                else
-                    80
+                8765
         else
             80
-    let v189 : (US2 []) = Array.zeroCreate<US2> (0)
-    let v190 : US3 = US3_0
-    let v191 : string = "gun"
-    let v192 : (struct ((US2 []) * int32 * US3 * string * string) []) = [|struct (v161, v160, v162, v155, v163); struct (v175, v174, v176, v169, v177); struct (v189, v188, v190, v183, v191)|]
-    let struct (v193 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v194 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit)) = method110(v192)
-    let v195 : bool = "" = v110
-    let v201 : US4 =
-        if v195 then
+    let v164 : (US2 []) = Array.zeroCreate<US2> (0)
+    let v165 : US3 = US3_0
+    let v166 : string = "gun"
+    let v167 : (struct ((US2 []) * int32 * US3 * string * string) []) = [|struct (v144, v143, v145, v141, v146); struct (v154, v153, v155, v151, v156); struct (v164, v163, v165, v161, v166)|]
+    let struct (v168 : (unit -> (struct ((US2 []) * int32 * US3 * string * string) [])), v169 : ((struct ((US2 []) * int32 * US3 * string * string) []) -> unit)) = method110(v167)
+    let v170 : bool = "" = v97
+    let v175 : US4 =
+        if v170 then
             US4_0
         else
-            let v197 : bool = true = v112
-            if v197 then
+            if v99 then
                 US4_0
             else
-                US4_3
-    let struct (v202 : (unit -> US4), v203 : (US4 -> unit)) = method111(v201)
-    let v204 : US5 = US5_0
-    let struct (v205 : (unit -> US5), v206 : (US5 -> unit)) = method112(v204)
-    let v207 : (struct (System.Guid * int32) []) = Array.zeroCreate<struct (System.Guid * int32)> (0)
-    let struct (v208 : (unit -> (struct (System.Guid * int32) [])), v209 : ((struct (System.Guid * int32) []) -> unit)) = method113(v207)
-    let v210 : (struct (System.Guid * obj) []) = Array.zeroCreate<struct (System.Guid * obj)> (0)
-    let struct (v211 : (unit -> (struct (System.Guid * obj) [])), v212 : ((struct (System.Guid * obj) []) -> unit)) = method114(v210)
-    let v213 : (struct (System.Guid * obj) []) = Array.zeroCreate<struct (System.Guid * obj)> (0)
-    let struct (v214 : (unit -> (struct (System.Guid * obj) [])), v215 : ((struct (System.Guid * obj) []) -> unit)) = method114(v213)
-    let v216 : obj = struct (v132, v133, v137, v138, v140, v141, v145, v146, v193, v194, v148, v149, v214, v215, v211, v212, v208, v209, v202, v203, v205, v206)
-    v216
+                US4_4
+    let struct (v176 : (unit -> US4), v177 : (US4 -> unit)) = method111(v175)
+    let v178 : US5 = US5_0
+    let struct (v179 : (unit -> US5), v180 : (US5 -> unit)) = method112(v178)
+    let v181 : (struct (System.Guid * int32) []) = Array.zeroCreate<struct (System.Guid * int32)> (0)
+    let struct (v182 : (unit -> (struct (System.Guid * int32) [])), v183 : ((struct (System.Guid * int32) []) -> unit)) = method113(v181)
+    let v184 : (struct (System.Guid * obj) []) = Array.zeroCreate<struct (System.Guid * obj)> (0)
+    let struct (v185 : (unit -> (struct (System.Guid * obj) [])), v186 : ((struct (System.Guid * obj) []) -> unit)) = method114(v184)
+    let v187 : (struct (System.Guid * obj) []) = Array.zeroCreate<struct (System.Guid * obj)> (0)
+    let struct (v188 : (unit -> (struct (System.Guid * obj) [])), v189 : ((struct (System.Guid * obj) []) -> unit)) = method114(v187)
+    let v190 : obj = struct (v119, v120, v124, v125, v127, v128, v132, v133, v168, v169, v135, v136, v188, v189, v185, v186, v182, v183, v176, v177, v179, v180)
+    v190
 let (?), (?<-) = Fable.Core.JsInterop.(?), Fable.Core.JsInterop.(?<-)
 let v0 : obj = Fable.Core.JS.undefined
 let v1 : Mut0 = {l0 = v0} : Mut0
@@ -7603,28 +7524,28 @@ let v75 : ((string * obj) []) = [|v74|]
 let v76 : obj = Fable.Core.JsInterop.createObj v75
 Browser.Dom.window?components <- v76
 let v77 : int32 = System.Random().Next ()
-let v186 : obj = method0()
-let v187 : UH0 = null |> unbox<UH0>
-let v188 : UH1 = null |> unbox<UH1>
-let v189 : (Mut1 -> Fable.Core.JSX.Element) = closure1()
-let v190 : obj = v189
-let v191 : string = "content"
-let v192 : (string * obj) = v191, v190
-let v193 : (Mut2 -> Fable.Core.JSX.Element) = closure377()
-let v194 : obj = v193
-let v195 : string = "db_listener"
-let v196 : (string * obj) = v195, v194
-let v197 : obj = v77
-let v198 : string = "run_id"
-let v199 : (string * obj) = v198, v197
-let v200 : (unit -> obj) = closure391()
-let v201 : obj = v200
-let v202 : string = "new_state_context_any"
-let v203 : (string * obj) = v202, v201
-let v204 : string = "state_context"
-let v205 : (string * obj) = v204, v186
-let v206 : ((string * obj) []) = [|v192; v196; v199; v203; v205; v74|]
-let v207 : obj = Fable.Core.JsInterop.createObj v206
-Browser.Dom.window?components <- v207
-v1.l0 <- v207
+let v173 : obj = method0()
+let v174 : UH0 = null |> unbox<UH0>
+let v175 : UH1 = null |> unbox<UH1>
+let v176 : (Mut1 -> Fable.Core.JSX.Element) = closure1()
+let v177 : obj = v176
+let v178 : string = "content"
+let v179 : (string * obj) = v178, v177
+let v180 : (Mut2 -> Fable.Core.JSX.Element) = closure377()
+let v181 : obj = v180
+let v182 : string = "db_listener"
+let v183 : (string * obj) = v182, v181
+let v184 : obj = v77
+let v185 : string = "run_id"
+let v186 : (string * obj) = v185, v184
+let v187 : (unit -> obj) = closure391()
+let v188 : obj = v187
+let v189 : string = "new_state_context_any"
+let v190 : (string * obj) = v189, v188
+let v191 : string = "state_context"
+let v192 : (string * obj) = v191, v173
+let v193 : ((string * obj) []) = [|v179; v183; v186; v190; v192; v74|]
+let v194 : obj = Fable.Core.JsInterop.createObj v193
+Browser.Dom.window?components <- v194
+v1.l0 <- v194
 ()
