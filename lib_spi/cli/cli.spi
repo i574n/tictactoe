@@ -30,7 +30,7 @@ inl read_lines (path : path_buf) : list string =
     inl lines =
         *lines_list
         |> listm.rev
-        |> listm.map to_string''
+        |> listm.map to_string''''
 
     log Debug ;[!>"lines len"; !>(lines |> listm.length : i32)]
 

@@ -7,32 +7,57 @@ inl app () =
     inl get_locals () = ;[!>"> app ()"]
     inl log = new_log (fun () => Debug) get_locals "387957"
 
-    inl window = get_window ()
-    inl document = window |> get_document
-    inl body = document |> get_body
-    inl iframe = document |> create_element "iframe"
 
-    log Debug ;[
-        !>"window"; !>window
-        !>"document"; !>document
-        !>"body"; !>body
-        !>"iframe"; !>iframe
-    ]
+    inl url_json = "https://dummyjson.com/users"
 
-    iframe
-    |> set_attribute "src" "https://time.is"
-    |> set_attribute "width" "100%"
-    |> set_attribute "style" "height: 100vh; border: 0;"
-    |> set_attribute "data-test" "1"
-    |> append_parent body
-
-    inl url = "https://dummyjson.com/users"
-
-    inl request = http_request_get url
+    inl request = http_request_get url_json
     fetch' request fun response =>
         log Debug ;[!>"app > fetch ()"]
         inl response = response |> borrow |> try_lock
         log Debug ;[!>"response"; !>(response |> format)]
+
+    inl url_src = "https://time.is" |> raw_string_literal |> to_static_ref
+    inl url_mutable = url_src |> new_mutable
+    inl url_rc = url_mutable |> new_rc
+
+    inl set (url : rc (mutable (static_ref' str))) (value : static_ref' str) : () =
+        url
+        |> set_neq value
+
+    inl input =
+        new_input ()
+        |> set_css [
+            "color", "#666"
+        ]
+        |> set_attr "placeholder" "url"
+        |> prop_signal "value" (url_rc |> signal)
+        |> with_on_change fun text => url_rc |> set_neq text
+        |> into_dom
+
+    inl iframe =
+        new_el "iframe"
+        |> set_css [
+            "width", "100%"
+            "flex", "1"
+            "border", "0"
+        ]
+        |> set_attr "title" "title"
+        |> prop_signal "src" (url_rc |> signal)
+        |> into_dom
+
+    inl div =
+        new_el "div"
+        |> set_css [
+            "background-color", "#666"
+            "height", "100%"
+            "display", "flex"
+            "flex-direction", "column"
+        ]
+        |> set_children [input; iframe]
+        |> into_dom
+
+    get_dom_body ()
+    |> append_dom div
 
     log Debug ;[!>"app end"; !>"???"]
 

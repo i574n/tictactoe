@@ -1,3 +1,5 @@
+. "$PSScriptRoot/../cli/build.ps1"
+
 dotnet fable `
     "$PSScriptRoot" `
     --optimize `
@@ -5,9 +7,7 @@ dotnet fable `
     --extension .rs `
     --outDir "$PSScriptRoot"
 
-. "$PSScriptRoot/../cli/build.ps1"
-
-cargo build --release --manifest-path "$PSScriptRoot/../cli/Cargo.toml"
+cargo fmt
 
 . "$PSScriptRoot/../../target/release/cli" PostFsxRsBuild -- --rs-path="$PSScriptRoot/client.rs"
 

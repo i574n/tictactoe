@@ -38,11 +38,12 @@ nominal rc t = $"Types.std.rc.Rc<`t>"
 nominal std_string = $"Types.std.string.String"
 
 nominal arc t = $"Types.std.sync.Arc<`t>"
-nominal mutex t = $"Types.std.sync.Mutex<`t>"
+nominal mutex' t = $"Types.std.sync.Mutex<`t>"
 
 nominal systemtime = $"Types.std.time.SystemTime"
 
 nominal condvar = $"Types.async_std.sync.Condvar"
+nominal mutex t = $"Types.async_std.sync.Mutex<`t>"
 
 type utc = $"Types.chrono.Utc"
 type local = $"Types.chrono.Local"
@@ -55,8 +56,14 @@ nominal colored_string = $"Types.colored.ColoredString"
 
 nominal future t = $"Types.core.future.Future<`t>"
 
+nominal dom = $"Types.dominator.Dom"
+nominal dombuilder t = $"Types.dominator.DomBuilder<`t>"
+
 nominal request = $"Types.ehttp.Request"
 nominal response = $"Types.ehttp.Response"
+
+nominal mutable t = $"Types.futures_signals.signal.Mutable<`t>"
+nominal mutable_signal t = $"Types.futures_signals.signal.MutableSignal<`t>"
 
 nominal linereader t = $"Types.linereader.LineReader<`t>"
 
@@ -65,11 +72,23 @@ nominal regex_builder = $"Types.regex.RegexBuilder"
 
 nominal js_value = $"Types.wasm_bindgen.JsValue"
 
+nominal html_element = $"Types.web_sys.HtmlElement"
+nominal html_input_element = $"Types.web_sys.HtmlInputElement"
+
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
 
 inl deref forall t u. (x : t) : ref' u =
     emit_expr x "core::ops::Deref::deref($0)"
+
+inl deref_ref forall t. (x : ref' t) : t =
+    emit_expr () $"\"*!x\""
+
+inl deref_rc forall t. (x : rc t) : t =
+    emit_expr () $"\"*!x\""
+
+inl unbox' forall t u. (x : t) : u =
+    join $"!x |> unbox<`u>"
 
 inl deref' forall t. (x : ref' t) : t =
     emit_expr x "**$0"
@@ -122,6 +141,7 @@ let (~!>) forall t. (x : t) : log_item =
         real_unbox `std_string `log_item str
 
 // inl unwrap' x = emit_expr x "$0.unwrap()"
+inl unwrap x = emit_expr () $"\"!x.unwrap()\""
 inl unwrap_ref x = emit_expr x "$0.unwrap()"
 inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
 inl unwrap_or forall t. (a : t) (b : option' t) : t =
@@ -129,6 +149,7 @@ inl unwrap_or forall t. (a : t) (b : option' t) : t =
 instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
 instance (~!!) ref' t' = unwrap_ref
 instance (~!!) file = unwrap_ref
+instance (~!!) mutex t' = unwrap_ref
 instance (~!!) emit_type t' = fun (x : t) =>
     real
         // typecase t with
@@ -150,10 +171,10 @@ inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
 instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
 
 
-inl js_value_from_str (str : string) : any =
+inl js_value_from_str (str : string) : js_value =
     emit_expr str "wasm_bindgen::JsValue::from_str($0)"
 
-inl js_value_from_obj (obj : any) : any =
+inl js_value_from_obj (obj : any) : js_value =
     emit_expr obj "serde_wasm_bindgen::to_value(&*****$0).unwrap()"
 
 inl console_log (str : string) : () =
@@ -168,17 +189,25 @@ inl as_str (s : string) : ref' str =
 inl as_str' (s : ref' str) : std_string =
     emit_expr s "std::string::String::from(*$0)"
 
-inl to_string'' forall t. (x : t) : string =
+inl to_string''' forall t. (x : t) : string =
     emit_expr x "fable_library_rust::String_::fromStr($0)"
 
+inl to_string'' (x : ref' str) : string =
+    x |> to_any |> to_string'''
+
+inl to_string'''' (x : std_string) : string =
+    x |> to_any |> to_string'''
+
 inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
+
+inl to_static_ref forall t. (x : ref' t) : static_ref' t = $"!x |> unbox"
 
 inl to_ref' forall t. (x : t) : ref' t =
     emit_expr x "&$0"
 
 inl console_log' (args : a i32 std_string) : () =
     inl args : ref' (vec any) = args |> deref
-    inl args : any = args |> to_any |> js_value_from_obj
+    inl args : js_value = args |> to_any |> js_value_from_obj
     emit_expr args "web_sys::console::log(&js_sys::Array::from(&$0))"
 
 
@@ -222,10 +251,14 @@ inl regex_replace_all regex replacement text =
     |> new_regex_builder
     |> regex_build
     |> regex_replace_all' text replacement
-    |> to_string''
+    |> to_string''''
+
+inl to_owned forall t. (x : t) : t =
+    emit_expr () $"\"!x.to_owned()\""
 
 inl from_utf8 (v : vec u8) : std_string =
-    emit_expr v "std::string::String::from_utf8(($0).to_owned()).unwrap()"
+    inl v = v |> to_owned
+    emit_expr () $"\"std::string::String::from_utf8(!v).unwrap()\""
 
 
 inl new_clap_arg (name : string) : clap_arg =
@@ -413,13 +446,19 @@ inl clone' forall t. (x : t) : t =
 inl borrow forall t. (x : ref_cell t) : cell_ref t =
     emit_expr () $"\"!x.borrow()\""
 
+inl borrow' forall t. (x : ref_cell t) : t =
+    emit_expr () $"\"!x.borrow()\""
+
 inl borrow_mut forall t. (x : ref_cell t) : t =
     emit_expr () $"\"!x.borrow_mut()\""
 
-inl lock' forall t. (x : arc t) : future (mutex t) =
+inl lock forall t. (x : arc t) : future (mutex t) =
     emit_expr () $"\"!x.lock()\""
 
-inl lock' forall t. (x : arc t) : future (mutex t) =
+inl lock' forall t. (x : t) : mutex' t =
+    emit_expr () $"\"!x.lock()\""
+
+inl lock'' forall t. (x : t) : t =
     emit_expr () $"\"!x.lock()\""
 
 inl try_lock forall t. (x : cell_ref t) : option' (future (mutex t)) =
@@ -440,6 +479,15 @@ inl condvar_notify_one (x : mutex condvar) : any =
 inl new_box forall t. (x : t) : box t =
     emit_expr () $"\"Box::new(!x)\""
 
+inl box_leak forall t. (x : box t) : t =
+    emit_expr () $"\"Box::leak(!x)\""
+
+inl into_boxed_str (x : std_string) : ref' string =
+    emit_expr () $"\"!x.into_boxed_str()\""
+
+inl new_rc forall t. (x : t) : rc t =
+    emit_expr () $"\"std::rc::Rc::new(!x)\""
+
 inl new_tuple forall a b. (a : a) (b : b) : tuple' a b =
     emit_expr () $"\"(!a, !b)\""
 
@@ -456,11 +504,14 @@ inl new_mutex forall t. (x : t) : mutex t =
     inl x = join x
     emit_expr () $"\"async_std::sync::Mutex::new(!x)\""
 
-// inl new_arc_mutex forall t. (x : t) : arc (mutex (ref' t)) = emit_expr (join x) $"\"std::sync::Arc::new(parking_lot::Mutex::new($0))\""
+inl new_mutex' forall t. (x : t) : mutex' t =
+    emit_expr () $"\"std::sync::Mutex::new(!x)\""
+
 inl new_arc_mutex forall t. (x : t) : arc (mutex t) =
-    x
-    |> new_mutex
-    |> new_arc
+    x |> new_mutex |> new_arc
+
+inl new_arc_mutex' forall t. (x : t) : arc (mutex' t) =
+    x |> new_mutex' |> new_arc
 
 inl new_condvar () : condvar =
     emit_expr () "async_std::sync::Condvar::new()"
@@ -486,7 +537,7 @@ inl fetch' request (fn : ref_cell (arc (mutex (option' response))) -> ()) =
 
     inl response : option' response = none'
     inl response = response |> new_arc_mutex |> new_ref_cell
-    inl response' : ref_cell (arc (mutex (option' response))) = response |> clone'
+    inl response' = response |> clone'
 
     inl on_done : any =
         emit_expr
@@ -519,13 +570,140 @@ inl fetch' request (fn : ref_cell (arc (mutex (option' response))) -> ()) =
     block_on fn
 
 
-inl new_async_move (body : any) : future any =
+
+
+inl new_class (props : list (string * string)) : any =
+    inl text =
+        props
+        |> listm.fold
+            fun acc (k, v) =>
+                inl k = k |> raw_string_literal
+                inl v = v |> raw_string_literal
+                acc +\ $"\" .style(!k, !v) \""
+            ""
+    emit_expr () ($"\"dominator::class!! {\"" +\ text +\ "}")
+
+inl set_class forall t. (class : any) (builder : dombuilder t) : dombuilder t =
+    emit_expr () $"\"!builder.class(&*!class)\""
+
+inl set_css forall t. (props : list (string * string)) (builder : dombuilder t) : dombuilder t =
+    inl class = props |> new_class
+    builder |> set_class class
+
+inl into forall t u. (x : t) : u =
+    emit_expr () $"\"!x.into()\""
+
+inl into_dom forall t. (builder : dombuilder t) : dom =
+    emit_expr () $"\"!builder.into_dom()\""
+
+inl signal forall t. (x : rc( mutable t)) : mutable_signal t =
+    emit_expr () $"\"!x.signal()\""
+
+inl set_attr forall t. (key : string) (value : string) (builder : dombuilder t) : dombuilder t =
+    inl key = key |> raw_string_literal
+    inl value = value |> raw_string_literal
+    emit_expr () $"\"!builder.attr(!key, !value)\""
+
+
+
+inl prop_signal forall t v. (key : string) (value : mutable_signal v) (builder : dombuilder t) : dombuilder t =
+    inl key = key |> raw_string_literal
+    inl value = join value
+    emit_expr () $"\"!builder.prop_signal(!key, !value)\""
+
+inl get_dom_body () : html_element =
+    emit_expr () $"\"dominator::body()\""
+
+inl append_dom (el : dom) (parent : html_element) : () =
+    emit_expr () $"\"dominator::append_dom(&!parent, !el)\""
+
+inl list_join forall t. (items : list t) : any =
+    inl text =
+        items
+        |> listm.fold
+            fun (i, acc) x =>
+                inl x =
+                    match i with
+                    | 0 => $"\"!x\""
+                    | _ => $"\", !x\""
+                i + 1, acc +\ x
+            (0i32, "")
+        |> snd
+    emit_expr () ($"\"[\"" +\ text +\ "]")
+
+inl to_mut forall t. (x : t) : t =
+    emit_expr () $"\"let mut !x = !x\""
+    emit_expr () $"\"!x\""
+
+inl set_children forall t. (value : list dom) (builder : dombuilder t) : dombuilder t =
+    inl text = list_join value
+    emit_expr () ($"\"!builder.children(!text)\"")
+
+
+inl new_lazy forall t. (obj : t) : any =
+    emit_expr () $"\"once_cell::sync::Lazy::new(|| !obj)\""
+
+
+inl new_mutable forall t. (x : t) : mutable t =
+    emit_expr () $"\"futures_signals::signal::Mutable::new(!x)\""
+
+inl new_mutable_signal forall t. (x : t) : mutable_signal t =
+    emit_expr () $"\"futures_signals::signal::MutableSignal::new(!x)\""
+
+
+inl new_html forall t. (tag : string) : dombuilder t =
+    emit_expr (tag |> raw_string_literal) $"\"dominator::DomBuilder::new_html($0)\""
+
+inl new_input () : dombuilder html_input_element = new_html "input"
+inl new_el tag : dombuilder html_element = new_html tag
+
+inl set_neq forall t. (value : t) (mutable : rc (mutable t)) : () =
+    emit_expr mutable $"\"*$0.set_neq(!value)\""
+
+inl with_node forall t e.
+    (event : rc e -> ())
+    (builder : dombuilder t)
+    : dombuilder t
+    =
+    inl events = [event]
+
+    inl events_text =
+        (events, "")
+        ||> listm.fold fun acc event =>
+            $"\".event(dominator::clone!!(\"" +\
+            $"\"  !event => move |_: dominator::events::Input| {\"" +\
+            $"\"    let element_ = std::rc::Rc::new(&element); \"" +\
+            $"\"    let el = (*element_).clone().into(); \"" +\
+            $"\"    !event(el); \"" +\
+            $"\"  }\"" +\
+            $"\"))\"" +\
+            acc
+
     emit_expr
         ()
-        ($"\"async move {\"" +\
-        $"\"  !body;\"" +\
-        "}")
+        ($"\"dominator::with_node!!(\"" +\
+        $"\"   !builder,\"" +\
+        $"\"   element => {\"" +\
+        $"\"      \"" +\ events_text +\ $"\" \"" +\
+        $"\"   }\"" +\
+        $"\")\"")
 
+inl with_on_change forall t.
+    (event : static_ref' str -> ())
+    (builder : dombuilder t)
+    : dombuilder t
+    =
+    builder
+    |> with_node fun (element : rc html_input_element) =>
+        emit_expr
+            ()
+            ($"\"\"" +\
+            $"\"let value0 = !element;\"" +\
+            $"\"let value0 = value0.value();\"" +\
+            $"\"let value0 = value0.into_boxed_str();\"" +\
+            $"\"let value0 = Box::leak(value0);\"" +\
+            $"\"!event(value0);\"" +\
+            $"\"()\"")
 
 type env =
     {
@@ -641,7 +819,7 @@ inl wait_file_change (fsx_path : path_buf) : string =
                     ]
                     if emit_expr (last_modified, start) "$0 > $1" then
                         inl lines : std_string = !!(fsx_path |> fs_read_to_string)
-                        Some (lines |> to_string'')
+                        Some (lines |> to_string'''')
                     else
                         sleep 25
                         None

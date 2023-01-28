@@ -68,7 +68,7 @@ module std =
     module sync =
         [<Erase; Emit("std::sync::Arc<$0>")>]
         type Arc<'T> = class end
-        [<Erase; Emit("async_std::sync::Mutex<$0>")>]
+        [<Erase; Emit("std::sync::Mutex<$0>")>]
         type Mutex<'T> = class end
 
     module time =
@@ -79,6 +79,8 @@ module async_std =
     module sync =
         [<Erase; Emit("async_std::sync::Condvar")>]
         type Condvar = class end
+        [<Erase; Emit("async_std::sync::Mutex<$0>")>]
+        type Mutex<'T> = class end
 
 module chrono =
     [<Erase; Emit("chrono::Utc")>]
@@ -108,6 +110,12 @@ module core =
         [<Erase; Emit("_")>]
         type Future<'T> = class end
 
+module dominator =
+    [<Erase; Emit("dominator::Dom")>]
+    type Dom = class end
+    [<Erase; Emit("dominator::DomBuilder<$0>")>]
+    type DomBuilder<'T> = class end
+
 module ehttp =
     [<Erase; Emit("ehttp::Request")>]
     type Request = class end
@@ -118,6 +126,13 @@ module fable_library_rust =
     module Native_ =
         [<Erase; Emit("fable_library_rust::Native_::Box_<$0>")>]
         type Box<'T> = class end
+
+module futures_signals =
+    module signal =
+        [<Erase; Emit("futures_signals::signal::Mutable<$0>")>]
+        type Mutable<'T> = class end
+        [<Erase; Emit("futures_signals::signal::MutableSignal<$0>")>]
+        type MutableSignal<'T> = class end
 
 module linereader =
     [<Erase; Emit("linereader::LineReader<$0>")>]
@@ -132,6 +147,12 @@ module regex =
 module wasm_bindgen =
     [<Erase; Emit("wasm_bindgen::JsValue")>]
     type JsValue = class end
+
+module web_sys =
+    [<Erase; Emit("web_sys::HtmlElement")>]
+    type HtmlElement = class end
+    [<Erase; Emit("web_sys::HtmlInputElement")>]
+    type HtmlInputElement = class end
 
 // // #else
 // //     ()

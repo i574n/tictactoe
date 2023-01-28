@@ -4,3 +4,5 @@ dotnet fable `
     --lang rs `
     --extension .rs `
     --outDir "$PSScriptRoot"
+
+cargo fmt
