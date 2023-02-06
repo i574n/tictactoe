@@ -1,7 +1,4 @@
-type [<Struct>] US0 =
-    | US0_0
-    | US0_1
-and UH0 =
+type UH0 =
     | UH0_0 of Types.std.string.String * UH0
     | UH0_1
 and Mut0 = {mutable l0 : UH0}
@@ -258,97 +255,64 @@ and method5 (v0 : int64, v1 : (Types.EmitType<Types.std.string.String> [])) : un
     let v188 : obj = v187
     let v189 : string = Fable.Core.Rust.emitExpr v188 v53
     let v190 : Types.EmitType<Types.std.string.String> = method3(v189)
-    let v191 : string = "cfg!(target_arch = \"wasm32\")"
-    let v192 : bool = Fable.Core.Rust.emitExpr () v191
-    let v195 : US0 =
-        if v192 then
-            US0_1
-        else
-            US0_0
-    match v195 with
-    | US0_1 -> (* Wasm32 *)
-        let v196 : string = (v91).ToString ()
-        let v197 : string = (v143).ToString ()
-        let v198 : string = (v190).ToString ()
-        let v199 : string = " %c"
-        let v200 : string = v196 + v199
-        let v201 : string = v200 + v197
-        let v202 : string = v201 + v199
-        let v203 : string = v202 + v198
-        let v204 : string = "($0).as_ref().to_string()"
-        let v205 : Types.std.string.String = Fable.Core.Rust.emitExpr v203 v204
-        let v206 : string = "387957"
-        let v207 : string = $"color: #{v206};"
-        let v208 : Types.std.string.String = Fable.Core.Rust.emitExpr v207 v204
-        let v209 : string = "color: #385779;"
-        let v210 : Types.std.string.String = Fable.Core.Rust.emitExpr v209 v204
-        let v211 : (Types.std.string.String []) = [|v205; v208; v210|]
-        let v212 : Types.Ref<Types.Vec<obj>> = Fable.Core.Rust.emitExpr v211 v27
-        let v213 : obj = v212
-        let v214 : string = "serde_wasm_bindgen::to_value(&*****$0).unwrap()"
-        let v215 : Types.wasm_bindgen.JsValue = Fable.Core.Rust.emitExpr v213 v214
-        let v216 : string = "web_sys::console::log(&js_sys::Array::from(&$0))"
-        Fable.Core.Rust.emitExpr v215 v216
-        ()
-    | _ ->
-        let v217 : string = method13()
-        let v218 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v217 v46
-        let v219 : unativeint = unativeint 0
-        let v220 : unativeint = unativeint 2
-        let v221 : string = "&$0[$1..$2]"
-        let v222 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v218, v219, v220) v221
-        let v223 : obj = v222
-        let v224 : string = Fable.Core.Rust.emitExpr v223 v53
-        let v225 : string = "u8::from_str_radix($0, 16).unwrap()"
-        let v226 : uint8 = Fable.Core.Rust.emitExpr v224 v225
-        let v227 : string = method13()
-        let v228 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v227 v46
-        let v229 : unativeint = unativeint 2
-        let v230 : unativeint = unativeint 4
-        let v231 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v228, v229, v230) v221
-        let v232 : obj = v231
-        let v233 : string = Fable.Core.Rust.emitExpr v232 v53
-        let v234 : uint8 = Fable.Core.Rust.emitExpr v233 v225
-        let v235 : string = method13()
-        let v236 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v235 v46
-        let v237 : unativeint = unativeint 4
-        let v238 : unativeint = unativeint 6
-        let v239 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v236, v237, v238) v221
-        let v240 : obj = v239
-        let v241 : string = Fable.Core.Rust.emitExpr v240 v53
-        let v242 : uint8 = Fable.Core.Rust.emitExpr v241 v225
-        let v243 : string = "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)"
-        let v244 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v143, v226, v234, v242) v243
-        let v245 : Types.std.string.String = Fable.Core.Rust.emitExpr v244 v35
-        let v246 : string = method14()
-        let v247 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v246 v46
-        let v248 : unativeint = unativeint 0
-        let v249 : unativeint = unativeint 2
-        let v250 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v247, v248, v249) v221
-        let v251 : obj = v250
-        let v252 : string = Fable.Core.Rust.emitExpr v251 v53
-        let v253 : uint8 = Fable.Core.Rust.emitExpr v252 v225
-        let v254 : string = method14()
-        let v255 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v254 v46
-        let v256 : unativeint = unativeint 2
-        let v257 : unativeint = unativeint 4
-        let v258 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v255, v256, v257) v221
-        let v259 : obj = v258
-        let v260 : string = Fable.Core.Rust.emitExpr v259 v53
-        let v261 : uint8 = Fable.Core.Rust.emitExpr v260 v225
-        let v262 : string = method14()
-        let v263 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v262 v46
-        let v264 : unativeint = unativeint 4
-        let v265 : unativeint = unativeint 6
-        let v266 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v263, v264, v265) v221
-        let v267 : obj = v266
-        let v268 : string = Fable.Core.Rust.emitExpr v267 v53
-        let v269 : uint8 = Fable.Core.Rust.emitExpr v268 v225
-        let v270 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v190, v253, v261, v269) v243
-        let v271 : Types.std.string.String = Fable.Core.Rust.emitExpr v270 v35
-        let v272 : string = $"{v91} {v245} {v271}"
-        System.Console.WriteLine v272
-        ()
+    let v191 : string = method13()
+    let v192 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v191 v46
+    let v193 : unativeint = unativeint 0
+    let v194 : unativeint = unativeint 2
+    let v195 : string = "&$0[$1..$2]"
+    let v196 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v192, v193, v194) v195
+    let v197 : obj = v196
+    let v198 : string = Fable.Core.Rust.emitExpr v197 v53
+    let v199 : string = "u8::from_str_radix($0, 16).unwrap()"
+    let v200 : uint8 = Fable.Core.Rust.emitExpr v198 v199
+    let v201 : string = method13()
+    let v202 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v201 v46
+    let v203 : unativeint = unativeint 2
+    let v204 : unativeint = unativeint 4
+    let v205 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v202, v203, v204) v195
+    let v206 : obj = v205
+    let v207 : string = Fable.Core.Rust.emitExpr v206 v53
+    let v208 : uint8 = Fable.Core.Rust.emitExpr v207 v199
+    let v209 : string = method13()
+    let v210 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v209 v46
+    let v211 : unativeint = unativeint 4
+    let v212 : unativeint = unativeint 6
+    let v213 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v210, v211, v212) v195
+    let v214 : obj = v213
+    let v215 : string = Fable.Core.Rust.emitExpr v214 v53
+    let v216 : uint8 = Fable.Core.Rust.emitExpr v215 v199
+    let v217 : string = "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)"
+    let v218 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v143, v200, v208, v216) v217
+    let v219 : Types.std.string.String = Fable.Core.Rust.emitExpr v218 v35
+    let v220 : string = method14()
+    let v221 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v220 v46
+    let v222 : unativeint = unativeint 0
+    let v223 : unativeint = unativeint 2
+    let v224 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v221, v222, v223) v195
+    let v225 : obj = v224
+    let v226 : string = Fable.Core.Rust.emitExpr v225 v53
+    let v227 : uint8 = Fable.Core.Rust.emitExpr v226 v199
+    let v228 : string = method14()
+    let v229 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v228 v46
+    let v230 : unativeint = unativeint 2
+    let v231 : unativeint = unativeint 4
+    let v232 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v229, v230, v231) v195
+    let v233 : obj = v232
+    let v234 : string = Fable.Core.Rust.emitExpr v233 v53
+    let v235 : uint8 = Fable.Core.Rust.emitExpr v234 v199
+    let v236 : string = method14()
+    let v237 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v236 v46
+    let v238 : unativeint = unativeint 4
+    let v239 : unativeint = unativeint 6
+    let v240 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v237, v238, v239) v195
+    let v241 : obj = v240
+    let v242 : string = Fable.Core.Rust.emitExpr v241 v53
+    let v243 : uint8 = Fable.Core.Rust.emitExpr v242 v199
+    let v244 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v190, v227, v235, v243) v217
+    let v245 : Types.std.string.String = Fable.Core.Rust.emitExpr v244 v35
+    let v246 : string = $"{v91} {v219} {v245}"
+    System.Console.WriteLine v246
+    ()
 and method16 () : string =
     let v0 : string = "881749"
     v0
@@ -542,97 +506,64 @@ and method15 (v0 : int64, v1 : (Types.EmitType<Types.std.string.String> [])) : u
     let v188 : obj = v187
     let v189 : string = Fable.Core.Rust.emitExpr v188 v53
     let v190 : Types.EmitType<Types.std.string.String> = method3(v189)
-    let v191 : string = "cfg!(target_arch = \"wasm32\")"
-    let v192 : bool = Fable.Core.Rust.emitExpr () v191
-    let v195 : US0 =
-        if v192 then
-            US0_1
-        else
-            US0_0
-    match v195 with
-    | US0_1 -> (* Wasm32 *)
-        let v196 : string = (v91).ToString ()
-        let v197 : string = (v143).ToString ()
-        let v198 : string = (v190).ToString ()
-        let v199 : string = " %c"
-        let v200 : string = v196 + v199
-        let v201 : string = v200 + v197
-        let v202 : string = v201 + v199
-        let v203 : string = v202 + v198
-        let v204 : string = "($0).as_ref().to_string()"
-        let v205 : Types.std.string.String = Fable.Core.Rust.emitExpr v203 v204
-        let v206 : string = "881749"
-        let v207 : string = $"color: #{v206};"
-        let v208 : Types.std.string.String = Fable.Core.Rust.emitExpr v207 v204
-        let v209 : string = "color: #385779;"
-        let v210 : Types.std.string.String = Fable.Core.Rust.emitExpr v209 v204
-        let v211 : (Types.std.string.String []) = [|v205; v208; v210|]
-        let v212 : Types.Ref<Types.Vec<obj>> = Fable.Core.Rust.emitExpr v211 v27
-        let v213 : obj = v212
-        let v214 : string = "serde_wasm_bindgen::to_value(&*****$0).unwrap()"
-        let v215 : Types.wasm_bindgen.JsValue = Fable.Core.Rust.emitExpr v213 v214
-        let v216 : string = "web_sys::console::log(&js_sys::Array::from(&$0))"
-        Fable.Core.Rust.emitExpr v215 v216
-        ()
-    | _ ->
-        let v217 : string = method16()
-        let v218 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v217 v46
-        let v219 : unativeint = unativeint 0
-        let v220 : unativeint = unativeint 2
-        let v221 : string = "&$0[$1..$2]"
-        let v222 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v218, v219, v220) v221
-        let v223 : obj = v222
-        let v224 : string = Fable.Core.Rust.emitExpr v223 v53
-        let v225 : string = "u8::from_str_radix($0, 16).unwrap()"
-        let v226 : uint8 = Fable.Core.Rust.emitExpr v224 v225
-        let v227 : string = method16()
-        let v228 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v227 v46
-        let v229 : unativeint = unativeint 2
-        let v230 : unativeint = unativeint 4
-        let v231 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v228, v229, v230) v221
-        let v232 : obj = v231
-        let v233 : string = Fable.Core.Rust.emitExpr v232 v53
-        let v234 : uint8 = Fable.Core.Rust.emitExpr v233 v225
-        let v235 : string = method16()
-        let v236 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v235 v46
-        let v237 : unativeint = unativeint 4
-        let v238 : unativeint = unativeint 6
-        let v239 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v236, v237, v238) v221
-        let v240 : obj = v239
-        let v241 : string = Fable.Core.Rust.emitExpr v240 v53
-        let v242 : uint8 = Fable.Core.Rust.emitExpr v241 v225
-        let v243 : string = "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)"
-        let v244 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v143, v226, v234, v242) v243
-        let v245 : Types.std.string.String = Fable.Core.Rust.emitExpr v244 v35
-        let v246 : string = method14()
-        let v247 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v246 v46
-        let v248 : unativeint = unativeint 0
-        let v249 : unativeint = unativeint 2
-        let v250 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v247, v248, v249) v221
-        let v251 : obj = v250
-        let v252 : string = Fable.Core.Rust.emitExpr v251 v53
-        let v253 : uint8 = Fable.Core.Rust.emitExpr v252 v225
-        let v254 : string = method14()
-        let v255 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v254 v46
-        let v256 : unativeint = unativeint 2
-        let v257 : unativeint = unativeint 4
-        let v258 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v255, v256, v257) v221
-        let v259 : obj = v258
-        let v260 : string = Fable.Core.Rust.emitExpr v259 v53
-        let v261 : uint8 = Fable.Core.Rust.emitExpr v260 v225
-        let v262 : string = method14()
-        let v263 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v262 v46
-        let v264 : unativeint = unativeint 4
-        let v265 : unativeint = unativeint 6
-        let v266 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v263, v264, v265) v221
-        let v267 : obj = v266
-        let v268 : string = Fable.Core.Rust.emitExpr v267 v53
-        let v269 : uint8 = Fable.Core.Rust.emitExpr v268 v225
-        let v270 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v190, v253, v261, v269) v243
-        let v271 : Types.std.string.String = Fable.Core.Rust.emitExpr v270 v35
-        let v272 : string = $"{v91} {v245} {v271}"
-        System.Console.WriteLine v272
-        ()
+    let v191 : string = method16()
+    let v192 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v191 v46
+    let v193 : unativeint = unativeint 0
+    let v194 : unativeint = unativeint 2
+    let v195 : string = "&$0[$1..$2]"
+    let v196 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v192, v193, v194) v195
+    let v197 : obj = v196
+    let v198 : string = Fable.Core.Rust.emitExpr v197 v53
+    let v199 : string = "u8::from_str_radix($0, 16).unwrap()"
+    let v200 : uint8 = Fable.Core.Rust.emitExpr v198 v199
+    let v201 : string = method16()
+    let v202 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v201 v46
+    let v203 : unativeint = unativeint 2
+    let v204 : unativeint = unativeint 4
+    let v205 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v202, v203, v204) v195
+    let v206 : obj = v205
+    let v207 : string = Fable.Core.Rust.emitExpr v206 v53
+    let v208 : uint8 = Fable.Core.Rust.emitExpr v207 v199
+    let v209 : string = method16()
+    let v210 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v209 v46
+    let v211 : unativeint = unativeint 4
+    let v212 : unativeint = unativeint 6
+    let v213 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v210, v211, v212) v195
+    let v214 : obj = v213
+    let v215 : string = Fable.Core.Rust.emitExpr v214 v53
+    let v216 : uint8 = Fable.Core.Rust.emitExpr v215 v199
+    let v217 : string = "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)"
+    let v218 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v143, v200, v208, v216) v217
+    let v219 : Types.std.string.String = Fable.Core.Rust.emitExpr v218 v35
+    let v220 : string = method14()
+    let v221 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v220 v46
+    let v222 : unativeint = unativeint 0
+    let v223 : unativeint = unativeint 2
+    let v224 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v221, v222, v223) v195
+    let v225 : obj = v224
+    let v226 : string = Fable.Core.Rust.emitExpr v225 v53
+    let v227 : uint8 = Fable.Core.Rust.emitExpr v226 v199
+    let v228 : string = method14()
+    let v229 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v228 v46
+    let v230 : unativeint = unativeint 2
+    let v231 : unativeint = unativeint 4
+    let v232 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v229, v230, v231) v195
+    let v233 : obj = v232
+    let v234 : string = Fable.Core.Rust.emitExpr v233 v53
+    let v235 : uint8 = Fable.Core.Rust.emitExpr v234 v199
+    let v236 : string = method14()
+    let v237 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr v236 v46
+    let v238 : unativeint = unativeint 4
+    let v239 : unativeint = unativeint 6
+    let v240 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr struct (v237, v238, v239) v195
+    let v241 : obj = v240
+    let v242 : string = Fable.Core.Rust.emitExpr v241 v53
+    let v243 : uint8 = Fable.Core.Rust.emitExpr v242 v199
+    let v244 : Types.colored.ColoredString = Fable.Core.Rust.emitExpr struct (v190, v227, v235, v243) v217
+    let v245 : Types.std.string.String = Fable.Core.Rust.emitExpr v244 v35
+    let v246 : string = $"{v91} {v219} {v245}"
+    System.Console.WriteLine v246
+    ()
 and method17 (v0 : Types.std.string.String) : Types.EmitType<Types.std.string.String> =
     let v1 : Types.EmitType<Types.std.string.String> = v0 |> unbox<Types.EmitType<Types.std.string.String>>
     v1
@@ -694,29 +625,38 @@ and method24 (v0 : int64, v1 : UH1, v2 : int32, v3 : UH1) : struct (int32 * UH1)
         let v8 : Types.Ref<string> = v4 |> unbox
         let v9 : string = "($1).contains(&*$0)"
         let v10 : bool = Fable.Core.Rust.emitExpr struct (v7, v8) v9
-        let struct (v25 : int32, v26 : UH1) =
+        let v15 : bool =
             if v10 then
-                let v11 : string = "found line. removing."
-                let v12 : Types.EmitType<Types.std.string.String> = method3(v11)
-                let v13 : string = " line"
-                let v14 : Types.EmitType<Types.std.string.String> = method3(v13)
-                let v15 : Types.EmitType<Types.std.string.String> = method3(v4)
-                let v16 : (Types.EmitType<Types.std.string.String> []) = [|v12; v14; v15|]
-                method5(v0, v16)
+                let v11 : string = ".cs"
+                let v12 : Types.Ref<string> = v11 |> unbox
+                let v13 : Types.Ref<string> = v4 |> unbox
+                let v14 : bool = Fable.Core.Rust.emitExpr struct (v12, v13) v9
+                v14
+            else
+                false
+        let struct (v30 : int32, v31 : UH1) =
+            if v15 then
+                let v16 : string = "found line. removing."
+                let v17 : Types.EmitType<Types.std.string.String> = method3(v16)
+                let v18 : string = " line"
+                let v19 : Types.EmitType<Types.std.string.String> = method3(v18)
+                let v20 : Types.EmitType<Types.std.string.String> = method3(v4)
+                let v21 : (Types.EmitType<Types.std.string.String> []) = [|v17; v19; v20|]
+                method5(v0, v21)
                 struct (1, v3)
             else
-                let v17 : bool = 0 = v2
-                if v17 then
-                    let v18 : UH1 = UH1_0(v4, v3)
-                    struct (0, v18)
+                let v22 : bool = 0 = v2
+                if v22 then
+                    let v23 : UH1 = UH1_0(v4, v3)
+                    struct (0, v23)
                 else
-                    let v19 : bool = 2 = v2
-                    if v19 then
+                    let v24 : bool = 2 = v2
+                    if v24 then
                         struct (0, v3)
                     else
-                        let v20 : int32 = v2 + 1
-                        struct (v20, v3)
-        method24(v0, v5, v25, v26)
+                        let v25 : int32 = v2 + 1
+                        struct (v25, v3)
+        method24(v0, v5, v30, v31)
     | UH1_1 -> (* Nil *)
         struct (v2, v3)
 and method25 (v0 : UH1, v1 : UH1) : UH1 =

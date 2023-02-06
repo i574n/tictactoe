@@ -6,7 +6,7 @@ inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) :
 
 inl read_lines (path : path_buf) : list string =
     inl get_locals () = ;[!>"> read_lines ()"]
-    inl log = new_log (fun () => Debug) get_locals "881749"
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "881749"
 
     inl path_clean = path |> path_canonicalize
     log Debug ;[!>"path_clean"; !>(path_clean |> path_display)]
@@ -38,7 +38,7 @@ inl read_lines (path : path_buf) : list string =
 
 inl app () =
     inl get_locals () = ;[!>"> app ()"]
-    inl log = new_log (fun () => Debug) get_locals "387957"
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "387957"
 
     inl name, sub_matches : ref' str * ref' clap_arg_matches =
         new_clap_command "app1"
@@ -67,7 +67,9 @@ inl app () =
         |> listm.fold
             fun (i, acc) line =>
                 match i with
-                | _ when line |> string_contains "/node_modules/" =>
+                | _ when
+                        (line |> string_contains "/node_modules/") &&
+                        (line |> string_contains ".cs") =>
                     log Debug ;[!>"found line. removing."; !>" line"; !>line]
                     1, acc
                 | 0 => 0, line :: acc

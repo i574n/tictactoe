@@ -7,6 +7,4 @@ dotnet fable `
 
 cargo fmt
 
-cargo build --release --manifest-path "$PSScriptRoot/../cli/Cargo.toml"
-
-. "$PSScriptRoot/../../target/release/cli" PostFsxRsBuild -- --rs-path="$PSScriptRoot/cli.rs"
+cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"

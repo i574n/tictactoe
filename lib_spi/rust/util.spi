@@ -72,8 +72,12 @@ nominal regex_builder = $"Types.regex.RegexBuilder"
 
 nominal js_value = $"Types.wasm_bindgen.JsValue"
 
+nominal element = $"Types.web_sys.Element"
 nominal html_element = $"Types.web_sys.HtmlElement"
 nominal html_input_element = $"Types.web_sys.HtmlInputElement"
+nominal html_style_element = $"Types.web_sys.HtmlStyleElement"
+
+
 
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
@@ -139,6 +143,8 @@ let (~!>) forall t. (x : t) : log_item =
     inl str : std_string = format x
     real
         real_unbox `std_string `log_item str
+
+
 
 // inl unwrap' x = emit_expr x "$0.unwrap()"
 inl unwrap x = emit_expr () $"\"!x.unwrap()\""
@@ -319,20 +325,15 @@ inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
     |> format
 
 
+inl now () : datetime utc =
+    emit_expr () "chrono::Utc::now()"
+
+inl ticks () : ticks =
+    emit_expr (now ()) "($0).timestamp()"
+
+inl random () : u8 = emit_expr () "rand::random::<u8>()"
 
 
-inl get_window () : any = emit_expr () "web_sys::window().unwrap()"
-inl get_document (window : any) : any = emit_expr window "$0.document().unwrap()"
-inl get_body (document : any) : any = emit_expr document "$0.body().unwrap()"
-inl create_element (tag : string) (document : any) : any =
-    emit_expr (document, tag |> raw_string_literal) "$0.create_element($1).unwrap()"
-
-inl set_attribute (key : string) (value : string) (element : any) : any =
-    emit_expr (element, key |> raw_string_literal, value |> raw_string_literal) "$0.set_attribute($1, $2).unwrap()"
-    element
-
-inl append_parent (parent : any) (element : any) : () =
-    emit_expr (parent, element) "$0.append_child(&$1).unwrap()"
 
 union rust_target =
     | Wasm32
@@ -343,8 +344,161 @@ inl get_rust_target () : rust_target =
     then Wasm32
     else UnknownRustTarget
 
-// inl box_from forall t. (obj : t) : box' t =
-//     emit_expr obj "Box::from($0)"
+type env =
+    {
+        codespace_name : string
+        github_run_id : string
+        github_sha : string
+        is_test : bool
+    }
+
+let get_env () : env =
+    inl env : any = !!"" // ($"Fable.Core.JsInterop.emitJsExpr () \"components.env\"" : any)
+
+    inl codespace_name = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
+    inl github_run_id = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
+    inl github_sha = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
+    inl is_test =
+        // inl is_test' : any = js_get env "IS_TEST"
+        inl is_test' : bool = false // is_empty is_test'
+        not is_test'
+
+    {
+        codespace_name
+        github_run_id
+        github_sha
+        is_test
+    } : env
+
+
+inl real_core_union_tag log_level : i32 =
+    match log_level with
+    | Verbose => -1
+    | Debug => 0
+    | Info => 1
+    | Warn => 2
+    | Error => 3
+
+
+inl new_log
+    (target : rust_target)
+    (get_log_level : () -> log_level_type)
+    (ext_locals_fn : () -> array log_item)
+    (color : string)
+    : log_level_type -> array log_item -> ()
+    =
+    inl clean_log (text : log_item) : log_item =
+        inl text =
+            text
+            |> format
+            |> to_string'
+            |> regex_replace_all "\"([^\"]+)\", \"([^\"]+)\"" "$1=$2"
+            |> regex_replace_all "\\[\"(.*?)\"\\]" "[$1]"
+            |> regex_replace_all "\\\\\"" "\""
+            |> regex_replace_all ", " " "
+        !>text
+
+    inl env : env = get_env ()
+    inl start_timestamp = ticks ()
+    fun log_level (args : array log_item) : () =>
+        join
+            if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
+                inl new_timestamp () = ticks () - start_timestamp
+                inl timestamp : string = new_timestamp () |> to_string'
+                inl timestamp : string = pad 6 timestamp
+                inl run_id : u8 = random ()
+                inl locals = !>(;[
+                    !>"timestamp"; !>timestamp
+                    !>"run_id"; !>run_id
+                    !>"log_level"; !>(log_level |> to_string)
+                ])
+
+                inl ext_locals = !!(ext_locals_fn ()) |> clean_log
+                inl args = !!args |> clean_log
+                inl locals = locals |> clean_log
+
+                match target with
+                | Wasm32 =>
+                    inl ext_locals = ext_locals |> to_string'
+                    inl args = args |> to_string'
+                    inl locals = locals |> to_string'
+                    console_log' (a ;[
+                        !!(ext_locals +\ " %c" +\ args +\ " %c" +\ locals)
+                        !!($"$\"color: #{!color};\"" : string)
+                        !!"color: #385779;"
+                    ])
+                | _ =>
+                    inl ext_locals = ext_locals
+                    inl args = args |> truecolor color
+                    inl locals = locals |> truecolor "385779"
+
+                    inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
+                    console_fsx.write_line new_args
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+inl get_window () : any = emit_expr () "web_sys::window().unwrap()"
+inl get_document (window : any) : any = emit_expr window "$0.document().unwrap()"
+inl get_body (document : any) : any = emit_expr document "$0.body().unwrap()"
+inl get_head (document : any) : any = emit_expr document "$0.head().unwrap()"
+
+inl unchecked_into (t : string) (v : any) : any =
+    emit_expr () ($"\"wasm_bindgen::JsCast::unchecked_into::<\"" +\ t +\ $"\">(!v)\"")
+
+inl unchecked_into' forall t u. (x : t) : u =
+    emit_expr () $"\"wasm_bindgen::JsCast::unchecked_into(!x)\""
+
+inl create_element forall r. (tag : string) (document : any) : r =
+    inl x : any = emit_expr (document, tag |> raw_string_literal) "$0.create_element($1).unwrap()"
+    x |> unchecked_into'
+
+inl set_attribute (key : string) (value : string) (element : html_element) : html_element =
+    emit_expr (element, key |> raw_string_literal, value |> raw_string_literal) "$0.set_attribute($1, $2).unwrap()"
+    element
+
+inl set_attribute' (key : string) (value : string) (element : element) : element =
+    emit_expr (element, key |> raw_string_literal, value |> raw_string_literal) "$0.set_attribute($1, $2).unwrap()"
+    element
+
+inl set_attribute'' forall t. (key : string) (value : string) (element : t) : t =
+    emit_expr (element, key |> raw_string_literal, value |> raw_string_literal) "$0.set_attribute($1, $2).unwrap()"
+    element
+
+inl append_parent (parent : any) (element : html_element) : () =
+    emit_expr (parent, element) "$0.append_child(&$1).unwrap()"
+
+inl append_parent' (parent : any) (element : element) : () =
+    emit_expr (parent, element) "$0.append_child(&$1).unwrap()"
+
+inl append_parent'' forall t. (parent : any) (element : t) : () =
+    emit_expr (parent, element) "$0.append_child(&$1).unwrap()"
 
 
 inl map forall t u. (f : t -> u) (iter : iterator t) : iterator u =
@@ -402,17 +556,9 @@ inl fs_read_to_string (path_buf : path_buf) : result' std_string io_error =
     emit_expr path_buf "std::fs::read_to_string($0)"
 
 
-inl now () : datetime utc =
-    emit_expr () "chrono::Utc::now()"
-
-inl ticks () : ticks =
-    emit_expr (now ()) "($0).timestamp()"
 
 inl sleep (ms : u64) : () =
     emit_expr ms "std::thread::sleep(std::time::Duration::from_millis(*$0))"
-
-
-inl random () : u8 = emit_expr () "rand::random::<u8>()"
 
 inl range forall t {number}. (a : t) (b : t) : a i32 t = $"[| !a..!b |]"
 
@@ -660,6 +806,38 @@ inl new_el tag : dombuilder html_element = new_html tag
 inl set_neq forall t. (value : t) (mutable : rc (mutable t)) : () =
     emit_expr mutable $"\"*$0.set_neq(!value)\""
 
+inl append_css_rule
+    (rule : string)
+    (styles : list (string * string))
+    (style : rc html_style_element)
+    : rc html_style_element
+    =
+    inl get_locals () = ;[!>"> append_css_rule ()"]
+    inl log = new_log Wasm32 (fun () => Debug) get_locals "666666"
+
+    inl sheet : any = emit_expr () $"\"!style.sheet()\""
+    inl sheet : any = emit_expr () $"\"!sheet.unwrap()\""
+    inl sheet : any = sheet |> unchecked_into "web_sys::CssStyleSheet"
+
+    inl styles_text =
+        (styles, "")
+        ||> listm.fold fun acc (k, v) =>
+            k +\ $"\": \"" +\ v +\ $"\";\"" +\ acc
+
+    inl rule_text : string =
+        rule +\ $"\" {\"" +\
+        $"\"  \"" +\ styles_text +\ $"\" \"" +\
+        $"\"}\""
+    inl rule_text = rule_text |> raw_string_literal
+    inl idx : any = emit_expr () $"\"!sheet.insert_rule(!rule_text).unwrap()\""
+
+    log Debug ;[
+        !>"rule"; !>rule
+        !>"idx"; !>(idx |> format)
+    ]
+
+    style
+
 inl with_node forall t e.
     (event : rc e -> ())
     (builder : dombuilder t)
@@ -705,97 +883,10 @@ inl with_on_change forall t.
             $"\"!event(value0);\"" +\
             $"\"()\"")
 
-type env =
-    {
-        codespace_name : string
-        github_run_id : string
-        github_sha : string
-        is_test : bool
-    }
-let get_env () : env =
-    inl env : any = !!"" // ($"Fable.Core.JsInterop.emitJsExpr () \"components.env\"" : any)
-
-    inl codespace_name = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.CODESPACE_NAME || \\\"\\\"\"" : string
-    inl github_run_id = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_RUN_ID || \\\"\\\"\"" : string
-    inl github_sha = "" // $"Fable.Core.JsInterop.emitJsExpr !env \"$0.GITHUB_SHA || \\\"\\\"\"" : string
-    inl is_test =
-        // inl is_test' : any = js_get env "IS_TEST"
-        inl is_test' : bool = false // is_empty is_test'
-        not is_test'
-
-    {
-        codespace_name
-        github_run_id
-        github_sha
-        is_test
-    } : env
-
-
-inl real_core_union_tag log_level : i32 =
-    match log_level with
-    | Verbose => -1
-    | Debug => 0
-    | Info => 1
-    | Warn => 2
-    | Error => 3
-
-inl new_log
-    (get_log_level : () -> log_level_type)
-    (ext_locals_fn : () -> array log_item)
-    (color : string)
-    : log_level_type -> array log_item -> ()
-    =
-    inl clean_log (text : log_item) : log_item =
-        inl text =
-            text
-            |> format
-            |> to_string'
-            |> regex_replace_all "\"([^\"]+)\", \"([^\"]+)\"" "$1=$2"
-            |> regex_replace_all "\\[\"(.*?)\"\\]" "[$1]"
-            |> regex_replace_all "\\\\\"" "\""
-            |> regex_replace_all ", " " "
-        !>text
-
-    inl env : env = get_env ()
-    inl start_timestamp = ticks ()
-    fun log_level (args : array log_item) : () =>
-        join
-            if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
-                inl new_timestamp () = ticks () - start_timestamp
-                inl timestamp : string = new_timestamp () |> to_string'
-                inl timestamp : string = pad 6 timestamp
-                inl run_id : u8 = random ()
-                inl locals = !>(;[
-                    !>"timestamp"; !>timestamp
-                    !>"run_id"; !>run_id
-                    !>"log_level"; !>(log_level |> to_string)
-                ])
-
-                inl ext_locals = !!(ext_locals_fn ()) |> clean_log
-                inl args = !!args |> clean_log
-                inl locals = locals |> clean_log
-
-                match get_rust_target () with
-                | Wasm32 =>
-                    inl ext_locals = ext_locals |> to_string'
-                    inl args = args |> to_string'
-                    inl locals = locals |> to_string'
-                    console_log' (a ;[
-                        !!(ext_locals +\ " %c" +\ args +\ " %c" +\ locals)
-                        !!($"$\"color: #{!color};\"" : string)
-                        !!"color: #385779;"
-                    ])
-                | _ =>
-                    inl ext_locals = ext_locals
-                    inl args = args |> truecolor color
-                    inl locals = locals |> truecolor "385779"
-
-                    inl new_args : string = $"$\"{!ext_locals} {!args} {!locals}\""
-                    console_fsx.write_line new_args
 
 inl wait_file_change (fsx_path : path_buf) : string =
     inl get_locals () = ;[!>"> wait_file_change ()"]
-    inl log = new_log (fun () => Debug) get_locals "387957"
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "387957"
 
     inl get_last_modified () : systemtime = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
     inl start = get_last_modified ()

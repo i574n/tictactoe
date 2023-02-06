@@ -7,8 +7,8 @@ dotnet fable `
     --extension .rs `
     --outDir "$PSScriptRoot"
 
-cargo fmt
-
 . "$PSScriptRoot/../../target/release/cli" PostFsxRsBuild -- --rs-path="$PSScriptRoot/client.rs"
+
+cargo fmt
 
 ~/.cargo/bin/wasm-pack build --target web --dev "$PSScriptRoot"

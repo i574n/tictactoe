@@ -5,7 +5,67 @@ inl app () =
     emit_expr () "console_error_panic_hook::set_once()"
 
     inl get_locals () = ;[!>"> app ()"]
-    inl log = new_log (fun () => Debug) get_locals "387957"
+    inl log = new_log Wasm32 (fun () => Debug) get_locals "387957"
+
+    inl window = get_window ()
+    inl document = window |> get_document
+    inl head = document |> get_head
+    inl style : rc html_style_element = document |> create_element "style" |> new_rc
+
+    log Debug ;[
+        !>"window"; !>(window |> format)
+        !>"document"; !>(document |> format)
+        !>"head"; !>(head |> format)
+        !>"style"; !>(style |> format)
+    ]
+
+    style
+    |> set_attribute'' "type" "text/css"
+    |> set_attribute'' "data-id" "global-css"
+    |> append_parent'' head
+
+    style
+    |> append_css_rule "html, body" [
+        "margin", "0"
+        "padding", "0"
+        "width", "100%"
+        "height", "100%"
+        "overflow", "hidden"
+    ]
+    |> append_css_rule "body" [
+        "font-family", "system-ui, -apple-system, BlinkMacSystemFont, \"Roboto\", sans-serif"
+        "-webkit-font-smoothing", "antialiased"
+        "-moz-osx-font-smoothing", "grayscale"
+        "display", "flex"
+        "flex-direction", "row"
+        "box-sizing", "border-box"
+        "align-items", "stretch"
+        "align-content", "stretch"
+    ]
+    |> append_css_rule "*::-webkit-scrollbar" [
+        "width", "11px"
+    ]
+    |> append_css_rule "*::-webkit-scrollbar:horizontal" [
+        "height", "8px"
+    ]
+    |> append_css_rule "*::-webkit-scrollbar-track" [
+        "display", "none"
+    ]
+    |> append_css_rule "*::-webkit-scrollbar-corner" [
+        "display", "none"
+    ]
+    |> append_css_rule "*::-webkit-scrollbar-thumb" [
+        "background", "#555"
+        "opacity", "0.8"
+        "background-clip", "content-box"
+        "border-left", "2px solid transparent"
+    ]
+    |> append_css_rule "*::-webkit-scrollbar-thumb:hover" [
+        "background", "#ccc"
+        "background-clip", "content-box"
+        "border-left", "2px solid transparent"
+    ]
+    |> ignore
 
 
     inl url_json = "https://dummyjson.com/users"
@@ -19,10 +79,6 @@ inl app () =
     inl url_src = "https://time.is" |> raw_string_literal |> to_static_ref
     inl url_mutable = url_src |> new_mutable
     inl url_rc = url_mutable |> new_rc
-
-    inl set (url : rc (mutable (static_ref' str))) (value : static_ref' str) : () =
-        url
-        |> set_neq value
 
     inl input =
         new_input ()
@@ -49,8 +105,8 @@ inl app () =
         new_el "div"
         |> set_css [
             "background-color", "#666"
-            "height", "100%"
             "display", "flex"
+            "flex", "1"
             "flex-direction", "column"
         ]
         |> set_children [input; iframe]

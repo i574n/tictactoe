@@ -149,10 +149,14 @@ module wasm_bindgen =
     type JsValue = class end
 
 module web_sys =
+    [<Erase; Emit("web_sys::Element")>]
+    type Element = class end
     [<Erase; Emit("web_sys::HtmlElement")>]
     type HtmlElement = class end
     [<Erase; Emit("web_sys::HtmlInputElement")>]
     type HtmlInputElement = class end
+    [<Erase; Emit("web_sys::HtmlStyleElement")>]
+    type HtmlStyleElement = class end
 
 // // #else
 // //     ()

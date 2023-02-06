@@ -20,8 +20,6 @@ pub mod Cli {
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::stringFrom;
     use fable_library_rust::String_::toString;
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
-    pub enum US0 { US0_0, US0_1, }
     #[derive(Clone, Debug, Hash)]
     pub enum UH0 { UH0_0(std::string::String, Lrc<Cli::UH0>), UH0_1, }
     #[derive(Clone, Debug, Hash)]
@@ -217,66 +215,45 @@ pub mod Cli {
             v182.replace_all(&v184, v186).to_string();
         let v190: std::string::String =
             Cli::method3(fable_library_rust::String_::fromStr(&v187));
-        if let Cli::US0::US0_1 =
-               &if cfg!(target_arch = "wasm32") {
-                    Cli::US0::US0_1
-                } else { Cli::US0::US0_0 } {
-            let v199: string = string(" %c");
-            let v203: string =
-                append(append(append(append(toString(&v91), v199.clone()),
-                                     toString(&v143)), v199),
-                       toString(&v190));
-            let v211: Array<std::string::String> =
-                array(&[(&v203).as_ref().to_string(),
-                        (&stringFrom(format!("color: #{0};",
-                                             &string("387957")))).as_ref().to_string(),
-                        (&string("color: #385779;")).as_ref().to_string()]);
-            let v212 = core::ops::Deref::deref(&v211);
-            let v215: wasm_bindgen::JsValue =
-                serde_wasm_bindgen::to_value(&*****&v212).unwrap();
-            web_sys::console::log(&js_sys::Array::from(&&v215));
-            ()
-        } else {
-            let v217: string = Cli::method13();
-            let v218: &str = &v217.as_str();
-            let v222: &str = &v218[0i32 as usize..2i32 as usize];
-            let v224: string = fable_library_rust::String_::fromStr(&v222);
-            let v226: u8 = u8::from_str_radix(&v224, 16).unwrap();
-            let v227: string = Cli::method13();
-            let v228: &str = &v227.as_str();
-            let v231: &str = &v228[2i32 as usize..4i32 as usize];
-            let v233: string = fable_library_rust::String_::fromStr(&v231);
-            let v234: u8 = u8::from_str_radix(&v233, 16).unwrap();
-            let v235: string = Cli::method13();
-            let v236: &str = &v235.as_str();
-            let v239: &str = &v236[4i32 as usize..6i32 as usize];
-            let v241: string = fable_library_rust::String_::fromStr(&v239);
-            let v242: u8 = u8::from_str_radix(&v241, 16).unwrap();
-            let v244: colored::ColoredString =
-                colored::Colorize::truecolor(&*v143.to_string(), v226, v234, v242);
-            let v245: std::string::String = format!("{}", &v244);
-            let v246: string = Cli::method14();
-            let v247: &str = &v246.as_str();
-            let v250: &str = &v247[0i32 as usize..2i32 as usize];
-            let v252: string = fable_library_rust::String_::fromStr(&v250);
-            let v253: u8 = u8::from_str_radix(&v252, 16).unwrap();
-            let v254: string = Cli::method14();
-            let v255: &str = &v254.as_str();
-            let v258: &str = &v255[2i32 as usize..4i32 as usize];
-            let v260: string = fable_library_rust::String_::fromStr(&v258);
-            let v261: u8 = u8::from_str_radix(&v260, 16).unwrap();
-            let v262: string = Cli::method14();
-            let v263: &str = &v262.as_str();
-            let v266: &str = &v263[4i32 as usize..6i32 as usize];
-            let v268: string = fable_library_rust::String_::fromStr(&v266);
-            let v269: u8 = u8::from_str_radix(&v268, 16).unwrap();
-            let v270: colored::ColoredString =
-                colored::Colorize::truecolor(&*v190.to_string(), v253, v261, v269);
-            let v271: std::string::String = format!("{}", &v270);
-            println!("{0}",
-                     stringFrom(format!("{0} {1} {2}", &v91, &v245, &v271)));
-            ()
-        }
+        let v191: string = Cli::method13();
+        let v192: &str = &v191.as_str();
+        let v196: &str = &v192[0i32 as usize..2i32 as usize];
+        let v198: string = fable_library_rust::String_::fromStr(&v196);
+        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
+        let v201: string = Cli::method13();
+        let v202: &str = &v201.as_str();
+        let v205: &str = &v202[2i32 as usize..4i32 as usize];
+        let v207: string = fable_library_rust::String_::fromStr(&v205);
+        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+        let v209: string = Cli::method13();
+        let v210: &str = &v209.as_str();
+        let v213: &str = &v210[4i32 as usize..6i32 as usize];
+        let v215: string = fable_library_rust::String_::fromStr(&v213);
+        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
+        let v218: colored::ColoredString =
+            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
+        let v219: std::string::String = format!("{}", &v218);
+        let v220: string = Cli::method14();
+        let v221: &str = &v220.as_str();
+        let v224: &str = &v221[0i32 as usize..2i32 as usize];
+        let v226: string = fable_library_rust::String_::fromStr(&v224);
+        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
+        let v228: string = Cli::method14();
+        let v229: &str = &v228.as_str();
+        let v232: &str = &v229[2i32 as usize..4i32 as usize];
+        let v234: string = fable_library_rust::String_::fromStr(&v232);
+        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
+        let v236: string = Cli::method14();
+        let v237: &str = &v236.as_str();
+        let v240: &str = &v237[4i32 as usize..6i32 as usize];
+        let v242: string = fable_library_rust::String_::fromStr(&v240);
+        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
+        let v244: colored::ColoredString =
+            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
+        let v245: std::string::String = format!("{}", &v244);
+        println!("{0}",
+                 stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245)));
+        ()
     }
     pub fn method16() -> string { string("881749") }
     pub fn method15(v0_1: i64, v1: Array<std::string::String>) {
@@ -423,66 +400,45 @@ pub mod Cli {
             v182.replace_all(&v184, v186).to_string();
         let v190: std::string::String =
             Cli::method3(fable_library_rust::String_::fromStr(&v187));
-        if let Cli::US0::US0_1 =
-               &if cfg!(target_arch = "wasm32") {
-                    Cli::US0::US0_1
-                } else { Cli::US0::US0_0 } {
-            let v199: string = string(" %c");
-            let v203: string =
-                append(append(append(append(toString(&v91), v199.clone()),
-                                     toString(&v143)), v199),
-                       toString(&v190));
-            let v211: Array<std::string::String> =
-                array(&[(&v203).as_ref().to_string(),
-                        (&stringFrom(format!("color: #{0};",
-                                             &string("881749")))).as_ref().to_string(),
-                        (&string("color: #385779;")).as_ref().to_string()]);
-            let v212 = core::ops::Deref::deref(&v211);
-            let v215: wasm_bindgen::JsValue =
-                serde_wasm_bindgen::to_value(&*****&v212).unwrap();
-            web_sys::console::log(&js_sys::Array::from(&&v215));
-            ()
-        } else {
-            let v217: string = Cli::method16();
-            let v218: &str = &v217.as_str();
-            let v222: &str = &v218[0i32 as usize..2i32 as usize];
-            let v224: string = fable_library_rust::String_::fromStr(&v222);
-            let v226: u8 = u8::from_str_radix(&v224, 16).unwrap();
-            let v227: string = Cli::method16();
-            let v228: &str = &v227.as_str();
-            let v231: &str = &v228[2i32 as usize..4i32 as usize];
-            let v233: string = fable_library_rust::String_::fromStr(&v231);
-            let v234: u8 = u8::from_str_radix(&v233, 16).unwrap();
-            let v235: string = Cli::method16();
-            let v236: &str = &v235.as_str();
-            let v239: &str = &v236[4i32 as usize..6i32 as usize];
-            let v241: string = fable_library_rust::String_::fromStr(&v239);
-            let v242: u8 = u8::from_str_radix(&v241, 16).unwrap();
-            let v244: colored::ColoredString =
-                colored::Colorize::truecolor(&*v143.to_string(), v226, v234, v242);
-            let v245: std::string::String = format!("{}", &v244);
-            let v246: string = Cli::method14();
-            let v247: &str = &v246.as_str();
-            let v250: &str = &v247[0i32 as usize..2i32 as usize];
-            let v252: string = fable_library_rust::String_::fromStr(&v250);
-            let v253: u8 = u8::from_str_radix(&v252, 16).unwrap();
-            let v254: string = Cli::method14();
-            let v255: &str = &v254.as_str();
-            let v258: &str = &v255[2i32 as usize..4i32 as usize];
-            let v260: string = fable_library_rust::String_::fromStr(&v258);
-            let v261: u8 = u8::from_str_radix(&v260, 16).unwrap();
-            let v262: string = Cli::method14();
-            let v263: &str = &v262.as_str();
-            let v266: &str = &v263[4i32 as usize..6i32 as usize];
-            let v268: string = fable_library_rust::String_::fromStr(&v266);
-            let v269: u8 = u8::from_str_radix(&v268, 16).unwrap();
-            let v270: colored::ColoredString =
-                colored::Colorize::truecolor(&*v190.to_string(), v253, v261, v269);
-            let v271: std::string::String = format!("{}", &v270);
-            println!("{0}",
-                     stringFrom(format!("{0} {1} {2}", &v91, &v245, &v271)));
-            ()
-        }
+        let v191: string = Cli::method16();
+        let v192: &str = &v191.as_str();
+        let v196: &str = &v192[0i32 as usize..2i32 as usize];
+        let v198: string = fable_library_rust::String_::fromStr(&v196);
+        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
+        let v201: string = Cli::method16();
+        let v202: &str = &v201.as_str();
+        let v205: &str = &v202[2i32 as usize..4i32 as usize];
+        let v207: string = fable_library_rust::String_::fromStr(&v205);
+        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+        let v209: string = Cli::method16();
+        let v210: &str = &v209.as_str();
+        let v213: &str = &v210[4i32 as usize..6i32 as usize];
+        let v215: string = fable_library_rust::String_::fromStr(&v213);
+        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
+        let v218: colored::ColoredString =
+            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
+        let v219: std::string::String = format!("{}", &v218);
+        let v220: string = Cli::method14();
+        let v221: &str = &v220.as_str();
+        let v224: &str = &v221[0i32 as usize..2i32 as usize];
+        let v226: string = fable_library_rust::String_::fromStr(&v224);
+        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
+        let v228: string = Cli::method14();
+        let v229: &str = &v228.as_str();
+        let v232: &str = &v229[2i32 as usize..4i32 as usize];
+        let v234: string = fable_library_rust::String_::fromStr(&v232);
+        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
+        let v236: string = Cli::method14();
+        let v237: &str = &v236.as_str();
+        let v240: &str = &v237[4i32 as usize..6i32 as usize];
+        let v242: string = fable_library_rust::String_::fromStr(&v240);
+        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
+        let v244: colored::ColoredString =
+            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
+        let v245: std::string::String = format!("{}", &v244);
+        println!("{0}",
+                 stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245)));
+        ()
     }
     pub fn method17(v0_1: std::string::String) -> std::string::String {
         (&v0_1).clone()
@@ -576,6 +532,11 @@ pub mod Cli {
                          Cli::UH1::UH1_0(v1_0_0, v1_0_1) => {
                              let v4: string = v1_0_0.clone();
                              let patternInput: (i32, Lrc<Cli::UH1>) =
+                                 if if ((&v4).clone()).contains(&*(&string("/node_modules/")).clone())
+                                       {
+                                        ((&v4).clone()).contains(&*(&string(".cs")).clone())
+                                    } else { false } {
+                                     Cli::method5(v0_1.get(),
                                                   array(&[Cli::method3(string("found line. removing.")),
                                                           Cli::method3(string(" line")),
                                                           Cli::method3(v4.clone())]));
