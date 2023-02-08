@@ -10,7 +10,6 @@ pub mod Client {
     use super::*;
     use fable_library_rust::Native_::array;
     use fable_library_rust::Native_::on_startup;
-    use fable_library_rust::Native_::Any;
     use fable_library_rust::Native_::Array;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
@@ -20,6 +19,11 @@ pub mod Client {
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::stringFrom;
     use fable_library_rust::String_::toString;
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+    pub enum US0 {
+        US0_0,
+        US0_1(string),
+    }
     pub fn method0() -> (string, string, string, bool) {
         let v0_1: string = string("");
         (v0_1.clone(), v0_1.clone(), v0_1, true)
@@ -381,55 +385,520 @@ pub mod Client {
     pub fn method13(v0_1: &str) -> std::string::String {
         format!("{:?}", &v0_1).clone()
     }
-    pub fn method14(v0_1: &dyn Any) -> std::string::String {
-        format!("{:?}", v0_1.clone()).clone()
+    pub fn method14(v0_1: i64, v1: Array<std::string::String>) {
+        let v3: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+        let v9: string = Client::method4(6i32, toString(&((&v3).timestamp() - v0_1)));
+        let v11: u8 = rand::random::<u8>();
+        let v23: std::string::String = Client::method6(array(&[
+            Client::method1(string("timestamp")),
+            Client::method1(v9),
+            Client::method1(string("run_id")),
+            Client::method5(v11),
+            Client::method1(string("log_level")),
+            Client::method1(string("Debug")),
+        ]));
+        let v26: Array<std::string::String> =
+            array(&[Client::method1(string("> set_local_storage_value ()"))]);
+        let v28 = core::ops::Deref::deref(&v26);
+        let v30 = &***&v28;
+        let v31 = &***&v30;
+        let v34: std::string::String = format!("{:?}", &v31).clone();
+        let v37: string = toString(&format!("{}", &v34));
+        let v40: &str = r#""([^"]+)", "([^"]+)""#;
+        let v42: regex::RegexBuilder = regex::RegexBuilder::new(&v40);
+        let v44: &regex::Regex = &v42.build().unwrap();
+        let v45: string = Client::method7(v37);
+        let v47: &str = &v45.as_str();
+        let v48: string = Client::method8();
+        let v49: &str = &v48.as_str();
+        let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Client::method7(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Client::method9();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Client::method7(v66);
+        let v73: &str = &v72.as_str();
+        let v74: string = Client::method10();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Client::method7(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Client::method11();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String = Client::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Client::method7(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Client::method8();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Client::method7(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Client::method9();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Client::method7(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Client::method10();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Client::method7(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Client::method11();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Client::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Client::method7(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Client::method8();
+        let v153: &str = &v152.as_str();
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Client::method7(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Client::method9();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
+        let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
+        let v171: &regex::Regex = &v170.build().unwrap();
+        let v172: string = Client::method7(v167);
+        let v173: &str = &v172.as_str();
+        let v174: string = Client::method10();
+        let v175: &str = &v174.as_str();
+        let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Client::method7(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Client::method11();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Client::method1(fable_library_rust::String_::fromStr(&v187));
+        let v194: string = string(" %c");
+        let v198: string = append(
+            append(
+                append(append(toString(&v91), v194.clone()), toString(&v143)),
+                v194,
+            ),
+            toString(&v190),
+        );
+        let v206: Array<std::string::String> = array(&[
+            (&v198).as_ref().to_string(),
+            (&stringFrom(format!("color: #{0};", &string("666666"))))
+                .as_ref()
+                .to_string(),
+            (&string("color: #385779;")).as_ref().to_string(),
+        ]);
+        let v207 = core::ops::Deref::deref(&v206);
+        let v210: wasm_bindgen::JsValue = serde_wasm_bindgen::to_value(&*****&v207).unwrap();
+        web_sys::console::log(&js_sys::Array::from(&&v210));
+        ()
     }
-    pub fn method16(v0_1: i32) -> std::string::String {
+    pub fn method15(v0_1: Client::US0) -> std::string::String {
+        format!("{:?}", &v0_1).clone()
+    }
+    pub fn method16(v0_1: i64, v1: Array<std::string::String>) {
+        let v3: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+        let v9: string = Client::method4(6i32, toString(&((&v3).timestamp() - v0_1)));
+        let v11: u8 = rand::random::<u8>();
+        let v23: std::string::String = Client::method6(array(&[
+            Client::method1(string("timestamp")),
+            Client::method1(v9),
+            Client::method1(string("run_id")),
+            Client::method5(v11),
+            Client::method1(string("log_level")),
+            Client::method1(string("Debug")),
+        ]));
+        let v26: Array<std::string::String> =
+            array(&[Client::method1(string("> get_local_storage_value ()"))]);
+        let v28 = core::ops::Deref::deref(&v26);
+        let v30 = &***&v28;
+        let v31 = &***&v30;
+        let v34: std::string::String = format!("{:?}", &v31).clone();
+        let v37: string = toString(&format!("{}", &v34));
+        let v40: &str = r#""([^"]+)", "([^"]+)""#;
+        let v42: regex::RegexBuilder = regex::RegexBuilder::new(&v40);
+        let v44: &regex::Regex = &v42.build().unwrap();
+        let v45: string = Client::method7(v37);
+        let v47: &str = &v45.as_str();
+        let v48: string = Client::method8();
+        let v49: &str = &v48.as_str();
+        let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Client::method7(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Client::method9();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Client::method7(v66);
+        let v73: &str = &v72.as_str();
+        let v74: string = Client::method10();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Client::method7(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Client::method11();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String = Client::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Client::method7(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Client::method8();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Client::method7(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Client::method9();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Client::method7(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Client::method10();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Client::method7(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Client::method11();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Client::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Client::method7(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Client::method8();
+        let v153: &str = &v152.as_str();
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Client::method7(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Client::method9();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
+        let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
+        let v171: &regex::Regex = &v170.build().unwrap();
+        let v172: string = Client::method7(v167);
+        let v173: &str = &v172.as_str();
+        let v174: string = Client::method10();
+        let v175: &str = &v174.as_str();
+        let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Client::method7(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Client::method11();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Client::method1(fable_library_rust::String_::fromStr(&v187));
+        let v194: string = string(" %c");
+        let v198: string = append(
+            append(
+                append(append(toString(&v91), v194.clone()), toString(&v143)),
+                v194,
+            ),
+            toString(&v190),
+        );
+        let v206: Array<std::string::String> = array(&[
+            (&v198).as_ref().to_string(),
+            (&stringFrom(format!("color: #{0};", &string("666666"))))
+                .as_ref()
+                .to_string(),
+            (&string("color: #385779;")).as_ref().to_string(),
+        ]);
+        let v207 = core::ops::Deref::deref(&v206);
+        let v210: wasm_bindgen::JsValue = serde_wasm_bindgen::to_value(&*****&v207).unwrap();
+        web_sys::console::log(&js_sys::Array::from(&&v210));
+        ()
+    }
+    pub fn method17(v0_1: i64, v1: Array<std::string::String>) {
+        let v3: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+        let v9: string = Client::method4(6i32, toString(&((&v3).timestamp() - v0_1)));
+        let v11: u8 = rand::random::<u8>();
+        let v23: std::string::String = Client::method6(array(&[
+            Client::method1(string("timestamp")),
+            Client::method1(v9),
+            Client::method1(string("run_id")),
+            Client::method5(v11),
+            Client::method1(string("log_level")),
+            Client::method1(string("Debug")),
+        ]));
+        let v26: Array<std::string::String> =
+            array(&[Client::method1(string("> delete_local_storage_value ()"))]);
+        let v28 = core::ops::Deref::deref(&v26);
+        let v30 = &***&v28;
+        let v31 = &***&v30;
+        let v34: std::string::String = format!("{:?}", &v31).clone();
+        let v37: string = toString(&format!("{}", &v34));
+        let v40: &str = r#""([^"]+)", "([^"]+)""#;
+        let v42: regex::RegexBuilder = regex::RegexBuilder::new(&v40);
+        let v44: &regex::Regex = &v42.build().unwrap();
+        let v45: string = Client::method7(v37);
+        let v47: &str = &v45.as_str();
+        let v48: string = Client::method8();
+        let v49: &str = &v48.as_str();
+        let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Client::method7(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Client::method9();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Client::method7(v66);
+        let v73: &str = &v72.as_str();
+        let v74: string = Client::method10();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Client::method7(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Client::method11();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String = Client::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Client::method7(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Client::method8();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Client::method7(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Client::method9();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Client::method7(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Client::method10();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Client::method7(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Client::method11();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Client::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Client::method7(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Client::method8();
+        let v153: &str = &v152.as_str();
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Client::method7(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Client::method9();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
+        let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
+        let v171: &regex::Regex = &v170.build().unwrap();
+        let v172: string = Client::method7(v167);
+        let v173: &str = &v172.as_str();
+        let v174: string = Client::method10();
+        let v175: &str = &v174.as_str();
+        let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Client::method7(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Client::method11();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Client::method1(fable_library_rust::String_::fromStr(&v187));
+        let v194: string = string(" %c");
+        let v198: string = append(
+            append(
+                append(append(toString(&v91), v194.clone()), toString(&v143)),
+                v194,
+            ),
+            toString(&v190),
+        );
+        let v206: Array<std::string::String> = array(&[
+            (&v198).as_ref().to_string(),
+            (&stringFrom(format!("color: #{0};", &string("666666"))))
+                .as_ref()
+                .to_string(),
+            (&string("color: #385779;")).as_ref().to_string(),
+        ]);
+        let v207 = core::ops::Deref::deref(&v206);
+        let v210: wasm_bindgen::JsValue = serde_wasm_bindgen::to_value(&*****&v207).unwrap();
+        web_sys::console::log(&js_sys::Array::from(&&v210));
+        ()
+    }
+    pub fn method19(v0_1: i32) -> std::string::String {
         format!("{:?}", &v0_1).clone()
     }
     pub fn closure1(v0_1: i64, v1: i32) {
         Client::method3(
             v0_1,
-            array(&[Client::method1(string("log_n")), Client::method16(v1)]),
+            array(&[Client::method1(string("log_n")), Client::method19(v1)]),
         );
     }
-    pub fn method15(v0_1: i64) -> Func1<i32, ()> {
+    pub fn method18(v0_1: i64) -> Func1<i32, ()> {
         Func1::new({
             let v0_1 = v0_1.clone();
             move |v: i32| Client::closure1(v0_1, v)
         })
     }
-    pub fn method17() -> string {
+    pub fn method20() -> string {
         string("name")
     }
-    pub fn method18() -> std::string::String {
+    pub fn method21() -> std::string::String {
         (&string("store")).to_string()
     }
-    pub fn method19() -> std::string::String {
+    pub fn method22() -> std::string::String {
         (&string("store")).to_string()
     }
-    pub fn method20() -> wasm_bindgen::JsValue {
+    pub fn method23() -> wasm_bindgen::JsValue {
         wasm_bindgen::JsValue::from_str(&string("key"))
     }
-    pub fn method21() -> wasm_bindgen::JsValue {
+    pub fn method24() -> wasm_bindgen::JsValue {
         wasm_bindgen::JsValue::from_str(&string("value"))
     }
     pub fn closure2(unitVar: (), v0_1: string) -> indexed_db_futures::request::OpenDbRequest {
         let v2: std::string::String = (&v0_1).to_string();
         indexed_db_futures::IdbDatabase::open_u32(&v2, 1).unwrap()
     }
-    pub fn method22() -> bool {
+    pub fn method25() -> bool {
         false
     }
-    pub fn method23(
+    pub fn method26(
         v0_1: (async_std::sync::Mutex<bool>, async_std::sync::Condvar),
     ) -> (async_std::sync::Mutex<bool>, async_std::sync::Condvar) {
         v0_1
     }
-    pub fn method24(v0_1: Option<ehttp::Response>) -> Option<ehttp::Response> {
+    pub fn method27(v0_1: Option<ehttp::Response>) -> Option<ehttp::Response> {
         v0_1
     }
-    pub fn method25(
+    pub fn method28(
         v0_1: async_std::sync::Mutex<Option<ehttp::Response>>,
     ) -> async_std::sync::Mutex<Option<ehttp::Response>> {
         v0_1
@@ -451,7 +920,7 @@ pub mod Client {
             ]),
         )
     }
-    pub fn method26(
+    pub fn method29(
         v0_1: futures_signals::signal::MutableSignal<&'static str>,
     ) -> futures_signals::signal::MutableSignal<&'static str> {
         v0_1
@@ -1029,458 +1498,520 @@ pub mod Client {
                                                     {
                                                         let v507 =
                                                             v10.local_storage().unwrap().unwrap();
-                                                        Client::method3(
-                                                            v8,
-                                                            array(&[Client::method1(string(
-                                                                "set_local_storage_value",
-                                                            ))]),
+                                                        let patternInput_9: (
+                                                            string,
+                                                            string,
+                                                            string,
+                                                            bool,
+                                                        ) = Client::method0();
+                                                        let v512: chrono::DateTime<chrono::Utc> =
+                                                            chrono::Utc::now();
+                                                        let v513: i64 = (&v512).timestamp();
+                                                        let v514: string = string("key");
+                                                        let v516: &str = r#"key"#;
+                                                        let v517: string = string("value");
+                                                        let v519: &str = r#"value"#;
+                                                        Client::method14(
+                                                            v513,
+                                                            array(&[
+                                                                Client::method1(v514.clone()),
+                                                                Client::method13(v516),
+                                                                Client::method1(v517.clone()),
+                                                                Client::method13(v519),
+                                                            ]),
                                                         );
+                                                        v507.set_item(v516, v519).unwrap();
                                                         {
-                                                            let v513: &str = r#"key"#;
-                                                            let v516: &str = r#"value"#;
-                                                            Client::method3(
-                                                                v8,
+                                                            let patternInput_10: (
+                                                                string,
+                                                                string,
+                                                                string,
+                                                                bool,
+                                                            ) = Client::method0();
+                                                            let v530: chrono::DateTime<
+                                                                chrono::Utc,
+                                                            > = chrono::Utc::now();
+                                                            let v531: i64 = (&v530).timestamp();
+                                                            let v533: &str = r#"key"#;
+                                                            let v535: Option<std::string::String> =
+                                                                v507.get_item(v533).unwrap();
+                                                            let v544: Client::US0 = if v535
+                                                                .is_none()
+                                                            {
+                                                                Client::US0::US0_0
+                                                            } else {
+                                                                let v540: std::string::String =
+                                                                    v535.unwrap();
+                                                                Client::US0::US0_1(fable_library_rust::String_::fromStr(&v540))
+                                                            };
+                                                            Client::method16(
+                                                                v531,
                                                                 array(&[
-                                                                    Client::method1(string("key")),
-                                                                    Client::method13(v513),
-                                                                    Client::method1(string(
-                                                                        "value",
-                                                                    )),
-                                                                    Client::method13(v516),
+                                                                    Client::method1(v514.clone()),
+                                                                    Client::method13(v533),
+                                                                    Client::method1(v517.clone()),
+                                                                    Client::method15(v544),
                                                                 ]),
                                                             );
                                                             {
-                                                                let v523 = v507
-                                                                    .set_item(v513, v516)
-                                                                    .unwrap();
-                                                                Client::method3(
-                                                                    v8,
+                                                                let patternInput_11: (
+                                                                    string,
+                                                                    string,
+                                                                    string,
+                                                                    bool,
+                                                                ) = Client::method0();
+                                                                let v554: chrono::DateTime<
+                                                                    chrono::Utc,
+                                                                > = chrono::Utc::now();
+                                                                let v555: i64 = (&v554).timestamp();
+                                                                let v557: &str = r#"key"#;
+                                                                Client::method17(
+                                                                    v555,
                                                                     array(&[
-                                                                        Client::method1(string(
-                                                                            "set_result",
-                                                                        )),
-                                                                        Client::method14(&v523),
+                                                                        Client::method1(
+                                                                            v514.clone(),
+                                                                        ),
+                                                                        Client::method13(v557),
                                                                     ]),
                                                                 );
+                                                                v507.remove_item(v557).unwrap();
                                                                 {
-                                                                    let v528 = Client::method15(v8);
-                                                                    let v529: string =
-                                                                        Client::method17();
-                                                                    let v530: std::string::String =
-                                                                        Client::method18();
-                                                                    let v531: std::string::String =
-                                                                        Client::method19();
-                                                                    let v532:
-                                                                            wasm_bindgen::JsValue =
-                                                                        Client::method20();
-                                                                    let v533:
-                                                                            wasm_bindgen::JsValue =
-                                                                        Client::method21();
-                                                                    let v534 = Func1::new({
-                                                                        let v8 = v8.clone();
-                                                                        move |v: i32| {
-                                                                            Client::closure1(v8, v)
-                                                                        }
-                                                                    });
-                                                                    let v536: string =
-                                                                        string("async move {");
-                                                                    fn v538(v_1:
-                                                                                string)
-                                                                     ->
-                                                                    indexed_db_futures::request::OpenDbRequest{
-                                                                        Client::closure2((), v_1)
-                                                                    }
-                                                                    let v629: string = string("}");
-                                                                    let v630:
-                                                                            string =
-                                                                        append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(v536.clone(),
-                                                                                                                                                                                                                                                                                                                                                                                                                 string("  v534(0);")),
-                                                                                                                                                                                                                                                                                                                                                                                                          string("  let mut db_ref_____ = v538(v529);")),
-                                                                                                                                                                                                                                                                                                                                                                                                   string("  v534(1);")),
-                                                                                                                                                                                                                                                                                                                                                                                            string("  let db_param_ = &mut db_ref_____;")),
-                                                                                                                                                                                                                                                                                                                                                                                     string("  indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(")),
-                                                                                                                                                                                                                                                                                                                                                                              string("    db_param_,")),
-                                                                                                                                                                                                                                                                                                                                                                       string("    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {")),
-                                                                                                                                                                                                                                                                                                                                                                string("      v528(2);")),
-                                                                                                                                                                                                                                                                                                                                                         string("      let db: &indexed_db_futures::IdbDatabase = event.db();")),
-                                                                                                                                                                                                                                                                                                                                                  string("      v528(3);")),
-                                                                                                                                                                                                                                                                                                                                           string("      if !db.object_store_names().any(|n| &n == &v531.clone()) {")),
-                                                                                                                                                                                                                                                                                                                                    string("        let object_store = db.create_object_store(&v531.clone());")),
-                                                                                                                                                                                                                                                                                                                             string("        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();")),
-                                                                                                                                                                                                                                                                                                                      string("        ();")),
-                                                                                                                                                                                                                                                                                                               string("      };")),
-                                                                                                                                                                                                                                                                                                        string("      v528(4);")),
-                                                                                                                                                                                                                                                                                                 string("      Ok(())")),
-                                                                                                                                                                                                                                                                                          string("    })")),
-                                                                                                                                                                                                                                                                                   string("  );")),
-                                                                                                                                                                                                                                                                            string("  v534(5);")),
-                                                                                                                                                                                                                                                                     string("  let db_future_ = db_ref_____;")),
-                                                                                                                                                                                                                                                              string("  let db_future = db_future_.into_future();")),
-                                                                                                                                                                                                                                                       string("  let db = db_future.await;")),
-                                                                                                                                                                                                                                                string("  v534(6);")),
-                                                                                                                                                                                                                                         string("  let db = db.unwrap();")),
-                                                                                                                                                                                                                                  string("  v534(7);")),
-                                                                                                                                                                                                                           string("  let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);")),
-                                                                                                                                                                                                                    string("  v534(8);")),
-                                                                                                                                                                                                             string("  let tx = tx.unwrap();")),
-                                                                                                                                                                                                      string("  v534(9);")),
-                                                                                                                                                                                               string("  let store = tx.object_store(&v530.clone()).unwrap();")),
-                                                                                                                                                                                        string("  v534(10);")),
-                                                                                                                                                                                 string("  store.put_key_val_owned(")),
-                                                                                                                                                                          string("    &v532,")),
-                                                                                                                                                                   string("    &v533")),
-                                                                                                                                                            string("  ).unwrap();")),
-                                                                                                                                                     string("  v534(11);")),
-                                                                                                                                              string("  tx.await.into_result().unwrap();")),
-                                                                                                                                       string("  v534(12);")),
-                                                                                                                                string("  let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);")),
-                                                                                                                         string("  v534(13);")),
-                                                                                                                  string("  let tx = tx.unwrap();")),
-                                                                                                           string("  v534(14);")),
-                                                                                                    string("  let store = tx.object_store(&v530.clone()).unwrap();")),
-                                                                                             string("  v534(-1);")),
-                                                                                      string("  Ok::<(), web_sys::DomException>(())")),
-                                                                               v629.clone());
-                                                                    let v631 = async move {
-                                                                        v534(0);
-                                                                        let mut db_ref_____ =
-                                                                            v538(v529);
-                                                                        v534(1);
-                                                                        let db_param_ =
-                                                                            &mut db_ref_____;
-                                                                        indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(    db_param_,    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {      v528(2);      let db: &indexed_db_futures::IdbDatabase = event.db();      v528(3);      if !db.object_store_names().any(|n| &n == &v531.clone()) {        let object_store = db.create_object_store(&v531.clone());        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();        ();      };      v528(4);      Ok(())    })  );
-                                                                        v534(5);
-                                                                        let db_future_ =
-                                                                            db_ref_____;
-                                                                        let db_future = db_future_
-                                                                            .into_future();
-                                                                        let db = db_future.await;
-                                                                        v534(6);
-                                                                        let db = db.unwrap();
-                                                                        v534(7);
-                                                                        let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);
-                                                                        v534(8);
-                                                                        let tx = tx.unwrap();
-                                                                        v534(9);
-                                                                        let store = tx
-                                                                            .object_store(
-                                                                                &v530.clone(),
-                                                                            )
-                                                                            .unwrap();
-                                                                        v534(10);
-                                                                        store
-                                                                            .put_key_val_owned(
-                                                                                &v532, &v533,
-                                                                            )
-                                                                            .unwrap();
-                                                                        v534(11);
-                                                                        tx.await
-                                                                            .into_result()
-                                                                            .unwrap();
-                                                                        v534(12);
-                                                                        let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);
-                                                                        v534(13);
-                                                                        let tx = tx.unwrap();
-                                                                        v534(14);
-                                                                        let store = tx
-                                                                            .object_store(
-                                                                                &v530.clone(),
-                                                                            )
-                                                                            .unwrap();
-                                                                        v534(-1);
-                                                                        Ok::<
-                                                                            (),
-                                                                            web_sys::DomException,
-                                                                        >(
-                                                                            ()
-                                                                        )
-                                                                    };
-                                                                    async_std::task::block_on(v631);
+                                                                    let patternInput_12: (
+                                                                        string,
+                                                                        string,
+                                                                        string,
+                                                                        bool,
+                                                                    ) = Client::method0();
+                                                                    let v566: chrono::DateTime<
+                                                                        chrono::Utc,
+                                                                    > = chrono::Utc::now();
+                                                                    let v567: i64 =
+                                                                        (&v566).timestamp();
+                                                                    let v569: &str = r#"key"#;
+                                                                    let v571: Option<
+                                                                        std::string::String,
+                                                                    > = v507
+                                                                        .get_item(v569)
+                                                                        .unwrap();
+                                                                    let v580: Client::US0 = if v571
+                                                                        .is_none()
                                                                     {
-                                                                        let v635:
+                                                                        Client::US0::US0_0
+                                                                    } else {
+                                                                        let v576:
+                                                                                    std::string::String =
+                                                                                v571.unwrap();
+                                                                        Client::US0::US0_1(fable_library_rust::String_::fromStr(&v576))
+                                                                    };
+                                                                    Client::method16(
+                                                                        v567,
+                                                                        array(&[
+                                                                            Client::method1(v514),
+                                                                            Client::method13(v569),
+                                                                            Client::method1(v517),
+                                                                            Client::method15(v580),
+                                                                        ]),
+                                                                    );
+                                                                    {
+                                                                        let v586 =
+                                                                            Client::method18(v8);
+                                                                        let v587: string =
+                                                                            Client::method20();
+                                                                        let v588:
                                                                                 std::string::String =
-                                                                            (&string("https://dummyjson.com/users")).to_string();
-                                                                        let v637: ehttp::Request =
-                                                                            ehttp::Request::get(
-                                                                                &v635,
-                                                                            );
-                                                                        let v638: bool =
+                                                                            Client::method21();
+                                                                        let v589:
+                                                                                std::string::String =
                                                                             Client::method22();
-                                                                        let v640:
-                                                                                async_std::sync::Mutex<bool> =
-                                                                            async_std::sync::Mutex::new(v638);
-                                                                        let v642:
-                                                                                async_std::sync::Condvar =
-                                                                            async_std::sync::Condvar::new();
-                                                                        let v645:
-                                                                                (async_std::sync::Mutex<bool>, async_std::sync::Condvar) =
-                                                                            Client::method23((v640, v642));
-                                                                        let v647:
-                                                                                std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
-                                                                            std::sync::Arc::new(v645);
-                                                                        let v649:
-                                                                                std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
-                                                                            v647.clone();
-                                                                        let v651: Option<
-                                                                            ehttp::Response,
-                                                                        > = Client::method24(
-                                                                            (&None::<_>).clone(),
-                                                                        );
-                                                                        let v654:
-                                                                                async_std::sync::Mutex<Option<ehttp::Response>> =
-                                                                            Client::method25(async_std::sync::Mutex::new(v651));
-                                                                        let v656: std::sync::Arc<
-                                                                            async_std::sync::Mutex<
-                                                                                Option<
-                                                                                    ehttp::Response,
-                                                                                >,
-                                                                            >,
-                                                                        > = std::sync::Arc::new(
-                                                                            v654,
-                                                                        );
+                                                                        let v590:
+                                                                                wasm_bindgen::JsValue =
+                                                                            Client::method23();
+                                                                        let v591:
+                                                                                wasm_bindgen::JsValue =
+                                                                            Client::method24();
+                                                                        let v592 = Func1::new({
+                                                                            let v8 = v8.clone();
+                                                                            move |v: i32| {
+                                                                                Client::closure1(
+                                                                                    v8, v,
+                                                                                )
+                                                                            }
+                                                                        });
+                                                                        let v594: string =
+                                                                            string("async move {");
+                                                                        fn v596(v_1:
+                                                                                    string)
+                                                                         ->
+                                                                        indexed_db_futures::request::OpenDbRequest{
+                                                                            Client::closure2(
+                                                                                (),
+                                                                                v_1,
+                                                                            )
+                                                                        }
+                                                                        let v657: string =
+                                                                            string("}");
                                                                         let v658:
-                                                                                std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
-                                                                            std::cell::RefCell::new(v656);
-                                                                        let v660:
-                                                                                std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
-                                                                            v658.clone();
-                                                                        let v678:
                                                                                 string =
-                                                                            append(string("move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v658.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v649;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });"),
-                                                                                   v629.clone());
-                                                                        let v679 =
-                                                                            move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v658.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v649;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });};
-                                                                        let v681 = Box::new(v679);
-                                                                        ehttp::fetch(v637, v681);
+                                                                            append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(v594.clone(),
+                                                                                                                                                                                                                                                                                                            string("  v592(0);")),
+                                                                                                                                                                                                                                                                                                     string("  let mut db_ref_____ = v596(v587);")),
+                                                                                                                                                                                                                                                                                              string("  let db_param_ = &mut db_ref_____;")),
+                                                                                                                                                                                                                                                                                       string("  indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(")),
+                                                                                                                                                                                                                                                                                string("    db_param_,")),
+                                                                                                                                                                                                                                                                         string("    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {")),
+                                                                                                                                                                                                                                                                  string("      let db: &indexed_db_futures::IdbDatabase = event.db();")),
+                                                                                                                                                                                                                                                           string("      if !db.object_store_names().any(|n| &n == &v589.clone()) {")),
+                                                                                                                                                                                                                                                    string("        let object_store = db.create_object_store(&v589.clone());")),
+                                                                                                                                                                                                                                             string("        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();")),
+                                                                                                                                                                                                                                      string("        ();")),
+                                                                                                                                                                                                                               string("      };")),
+                                                                                                                                                                                                                        string("      Ok(())")),
+                                                                                                                                                                                                                 string("    })")),
+                                                                                                                                                                                                          string("  );")),
+                                                                                                                                                                                                   string("  let db_future_ = db_ref_____;")),
+                                                                                                                                                                                            string("  let db_future = db_future_.into_future();")),
+                                                                                                                                                                                     string("  let db = db_future.await;")),
+                                                                                                                                                                              string("  let db = db.unwrap();")),
+                                                                                                                                                                       string("  let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);")),
+                                                                                                                                                                string("  let tx = tx.unwrap();")),
+                                                                                                                                                         string("  let store = tx.object_store(&v588.clone()).unwrap();")),
+                                                                                                                                                  string("  store.put_key_val_owned(")),
+                                                                                                                                           string("    &v590,")),
+                                                                                                                                    string("    &v591")),
+                                                                                                                             string("  ).unwrap();")),
+                                                                                                                      string("  tx.await.into_result().unwrap();")),
+                                                                                                               string("  let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);")),
+                                                                                                        string("  let tx = tx.unwrap();")),
+                                                                                                 string("  let store = tx.object_store(&v588.clone()).unwrap();")),
+                                                                                          string("  Ok::<(), web_sys::DomException>(())")),
+                                                                                   v657.clone());
+                                                                        let v659 = async move {
+                                                                            v592(0);
+                                                                            let mut db_ref_____ =
+                                                                                v596(v587);
+                                                                            let db_param_ =
+                                                                                &mut db_ref_____;
+                                                                            indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(    db_param_,    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {      let db: &indexed_db_futures::IdbDatabase = event.db();      if !db.object_store_names().any(|n| &n == &v589.clone()) {        let object_store = db.create_object_store(&v589.clone());        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();        ();      };      Ok(())    })  );
+                                                                            let db_future_ =
+                                                                                db_ref_____;
+                                                                            let db_future =
+                                                                                db_future_
+                                                                                    .into_future();
+                                                                            let db =
+                                                                                db_future.await;
+                                                                            let db = db.unwrap();
+                                                                            let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);
+                                                                            let tx = tx.unwrap();
+                                                                            let store = tx
+                                                                                .object_store(
+                                                                                    &v588.clone(),
+                                                                                )
+                                                                                .unwrap();
+                                                                            store
+                                                                                .put_key_val_owned(
+                                                                                    &v590, &v591,
+                                                                                )
+                                                                                .unwrap();
+                                                                            tx.await
+                                                                                .into_result()
+                                                                                .unwrap();
+                                                                            let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);
+                                                                            let tx = tx.unwrap();
+                                                                            let store = tx
+                                                                                .object_store(
+                                                                                    &v588.clone(),
+                                                                                )
+                                                                                .unwrap();
+                                                                            Ok::<(), web_sys::DomException>(())
+                                                                        };
+                                                                        async_std::task::block_on(
+                                                                            v659,
+                                                                        );
                                                                         {
-                                                                            let v693 = Func1::new(
-                                                                                {
-                                                                                    let v8 =
-                                                                                        v8.clone();
-                                                                                    move
-                                                                                                   |v_2:
-                                                                                                        std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>>|
-                                                                                                   Client::closure3(v8,
-                                                                                                                    v_2.clone())
-                                                                                },
+                                                                            let v663:
+                                                                                    std::string::String =
+                                                                                (&string("https://dummyjson.com/users")).to_string();
+                                                                            let v665:
+                                                                                    ehttp::Request =
+                                                                                ehttp::Request::get(&v663);
+                                                                            let v666: bool =
+                                                                                Client::method25();
+                                                                            let v668:
+                                                                                    async_std::sync::Mutex<bool> =
+                                                                                async_std::sync::Mutex::new(v666);
+                                                                            let v670:
+                                                                                    async_std::sync::Condvar =
+                                                                                async_std::sync::Condvar::new();
+                                                                            let v673:
+                                                                                    (async_std::sync::Mutex<bool>, async_std::sync::Condvar) =
+                                                                                Client::method26((v668, v670));
+                                                                            let v675:
+                                                                                    std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
+                                                                                std::sync::Arc::new(v673);
+                                                                            let v677:
+                                                                                    std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
+                                                                                v675.clone();
+                                                                            let v679: Option<
+                                                                                ehttp::Response,
+                                                                            > = Client::method27(
+                                                                                (&None::<_>)
+                                                                                    .clone(),
                                                                             );
-                                                                            let v696:
+                                                                            let v682:
+                                                                                    async_std::sync::Mutex<Option<ehttp::Response>> =
+                                                                                Client::method28(async_std::sync::Mutex::new(v679));
+                                                                            let v684:
+                                                                                    std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>> =
+                                                                                std::sync::Arc::new(v682);
+                                                                            let v686:
+                                                                                    std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
+                                                                                std::cell::RefCell::new(v684);
+                                                                            let v688:
+                                                                                    std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
+                                                                                v686.clone();
+                                                                            let v706:
                                                                                     string =
-                                                                                append(append(append(append(append(append(append(v536,
-                                                                                                                                 string("  let (lock, cvar) = &*v647;")),
-                                                                                                                          string("  let mut started = lock.lock().await;")),
-                                                                                                                   string("  while !*started {")),
-                                                                                                            string("    started = cvar.wait(started).await;")),
-                                                                                                     string("  }")),
-                                                                                              string("  v693(v660);")),
-                                                                                       v629.clone());
-                                                                            let v697 = async move {
-                                                                                let (lock, cvar) =
-                                                                                    &*v647;
-                                                                                let mut started =
-                                                                                    lock.lock()
-                                                                                        .await;
-                                                                                while !*started {
-                                                                                    started = cvar
-                                                                                        .wait(
-                                                                                            started,
-                                                                                        )
-                                                                                        .await;
-                                                                                }
-                                                                                v693(v660);
-                                                                            };
-                                                                            async_std::task::block_on(v697);
+                                                                                append(string("move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v686.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v677;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });"),
+                                                                                       v657.clone());
+                                                                            let v707 =
+                                                                                move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v686.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v677;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });};
+                                                                            let v709 =
+                                                                                Box::new(v707);
+                                                                            ehttp::fetch(
+                                                                                v665, v709,
+                                                                            );
                                                                             {
-                                                                                let v702:
-                                                                                        &'static str =
-                                                                                    r#"https://time.is"#.clone();
-                                                                                let v704:
-                                                                                        futures_signals::signal::Mutable<&'static str> =
-                                                                                    futures_signals::signal::Mutable::new(v702);
-                                                                                let v706:
-                                                                                        std::rc::Rc<futures_signals::signal::Mutable<&'static str>> =
-                                                                                    std::rc::Rc::new(v704);
-                                                                                let v709: &str =
-                                                                                    r#"input"#;
-                                                                                let v711:
-                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                    dominator::DomBuilder::new_html(&v709);
-                                                                                let v714: &str =
-                                                                                    r#"color"#;
-                                                                                let v717: &str =
-                                                                                    r#"#666"#;
-                                                                                let v722:
-                                                                                        string =
-                                                                                    append(append(string("dominator::class! {"),
-                                                                                                  append(v66.clone(),
-                                                                                                         string(" .style(v714, v717) "))),
-                                                                                           v629.clone());
-                                                                                let v723 = dominator::class! { .style(v714, v717) };
-                                                                                let v725:
-                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                    v711.class(&*v723);
-                                                                                let v728: &str = r#"placeholder"#;
-                                                                                let v731: &str =
-                                                                                    r#"url"#;
-                                                                                let v733:
-                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                    v725.attr(v728, v731);
-                                                                                let v735:
-                                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                                    v706.signal();
-                                                                                let v737: &str =
-                                                                                    r#"value"#;
-                                                                                let v738:
-                                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                                    Client::method26(v735);
-                                                                                let v740:
-                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                    v733.prop_signal(v737, v738);
-                                                                                let v742 =
+                                                                                let v721 =
                                                                                     Func1::new({
-                                                                                        let v706
-                                                                                                       =
-                                                                                                       v706.clone();
+                                                                                        let v8 = v8
+                                                                                            .clone(
+                                                                                            );
                                                                                         move
-                                                                                                       |v_3:
-                                                                                                            std::rc::Rc<web_sys::HtmlInputElement>|
-                                                                                                       Client::closure4(v706.clone(),
-                                                                                                                        v_3.clone())
+                                                                                                       |v_2:
+                                                                                                            std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>>|
+                                                                                                       Client::closure3(v8,
+                                                                                                                        v_2.clone())
                                                                                     });
-                                                                                let v769:
+                                                                                let v724:
                                                                                         string =
-                                                                                    append(append(append(append(string("dominator::with_node!(   v740,   element => {      "),
-                                                                                                                append(string(".event(dominator::clone!(  v742 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v742(el);   }))"),
-                                                                                                                       v66.clone())),
-                                                                                                         string(" ")),
-                                                                                                  string("   }")),
-                                                                                           string(")"));
-                                                                                let v770:
-                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                    dominator::with_node!(   v740,   element => {      .event(dominator::clone!(  v742 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v742(el);   }))    });
-                                                                                let v772:
-                                                                                        dominator::Dom =
-                                                                                    v770.into_dom();
-                                                                                let v775: &str =
-                                                                                    r#"iframe"#;
-                                                                                let v777:
-                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                    dominator::DomBuilder::new_html(&v775);
-                                                                                let v779: &str =
-                                                                                    r#"width"#;
-                                                                                let v781: &str =
-                                                                                    r#"100%"#;
-                                                                                let v783:
-                                                                                        string =
-                                                                                    append(v66.clone(),
-                                                                                           string(" .style(v779, v781) "));
-                                                                                let v785: &str =
-                                                                                    r#"flex"#;
-                                                                                let v788: &str =
-                                                                                    r#"1"#;
-                                                                                let v790:
-                                                                                        string =
-                                                                                    append(v783,
-                                                                                           string(" .style(v785, v788) "));
-                                                                                let v793: &str =
-                                                                                    r#"border"#;
-                                                                                let v795: &str =
-                                                                                    r#"0"#;
-                                                                                let v800:
-                                                                                        string =
-                                                                                    append(append(string("dominator::class! {"),
-                                                                                                  append(v790,
-                                                                                                         string(" .style(v793, v795) "))),
-                                                                                           v629.clone());
-                                                                                let v801 = dominator::class! { .style(v779, v781)  .style(v785, v788)  .style(v793, v795) };
-                                                                                let v803:
-                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                    v777.class(&*v801);
-                                                                                let v806: &str =
-                                                                                    r#"title"#;
-                                                                                let v808: &str =
-                                                                                    r#"title"#;
-                                                                                let v810:
-                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                    v803.attr(v806, v808);
-                                                                                let v812:
-                                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                                    v706.signal();
-                                                                                let v815: &str =
-                                                                                    r#"src"#;
-                                                                                let v816:
-                                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                                    Client::method26(v812);
-                                                                                let v818:
-                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                    v810.prop_signal(v815, v816);
-                                                                                let v820:
-                                                                                        dominator::Dom =
-                                                                                    v818.into_dom();
-                                                                                let v823: &str =
-                                                                                    r#"div"#;
-                                                                                let v825:
-                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                    dominator::DomBuilder::new_html(&v823);
-                                                                                let v828: &str = r#"background-color"#;
-                                                                                let v830: &str =
-                                                                                    r#"#666"#;
-                                                                                let v832:
-                                                                                        string =
-                                                                                    append(v66.clone(),
-                                                                                           string(" .style(v828, v830) "));
-                                                                                let v834: &str =
-                                                                                    r#"display"#;
-                                                                                let v836: &str =
-                                                                                    r#"flex"#;
-                                                                                let v838:
-                                                                                        string =
-                                                                                    append(v832,
-                                                                                           string(" .style(v834, v836) "));
-                                                                                let v840: &str =
-                                                                                    r#"flex"#;
-                                                                                let v842: &str =
-                                                                                    r#"1"#;
-                                                                                let v844:
-                                                                                        string =
-                                                                                    append(v838,
-                                                                                           string(" .style(v840, v842) "));
-                                                                                let v846: &str = r#"flex-direction"#;
-                                                                                let v849: &str =
-                                                                                    r#"column"#;
-                                                                                let v854:
-                                                                                        string =
-                                                                                    append(append(string("dominator::class! {"),
-                                                                                                  append(v844,
-                                                                                                         string(" .style(v846, v849) "))),
-                                                                                           v629);
-                                                                                let v855 = dominator::class! { .style(v828, v830)  .style(v834, v836)  .style(v840, v842)  .style(v846, v849) };
-                                                                                let v857:
-                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                    v825.class(&*v855);
-                                                                                let v865:
-                                                                                        string =
-                                                                                    append(append(string("["),
-                                                                                                  append(append(v66,
-                                                                                                                string("v772")),
-                                                                                                         string(", v820"))),
-                                                                                           string("]"));
-                                                                                let v866 =
-                                                                                    [v772, v820];
-                                                                                let v868:
-                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                    v857.children(v866);
-                                                                                let v870:
-                                                                                        dominator::Dom =
-                                                                                    v868.into_dom();
-                                                                                let v872:
-                                                                                        web_sys::HtmlElement =
-                                                                                    dominator::body();
-                                                                                dominator::append_dom(&v872, v870);
-                                                                                Client::method3(v8,
-                                                                                                array(&[Client::method1(string("app end")),
-                                                                                                        Client::method1(string("???"))]));
-                                                                                0i32
+                                                                                    append(append(append(append(append(append(append(v594,
+                                                                                                                                     string("  let (lock, cvar) = &*v675;")),
+                                                                                                                              string("  let mut started = lock.lock().await;")),
+                                                                                                                       string("  while !*started {")),
+                                                                                                                string("    started = cvar.wait(started).await;")),
+                                                                                                         string("  }")),
+                                                                                                  string("  v721(v688);")),
+                                                                                           v657.clone());
+                                                                                let v725 = async move {
+                                                                                    let (
+                                                                                        lock,
+                                                                                        cvar,
+                                                                                    ) = &*v675;
+                                                                                    let mut started =
+                                                                                        lock.lock()
+                                                                                            .await;
+                                                                                    while !*started
+                                                                                    {
+                                                                                        started = cvar.wait(started).await;
+                                                                                    }
+                                                                                    v721(v688);
+                                                                                };
+                                                                                async_std::task::block_on(v725);
+                                                                                {
+                                                                                    let v730:
+                                                                                            &'static str =
+                                                                                        r#"https://time.is"#.clone();
+                                                                                    let v732:
+                                                                                            futures_signals::signal::Mutable<&'static str> =
+                                                                                        futures_signals::signal::Mutable::new(v730);
+                                                                                    let v734:
+                                                                                            std::rc::Rc<futures_signals::signal::Mutable<&'static str>> =
+                                                                                        std::rc::Rc::new(v732);
+                                                                                    let v737: &str =
+                                                                                        r#"input"#;
+                                                                                    let v739:
+                                                                                            dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                        dominator::DomBuilder::new_html(&v737);
+                                                                                    let v742: &str =
+                                                                                        r#"color"#;
+                                                                                    let v745: &str =
+                                                                                        r#"#666"#;
+                                                                                    let v750:
+                                                                                            string =
+                                                                                        append(append(string("dominator::class! {"),
+                                                                                                      append(v66.clone(),
+                                                                                                             string(" .style(v742, v745) "))),
+                                                                                               v657.clone());
+                                                                                    let v751 = dominator::class! { .style(v742, v745) };
+                                                                                    let v753:
+                                                                                            dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                        v739.class(&*v751);
+                                                                                    let v756: &str = r#"placeholder"#;
+                                                                                    let v759: &str =
+                                                                                        r#"url"#;
+                                                                                    let v761:
+                                                                                            dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                        v753.attr(v756, v759);
+                                                                                    let v763:
+                                                                                            futures_signals::signal::MutableSignal<&'static str> =
+                                                                                        v734.signal();
+                                                                                    let v765: &str =
+                                                                                        r#"value"#;
+                                                                                    let v766:
+                                                                                            futures_signals::signal::MutableSignal<&'static str> =
+                                                                                        Client::method29(v763);
+                                                                                    let v768:
+                                                                                            dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                        v761.prop_signal(v765, v766);
+                                                                                    let v770 =
+                                                                                        Func1::new(
+                                                                                            {
+                                                                                                let v734
+                                                                                                           =
+                                                                                                           v734.clone();
+                                                                                                move
+                                                                                                           |v_3:
+                                                                                                                std::rc::Rc<web_sys::HtmlInputElement>|
+                                                                                                           Client::closure4(v734.clone(),
+                                                                                                                            v_3.clone())
+                                                                                            },
+                                                                                        );
+                                                                                    let v797:
+                                                                                            string =
+                                                                                        append(append(append(append(string("dominator::with_node!(   v768,   element => {      "),
+                                                                                                                    append(string(".event(dominator::clone!(  v770 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v770(el);   }))"),
+                                                                                                                           v66.clone())),
+                                                                                                             string(" ")),
+                                                                                                      string("   }")),
+                                                                                               string(")"));
+                                                                                    let v798:
+                                                                                            dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                        dominator::with_node!(   v768,   element => {      .event(dominator::clone!(  v770 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v770(el);   }))    });
+                                                                                    let v800:
+                                                                                            dominator::Dom =
+                                                                                        v798.into_dom();
+                                                                                    let v803: &str =
+                                                                                        r#"iframe"#;
+                                                                                    let v805:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        dominator::DomBuilder::new_html(&v803);
+                                                                                    let v807: &str =
+                                                                                        r#"width"#;
+                                                                                    let v809: &str =
+                                                                                        r#"100%"#;
+                                                                                    let v811:
+                                                                                            string =
+                                                                                        append(v66.clone(),
+                                                                                               string(" .style(v807, v809) "));
+                                                                                    let v813: &str =
+                                                                                        r#"flex"#;
+                                                                                    let v816: &str =
+                                                                                        r#"1"#;
+                                                                                    let v818:
+                                                                                            string =
+                                                                                        append(v811,
+                                                                                               string(" .style(v813, v816) "));
+                                                                                    let v821: &str =
+                                                                                        r#"border"#;
+                                                                                    let v823: &str =
+                                                                                        r#"0"#;
+                                                                                    let v828:
+                                                                                            string =
+                                                                                        append(append(string("dominator::class! {"),
+                                                                                                      append(v818,
+                                                                                                             string(" .style(v821, v823) "))),
+                                                                                               v657.clone());
+                                                                                    let v829 = dominator::class! { .style(v807, v809)  .style(v813, v816)  .style(v821, v823) };
+                                                                                    let v831:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v805.class(&*v829);
+                                                                                    let v834: &str =
+                                                                                        r#"title"#;
+                                                                                    let v836: &str =
+                                                                                        r#"title"#;
+                                                                                    let v838:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v831.attr(v834, v836);
+                                                                                    let v840:
+                                                                                            futures_signals::signal::MutableSignal<&'static str> =
+                                                                                        v734.signal();
+                                                                                    let v843: &str =
+                                                                                        r#"src"#;
+                                                                                    let v844:
+                                                                                            futures_signals::signal::MutableSignal<&'static str> =
+                                                                                        Client::method29(v840);
+                                                                                    let v846:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v838.prop_signal(v843, v844);
+                                                                                    let v848:
+                                                                                            dominator::Dom =
+                                                                                        v846.into_dom();
+                                                                                    let v851: &str =
+                                                                                        r#"div"#;
+                                                                                    let v853:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        dominator::DomBuilder::new_html(&v851);
+                                                                                    let v856: &str = r#"background-color"#;
+                                                                                    let v858: &str =
+                                                                                        r#"#666"#;
+                                                                                    let v860:
+                                                                                            string =
+                                                                                        append(v66.clone(),
+                                                                                               string(" .style(v856, v858) "));
+                                                                                    let v862: &str =
+                                                                                        r#"display"#;
+                                                                                    let v864: &str =
+                                                                                        r#"flex"#;
+                                                                                    let v866:
+                                                                                            string =
+                                                                                        append(v860,
+                                                                                               string(" .style(v862, v864) "));
+                                                                                    let v868: &str =
+                                                                                        r#"flex"#;
+                                                                                    let v870: &str =
+                                                                                        r#"1"#;
+                                                                                    let v872:
+                                                                                            string =
+                                                                                        append(v866,
+                                                                                               string(" .style(v868, v870) "));
+                                                                                    let v874: &str = r#"flex-direction"#;
+                                                                                    let v877: &str =
+                                                                                        r#"column"#;
+                                                                                    let v882:
+                                                                                            string =
+                                                                                        append(append(string("dominator::class! {"),
+                                                                                                      append(v872,
+                                                                                                             string(" .style(v874, v877) "))),
+                                                                                               v657);
+                                                                                    let v883 = dominator::class! { .style(v856, v858)  .style(v862, v864)  .style(v868, v870)  .style(v874, v877) };
+                                                                                    let v885:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v853.class(&*v883);
+                                                                                    let v893:
+                                                                                            string =
+                                                                                        append(append(string("["),
+                                                                                                      append(append(v66,
+                                                                                                                    string("v800")),
+                                                                                                             string(", v848"))),
+                                                                                               string("]"));
+                                                                                    let v894 = [
+                                                                                        v800, v848,
+                                                                                    ];
+                                                                                    let v896:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v885.children(v894);
+                                                                                    let v898:
+                                                                                            dominator::Dom =
+                                                                                        v896.into_dom();
+                                                                                    let v900:
+                                                                                            web_sys::HtmlElement =
+                                                                                        dominator::body();
+                                                                                    dominator::append_dom(&v900, v898);
+                                                                                    Client::method3(v8,
+                                                                                                    array(&[Client::method1(string("app end")),
+                                                                                                            Client::method1(string("???"))]));
+                                                                                    0i32
+                                                                                }
                                                                             }
                                                                         }
                                                                     }

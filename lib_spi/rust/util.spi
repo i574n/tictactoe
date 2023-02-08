@@ -866,6 +866,64 @@ inl with_on_change forall t.
             $"\"()\"")
 
 
+inl get_local_storage (window : any) : any =
+    emit_expr () $"\"!window.local_storage().unwrap().unwrap()\""
+
+inl set_local_storage_value (key : string) (value : string) (local_storage : any) : () =
+    inl get_locals () = ;[!>"> set_local_storage_value ()"]
+    inl log = new_log Wasm32 (fun () => Debug) get_locals "666666"
+
+    inl key = key |> raw_string_literal
+    inl value = value |> raw_string_literal
+
+    log Debug ;[
+        !>"key"; !>key
+        !>"value"; !>value
+    ]
+
+    emit_expr () $"\"!local_storage.set_item(!key, !value).unwrap()\""
+
+inl get_local_storage_value (key : string) (local_storage : any) : option string =
+    inl get_locals () = ;[!>"> get_local_storage_value ()"]
+    inl log = new_log Wasm32 (fun () => Debug) get_locals "666666"
+
+    inl key = key |> raw_string_literal
+
+    inl get_result : option' std_string = emit_expr () $"\"!local_storage.get_item(!key).unwrap()\""
+    inl value =
+        if is_none get_result
+        then None
+        else Some ((get_result |> unwrap : std_string) |> to_string''')
+
+    log Debug ;[
+        !>"key"; !>key
+        !>"value"; !>value
+    ]
+
+    value
+
+inl delete_local_storage_value (key : string) (local_storage : any) : () =
+    inl get_locals () = ;[!>"> delete_local_storage_value ()"]
+    inl log = new_log Wasm32 (fun () => Debug) get_locals "666666"
+
+    inl key = key |> raw_string_literal
+    log Debug ;[!>"key"; !>key]
+    emit_expr () $"\"!local_storage.remove_item(!key).unwrap()\""
+
+
+inl db_open (name : string) : open_db_request =
+    inl name = name |> to_std_string
+    emit_expr () $"\"indexed_db_futures::IdbDatabase::open_u32(&!name, 1).unwrap()\""
+
+
+
+
+
+
+
+
+
+
 inl wait_file_change (fsx_path : path_buf) : string =
     inl get_locals () = ;[!>"> wait_file_change ()"]
     inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "387957"
