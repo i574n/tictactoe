@@ -23,20 +23,15 @@ pub mod Supervisor {
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::stringFrom;
     use fable_library_rust::String_::toString;
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
     pub enum US0 {
         US0_0,
-        US0_1,
-    }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
-    pub enum US1 {
-        US1_0,
-        US1_1(string),
+        US0_1(string),
     }
     #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
     pub struct Mut0 {
         pub l0: MutCell<i32>,
-        pub l1: MutCell<Supervisor::US1>,
+        pub l1: MutCell<Supervisor::US0>,
     }
     pub fn method0() -> (string, string, string, bool) {
         let v0_1: string = string("");
@@ -117,182 +112,156 @@ pub mod Supervisor {
         let v48: string = Supervisor::method7();
         let v49: &str = &v48.as_str();
         let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
-        let v53: string = fable_library_rust::String_::fromStr(&v51);
-        let v56: &str = r#"\["(.*?)"\]"#;
-        let v57: regex::RegexBuilder = regex::RegexBuilder::new(&v56);
-        let v58: &regex::Regex = &v57.build().unwrap();
-        let v59: string = Supervisor::method6(v53);
-        let v60: &str = &v59.as_str();
-        let v61: string = Supervisor::method8();
-        let v62: &str = &v61.as_str();
-        let v63: std::string::String = v58.replace_all(&v60, v62).to_string();
-        let v64: string = fable_library_rust::String_::fromStr(&v63);
-        let v67: &str = r#"\\""#;
-        let v68: regex::RegexBuilder = regex::RegexBuilder::new(&v67);
-        let v69: &regex::Regex = &v68.build().unwrap();
-        let v70: string = Supervisor::method6(v64);
-        let v71: &str = &v70.as_str();
-        let v72: string = Supervisor::method9();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Supervisor::method6(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Supervisor::method8();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Supervisor::method6(v66);
         let v73: &str = &v72.as_str();
-        let v74: std::string::String = v69.replace_all(&v71, v73).to_string();
-        let v75: string = fable_library_rust::String_::fromStr(&v74);
-        let v78: &str = r#", "#;
-        let v79: regex::RegexBuilder = regex::RegexBuilder::new(&v78);
-        let v80: &regex::Regex = &v79.build().unwrap();
-        let v81: string = Supervisor::method6(v75);
-        let v82: &str = &v81.as_str();
-        let v83: string = Supervisor::method10();
-        let v84: &str = &v83.as_str();
-        let v85: std::string::String = v80.replace_all(&v82, v84).to_string();
-        let v87: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v85));
-        let v88 = core::ops::Deref::deref(&v1);
-        let v89 = &***&v88;
-        let v90 = &***&v89;
-        let v92: std::string::String = format!("{:?}", &v90).clone();
-        let v94: string = toString(&format!("{}", &v92));
-        let v96: &str = r#""([^"]+)", "([^"]+)""#;
-        let v97: regex::RegexBuilder = regex::RegexBuilder::new(&v96);
-        let v98: &regex::Regex = &v97.build().unwrap();
-        let v99: string = Supervisor::method6(v94);
-        let v100: &str = &v99.as_str();
-        let v101: string = Supervisor::method7();
-        let v102: &str = &v101.as_str();
-        let v103: std::string::String = v98.replace_all(&v100, v102).to_string();
-        let v104: string = fable_library_rust::String_::fromStr(&v103);
-        let v106: &str = r#"\["(.*?)"\]"#;
-        let v107: regex::RegexBuilder = regex::RegexBuilder::new(&v106);
-        let v108: &regex::Regex = &v107.build().unwrap();
-        let v109: string = Supervisor::method6(v104);
-        let v110: &str = &v109.as_str();
-        let v111: string = Supervisor::method8();
-        let v112: &str = &v111.as_str();
-        let v113: std::string::String = v108.replace_all(&v110, v112).to_string();
-        let v114: string = fable_library_rust::String_::fromStr(&v113);
-        let v116: &str = r#"\\""#;
-        let v117: regex::RegexBuilder = regex::RegexBuilder::new(&v116);
-        let v118: &regex::Regex = &v117.build().unwrap();
-        let v119: string = Supervisor::method6(v114);
-        let v120: &str = &v119.as_str();
-        let v121: string = Supervisor::method9();
-        let v122: &str = &v121.as_str();
-        let v123: std::string::String = v118.replace_all(&v120, v122).to_string();
-        let v124: string = fable_library_rust::String_::fromStr(&v123);
-        let v126: &str = r#", "#;
-        let v127: regex::RegexBuilder = regex::RegexBuilder::new(&v126);
-        let v128: &regex::Regex = &v127.build().unwrap();
-        let v129: string = Supervisor::method6(v124);
-        let v130: &str = &v129.as_str();
-        let v131: string = Supervisor::method10();
-        let v132: &str = &v131.as_str();
-        let v133: std::string::String = v128.replace_all(&v130, v132).to_string();
-        let v135: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v133));
-        let v137: string = toString(&format!("{}", &v23));
-        let v139: &str = r#""([^"]+)", "([^"]+)""#;
-        let v140: regex::RegexBuilder = regex::RegexBuilder::new(&v139);
-        let v141: &regex::Regex = &v140.build().unwrap();
-        let v142: string = Supervisor::method6(v137);
-        let v143: &str = &v142.as_str();
-        let v144: string = Supervisor::method7();
-        let v145: &str = &v144.as_str();
-        let v146: std::string::String = v141.replace_all(&v143, v145).to_string();
-        let v147: string = fable_library_rust::String_::fromStr(&v146);
-        let v149: &str = r#"\["(.*?)"\]"#;
-        let v150: regex::RegexBuilder = regex::RegexBuilder::new(&v149);
-        let v151: &regex::Regex = &v150.build().unwrap();
-        let v152: string = Supervisor::method6(v147);
+        let v74: string = Supervisor::method9();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Supervisor::method6(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Supervisor::method10();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Supervisor::method6(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Supervisor::method7();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Supervisor::method6(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Supervisor::method8();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Supervisor::method6(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Supervisor::method9();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Supervisor::method6(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Supervisor::method10();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Supervisor::method6(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Supervisor::method7();
         let v153: &str = &v152.as_str();
-        let v154: string = Supervisor::method8();
-        let v155: &str = &v154.as_str();
-        let v156: std::string::String = v151.replace_all(&v153, v155).to_string();
-        let v157: string = fable_library_rust::String_::fromStr(&v156);
-        let v159: &str = r#"\\""#;
-        let v160: regex::RegexBuilder = regex::RegexBuilder::new(&v159);
-        let v161: &regex::Regex = &v160.build().unwrap();
-        let v162: string = Supervisor::method6(v157);
-        let v163: &str = &v162.as_str();
-        let v164: string = Supervisor::method9();
-        let v165: &str = &v164.as_str();
-        let v166: std::string::String = v161.replace_all(&v163, v165).to_string();
-        let v167: string = fable_library_rust::String_::fromStr(&v166);
-        let v169: &str = r#", "#;
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Supervisor::method6(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Supervisor::method8();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
         let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
         let v171: &regex::Regex = &v170.build().unwrap();
         let v172: string = Supervisor::method6(v167);
         let v173: &str = &v172.as_str();
-        let v174: string = Supervisor::method10();
+        let v174: string = Supervisor::method9();
         let v175: &str = &v174.as_str();
         let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
-        let v178: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v176));
-        if let Supervisor::US0::US0_1 = &if cfg!(target_arch = "wasm32") {
-            Supervisor::US0::US0_1
-        } else {
-            Supervisor::US0::US0_0
-        } {
-            let v187: string = string(" %c");
-            let v191: string = append(
-                append(
-                    append(append(toString(&v87), v187.clone()), toString(&v135)),
-                    v187,
-                ),
-                toString(&v178),
-            );
-            let v199: Array<std::string::String> = array(&[
-                (&v191).as_ref().to_string(),
-                (&stringFrom(format!("color: #{0};", &string("de884c"))))
-                    .as_ref()
-                    .to_string(),
-                (&string("color: #385779;")).as_ref().to_string(),
-            ]);
-            let v200 = core::ops::Deref::deref(&v199);
-            let v203 = serde_wasm_bindgen::to_value(&*****&v200).unwrap();
-            web_sys::console::log(&js_sys::Array::from(&v203));
-            ()
-        } else {
-            let v205: string = Supervisor::method11();
-            let v206: &str = &v205.as_str();
-            let v210: &str = &v206[0i32 as usize..2i32 as usize];
-            let v211: string = fable_library_rust::String_::fromStr(&v210);
-            let v213: u8 = u8::from_str_radix(&v211, 16).unwrap();
-            let v214: string = Supervisor::method11();
-            let v215: &str = &v214.as_str();
-            let v218: &str = &v215[2i32 as usize..4i32 as usize];
-            let v219: string = fable_library_rust::String_::fromStr(&v218);
-            let v220: u8 = u8::from_str_radix(&v219, 16).unwrap();
-            let v221: string = Supervisor::method11();
-            let v222: &str = &v221.as_str();
-            let v225: &str = &v222[4i32 as usize..6i32 as usize];
-            let v226: string = fable_library_rust::String_::fromStr(&v225);
-            let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
-            let v229: colored::ColoredString =
-                colored::Colorize::truecolor(&*v135.to_string(), v213, v220, v227);
-            let v230: std::string::String = format!("{}", &v229);
-            let v231: string = Supervisor::method12();
-            let v232: &str = &v231.as_str();
-            let v235: &str = &v232[0i32 as usize..2i32 as usize];
-            let v236: string = fable_library_rust::String_::fromStr(&v235);
-            let v237: u8 = u8::from_str_radix(&v236, 16).unwrap();
-            let v238: string = Supervisor::method12();
-            let v239: &str = &v238.as_str();
-            let v242: &str = &v239[2i32 as usize..4i32 as usize];
-            let v243: string = fable_library_rust::String_::fromStr(&v242);
-            let v244: u8 = u8::from_str_radix(&v243, 16).unwrap();
-            let v245: string = Supervisor::method12();
-            let v246: &str = &v245.as_str();
-            let v249: &str = &v246[4i32 as usize..6i32 as usize];
-            let v250: string = fable_library_rust::String_::fromStr(&v249);
-            let v251: u8 = u8::from_str_radix(&v250, 16).unwrap();
-            let v252: colored::ColoredString =
-                colored::Colorize::truecolor(&*v178.to_string(), v237, v244, v251);
-            let v253: std::string::String = format!("{}", &v252);
-            println!(
-                "{0}",
-                stringFrom(format!("{0} {1} {2}", &v87, &v230, &v253))
-            );
-            ()
-        }
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Supervisor::method6(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Supervisor::method10();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v187));
+        let v191: string = Supervisor::method11();
+        let v192: &str = &v191.as_str();
+        let v196: &str = &v192[0i32 as usize..2i32 as usize];
+        let v198: string = fable_library_rust::String_::fromStr(&v196);
+        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
+        let v201: string = Supervisor::method11();
+        let v202: &str = &v201.as_str();
+        let v205: &str = &v202[2i32 as usize..4i32 as usize];
+        let v207: string = fable_library_rust::String_::fromStr(&v205);
+        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+        let v209: string = Supervisor::method11();
+        let v210: &str = &v209.as_str();
+        let v213: &str = &v210[4i32 as usize..6i32 as usize];
+        let v215: string = fable_library_rust::String_::fromStr(&v213);
+        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
+        let v218: colored::ColoredString =
+            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
+        let v219: std::string::String = format!("{}", &v218);
+        let v220: string = Supervisor::method12();
+        let v221: &str = &v220.as_str();
+        let v224: &str = &v221[0i32 as usize..2i32 as usize];
+        let v226: string = fable_library_rust::String_::fromStr(&v224);
+        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
+        let v228: string = Supervisor::method12();
+        let v229: &str = &v228.as_str();
+        let v232: &str = &v229[2i32 as usize..4i32 as usize];
+        let v234: string = fable_library_rust::String_::fromStr(&v232);
+        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
+        let v236: string = Supervisor::method12();
+        let v237: &str = &v236.as_str();
+        let v240: &str = &v237[4i32 as usize..6i32 as usize];
+        let v242: string = fable_library_rust::String_::fromStr(&v240);
+        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
+        let v244: colored::ColoredString =
+            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
+        let v245: std::string::String = format!("{}", &v244);
+        println!(
+            "{0}",
+            stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245))
+        );
+        ()
     }
     pub fn closure2(unitVar: (), v0_1: &std::path::Path) -> std::path::PathBuf {
         v0_1.join(string("package.spiproj").as_str())
@@ -333,182 +302,156 @@ pub mod Supervisor {
         let v48: string = Supervisor::method7();
         let v49: &str = &v48.as_str();
         let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
-        let v53: string = fable_library_rust::String_::fromStr(&v51);
-        let v56: &str = r#"\["(.*?)"\]"#;
-        let v57: regex::RegexBuilder = regex::RegexBuilder::new(&v56);
-        let v58: &regex::Regex = &v57.build().unwrap();
-        let v59: string = Supervisor::method6(v53);
-        let v60: &str = &v59.as_str();
-        let v61: string = Supervisor::method8();
-        let v62: &str = &v61.as_str();
-        let v63: std::string::String = v58.replace_all(&v60, v62).to_string();
-        let v64: string = fable_library_rust::String_::fromStr(&v63);
-        let v67: &str = r#"\\""#;
-        let v68: regex::RegexBuilder = regex::RegexBuilder::new(&v67);
-        let v69: &regex::Regex = &v68.build().unwrap();
-        let v70: string = Supervisor::method6(v64);
-        let v71: &str = &v70.as_str();
-        let v72: string = Supervisor::method9();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Supervisor::method6(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Supervisor::method8();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Supervisor::method6(v66);
         let v73: &str = &v72.as_str();
-        let v74: std::string::String = v69.replace_all(&v71, v73).to_string();
-        let v75: string = fable_library_rust::String_::fromStr(&v74);
-        let v78: &str = r#", "#;
-        let v79: regex::RegexBuilder = regex::RegexBuilder::new(&v78);
-        let v80: &regex::Regex = &v79.build().unwrap();
-        let v81: string = Supervisor::method6(v75);
-        let v82: &str = &v81.as_str();
-        let v83: string = Supervisor::method10();
-        let v84: &str = &v83.as_str();
-        let v85: std::string::String = v80.replace_all(&v82, v84).to_string();
-        let v87: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v85));
-        let v88 = core::ops::Deref::deref(&v1);
-        let v89 = &***&v88;
-        let v90 = &***&v89;
-        let v92: std::string::String = format!("{:?}", &v90).clone();
-        let v94: string = toString(&format!("{}", &v92));
-        let v96: &str = r#""([^"]+)", "([^"]+)""#;
-        let v97: regex::RegexBuilder = regex::RegexBuilder::new(&v96);
-        let v98: &regex::Regex = &v97.build().unwrap();
-        let v99: string = Supervisor::method6(v94);
-        let v100: &str = &v99.as_str();
-        let v101: string = Supervisor::method7();
-        let v102: &str = &v101.as_str();
-        let v103: std::string::String = v98.replace_all(&v100, v102).to_string();
-        let v104: string = fable_library_rust::String_::fromStr(&v103);
-        let v106: &str = r#"\["(.*?)"\]"#;
-        let v107: regex::RegexBuilder = regex::RegexBuilder::new(&v106);
-        let v108: &regex::Regex = &v107.build().unwrap();
-        let v109: string = Supervisor::method6(v104);
-        let v110: &str = &v109.as_str();
-        let v111: string = Supervisor::method8();
-        let v112: &str = &v111.as_str();
-        let v113: std::string::String = v108.replace_all(&v110, v112).to_string();
-        let v114: string = fable_library_rust::String_::fromStr(&v113);
-        let v116: &str = r#"\\""#;
-        let v117: regex::RegexBuilder = regex::RegexBuilder::new(&v116);
-        let v118: &regex::Regex = &v117.build().unwrap();
-        let v119: string = Supervisor::method6(v114);
-        let v120: &str = &v119.as_str();
-        let v121: string = Supervisor::method9();
-        let v122: &str = &v121.as_str();
-        let v123: std::string::String = v118.replace_all(&v120, v122).to_string();
-        let v124: string = fable_library_rust::String_::fromStr(&v123);
-        let v126: &str = r#", "#;
-        let v127: regex::RegexBuilder = regex::RegexBuilder::new(&v126);
-        let v128: &regex::Regex = &v127.build().unwrap();
-        let v129: string = Supervisor::method6(v124);
-        let v130: &str = &v129.as_str();
-        let v131: string = Supervisor::method10();
-        let v132: &str = &v131.as_str();
-        let v133: std::string::String = v128.replace_all(&v130, v132).to_string();
-        let v135: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v133));
-        let v137: string = toString(&format!("{}", &v23));
-        let v139: &str = r#""([^"]+)", "([^"]+)""#;
-        let v140: regex::RegexBuilder = regex::RegexBuilder::new(&v139);
-        let v141: &regex::Regex = &v140.build().unwrap();
-        let v142: string = Supervisor::method6(v137);
-        let v143: &str = &v142.as_str();
-        let v144: string = Supervisor::method7();
-        let v145: &str = &v144.as_str();
-        let v146: std::string::String = v141.replace_all(&v143, v145).to_string();
-        let v147: string = fable_library_rust::String_::fromStr(&v146);
-        let v149: &str = r#"\["(.*?)"\]"#;
-        let v150: regex::RegexBuilder = regex::RegexBuilder::new(&v149);
-        let v151: &regex::Regex = &v150.build().unwrap();
-        let v152: string = Supervisor::method6(v147);
+        let v74: string = Supervisor::method9();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Supervisor::method6(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Supervisor::method10();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Supervisor::method6(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Supervisor::method7();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Supervisor::method6(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Supervisor::method8();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Supervisor::method6(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Supervisor::method9();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Supervisor::method6(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Supervisor::method10();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Supervisor::method6(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Supervisor::method7();
         let v153: &str = &v152.as_str();
-        let v154: string = Supervisor::method8();
-        let v155: &str = &v154.as_str();
-        let v156: std::string::String = v151.replace_all(&v153, v155).to_string();
-        let v157: string = fable_library_rust::String_::fromStr(&v156);
-        let v159: &str = r#"\\""#;
-        let v160: regex::RegexBuilder = regex::RegexBuilder::new(&v159);
-        let v161: &regex::Regex = &v160.build().unwrap();
-        let v162: string = Supervisor::method6(v157);
-        let v163: &str = &v162.as_str();
-        let v164: string = Supervisor::method9();
-        let v165: &str = &v164.as_str();
-        let v166: std::string::String = v161.replace_all(&v163, v165).to_string();
-        let v167: string = fable_library_rust::String_::fromStr(&v166);
-        let v169: &str = r#", "#;
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Supervisor::method6(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Supervisor::method8();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
         let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
         let v171: &regex::Regex = &v170.build().unwrap();
         let v172: string = Supervisor::method6(v167);
         let v173: &str = &v172.as_str();
-        let v174: string = Supervisor::method10();
+        let v174: string = Supervisor::method9();
         let v175: &str = &v174.as_str();
         let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
-        let v178: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v176));
-        if let Supervisor::US0::US0_1 = &if cfg!(target_arch = "wasm32") {
-            Supervisor::US0::US0_1
-        } else {
-            Supervisor::US0::US0_0
-        } {
-            let v187: string = string(" %c");
-            let v191: string = append(
-                append(
-                    append(append(toString(&v87), v187.clone()), toString(&v135)),
-                    v187,
-                ),
-                toString(&v178),
-            );
-            let v199: Array<std::string::String> = array(&[
-                (&v191).as_ref().to_string(),
-                (&stringFrom(format!("color: #{0};", &string("e36a62"))))
-                    .as_ref()
-                    .to_string(),
-                (&string("color: #385779;")).as_ref().to_string(),
-            ]);
-            let v200 = core::ops::Deref::deref(&v199);
-            let v203 = serde_wasm_bindgen::to_value(&*****&v200).unwrap();
-            web_sys::console::log(&js_sys::Array::from(&v203));
-            ()
-        } else {
-            let v205: string = Supervisor::method15();
-            let v206: &str = &v205.as_str();
-            let v210: &str = &v206[0i32 as usize..2i32 as usize];
-            let v211: string = fable_library_rust::String_::fromStr(&v210);
-            let v213: u8 = u8::from_str_radix(&v211, 16).unwrap();
-            let v214: string = Supervisor::method15();
-            let v215: &str = &v214.as_str();
-            let v218: &str = &v215[2i32 as usize..4i32 as usize];
-            let v219: string = fable_library_rust::String_::fromStr(&v218);
-            let v220: u8 = u8::from_str_radix(&v219, 16).unwrap();
-            let v221: string = Supervisor::method15();
-            let v222: &str = &v221.as_str();
-            let v225: &str = &v222[4i32 as usize..6i32 as usize];
-            let v226: string = fable_library_rust::String_::fromStr(&v225);
-            let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
-            let v229: colored::ColoredString =
-                colored::Colorize::truecolor(&*v135.to_string(), v213, v220, v227);
-            let v230: std::string::String = format!("{}", &v229);
-            let v231: string = Supervisor::method12();
-            let v232: &str = &v231.as_str();
-            let v235: &str = &v232[0i32 as usize..2i32 as usize];
-            let v236: string = fable_library_rust::String_::fromStr(&v235);
-            let v237: u8 = u8::from_str_radix(&v236, 16).unwrap();
-            let v238: string = Supervisor::method12();
-            let v239: &str = &v238.as_str();
-            let v242: &str = &v239[2i32 as usize..4i32 as usize];
-            let v243: string = fable_library_rust::String_::fromStr(&v242);
-            let v244: u8 = u8::from_str_radix(&v243, 16).unwrap();
-            let v245: string = Supervisor::method12();
-            let v246: &str = &v245.as_str();
-            let v249: &str = &v246[4i32 as usize..6i32 as usize];
-            let v250: string = fable_library_rust::String_::fromStr(&v249);
-            let v251: u8 = u8::from_str_radix(&v250, 16).unwrap();
-            let v252: colored::ColoredString =
-                colored::Colorize::truecolor(&*v178.to_string(), v237, v244, v251);
-            let v253: std::string::String = format!("{}", &v252);
-            println!(
-                "{0}",
-                stringFrom(format!("{0} {1} {2}", &v87, &v230, &v253))
-            );
-            ()
-        }
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Supervisor::method6(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Supervisor::method10();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v187));
+        let v191: string = Supervisor::method15();
+        let v192: &str = &v191.as_str();
+        let v196: &str = &v192[0i32 as usize..2i32 as usize];
+        let v198: string = fable_library_rust::String_::fromStr(&v196);
+        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
+        let v201: string = Supervisor::method15();
+        let v202: &str = &v201.as_str();
+        let v205: &str = &v202[2i32 as usize..4i32 as usize];
+        let v207: string = fable_library_rust::String_::fromStr(&v205);
+        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+        let v209: string = Supervisor::method15();
+        let v210: &str = &v209.as_str();
+        let v213: &str = &v210[4i32 as usize..6i32 as usize];
+        let v215: string = fable_library_rust::String_::fromStr(&v213);
+        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
+        let v218: colored::ColoredString =
+            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
+        let v219: std::string::String = format!("{}", &v218);
+        let v220: string = Supervisor::method12();
+        let v221: &str = &v220.as_str();
+        let v224: &str = &v221[0i32 as usize..2i32 as usize];
+        let v226: string = fable_library_rust::String_::fromStr(&v224);
+        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
+        let v228: string = Supervisor::method12();
+        let v229: &str = &v228.as_str();
+        let v232: &str = &v229[2i32 as usize..4i32 as usize];
+        let v234: string = fable_library_rust::String_::fromStr(&v232);
+        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
+        let v236: string = Supervisor::method12();
+        let v237: &str = &v236.as_str();
+        let v240: &str = &v237[4i32 as usize..6i32 as usize];
+        let v242: string = fable_library_rust::String_::fromStr(&v240);
+        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
+        let v244: colored::ColoredString =
+            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
+        let v245: std::string::String = format!("{}", &v244);
+        println!(
+            "{0}",
+            stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245))
+        );
+        ()
     }
     pub fn method17() -> string {
         string("fcfb1b")
@@ -540,182 +483,156 @@ pub mod Supervisor {
         let v48: string = Supervisor::method7();
         let v49: &str = &v48.as_str();
         let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
-        let v53: string = fable_library_rust::String_::fromStr(&v51);
-        let v56: &str = r#"\["(.*?)"\]"#;
-        let v57: regex::RegexBuilder = regex::RegexBuilder::new(&v56);
-        let v58: &regex::Regex = &v57.build().unwrap();
-        let v59: string = Supervisor::method6(v53);
-        let v60: &str = &v59.as_str();
-        let v61: string = Supervisor::method8();
-        let v62: &str = &v61.as_str();
-        let v63: std::string::String = v58.replace_all(&v60, v62).to_string();
-        let v64: string = fable_library_rust::String_::fromStr(&v63);
-        let v67: &str = r#"\\""#;
-        let v68: regex::RegexBuilder = regex::RegexBuilder::new(&v67);
-        let v69: &regex::Regex = &v68.build().unwrap();
-        let v70: string = Supervisor::method6(v64);
-        let v71: &str = &v70.as_str();
-        let v72: string = Supervisor::method9();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Supervisor::method6(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Supervisor::method8();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Supervisor::method6(v66);
         let v73: &str = &v72.as_str();
-        let v74: std::string::String = v69.replace_all(&v71, v73).to_string();
-        let v75: string = fable_library_rust::String_::fromStr(&v74);
-        let v78: &str = r#", "#;
-        let v79: regex::RegexBuilder = regex::RegexBuilder::new(&v78);
-        let v80: &regex::Regex = &v79.build().unwrap();
-        let v81: string = Supervisor::method6(v75);
-        let v82: &str = &v81.as_str();
-        let v83: string = Supervisor::method10();
-        let v84: &str = &v83.as_str();
-        let v85: std::string::String = v80.replace_all(&v82, v84).to_string();
-        let v87: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v85));
-        let v88 = core::ops::Deref::deref(&v1);
-        let v89 = &***&v88;
-        let v90 = &***&v89;
-        let v92: std::string::String = format!("{:?}", &v90).clone();
-        let v94: string = toString(&format!("{}", &v92));
-        let v96: &str = r#""([^"]+)", "([^"]+)""#;
-        let v97: regex::RegexBuilder = regex::RegexBuilder::new(&v96);
-        let v98: &regex::Regex = &v97.build().unwrap();
-        let v99: string = Supervisor::method6(v94);
-        let v100: &str = &v99.as_str();
-        let v101: string = Supervisor::method7();
-        let v102: &str = &v101.as_str();
-        let v103: std::string::String = v98.replace_all(&v100, v102).to_string();
-        let v104: string = fable_library_rust::String_::fromStr(&v103);
-        let v106: &str = r#"\["(.*?)"\]"#;
-        let v107: regex::RegexBuilder = regex::RegexBuilder::new(&v106);
-        let v108: &regex::Regex = &v107.build().unwrap();
-        let v109: string = Supervisor::method6(v104);
-        let v110: &str = &v109.as_str();
-        let v111: string = Supervisor::method8();
-        let v112: &str = &v111.as_str();
-        let v113: std::string::String = v108.replace_all(&v110, v112).to_string();
-        let v114: string = fable_library_rust::String_::fromStr(&v113);
-        let v116: &str = r#"\\""#;
-        let v117: regex::RegexBuilder = regex::RegexBuilder::new(&v116);
-        let v118: &regex::Regex = &v117.build().unwrap();
-        let v119: string = Supervisor::method6(v114);
-        let v120: &str = &v119.as_str();
-        let v121: string = Supervisor::method9();
-        let v122: &str = &v121.as_str();
-        let v123: std::string::String = v118.replace_all(&v120, v122).to_string();
-        let v124: string = fable_library_rust::String_::fromStr(&v123);
-        let v126: &str = r#", "#;
-        let v127: regex::RegexBuilder = regex::RegexBuilder::new(&v126);
-        let v128: &regex::Regex = &v127.build().unwrap();
-        let v129: string = Supervisor::method6(v124);
-        let v130: &str = &v129.as_str();
-        let v131: string = Supervisor::method10();
-        let v132: &str = &v131.as_str();
-        let v133: std::string::String = v128.replace_all(&v130, v132).to_string();
-        let v135: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v133));
-        let v137: string = toString(&format!("{}", &v23));
-        let v139: &str = r#""([^"]+)", "([^"]+)""#;
-        let v140: regex::RegexBuilder = regex::RegexBuilder::new(&v139);
-        let v141: &regex::Regex = &v140.build().unwrap();
-        let v142: string = Supervisor::method6(v137);
-        let v143: &str = &v142.as_str();
-        let v144: string = Supervisor::method7();
-        let v145: &str = &v144.as_str();
-        let v146: std::string::String = v141.replace_all(&v143, v145).to_string();
-        let v147: string = fable_library_rust::String_::fromStr(&v146);
-        let v149: &str = r#"\["(.*?)"\]"#;
-        let v150: regex::RegexBuilder = regex::RegexBuilder::new(&v149);
-        let v151: &regex::Regex = &v150.build().unwrap();
-        let v152: string = Supervisor::method6(v147);
+        let v74: string = Supervisor::method9();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Supervisor::method6(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Supervisor::method10();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Supervisor::method6(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Supervisor::method7();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Supervisor::method6(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Supervisor::method8();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Supervisor::method6(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Supervisor::method9();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Supervisor::method6(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Supervisor::method10();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Supervisor::method6(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Supervisor::method7();
         let v153: &str = &v152.as_str();
-        let v154: string = Supervisor::method8();
-        let v155: &str = &v154.as_str();
-        let v156: std::string::String = v151.replace_all(&v153, v155).to_string();
-        let v157: string = fable_library_rust::String_::fromStr(&v156);
-        let v159: &str = r#"\\""#;
-        let v160: regex::RegexBuilder = regex::RegexBuilder::new(&v159);
-        let v161: &regex::Regex = &v160.build().unwrap();
-        let v162: string = Supervisor::method6(v157);
-        let v163: &str = &v162.as_str();
-        let v164: string = Supervisor::method9();
-        let v165: &str = &v164.as_str();
-        let v166: std::string::String = v161.replace_all(&v163, v165).to_string();
-        let v167: string = fable_library_rust::String_::fromStr(&v166);
-        let v169: &str = r#", "#;
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Supervisor::method6(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Supervisor::method8();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
         let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
         let v171: &regex::Regex = &v170.build().unwrap();
         let v172: string = Supervisor::method6(v167);
         let v173: &str = &v172.as_str();
-        let v174: string = Supervisor::method10();
+        let v174: string = Supervisor::method9();
         let v175: &str = &v174.as_str();
         let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
-        let v178: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v176));
-        if let Supervisor::US0::US0_1 = &if cfg!(target_arch = "wasm32") {
-            Supervisor::US0::US0_1
-        } else {
-            Supervisor::US0::US0_0
-        } {
-            let v187: string = string(" %c");
-            let v191: string = append(
-                append(
-                    append(append(toString(&v87), v187.clone()), toString(&v135)),
-                    v187,
-                ),
-                toString(&v178),
-            );
-            let v199: Array<std::string::String> = array(&[
-                (&v191).as_ref().to_string(),
-                (&stringFrom(format!("color: #{0};", &string("fcfb1b"))))
-                    .as_ref()
-                    .to_string(),
-                (&string("color: #385779;")).as_ref().to_string(),
-            ]);
-            let v200 = core::ops::Deref::deref(&v199);
-            let v203 = serde_wasm_bindgen::to_value(&*****&v200).unwrap();
-            web_sys::console::log(&js_sys::Array::from(&v203));
-            ()
-        } else {
-            let v205: string = Supervisor::method17();
-            let v206: &str = &v205.as_str();
-            let v210: &str = &v206[0i32 as usize..2i32 as usize];
-            let v211: string = fable_library_rust::String_::fromStr(&v210);
-            let v213: u8 = u8::from_str_radix(&v211, 16).unwrap();
-            let v214: string = Supervisor::method17();
-            let v215: &str = &v214.as_str();
-            let v218: &str = &v215[2i32 as usize..4i32 as usize];
-            let v219: string = fable_library_rust::String_::fromStr(&v218);
-            let v220: u8 = u8::from_str_radix(&v219, 16).unwrap();
-            let v221: string = Supervisor::method17();
-            let v222: &str = &v221.as_str();
-            let v225: &str = &v222[4i32 as usize..6i32 as usize];
-            let v226: string = fable_library_rust::String_::fromStr(&v225);
-            let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
-            let v229: colored::ColoredString =
-                colored::Colorize::truecolor(&*v135.to_string(), v213, v220, v227);
-            let v230: std::string::String = format!("{}", &v229);
-            let v231: string = Supervisor::method12();
-            let v232: &str = &v231.as_str();
-            let v235: &str = &v232[0i32 as usize..2i32 as usize];
-            let v236: string = fable_library_rust::String_::fromStr(&v235);
-            let v237: u8 = u8::from_str_radix(&v236, 16).unwrap();
-            let v238: string = Supervisor::method12();
-            let v239: &str = &v238.as_str();
-            let v242: &str = &v239[2i32 as usize..4i32 as usize];
-            let v243: string = fable_library_rust::String_::fromStr(&v242);
-            let v244: u8 = u8::from_str_radix(&v243, 16).unwrap();
-            let v245: string = Supervisor::method12();
-            let v246: &str = &v245.as_str();
-            let v249: &str = &v246[4i32 as usize..6i32 as usize];
-            let v250: string = fable_library_rust::String_::fromStr(&v249);
-            let v251: u8 = u8::from_str_radix(&v250, 16).unwrap();
-            let v252: colored::ColoredString =
-                colored::Colorize::truecolor(&*v178.to_string(), v237, v244, v251);
-            let v253: std::string::String = format!("{}", &v252);
-            println!(
-                "{0}",
-                stringFrom(format!("{0} {1} {2}", &v87, &v230, &v253))
-            );
-            ()
-        }
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Supervisor::method6(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Supervisor::method10();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v187));
+        let v191: string = Supervisor::method17();
+        let v192: &str = &v191.as_str();
+        let v196: &str = &v192[0i32 as usize..2i32 as usize];
+        let v198: string = fable_library_rust::String_::fromStr(&v196);
+        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
+        let v201: string = Supervisor::method17();
+        let v202: &str = &v201.as_str();
+        let v205: &str = &v202[2i32 as usize..4i32 as usize];
+        let v207: string = fable_library_rust::String_::fromStr(&v205);
+        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+        let v209: string = Supervisor::method17();
+        let v210: &str = &v209.as_str();
+        let v213: &str = &v210[4i32 as usize..6i32 as usize];
+        let v215: string = fable_library_rust::String_::fromStr(&v213);
+        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
+        let v218: colored::ColoredString =
+            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
+        let v219: std::string::String = format!("{}", &v218);
+        let v220: string = Supervisor::method12();
+        let v221: &str = &v220.as_str();
+        let v224: &str = &v221[0i32 as usize..2i32 as usize];
+        let v226: string = fable_library_rust::String_::fromStr(&v224);
+        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
+        let v228: string = Supervisor::method12();
+        let v229: &str = &v228.as_str();
+        let v232: &str = &v229[2i32 as usize..4i32 as usize];
+        let v234: string = fable_library_rust::String_::fromStr(&v232);
+        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
+        let v236: string = Supervisor::method12();
+        let v237: &str = &v236.as_str();
+        let v240: &str = &v237[4i32 as usize..6i32 as usize];
+        let v242: string = fable_library_rust::String_::fromStr(&v240);
+        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
+        let v244: colored::ColoredString =
+            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
+        let v245: std::string::String = format!("{}", &v244);
+        println!(
+            "{0}",
+            stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245))
+        );
+        ()
     }
     pub fn method19() -> string {
         string("98d5ef")
@@ -747,182 +664,156 @@ pub mod Supervisor {
         let v48: string = Supervisor::method7();
         let v49: &str = &v48.as_str();
         let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
-        let v53: string = fable_library_rust::String_::fromStr(&v51);
-        let v56: &str = r#"\["(.*?)"\]"#;
-        let v57: regex::RegexBuilder = regex::RegexBuilder::new(&v56);
-        let v58: &regex::Regex = &v57.build().unwrap();
-        let v59: string = Supervisor::method6(v53);
-        let v60: &str = &v59.as_str();
-        let v61: string = Supervisor::method8();
-        let v62: &str = &v61.as_str();
-        let v63: std::string::String = v58.replace_all(&v60, v62).to_string();
-        let v64: string = fable_library_rust::String_::fromStr(&v63);
-        let v67: &str = r#"\\""#;
-        let v68: regex::RegexBuilder = regex::RegexBuilder::new(&v67);
-        let v69: &regex::Regex = &v68.build().unwrap();
-        let v70: string = Supervisor::method6(v64);
-        let v71: &str = &v70.as_str();
-        let v72: string = Supervisor::method9();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Supervisor::method6(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Supervisor::method8();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Supervisor::method6(v66);
         let v73: &str = &v72.as_str();
-        let v74: std::string::String = v69.replace_all(&v71, v73).to_string();
-        let v75: string = fable_library_rust::String_::fromStr(&v74);
-        let v78: &str = r#", "#;
-        let v79: regex::RegexBuilder = regex::RegexBuilder::new(&v78);
-        let v80: &regex::Regex = &v79.build().unwrap();
-        let v81: string = Supervisor::method6(v75);
-        let v82: &str = &v81.as_str();
-        let v83: string = Supervisor::method10();
-        let v84: &str = &v83.as_str();
-        let v85: std::string::String = v80.replace_all(&v82, v84).to_string();
-        let v87: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v85));
-        let v88 = core::ops::Deref::deref(&v1);
-        let v89 = &***&v88;
-        let v90 = &***&v89;
-        let v92: std::string::String = format!("{:?}", &v90).clone();
-        let v94: string = toString(&format!("{}", &v92));
-        let v96: &str = r#""([^"]+)", "([^"]+)""#;
-        let v97: regex::RegexBuilder = regex::RegexBuilder::new(&v96);
-        let v98: &regex::Regex = &v97.build().unwrap();
-        let v99: string = Supervisor::method6(v94);
-        let v100: &str = &v99.as_str();
-        let v101: string = Supervisor::method7();
-        let v102: &str = &v101.as_str();
-        let v103: std::string::String = v98.replace_all(&v100, v102).to_string();
-        let v104: string = fable_library_rust::String_::fromStr(&v103);
-        let v106: &str = r#"\["(.*?)"\]"#;
-        let v107: regex::RegexBuilder = regex::RegexBuilder::new(&v106);
-        let v108: &regex::Regex = &v107.build().unwrap();
-        let v109: string = Supervisor::method6(v104);
-        let v110: &str = &v109.as_str();
-        let v111: string = Supervisor::method8();
-        let v112: &str = &v111.as_str();
-        let v113: std::string::String = v108.replace_all(&v110, v112).to_string();
-        let v114: string = fable_library_rust::String_::fromStr(&v113);
-        let v116: &str = r#"\\""#;
-        let v117: regex::RegexBuilder = regex::RegexBuilder::new(&v116);
-        let v118: &regex::Regex = &v117.build().unwrap();
-        let v119: string = Supervisor::method6(v114);
-        let v120: &str = &v119.as_str();
-        let v121: string = Supervisor::method9();
-        let v122: &str = &v121.as_str();
-        let v123: std::string::String = v118.replace_all(&v120, v122).to_string();
-        let v124: string = fable_library_rust::String_::fromStr(&v123);
-        let v126: &str = r#", "#;
-        let v127: regex::RegexBuilder = regex::RegexBuilder::new(&v126);
-        let v128: &regex::Regex = &v127.build().unwrap();
-        let v129: string = Supervisor::method6(v124);
-        let v130: &str = &v129.as_str();
-        let v131: string = Supervisor::method10();
-        let v132: &str = &v131.as_str();
-        let v133: std::string::String = v128.replace_all(&v130, v132).to_string();
-        let v135: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v133));
-        let v137: string = toString(&format!("{}", &v23));
-        let v139: &str = r#""([^"]+)", "([^"]+)""#;
-        let v140: regex::RegexBuilder = regex::RegexBuilder::new(&v139);
-        let v141: &regex::Regex = &v140.build().unwrap();
-        let v142: string = Supervisor::method6(v137);
-        let v143: &str = &v142.as_str();
-        let v144: string = Supervisor::method7();
-        let v145: &str = &v144.as_str();
-        let v146: std::string::String = v141.replace_all(&v143, v145).to_string();
-        let v147: string = fable_library_rust::String_::fromStr(&v146);
-        let v149: &str = r#"\["(.*?)"\]"#;
-        let v150: regex::RegexBuilder = regex::RegexBuilder::new(&v149);
-        let v151: &regex::Regex = &v150.build().unwrap();
-        let v152: string = Supervisor::method6(v147);
+        let v74: string = Supervisor::method9();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Supervisor::method6(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Supervisor::method10();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Supervisor::method6(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Supervisor::method7();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Supervisor::method6(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Supervisor::method8();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Supervisor::method6(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Supervisor::method9();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Supervisor::method6(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Supervisor::method10();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Supervisor::method6(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Supervisor::method7();
         let v153: &str = &v152.as_str();
-        let v154: string = Supervisor::method8();
-        let v155: &str = &v154.as_str();
-        let v156: std::string::String = v151.replace_all(&v153, v155).to_string();
-        let v157: string = fable_library_rust::String_::fromStr(&v156);
-        let v159: &str = r#"\\""#;
-        let v160: regex::RegexBuilder = regex::RegexBuilder::new(&v159);
-        let v161: &regex::Regex = &v160.build().unwrap();
-        let v162: string = Supervisor::method6(v157);
-        let v163: &str = &v162.as_str();
-        let v164: string = Supervisor::method9();
-        let v165: &str = &v164.as_str();
-        let v166: std::string::String = v161.replace_all(&v163, v165).to_string();
-        let v167: string = fable_library_rust::String_::fromStr(&v166);
-        let v169: &str = r#", "#;
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Supervisor::method6(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Supervisor::method8();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
         let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
         let v171: &regex::Regex = &v170.build().unwrap();
         let v172: string = Supervisor::method6(v167);
         let v173: &str = &v172.as_str();
-        let v174: string = Supervisor::method10();
+        let v174: string = Supervisor::method9();
         let v175: &str = &v174.as_str();
         let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
-        let v178: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v176));
-        if let Supervisor::US0::US0_1 = &if cfg!(target_arch = "wasm32") {
-            Supervisor::US0::US0_1
-        } else {
-            Supervisor::US0::US0_0
-        } {
-            let v187: string = string(" %c");
-            let v191: string = append(
-                append(
-                    append(append(toString(&v87), v187.clone()), toString(&v135)),
-                    v187,
-                ),
-                toString(&v178),
-            );
-            let v199: Array<std::string::String> = array(&[
-                (&v191).as_ref().to_string(),
-                (&stringFrom(format!("color: #{0};", &string("98d5ef"))))
-                    .as_ref()
-                    .to_string(),
-                (&string("color: #385779;")).as_ref().to_string(),
-            ]);
-            let v200 = core::ops::Deref::deref(&v199);
-            let v203 = serde_wasm_bindgen::to_value(&*****&v200).unwrap();
-            web_sys::console::log(&js_sys::Array::from(&v203));
-            ()
-        } else {
-            let v205: string = Supervisor::method19();
-            let v206: &str = &v205.as_str();
-            let v210: &str = &v206[0i32 as usize..2i32 as usize];
-            let v211: string = fable_library_rust::String_::fromStr(&v210);
-            let v213: u8 = u8::from_str_radix(&v211, 16).unwrap();
-            let v214: string = Supervisor::method19();
-            let v215: &str = &v214.as_str();
-            let v218: &str = &v215[2i32 as usize..4i32 as usize];
-            let v219: string = fable_library_rust::String_::fromStr(&v218);
-            let v220: u8 = u8::from_str_radix(&v219, 16).unwrap();
-            let v221: string = Supervisor::method19();
-            let v222: &str = &v221.as_str();
-            let v225: &str = &v222[4i32 as usize..6i32 as usize];
-            let v226: string = fable_library_rust::String_::fromStr(&v225);
-            let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
-            let v229: colored::ColoredString =
-                colored::Colorize::truecolor(&*v135.to_string(), v213, v220, v227);
-            let v230: std::string::String = format!("{}", &v229);
-            let v231: string = Supervisor::method12();
-            let v232: &str = &v231.as_str();
-            let v235: &str = &v232[0i32 as usize..2i32 as usize];
-            let v236: string = fable_library_rust::String_::fromStr(&v235);
-            let v237: u8 = u8::from_str_radix(&v236, 16).unwrap();
-            let v238: string = Supervisor::method12();
-            let v239: &str = &v238.as_str();
-            let v242: &str = &v239[2i32 as usize..4i32 as usize];
-            let v243: string = fable_library_rust::String_::fromStr(&v242);
-            let v244: u8 = u8::from_str_radix(&v243, 16).unwrap();
-            let v245: string = Supervisor::method12();
-            let v246: &str = &v245.as_str();
-            let v249: &str = &v246[4i32 as usize..6i32 as usize];
-            let v250: string = fable_library_rust::String_::fromStr(&v249);
-            let v251: u8 = u8::from_str_radix(&v250, 16).unwrap();
-            let v252: colored::ColoredString =
-                colored::Colorize::truecolor(&*v178.to_string(), v237, v244, v251);
-            let v253: std::string::String = format!("{}", &v252);
-            println!(
-                "{0}",
-                stringFrom(format!("{0} {1} {2}", &v87, &v230, &v253))
-            );
-            ()
-        }
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Supervisor::method6(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Supervisor::method10();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v187));
+        let v191: string = Supervisor::method19();
+        let v192: &str = &v191.as_str();
+        let v196: &str = &v192[0i32 as usize..2i32 as usize];
+        let v198: string = fable_library_rust::String_::fromStr(&v196);
+        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
+        let v201: string = Supervisor::method19();
+        let v202: &str = &v201.as_str();
+        let v205: &str = &v202[2i32 as usize..4i32 as usize];
+        let v207: string = fable_library_rust::String_::fromStr(&v205);
+        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+        let v209: string = Supervisor::method19();
+        let v210: &str = &v209.as_str();
+        let v213: &str = &v210[4i32 as usize..6i32 as usize];
+        let v215: string = fable_library_rust::String_::fromStr(&v213);
+        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
+        let v218: colored::ColoredString =
+            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
+        let v219: std::string::String = format!("{}", &v218);
+        let v220: string = Supervisor::method12();
+        let v221: &str = &v220.as_str();
+        let v224: &str = &v221[0i32 as usize..2i32 as usize];
+        let v226: string = fable_library_rust::String_::fromStr(&v224);
+        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
+        let v228: string = Supervisor::method12();
+        let v229: &str = &v228.as_str();
+        let v232: &str = &v229[2i32 as usize..4i32 as usize];
+        let v234: string = fable_library_rust::String_::fromStr(&v232);
+        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
+        let v236: string = Supervisor::method12();
+        let v237: &str = &v236.as_str();
+        let v240: &str = &v237[4i32 as usize..6i32 as usize];
+        let v242: string = fable_library_rust::String_::fromStr(&v240);
+        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
+        let v244: colored::ColoredString =
+            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
+        let v245: std::string::String = format!("{}", &v244);
+        println!(
+            "{0}",
+            stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245))
+        );
+        ()
     }
     pub fn method20(v0_1: std::time::SystemTime) -> std::string::String {
         format!("{:?}", &v0_1).clone()
@@ -957,182 +848,156 @@ pub mod Supervisor {
         let v48: string = Supervisor::method7();
         let v49: &str = &v48.as_str();
         let v51: std::string::String = v44.replace_all(&v47, v49).to_string();
-        let v53: string = fable_library_rust::String_::fromStr(&v51);
-        let v56: &str = r#"\["(.*?)"\]"#;
-        let v57: regex::RegexBuilder = regex::RegexBuilder::new(&v56);
-        let v58: &regex::Regex = &v57.build().unwrap();
-        let v59: string = Supervisor::method6(v53);
-        let v60: &str = &v59.as_str();
-        let v61: string = Supervisor::method8();
-        let v62: &str = &v61.as_str();
-        let v63: std::string::String = v58.replace_all(&v60, v62).to_string();
-        let v64: string = fable_library_rust::String_::fromStr(&v63);
-        let v67: &str = r#"\\""#;
-        let v68: regex::RegexBuilder = regex::RegexBuilder::new(&v67);
-        let v69: &regex::Regex = &v68.build().unwrap();
-        let v70: string = Supervisor::method6(v64);
-        let v71: &str = &v70.as_str();
-        let v72: string = Supervisor::method9();
+        let v54: string = fable_library_rust::String_::fromStr(&v51);
+        let v57: &str = r#"\["(.*?)"\]"#;
+        let v58: regex::RegexBuilder = regex::RegexBuilder::new(&v57);
+        let v59: &regex::Regex = &v58.build().unwrap();
+        let v60: string = Supervisor::method6(v54);
+        let v61: &str = &v60.as_str();
+        let v62: string = Supervisor::method8();
+        let v63: &str = &v62.as_str();
+        let v64: std::string::String = v59.replace_all(&v61, v63).to_string();
+        let v66: string = fable_library_rust::String_::fromStr(&v64);
+        let v69: &str = r#"\\""#;
+        let v70: regex::RegexBuilder = regex::RegexBuilder::new(&v69);
+        let v71: &regex::Regex = &v70.build().unwrap();
+        let v72: string = Supervisor::method6(v66);
         let v73: &str = &v72.as_str();
-        let v74: std::string::String = v69.replace_all(&v71, v73).to_string();
-        let v75: string = fable_library_rust::String_::fromStr(&v74);
-        let v78: &str = r#", "#;
-        let v79: regex::RegexBuilder = regex::RegexBuilder::new(&v78);
-        let v80: &regex::Regex = &v79.build().unwrap();
-        let v81: string = Supervisor::method6(v75);
-        let v82: &str = &v81.as_str();
-        let v83: string = Supervisor::method10();
-        let v84: &str = &v83.as_str();
-        let v85: std::string::String = v80.replace_all(&v82, v84).to_string();
-        let v87: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v85));
-        let v88 = core::ops::Deref::deref(&v1);
-        let v89 = &***&v88;
-        let v90 = &***&v89;
-        let v92: std::string::String = format!("{:?}", &v90).clone();
-        let v94: string = toString(&format!("{}", &v92));
-        let v96: &str = r#""([^"]+)", "([^"]+)""#;
-        let v97: regex::RegexBuilder = regex::RegexBuilder::new(&v96);
-        let v98: &regex::Regex = &v97.build().unwrap();
-        let v99: string = Supervisor::method6(v94);
-        let v100: &str = &v99.as_str();
-        let v101: string = Supervisor::method7();
-        let v102: &str = &v101.as_str();
-        let v103: std::string::String = v98.replace_all(&v100, v102).to_string();
-        let v104: string = fable_library_rust::String_::fromStr(&v103);
-        let v106: &str = r#"\["(.*?)"\]"#;
-        let v107: regex::RegexBuilder = regex::RegexBuilder::new(&v106);
-        let v108: &regex::Regex = &v107.build().unwrap();
-        let v109: string = Supervisor::method6(v104);
-        let v110: &str = &v109.as_str();
-        let v111: string = Supervisor::method8();
-        let v112: &str = &v111.as_str();
-        let v113: std::string::String = v108.replace_all(&v110, v112).to_string();
-        let v114: string = fable_library_rust::String_::fromStr(&v113);
-        let v116: &str = r#"\\""#;
-        let v117: regex::RegexBuilder = regex::RegexBuilder::new(&v116);
-        let v118: &regex::Regex = &v117.build().unwrap();
-        let v119: string = Supervisor::method6(v114);
-        let v120: &str = &v119.as_str();
-        let v121: string = Supervisor::method9();
-        let v122: &str = &v121.as_str();
-        let v123: std::string::String = v118.replace_all(&v120, v122).to_string();
-        let v124: string = fable_library_rust::String_::fromStr(&v123);
-        let v126: &str = r#", "#;
-        let v127: regex::RegexBuilder = regex::RegexBuilder::new(&v126);
-        let v128: &regex::Regex = &v127.build().unwrap();
-        let v129: string = Supervisor::method6(v124);
-        let v130: &str = &v129.as_str();
-        let v131: string = Supervisor::method10();
-        let v132: &str = &v131.as_str();
-        let v133: std::string::String = v128.replace_all(&v130, v132).to_string();
-        let v135: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v133));
-        let v137: string = toString(&format!("{}", &v23));
-        let v139: &str = r#""([^"]+)", "([^"]+)""#;
-        let v140: regex::RegexBuilder = regex::RegexBuilder::new(&v139);
-        let v141: &regex::Regex = &v140.build().unwrap();
-        let v142: string = Supervisor::method6(v137);
-        let v143: &str = &v142.as_str();
-        let v144: string = Supervisor::method7();
-        let v145: &str = &v144.as_str();
-        let v146: std::string::String = v141.replace_all(&v143, v145).to_string();
-        let v147: string = fable_library_rust::String_::fromStr(&v146);
-        let v149: &str = r#"\["(.*?)"\]"#;
-        let v150: regex::RegexBuilder = regex::RegexBuilder::new(&v149);
-        let v151: &regex::Regex = &v150.build().unwrap();
-        let v152: string = Supervisor::method6(v147);
+        let v74: string = Supervisor::method9();
+        let v75: &str = &v74.as_str();
+        let v76: std::string::String = v71.replace_all(&v73, v75).to_string();
+        let v78: string = fable_library_rust::String_::fromStr(&v76);
+        let v81: &str = r#", "#;
+        let v82: regex::RegexBuilder = regex::RegexBuilder::new(&v81);
+        let v83: &regex::Regex = &v82.build().unwrap();
+        let v84: string = Supervisor::method6(v78);
+        let v85: &str = &v84.as_str();
+        let v86: string = Supervisor::method10();
+        let v87: &str = &v86.as_str();
+        let v88: std::string::String = v83.replace_all(&v85, v87).to_string();
+        let v91: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v88));
+        let v92 = core::ops::Deref::deref(&v1);
+        let v93 = &***&v92;
+        let v94 = &***&v93;
+        let v96: std::string::String = format!("{:?}", &v94).clone();
+        let v98: string = toString(&format!("{}", &v96));
+        let v100: &str = r#""([^"]+)", "([^"]+)""#;
+        let v101: regex::RegexBuilder = regex::RegexBuilder::new(&v100);
+        let v102: &regex::Regex = &v101.build().unwrap();
+        let v103: string = Supervisor::method6(v98);
+        let v104: &str = &v103.as_str();
+        let v105: string = Supervisor::method7();
+        let v106: &str = &v105.as_str();
+        let v107: std::string::String = v102.replace_all(&v104, v106).to_string();
+        let v109: string = fable_library_rust::String_::fromStr(&v107);
+        let v111: &str = r#"\["(.*?)"\]"#;
+        let v112: regex::RegexBuilder = regex::RegexBuilder::new(&v111);
+        let v113: &regex::Regex = &v112.build().unwrap();
+        let v114: string = Supervisor::method6(v109);
+        let v115: &str = &v114.as_str();
+        let v116: string = Supervisor::method8();
+        let v117: &str = &v116.as_str();
+        let v118: std::string::String = v113.replace_all(&v115, v117).to_string();
+        let v120: string = fable_library_rust::String_::fromStr(&v118);
+        let v122: &str = r#"\\""#;
+        let v123: regex::RegexBuilder = regex::RegexBuilder::new(&v122);
+        let v124: &regex::Regex = &v123.build().unwrap();
+        let v125: string = Supervisor::method6(v120);
+        let v126: &str = &v125.as_str();
+        let v127: string = Supervisor::method9();
+        let v128: &str = &v127.as_str();
+        let v129: std::string::String = v124.replace_all(&v126, v128).to_string();
+        let v131: string = fable_library_rust::String_::fromStr(&v129);
+        let v133: &str = r#", "#;
+        let v134: regex::RegexBuilder = regex::RegexBuilder::new(&v133);
+        let v135: &regex::Regex = &v134.build().unwrap();
+        let v136: string = Supervisor::method6(v131);
+        let v137: &str = &v136.as_str();
+        let v138: string = Supervisor::method10();
+        let v139: &str = &v138.as_str();
+        let v140: std::string::String = v135.replace_all(&v137, v139).to_string();
+        let v143: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v140));
+        let v145: string = toString(&format!("{}", &v23));
+        let v147: &str = r#""([^"]+)", "([^"]+)""#;
+        let v148: regex::RegexBuilder = regex::RegexBuilder::new(&v147);
+        let v149: &regex::Regex = &v148.build().unwrap();
+        let v150: string = Supervisor::method6(v145);
+        let v151: &str = &v150.as_str();
+        let v152: string = Supervisor::method7();
         let v153: &str = &v152.as_str();
-        let v154: string = Supervisor::method8();
-        let v155: &str = &v154.as_str();
-        let v156: std::string::String = v151.replace_all(&v153, v155).to_string();
-        let v157: string = fable_library_rust::String_::fromStr(&v156);
-        let v159: &str = r#"\\""#;
-        let v160: regex::RegexBuilder = regex::RegexBuilder::new(&v159);
-        let v161: &regex::Regex = &v160.build().unwrap();
-        let v162: string = Supervisor::method6(v157);
-        let v163: &str = &v162.as_str();
-        let v164: string = Supervisor::method9();
-        let v165: &str = &v164.as_str();
-        let v166: std::string::String = v161.replace_all(&v163, v165).to_string();
-        let v167: string = fable_library_rust::String_::fromStr(&v166);
-        let v169: &str = r#", "#;
+        let v154: std::string::String = v149.replace_all(&v151, v153).to_string();
+        let v156: string = fable_library_rust::String_::fromStr(&v154);
+        let v158: &str = r#"\["(.*?)"\]"#;
+        let v159: regex::RegexBuilder = regex::RegexBuilder::new(&v158);
+        let v160: &regex::Regex = &v159.build().unwrap();
+        let v161: string = Supervisor::method6(v156);
+        let v162: &str = &v161.as_str();
+        let v163: string = Supervisor::method8();
+        let v164: &str = &v163.as_str();
+        let v165: std::string::String = v160.replace_all(&v162, v164).to_string();
+        let v167: string = fable_library_rust::String_::fromStr(&v165);
+        let v169: &str = r#"\\""#;
         let v170: regex::RegexBuilder = regex::RegexBuilder::new(&v169);
         let v171: &regex::Regex = &v170.build().unwrap();
         let v172: string = Supervisor::method6(v167);
         let v173: &str = &v172.as_str();
-        let v174: string = Supervisor::method10();
+        let v174: string = Supervisor::method9();
         let v175: &str = &v174.as_str();
         let v176: std::string::String = v171.replace_all(&v173, v175).to_string();
-        let v178: std::string::String =
-            Supervisor::method1(fable_library_rust::String_::fromStr(&v176));
-        if let Supervisor::US0::US0_1 = &if cfg!(target_arch = "wasm32") {
-            Supervisor::US0::US0_1
-        } else {
-            Supervisor::US0::US0_0
-        } {
-            let v187: string = string(" %c");
-            let v191: string = append(
-                append(
-                    append(append(toString(&v87), v187.clone()), toString(&v135)),
-                    v187,
-                ),
-                toString(&v178),
-            );
-            let v199: Array<std::string::String> = array(&[
-                (&v191).as_ref().to_string(),
-                (&stringFrom(format!("color: #{0};", &string("387957"))))
-                    .as_ref()
-                    .to_string(),
-                (&string("color: #385779;")).as_ref().to_string(),
-            ]);
-            let v200 = core::ops::Deref::deref(&v199);
-            let v203 = serde_wasm_bindgen::to_value(&*****&v200).unwrap();
-            web_sys::console::log(&js_sys::Array::from(&v203));
-            ()
-        } else {
-            let v205: string = Supervisor::method22();
-            let v206: &str = &v205.as_str();
-            let v210: &str = &v206[0i32 as usize..2i32 as usize];
-            let v211: string = fable_library_rust::String_::fromStr(&v210);
-            let v213: u8 = u8::from_str_radix(&v211, 16).unwrap();
-            let v214: string = Supervisor::method22();
-            let v215: &str = &v214.as_str();
-            let v218: &str = &v215[2i32 as usize..4i32 as usize];
-            let v219: string = fable_library_rust::String_::fromStr(&v218);
-            let v220: u8 = u8::from_str_radix(&v219, 16).unwrap();
-            let v221: string = Supervisor::method22();
-            let v222: &str = &v221.as_str();
-            let v225: &str = &v222[4i32 as usize..6i32 as usize];
-            let v226: string = fable_library_rust::String_::fromStr(&v225);
-            let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
-            let v229: colored::ColoredString =
-                colored::Colorize::truecolor(&*v135.to_string(), v213, v220, v227);
-            let v230: std::string::String = format!("{}", &v229);
-            let v231: string = Supervisor::method12();
-            let v232: &str = &v231.as_str();
-            let v235: &str = &v232[0i32 as usize..2i32 as usize];
-            let v236: string = fable_library_rust::String_::fromStr(&v235);
-            let v237: u8 = u8::from_str_radix(&v236, 16).unwrap();
-            let v238: string = Supervisor::method12();
-            let v239: &str = &v238.as_str();
-            let v242: &str = &v239[2i32 as usize..4i32 as usize];
-            let v243: string = fable_library_rust::String_::fromStr(&v242);
-            let v244: u8 = u8::from_str_radix(&v243, 16).unwrap();
-            let v245: string = Supervisor::method12();
-            let v246: &str = &v245.as_str();
-            let v249: &str = &v246[4i32 as usize..6i32 as usize];
-            let v250: string = fable_library_rust::String_::fromStr(&v249);
-            let v251: u8 = u8::from_str_radix(&v250, 16).unwrap();
-            let v252: colored::ColoredString =
-                colored::Colorize::truecolor(&*v178.to_string(), v237, v244, v251);
-            let v253: std::string::String = format!("{}", &v252);
-            println!(
-                "{0}",
-                stringFrom(format!("{0} {1} {2}", &v87, &v230, &v253))
-            );
-            ()
-        }
+        let v178: string = fable_library_rust::String_::fromStr(&v176);
+        let v180: &str = r#", "#;
+        let v181: regex::RegexBuilder = regex::RegexBuilder::new(&v180);
+        let v182: &regex::Regex = &v181.build().unwrap();
+        let v183: string = Supervisor::method6(v178);
+        let v184: &str = &v183.as_str();
+        let v185: string = Supervisor::method10();
+        let v186: &str = &v185.as_str();
+        let v187: std::string::String = v182.replace_all(&v184, v186).to_string();
+        let v190: std::string::String =
+            Supervisor::method1(fable_library_rust::String_::fromStr(&v187));
+        let v191: string = Supervisor::method22();
+        let v192: &str = &v191.as_str();
+        let v196: &str = &v192[0i32 as usize..2i32 as usize];
+        let v198: string = fable_library_rust::String_::fromStr(&v196);
+        let v200: u8 = u8::from_str_radix(&v198, 16).unwrap();
+        let v201: string = Supervisor::method22();
+        let v202: &str = &v201.as_str();
+        let v205: &str = &v202[2i32 as usize..4i32 as usize];
+        let v207: string = fable_library_rust::String_::fromStr(&v205);
+        let v208: u8 = u8::from_str_radix(&v207, 16).unwrap();
+        let v209: string = Supervisor::method22();
+        let v210: &str = &v209.as_str();
+        let v213: &str = &v210[4i32 as usize..6i32 as usize];
+        let v215: string = fable_library_rust::String_::fromStr(&v213);
+        let v216: u8 = u8::from_str_radix(&v215, 16).unwrap();
+        let v218: colored::ColoredString =
+            colored::Colorize::truecolor(&*v143.to_string(), v200, v208, v216);
+        let v219: std::string::String = format!("{}", &v218);
+        let v220: string = Supervisor::method12();
+        let v221: &str = &v220.as_str();
+        let v224: &str = &v221[0i32 as usize..2i32 as usize];
+        let v226: string = fable_library_rust::String_::fromStr(&v224);
+        let v227: u8 = u8::from_str_radix(&v226, 16).unwrap();
+        let v228: string = Supervisor::method12();
+        let v229: &str = &v228.as_str();
+        let v232: &str = &v229[2i32 as usize..4i32 as usize];
+        let v234: string = fable_library_rust::String_::fromStr(&v232);
+        let v235: u8 = u8::from_str_radix(&v234, 16).unwrap();
+        let v236: string = Supervisor::method12();
+        let v237: &str = &v236.as_str();
+        let v240: &str = &v237[4i32 as usize..6i32 as usize];
+        let v242: string = fable_library_rust::String_::fromStr(&v240);
+        let v243: u8 = u8::from_str_radix(&v242, 16).unwrap();
+        let v244: colored::ColoredString =
+            colored::Colorize::truecolor(&*v190.to_string(), v227, v235, v243);
+        let v245: std::string::String = format!("{}", &v244);
+        println!(
+            "{0}",
+            stringFrom(format!("{0} {1} {2}", &v91, &v219, &v245))
+        );
+        ()
     }
     pub fn method23(v0_1: i32, v1: Lrc<Supervisor::Mut0>) -> bool {
         v1.l0.get() < v0_1
@@ -1502,7 +1367,7 @@ pub mod Supervisor {
                                                                                     Lrc::new(Supervisor::Mut0{l0:
                                                                                                                   MutCell::new(0i32),
                                                                                                               l1:
-                                                                                                                  MutCell::new(Supervisor::US1::US1_0),});
+                                                                                                                  MutCell::new(Supervisor::US0::US0_0),});
                                                                                 while Supervisor::method23(v249,
                                                                                                            v251.clone())
                                                                                       {
@@ -1510,18 +1375,18 @@ pub mod Supervisor {
                                                                                             i32 =
                                                                                         v251.l0.get();
                                                                                     let v254:
-                                                                                            Supervisor::US1 =
+                                                                                            Supervisor::US0 =
                                                                                         v251.l1.get().clone();
                                                                                     let v255:
                                                                                             i32 =
                                                                                         v248[v253].clone();
-                                                                                    let v277:
-                                                                                            Supervisor::US1 =
+                                                                                    let v278:
+                                                                                            Supervisor::US0 =
                                                                                         match &v254
                                                                                             {
-                                                                                            Supervisor::US1::US1_1(v254_1_0)
+                                                                                            Supervisor::US0::US0_1(v254_1_0)
                                                                                             =>
-                                                                                            Supervisor::US1::US1_1(v254_1_0.clone()),
+                                                                                            Supervisor::US0::US0_1(v254_1_0.clone()),
                                                                                             _
                                                                                             =>
                                                                                             {
@@ -1542,56 +1407,56 @@ pub mod Supervisor {
                                                                                                     let v269:
                                                                                                             std::string::String =
                                                                                                         (&v268).as_ref().unwrap().to_string();
-                                                                                                    Supervisor::US1::US1_1(fable_library_rust::String_::fromStr(&v269))
+                                                                                                    Supervisor::US0::US0_1(fable_library_rust::String_::fromStr(&v269))
                                                                                                 } else {
                                                                                                     std::thread::sleep(std::time::Duration::from_millis(*&25u64));
-                                                                                                    Supervisor::US1::US1_0
+                                                                                                    Supervisor::US0::US0_0
                                                                                                 }
                                                                                             }
                                                                                         };
-                                                                                    let v278:
+                                                                                    let v279:
                                                                                             i32 =
                                                                                         v253
                                                                                             +
                                                                                             1i32;
-                                                                                    v251.l0.set(v278);
-                                                                                    v251.l1.set(v277.clone());
+                                                                                    v251.l0.set(v279);
+                                                                                    v251.l1.set(v278.clone());
                                                                                     ()
                                                                                 }
                                                                                 {
-                                                                                    let v279:
-                                                                                            Supervisor::US1 =
+                                                                                    let v280:
+                                                                                            Supervisor::US0 =
                                                                                         v251.l1.get().clone();
-                                                                                    let v282:
+                                                                                    let v283:
                                                                                             string =
-                                                                                        match &v279
+                                                                                        match &v280
                                                                                             {
-                                                                                            Supervisor::US1::US1_1(v279_1_0)
+                                                                                            Supervisor::US0::US0_1(v280_1_0)
                                                                                             =>
-                                                                                            v279_1_0.clone(),
+                                                                                            v280_1_0.clone(),
                                                                                             _
                                                                                             =>
                                                                                             v92,
                                                                                         };
                                                                                     Supervisor::method2(v9,
                                                                                                         array(&[Supervisor::method1(string("new_fsx len")),
-                                                                                                                Supervisor::method13((&v282).len().try_into().unwrap())]));
+                                                                                                                Supervisor::method13((&v283).len().try_into().unwrap())]));
                                                                                     {
-                                                                                        let v288:
+                                                                                        let v289:
                                                                                                 std::path::PathBuf =
                                                                                             defaultValue(v86,
                                                                                                          v1);
-                                                                                        let v289:
+                                                                                        let v290:
                                                                                                 Result<(),
                                                                                                        std::io::Error> =
-                                                                                            std::fs::write(v288, v282.clone().as_str());
-                                                                                        *((&v289)
+                                                                                            std::fs::write(v289, v283.clone().as_str());
+                                                                                        *((&v290)
                                                                                             .as_ref(
                                                                                             ))
                                                                                         .unwrap();
                                                                                         Supervisor::method2(v9,
                                                                                                             array(&[Supervisor::method1(string("> fs_write new_fsx_path; ok"))]));
-                                                                                        v282
+                                                                                        v283
                                                                                     }
                                                                                 }
                                                                             }

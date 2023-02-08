@@ -65,6 +65,8 @@ nominal response = $"Types.ehttp.Response"
 nominal mutable t = $"Types.futures_signals.signal.Mutable<`t>"
 nominal mutable_signal t = $"Types.futures_signals.signal.MutableSignal<`t>"
 
+nominal open_db_request = $"Types.indexed_db_futures.request.OpenDbRequest"
+
 nominal linereader t = $"Types.linereader.LineReader<`t>"
 
 nominal regex = $"Types.regex.Regex"
@@ -444,26 +446,6 @@ inl new_log
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 inl get_window () : any = emit_expr () "web_sys::window().unwrap()"
 inl get_document (window : any) : any = emit_expr window "$0.document().unwrap()"
 inl get_body (document : any) : any = emit_expr document "$0.body().unwrap()"
@@ -625,7 +607,7 @@ inl condvar_notify_one (x : mutex condvar) : any =
 inl new_box forall t. (x : t) : box t =
     emit_expr () $"\"Box::new(!x)\""
 
-inl box_leak forall t. (x : box t) : t =
+inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
     emit_expr () $"\"Box::leak(!x)\""
 
 inl into_boxed_str (x : std_string) : ref' string =
@@ -639,7 +621,7 @@ inl new_tuple forall a b. (a : a) (b : b) : tuple' a b =
 
 
 inl new_ref_cell forall t. (x : t) : ref_cell t =
-    inl x = join x
+    // inl x = join x
     emit_expr () $"\"std::cell::RefCell::new(!x)\""
 
 inl new_arc forall t. (x : t) : arc t =

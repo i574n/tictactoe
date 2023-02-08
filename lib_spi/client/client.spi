@@ -1,5 +1,51 @@
 open rust.util
 
+// use indexed_db_futures::prelude::*;
+
+// pub async fn example() -> Result<(), DomException> {
+//     // Open my_db v1
+//     let mut db_req: OpenDbRequest = IdbDatabase::open_u32("my_db", 1)?;
+//     db_req.set_on_upgrade_needed(Some(|evt: &IdbVersionChangeEvent| -> Result<(), JsValue> {
+//         // Check if the object store exists; create it if it doesn't
+//         if let None = evt.db().object_store_names().find(|n| n == "my_store") {
+//             evt.db().create_object_store("my_store")?;
+//         }
+//         Ok(())
+//     }));
+
+//     let db: IdbDatabase = db_req.into_future().await?;
+
+//     // Insert/overwrite a record
+//     let tx: IdbTransaction = db
+//       .transaction_on_one_with_mode("my_store", IdbTransactionMode::Readwrite)?;
+//     let store: IdbObjectStore = tx.object_store("my_store")?;
+
+//     let value_to_put: JsValue = get_some_js_value();
+//     store.put_key_val_owned("my_key", &value_to_put)?;
+
+//     // IDBTransactions can have an Error or an Abort event; into_result() turns both into a
+//     // DOMException
+//     tx.await.into_result()?;
+
+//     // Delete a record
+//     let tx = db.transaction_on_one_with_mode("my_store", IdbTransactionMode::Readwrite)?;
+//     let store = tx.object_store("my_store")?;
+//     store.delete_owned("my_key")?;
+//     tx.await.into_result()?;
+
+//     // Get a record
+//     let tx = db.transaction_on_one("my_store")?;
+//     let store = tx.object_store("my_store")?;
+
+//     let value: Option<JsValue> = store.get_owned("my_key")?.await?;
+//     use_value(value);
+
+//     // All of the requests in the transaction have already finished so we can just drop it to
+//     // avoid the unused future warning, or assign it to _.
+//     let _ = tx;
+
+//     Ok(())
+// }
 
 inl app () =
     emit_expr () "console_error_panic_hook::set_once()"
@@ -12,12 +58,7 @@ inl app () =
     inl head = document |> get_head
     inl style : rc html_style_element = document |> create_element "style" |> new_rc
 
-    log Debug ;[
-        !>"window"; !>(window |> format)
-        !>"document"; !>(document |> format)
-        !>"head"; !>(head |> format)
-        !>"style"; !>(style |> format)
-    ]
+    log Debug ;[!>"style"; !>(style |> format)]
 
     style
     |> set_attribute'' "type" "text/css"
@@ -68,13 +109,196 @@ inl app () =
     |> ignore
 
 
+
+    inl get_local_storage (window : any) : any =
+        emit_expr () $"\"!window.local_storage().unwrap().unwrap()\""
+
+    inl set_local_storage_value (key : string) (value : string) (local_storage : any) : () =
+        log Debug ;[!>"set_local_storage_value"]
+
+        inl key = key |> raw_string_literal
+        inl value = value |> raw_string_literal
+
+        log Debug ;[
+            !>"key"; !>key
+            !>"value"; !>value
+        ]
+
+        inl set_result : any = emit_expr () $"\"!local_storage.set_item(!key, !value).unwrap()\""
+
+        log Debug ;[!>"set_result"; !>set_result]
+
+
+    inl local_storage = window |> get_local_storage
+    local_storage |> set_local_storage_value "key" "value"
+
+
+
+    // inl get_indexed_db (window : any) : any =
+    //     emit_expr () $"\"!window.indexed_db().unwrap().unwrap()\""
+
+    // inl open_indexed_db (name : string) (indexed_db : any) : any =
+    //     inl name = name |> raw_string_literal
+    //     emit_expr () $"\"!indexed_db.open(!name).unwrap()\""
+
+    // inl set_indexed_db_value (key : string) (value : string) (indexed_db : any) : () =
+    //     inl key = key |> raw_string_literal
+    //     inl value = value |> raw_string_literal
+    //     // emit_expr () $"\"!indexed_db.???(!key, !value).unwrap()\""
+
+    // inl indexed_db = window |> get_indexed_db
+    // inl db = indexed_db |> open_indexed_db "name"
+    // indexed_db |> set_indexed_db_value "key" "value"
+
+
+
+    inl db_open (name : string) : open_db_request =
+        inl name = name |> to_std_string
+        emit_expr () $"\"indexed_db_futures::IdbDatabase::open_u32(&!name, 1).unwrap()\""
+
+    // inl transaction (name : string) (db : future (static_ref' (mut' open_db_request))) : any =
+    //     inl name = name |> to_std_string
+    //     emit_expr () $"\"!db.transaction_on_one_with_mode(!name, indexed_db_futures::prelude::IdbTransactionMode::Readwrite)?\""
+
+    // inl into_future forall t. (x : t) : future t =
+    //     emit_expr () $"\"!x.into_future().await?\""
+
+    inl fn : future any =
+        inl log_n (n : i32) =
+            log Debug ;[!>"log_n"; !>n]
+        inl log_n_ = join log_n
+
+        // let after_db_req (x : static_ref' (mut' open_db_request)) =
+        // let after_db_req (x : static_ref' (mut' (ref_cell open_db_request))) =
+        //     log Debug ;[!>"after_db_req"]
+
+        inl log (x : std_string) =
+            log Debug ;[!>"log"; !>(x |> format)]
+
+        inl get_db () =
+            // before_db_req ()
+            inl db = db_open "name"
+            // inl db = db |> new_arc
+            // inl db = db |> new_mutex'
+            // inl db = db |> new_ref_cell
+            // inl db = db |> new_rc
+            inl db = db |> new_box
+            inl db = db |> box_leak
+            // inl db_future = db |> into_future
+            // inl tx = db_future |> transaction "store"
+            // after_db_req db
+            db
+
+        inl name = join "name"
+        inl store_name = join "store" |> to_std_string
+        inl store_name_ = join "store" |> to_std_string
+        inl key = join "key" |> js_value_from_str
+        inl value = join "value" |> js_value_from_str
+
+        emit_expr
+            ()
+            ("async move {" +\
+            $"\"  !log_n(0);\"" +\
+            // $"\"  let db_ref_____ = !get_db();\"" +\
+            $"\"  let mut db_ref_____ = !db_open(!name);\"" +\
+            // $"\"  let db_ref_ = db_ref.clone();\"" +\
+            // $"\"  let db_ref____ = std::cell::RefCell::new(db_ref_____);\"" +\
+            // $"\"  let db_ref___ = std::sync::Arc::new(db_ref____);\"" +\
+            // $"\"  let db_ref__ = std::sync::Arc::clone(&db_ref___);\"" +\
+            // $"\"  let db_ref_ = std::sync::RwLock::new(db_ref__);\"" +\
+            // $"\"  let db = !db_open(!name);\"" +\
+            $"\"  !log_n(1);\"" +\
+            // $"\"  let db = !into_future(db);\"" +\
+            // $"\"  let db_req = db.borrow_mut();\"" +\
+            // $"\"  let db_req_cloned = db.clone();\"" +\
+            // $"\"  let db_req_cloned = db;\"" +\
+            // $"\"  let db_req_ref = db_req_cloned.deref();\"" +\
+            // $"\"  let db_req_ref = std::ops::Deref::deref(&*db_req_cloned);\"" +\
+            // $"\"  let db_req_ref = db_req_cloned;\"" +\
+            // $"\"  let db_req = db;\"" +\
+            // $"\"  let db_req = std::ops::DerefMut::deref_mut(&mut db);\"" +\
+            // $"\"  let db_req = std::ops::DerefMut::deref_mut(db);\"" +\
+            // $"\"  let db_req_ref = db_req;\"" +\
+            // $"\"  let db_req_ref = &*db_req;\"" +\
+            // $"\"  let db_param = db_ref_.read();\"" +\
+            // $"\"  let db_param = db_param.unwrap();\"" +\
+            // $"\"  let db_param = *db_param;\"" +\
+            // $"\"  let mut db_param = db_param.borrow_mut();\"" +\
+            // $"\"  let db_param = &mut <std::cell::RefMut<'_, &mut indexed_db_futures::request::OpenDbRequest> as Into<indexed_db_futures::request::OpenDbRequest>>::into(db_param);\"" +\
+            // $"\"  let db_param_ : &mut indexed_db_futures::request::OpenDbRequest = &mut db_param;\"" +\
+            $"\"  let db_param_ = &mut db_ref_____;\"" +\
+            $"\"  indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(\"" +\
+            $"\"    db_param_,\"" +\
+            $"\"    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {\"" +\
+            $"\"      !log_n_(2);\"" +\
+            $"\"      let db: &indexed_db_futures::IdbDatabase = event.db();\"" +\
+            $"\"      !log_n_(3);\"" +\
+            $"\"      if !!db.object_store_names().any(|n| &n == &!store_name_.clone()) {\"" +\
+            $"\"        let object_store = db.create_object_store(&!store_name_.clone());\"" +\
+            $"\"        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();\"" +\
+            $"\"        ();\"" +\
+            $"\"      };\"" +\
+            $"\"      !log_n_(4);\"" +\
+            // $"\"      !log(format!!(\\\"object_store: {:?}\\\", object_store));\"" +\
+            $"\"      Ok(())\"" +\
+            $"\"    })\"" +\
+            $"\"  );\"" +\
+            // $"\"  let db_future_ = db_ref___.borrow_mut();\"" +\
+            // $"\"  let db_future_ = db_future_.take();\"" +\
+            // $"\"  let db_future_ = db_future_.unwrap();\"" +\
+            $"\"  !log_n(5);\"" +\
+            $"\"  let db_future_ = db_ref_____;\"" +\
+            $"\"  let db_future = db_future_.into_future();\"" +\
+            // $"\"  drop(db_req_ref);\"" +\
+            $"\"  let db = db_future.await;\"" +\
+            $"\"  !log_n(6);\"" +\
+            $"\"  let db = db.unwrap();\"" +\
+            $"\"  !log_n(7);\"" +\
+            // $"\"  let store_ = db.create_object_store(&!store_name);\"" +\
+            // $"\"  !log_n(5);\"" +\
+            // $"\"  let store_ = store_.unwrap();\"" +\
+            // $"\"  !log_n(6);\"" +\
+            $"\"  let tx = db.transaction_on_one_with_mode(&!store_name.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);\"" +\
+            $"\"  !log_n(8);\"" +\
+            $"\"  let tx = tx.unwrap();\"" +\
+            $"\"  !log_n(9);\"" +\
+            $"\"  let store = tx.object_store(&!store_name.clone()).unwrap();\"" +\
+            $"\"  !log_n(10);\"" +\
+            $"\"  store.put_key_val_owned(\"" +\
+            $"\"    &!key,\"" +\
+            $"\"    &!value\"" +\
+            $"\"  ).unwrap();\"" +\
+            $"\"  !log_n(11);\"" +\
+            $"\"  tx.await.into_result().unwrap();\"" +\
+            $"\"  !log_n(12);\"" +\
+            $"\"  let tx = db.transaction_on_one_with_mode(&!store_name.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);\"" +\
+            $"\"  !log_n(13);\"" +\
+            $"\"  let tx = tx.unwrap();\"" +\
+            $"\"  !log_n(14);\"" +\
+            $"\"  let store = tx.object_store(&!store_name.clone()).unwrap();\"" +\
+            // $"\"  let req = store.get_owned(&!key).unwrap();\"" +\
+            // $"\"  let value = req.await?;\"" +\
+            // $"\"  !log(format!!(\\\"value: {:?}\\\", value));\"" +\
+            $"\"  !log_n(-1);\"" +\
+            $"\"  Ok::<(), web_sys::DomException>(())\"" +\
+            "}")
+
+    block_on fn
+
+
+
+
+
+
     inl url_json = "https://dummyjson.com/users"
 
     inl request = http_request_get url_json
     fetch' request fun response =>
-        log Debug ;[!>"app > fetch ()"]
         inl response = response |> borrow |> try_lock
-        log Debug ;[!>"response"; !>(response |> format)]
+        log Debug ;[
+            !>"app > fetch ()"; !>""
+            !>"response"; !>(response |> format)
+        ]
 
     inl url_src = "https://time.is" |> raw_string_literal |> to_static_ref
     inl url_mutable = url_src |> new_mutable

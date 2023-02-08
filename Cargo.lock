@@ -322,12 +322,14 @@ dependencies = [
  "ehttp",
  "fable_library_rust",
  "futures-signals",
+ "indexed_db_futures",
  "js-sys",
  "once_cell",
  "rand",
  "regex",
  "serde-wasm-bindgen",
  "wasm-bindgen",
+ "wasm-bindgen-futures",
  "web-sys",
 ]
 
@@ -823,9 +825,9 @@ dependencies = [
 
 [[package]]
 name = "hermit-abi"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "856b5cb0902c2b6d65d5fd97dfa30f9b70c7538e770b98eab5ed52d8db923e01"
+checksum = "fed44880c466736ef9a5c5b5facefb5ed0785676d0c02d612db14e54f0d84286"
 
 [[package]]
 name = "iana-time-zone"
@@ -862,6 +864,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "indexed_db_futures"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bfbcff6ae46750b15cc594bfd277b188cbddcfdc1817848f97f03f26f8625b9e"
+dependencies = [
+ "cfg-if",
+ "js-sys",
+ "uuid",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+]
+
+[[package]]
 name = "instant"
 version = "0.1.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -886,7 +902,7 @@ version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "22e18b0a45d56fe973d6db23972bf5bc46f988a4a2385deac9cc29572f09daef"
 dependencies = [
- "hermit-abi 0.3.0",
+ "hermit-abi 0.3.1",
  "io-lifetimes",
  "rustix",
  "windows-sys 0.45.0",
@@ -1359,9 +1375,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.92"
+version = "1.0.93"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7434af0dc1cbd59268aa98b4c22c131c0584d2232f6fb166efb993e2832e896a"
+checksum = "cad406b69c91885b5107daf2c29572f6c8cdb3c66826821e286c533490c0bc76"
 dependencies = [
  "itoa",
  "ryu",
@@ -1436,13 +1452,9 @@ dependencies = [
  "clap",
  "colored",
  "fable_library_rust",
- "js-sys",
  "rand",
  "regex",
- "serde-wasm-bindgen",
  "serde_json",
- "wasm-bindgen",
- "web-sys",
  "zmq",
 ]
 
@@ -1483,22 +1495,9 @@ dependencies = [
 name = "tictactoe"
 version = "0.0.1"
 dependencies = [
- "chrono",
- "clap",
  "cli",
  "client",
- "colored",
- "fable_library_rust",
- "js-sys",
- "linereader",
- "rand",
- "regex",
- "serde-wasm-bindgen",
- "serde_json",
  "supervisor",
- "wasm-bindgen",
- "web-sys",
- "zmq",
 ]
 
 [[package]]
@@ -1603,6 +1602,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1674845326ee10d37ca60470760d4288a6f80f304007d92e5c53bab78c9cfd79"
 dependencies = [
  "getrandom",
+ "wasm-bindgen",
 ]
 
 [[package]]

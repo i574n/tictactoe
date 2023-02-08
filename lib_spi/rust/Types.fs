@@ -134,6 +134,11 @@ module futures_signals =
         [<Erase; Emit("futures_signals::signal::MutableSignal<$0>")>]
         type MutableSignal<'T> = class end
 
+module indexed_db_futures =
+    module request =
+        [<Erase; Emit("indexed_db_futures::request::OpenDbRequest")>]
+        type OpenDbRequest = class end
+
 module linereader =
     [<Erase; Emit("linereader::LineReader<$0>")>]
     type LineReader<'T> = class end

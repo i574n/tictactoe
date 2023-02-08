@@ -10,6 +10,7 @@ pub mod Client {
     use super::*;
     use fable_library_rust::Native_::array;
     use fable_library_rust::Native_::on_startup;
+    use fable_library_rust::Native_::Any;
     use fable_library_rust::Native_::Array;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
@@ -377,65 +378,98 @@ pub mod Client {
         web_sys::console::log(&js_sys::Array::from(&&v210));
         ()
     }
-    pub fn method13() -> bool {
+    pub fn method13(v0_1: &str) -> std::string::String {
+        format!("{:?}", &v0_1).clone()
+    }
+    pub fn method14(v0_1: &dyn Any) -> std::string::String {
+        format!("{:?}", v0_1.clone()).clone()
+    }
+    pub fn method16(v0_1: i32) -> std::string::String {
+        format!("{:?}", &v0_1).clone()
+    }
+    pub fn closure1(v0_1: i64, v1: i32) {
+        Client::method3(
+            v0_1,
+            array(&[Client::method1(string("log_n")), Client::method16(v1)]),
+        );
+    }
+    pub fn method15(v0_1: i64) -> Func1<i32, ()> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: i32| Client::closure1(v0_1, v)
+        })
+    }
+    pub fn method17() -> string {
+        string("name")
+    }
+    pub fn method18() -> std::string::String {
+        (&string("store")).to_string()
+    }
+    pub fn method19() -> std::string::String {
+        (&string("store")).to_string()
+    }
+    pub fn method20() -> wasm_bindgen::JsValue {
+        wasm_bindgen::JsValue::from_str(&string("key"))
+    }
+    pub fn method21() -> wasm_bindgen::JsValue {
+        wasm_bindgen::JsValue::from_str(&string("value"))
+    }
+    pub fn closure2(unitVar: (), v0_1: string) -> indexed_db_futures::request::OpenDbRequest {
+        let v2: std::string::String = (&v0_1).to_string();
+        indexed_db_futures::IdbDatabase::open_u32(&v2, 1).unwrap()
+    }
+    pub fn method22() -> bool {
         false
     }
-    pub fn method14(
+    pub fn method23(
         v0_1: (async_std::sync::Mutex<bool>, async_std::sync::Condvar),
     ) -> (async_std::sync::Mutex<bool>, async_std::sync::Condvar) {
         v0_1
     }
-    pub fn method15(v0_1: Option<ehttp::Response>) -> Option<ehttp::Response> {
+    pub fn method24(v0_1: Option<ehttp::Response>) -> Option<ehttp::Response> {
         v0_1
     }
-    pub fn method16(
+    pub fn method25(
         v0_1: async_std::sync::Mutex<Option<ehttp::Response>>,
     ) -> async_std::sync::Mutex<Option<ehttp::Response>> {
         v0_1
     }
-    pub fn method17(
-        v0_1: std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>,
-    ) -> std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>> {
-        v0_1
-    }
-    pub fn closure1(
+    pub fn closure3(
         v0_1: i64,
         v1: std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>>,
     ) {
-        Client::method3(v0_1, array(&[Client::method1(string("app > fetch ()"))]));
-        {
-            let v6: std::cell::Ref<
-                std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>,
-            > = v1.borrow();
-            let v8: Option<_> = v6.try_lock();
-            Client::method3(
-                v0_1,
-                array(&[
-                    Client::method1(string("response")),
-                    Client::method2(format!("{:?}", &v8)),
-                ]),
-            )
-        }
+        let v3: std::cell::Ref<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
+            v1.borrow();
+        let v5: Option<_> = v3.try_lock();
+        Client::method3(
+            v0_1,
+            array(&[
+                Client::method1(string("app > fetch ()")),
+                Client::method1(string("")),
+                Client::method1(string("response")),
+                Client::method2(format!("{:?}", &v5)),
+            ]),
+        )
     }
-    pub fn method18(
+    pub fn method26(
         v0_1: futures_signals::signal::MutableSignal<&'static str>,
     ) -> futures_signals::signal::MutableSignal<&'static str> {
         v0_1
     }
-    pub fn closure3(
+    pub fn closure5(
         v0_1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
         v1: &'static str,
     ) {
         *&v0_1.set_neq(v1);
         ()
     }
-    pub fn closure2(
+    pub fn closure4(
         v0_1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
         v1: std::rc::Rc<web_sys::HtmlInputElement>,
     ) {
         let v11 = Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: &'static str| Client::closure3(v0_1.clone(), v.clone())
+            move |v: &'static str| Client::closure5(v0_1.clone(), v.clone())
         });
         let value0 = v1;
         let value0 = value0.value();
@@ -461,77 +495,71 @@ pub mod Client {
             Client::method3(
                 v8,
                 array(&[
-                    Client::method1(string("window")),
-                    Client::method2(format!("{:?}", v10)),
-                    Client::method1(string("document")),
-                    Client::method2(format!("{:?}", v12)),
-                    Client::method1(string("head")),
-                    Client::method2(format!("{:?}", v14)),
                     Client::method1(string("style")),
                     Client::method2(format!("{:?}", &v23)),
                 ]),
             );
             {
-                let v43: &str = r#"type"#;
-                let v46: &str = r#"text/css"#;
-                v23.clone().set_attribute(v43, v46).unwrap();
+                let v31: &str = r#"type"#;
+                let v34: &str = r#"text/css"#;
+                v23.clone().set_attribute(v31, v34).unwrap();
                 {
-                    let v50: &str = r#"data-id"#;
-                    let v53: &str = r#"global-css"#;
-                    v23.clone().set_attribute(v50, v53).unwrap();
+                    let v38: &str = r#"data-id"#;
+                    let v41: &str = r#"global-css"#;
+                    v23.clone().set_attribute(v38, v41).unwrap();
                     v14.append_child(&v23).unwrap();
                     {
                         let patternInput_1: (string, string, string, bool) = Client::method0();
-                        let v59: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-                        let v60: i64 = (&v59).timestamp();
-                        let v62 = v23.sheet();
-                        let v64 = v62.unwrap();
-                        let v66: string = string("web_sys::CssStyleSheet");
-                        let v69: string = append(
+                        let v47: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+                        let v48: i64 = (&v47).timestamp();
+                        let v50 = v23.sheet();
+                        let v52 = v50.unwrap();
+                        let v54: string = string("web_sys::CssStyleSheet");
+                        let v57: string = append(
                             append(
                                 string("wasm_bindgen::JsCast::unchecked_into::<"),
-                                v66.clone(),
+                                v54.clone(),
                             ),
-                            string(">(v64)"),
+                            string(">(v52)"),
                         );
-                        let v70 =
-                            wasm_bindgen::JsCast::unchecked_into::<web_sys::CssStyleSheet>(v64);
-                        let v74: string = string("0");
-                        let v78: string = string("");
-                        let v88: string = string("width");
-                        let v90: string = string("100%");
-                        let v96: string = string("height");
-                        let v111: string = string("html, body");
-                        let v119: string = append(
+                        let v58 =
+                            wasm_bindgen::JsCast::unchecked_into::<web_sys::CssStyleSheet>(v52);
+                        let v62: string = string("0");
+                        let v66: string = string("");
+                        let v76: string = string("width");
+                        let v78: string = string("100%");
+                        let v84: string = string("height");
+                        let v99: string = string("html, body");
+                        let v107: string = append(
                             append(
                                 append(
-                                    append(append(v111.clone(), string(" {")), string("  ")),
+                                    append(append(v99.clone(), string(" {")), string("  ")),
                                     append(
                                         string("overflow: hidden;"),
                                         append(
                                             append(
                                                 append(
-                                                    append(v96.clone(), string(": ")),
-                                                    v90.clone(),
+                                                    append(v84.clone(), string(": ")),
+                                                    v78.clone(),
                                                 ),
                                                 string(";"),
                                             ),
                                             append(
                                                 append(
-                                                    append(append(v88.clone(), string(": ")), v90),
+                                                    append(append(v76.clone(), string(": ")), v78),
                                                     string(";"),
                                                 ),
                                                 append(
                                                     append(
-                                                        append(string("padding: "), v74.clone()),
+                                                        append(string("padding: "), v62.clone()),
                                                         string(";"),
                                                     ),
                                                     append(
                                                         append(
-                                                            append(string("margin: "), v74),
+                                                            append(string("margin: "), v62),
                                                             string(";"),
                                                         ),
-                                                        v78.clone(),
+                                                        v66.clone(),
                                                     ),
                                                 ),
                                             ),
@@ -542,323 +570,323 @@ pub mod Client {
                             ),
                             string("}"),
                         );
-                        let v121: &str = r#"html, body {  overflow: hidden;height: 100%;width: 100%;padding: 0;margin: 0; }"#;
-                        let v123 = v70.insert_rule(v121).unwrap();
-                        let v124: string = string("rule");
-                        let v127: string = string("idx");
+                        let v109: &str = r#"html, body {  overflow: hidden;height: 100%;width: 100%;padding: 0;margin: 0; }"#;
+                        let v111 = v58.insert_rule(v109).unwrap();
+                        let v112: string = string("rule");
+                        let v115: string = string("idx");
                         Client::method12(
-                            v60,
+                            v48,
                             array(&[
-                                Client::method1(v124.clone()),
-                                Client::method1(v111),
-                                Client::method1(v127.clone()),
-                                Client::method2(format!("{:?}", v123)),
+                                Client::method1(v112.clone()),
+                                Client::method1(v99),
+                                Client::method1(v115.clone()),
+                                Client::method2(format!("{:?}", v111)),
                             ]),
                         );
                         {
                             let patternInput_2: (string, string, string, bool) = Client::method0();
-                            let v136: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-                            let v137: i64 = (&v136).timestamp();
-                            let v139 = v23.sheet();
-                            let v141 = v139.unwrap();
-                            let v145: string = append(
+                            let v124: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+                            let v125: i64 = (&v124).timestamp();
+                            let v127 = v23.sheet();
+                            let v129 = v127.unwrap();
+                            let v133: string = append(
                                 append(
                                     string("wasm_bindgen::JsCast::unchecked_into::<"),
-                                    v66.clone(),
+                                    v54.clone(),
                                 ),
-                                string(">(v141)"),
+                                string(">(v129)"),
                             );
-                            let v146 = wasm_bindgen::JsCast::unchecked_into::<web_sys::CssStyleSheet>(
-                                v141,
+                            let v134 = wasm_bindgen::JsCast::unchecked_into::<web_sys::CssStyleSheet>(
+                                v129,
                             );
-                            let v172: string = string("display");
-                            let v198: string = string("stretch");
-                            let v211: string = string("body");
-                            let v219: string =
-                                append(append(append(append(append(v211.clone(),
+                            let v160: string = string("display");
+                            let v186: string = string("stretch");
+                            let v199: string = string("body");
+                            let v207: string =
+                                append(append(append(append(append(v199.clone(),
                                                                    string(" {")),
                                                             string("  ")),
                                                      append(append(append(string("align-content: "),
-                                                                          v198.clone()),
+                                                                          v186.clone()),
                                                                    string(";")),
                                                             append(append(append(string("align-items: "),
-                                                                                 v198),
+                                                                                 v186),
                                                                           string(";")),
                                                                    append(string("box-sizing: border-box;"),
                                                                           append(string("flex-direction: row;"),
-                                                                                 append(append(append(append(v172.clone(),
+                                                                                 append(append(append(append(v160.clone(),
                                                                                                              string(": ")),
                                                                                                       string("flex")),
                                                                                                string(";")),
                                                                                         append(string("-moz-osx-font-smoothing: grayscale;"),
                                                                                                append(string("-webkit-font-smoothing: antialiased;"),
                                                                                                       append(string("font-family: system-ui, -apple-system, BlinkMacSystemFont, \"Roboto\", sans-serif;"),
-                                                                                                             v78.clone()))))))))),
+                                                                                                             v66.clone()))))))))),
                                               string(" ")), string("}"));
-                            let v221: &str = r#"body {  align-content: stretch;align-items: stretch;box-sizing: border-box;flex-direction: row;display: flex;-moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;font-family: system-ui, -apple-system, BlinkMacSystemFont, "Roboto", sans-serif; }"#;
-                            let v223 = v146.insert_rule(v221).unwrap();
+                            let v209: &str = r#"body {  align-content: stretch;align-items: stretch;box-sizing: border-box;flex-direction: row;display: flex;-moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;font-family: system-ui, -apple-system, BlinkMacSystemFont, "Roboto", sans-serif; }"#;
+                            let v211 = v134.insert_rule(v209).unwrap();
                             Client::method12(
-                                v137,
+                                v125,
                                 array(&[
-                                    Client::method1(v124.clone()),
-                                    Client::method1(v211),
-                                    Client::method1(v127.clone()),
-                                    Client::method2(format!("{:?}", v223)),
+                                    Client::method1(v112.clone()),
+                                    Client::method1(v199),
+                                    Client::method1(v115.clone()),
+                                    Client::method2(format!("{:?}", v211)),
                                 ]),
                             );
                             {
                                 let patternInput_3: (string, string, string, bool) =
                                     Client::method0();
-                                let v234: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-                                let v235: i64 = (&v234).timestamp();
-                                let v237 = v23.sheet();
-                                let v239 = v237.unwrap();
-                                let v243: string = append(
+                                let v222: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+                                let v223: i64 = (&v222).timestamp();
+                                let v225 = v23.sheet();
+                                let v227 = v225.unwrap();
+                                let v231: string = append(
                                     append(
                                         string("wasm_bindgen::JsCast::unchecked_into::<"),
-                                        v66.clone(),
+                                        v54.clone(),
                                     ),
-                                    string(">(v239)"),
+                                    string(">(v227)"),
                                 );
-                                let v244 = wasm_bindgen::JsCast::unchecked_into::<
+                                let v232 = wasm_bindgen::JsCast::unchecked_into::<
                                     web_sys::CssStyleSheet,
-                                >(v239);
-                                let v253: string = string("*::-webkit-scrollbar");
-                                let v261: string = append(
+                                >(v227);
+                                let v241: string = string("*::-webkit-scrollbar");
+                                let v249: string = append(
                                     append(
                                         append(
                                             append(
-                                                append(v253.clone(), string(" {")),
+                                                append(v241.clone(), string(" {")),
                                                 string("  "),
                                             ),
                                             append(
                                                 append(
                                                     append(
-                                                        append(v88, string(": ")),
+                                                        append(v76, string(": ")),
                                                         string("11px"),
                                                     ),
                                                     string(";"),
                                                 ),
-                                                v78.clone(),
+                                                v66.clone(),
                                             ),
                                         ),
                                         string(" "),
                                     ),
                                     string("}"),
                                 );
-                                let v263: &str = r#"*::-webkit-scrollbar {  width: 11px; }"#;
-                                let v265 = v244.insert_rule(v263).unwrap();
+                                let v251: &str = r#"*::-webkit-scrollbar {  width: 11px; }"#;
+                                let v253 = v232.insert_rule(v251).unwrap();
                                 Client::method12(
-                                    v235,
+                                    v223,
                                     array(&[
-                                        Client::method1(v124.clone()),
-                                        Client::method1(v253),
-                                        Client::method1(v127.clone()),
-                                        Client::method2(format!("{:?}", v265)),
+                                        Client::method1(v112.clone()),
+                                        Client::method1(v241),
+                                        Client::method1(v115.clone()),
+                                        Client::method2(format!("{:?}", v253)),
                                     ]),
                                 );
                                 {
                                     let patternInput_4: (string, string, string, bool) =
                                         Client::method0();
-                                    let v276: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
-                                    let v277: i64 = (&v276).timestamp();
-                                    let v279 = v23.sheet();
-                                    let v281 = v279.unwrap();
-                                    let v285: string = append(
+                                    let v264: chrono::DateTime<chrono::Utc> = chrono::Utc::now();
+                                    let v265: i64 = (&v264).timestamp();
+                                    let v267 = v23.sheet();
+                                    let v269 = v267.unwrap();
+                                    let v273: string = append(
                                         append(
                                             string("wasm_bindgen::JsCast::unchecked_into::<"),
-                                            v66.clone(),
+                                            v54.clone(),
                                         ),
-                                        string(">(v281)"),
+                                        string(">(v269)"),
                                     );
-                                    let v286 = wasm_bindgen::JsCast::unchecked_into::<
+                                    let v274 = wasm_bindgen::JsCast::unchecked_into::<
                                         web_sys::CssStyleSheet,
-                                    >(v281);
-                                    let v295: string = string("*::-webkit-scrollbar:horizontal");
-                                    let v303: string = append(
+                                    >(v269);
+                                    let v283: string = string("*::-webkit-scrollbar:horizontal");
+                                    let v291: string = append(
                                         append(
                                             append(
                                                 append(
-                                                    append(v295.clone(), string(" {")),
+                                                    append(v283.clone(), string(" {")),
                                                     string("  "),
                                                 ),
                                                 append(
                                                     append(
                                                         append(
-                                                            append(v96, string(": ")),
+                                                            append(v84, string(": ")),
                                                             string("8px"),
                                                         ),
                                                         string(";"),
                                                     ),
-                                                    v78.clone(),
+                                                    v66.clone(),
                                                 ),
                                             ),
                                             string(" "),
                                         ),
                                         string("}"),
                                     );
-                                    let v305: &str =
+                                    let v293: &str =
                                         r#"*::-webkit-scrollbar:horizontal {  height: 8px; }"#;
-                                    let v307 = v286.insert_rule(v305).unwrap();
+                                    let v295 = v274.insert_rule(v293).unwrap();
                                     Client::method12(
-                                        v277,
+                                        v265,
                                         array(&[
-                                            Client::method1(v124.clone()),
-                                            Client::method1(v295),
-                                            Client::method1(v127.clone()),
-                                            Client::method2(format!("{:?}", v307)),
+                                            Client::method1(v112.clone()),
+                                            Client::method1(v283),
+                                            Client::method1(v115.clone()),
+                                            Client::method2(format!("{:?}", v295)),
                                         ]),
                                     );
                                     {
                                         let patternInput_5: (string, string, string, bool) =
                                             Client::method0();
-                                        let v318: chrono::DateTime<chrono::Utc> =
+                                        let v306: chrono::DateTime<chrono::Utc> =
                                             chrono::Utc::now();
-                                        let v319: i64 = (&v318).timestamp();
-                                        let v321 = v23.sheet();
-                                        let v323 = v321.unwrap();
-                                        let v327: string = append(
+                                        let v307: i64 = (&v306).timestamp();
+                                        let v309 = v23.sheet();
+                                        let v311 = v309.unwrap();
+                                        let v315: string = append(
                                             append(
                                                 string("wasm_bindgen::JsCast::unchecked_into::<"),
-                                                v66.clone(),
+                                                v54.clone(),
                                             ),
-                                            string(">(v323)"),
+                                            string(">(v311)"),
                                         );
-                                        let v328 = wasm_bindgen::JsCast::unchecked_into::<
+                                        let v316 = wasm_bindgen::JsCast::unchecked_into::<
                                             web_sys::CssStyleSheet,
-                                        >(v323);
-                                        let v331: string = string("none");
-                                        let v337: string = string("*::-webkit-scrollbar-track");
-                                        let v345: string = append(
+                                        >(v311);
+                                        let v319: string = string("none");
+                                        let v325: string = string("*::-webkit-scrollbar-track");
+                                        let v333: string = append(
                                             append(
                                                 append(
                                                     append(
-                                                        append(v337.clone(), string(" {")),
+                                                        append(v325.clone(), string(" {")),
                                                         string("  "),
                                                     ),
                                                     append(
                                                         append(
                                                             append(
-                                                                append(v172.clone(), string(": ")),
-                                                                v331.clone(),
+                                                                append(v160.clone(), string(": ")),
+                                                                v319.clone(),
                                                             ),
                                                             string(";"),
                                                         ),
-                                                        v78.clone(),
+                                                        v66.clone(),
                                                     ),
                                                 ),
                                                 string(" "),
                                             ),
                                             string("}"),
                                         );
-                                        let v347: &str =
+                                        let v335: &str =
                                             r#"*::-webkit-scrollbar-track {  display: none; }"#;
-                                        let v349 = v328.insert_rule(v347).unwrap();
+                                        let v337 = v316.insert_rule(v335).unwrap();
                                         Client::method12(
-                                            v319,
+                                            v307,
                                             array(&[
-                                                Client::method1(v124.clone()),
-                                                Client::method1(v337),
-                                                Client::method1(v127.clone()),
-                                                Client::method2(format!("{:?}", v349)),
+                                                Client::method1(v112.clone()),
+                                                Client::method1(v325),
+                                                Client::method1(v115.clone()),
+                                                Client::method2(format!("{:?}", v337)),
                                             ]),
                                         );
                                         {
                                             let patternInput_6: (string, string, string, bool) =
                                                 Client::method0();
-                                            let v360: chrono::DateTime<chrono::Utc> =
+                                            let v348: chrono::DateTime<chrono::Utc> =
                                                 chrono::Utc::now();
-                                            let v361: i64 = (&v360).timestamp();
-                                            let v363 = v23.sheet();
-                                            let v365 = v363.unwrap();
-                                            let v369: string = append(
+                                            let v349: i64 = (&v348).timestamp();
+                                            let v351 = v23.sheet();
+                                            let v353 = v351.unwrap();
+                                            let v357: string = append(
                                                 append(
                                                     string(
                                                         "wasm_bindgen::JsCast::unchecked_into::<",
                                                     ),
-                                                    v66.clone(),
+                                                    v54.clone(),
                                                 ),
-                                                string(">(v365)"),
+                                                string(">(v353)"),
                                             );
-                                            let v370 = wasm_bindgen::JsCast::unchecked_into::<
+                                            let v358 = wasm_bindgen::JsCast::unchecked_into::<
                                                 web_sys::CssStyleSheet,
                                             >(
-                                                v365
+                                                v353
                                             );
-                                            let v378: string =
+                                            let v366: string =
                                                 string("*::-webkit-scrollbar-corner");
-                                            let v386: string = append(
+                                            let v374: string = append(
                                                 append(
                                                     append(
                                                         append(
-                                                            append(v378.clone(), string(" {")),
+                                                            append(v366.clone(), string(" {")),
                                                             string("  "),
                                                         ),
                                                         append(
                                                             append(
                                                                 append(
-                                                                    append(v172, string(": ")),
-                                                                    v331,
+                                                                    append(v160, string(": ")),
+                                                                    v319,
                                                                 ),
                                                                 string(";"),
                                                             ),
-                                                            v78.clone(),
+                                                            v66.clone(),
                                                         ),
                                                     ),
                                                     string(" "),
                                                 ),
                                                 string("}"),
                                             );
-                                            let v388: &str = r#"*::-webkit-scrollbar-corner {  display: none; }"#;
-                                            let v390 = v370.insert_rule(v388).unwrap();
+                                            let v376: &str = r#"*::-webkit-scrollbar-corner {  display: none; }"#;
+                                            let v378 = v358.insert_rule(v376).unwrap();
                                             Client::method12(
-                                                v361,
+                                                v349,
                                                 array(&[
-                                                    Client::method1(v124.clone()),
-                                                    Client::method1(v378),
-                                                    Client::method1(v127.clone()),
-                                                    Client::method2(format!("{:?}", v390)),
+                                                    Client::method1(v112.clone()),
+                                                    Client::method1(v366),
+                                                    Client::method1(v115.clone()),
+                                                    Client::method2(format!("{:?}", v378)),
                                                 ]),
                                             );
                                             {
                                                 let patternInput_7: (string, string, string, bool) =
                                                     Client::method0();
-                                                let v401: chrono::DateTime<chrono::Utc> =
+                                                let v389: chrono::DateTime<chrono::Utc> =
                                                     chrono::Utc::now();
-                                                let v402: i64 = (&v401).timestamp();
-                                                let v404 = v23.sheet();
-                                                let v406 = v404.unwrap();
-                                                let v410: string =
+                                                let v390: i64 = (&v389).timestamp();
+                                                let v392 = v23.sheet();
+                                                let v394 = v392.unwrap();
+                                                let v398: string =
                                                     append(append(string("wasm_bindgen::JsCast::unchecked_into::<"),
-                                                                  v66.clone()),
-                                                           string(">(v406)"));
-                                                let v411 = wasm_bindgen::JsCast::unchecked_into::<
+                                                                  v54.clone()),
+                                                           string(">(v394)"));
+                                                let v399 = wasm_bindgen::JsCast::unchecked_into::<
                                                     web_sys::CssStyleSheet,
                                                 >(
-                                                    v406
+                                                    v394
                                                 );
-                                                let v413: string = string("background");
-                                                let v429: string = string("background-clip");
-                                                let v431: string = string("content-box");
-                                                let v437: string = string("border-left");
-                                                let v439: string = string("2px solid transparent");
-                                                let v445: string =
+                                                let v401: string = string("background");
+                                                let v417: string = string("background-clip");
+                                                let v419: string = string("content-box");
+                                                let v425: string = string("border-left");
+                                                let v427: string = string("2px solid transparent");
+                                                let v433: string =
                                                     string("*::-webkit-scrollbar-thumb");
-                                                let v453: string = append(
+                                                let v441: string = append(
                                                     append(
                                                         append(
                                                             append(
-                                                                append(v445.clone(), string(" {")),
+                                                                append(v433.clone(), string(" {")),
                                                                 string("  "),
                                                             ),
                                                             append(
                                                                 append(
                                                                     append(
                                                                         append(
-                                                                            v437.clone(),
+                                                                            v425.clone(),
                                                                             string(": "),
                                                                         ),
-                                                                        v439.clone(),
+                                                                        v427.clone(),
                                                                     ),
                                                                     string(";"),
                                                                 ),
@@ -866,10 +894,10 @@ pub mod Client {
                                                                     append(
                                                                         append(
                                                                             append(
-                                                                                v429.clone(),
+                                                                                v417.clone(),
                                                                                 string(": "),
                                                                             ),
-                                                                            v431.clone(),
+                                                                            v419.clone(),
                                                                         ),
                                                                         string(";"),
                                                                     ),
@@ -879,7 +907,7 @@ pub mod Client {
                                                                             append(
                                                                                 append(
                                                                                     append(
-                                                                                        v413.clone(
+                                                                                        v401.clone(
                                                                                         ),
                                                                                         string(
                                                                                             ": ",
@@ -889,7 +917,7 @@ pub mod Client {
                                                                                 ),
                                                                                 string(";"),
                                                                             ),
-                                                                            v78.clone(),
+                                                                            v66.clone(),
                                                                         ),
                                                                     ),
                                                                 ),
@@ -899,15 +927,15 @@ pub mod Client {
                                                     ),
                                                     string("}"),
                                                 );
-                                                let v455: &str = r#"*::-webkit-scrollbar-thumb {  border-left: 2px solid transparent;background-clip: content-box;opacity: 0.8;background: #555; }"#;
-                                                let v457 = v411.insert_rule(v455).unwrap();
+                                                let v443: &str = r#"*::-webkit-scrollbar-thumb {  border-left: 2px solid transparent;background-clip: content-box;opacity: 0.8;background: #555; }"#;
+                                                let v445 = v399.insert_rule(v443).unwrap();
                                                 Client::method12(
-                                                    v402,
+                                                    v390,
                                                     array(&[
-                                                        Client::method1(v124.clone()),
-                                                        Client::method1(v445),
-                                                        Client::method1(v127.clone()),
-                                                        Client::method2(format!("{:?}", v457)),
+                                                        Client::method1(v112.clone()),
+                                                        Client::method1(v433),
+                                                        Client::method1(v115.clone()),
+                                                        Client::method2(format!("{:?}", v445)),
                                                     ]),
                                                 );
                                                 {
@@ -917,28 +945,28 @@ pub mod Client {
                                                         string,
                                                         bool,
                                                     ) = Client::method0();
-                                                    let v468: chrono::DateTime<chrono::Utc> =
+                                                    let v456: chrono::DateTime<chrono::Utc> =
                                                         chrono::Utc::now();
-                                                    let v469: i64 = (&v468).timestamp();
-                                                    let v471 = v23.sheet();
-                                                    let v473 = v471.unwrap();
-                                                    let v477: string =
+                                                    let v457: i64 = (&v456).timestamp();
+                                                    let v459 = v23.sheet();
+                                                    let v461 = v459.unwrap();
+                                                    let v465: string =
                                                         append(append(string("wasm_bindgen::JsCast::unchecked_into::<"),
-                                                                      v66),
-                                                               string(">(v473)"));
-                                                    let v478 = wasm_bindgen::JsCast::unchecked_into::<
+                                                                      v54),
+                                                               string(">(v461)"));
+                                                    let v466 = wasm_bindgen::JsCast::unchecked_into::<
                                                         web_sys::CssStyleSheet,
                                                     >(
-                                                        v473
+                                                        v461
                                                     );
-                                                    let v499: string =
+                                                    let v487: string =
                                                         string("*::-webkit-scrollbar-thumb:hover");
-                                                    let v507: string = append(
+                                                    let v495: string = append(
                                                         append(
                                                             append(
                                                                 append(
                                                                     append(
-                                                                        v499.clone(),
+                                                                        v487.clone(),
                                                                         string(" {"),
                                                                     ),
                                                                     string("  "),
@@ -947,10 +975,10 @@ pub mod Client {
                                                                     append(
                                                                         append(
                                                                             append(
-                                                                                v437,
+                                                                                v425,
                                                                                 string(": "),
                                                                             ),
-                                                                            v439,
+                                                                            v427,
                                                                         ),
                                                                         string(";"),
                                                                     ),
@@ -958,10 +986,10 @@ pub mod Client {
                                                                         append(
                                                                             append(
                                                                                 append(
-                                                                                    v429,
+                                                                                    v417,
                                                                                     string(": "),
                                                                                 ),
-                                                                                v431,
+                                                                                v419,
                                                                             ),
                                                                             string(";"),
                                                                         ),
@@ -969,7 +997,7 @@ pub mod Client {
                                                                             append(
                                                                                 append(
                                                                                     append(
-                                                                                        v413,
+                                                                                        v401,
                                                                                         string(
                                                                                             ": ",
                                                                                         ),
@@ -978,7 +1006,7 @@ pub mod Client {
                                                                                 ),
                                                                                 string(";"),
                                                                             ),
-                                                                            v78.clone(),
+                                                                            v66.clone(),
                                                                         ),
                                                                     ),
                                                                 ),
@@ -987,281 +1015,476 @@ pub mod Client {
                                                         ),
                                                         string("}"),
                                                     );
-                                                    let v509: &str = r#"*::-webkit-scrollbar-thumb:hover {  border-left: 2px solid transparent;background-clip: content-box;background: #ccc; }"#;
-                                                    let v511 = v478.insert_rule(v509).unwrap();
+                                                    let v497: &str = r#"*::-webkit-scrollbar-thumb:hover {  border-left: 2px solid transparent;background-clip: content-box;background: #ccc; }"#;
+                                                    let v499 = v466.insert_rule(v497).unwrap();
                                                     Client::method12(
-                                                        v469,
+                                                        v457,
                                                         array(&[
-                                                            Client::method1(v124),
-                                                            Client::method1(v499),
-                                                            Client::method1(v127),
-                                                            Client::method2(format!("{:?}", v511)),
+                                                            Client::method1(v112),
+                                                            Client::method1(v487),
+                                                            Client::method1(v115),
+                                                            Client::method2(format!("{:?}", v499)),
                                                         ]),
                                                     );
                                                     {
-                                                        let v520: std::string::String = (&string(
-                                                            "https://dummyjson.com/users",
-                                                        ))
-                                                            .to_string();
-                                                        let v522: ehttp::Request =
-                                                            ehttp::Request::get(&v520);
-                                                        let v523: bool = Client::method13();
-                                                        let v525: async_std::sync::Mutex<bool> =
-                                                            async_std::sync::Mutex::new(v523);
-                                                        let v527: async_std::sync::Condvar =
-                                                            async_std::sync::Condvar::new();
-                                                        let v530: (
-                                                            async_std::sync::Mutex<bool>,
-                                                            async_std::sync::Condvar,
-                                                        ) = Client::method14((v525, v527));
-                                                        let v532: std::sync::Arc<(
-                                                            async_std::sync::Mutex<bool>,
-                                                            async_std::sync::Condvar,
-                                                        )> = std::sync::Arc::new(v530);
-                                                        let v534: std::sync::Arc<(
-                                                            async_std::sync::Mutex<bool>,
-                                                            async_std::sync::Condvar,
-                                                        )> = v532.clone();
-                                                        let v536: Option<ehttp::Response> =
-                                                            Client::method15((&None::<_>).clone());
-                                                        let v539: async_std::sync::Mutex<
-                                                            Option<ehttp::Response>,
-                                                        > = Client::method16(
-                                                            async_std::sync::Mutex::new(v536),
+                                                        let v507 =
+                                                            v10.local_storage().unwrap().unwrap();
+                                                        Client::method3(
+                                                            v8,
+                                                            array(&[Client::method1(string(
+                                                                "set_local_storage_value",
+                                                            ))]),
                                                         );
-                                                        let v542: std::sync::Arc<
-                                                            async_std::sync::Mutex<
-                                                                Option<ehttp::Response>,
-                                                            >,
-                                                        > = Client::method17(std::sync::Arc::new(
-                                                            v539,
-                                                        ));
-                                                        let v544: std::cell::RefCell<
-                                                            std::sync::Arc<
-                                                                async_std::sync::Mutex<
-                                                                    Option<ehttp::Response>,
-                                                                >,
-                                                            >,
-                                                        > = std::cell::RefCell::new(v542);
-                                                        let v546: std::cell::RefCell<
-                                                            std::sync::Arc<
-                                                                async_std::sync::Mutex<
-                                                                    Option<ehttp::Response>,
-                                                                >,
-                                                            >,
-                                                        > = v544.clone();
-                                                        let v564: string = string("}");
-                                                        let v565: string =
-                                                            append(string("move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v544.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v534;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });"),
-                                                                   v564.clone());
-                                                        let v566 =
-                                                            move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v544.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v534;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });};
-                                                        let v568 = Box::new(v566);
-                                                        ehttp::fetch(v522, v568);
                                                         {
-                                                            let v581 = Func1::new({
-                                                                let v8 = v8.clone();
-                                                                move
-                                                                                   |v:
-                                                                                        std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>>|
-                                                                                   Client::closure1(v8,
-                                                                                                    v.clone())
-                                                            });
-                                                            let v584: string =
-                                                                append(string("async move {  let (lock, cvar) = &*v532;  let mut started = lock.lock().await;  while !*started {    started = cvar.wait(started).await;  }  v581(v546);"),
-                                                                       v564.clone());
-                                                            let v585 = async move {
-                                                                let (lock, cvar) = &*v532;
-                                                                let mut started = lock.lock().await;
-                                                                while !*started {
-                                                                    started =
-                                                                        cvar.wait(started).await;
-                                                                }
-                                                                v581(v546);
-                                                            };
-                                                            async_std::task::block_on(v585);
+                                                            let v513: &str = r#"key"#;
+                                                            let v516: &str = r#"value"#;
+                                                            Client::method3(
+                                                                v8,
+                                                                array(&[
+                                                                    Client::method1(string("key")),
+                                                                    Client::method13(v513),
+                                                                    Client::method1(string(
+                                                                        "value",
+                                                                    )),
+                                                                    Client::method13(v516),
+                                                                ]),
+                                                            );
                                                             {
-                                                                let v590: &'static str =
-                                                                    r#"https://time.is"#.clone();
-                                                                let v592:
-                                                                        futures_signals::signal::Mutable<&'static str> =
-                                                                    futures_signals::signal::Mutable::new(v590);
-                                                                let v594:
-                                                                        std::rc::Rc<futures_signals::signal::Mutable<&'static str>> =
-                                                                    std::rc::Rc::new(v592);
-                                                                let v597: &str = r#"input"#;
-                                                                let v599: dominator::DomBuilder<
-                                                                    web_sys::HtmlInputElement,
-                                                                > = dominator::DomBuilder::new_html(
-                                                                    &v597,
-                                                                );
-                                                                let v602: &str = r#"color"#;
-                                                                let v605: &str = r#"#666"#;
-                                                                let v610:
-                                                                        string =
-                                                                    append(append(string("dominator::class! {"),
-                                                                                  append(v78.clone(),
-                                                                                         string(" .style(v602, v605) "))),
-                                                                           v564.clone());
-                                                                let v611 = dominator::class! { .style(v602, v605) };
-                                                                let v613: dominator::DomBuilder<
-                                                                    web_sys::HtmlInputElement,
-                                                                > = v599.class(&*v611);
-                                                                let v616: &str = r#"placeholder"#;
-                                                                let v619: &str = r#"url"#;
-                                                                let v621: dominator::DomBuilder<
-                                                                    web_sys::HtmlInputElement,
-                                                                > = v613.attr(v616, v619);
-                                                                let v623:
-                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                    v594.signal();
-                                                                let v626: &str = r#"value"#;
-                                                                let v627:
-                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                    Client::method18(v623);
-                                                                let v629: dominator::DomBuilder<
-                                                                    web_sys::HtmlInputElement,
-                                                                > = v621.prop_signal(v626, v627);
-                                                                let v631 = Func1::new({
-                                                                    let v594 = v594.clone();
-                                                                    move
-                                                                                       |v_1:
-                                                                                            std::rc::Rc<web_sys::HtmlInputElement>|
-                                                                                       Client::closure2(v594.clone(),
-                                                                                                        v_1.clone())
-                                                                });
-                                                                let v658:
-                                                                        string =
-                                                                    append(append(append(append(string("dominator::with_node!(   v629,   element => {      "),
-                                                                                                append(string(".event(dominator::clone!(  v631 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v631(el);   }))"),
-                                                                                                       v78.clone())),
-                                                                                         string(" ")),
-                                                                                  string("   }")),
-                                                                           string(")"));
-                                                                let v659: dominator::DomBuilder<
-                                                                    web_sys::HtmlInputElement,
-                                                                > = dominator::with_node!(   v629,   element => {      .event(dominator::clone!(  v631 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v631(el);   }))    });
-                                                                let v661: dominator::Dom =
-                                                                    v659.into_dom();
-                                                                let v664: &str = r#"iframe"#;
-                                                                let v666: dominator::DomBuilder<
-                                                                    web_sys::HtmlElement,
-                                                                > = dominator::DomBuilder::new_html(
-                                                                    &v664,
-                                                                );
-                                                                let v668: &str = r#"width"#;
-                                                                let v670: &str = r#"100%"#;
-                                                                let v672: string = append(
-                                                                    v78.clone(),
-                                                                    string(" .style(v668, v670) "),
-                                                                );
-                                                                let v674: &str = r#"flex"#;
-                                                                let v677: &str = r#"1"#;
-                                                                let v679: string = append(
-                                                                    v672,
-                                                                    string(" .style(v674, v677) "),
-                                                                );
-                                                                let v682: &str = r#"border"#;
-                                                                let v684: &str = r#"0"#;
-                                                                let v689:
-                                                                        string =
-                                                                    append(append(string("dominator::class! {"),
-                                                                                  append(v679,
-                                                                                         string(" .style(v682, v684) "))),
-                                                                           v564.clone());
-                                                                let v690 = dominator::class! { .style(v668, v670)  .style(v674, v677)  .style(v682, v684) };
-                                                                let v692: dominator::DomBuilder<
-                                                                    web_sys::HtmlElement,
-                                                                > = v666.class(&*v690);
-                                                                let v695: &str = r#"title"#;
-                                                                let v697: &str = r#"title"#;
-                                                                let v699: dominator::DomBuilder<
-                                                                    web_sys::HtmlElement,
-                                                                > = v692.attr(v695, v697);
-                                                                let v701:
-                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                    v594.signal();
-                                                                let v704: &str = r#"src"#;
-                                                                let v705:
-                                                                        futures_signals::signal::MutableSignal<&'static str> =
-                                                                    Client::method18(v701);
-                                                                let v707: dominator::DomBuilder<
-                                                                    web_sys::HtmlElement,
-                                                                > = v699.prop_signal(v704, v705);
-                                                                let v709: dominator::Dom =
-                                                                    v707.into_dom();
-                                                                let v712: &str = r#"div"#;
-                                                                let v714: dominator::DomBuilder<
-                                                                    web_sys::HtmlElement,
-                                                                > = dominator::DomBuilder::new_html(
-                                                                    &v712,
-                                                                );
-                                                                let v717: &str =
-                                                                    r#"background-color"#;
-                                                                let v719: &str = r#"#666"#;
-                                                                let v721: string = append(
-                                                                    v78.clone(),
-                                                                    string(" .style(v717, v719) "),
-                                                                );
-                                                                let v723: &str = r#"display"#;
-                                                                let v725: &str = r#"flex"#;
-                                                                let v727: string = append(
-                                                                    v721,
-                                                                    string(" .style(v723, v725) "),
-                                                                );
-                                                                let v729: &str = r#"flex"#;
-                                                                let v731: &str = r#"1"#;
-                                                                let v733: string = append(
-                                                                    v727,
-                                                                    string(" .style(v729, v731) "),
-                                                                );
-                                                                let v735: &str =
-                                                                    r#"flex-direction"#;
-                                                                let v738: &str = r#"column"#;
-                                                                let v743:
-                                                                        string =
-                                                                    append(append(string("dominator::class! {"),
-                                                                                  append(v733,
-                                                                                         string(" .style(v735, v738) "))),
-                                                                           v564);
-                                                                let v744 = dominator::class! { .style(v717, v719)  .style(v723, v725)  .style(v729, v731)  .style(v735, v738) };
-                                                                let v746: dominator::DomBuilder<
-                                                                    web_sys::HtmlElement,
-                                                                > = v714.class(&*v744);
-                                                                let v754: string = append(
-                                                                    append(
-                                                                        string("["),
-                                                                        append(
-                                                                            append(
-                                                                                v78,
-                                                                                string("v661"),
-                                                                            ),
-                                                                            string(", v709"),
-                                                                        ),
-                                                                    ),
-                                                                    string("]"),
-                                                                );
-                                                                let v755 = [v661, v709];
-                                                                let v757: dominator::DomBuilder<
-                                                                    web_sys::HtmlElement,
-                                                                > = v746.children(v755);
-                                                                let v759: dominator::Dom =
-                                                                    v757.into_dom();
-                                                                let v761: web_sys::HtmlElement =
-                                                                    dominator::body();
-                                                                dominator::append_dom(&v761, v759);
+                                                                let v523 = v507
+                                                                    .set_item(v513, v516)
+                                                                    .unwrap();
                                                                 Client::method3(
                                                                     v8,
                                                                     array(&[
                                                                         Client::method1(string(
-                                                                            "app end",
+                                                                            "set_result",
                                                                         )),
-                                                                        Client::method1(string(
-                                                                            "???",
-                                                                        )),
+                                                                        Client::method14(&v523),
                                                                     ]),
                                                                 );
-                                                                0i32
+                                                                {
+                                                                    let v528 = Client::method15(v8);
+                                                                    let v529: string =
+                                                                        Client::method17();
+                                                                    let v530: std::string::String =
+                                                                        Client::method18();
+                                                                    let v531: std::string::String =
+                                                                        Client::method19();
+                                                                    let v532:
+                                                                            wasm_bindgen::JsValue =
+                                                                        Client::method20();
+                                                                    let v533:
+                                                                            wasm_bindgen::JsValue =
+                                                                        Client::method21();
+                                                                    let v534 = Func1::new({
+                                                                        let v8 = v8.clone();
+                                                                        move |v: i32| {
+                                                                            Client::closure1(v8, v)
+                                                                        }
+                                                                    });
+                                                                    let v536: string =
+                                                                        string("async move {");
+                                                                    fn v538(v_1:
+                                                                                string)
+                                                                     ->
+                                                                    indexed_db_futures::request::OpenDbRequest{
+                                                                        Client::closure2((), v_1)
+                                                                    }
+                                                                    let v629: string = string("}");
+                                                                    let v630:
+                                                                            string =
+                                                                        append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(v536.clone(),
+                                                                                                                                                                                                                                                                                                                                                                                                                 string("  v534(0);")),
+                                                                                                                                                                                                                                                                                                                                                                                                          string("  let mut db_ref_____ = v538(v529);")),
+                                                                                                                                                                                                                                                                                                                                                                                                   string("  v534(1);")),
+                                                                                                                                                                                                                                                                                                                                                                                            string("  let db_param_ = &mut db_ref_____;")),
+                                                                                                                                                                                                                                                                                                                                                                                     string("  indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(")),
+                                                                                                                                                                                                                                                                                                                                                                              string("    db_param_,")),
+                                                                                                                                                                                                                                                                                                                                                                       string("    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {")),
+                                                                                                                                                                                                                                                                                                                                                                string("      v528(2);")),
+                                                                                                                                                                                                                                                                                                                                                         string("      let db: &indexed_db_futures::IdbDatabase = event.db();")),
+                                                                                                                                                                                                                                                                                                                                                  string("      v528(3);")),
+                                                                                                                                                                                                                                                                                                                                           string("      if !db.object_store_names().any(|n| &n == &v531.clone()) {")),
+                                                                                                                                                                                                                                                                                                                                    string("        let object_store = db.create_object_store(&v531.clone());")),
+                                                                                                                                                                                                                                                                                                                             string("        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();")),
+                                                                                                                                                                                                                                                                                                                      string("        ();")),
+                                                                                                                                                                                                                                                                                                               string("      };")),
+                                                                                                                                                                                                                                                                                                        string("      v528(4);")),
+                                                                                                                                                                                                                                                                                                 string("      Ok(())")),
+                                                                                                                                                                                                                                                                                          string("    })")),
+                                                                                                                                                                                                                                                                                   string("  );")),
+                                                                                                                                                                                                                                                                            string("  v534(5);")),
+                                                                                                                                                                                                                                                                     string("  let db_future_ = db_ref_____;")),
+                                                                                                                                                                                                                                                              string("  let db_future = db_future_.into_future();")),
+                                                                                                                                                                                                                                                       string("  let db = db_future.await;")),
+                                                                                                                                                                                                                                                string("  v534(6);")),
+                                                                                                                                                                                                                                         string("  let db = db.unwrap();")),
+                                                                                                                                                                                                                                  string("  v534(7);")),
+                                                                                                                                                                                                                           string("  let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);")),
+                                                                                                                                                                                                                    string("  v534(8);")),
+                                                                                                                                                                                                             string("  let tx = tx.unwrap();")),
+                                                                                                                                                                                                      string("  v534(9);")),
+                                                                                                                                                                                               string("  let store = tx.object_store(&v530.clone()).unwrap();")),
+                                                                                                                                                                                        string("  v534(10);")),
+                                                                                                                                                                                 string("  store.put_key_val_owned(")),
+                                                                                                                                                                          string("    &v532,")),
+                                                                                                                                                                   string("    &v533")),
+                                                                                                                                                            string("  ).unwrap();")),
+                                                                                                                                                     string("  v534(11);")),
+                                                                                                                                              string("  tx.await.into_result().unwrap();")),
+                                                                                                                                       string("  v534(12);")),
+                                                                                                                                string("  let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);")),
+                                                                                                                         string("  v534(13);")),
+                                                                                                                  string("  let tx = tx.unwrap();")),
+                                                                                                           string("  v534(14);")),
+                                                                                                    string("  let store = tx.object_store(&v530.clone()).unwrap();")),
+                                                                                             string("  v534(-1);")),
+                                                                                      string("  Ok::<(), web_sys::DomException>(())")),
+                                                                               v629.clone());
+                                                                    let v631 = async move {
+                                                                        v534(0);
+                                                                        let mut db_ref_____ =
+                                                                            v538(v529);
+                                                                        v534(1);
+                                                                        let db_param_ =
+                                                                            &mut db_ref_____;
+                                                                        indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(    db_param_,    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {      v528(2);      let db: &indexed_db_futures::IdbDatabase = event.db();      v528(3);      if !db.object_store_names().any(|n| &n == &v531.clone()) {        let object_store = db.create_object_store(&v531.clone());        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();        ();      };      v528(4);      Ok(())    })  );
+                                                                        v534(5);
+                                                                        let db_future_ =
+                                                                            db_ref_____;
+                                                                        let db_future = db_future_
+                                                                            .into_future();
+                                                                        let db = db_future.await;
+                                                                        v534(6);
+                                                                        let db = db.unwrap();
+                                                                        v534(7);
+                                                                        let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);
+                                                                        v534(8);
+                                                                        let tx = tx.unwrap();
+                                                                        v534(9);
+                                                                        let store = tx
+                                                                            .object_store(
+                                                                                &v530.clone(),
+                                                                            )
+                                                                            .unwrap();
+                                                                        v534(10);
+                                                                        store
+                                                                            .put_key_val_owned(
+                                                                                &v532, &v533,
+                                                                            )
+                                                                            .unwrap();
+                                                                        v534(11);
+                                                                        tx.await
+                                                                            .into_result()
+                                                                            .unwrap();
+                                                                        v534(12);
+                                                                        let tx = db.transaction_on_one_with_mode(&v530.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);
+                                                                        v534(13);
+                                                                        let tx = tx.unwrap();
+                                                                        v534(14);
+                                                                        let store = tx
+                                                                            .object_store(
+                                                                                &v530.clone(),
+                                                                            )
+                                                                            .unwrap();
+                                                                        v534(-1);
+                                                                        Ok::<
+                                                                            (),
+                                                                            web_sys::DomException,
+                                                                        >(
+                                                                            ()
+                                                                        )
+                                                                    };
+                                                                    async_std::task::block_on(v631);
+                                                                    {
+                                                                        let v635:
+                                                                                std::string::String =
+                                                                            (&string("https://dummyjson.com/users")).to_string();
+                                                                        let v637: ehttp::Request =
+                                                                            ehttp::Request::get(
+                                                                                &v635,
+                                                                            );
+                                                                        let v638: bool =
+                                                                            Client::method22();
+                                                                        let v640:
+                                                                                async_std::sync::Mutex<bool> =
+                                                                            async_std::sync::Mutex::new(v638);
+                                                                        let v642:
+                                                                                async_std::sync::Condvar =
+                                                                            async_std::sync::Condvar::new();
+                                                                        let v645:
+                                                                                (async_std::sync::Mutex<bool>, async_std::sync::Condvar) =
+                                                                            Client::method23((v640, v642));
+                                                                        let v647:
+                                                                                std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
+                                                                            std::sync::Arc::new(v645);
+                                                                        let v649:
+                                                                                std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
+                                                                            v647.clone();
+                                                                        let v651: Option<
+                                                                            ehttp::Response,
+                                                                        > = Client::method24(
+                                                                            (&None::<_>).clone(),
+                                                                        );
+                                                                        let v654:
+                                                                                async_std::sync::Mutex<Option<ehttp::Response>> =
+                                                                            Client::method25(async_std::sync::Mutex::new(v651));
+                                                                        let v656: std::sync::Arc<
+                                                                            async_std::sync::Mutex<
+                                                                                Option<
+                                                                                    ehttp::Response,
+                                                                                >,
+                                                                            >,
+                                                                        > = std::sync::Arc::new(
+                                                                            v654,
+                                                                        );
+                                                                        let v658:
+                                                                                std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
+                                                                            std::cell::RefCell::new(v656);
+                                                                        let v660:
+                                                                                std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
+                                                                            v658.clone();
+                                                                        let v678:
+                                                                                string =
+                                                                            append(string("move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v658.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v649;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });"),
+                                                                                   v629.clone());
+                                                                        let v679 =
+                                                                            move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v658.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v649;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });};
+                                                                        let v681 = Box::new(v679);
+                                                                        ehttp::fetch(v637, v681);
+                                                                        {
+                                                                            let v693 = Func1::new(
+                                                                                {
+                                                                                    let v8 =
+                                                                                        v8.clone();
+                                                                                    move
+                                                                                                   |v_2:
+                                                                                                        std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>>|
+                                                                                                   Client::closure3(v8,
+                                                                                                                    v_2.clone())
+                                                                                },
+                                                                            );
+                                                                            let v696:
+                                                                                    string =
+                                                                                append(append(append(append(append(append(append(v536,
+                                                                                                                                 string("  let (lock, cvar) = &*v647;")),
+                                                                                                                          string("  let mut started = lock.lock().await;")),
+                                                                                                                   string("  while !*started {")),
+                                                                                                            string("    started = cvar.wait(started).await;")),
+                                                                                                     string("  }")),
+                                                                                              string("  v693(v660);")),
+                                                                                       v629.clone());
+                                                                            let v697 = async move {
+                                                                                let (lock, cvar) =
+                                                                                    &*v647;
+                                                                                let mut started =
+                                                                                    lock.lock()
+                                                                                        .await;
+                                                                                while !*started {
+                                                                                    started = cvar
+                                                                                        .wait(
+                                                                                            started,
+                                                                                        )
+                                                                                        .await;
+                                                                                }
+                                                                                v693(v660);
+                                                                            };
+                                                                            async_std::task::block_on(v697);
+                                                                            {
+                                                                                let v702:
+                                                                                        &'static str =
+                                                                                    r#"https://time.is"#.clone();
+                                                                                let v704:
+                                                                                        futures_signals::signal::Mutable<&'static str> =
+                                                                                    futures_signals::signal::Mutable::new(v702);
+                                                                                let v706:
+                                                                                        std::rc::Rc<futures_signals::signal::Mutable<&'static str>> =
+                                                                                    std::rc::Rc::new(v704);
+                                                                                let v709: &str =
+                                                                                    r#"input"#;
+                                                                                let v711:
+                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                    dominator::DomBuilder::new_html(&v709);
+                                                                                let v714: &str =
+                                                                                    r#"color"#;
+                                                                                let v717: &str =
+                                                                                    r#"#666"#;
+                                                                                let v722:
+                                                                                        string =
+                                                                                    append(append(string("dominator::class! {"),
+                                                                                                  append(v66.clone(),
+                                                                                                         string(" .style(v714, v717) "))),
+                                                                                           v629.clone());
+                                                                                let v723 = dominator::class! { .style(v714, v717) };
+                                                                                let v725:
+                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                    v711.class(&*v723);
+                                                                                let v728: &str = r#"placeholder"#;
+                                                                                let v731: &str =
+                                                                                    r#"url"#;
+                                                                                let v733:
+                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                    v725.attr(v728, v731);
+                                                                                let v735:
+                                                                                        futures_signals::signal::MutableSignal<&'static str> =
+                                                                                    v706.signal();
+                                                                                let v737: &str =
+                                                                                    r#"value"#;
+                                                                                let v738:
+                                                                                        futures_signals::signal::MutableSignal<&'static str> =
+                                                                                    Client::method26(v735);
+                                                                                let v740:
+                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                    v733.prop_signal(v737, v738);
+                                                                                let v742 =
+                                                                                    Func1::new({
+                                                                                        let v706
+                                                                                                       =
+                                                                                                       v706.clone();
+                                                                                        move
+                                                                                                       |v_3:
+                                                                                                            std::rc::Rc<web_sys::HtmlInputElement>|
+                                                                                                       Client::closure4(v706.clone(),
+                                                                                                                        v_3.clone())
+                                                                                    });
+                                                                                let v769:
+                                                                                        string =
+                                                                                    append(append(append(append(string("dominator::with_node!(   v740,   element => {      "),
+                                                                                                                append(string(".event(dominator::clone!(  v742 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v742(el);   }))"),
+                                                                                                                       v66.clone())),
+                                                                                                         string(" ")),
+                                                                                                  string("   }")),
+                                                                                           string(")"));
+                                                                                let v770:
+                                                                                        dominator::DomBuilder<web_sys::HtmlInputElement> =
+                                                                                    dominator::with_node!(   v740,   element => {      .event(dominator::clone!(  v742 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v742(el);   }))    });
+                                                                                let v772:
+                                                                                        dominator::Dom =
+                                                                                    v770.into_dom();
+                                                                                let v775: &str =
+                                                                                    r#"iframe"#;
+                                                                                let v777:
+                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                    dominator::DomBuilder::new_html(&v775);
+                                                                                let v779: &str =
+                                                                                    r#"width"#;
+                                                                                let v781: &str =
+                                                                                    r#"100%"#;
+                                                                                let v783:
+                                                                                        string =
+                                                                                    append(v66.clone(),
+                                                                                           string(" .style(v779, v781) "));
+                                                                                let v785: &str =
+                                                                                    r#"flex"#;
+                                                                                let v788: &str =
+                                                                                    r#"1"#;
+                                                                                let v790:
+                                                                                        string =
+                                                                                    append(v783,
+                                                                                           string(" .style(v785, v788) "));
+                                                                                let v793: &str =
+                                                                                    r#"border"#;
+                                                                                let v795: &str =
+                                                                                    r#"0"#;
+                                                                                let v800:
+                                                                                        string =
+                                                                                    append(append(string("dominator::class! {"),
+                                                                                                  append(v790,
+                                                                                                         string(" .style(v793, v795) "))),
+                                                                                           v629.clone());
+                                                                                let v801 = dominator::class! { .style(v779, v781)  .style(v785, v788)  .style(v793, v795) };
+                                                                                let v803:
+                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                    v777.class(&*v801);
+                                                                                let v806: &str =
+                                                                                    r#"title"#;
+                                                                                let v808: &str =
+                                                                                    r#"title"#;
+                                                                                let v810:
+                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                    v803.attr(v806, v808);
+                                                                                let v812:
+                                                                                        futures_signals::signal::MutableSignal<&'static str> =
+                                                                                    v706.signal();
+                                                                                let v815: &str =
+                                                                                    r#"src"#;
+                                                                                let v816:
+                                                                                        futures_signals::signal::MutableSignal<&'static str> =
+                                                                                    Client::method26(v812);
+                                                                                let v818:
+                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                    v810.prop_signal(v815, v816);
+                                                                                let v820:
+                                                                                        dominator::Dom =
+                                                                                    v818.into_dom();
+                                                                                let v823: &str =
+                                                                                    r#"div"#;
+                                                                                let v825:
+                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                    dominator::DomBuilder::new_html(&v823);
+                                                                                let v828: &str = r#"background-color"#;
+                                                                                let v830: &str =
+                                                                                    r#"#666"#;
+                                                                                let v832:
+                                                                                        string =
+                                                                                    append(v66.clone(),
+                                                                                           string(" .style(v828, v830) "));
+                                                                                let v834: &str =
+                                                                                    r#"display"#;
+                                                                                let v836: &str =
+                                                                                    r#"flex"#;
+                                                                                let v838:
+                                                                                        string =
+                                                                                    append(v832,
+                                                                                           string(" .style(v834, v836) "));
+                                                                                let v840: &str =
+                                                                                    r#"flex"#;
+                                                                                let v842: &str =
+                                                                                    r#"1"#;
+                                                                                let v844:
+                                                                                        string =
+                                                                                    append(v838,
+                                                                                           string(" .style(v840, v842) "));
+                                                                                let v846: &str = r#"flex-direction"#;
+                                                                                let v849: &str =
+                                                                                    r#"column"#;
+                                                                                let v854:
+                                                                                        string =
+                                                                                    append(append(string("dominator::class! {"),
+                                                                                                  append(v844,
+                                                                                                         string(" .style(v846, v849) "))),
+                                                                                           v629);
+                                                                                let v855 = dominator::class! { .style(v828, v830)  .style(v834, v836)  .style(v840, v842)  .style(v846, v849) };
+                                                                                let v857:
+                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                    v825.class(&*v855);
+                                                                                let v865:
+                                                                                        string =
+                                                                                    append(append(string("["),
+                                                                                                  append(append(v66,
+                                                                                                                string("v772")),
+                                                                                                         string(", v820"))),
+                                                                                           string("]"));
+                                                                                let v866 =
+                                                                                    [v772, v820];
+                                                                                let v868:
+                                                                                        dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                    v857.children(v866);
+                                                                                let v870:
+                                                                                        dominator::Dom =
+                                                                                    v868.into_dom();
+                                                                                let v872:
+                                                                                        web_sys::HtmlElement =
+                                                                                    dominator::body();
+                                                                                dominator::append_dom(&v872, v870);
+                                                                                Client::method3(v8,
+                                                                                                array(&[Client::method1(string("app end")),
+                                                                                                        Client::method1(string("???"))]));
+                                                                                0i32
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
