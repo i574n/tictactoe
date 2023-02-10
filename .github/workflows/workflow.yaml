@@ -18,6 +18,8 @@ jobs:
           node-version: 18
 
       - uses: antongolub/action-setup-bun@v1
+        with:
+          bun-version: 0.5.5
 
       - uses: actions/setup-dotnet@v2
         with:
