@@ -1193,29 +1193,43 @@ and closure3 (v0 : int64) (v1 : Types.std.cell.RefCell<Types.std.sync.Arc<Types.
     method3(v0, v15)
 and method29 (v0 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>>) : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> =
     v0
-and closure5 (v0 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) (v1 : Types.StaticRef<Types.Str>) : unit =
-    let v2 : string = "*$0.set_neq(v1)"
-    Fable.Core.Rust.emitExpr v0 v2
+and closure5 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) (v2 : Types.StaticRef<Types.Str>) : unit =
+    let v3 : string = "<with_on_change>"
+    let v4 : Types.EmitType<Types.std.string.String> = method1(v3)
+    let v5 : (Types.EmitType<Types.std.string.String> []) = [|v4|]
+    method3(v0, v5)
+    let v6 : string = "url"
+    let v7 : Types.EmitType<Types.std.string.String> = method1(v6)
+    let v8 : string = "format!(\"{:?}\", $0)"
+    let v9 : Types.std.string.String = Fable.Core.Rust.emitExpr v2 v8
+    let v10 : Types.EmitType<Types.std.string.String> = method2(v9)
+    let v11 : (Types.EmitType<Types.std.string.String> []) = [|v7; v10|]
+    method3(v0, v11)
+    let v12 : string = "*$0.set_neq(v2)"
+    Fable.Core.Rust.emitExpr v1 v12
+    let v13 : string = "</with_on_change>"
+    let v14 : Types.EmitType<Types.std.string.String> = method1(v13)
+    let v15 : (Types.EmitType<Types.std.string.String> []) = [|v14|]
+    method3(v0, v15)
+and closure4 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) (v2 : Types.std.rc.Rc<Types.web_sys.HtmlInputElement>) : unit =
+    let v3 : string = ""
+    let v4 : string = "let value0 = v2;"
+    let v5 : string = v3 + v4
+    let v6 : string = "let value0 = value0.value();"
+    let v7 : string = v5 + v6
+    let v8 : string = "let value0 = value0.into_boxed_str();"
+    let v9 : string = v7 + v8
+    let v10 : string = "let value0 = Box::leak(value0);"
+    let v11 : string = v9 + v10
+    let v12 : (Types.StaticRef<Types.Str> -> unit) = closure5(v0, v1)
+    let v13 : string = "v12(value0);"
+    let v14 : string = v11 + v13
+    let v15 : string = "()"
+    let v16 : string = v14 + v15
+    Fable.Core.Rust.emitExpr () v16
     ()
-and closure4 (v0 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) (v1 : Types.std.rc.Rc<Types.web_sys.HtmlInputElement>) : unit =
-    let v2 : string = ""
-    let v3 : string = "let value0 = v1;"
-    let v4 : string = v2 + v3
-    let v5 : string = "let value0 = value0.value();"
-    let v6 : string = v4 + v5
-    let v7 : string = "let value0 = value0.into_boxed_str();"
-    let v8 : string = v6 + v7
-    let v9 : string = "let value0 = Box::leak(value0);"
-    let v10 : string = v8 + v9
-    let v11 : (Types.StaticRef<Types.Str> -> unit) = closure5(v0)
-    let v12 : string = "v11(value0);"
-    let v13 : string = v10 + v12
-    let v14 : string = "()"
-    let v15 : string = v13 + v14
-    Fable.Core.Rust.emitExpr () v15
-    ()
-and method30 (v0 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) =
-    closure4(v0)
+and method30 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) =
+    closure4(v0, v1)
 and closure7 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) (v2 : Types.StaticRef<Types.Str>) : unit =
     let v3 : string = "<with_load_event>"
     let v4 : Types.EmitType<Types.std.string.String> = method1(v3)
@@ -1242,36 +1256,24 @@ and closure6 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Muta
     let v7 : string = v5 + v6
     let v8 : string = "let value0 = (*value0).clone(); "
     let v9 : string = v7 + v8
-    let v10 : string = "let closure = move |_event : web_sys::Event| {"
+    let v10 : string = "let value0 = value0.as_string();"
     let v11 : string = v9 + v10
-    let v12 : string = "  let value0 = value0.node_value();"
+    let v12 : string = "let value0 = value0.unwrap_or(std::string::String::new());"
     let v13 : string = v11 + v12
-    let v14 : string = "  let value0 = value0.unwrap();"
+    let v14 : string = "let value0 = value0.into_boxed_str();"
     let v15 : string = v13 + v14
-    let v16 : string = "  let value0 = value0.into_boxed_str();"
+    let v16 : string = "let value0 = Box::leak(value0);"
     let v17 : string = v15 + v16
-    let v18 : string = "  let value0 = Box::leak(value0);"
+    let v18 : string = "if value0 != \"\" {"
     let v19 : string = v17 + v18
     let v20 : (Types.StaticRef<Types.Str> -> unit) = closure7(v0, v1)
     let v21 : string = "  v20(value0);"
     let v22 : string = v19 + v21
-    let v23 : string = "};"
+    let v23 : string = "}"
     let v24 : string = v22 + v23
-    let v25 : string = "let closure = Box::new(closure);"
+    let v25 : string = "()"
     let v26 : string = v24 + v25
-    let v27 : string = "let closure : wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> = wasm_bindgen::closure::Closure::new(closure);"
-    let v28 : string = v26 + v27
-    let v29 : string = "let closure = closure.as_ref();"
-    let v30 : string = v28 + v29
-    let v31 : string = "let closure = wasm_bindgen::JsCast::unchecked_ref(closure);"
-    let v32 : string = v30 + v31
-    let v33 : string = "let ev = dom.add_event_listener_with_callback(\"load\", closure);"
-    let v34 : string = v32 + v33
-    let v35 : string = "ev.unwrap();"
-    let v36 : string = v34 + v35
-    let v37 : string = "()"
-    let v38 : string = v36 + v37
-    Fable.Core.Rust.emitExpr v2 v38
+    Fable.Core.Rust.emitExpr v2 v26
     ()
 and method31 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) : (Types.std.rc.Rc<Types.web_sys.HtmlIFrameElement> -> unit) =
     closure6(v0, v1)
@@ -2037,7 +2039,7 @@ and closure0 () () : int32 =
     let v771 : string = "v765.prop_signal(v769, v770)"
     let v772 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v771
     let v773 : string = "dominator::events::Input"
-    let v774 : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) = method30(v738)
+    let v774 : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) = method30(v8, v738)
     let v775 : string = ".event(dominator::clone!("
     let v776 : string = "  v774 => move |_: "
     let v777 : string = v775 + v776
@@ -2124,7 +2126,7 @@ and closure0 () () : int32 =
     let v858 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = method29(v854)
     let v859 : string = "v852.prop_signal(v857, v858)"
     let v860 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v859
-    let v861 : string = "dominator::events::Change"
+    let v861 : string = "dominator::events::Load"
     let v862 : (Types.std.rc.Rc<Types.web_sys.HtmlIFrameElement> -> unit) = method31(v8, v738)
     let v863 : string = ".event(dominator::clone!("
     let v864 : string = "  v862 => move |_: "

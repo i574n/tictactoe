@@ -926,35 +926,48 @@ pub mod Client {
         v0_1
     }
     pub fn closure5(
-        v0_1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
-        v1: &'static str,
+        v0_1: i64,
+        v1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
+        v2: &'static str,
     ) {
-        *&v0_1.set_neq(v1);
-        ()
+        Client::method3(v0_1, array(&[Client::method1(string("<with_on_change>"))]));
+        Client::method3(
+            v0_1,
+            array(&[
+                Client::method1(string("url")),
+                Client::method2(format!("{:?}", &v2)),
+            ]),
+        );
+        *&v1.set_neq(v2);
+        Client::method3(v0_1, array(&[Client::method1(string("</with_on_change>"))]))
     }
     pub fn closure4(
-        v0_1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
-        v1: std::rc::Rc<web_sys::HtmlInputElement>,
+        v0_1: i64,
+        v1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
+        v2: std::rc::Rc<web_sys::HtmlInputElement>,
     ) {
-        let v11 = Func1::new({
+        let v12 = Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: &'static str| Client::closure5(v0_1.clone(), v.clone())
+            let v1 = v1.clone();
+            move |v: &'static str| Client::closure5(v0_1, v1.clone(), v.clone())
         });
-        let value0 = v1;
+        let value0 = v2;
         let value0 = value0.value();
         let value0 = value0.into_boxed_str();
         let value0 = Box::leak(value0);
-        v11(value0);
+        v12(value0);
         ();
         ()
     }
     pub fn method30(
-        v0_1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
+        v0_1: i64,
+        v1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
     ) -> Func1<std::rc::Rc<web_sys::HtmlInputElement>, ()> {
         Func1::new({
             let v0_1 = v0_1.clone();
+            let v1 = v1.clone();
             move |v: std::rc::Rc<web_sys::HtmlInputElement>| {
-                Client::closure4(v0_1.clone(), v.clone())
+                Client::closure4(v0_1, v1.clone(), v.clone())
             }
         })
     }
@@ -990,20 +1003,20 @@ pub mod Client {
         let value0 = &&v2;
         let dom = value0;
         let value0 = (*value0).clone();
-        let closure = move |_event: web_sys::Event| {
-            let value0 = value0.node_value();
-            let value0 = value0.unwrap();
-            let value0 = value0.into_boxed_str();
-            let value0 = Box::leak(value0);
+        let value0 = value0
+            .content_window()
+            .unwrap()
+            .location()
+            // .unwrap()
+            .to_string()
+            .as_string()
+            .unwrap();
+        // let value0 = value0.unwrap_or(std::string::String::new());
+        let value0 = value0.into_boxed_str();
+        let value0 = Box::leak(value0);
+        if value0 != "" {
             v20(value0);
-        };
-        let closure = Box::new(closure);
-        let closure: wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> =
-            wasm_bindgen::closure::Closure::new(closure);
-        let closure = closure.as_ref();
-        let closure = wasm_bindgen::JsCast::unchecked_ref(closure);
-        let ev = dom.add_event_listener_with_callback("load", closure);
-        ev.unwrap();
+        }
         ();
         ()
     }
@@ -1939,7 +1952,8 @@ pub mod Client {
                                                                                             dominator::DomBuilder<web_sys::HtmlInputElement> =
                                                                                         v765.prop_signal(v769, v770);
                                                                                     let v774 =
-                                                                                        Client::method30(v738.clone());
+                                                                                        Client::method30(v8,
+                                                                                                         v738.clone());
                                                                                     let v811:
                                                                                             string =
                                                                                         append(append(append(append(string("dominator::with_node!(   v772,   element => {      "),
@@ -2013,7 +2027,7 @@ pub mod Client {
                                                                                     let v899:
                                                                                             string =
                                                                                         append(append(append(append(string("dominator::with_node!(   v860,   element => {      "),
-                                                                                                                    append(string(".event(dominator::clone!(  v862 => move |_: dominator::events::Change| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v862(el);   }))"),
+                                                                                                                    append(string(".event(dominator::clone!(  v862 => move |_: dominator::events::Load| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v862(el);   }))"),
                                                                                                                            v66.clone())),
                                                                                                              string(" ")),
                                                                                                       string("   }")),

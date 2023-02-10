@@ -876,31 +876,38 @@ inl with_load_event forall t.
     : dombuilder t
     =
     builder
-    |> with_node $"\"dominator::events::Change\"" fun (element : rc html_iframe_element) =>
+    |> with_node $"\"dominator::events::Load\"" fun (element : rc html_iframe_element) =>
         emit_expr
             element
             ($"\"\"" +\
             $"\"let value0 = &$0;\"" +\
             $"\"let dom = value0;\"" +\
             $"\"let value0 = (*value0).clone(); \"" +\
-            $"\"let closure = move |_event : web_sys::Event| {\"" +\
-            $"\"  let value0 = value0.node_value();\"" +\
-            $"\"  let value0 = value0.unwrap();\"" +\
-            $"\"  let value0 = value0.into_boxed_str();\"" +\
-            $"\"  let value0 = Box::leak(value0);\"" +\
+            $"\"let value0 = value0.as_string();\"" +\
+            $"\"let value0 = value0.unwrap_or(std::string::String::new());\"" +\
+            $"\"let value0 = value0.into_boxed_str();\"" +\
+            $"\"let value0 = Box::leak(value0);\"" +\
+            $"\"if value0 !!= \\\"\\\" {\"" +\
             $"\"  !event(value0);\"" +\
-            $"\"};\"" +\
-            $"\"let closure = Box::new(closure);\"" +\
-            // $"\"let closure = wasm_bindgen::closure::Closure::wrap(closure);\"" +\
-            $"\"let closure : wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> = wasm_bindgen::closure::Closure::new(closure);\"" +\
-            $"\"let closure = closure.as_ref();\"" +\
-            $"\"let closure = wasm_bindgen::JsCast::unchecked_ref(closure);\"" +\
-            //  $"\"let dom = <dominator::Dom as Into<web_sys::HtmlIFrameElement>>::into(!dom);\"" +\
-            // $"\"let dom : web_sys::HtmlIFrameElement = !dom;\"" +\
-            // $"\"let dom = &$0;\"" +\
-            // $"\"let dom = (*dom).clone(); \"" +\
-            $"\"let ev = dom.add_event_listener_with_callback(\\\"load\\\", closure);\"" +\
-            $"\"ev.unwrap();\"" +\
+            $"\"}\"" +\
+            // $"\"let closure = move |_event : web_sys::Event| {\"" +\
+            // $"\"  let value0 = value0.node_value();\"" +\
+            // $"\"  let value0 = value0.unwrap();\"" +\
+            // $"\"  let value0 = value0.into_boxed_str();\"" +\
+            // $"\"  let value0 = Box::leak(value0);\"" +\
+            // $"\"  !event(value0);\"" +\
+            // $"\"};\"" +\
+            // $"\"let closure = Box::new(closure);\"" +\
+            // // $"\"let closure = wasm_bindgen::closure::Closure::wrap(closure);\"" +\
+            // $"\"let closure : wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> = wasm_bindgen::closure::Closure::new(closure);\"" +\
+            // $"\"let closure = closure.as_ref();\"" +\
+            // $"\"let closure = wasm_bindgen::JsCast::unchecked_ref(closure);\"" +\
+            // //  $"\"let dom = <dominator::Dom as Into<web_sys::HtmlIFrameElement>>::into(!dom);\"" +\
+            // // $"\"let dom : web_sys::HtmlIFrameElement = !dom;\"" +\
+            // // $"\"let dom = &$0;\"" +\
+            // // $"\"let dom = (*dom).clone(); \"" +\
+            // $"\"let ev = dom.add_event_listener_with_callback(\\\"load\\\", closure);\"" +\
+            // $"\"ev.unwrap();\"" +\
             $"\"()\"")
 
 inl get_local_storage (window : any) : any =

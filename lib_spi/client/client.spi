@@ -203,7 +203,11 @@ inl app () =
         ]
         |> set_attr "placeholder" "url"
         |> prop_signal "value" (url_rc |> signal)
-        |> with_on_change fun text => url_rc |> set_neq text
+        |> with_on_change fun text =>
+            log Debug ;[!>"<with_on_change>"]
+            log Debug ;[!>"url"; !>(text |> format)]
+            url_rc |> set_neq text
+            log Debug ;[!>"</with_on_change>"]
         |> into_dom
 
     inl iframe =
