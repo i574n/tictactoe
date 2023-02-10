@@ -173,6 +173,9 @@ inl app () =
             $"\"  let tx = db.transaction_on_one_with_mode(&!store_name.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);\"" +\
             $"\"  let tx = tx.unwrap();\"" +\
             $"\"  let store = tx.object_store(&!store_name.clone()).unwrap();\"" +\
+            $"\"  drop(tx);\"" +\
+            // $"\"  db.delete_object_store(&!store_name.clone()).unwrap();\"" +\
+            $"\"  db.delete().unwrap();\"" +\
             $"\"  Ok::<(), web_sys::DomException>(())\"" +\
             "}")
 
@@ -212,6 +215,11 @@ inl app () =
         ]
         |> set_attr "title" "title"
         |> prop_signal "src" (url_rc |> signal)
+        |> with_load_event fun url =>
+            log Debug ;[!>"<with_load_event>"]
+            log Debug ;[!>"url"; !>(url |> format)]
+            url_rc |> set_neq url
+            log Debug ;[!>"</with_load_event>"]
         |> into_dom
 
     inl div =

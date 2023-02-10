@@ -1214,6 +1214,67 @@ and closure4 (v0 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.St
     let v15 : string = v13 + v14
     Fable.Core.Rust.emitExpr () v15
     ()
+and method30 (v0 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) =
+    closure4(v0)
+and closure7 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) (v2 : Types.StaticRef<Types.Str>) : unit =
+    let v3 : string = "<with_load_event>"
+    let v4 : Types.EmitType<Types.std.string.String> = method1(v3)
+    let v5 : (Types.EmitType<Types.std.string.String> []) = [|v4|]
+    method3(v0, v5)
+    let v6 : string = "url"
+    let v7 : Types.EmitType<Types.std.string.String> = method1(v6)
+    let v8 : string = "format!(\"{:?}\", $0)"
+    let v9 : Types.std.string.String = Fable.Core.Rust.emitExpr v2 v8
+    let v10 : Types.EmitType<Types.std.string.String> = method2(v9)
+    let v11 : (Types.EmitType<Types.std.string.String> []) = [|v7; v10|]
+    method3(v0, v11)
+    let v12 : string = "*$0.set_neq(v2)"
+    Fable.Core.Rust.emitExpr v1 v12
+    let v13 : string = "</with_load_event>"
+    let v14 : Types.EmitType<Types.std.string.String> = method1(v13)
+    let v15 : (Types.EmitType<Types.std.string.String> []) = [|v14|]
+    method3(v0, v15)
+and closure6 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) (v2 : Types.std.rc.Rc<Types.web_sys.HtmlIFrameElement>) : unit =
+    let v3 : string = ""
+    let v4 : string = "let value0 = &$0;"
+    let v5 : string = v3 + v4
+    let v6 : string = "let dom = value0;"
+    let v7 : string = v5 + v6
+    let v8 : string = "let value0 = (*value0).clone(); "
+    let v9 : string = v7 + v8
+    let v10 : string = "let closure = move |_event : web_sys::Event| {"
+    let v11 : string = v9 + v10
+    let v12 : string = "  let value0 = value0.node_value();"
+    let v13 : string = v11 + v12
+    let v14 : string = "  let value0 = value0.unwrap();"
+    let v15 : string = v13 + v14
+    let v16 : string = "  let value0 = value0.into_boxed_str();"
+    let v17 : string = v15 + v16
+    let v18 : string = "  let value0 = Box::leak(value0);"
+    let v19 : string = v17 + v18
+    let v20 : (Types.StaticRef<Types.Str> -> unit) = closure7(v0, v1)
+    let v21 : string = "  v20(value0);"
+    let v22 : string = v19 + v21
+    let v23 : string = "};"
+    let v24 : string = v22 + v23
+    let v25 : string = "let closure = Box::new(closure);"
+    let v26 : string = v24 + v25
+    let v27 : string = "let closure : wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> = wasm_bindgen::closure::Closure::new(closure);"
+    let v28 : string = v26 + v27
+    let v29 : string = "let closure = closure.as_ref();"
+    let v30 : string = v28 + v29
+    let v31 : string = "let closure = wasm_bindgen::JsCast::unchecked_ref(closure);"
+    let v32 : string = v30 + v31
+    let v33 : string = "let ev = dom.add_event_listener_with_callback(\"load\", closure);"
+    let v34 : string = v32 + v33
+    let v35 : string = "ev.unwrap();"
+    let v36 : string = v34 + v35
+    let v37 : string = "()"
+    let v38 : string = v36 + v37
+    Fable.Core.Rust.emitExpr v2 v38
+    ()
+and method31 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) : (Types.std.rc.Rc<Types.web_sys.HtmlIFrameElement> -> unit) =
+    closure6(v0, v1)
 and closure0 () () : int32 =
     let v0 : string = "console_error_panic_hook::set_once()"
     Fable.Core.Rust.emitExpr () v0
@@ -1854,263 +1915,317 @@ and closure0 () () : int32 =
     let v652 : string = v650 + v651
     let v653 : string = "  let store = tx.object_store(&v588.clone()).unwrap();"
     let v654 : string = v652 + v653
-    let v655 : string = "  Ok::<(), web_sys::DomException>(())"
+    let v655 : string = "  drop(tx);"
     let v656 : string = v654 + v655
-    let v657 : string = "}"
+    let v657 : string = "  db.delete().unwrap();"
     let v658 : string = v656 + v657
-    let v659 : Types.core.future.Future<obj> = Fable.Core.Rust.emitExpr () v658
-    let v660 : string = "async_std::task::block_on(v659)"
-    Fable.Core.Rust.emitExpr () v660
-    let v661 : string = "https://dummyjson.com/users"
-    let v662 : string = "($0).to_string()"
-    let v663 : Types.std.string.String = Fable.Core.Rust.emitExpr v661 v662
-    let v664 : string = "ehttp::Request::get($0)"
-    let v665 : Types.ehttp.Request = Fable.Core.Rust.emitExpr v663 v664
-    let v666 : bool = method25()
-    let v667 : string = "async_std::sync::Mutex::new(v666)"
-    let v668 : Types.async_std.sync.Mutex<bool> = Fable.Core.Rust.emitExpr () v667
-    let v669 : string = "async_std::sync::Condvar::new()"
-    let v670 : Types.async_std.sync.Condvar = Fable.Core.Rust.emitExpr () v669
-    let v671 : string = "(v668, v670)"
-    let v672 : Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar> = Fable.Core.Rust.emitExpr () v671
-    let v673 : Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar> = method26(v672)
-    let v674 : string = "std::sync::Arc::new(v673)"
-    let v675 : Types.std.sync.Arc<Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar>> = Fable.Core.Rust.emitExpr () v674
-    let v676 : string = "v675.clone()"
-    let v677 : Types.std.sync.Arc<Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar>> = Fable.Core.Rust.emitExpr () v676
-    let v678 : Option<Types.ehttp.Response> = None |> unbox
-    let v679 : Option<Types.ehttp.Response> = method27(v678)
-    let v680 : string = "async_std::sync::Mutex::new(v679)"
-    let v681 : Types.async_std.sync.Mutex<Option<Types.ehttp.Response>> = Fable.Core.Rust.emitExpr () v680
-    let v682 : Types.async_std.sync.Mutex<Option<Types.ehttp.Response>> = method28(v681)
-    let v683 : string = "std::sync::Arc::new(v682)"
-    let v684 : Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>> = Fable.Core.Rust.emitExpr () v683
-    let v685 : string = "std::cell::RefCell::new(v684)"
-    let v686 : Types.std.cell.RefCell<Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>>> = Fable.Core.Rust.emitExpr () v685
-    let v687 : string = "v686.clone()"
-    let v688 : Types.std.cell.RefCell<Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>>> = Fable.Core.Rust.emitExpr () v687
-    let v689 : string = "move |x: ehttp::Result<ehttp::Response>| {"
-    let v690 : string = "  let r = x.clone().unwrap();"
-    let v691 : string = v689 + v690
-    let v692 : string = "  *v686.borrow_mut().try_lock().unwrap() = Some(r);"
-    let v693 : string = v691 + v692
-    let v694 : string = "  async_std::task::block_on(async move {"
+    let v659 : string = "  Ok::<(), web_sys::DomException>(())"
+    let v660 : string = v658 + v659
+    let v661 : string = "}"
+    let v662 : string = v660 + v661
+    let v663 : Types.core.future.Future<obj> = Fable.Core.Rust.emitExpr () v662
+    let v664 : string = "async_std::task::block_on(v663)"
+    Fable.Core.Rust.emitExpr () v664
+    let v665 : string = "https://dummyjson.com/users"
+    let v666 : string = "($0).to_string()"
+    let v667 : Types.std.string.String = Fable.Core.Rust.emitExpr v665 v666
+    let v668 : string = "ehttp::Request::get($0)"
+    let v669 : Types.ehttp.Request = Fable.Core.Rust.emitExpr v667 v668
+    let v670 : bool = method25()
+    let v671 : string = "async_std::sync::Mutex::new(v670)"
+    let v672 : Types.async_std.sync.Mutex<bool> = Fable.Core.Rust.emitExpr () v671
+    let v673 : string = "async_std::sync::Condvar::new()"
+    let v674 : Types.async_std.sync.Condvar = Fable.Core.Rust.emitExpr () v673
+    let v675 : string = "(v672, v674)"
+    let v676 : Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar> = Fable.Core.Rust.emitExpr () v675
+    let v677 : Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar> = method26(v676)
+    let v678 : string = "std::sync::Arc::new(v677)"
+    let v679 : Types.std.sync.Arc<Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar>> = Fable.Core.Rust.emitExpr () v678
+    let v680 : string = "v679.clone()"
+    let v681 : Types.std.sync.Arc<Types.Tuple<Types.async_std.sync.Mutex<bool>, Types.async_std.sync.Condvar>> = Fable.Core.Rust.emitExpr () v680
+    let v682 : Option<Types.ehttp.Response> = None |> unbox
+    let v683 : Option<Types.ehttp.Response> = method27(v682)
+    let v684 : string = "async_std::sync::Mutex::new(v683)"
+    let v685 : Types.async_std.sync.Mutex<Option<Types.ehttp.Response>> = Fable.Core.Rust.emitExpr () v684
+    let v686 : Types.async_std.sync.Mutex<Option<Types.ehttp.Response>> = method28(v685)
+    let v687 : string = "std::sync::Arc::new(v686)"
+    let v688 : Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>> = Fable.Core.Rust.emitExpr () v687
+    let v689 : string = "std::cell::RefCell::new(v688)"
+    let v690 : Types.std.cell.RefCell<Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>>> = Fable.Core.Rust.emitExpr () v689
+    let v691 : string = "v690.clone()"
+    let v692 : Types.std.cell.RefCell<Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>>> = Fable.Core.Rust.emitExpr () v691
+    let v693 : string = "move |x: ehttp::Result<ehttp::Response>| {"
+    let v694 : string = "  let r = x.clone().unwrap();"
     let v695 : string = v693 + v694
-    let v696 : string = "    let (lock, cvar) = &*v677;"
+    let v696 : string = "  *v690.borrow_mut().try_lock().unwrap() = Some(r);"
     let v697 : string = v695 + v696
-    let v698 : string = "    let mut started = lock.lock().await;"
+    let v698 : string = "  async_std::task::block_on(async move {"
     let v699 : string = v697 + v698
-    let v700 : string = "    *started = true;"
+    let v700 : string = "    let (lock, cvar) = &*v681;"
     let v701 : string = v699 + v700
-    let v702 : string = "    cvar.notify_one();"
+    let v702 : string = "    let mut started = lock.lock().await;"
     let v703 : string = v701 + v702
-    let v704 : string = "  });"
+    let v704 : string = "    *started = true;"
     let v705 : string = v703 + v704
-    let v706 : string = v705 + v657
-    let v707 : obj = Fable.Core.Rust.emitExpr () v706
-    let v708 : string = "Box::new(v707)"
-    let v709 : Types.Box<obj> = Fable.Core.Rust.emitExpr () v708
-    let v710 : string = "ehttp::fetch(v665, v709)"
-    Fable.Core.Rust.emitExpr () v710
-    let v711 : string = "  let (lock, cvar) = &*v675;"
-    let v712 : string = v594 + v711
-    let v713 : string = "  let mut started = lock.lock().await;"
-    let v714 : string = v712 + v713
-    let v715 : string = "  while !*started {"
-    let v716 : string = v714 + v715
-    let v717 : string = "    started = cvar.wait(started).await;"
+    let v706 : string = "    cvar.notify_one();"
+    let v707 : string = v705 + v706
+    let v708 : string = "  });"
+    let v709 : string = v707 + v708
+    let v710 : string = v709 + v661
+    let v711 : obj = Fable.Core.Rust.emitExpr () v710
+    let v712 : string = "Box::new(v711)"
+    let v713 : Types.Box<obj> = Fable.Core.Rust.emitExpr () v712
+    let v714 : string = "ehttp::fetch(v669, v713)"
+    Fable.Core.Rust.emitExpr () v714
+    let v715 : string = "  let (lock, cvar) = &*v679;"
+    let v716 : string = v594 + v715
+    let v717 : string = "  let mut started = lock.lock().await;"
     let v718 : string = v716 + v717
-    let v719 : string = "  }"
+    let v719 : string = "  while !*started {"
     let v720 : string = v718 + v719
-    let v721 : (Types.std.cell.RefCell<Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>>> -> unit) = closure3(v8)
-    let v722 : string = "  v721(v688);"
-    let v723 : string = v720 + v722
-    let v724 : string = v723 + v657
-    let v725 : Types.core.future.Future<obj> = Fable.Core.Rust.emitExpr () v724
-    let v726 : string = "async_std::task::block_on(v725)"
-    Fable.Core.Rust.emitExpr () v726
-    let v727 : string = "https://time.is"
-    let v728 : string = $"r#\"{v727}\"#"
-    let v729 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v728
-    let v730 : Types.StaticRef<Types.Str> = v729 |> unbox
-    let v731 : string = "futures_signals::signal::Mutable::new(v730)"
-    let v732 : Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>> = Fable.Core.Rust.emitExpr () v731
-    let v733 : string = "std::rc::Rc::new(v732)"
-    let v734 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>> = Fable.Core.Rust.emitExpr () v733
-    let v735 : string = "input"
-    let v736 : string = $"r#\"{v735}\"#"
-    let v737 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v736
-    let v738 : string = "dominator::DomBuilder::new_html($0)"
-    let v739 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr v737 v738
-    let v740 : string = "color"
-    let v741 : string = $"r#\"{v740}\"#"
-    let v742 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v741
-    let v743 : string = "#666"
-    let v744 : string = $"r#\"{v743}\"#"
-    let v745 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v744
-    let v746 : string = " .style(v742, v745) "
-    let v747 : string = v66 + v746
-    let v748 : string = "dominator::class! {"
-    let v749 : string = v748 + v747
-    let v750 : string = v749 + v657
-    let v751 : obj = Fable.Core.Rust.emitExpr () v750
-    let v752 : string = "v739.class(&*v751)"
-    let v753 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v752
-    let v754 : string = "placeholder"
-    let v755 : string = $"r#\"{v754}\"#"
-    let v756 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v755
-    let v757 : string = "url"
-    let v758 : string = $"r#\"{v757}\"#"
-    let v759 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v758
-    let v760 : string = "v753.attr(v756, v759)"
-    let v761 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v760
-    let v762 : string = "v734.signal()"
-    let v763 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = Fable.Core.Rust.emitExpr () v762
-    let v764 : string = $"r#\"{v517}\"#"
-    let v765 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v764
-    let v766 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = method29(v763)
-    let v767 : string = "v761.prop_signal(v765, v766)"
-    let v768 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v767
-    let v769 : string = ".event(dominator::clone!("
-    let v770 : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) = closure4(v734)
-    let v771 : string = "  v770 => move |_: dominator::events::Input| {"
-    let v772 : string = v769 + v771
-    let v773 : string = "    let element_ = std::rc::Rc::new(&element); "
-    let v774 : string = v772 + v773
-    let v775 : string = "    let el = (*element_).clone().into(); "
-    let v776 : string = v774 + v775
-    let v777 : string = "    v770(el); "
-    let v778 : string = v776 + v777
-    let v779 : string = "  }"
+    let v721 : string = "    started = cvar.wait(started).await;"
+    let v722 : string = v720 + v721
+    let v723 : string = "  }"
+    let v724 : string = v722 + v723
+    let v725 : (Types.std.cell.RefCell<Types.std.sync.Arc<Types.async_std.sync.Mutex<Option<Types.ehttp.Response>>>> -> unit) = closure3(v8)
+    let v726 : string = "  v725(v692);"
+    let v727 : string = v724 + v726
+    let v728 : string = v727 + v661
+    let v729 : Types.core.future.Future<obj> = Fable.Core.Rust.emitExpr () v728
+    let v730 : string = "async_std::task::block_on(v729)"
+    Fable.Core.Rust.emitExpr () v730
+    let v731 : string = "https://time.is"
+    let v732 : string = $"r#\"{v731}\"#"
+    let v733 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v732
+    let v734 : Types.StaticRef<Types.Str> = v733 |> unbox
+    let v735 : string = "futures_signals::signal::Mutable::new(v734)"
+    let v736 : Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>> = Fable.Core.Rust.emitExpr () v735
+    let v737 : string = "std::rc::Rc::new(v736)"
+    let v738 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>> = Fable.Core.Rust.emitExpr () v737
+    let v739 : string = "input"
+    let v740 : string = $"r#\"{v739}\"#"
+    let v741 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v740
+    let v742 : string = "dominator::DomBuilder::new_html($0)"
+    let v743 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr v741 v742
+    let v744 : string = "color"
+    let v745 : string = $"r#\"{v744}\"#"
+    let v746 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v745
+    let v747 : string = "#666"
+    let v748 : string = $"r#\"{v747}\"#"
+    let v749 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v748
+    let v750 : string = " .style(v746, v749) "
+    let v751 : string = v66 + v750
+    let v752 : string = "dominator::class! {"
+    let v753 : string = v752 + v751
+    let v754 : string = v753 + v661
+    let v755 : obj = Fable.Core.Rust.emitExpr () v754
+    let v756 : string = "v743.class(&*v755)"
+    let v757 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v756
+    let v758 : string = "placeholder"
+    let v759 : string = $"r#\"{v758}\"#"
+    let v760 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v759
+    let v761 : string = "url"
+    let v762 : string = $"r#\"{v761}\"#"
+    let v763 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v762
+    let v764 : string = "v757.attr(v760, v763)"
+    let v765 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v764
+    let v766 : string = "v738.signal()"
+    let v767 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = Fable.Core.Rust.emitExpr () v766
+    let v768 : string = $"r#\"{v517}\"#"
+    let v769 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v768
+    let v770 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = method29(v767)
+    let v771 : string = "v765.prop_signal(v769, v770)"
+    let v772 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v771
+    let v773 : string = "dominator::events::Input"
+    let v774 : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) = method30(v738)
+    let v775 : string = ".event(dominator::clone!("
+    let v776 : string = "  v774 => move |_: "
+    let v777 : string = v775 + v776
+    let v778 : string = v777 + v773
+    let v779 : string = "| {"
     let v780 : string = v778 + v779
-    let v781 : string = "))"
+    let v781 : string = "    let el = &element; "
     let v782 : string = v780 + v781
-    let v783 : string = v782 + v66
-    let v784 : string = "dominator::with_node!("
-    let v785 : string = "   v768,"
+    let v783 : string = "    let el = (*el).clone(); "
+    let v784 : string = v782 + v783
+    let v785 : string = "    let el = wasm_bindgen::JsCast::dyn_into(el); "
     let v786 : string = v784 + v785
-    let v787 : string = "   element => {"
+    let v787 : string = "    let el = el.unwrap(); "
     let v788 : string = v786 + v787
-    let v789 : string = "      "
+    let v789 : string = "    let el = std::rc::Rc::new(el); "
     let v790 : string = v788 + v789
-    let v791 : string = v790 + v783
-    let v792 : string = " "
-    let v793 : string = v791 + v792
-    let v794 : string = "   }"
-    let v795 : string = v793 + v794
-    let v796 : string = ")"
-    let v797 : string = v795 + v796
-    let v798 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v797
-    let v799 : string = "v798.into_dom()"
-    let v800 : Types.dominator.Dom = Fable.Core.Rust.emitExpr () v799
-    let v801 : string = "iframe"
-    let v802 : string = $"r#\"{v801}\"#"
-    let v803 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v802
-    let v804 : string = "dominator::DomBuilder::new_html($0)"
-    let v805 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr v803 v804
-    let v806 : string = $"r#\"{v76}\"#"
-    let v807 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v806
-    let v808 : string = $"r#\"{v78}\"#"
-    let v809 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v808
-    let v810 : string = " .style(v807, v809) "
-    let v811 : string = v66 + v810
-    let v812 : string = $"r#\"{v162}\"#"
-    let v813 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v812
-    let v814 : string = "1"
-    let v815 : string = $"r#\"{v814}\"#"
-    let v816 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v815
-    let v817 : string = " .style(v813, v816) "
-    let v818 : string = v811 + v817
-    let v819 : string = "border"
-    let v820 : string = $"r#\"{v819}\"#"
+    let v791 : string = "    v774(el); "
+    let v792 : string = v790 + v791
+    let v793 : string = "  }"
+    let v794 : string = v792 + v793
+    let v795 : string = "))"
+    let v796 : string = v794 + v795
+    let v797 : string = v796 + v66
+    let v798 : string = "dominator::with_node!("
+    let v799 : string = "   v772,"
+    let v800 : string = v798 + v799
+    let v801 : string = "   element => {"
+    let v802 : string = v800 + v801
+    let v803 : string = "      "
+    let v804 : string = v802 + v803
+    let v805 : string = v804 + v797
+    let v806 : string = " "
+    let v807 : string = v805 + v806
+    let v808 : string = "   }"
+    let v809 : string = v807 + v808
+    let v810 : string = ")"
+    let v811 : string = v809 + v810
+    let v812 : Types.dominator.DomBuilder<Types.web_sys.HtmlInputElement> = Fable.Core.Rust.emitExpr () v811
+    let v813 : string = "v812.into_dom()"
+    let v814 : Types.dominator.Dom = Fable.Core.Rust.emitExpr () v813
+    let v815 : string = "iframe"
+    let v816 : string = $"r#\"{v815}\"#"
+    let v817 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v816
+    let v818 : string = "dominator::DomBuilder::new_html($0)"
+    let v819 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr v817 v818
+    let v820 : string = $"r#\"{v76}\"#"
     let v821 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v820
-    let v822 : string = $"r#\"{v62}\"#"
+    let v822 : string = $"r#\"{v78}\"#"
     let v823 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v822
     let v824 : string = " .style(v821, v823) "
-    let v825 : string = v818 + v824
-    let v826 : string = "dominator::class! {"
-    let v827 : string = v826 + v825
-    let v828 : string = v827 + v657
-    let v829 : obj = Fable.Core.Rust.emitExpr () v828
-    let v830 : string = "v805.class(&*v829)"
-    let v831 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v830
-    let v832 : string = "title"
-    let v833 : string = $"r#\"{v832}\"#"
-    let v834 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v833
-    let v835 : string = $"r#\"{v832}\"#"
-    let v836 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v835
-    let v837 : string = "v831.attr(v834, v836)"
-    let v838 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v837
-    let v839 : string = "v734.signal()"
-    let v840 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = Fable.Core.Rust.emitExpr () v839
-    let v841 : string = "src"
-    let v842 : string = $"r#\"{v841}\"#"
-    let v843 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v842
-    let v844 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = method29(v840)
-    let v845 : string = "v838.prop_signal(v843, v844)"
-    let v846 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v845
-    let v847 : string = "v846.into_dom()"
-    let v848 : Types.dominator.Dom = Fable.Core.Rust.emitExpr () v847
-    let v849 : string = "div"
-    let v850 : string = $"r#\"{v849}\"#"
-    let v851 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v850
-    let v852 : string = "dominator::DomBuilder::new_html($0)"
-    let v853 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr v851 v852
-    let v854 : string = "background-color"
-    let v855 : string = $"r#\"{v854}\"#"
-    let v856 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v855
-    let v857 : string = $"r#\"{v743}\"#"
-    let v858 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v857
-    let v859 : string = " .style(v856, v858) "
-    let v860 : string = v66 + v859
-    let v861 : string = $"r#\"{v160}\"#"
-    let v862 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v861
-    let v863 : string = $"r#\"{v162}\"#"
-    let v864 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v863
-    let v865 : string = " .style(v862, v864) "
-    let v866 : string = v860 + v865
-    let v867 : string = $"r#\"{v162}\"#"
-    let v868 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v867
-    let v869 : string = $"r#\"{v814}\"#"
-    let v870 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v869
-    let v871 : string = " .style(v868, v870) "
-    let v872 : string = v866 + v871
-    let v873 : string = $"r#\"{v168}\"#"
-    let v874 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v873
-    let v875 : string = "column"
-    let v876 : string = $"r#\"{v875}\"#"
-    let v877 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v876
-    let v878 : string = " .style(v874, v877) "
-    let v879 : string = v872 + v878
-    let v880 : string = "dominator::class! {"
-    let v881 : string = v880 + v879
-    let v882 : string = v881 + v657
-    let v883 : obj = Fable.Core.Rust.emitExpr () v882
-    let v884 : string = "v853.class(&*v883)"
-    let v885 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v884
-    let v886 : string = "v800"
-    let v887 : string = v66 + v886
-    let v888 : string = ", v848"
-    let v889 : string = v887 + v888
-    let v890 : string = "["
-    let v891 : string = v890 + v889
-    let v892 : string = "]"
-    let v893 : string = v891 + v892
-    let v894 : obj = Fable.Core.Rust.emitExpr () v893
-    let v895 : string = "v885.children(v894)"
-    let v896 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v895
-    let v897 : string = "v896.into_dom()"
-    let v898 : Types.dominator.Dom = Fable.Core.Rust.emitExpr () v897
-    let v899 : string = "dominator::body()"
-    let v900 : Types.web_sys.HtmlElement = Fable.Core.Rust.emitExpr () v899
-    let v901 : string = "dominator::append_dom(&v900, v898)"
-    Fable.Core.Rust.emitExpr () v901
-    let v902 : string = "app end"
-    let v903 : Types.EmitType<Types.std.string.String> = method1(v902)
-    let v904 : string = "???"
-    let v905 : Types.EmitType<Types.std.string.String> = method1(v904)
-    let v906 : (Types.EmitType<Types.std.string.String> []) = [|v903; v905|]
-    method3(v8, v906)
+    let v825 : string = v66 + v824
+    let v826 : string = $"r#\"{v162}\"#"
+    let v827 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v826
+    let v828 : string = "1"
+    let v829 : string = $"r#\"{v828}\"#"
+    let v830 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v829
+    let v831 : string = " .style(v827, v830) "
+    let v832 : string = v825 + v831
+    let v833 : string = "border"
+    let v834 : string = $"r#\"{v833}\"#"
+    let v835 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v834
+    let v836 : string = $"r#\"{v62}\"#"
+    let v837 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v836
+    let v838 : string = " .style(v835, v837) "
+    let v839 : string = v832 + v838
+    let v840 : string = "dominator::class! {"
+    let v841 : string = v840 + v839
+    let v842 : string = v841 + v661
+    let v843 : obj = Fable.Core.Rust.emitExpr () v842
+    let v844 : string = "v819.class(&*v843)"
+    let v845 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v844
+    let v846 : string = "title"
+    let v847 : string = $"r#\"{v846}\"#"
+    let v848 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v847
+    let v849 : string = $"r#\"{v846}\"#"
+    let v850 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v849
+    let v851 : string = "v845.attr(v848, v850)"
+    let v852 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v851
+    let v853 : string = "v738.signal()"
+    let v854 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = Fable.Core.Rust.emitExpr () v853
+    let v855 : string = "src"
+    let v856 : string = $"r#\"{v855}\"#"
+    let v857 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v856
+    let v858 : Types.futures_signals.signal.MutableSignal<Types.StaticRef<Types.Str>> = method29(v854)
+    let v859 : string = "v852.prop_signal(v857, v858)"
+    let v860 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v859
+    let v861 : string = "dominator::events::Change"
+    let v862 : (Types.std.rc.Rc<Types.web_sys.HtmlIFrameElement> -> unit) = method31(v8, v738)
+    let v863 : string = ".event(dominator::clone!("
+    let v864 : string = "  v862 => move |_: "
+    let v865 : string = v863 + v864
+    let v866 : string = v865 + v861
+    let v867 : string = "| {"
+    let v868 : string = v866 + v867
+    let v869 : string = "    let el = &element; "
+    let v870 : string = v868 + v869
+    let v871 : string = "    let el = (*el).clone(); "
+    let v872 : string = v870 + v871
+    let v873 : string = "    let el = wasm_bindgen::JsCast::dyn_into(el); "
+    let v874 : string = v872 + v873
+    let v875 : string = "    let el = el.unwrap(); "
+    let v876 : string = v874 + v875
+    let v877 : string = "    let el = std::rc::Rc::new(el); "
+    let v878 : string = v876 + v877
+    let v879 : string = "    v862(el); "
+    let v880 : string = v878 + v879
+    let v881 : string = "  }"
+    let v882 : string = v880 + v881
+    let v883 : string = "))"
+    let v884 : string = v882 + v883
+    let v885 : string = v884 + v66
+    let v886 : string = "dominator::with_node!("
+    let v887 : string = "   v860,"
+    let v888 : string = v886 + v887
+    let v889 : string = "   element => {"
+    let v890 : string = v888 + v889
+    let v891 : string = "      "
+    let v892 : string = v890 + v891
+    let v893 : string = v892 + v885
+    let v894 : string = " "
+    let v895 : string = v893 + v894
+    let v896 : string = "   }"
+    let v897 : string = v895 + v896
+    let v898 : string = ")"
+    let v899 : string = v897 + v898
+    let v900 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v899
+    let v901 : string = "v900.into_dom()"
+    let v902 : Types.dominator.Dom = Fable.Core.Rust.emitExpr () v901
+    let v903 : string = "div"
+    let v904 : string = $"r#\"{v903}\"#"
+    let v905 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v904
+    let v906 : string = "dominator::DomBuilder::new_html($0)"
+    let v907 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr v905 v906
+    let v908 : string = "background-color"
+    let v909 : string = $"r#\"{v908}\"#"
+    let v910 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v909
+    let v911 : string = $"r#\"{v747}\"#"
+    let v912 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v911
+    let v913 : string = " .style(v910, v912) "
+    let v914 : string = v66 + v913
+    let v915 : string = $"r#\"{v160}\"#"
+    let v916 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v915
+    let v917 : string = $"r#\"{v162}\"#"
+    let v918 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v917
+    let v919 : string = " .style(v916, v918) "
+    let v920 : string = v914 + v919
+    let v921 : string = $"r#\"{v162}\"#"
+    let v922 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v921
+    let v923 : string = $"r#\"{v828}\"#"
+    let v924 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v923
+    let v925 : string = " .style(v922, v924) "
+    let v926 : string = v920 + v925
+    let v927 : string = $"r#\"{v168}\"#"
+    let v928 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v927
+    let v929 : string = "column"
+    let v930 : string = $"r#\"{v929}\"#"
+    let v931 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v930
+    let v932 : string = " .style(v928, v931) "
+    let v933 : string = v926 + v932
+    let v934 : string = "dominator::class! {"
+    let v935 : string = v934 + v933
+    let v936 : string = v935 + v661
+    let v937 : obj = Fable.Core.Rust.emitExpr () v936
+    let v938 : string = "v907.class(&*v937)"
+    let v939 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v938
+    let v940 : string = "v814"
+    let v941 : string = v66 + v940
+    let v942 : string = ", v902"
+    let v943 : string = v941 + v942
+    let v944 : string = "["
+    let v945 : string = v944 + v943
+    let v946 : string = "]"
+    let v947 : string = v945 + v946
+    let v948 : obj = Fable.Core.Rust.emitExpr () v947
+    let v949 : string = "v939.children(v948)"
+    let v950 : Types.dominator.DomBuilder<Types.web_sys.HtmlElement> = Fable.Core.Rust.emitExpr () v949
+    let v951 : string = "v950.into_dom()"
+    let v952 : Types.dominator.Dom = Fable.Core.Rust.emitExpr () v951
+    let v953 : string = "dominator::body()"
+    let v954 : Types.web_sys.HtmlElement = Fable.Core.Rust.emitExpr () v953
+    let v955 : string = "dominator::append_dom(&v954, v952)"
+    Fable.Core.Rust.emitExpr () v955
+    let v956 : string = "app end"
+    let v957 : Types.EmitType<Types.std.string.String> = method1(v956)
+    let v958 : string = "???"
+    let v959 : Types.EmitType<Types.std.string.String> = method1(v958)
+    let v960 : (Types.EmitType<Types.std.string.String> []) = [|v957; v959|]
+    method3(v8, v960)
     0
 let v0 : (unit -> int32) = closure0()
 ()

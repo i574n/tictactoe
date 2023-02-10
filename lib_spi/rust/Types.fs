@@ -158,6 +158,8 @@ module web_sys =
     type Element = class end
     [<Erase; Emit("web_sys::HtmlElement")>]
     type HtmlElement = class end
+    [<Erase; Emit("web_sys::HtmlIFrameElement")>]
+    type HtmlIFrameElement = class end
     [<Erase; Emit("web_sys::HtmlInputElement")>]
     type HtmlInputElement = class end
     [<Erase; Emit("web_sys::HtmlStyleElement")>]

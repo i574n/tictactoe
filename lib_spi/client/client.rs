@@ -948,6 +948,77 @@ pub mod Client {
         ();
         ()
     }
+    pub fn method30(
+        v0_1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
+    ) -> Func1<std::rc::Rc<web_sys::HtmlInputElement>, ()> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: std::rc::Rc<web_sys::HtmlInputElement>| {
+                Client::closure4(v0_1.clone(), v.clone())
+            }
+        })
+    }
+    pub fn closure7(
+        v0_1: i64,
+        v1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
+        v2: &'static str,
+    ) {
+        Client::method3(v0_1, array(&[Client::method1(string("<with_load_event>"))]));
+        Client::method3(
+            v0_1,
+            array(&[
+                Client::method1(string("url")),
+                Client::method2(format!("{:?}", &v2)),
+            ]),
+        );
+        *&v1.set_neq(v2);
+        Client::method3(
+            v0_1,
+            array(&[Client::method1(string("</with_load_event>"))]),
+        )
+    }
+    pub fn closure6(
+        v0_1: i64,
+        v1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
+        v2: std::rc::Rc<web_sys::HtmlIFrameElement>,
+    ) {
+        let v20 = Func1::new({
+            let v0_1 = v0_1.clone();
+            let v1 = v1.clone();
+            move |v: &'static str| Client::closure7(v0_1, v1.clone(), v.clone())
+        });
+        let value0 = &&v2;
+        let dom = value0;
+        let value0 = (*value0).clone();
+        let closure = move |_event: web_sys::Event| {
+            let value0 = value0.node_value();
+            let value0 = value0.unwrap();
+            let value0 = value0.into_boxed_str();
+            let value0 = Box::leak(value0);
+            v20(value0);
+        };
+        let closure = Box::new(closure);
+        let closure: wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> =
+            wasm_bindgen::closure::Closure::new(closure);
+        let closure = closure.as_ref();
+        let closure = wasm_bindgen::JsCast::unchecked_ref(closure);
+        let ev = dom.add_event_listener_with_callback("load", closure);
+        ev.unwrap();
+        ();
+        ()
+    }
+    pub fn method31(
+        v0_1: i64,
+        v1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
+    ) -> Func1<std::rc::Rc<web_sys::HtmlIFrameElement>, ()> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            let v1 = v1.clone();
+            move |v: std::rc::Rc<web_sys::HtmlIFrameElement>| {
+                Client::closure6(v0_1, v1.clone(), v.clone())
+            }
+        })
+    }
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
         console_error_panic_hook::set_once();
         {
@@ -1648,44 +1719,46 @@ pub mod Client {
                                                                                 v_1,
                                                                             )
                                                                         }
-                                                                        let v657: string =
+                                                                        let v661: string =
                                                                             string("}");
-                                                                        let v658:
+                                                                        let v662:
                                                                                 string =
-                                                                            append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(v594.clone(),
-                                                                                                                                                                                                                                                                                                            string("  v592(0);")),
-                                                                                                                                                                                                                                                                                                     string("  let mut db_ref_____ = v596(v587);")),
-                                                                                                                                                                                                                                                                                              string("  let db_param_ = &mut db_ref_____;")),
-                                                                                                                                                                                                                                                                                       string("  indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(")),
-                                                                                                                                                                                                                                                                                string("    db_param_,")),
-                                                                                                                                                                                                                                                                         string("    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {")),
-                                                                                                                                                                                                                                                                  string("      let db: &indexed_db_futures::IdbDatabase = event.db();")),
-                                                                                                                                                                                                                                                           string("      if !db.object_store_names().any(|n| &n == &v589.clone()) {")),
-                                                                                                                                                                                                                                                    string("        let object_store = db.create_object_store(&v589.clone());")),
-                                                                                                                                                                                                                                             string("        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();")),
-                                                                                                                                                                                                                                      string("        ();")),
-                                                                                                                                                                                                                               string("      };")),
-                                                                                                                                                                                                                        string("      Ok(())")),
-                                                                                                                                                                                                                 string("    })")),
-                                                                                                                                                                                                          string("  );")),
-                                                                                                                                                                                                   string("  let db_future_ = db_ref_____;")),
-                                                                                                                                                                                            string("  let db_future = db_future_.into_future();")),
-                                                                                                                                                                                     string("  let db = db_future.await;")),
-                                                                                                                                                                              string("  let db = db.unwrap();")),
-                                                                                                                                                                       string("  let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);")),
-                                                                                                                                                                string("  let tx = tx.unwrap();")),
-                                                                                                                                                         string("  let store = tx.object_store(&v588.clone()).unwrap();")),
-                                                                                                                                                  string("  store.put_key_val_owned(")),
-                                                                                                                                           string("    &v590,")),
-                                                                                                                                    string("    &v591")),
-                                                                                                                             string("  ).unwrap();")),
-                                                                                                                      string("  tx.await.into_result().unwrap();")),
-                                                                                                               string("  let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);")),
-                                                                                                        string("  let tx = tx.unwrap();")),
-                                                                                                 string("  let store = tx.object_store(&v588.clone()).unwrap();")),
+                                                                            append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(append(v594.clone(),
+                                                                                                                                                                                                                                                                                                                          string("  v592(0);")),
+                                                                                                                                                                                                                                                                                                                   string("  let mut db_ref_____ = v596(v587);")),
+                                                                                                                                                                                                                                                                                                            string("  let db_param_ = &mut db_ref_____;")),
+                                                                                                                                                                                                                                                                                                     string("  indexed_db_futures::prelude::IdbOpenDbRequestLike::set_on_upgrade_needed(")),
+                                                                                                                                                                                                                                                                                              string("    db_param_,")),
+                                                                                                                                                                                                                                                                                       string("    Some(move |event: &indexed_db_futures::IdbVersionChangeEvent| {")),
+                                                                                                                                                                                                                                                                                string("      let db: &indexed_db_futures::IdbDatabase = event.db();")),
+                                                                                                                                                                                                                                                                         string("      if !db.object_store_names().any(|n| &n == &v589.clone()) {")),
+                                                                                                                                                                                                                                                                  string("        let object_store = db.create_object_store(&v589.clone());")),
+                                                                                                                                                                                                                                                           string("        let object_store: indexed_db_futures::prelude::IdbObjectStore = object_store.unwrap();")),
+                                                                                                                                                                                                                                                    string("        ();")),
+                                                                                                                                                                                                                                             string("      };")),
+                                                                                                                                                                                                                                      string("      Ok(())")),
+                                                                                                                                                                                                                               string("    })")),
+                                                                                                                                                                                                                        string("  );")),
+                                                                                                                                                                                                                 string("  let db_future_ = db_ref_____;")),
+                                                                                                                                                                                                          string("  let db_future = db_future_.into_future();")),
+                                                                                                                                                                                                   string("  let db = db_future.await;")),
+                                                                                                                                                                                            string("  let db = db.unwrap();")),
+                                                                                                                                                                                     string("  let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readwrite);")),
+                                                                                                                                                                              string("  let tx = tx.unwrap();")),
+                                                                                                                                                                       string("  let store = tx.object_store(&v588.clone()).unwrap();")),
+                                                                                                                                                                string("  store.put_key_val_owned(")),
+                                                                                                                                                         string("    &v590,")),
+                                                                                                                                                  string("    &v591")),
+                                                                                                                                           string("  ).unwrap();")),
+                                                                                                                                    string("  tx.await.into_result().unwrap();")),
+                                                                                                                             string("  let tx = db.transaction_on_one_with_mode(&v588.clone(), indexed_db_futures::prelude::IdbTransactionMode::Readonly);")),
+                                                                                                                      string("  let tx = tx.unwrap();")),
+                                                                                                               string("  let store = tx.object_store(&v588.clone()).unwrap();")),
+                                                                                                        string("  drop(tx);")),
+                                                                                                 string("  db.delete().unwrap();")),
                                                                                           string("  Ok::<(), web_sys::DomException>(())")),
-                                                                                   v657.clone());
-                                                                        let v659 = async move {
+                                                                                   v661.clone());
+                                                                        let v663 = async move {
                                                                             v592(0);
                                                                             let mut db_ref_____ =
                                                                                 v596(v587);
@@ -1722,66 +1795,68 @@ pub mod Client {
                                                                                     &v588.clone(),
                                                                                 )
                                                                                 .unwrap();
+                                                                            drop(tx);
+                                                                            db.delete().unwrap();
                                                                             Ok::<(), web_sys::DomException>(())
                                                                         };
                                                                         async_std::task::block_on(
-                                                                            v659,
+                                                                            v663,
                                                                         );
                                                                         {
-                                                                            let v663:
+                                                                            let v667:
                                                                                     std::string::String =
                                                                                 (&string("https://dummyjson.com/users")).to_string();
-                                                                            let v665:
+                                                                            let v669:
                                                                                     ehttp::Request =
-                                                                                ehttp::Request::get(&v663);
-                                                                            let v666: bool =
+                                                                                ehttp::Request::get(&v667);
+                                                                            let v670: bool =
                                                                                 Client::method25();
-                                                                            let v668:
+                                                                            let v672:
                                                                                     async_std::sync::Mutex<bool> =
-                                                                                async_std::sync::Mutex::new(v666);
-                                                                            let v670:
+                                                                                async_std::sync::Mutex::new(v670);
+                                                                            let v674:
                                                                                     async_std::sync::Condvar =
                                                                                 async_std::sync::Condvar::new();
-                                                                            let v673:
-                                                                                    (async_std::sync::Mutex<bool>, async_std::sync::Condvar) =
-                                                                                Client::method26((v668, v670));
-                                                                            let v675:
-                                                                                    std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
-                                                                                std::sync::Arc::new(v673);
                                                                             let v677:
+                                                                                    (async_std::sync::Mutex<bool>, async_std::sync::Condvar) =
+                                                                                Client::method26((v672, v674));
+                                                                            let v679:
                                                                                     std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
-                                                                                v675.clone();
-                                                                            let v679: Option<
+                                                                                std::sync::Arc::new(v677);
+                                                                            let v681:
+                                                                                    std::sync::Arc<(async_std::sync::Mutex<bool>, async_std::sync::Condvar)> =
+                                                                                v679.clone();
+                                                                            let v683: Option<
                                                                                 ehttp::Response,
                                                                             > = Client::method27(
                                                                                 (&None::<_>)
                                                                                     .clone(),
                                                                             );
-                                                                            let v682:
-                                                                                    async_std::sync::Mutex<Option<ehttp::Response>> =
-                                                                                Client::method28(async_std::sync::Mutex::new(v679));
-                                                                            let v684:
-                                                                                    std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>> =
-                                                                                std::sync::Arc::new(v682);
                                                                             let v686:
-                                                                                    std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
-                                                                                std::cell::RefCell::new(v684);
+                                                                                    async_std::sync::Mutex<Option<ehttp::Response>> =
+                                                                                Client::method28(async_std::sync::Mutex::new(v683));
                                                                             let v688:
+                                                                                    std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>> =
+                                                                                std::sync::Arc::new(v686);
+                                                                            let v690:
                                                                                     std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
-                                                                                v686.clone();
-                                                                            let v706:
+                                                                                std::cell::RefCell::new(v688);
+                                                                            let v692:
+                                                                                    std::cell::RefCell<std::sync::Arc<async_std::sync::Mutex<Option<ehttp::Response>>>> =
+                                                                                v690.clone();
+                                                                            let v710:
                                                                                     string =
-                                                                                append(string("move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v686.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v677;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });"),
-                                                                                       v657.clone());
-                                                                            let v707 =
-                                                                                move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v686.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v677;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });};
-                                                                            let v709 =
-                                                                                Box::new(v707);
+                                                                                append(string("move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v690.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v681;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });"),
+                                                                                       v661.clone());
+                                                                            let v711 =
+                                                                                move |x: ehttp::Result<ehttp::Response>| {  let r = x.clone().unwrap();  *v690.borrow_mut().try_lock().unwrap() = Some(r);  async_std::task::block_on(async move {    let (lock, cvar) = &*v681;    let mut started = lock.lock().await;    *started = true;    cvar.notify_one();  });};
+                                                                            let v713 =
+                                                                                Box::new(v711);
                                                                             ehttp::fetch(
-                                                                                v665, v709,
+                                                                                v669, v713,
                                                                             );
                                                                             {
-                                                                                let v721 =
+                                                                                let v725 =
                                                                                     Func1::new({
                                                                                         let v8 = v8
                                                                                             .clone(
@@ -1792,21 +1867,21 @@ pub mod Client {
                                                                                                        Client::closure3(v8,
                                                                                                                         v_2.clone())
                                                                                     });
-                                                                                let v724:
+                                                                                let v728:
                                                                                         string =
                                                                                     append(append(append(append(append(append(append(v594,
-                                                                                                                                     string("  let (lock, cvar) = &*v675;")),
+                                                                                                                                     string("  let (lock, cvar) = &*v679;")),
                                                                                                                               string("  let mut started = lock.lock().await;")),
                                                                                                                        string("  while !*started {")),
                                                                                                                 string("    started = cvar.wait(started).await;")),
                                                                                                          string("  }")),
-                                                                                                  string("  v721(v688);")),
-                                                                                           v657.clone());
-                                                                                let v725 = async move {
+                                                                                                  string("  v725(v692);")),
+                                                                                           v661.clone());
+                                                                                let v729 = async move {
                                                                                     let (
                                                                                         lock,
                                                                                         cvar,
-                                                                                    ) = &*v675;
+                                                                                    ) = &*v679;
                                                                                     let mut started =
                                                                                         lock.lock()
                                                                                             .await;
@@ -1814,199 +1889,202 @@ pub mod Client {
                                                                                     {
                                                                                         started = cvar.wait(started).await;
                                                                                     }
-                                                                                    v721(v688);
+                                                                                    v725(v692);
                                                                                 };
-                                                                                async_std::task::block_on(v725);
+                                                                                async_std::task::block_on(v729);
                                                                                 {
-                                                                                    let v730:
+                                                                                    let v734:
                                                                                             &'static str =
                                                                                         r#"https://time.is"#.clone();
-                                                                                    let v732:
+                                                                                    let v736:
                                                                                             futures_signals::signal::Mutable<&'static str> =
-                                                                                        futures_signals::signal::Mutable::new(v730);
-                                                                                    let v734:
+                                                                                        futures_signals::signal::Mutable::new(v734);
+                                                                                    let v738:
                                                                                             std::rc::Rc<futures_signals::signal::Mutable<&'static str>> =
-                                                                                        std::rc::Rc::new(v732);
-                                                                                    let v737: &str =
+                                                                                        std::rc::Rc::new(v736);
+                                                                                    let v741: &str =
                                                                                         r#"input"#;
-                                                                                    let v739:
+                                                                                    let v743:
                                                                                             dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                        dominator::DomBuilder::new_html(&v737);
-                                                                                    let v742: &str =
+                                                                                        dominator::DomBuilder::new_html(&v741);
+                                                                                    let v746: &str =
                                                                                         r#"color"#;
-                                                                                    let v745: &str =
+                                                                                    let v749: &str =
                                                                                         r#"#666"#;
-                                                                                    let v750:
+                                                                                    let v754:
                                                                                             string =
                                                                                         append(append(string("dominator::class! {"),
                                                                                                       append(v66.clone(),
-                                                                                                             string(" .style(v742, v745) "))),
-                                                                                               v657.clone());
-                                                                                    let v751 = dominator::class! { .style(v742, v745) };
-                                                                                    let v753:
+                                                                                                             string(" .style(v746, v749) "))),
+                                                                                               v661.clone());
+                                                                                    let v755 = dominator::class! { .style(v746, v749) };
+                                                                                    let v757:
                                                                                             dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                        v739.class(&*v751);
-                                                                                    let v756: &str = r#"placeholder"#;
-                                                                                    let v759: &str =
+                                                                                        v743.class(&*v755);
+                                                                                    let v760: &str = r#"placeholder"#;
+                                                                                    let v763: &str =
                                                                                         r#"url"#;
-                                                                                    let v761:
+                                                                                    let v765:
                                                                                             dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                        v753.attr(v756, v759);
-                                                                                    let v763:
+                                                                                        v757.attr(v760, v763);
+                                                                                    let v767:
                                                                                             futures_signals::signal::MutableSignal<&'static str> =
-                                                                                        v734.signal();
-                                                                                    let v765: &str =
+                                                                                        v738.signal();
+                                                                                    let v769: &str =
                                                                                         r#"value"#;
-                                                                                    let v766:
+                                                                                    let v770:
                                                                                             futures_signals::signal::MutableSignal<&'static str> =
-                                                                                        Client::method29(v763);
-                                                                                    let v768:
+                                                                                        Client::method29(v767);
+                                                                                    let v772:
                                                                                             dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                        v761.prop_signal(v765, v766);
-                                                                                    let v770 =
-                                                                                        Func1::new(
-                                                                                            {
-                                                                                                let v734
-                                                                                                           =
-                                                                                                           v734.clone();
-                                                                                                move
-                                                                                                           |v_3:
-                                                                                                                std::rc::Rc<web_sys::HtmlInputElement>|
-                                                                                                           Client::closure4(v734.clone(),
-                                                                                                                            v_3.clone())
-                                                                                            },
-                                                                                        );
-                                                                                    let v797:
+                                                                                        v765.prop_signal(v769, v770);
+                                                                                    let v774 =
+                                                                                        Client::method30(v738.clone());
+                                                                                    let v811:
                                                                                             string =
-                                                                                        append(append(append(append(string("dominator::with_node!(   v768,   element => {      "),
-                                                                                                                    append(string(".event(dominator::clone!(  v770 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v770(el);   }))"),
+                                                                                        append(append(append(append(string("dominator::with_node!(   v772,   element => {      "),
+                                                                                                                    append(string(".event(dominator::clone!(  v774 => move |_: dominator::events::Input| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v774(el);   }))"),
                                                                                                                            v66.clone())),
                                                                                                              string(" ")),
                                                                                                       string("   }")),
                                                                                                string(")"));
-                                                                                    let v798:
+                                                                                    let v812:
                                                                                             dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                        dominator::with_node!(   v768,   element => {      .event(dominator::clone!(  v770 => move |_: dominator::events::Input| {    let element_ = std::rc::Rc::new(&element);     let el = (*element_).clone().into();     v770(el);   }))    });
-                                                                                    let v800:
+                                                                                        dominator::with_node!(   v772,   element => {      .event(dominator::clone!(  v774 => move |_: dominator::events::Input| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v774(el);   }))    });
+                                                                                    let v814:
                                                                                             dominator::Dom =
-                                                                                        v798.into_dom();
-                                                                                    let v803: &str =
+                                                                                        v812.into_dom();
+                                                                                    let v817: &str =
                                                                                         r#"iframe"#;
-                                                                                    let v805:
+                                                                                    let v819:
                                                                                             dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        dominator::DomBuilder::new_html(&v803);
-                                                                                    let v807: &str =
-                                                                                        r#"width"#;
-                                                                                    let v809: &str =
-                                                                                        r#"100%"#;
-                                                                                    let v811:
-                                                                                            string =
-                                                                                        append(v66.clone(),
-                                                                                               string(" .style(v807, v809) "));
-                                                                                    let v813: &str =
-                                                                                        r#"flex"#;
-                                                                                    let v816: &str =
-                                                                                        r#"1"#;
-                                                                                    let v818:
-                                                                                            string =
-                                                                                        append(v811,
-                                                                                               string(" .style(v813, v816) "));
+                                                                                        dominator::DomBuilder::new_html(&v817);
                                                                                     let v821: &str =
-                                                                                        r#"border"#;
+                                                                                        r#"width"#;
                                                                                     let v823: &str =
-                                                                                        r#"0"#;
-                                                                                    let v828:
-                                                                                            string =
-                                                                                        append(append(string("dominator::class! {"),
-                                                                                                      append(v818,
-                                                                                                             string(" .style(v821, v823) "))),
-                                                                                               v657.clone());
-                                                                                    let v829 = dominator::class! { .style(v807, v809)  .style(v813, v816)  .style(v821, v823) };
-                                                                                    let v831:
-                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        v805.class(&*v829);
-                                                                                    let v834: &str =
-                                                                                        r#"title"#;
-                                                                                    let v836: &str =
-                                                                                        r#"title"#;
-                                                                                    let v838:
-                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        v831.attr(v834, v836);
-                                                                                    let v840:
-                                                                                            futures_signals::signal::MutableSignal<&'static str> =
-                                                                                        v734.signal();
-                                                                                    let v843: &str =
-                                                                                        r#"src"#;
-                                                                                    let v844:
-                                                                                            futures_signals::signal::MutableSignal<&'static str> =
-                                                                                        Client::method29(v840);
-                                                                                    let v846:
-                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        v838.prop_signal(v843, v844);
-                                                                                    let v848:
-                                                                                            dominator::Dom =
-                                                                                        v846.into_dom();
-                                                                                    let v851: &str =
-                                                                                        r#"div"#;
-                                                                                    let v853:
-                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        dominator::DomBuilder::new_html(&v851);
-                                                                                    let v856: &str = r#"background-color"#;
-                                                                                    let v858: &str =
-                                                                                        r#"#666"#;
-                                                                                    let v860:
+                                                                                        r#"100%"#;
+                                                                                    let v825:
                                                                                             string =
                                                                                         append(v66.clone(),
-                                                                                               string(" .style(v856, v858) "));
-                                                                                    let v862: &str =
-                                                                                        r#"display"#;
-                                                                                    let v864: &str =
+                                                                                               string(" .style(v821, v823) "));
+                                                                                    let v827: &str =
                                                                                         r#"flex"#;
-                                                                                    let v866:
-                                                                                            string =
-                                                                                        append(v860,
-                                                                                               string(" .style(v862, v864) "));
-                                                                                    let v868: &str =
-                                                                                        r#"flex"#;
-                                                                                    let v870: &str =
+                                                                                    let v830: &str =
                                                                                         r#"1"#;
-                                                                                    let v872:
+                                                                                    let v832:
                                                                                             string =
-                                                                                        append(v866,
-                                                                                               string(" .style(v868, v870) "));
-                                                                                    let v874: &str = r#"flex-direction"#;
-                                                                                    let v877: &str =
-                                                                                        r#"column"#;
-                                                                                    let v882:
+                                                                                        append(v825,
+                                                                                               string(" .style(v827, v830) "));
+                                                                                    let v835: &str =
+                                                                                        r#"border"#;
+                                                                                    let v837: &str =
+                                                                                        r#"0"#;
+                                                                                    let v842:
                                                                                             string =
                                                                                         append(append(string("dominator::class! {"),
-                                                                                                      append(v872,
-                                                                                                             string(" .style(v874, v877) "))),
-                                                                                               v657);
-                                                                                    let v883 = dominator::class! { .style(v856, v858)  .style(v862, v864)  .style(v868, v870)  .style(v874, v877) };
-                                                                                    let v885:
+                                                                                                      append(v832,
+                                                                                                             string(" .style(v835, v837) "))),
+                                                                                               v661.clone());
+                                                                                    let v843 = dominator::class! { .style(v821, v823)  .style(v827, v830)  .style(v835, v837) };
+                                                                                    let v845:
                                                                                             dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        v853.class(&*v883);
-                                                                                    let v893:
+                                                                                        v819.class(&*v843);
+                                                                                    let v848: &str =
+                                                                                        r#"title"#;
+                                                                                    let v850: &str =
+                                                                                        r#"title"#;
+                                                                                    let v852:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v845.attr(v848, v850);
+                                                                                    let v854:
+                                                                                            futures_signals::signal::MutableSignal<&'static str> =
+                                                                                        v738.signal();
+                                                                                    let v857: &str =
+                                                                                        r#"src"#;
+                                                                                    let v858:
+                                                                                            futures_signals::signal::MutableSignal<&'static str> =
+                                                                                        Client::method29(v854);
+                                                                                    let v860:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v852.prop_signal(v857, v858);
+                                                                                    let v862 =
+                                                                                        Client::method31(v8,
+                                                                                                         v738);
+                                                                                    let v899:
+                                                                                            string =
+                                                                                        append(append(append(append(string("dominator::with_node!(   v860,   element => {      "),
+                                                                                                                    append(string(".event(dominator::clone!(  v862 => move |_: dominator::events::Change| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v862(el);   }))"),
+                                                                                                                           v66.clone())),
+                                                                                                             string(" ")),
+                                                                                                      string("   }")),
+                                                                                               string(")"));
+                                                                                    let v900:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        dominator::with_node!(   v860,   element => {      .event(dominator::clone!(  v862 => move |_: dominator::events::Load| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v862(el);   }))    });
+                                                                                    let v902:
+                                                                                            dominator::Dom =
+                                                                                        v900.into_dom();
+                                                                                    let v905: &str =
+                                                                                        r#"div"#;
+                                                                                    let v907:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        dominator::DomBuilder::new_html(&v905);
+                                                                                    let v910: &str = r#"background-color"#;
+                                                                                    let v912: &str =
+                                                                                        r#"#666"#;
+                                                                                    let v914:
+                                                                                            string =
+                                                                                        append(v66.clone(),
+                                                                                               string(" .style(v910, v912) "));
+                                                                                    let v916: &str =
+                                                                                        r#"display"#;
+                                                                                    let v918: &str =
+                                                                                        r#"flex"#;
+                                                                                    let v920:
+                                                                                            string =
+                                                                                        append(v914,
+                                                                                               string(" .style(v916, v918) "));
+                                                                                    let v922: &str =
+                                                                                        r#"flex"#;
+                                                                                    let v924: &str =
+                                                                                        r#"1"#;
+                                                                                    let v926:
+                                                                                            string =
+                                                                                        append(v920,
+                                                                                               string(" .style(v922, v924) "));
+                                                                                    let v928: &str = r#"flex-direction"#;
+                                                                                    let v931: &str =
+                                                                                        r#"column"#;
+                                                                                    let v936:
+                                                                                            string =
+                                                                                        append(append(string("dominator::class! {"),
+                                                                                                      append(v926,
+                                                                                                             string(" .style(v928, v931) "))),
+                                                                                               v661);
+                                                                                    let v937 = dominator::class! { .style(v910, v912)  .style(v916, v918)  .style(v922, v924)  .style(v928, v931) };
+                                                                                    let v939:
+                                                                                            dominator::DomBuilder<web_sys::HtmlElement> =
+                                                                                        v907.class(&*v937);
+                                                                                    let v947:
                                                                                             string =
                                                                                         append(append(string("["),
                                                                                                       append(append(v66,
-                                                                                                                    string("v800")),
-                                                                                                             string(", v848"))),
+                                                                                                                    string("v814")),
+                                                                                                             string(", v902"))),
                                                                                                string("]"));
-                                                                                    let v894 = [
-                                                                                        v800, v848,
+                                                                                    let v948 = [
+                                                                                        v814, v902,
                                                                                     ];
-                                                                                    let v896:
+                                                                                    let v950:
                                                                                             dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        v885.children(v894);
-                                                                                    let v898:
+                                                                                        v939.children(v948);
+                                                                                    let v952:
                                                                                             dominator::Dom =
-                                                                                        v896.into_dom();
-                                                                                    let v900:
+                                                                                        v950.into_dom();
+                                                                                    let v954:
                                                                                             web_sys::HtmlElement =
                                                                                         dominator::body();
-                                                                                    dominator::append_dom(&v900, v898);
+                                                                                    dominator::append_dom(&v954, v952);
                                                                                     Client::method3(v8,
                                                                                                     array(&[Client::method1(string("app end")),
                                                                                                             Client::method1(string("???"))]));
