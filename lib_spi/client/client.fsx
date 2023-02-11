@@ -1480,7 +1480,7 @@ and closure6 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Muta
     let v7 : string = v5 + v6
     let v8 : string = "let value0 = (*value0).clone(); "
     let v9 : string = v7 + v8
-    let v10 : string = "let value0 = value0.content_document().unwrap().location().unwrap().href().unwrap();"
+    let v10 : string = "let value0 = value0.content_window().unwrap().origin();"
     let v11 : string = v9 + v10
     let v12 : string = "let value0 = value0.into_boxed_str();"
     let v13 : string = v11 + v12

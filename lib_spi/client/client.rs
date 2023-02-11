@@ -1168,13 +1168,7 @@ pub mod Client {
         let value0 = &&v2;
         let dom = value0;
         let value0 = (*value0).clone();
-        let value0 = value0
-            .content_document()
-            .unwrap()
-            .location()
-            .unwrap()
-            .href()
-            .unwrap();
+        let value0 = value0.content_window().unwrap().origin();
         let value0 = value0.into_boxed_str();
         let value0 = Box::leak(value0);
         v16(value0);
