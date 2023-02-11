@@ -1478,27 +1478,49 @@ and closure6 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Muta
     let v5 : string = v3 + v4
     let v6 : string = "let dom = value0;"
     let v7 : string = v5 + v6
-    let v8 : string = "let value0 = (*value0).clone(); "
+    let v8 : string = "let value0_ = (*value0).clone(); "
     let v9 : string = v7 + v8
-    let v10 : string = "let value0 = value0.content_window().unwrap().origin();"
+    let v10 : string = "let value0 = value0_.content_document();"
     let v11 : string = v9 + v10
-    let v12 : string = "let value0 = value0.into_boxed_str();"
+    let v12 : string = "let value0 = value0.unwrap_or("
     let v13 : string = v11 + v12
-    let v14 : string = "let value0 = Box::leak(value0);"
+    let v14 : string = "    value0_"
     let v15 : string = v13 + v14
-    let v16 : (Types.Ref<Types.Str> -> unit) = closure7()
-    let v17 : string = "v16(value0);"
-    let v18 : string = v15 + v17
-    let v19 : string = "if value0 != \"\" {"
-    let v20 : string = v18 + v19
-    let v21 : (Types.StaticRef<Types.Str> -> unit) = closure8(v0, v1)
-    let v22 : string = "  v21(value0);"
-    let v23 : string = v20 + v22
-    let v24 : string = "}"
+    let v16 : string = "      .content_window()"
+    let v17 : string = v15 + v16
+    let v18 : string = "      .unwrap()"
+    let v19 : string = v17 + v18
+    let v20 : string = "      .document()"
+    let v21 : string = v19 + v20
+    let v22 : string = "      .unwrap()"
+    let v23 : string = v21 + v22
+    let v24 : string = ");"
     let v25 : string = v23 + v24
-    let v26 : string = "()"
+    let v26 : string = "let value0 = value0.location();"
     let v27 : string = v25 + v26
-    Fable.Core.Rust.emitExpr v2 v27
+    let v28 : string = "let value0 = value0.unwrap();"
+    let v29 : string = v27 + v28
+    let v30 : string = "let value0 = value0.href();"
+    let v31 : string = v29 + v30
+    let v32 : string = "let value0 = value0.unwrap_or(std::string::String::new());"
+    let v33 : string = v31 + v32
+    let v34 : string = "let value0 = value0.into_boxed_str();"
+    let v35 : string = v33 + v34
+    let v36 : string = "let value0 = Box::leak(value0);"
+    let v37 : string = v35 + v36
+    let v38 : (Types.Ref<Types.Str> -> unit) = closure7()
+    let v39 : string = "v38(value0);"
+    let v40 : string = v37 + v39
+    let v41 : string = "if value0 != \"\" {"
+    let v42 : string = v40 + v41
+    let v43 : (Types.StaticRef<Types.Str> -> unit) = closure8(v0, v1)
+    let v44 : string = "  v43(value0);"
+    let v45 : string = v42 + v44
+    let v46 : string = "}"
+    let v47 : string = v45 + v46
+    let v48 : string = "()"
+    let v49 : string = v47 + v48
+    Fable.Core.Rust.emitExpr v2 v49
     ()
 and method31 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Mutable<Types.StaticRef<Types.Str>>>) : (Types.std.rc.Rc<Types.web_sys.HtmlIFrameElement> -> unit) =
     closure6(v0, v1)

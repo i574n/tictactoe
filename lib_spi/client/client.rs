@@ -1157,23 +1157,28 @@ pub mod Client {
         v1: std::rc::Rc<futures_signals::signal::Mutable<&'static str>>,
         v2: std::rc::Rc<web_sys::HtmlIFrameElement>,
     ) {
-        fn v16(v: &str) {
+        fn v38(v: &str) {
             Client::closure7((), v);
         }
-        let v21 = Func1::new({
+        let v43 = Func1::new({
             let v0_1 = v0_1.clone();
             let v1 = v1.clone();
             move |v_1: &'static str| Client::closure8(v0_1, v1.clone(), v_1.clone())
         });
         let value0 = &&v2;
         let dom = value0;
-        let value0 = (*value0).clone();
-        let value0 = value0.content_window().unwrap().origin();
+        let value0_ = (*value0).clone();
+        let value0 = value0_.content_document();
+        let value0 = value0.unwrap_or(value0_.content_window().unwrap().document().unwrap());
+        let value0 = value0.location();
+        let value0 = value0.unwrap();
+        let value0 = value0.href();
+        let value0 = value0.unwrap_or(std::string::String::new());
         let value0 = value0.into_boxed_str();
         let value0 = Box::leak(value0);
-        v16(value0);
+        v38(value0);
         if value0 != "" {
-            v21(value0);
+            v43(value0);
         }
         ();
         ()

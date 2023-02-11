@@ -838,10 +838,12 @@ inl with_node forall t e.
             $"\"    let t = t.unwrap(); \"" +\
             $"\"    let t = wasm_bindgen::JsCast::dyn_into(t).unwrap(); \"" +\
             $"\"    let el = t; \"" +\
+
             // $"\"    let el = &element; \"" +\
             // $"\"    let el = (*el).clone(); \"" +\
             // $"\"    let el = wasm_bindgen::JsCast::dyn_into(el); \"" +\
             // $"\"    let el = el.unwrap(); \"" +\
+
             $"\"    let el = std::rc::Rc::new(el); \"" +\
             $"\"    !event(el); \"" +\
             $"\"  }\"" +\
@@ -892,10 +894,24 @@ inl with_load_event forall t.
             ($"\"\"" +\
             $"\"let value0 = &$0;\"" +\
             $"\"let dom = value0;\"" +\
-            $"\"let value0 = (*value0).clone(); \"" +\
-            $"\"let value0 = value0.content_window().unwrap().origin();\"" +\
+            $"\"let value0_ = (*value0).clone(); \"" +\
+
+            $"\"let value0 = value0_.content_document();\"" +\
+            $"\"let value0 = value0.unwrap_or(\"" +\
+            $"\"    value0_\"" +\
+            $"\"      .content_window()\"" +\
+            $"\"      .unwrap()\"" +\
+            $"\"      .document()\"" +\
+            $"\"      .unwrap()\"" +\
+            $"\");\"" +\
+            $"\"let value0 = value0.location();\"" +\
+            $"\"let value0 = value0.unwrap();\"" +\
+            $"\"let value0 = value0.href();\"" +\
+            $"\"let value0 = value0.unwrap_or(std::string::String::new());\"" +\
+
             // $"\"let value0 = value0.as_string();\"" +\
             // $"\"let value0 = value0.unwrap_or(std::string::String::new());\"" +\
+
             $"\"let value0 = value0.into_boxed_str();\"" +\
             $"\"let value0 = Box::leak(value0);\"" +\
             $"\"!log'(value0);\"" +\
