@@ -1480,7 +1480,7 @@ and closure6 (v0 : int64, v1 : Types.std.rc.Rc<Types.futures_signals.signal.Muta
     let v7 : string = v5 + v6
     let v8 : string = "let value0 = (*value0).clone(); "
     let v9 : string = v7 + v8
-    let v10 : string = "let value0 = value0.src();"
+    let v10 : string = "let value0 = value0.content_document().unwrap().location().unwrap().href().unwrap();"
     let v11 : string = v9 + v10
     let v12 : string = "let value0 = value0.into_boxed_str();"
     let v13 : string = v11 + v12
@@ -2266,18 +2266,18 @@ and closure0 () () : int32 =
     let v773 : string = "dominator::events::Input"
     let v774 : (Types.std.rc.Rc<Types.web_sys.HtmlInputElement> -> unit) = method30(v8, v738)
     let v775 : string = ".event(dominator::clone!("
-    let v776 : string = "  v774 => move |_: "
+    let v776 : string = "  v774 => move |e: "
     let v777 : string = v775 + v776
     let v778 : string = v777 + v773
     let v779 : string = "| {"
     let v780 : string = v778 + v779
-    let v781 : string = "    let el = &element; "
+    let v781 : string = "    let t = e.target(); "
     let v782 : string = v780 + v781
-    let v783 : string = "    let el = (*el).clone(); "
+    let v783 : string = "    let t = t.unwrap(); "
     let v784 : string = v782 + v783
-    let v785 : string = "    let el = wasm_bindgen::JsCast::dyn_into(el); "
+    let v785 : string = "    let t = wasm_bindgen::JsCast::dyn_into(t).unwrap(); "
     let v786 : string = v784 + v785
-    let v787 : string = "    let el = el.unwrap(); "
+    let v787 : string = "    let el = t; "
     let v788 : string = v786 + v787
     let v789 : string = "    let el = std::rc::Rc::new(el); "
     let v790 : string = v788 + v789
@@ -2354,18 +2354,18 @@ and closure0 () () : int32 =
     let v861 : string = "dominator::events::Load"
     let v862 : (Types.std.rc.Rc<Types.web_sys.HtmlIFrameElement> -> unit) = method31(v8, v738)
     let v863 : string = ".event(dominator::clone!("
-    let v864 : string = "  v862 => move |_: "
+    let v864 : string = "  v862 => move |e: "
     let v865 : string = v863 + v864
     let v866 : string = v865 + v861
     let v867 : string = "| {"
     let v868 : string = v866 + v867
-    let v869 : string = "    let el = &element; "
+    let v869 : string = "    let t = e.target(); "
     let v870 : string = v868 + v869
-    let v871 : string = "    let el = (*el).clone(); "
+    let v871 : string = "    let t = t.unwrap(); "
     let v872 : string = v870 + v871
-    let v873 : string = "    let el = wasm_bindgen::JsCast::dyn_into(el); "
+    let v873 : string = "    let t = wasm_bindgen::JsCast::dyn_into(t).unwrap(); "
     let v874 : string = v872 + v873
-    let v875 : string = "    let el = el.unwrap(); "
+    let v875 : string = "    let el = t; "
     let v876 : string = v874 + v875
     let v877 : string = "    let el = std::rc::Rc::new(el); "
     let v878 : string = v876 + v877

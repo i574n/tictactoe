@@ -1168,7 +1168,13 @@ pub mod Client {
         let value0 = &&v2;
         let dom = value0;
         let value0 = (*value0).clone();
-        let value0 = value0.src();
+        let value0 = value0
+            .content_document()
+            .unwrap()
+            .location()
+            .unwrap()
+            .href()
+            .unwrap();
         let value0 = value0.into_boxed_str();
         let value0 = Box::leak(value0);
         v16(value0);
@@ -2115,14 +2121,14 @@ pub mod Client {
                                                                                     let v811:
                                                                                             string =
                                                                                         append(append(append(append(string("dominator::with_node!(   v772,   element => {      "),
-                                                                                                                    append(string(".event(dominator::clone!(  v774 => move |_: dominator::events::Input| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v774(el);   }))"),
+                                                                                                                    append(string(".event(dominator::clone!(  v774 => move |e: dominator::events::Input| {    let t = e.target();     let t = t.unwrap();     let t = wasm_bindgen::JsCast::dyn_into(t).unwrap();     let el = t;     let el = std::rc::Rc::new(el);     v774(el);   }))"),
                                                                                                                            v66.clone())),
                                                                                                              string(" ")),
                                                                                                       string("   }")),
                                                                                                string(")"));
                                                                                     let v812:
                                                                                             dominator::DomBuilder<web_sys::HtmlInputElement> =
-                                                                                        dominator::with_node!(   v772,   element => {      .event(dominator::clone!(  v774 => move |_: dominator::events::Input| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v774(el);   }))    });
+                                                                                        dominator::with_node!(   v772,   element => {      .event(dominator::clone!(  v774 => move |e: dominator::events::Input| {    let t = e.target();     let t = t.unwrap();     let t = wasm_bindgen::JsCast::dyn_into(t).unwrap();     let el = t;     let el = std::rc::Rc::new(el);     v774(el);   }))    });
                                                                                     let v814:
                                                                                             dominator::Dom =
                                                                                         v812.into_dom();
@@ -2185,14 +2191,14 @@ pub mod Client {
                                                                                     let v899:
                                                                                             string =
                                                                                         append(append(append(append(string("dominator::with_node!(   v860,   element => {      "),
-                                                                                                                    append(string(".event(dominator::clone!(  v862 => move |_: dominator::events::Load| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v862(el);   }))"),
+                                                                                                                    append(string(".event(dominator::clone!(  v862 => move |e: dominator::events::Load| {    let t = e.target();     let t = t.unwrap();     let t = wasm_bindgen::JsCast::dyn_into(t).unwrap();     let el = t;     let el = std::rc::Rc::new(el);     v862(el);   }))"),
                                                                                                                            v66.clone())),
                                                                                                              string(" ")),
                                                                                                       string("   }")),
                                                                                                string(")"));
                                                                                     let v900:
                                                                                             dominator::DomBuilder<web_sys::HtmlElement> =
-                                                                                        dominator::with_node!(   v860,   element => {      .event(dominator::clone!(  v862 => move |_: dominator::events::Load| {    let el = &element;     let el = (*el).clone();     let el = wasm_bindgen::JsCast::dyn_into(el);     let el = el.unwrap();     let el = std::rc::Rc::new(el);     v862(el);   }))    });
+                                                                                        dominator::with_node!(   v860,   element => {      .event(dominator::clone!(  v862 => move |e: dominator::events::Load| {    let t = e.target();     let t = t.unwrap();     let t = wasm_bindgen::JsCast::dyn_into(t).unwrap();     let el = t;     let el = std::rc::Rc::new(el);     v862(el);   }))    });
                                                                                     let v902:
                                                                                             dominator::Dom =
                                                                                         v900.into_dom();
