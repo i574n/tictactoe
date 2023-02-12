@@ -21,6 +21,7 @@ path = "./lib_spi/cli/main.rs"
 
 members = [
     "lib_spi/supervisor",
+    "lib_spi/proxy",
     "lib_spi/cli",
     "lib_spi/client",
 ]

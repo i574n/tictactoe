@@ -9,6 +9,8 @@ modules:
         util
     supervisor/
         supervisor
+    proxy/
+        proxy
     cli/
         cli
     client/

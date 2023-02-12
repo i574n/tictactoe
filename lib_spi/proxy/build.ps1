@@ -6,8 +6,8 @@ dotnet fable `
     --outDir "$PSScriptRoot"
 
 . "$PSScriptRoot/../cli/build.ps1"
-. "$PSScriptRoot/../../target/release/cli" PostFsxRsBuild -- --rs-path="$PSScriptRoot/client.rs"
+. "$PSScriptRoot/../../target/release/cli" PostFsxRsBuild -- --rs-path="$PSScriptRoot/proxy.rs"
 
 cargo fmt
 
-~/.cargo/bin/wasm-pack build --target web --dev "$PSScriptRoot"
+cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"

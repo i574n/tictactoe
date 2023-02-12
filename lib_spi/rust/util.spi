@@ -989,7 +989,40 @@ inl db_open (name : string) : open_db_request =
 
 
 
+inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) : result' () io_error =
+    emit_expr (reader, join fn) $"\"($0).borrow_mut().for_each(move |x| $1(x.to_vec()))\""
 
+inl read_lines (path : path_buf) : list string =
+    inl get_locals () = ;[!>"> read_lines ()"]
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "881749"
+
+    inl path_clean = path |> path_canonicalize
+    log Debug ;[!>"path_clean"; !>(path_clean |> path_display)]
+
+    inl file : result' file io_error = emit_expr path_clean "std::fs::File::open($0)"
+    inl file : ref' file = !!file
+
+    inl reader : ref_cell (linereader (ref' file)) = emit_expr file "std::cell::RefCell::new(linereader::LineReader::new($0))"
+    log Debug ;[!>"reader"; !>(reader |> format)]
+
+    inl lines_list : mut (list std_string) = mut Nil
+
+    (reader
+        |> for_each fun (line : vec u8) =>
+            log Verbose ;[!>"line len"; !>(line |> len)]
+            lines_list <- (line |> from_utf8) :: *lines_list
+            $"Ok true"
+        |> (~!!) : unit')
+    |> ignore
+
+    inl lines =
+        *lines_list
+        |> listm.rev
+        |> listm.map to_string''''
+
+    log Debug ;[!>"lines len"; !>(lines |> listm.length : i32)]
+
+    lines
 
 
 

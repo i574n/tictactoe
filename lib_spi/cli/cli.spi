@@ -1,61 +1,11 @@
 open rust.util
 
 
-inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) : result' () io_error =
-    emit_expr (reader, join fn) $"\"($0).borrow_mut().for_each(move |x| $1(x.to_vec()))\""
+inl post_fsx_rs_build (rs_path : ref' std_string) =
+    inl get_locals () = ;[!>"> post_fsx_rs_build ()"]
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "666666"
 
-inl read_lines (path : path_buf) : list string =
-    inl get_locals () = ;[!>"> read_lines ()"]
-    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "881749"
-
-    inl path_clean = path |> path_canonicalize
-    log Debug ;[!>"path_clean"; !>(path_clean |> path_display)]
-
-    inl file : result' file io_error = emit_expr path_clean "std::fs::File::open($0)"
-    inl file : ref' file = !!file
-
-    inl reader : ref_cell (linereader (ref' file)) = emit_expr file "std::cell::RefCell::new(linereader::LineReader::new($0))"
-    log Debug ;[!>"reader"; !>(reader |> format)]
-
-    inl lines_list : mut (list std_string) = mut Nil
-
-    (reader
-        |> for_each fun (line : vec u8) =>
-            log Verbose ;[!>"line len"; !>(line |> len)]
-            lines_list <- (line |> from_utf8) :: *lines_list
-            $"Ok true"
-        |> (~!!) : unit')
-    |> ignore
-
-    inl lines =
-        *lines_list
-        |> listm.rev
-        |> listm.map to_string''''
-
-    log Debug ;[!>"lines len"; !>(lines |> listm.length : i32)]
-
-    lines
-
-inl app () =
-    inl get_locals () = ;[!>"> app ()"]
-    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "387957"
-
-    inl name, sub_matches : ref' str * ref' clap_arg_matches =
-        new_clap_command "app1"
-        |> add_clap_subcommand (
-            new_clap_command "PostFsxRsBuild"
-            |> add_clap_arg (new_clap_arg "rs-path")
-        )
-        |> add_clap_subcommand (
-            new_clap_command "SpiFsxBuild"
-            |> add_clap_arg (new_clap_arg "spi-path")
-            |> add_clap_arg (new_clap_arg "fsx-path")
-        )
-        |> get_clap_matches
-        |> matches_subcommand
-        |> unwrap_as_ref
-
-    inl rs_path = sub_matches |> get_clap_one "rs-path" |> to_path_buf
+    inl rs_path = rs_path |> to_path_buf
     inl rs_path_clean = rs_path |> path_canonicalize
 
     log Debug ;[!>"rs_path_clean"; !>rs_path_clean]
@@ -85,6 +35,37 @@ inl app () =
 
     (!!(fs_write rs_path_clean text) : unit') |> ignore
     log Debug ;[!>"> fs_write rs_path_clean text; ok"]
+
+
+inl app () =
+    inl get_locals () = ;[!>"> app ()"]
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "387957"
+
+    inl name, sub_matches : ref' str * ref' clap_arg_matches =
+        new_clap_command "app1"
+        |> add_clap_subcommand (
+            new_clap_command "PostFsxRsBuild"
+            |> add_clap_arg (new_clap_arg "rs-path")
+        )
+        |> add_clap_subcommand (
+            new_clap_command "SpiFsxBuild"
+            |> add_clap_arg (new_clap_arg "spi-path")
+            |> add_clap_arg (new_clap_arg "fsx-path")
+        )
+        |> get_clap_matches
+        |> matches_subcommand
+        |> unwrap_as_ref
+
+    match name |> to_string''' with
+    | "PostFsxRsBuild" =>
+        inl rs_path = sub_matches |> get_clap_one "rs-path"
+        post_fsx_rs_build rs_path
+    | "SpiFsxBuild" =>
+        // inl spi_path = sub_matches |> get_clap_one "spi-path"
+        // inl fsx_path = sub_matches |> get_clap_one "fsx-path"
+        // spi_fsx_build spi_path fsx_path
+        ()
+    | _ => ()
 
     0i32
 

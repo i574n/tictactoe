@@ -3,6 +3,7 @@
 name = "client"
 version = "0.0.1"
 edition = "2021"
+workspace = "../../"
 build = "build.rs"
 
 [lib]

@@ -1,0 +1,74 @@
+open rust.util
+
+
+inl init () =
+    // inl get_locals () = ;[!>"> init ()"]
+    // inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "387957"
+
+    // emit_expr () $"\"#[macro_use] extern crate rocket\""
+
+    emit_expr
+        ()
+        ($"\"#[rocket::get(\\\"/<uri..>\\\")]\"" +\
+        $"\" async fn proxy(\"" +\
+        $"\"   uri: rocket::http::uri::Segments<'_, rocket::http::uri::fmt::Path>,\"" +\
+        $"\"   client: &rocket::State<reqwest::Client>\"" +\
+        $"\" ) -> Result<rocket::response::content::RawHtml<String>, rocket::http::Status> {\"" +\
+        $"\"   let uri : String = match uri.clone().get(0).unwrap().find(\\\":\\\") {\"" +\
+        $"\"     Some(_) => uri.clone().skip(1).collect::<Vec<_>>().join(\\\"/\\\"),\"" +\
+        $"\"     None => format!!(\\\"github.com/{}\\\", uri.clone().collect::<Vec<_>>().join(\\\"/\\\"))\"" +\
+        $"\"   };\"" +\
+        $"\"   let uri = format!!(\\\"https://{}\\\", uri);\"" +\
+        $"\"   let res = client\"" +\
+        $"\"     .get(uri)\"" +\
+        $"\"     .send()\"" +\
+        $"\"     .await\"" +\
+        $"\"     .map_err(|_| rocket::http::Status::NotFound);\"" +\
+        $"\"   match res {\"" +\
+        $"\"       Ok(res) => {\"" +\
+        $"\"           let content = res.text();\"" +\
+        $"\"           let content = content.await;\"" +\
+        $"\"           let content = content.map_err(|_| rocket::http::Status::InternalServerError);\"" +\
+        $"\"           let content = content.unwrap();\"" +\
+        $"\"           Ok(rocket::response::content::RawHtml(content))\"" +\
+        $"\"       }\"" +\
+        $"\"       Err(status) => Err(status),\"" +\
+        $"\"   }\"" +\
+        $"\"} ()\"")
+
+    emit_expr
+        ()
+        ($"\"#[rocket::get(\\\"/file/<file..>\\\")]\"" +\
+        $"\" async fn file(\"" +\
+        $"\"   file: std::path::PathBuf,\"" +\
+        $"\"   client: &rocket::State<reqwest::Client>\"" +\
+        $"\" ) -> std::option::Option<rocket::fs::NamedFile> {\"" +\
+        $"\"   rocket::fs::NamedFile::open(std::path::Path::new(\\\"./\\\").join(file))\"" +\
+        $"\"     .await\"" +\
+        $"\"     .ok()\"" +\
+        $"\"} ()\"")
+
+    emit_expr
+        ()
+        ($"\"#[rocket::launch]\"" +\
+        $"\" fn rocket() -> _ {\"" +\
+        $"\"    rocket::build()\"" +\
+        $"\"      .manage(reqwest::Client::new())\"" +\
+        $"\"      .mount(\\\"/\\\", rocket::routes!![proxy, file])\"" +\
+        $"\"} ()\"")
+
+    ()
+
+inl main () =
+    print_static "<proxy>"
+
+    // emit_expr () $"\"#[macro_use] extern crate rocket\""
+
+    // init ()
+    inl app2 = init
+
+    app2
+    |> dyn
+    |> ignore
+
+    print_static "</proxy>"
