@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: perl -i -pe 's/src="\/tictactoe\//src="\//g' index.html
+      - run: perl -i -pe 's/"\/tictactoe\//"\//g' ./*
 
       - uses: actions/upload-artifact@v2
         with:
