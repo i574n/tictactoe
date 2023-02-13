@@ -76,7 +76,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: dist
+          name: gh-pages
           path: lib_spi/client/dist
           retention-days: 30
 
@@ -90,10 +90,10 @@ jobs:
 
       - uses: actions/download-artifact@v2
         with:
-          name: dist
-          path: dist
+          name: gh-pages
+          path: gh-pages
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          publish_dir: gh-pages
