@@ -19,6 +19,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: fleek
+          path: .
           retention-days: 30
 
   push:
@@ -31,12 +32,17 @@ jobs:
         with:
           ref: gh-pages
 
+
       - uses: actions/download-artifact@v2
         with:
           name: fleek
           path: fleek
 
+      - id: hash
+        run: echo "::set-output name=hash::$(git rev-parse HEAD)"
+
       - uses: peaceiris/actions-gh-pages@v3
+        if: ${{ steps.hash.outputs.hash != github.event.before }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: fleek
