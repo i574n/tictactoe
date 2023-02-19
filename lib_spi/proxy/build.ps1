@@ -10,4 +10,4 @@ dotnet fable `
 
 cargo fmt
 
-cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
+cargo build --manifest-path "$PSScriptRoot/Cargo.toml"
