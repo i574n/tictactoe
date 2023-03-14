@@ -1,4 +1,4 @@
-name: fleek
+name: dist
 on:
   push:
     branches: [gh-pages]
@@ -19,7 +19,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: fleek
+          name: dist
           path: .
           retention-days: 30
 
@@ -36,8 +36,8 @@ jobs:
 
       - uses: actions/download-artifact@v2
         with:
-          name: fleek
-          path: fleek
+          name: dist
+          path: dist
 
       - id: hash
         run: echo "::set-output name=hash::$(git rev-parse HEAD)"
@@ -46,5 +46,5 @@ jobs:
         if: ${{ steps.hash.outputs.hash != github.event.before }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: fleek
-          publish_branch: fleek
+          publish_dir: dist
+          publish_branch: dist
